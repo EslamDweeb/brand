@@ -57,8 +57,7 @@ class mapVieww: UIView , UITextFieldDelegate  {
     
     lazy var centerLocation:UIButton = {
         let btn = UIButton()
-        btn.setImage(#imageLiteral(resourceName: "home"), for: .normal)
-      
+        btn.setImage(#imageLiteral(resourceName: "Group 2-1"), for: .normal)
         return btn
     }()
     public weak var actionDelegate: ButtonActionDelegate?
@@ -117,7 +116,7 @@ class mapVieww: UIView , UITextFieldDelegate  {
         
     }
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        textField.layer.borderColor = UIColor.magenta.cgColor
+        textField.layer.borderColor = UIColor.pink.cgColor
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
         textField.layer.borderColor = UIColor.lightgray.cgColor

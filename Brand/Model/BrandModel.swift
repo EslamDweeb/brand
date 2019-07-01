@@ -14,7 +14,8 @@ struct BrandData:Codable {
 struct Brand:Codable {
     let id,priority: Int
     let name,slug: String
-    let logoImage,headerImage: Photo
+    let logoImage: Photo
+    let headerImage: Photo?
 }
 
 extension Brand {

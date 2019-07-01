@@ -8,20 +8,22 @@
 
 import UIKit
 import Cosmos
+import Kingfisher
 
 class ReviewCell: UICollectionViewCell {
     
-    var review:Review? {
+    var review:Ratingable? {
         didSet{
             guard let review = review else{return}
-            image.image = review.image
-            rateView.rating = review.rate
-            brandName.text = review.brandName
-            productName.text = review.productName
+            
+            rateView.rating = Double(review.value)
+            brandName.text = review.object.brand.name
+            productName.text = review.objectName
             reviewLbl.text = review.review
+            
         }
     }
-    var editeBtnTapped: ( (_ review: Review) -> () )?
+    var editeBtnTapped: ( (_ review: Ratingable) -> () )?
     
     lazy var containerView:UIView = {
         let view = UIView()
@@ -51,13 +53,13 @@ class ReviewCell: UICollectionViewCell {
     }()
     lazy var brandName: UILabel = {
         let lbl = UILabel()
-        lbl.font = UIFont(name: "Avenir-Heavy", size: 12)
+        lbl.font = UIFont(name: "Avenir-Heavy", size: 10)
         lbl.textColor = .black
         return lbl
     }()
     lazy var productName: UILabel = {
         let lbl = UILabel()
-        lbl.font = UIFont(name: "Avenir-Heavy", size: 14)
+        lbl.font = UIFont(name: "Avenir-Heavy", size: 12)
         lbl.numberOfLines = 2
         lbl.textColor = .black
         return lbl
@@ -97,11 +99,12 @@ class ReviewCell: UICollectionViewCell {
     }
     private func addConstrainsToUI() {
         containerView.anchor(top: contentView.topAnchor, left: contentView.leftAnchor, bottom: contentView.bottomAnchor, right: contentView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
-        editeBtn.anchor(top: containerView.topAnchor, left: nil, bottom: nil, right: containerView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 20, paddingLeft: 0, paddingBottom: 0, paddingRight: 8, width: 20, height: 20, paddingCenterX: 0, paddingCenterY: 0)
+        editeBtn.anchor(top: containerView.topAnchor, left: nil, bottom: nil, right: containerView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 20, paddingLeft: 0, paddingBottom: 0, paddingRight: 12, width: 20, height: 20, paddingCenterX: 0, paddingCenterY: 0)
         image.anchor(top: containerView.topAnchor, left: containerView.leftAnchor, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 20, paddingLeft: 5, paddingBottom: 0, paddingRight: 0, width: 75, height: 75, paddingCenterX: 0, paddingCenterY: 0)
-         productName.anchor(top: containerView.topAnchor, left: image.rightAnchor   , bottom: nil, right: editeBtn.leftAnchor, centerX: nil, centerY: nil, paddingTop: 20, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 45, paddingCenterX: 0, paddingCenterY: 0)
-        brandName.anchor(top: productName.bottomAnchor, left: image.rightAnchor, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 2, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 40, height: 20, paddingCenterX: 0, paddingCenterY: 0)
-        rateView.anchor(top: productName.bottomAnchor, left: brandName.rightAnchor, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 6.6, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 40, height: 20, paddingCenterX: 0, paddingCenterY: 0)
+         productName.anchor(top: containerView.topAnchor, left: image.rightAnchor   , bottom: nil, right: editeBtn.leftAnchor, centerX: nil, centerY: nil, paddingTop: 20, paddingLeft: 8, paddingBottom: 0, paddingRight: 12, width: 0, height: 45, paddingCenterX: 0, paddingCenterY: 0)
+        brandName.anchor(top: productName.bottomAnchor, left: image.rightAnchor, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 2, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
+        brandName.widthAnchor.constraint(greaterThanOrEqualToConstant: 40).isActive = true
+        rateView.anchor(top: nil, left: brandName.rightAnchor, bottom: nil, right: nil, centerX: nil, centerY: brandName.centerYAnchor, paddingTop: 0, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 40, height: 20, paddingCenterX: 0, paddingCenterY: 3)
         reviewLbl.anchor(top: image.bottomAnchor, left: containerView.leftAnchor, bottom: nil, right: containerView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 40, paddingCenterX: 0, paddingCenterY: 0)
     }
     @objc func handelEditeTapped(){

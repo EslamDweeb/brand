@@ -70,7 +70,8 @@ class ReviewHeaderView: UIView {
     private func addConstrainsToUI() {
         image.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 10, paddingLeft: 16, paddingBottom: 0, paddingRight: 0, width: 75, height: 75, paddingCenterX: 0, paddingCenterY: 0)
         productName.anchor(top: topAnchor, left: image.rightAnchor, bottom: nil, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 16, paddingLeft: 16, paddingBottom: 0, paddingRight: 80, width: 0, height: 45, paddingCenterX: 0, paddingCenterY: 0)
-        brandName.anchor(top: productName.bottomAnchor, left: image.rightAnchor, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 16, paddingBottom: 0, paddingRight: 0, width: 50, height: 20, paddingCenterX: 0, paddingCenterY: 0)
+        brandName.anchor(top: productName.bottomAnchor, left: image.rightAnchor, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 16, paddingBottom: 0, paddingRight: 0, width: 0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
+        brandName.widthAnchor.constraint(greaterThanOrEqualToConstant: 50).isActive = true
         rateView.anchor(top: brandName.bottomAnchor, left: image.rightAnchor, bottom: nil, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 16, paddingBottom: 0, paddingRight: 80, width:0, height: 25, paddingCenterX: 0, paddingCenterY: 0)
     }
 }

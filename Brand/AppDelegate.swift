@@ -9,9 +9,9 @@
 import UIKit
 import TwitterKit
 import FBSDKCoreKit
-import GooglePlaces
 import GoogleMaps
 import MOLH
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate,MOLHResetable {
     func reset() {
@@ -30,10 +30,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate,MOLHResetable {
         window = UIWindow()
         window?.makeKeyAndVisible()
         window?.rootViewController = SplashViewController()
-        GMSPlacesClient.provideAPIKey(Constants.Defaults.placeKey)
-        GMSServices.provideAPIKey(Constants.Defaults.placeKey)
         TWTRTwitter.sharedInstance().start(withConsumerKey: "KUkghIKbyb7SsRULpDfjCmK30", consumerSecret: "mgpVgM29xQLZhg37Z7cKkhQ6FLaYhWOdJdp5MKVQEtfUpN9HgK")
         ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
+
         GMSServices.provideAPIKey(Constants.Defaults.googleApiKey)
 
         return true

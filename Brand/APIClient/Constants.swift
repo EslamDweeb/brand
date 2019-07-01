@@ -15,8 +15,7 @@ struct Constants {
     
     struct Defaults {
         static let authToken = "authToken"
-        static let googleApiKey = "AIzaSyBElazdOojJGeAMDPToSdKvldKvQhC0wb4"
-        static let placeKey = "AIzaSyBCJRovFaMek4CftqjV9EZpcxN1oV8Q_i4"
+        static let googleApiKey = "AIzaSyBCJRovFaMek4CftqjV9EZpcxN1oV8Q_i4"
         static let countries = "counties"
         static let banners = "banners"
         static let flashSale = "flashSale"
@@ -53,6 +52,8 @@ struct Constants {
         static let main = "main"
         static let photo = "photo"
         static let local = "locale"
+        static let userSocialId = "user_social_id"
+        static let socialProviderId  = "social_provider_id"
     }
 }
 enum RequestMethods: String {

@@ -14,9 +14,10 @@ enum ProductRouter:URLRequestConvertible {
     case banners
     case categories
     case lastUpdate
+    case allReviews
     private var Methods : HTTPMethod {
         switch self {
-        case .brands,.banners,.categories,.lastUpdate:
+        case .brands,.banners,.categories,.lastUpdate,.allReviews:
             return .get
         }
     }
@@ -30,6 +31,8 @@ enum ProductRouter:URLRequestConvertible {
             return "/api/categories?markets"
         case .lastUpdate:
             return "/api/last_updates"
+        case .allReviews:
+            return "/api/ratingables?profile"
         }
     }
     private var headers : HTTPHeaders {
@@ -39,34 +42,40 @@ enum ProductRouter:URLRequestConvertible {
                     HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue,
                     HTTPHeaderField.contentType.rawValue : ContentType.json.rawValue
                 ]
+         case .allReviews:
+            return [
+                HTTPHeaderField.authentication.rawValue : " \(ContentType.token.rawValue) \(UserDefaults.standard.string(forKey: Constants.Defaults.authToken)!)" ,
+                HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue,
+                HTTPHeaderField.contentType.rawValue : ContentType.json.rawValue
+            ]
         }
     }
     private var parameters :Parameters?{
         switch self {
-        case .brands,.banners,.categories,.lastUpdate:
+        case .brands,.banners,.categories,.lastUpdate,.allReviews:
             return [:]
         }
     }
     
     func asURLRequest() throws -> URLRequest {
         switch self {
-        case .banners,.categories:
+        case .banners,.categories,.allReviews:
             let url = "\(Constants.ProductionServer.baseURL)\(Paths)"
             let safeUrl = url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
             var urlRequest = URLRequest(url: URL(string: safeUrl!)!)
             urlRequest.httpMethod = Methods.rawValue
             urlRequest.headers = headers
-//            if Methods.rawValue == "POST"{
-//                if let parameters = parameters {
-//                    do {
-//                        print(parameters)
-//                        urlRequest.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: [])
-//                        print(urlRequest.httpBody!)
-//                    }catch{
-//                        throw AFError.parameterEncodingFailed(reason:.jsonEncodingFailed(error: error))
-//                    }
-//                }
-//            }
+            if Methods.rawValue == "POST"{
+                if let parameters = parameters {
+                    do {
+                        print(parameters)
+                        urlRequest.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: [])
+                        print(urlRequest.httpBody!)
+                    }catch{
+                        throw AFError.parameterEncodingFailed(reason:.jsonEncodingFailed(error: error))
+                    }
+                }
+            }
             return urlRequest
         default:
             let url = try Constants.ProductionServer.baseURL

@@ -11,7 +11,6 @@ import UIKit
 extension ReviewController: UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if reviews.count == 0 {
-            mainView.myReviews.topAnchor.constraint(equalTo: mainView.navView.bottomAnchor, constant: 0).isActive = true
             mainView.heightConstraint?.constant = 0
             mainView.topConstraint?.constant = 0
             UIView.animate(withDuration: 0.2) {
@@ -19,6 +18,8 @@ extension ReviewController: UICollectionViewDelegate,UICollectionViewDataSource,
             }
             collectionView.backgroundView = ReviewBGView()
         }else{
+            mainView.heightConstraint?.constant = 25
+            mainView.topConstraint?.constant = 16
             collectionView.backgroundView = nil
         }
         return reviews.count

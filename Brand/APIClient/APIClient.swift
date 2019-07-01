@@ -16,8 +16,18 @@ class APIClient {
             complition(response.result)
         }
     }
+    static func SocialSignUp(usersocialid : String , socialproviderid :Int ,firstName: String,lastName: String,email: String,phone: String,password : String ,complition : @escaping (Result<UserData,Error>) -> Void) {
+        AF.request(APIRouter.socialSignUp(uerSocialId: usersocialid, socialProviderid: socialproviderid, firstName: firstName, lastName: lastName, email: email, phone: phone, password : password)).responseDecodable {  (response : DataResponse<UserData>) in
+            complition(response.result)
+        }
+    }
     static func Login(userName: String,password:String,complition: @escaping (Result<LoginData,Error>) -> Void) {
         AF.request(APIRouter.login(userName: userName, password: password)).responseDecodable { (response : DataResponse<LoginData>) in
+            complition(response.result)
+        }
+    }
+    static func SocialLogin(usersocialid : String ,complition : @escaping (Result<UserData,Error>) -> Void) {
+        AF.request(APIRouter.socialLogin(userSocialId: usersocialid)).validate(statusCode: 200 ..< 422).responseDecodable {  (response : DataResponse<UserData>) in
             complition(response.result)
         }
     }
@@ -112,6 +122,11 @@ class APIClient {
     }
     static func lastUpdates(complition : @escaping (Result<LastUpdate,Error>) -> Void) {
         AF.request(ProductRouter.lastUpdate).responseDecodable{(response:DataResponse<LastUpdate>) in
+            complition(response.result)
+        }
+    }
+    static func getReviews(complition : @escaping (Result<ReviewData,Error>) -> Void) {
+        AF.request(ProductRouter.allReviews  ).responseDecodable{(response:DataResponse<ReviewData>) in
             complition(response.result)
         }
     }

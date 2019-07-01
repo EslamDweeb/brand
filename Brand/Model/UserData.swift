@@ -11,7 +11,7 @@ import Foundation
 struct UserData: Codable {
     let user: User?
     let message: String?
-    let errors: Errors?
+    let errors: [String : [String]]?
     let accessToken: String?
 }
 extension UserData {

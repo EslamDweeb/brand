@@ -10,37 +10,24 @@ import UIKit
 import Cosmos
 
 class AddReviewView: UIView {
-    var review:Review? {
+    var review:Ratingable? {
         didSet{
-            guard let review = review else{return}
-            headerView.image.image = review.image
-            headerView.brandName.text = review.brandName
-            headerView.productName.text = review.productName
-            headerView.rateView.rating = review.rate
-            reviewView.textView.text = review.review
-            prosView.textView.text = review.review
-            consView.textView.text = review.review
+            headerView.brandName.text = review?.object.brand.name
+            headerView.productName.text = review?.objectName
+            headerView.rateView.rating = Double(review?.value ?? 0)
+            reviewView.textView.text = review?.review
+            prosView.textView.text = review?.pros
+            consView.textView.text = review?.cons
         }
     }
     weak var delegate:ButtonActionDelegate?
     lazy var  navView:GradNavView = {
         let navView = GradNavView()
+        navView.titlelabel.text = NSLocalizedString("myReview", comment: "")
+        navView.titlelabel.font = UIFont(name: "Avenir-Heavy", size: 14)
+        navView.backBtn.addTarget(delegate, action: #selector(ButtonActionDelegate.dissmisController), for: .touchUpInside)
         return navView
-    }()
-    lazy var backBtn: UIButton = {
-        let button = UIButton()
-        button.setImage(#imageLiteral(resourceName: "arrowLeftAnticon"), for: .normal)
-        button.addTarget(delegate, action: #selector(ButtonActionDelegate.dissmisController), for: .touchUpInside)
-        return button
-    }()
-    lazy var titlelabel:UILabel = {
-        let label = UILabel()
-        label.text = "My Reviews"
-        label.textColor = .white
-        label.textAlignment = .center
-        label.font = UIFont(name: "Avenir-Heavy", size: 14)
-        return label
-    }()
+        }()
     lazy var headerView: ReviewHeaderView = {
         let view = ReviewHeaderView()
         return view
@@ -86,8 +73,6 @@ class AddReviewView: UIView {
     }
     private func addSubViews() {
         addSubview(navView)
-        navView.addSubview(backBtn)
-        navView.addSubview(titlelabel)
         addSubview(scrollView)
         scrollView.addSubview(headerView)
         scrollView.addSubview(reviewView)
@@ -98,8 +83,6 @@ class AddReviewView: UIView {
     private func addConstrainsToUI() {
         navView.anchor(top: self.topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, centerX: centerXAnchor, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         navView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.12).isActive = true
-        titlelabel.anchor(top: nil, left: nil, bottom: navView.bottomAnchor, right: nil, centerX: navView.centerXAnchor, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 20, paddingRight: 0, width: 120, height: 20, paddingCenterX: 0, paddingCenterY: 0)
-        backBtn.anchor(top: nil, left: navView.leftAnchor, bottom: nil, right: nil, centerX: nil, centerY:titlelabel.centerYAnchor, paddingTop: 0, paddingLeft: 20, paddingBottom: 20, paddingRight: 0, width: 20, height: 20, paddingCenterX: 0, paddingCenterY: 0)
         scrollView.anchor(top: navView.bottomAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         headerView.anchor(top: scrollView.topAnchor, left: scrollView.leftAnchor, bottom: nil, right: scrollView.rightAnchor, centerX: scrollView.centerXAnchor, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 130, paddingCenterX: 0, paddingCenterY: 0)
         reviewView.anchor(top: headerView.bottomAnchor, left: scrollView.leftAnchor, bottom: nil, right: scrollView.rightAnchor, centerX: scrollView.centerXAnchor, centerY: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 130, paddingCenterX: 0, paddingCenterY: 0)

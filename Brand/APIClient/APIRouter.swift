@@ -24,7 +24,8 @@ enum APIRouter : URLRequestConvertible {
     case editeInfo(firstName: String?,lastName: String?,email: String?,phone: String?,birthDate: String? ,gender : Int?)
     case uploadImage(imageData: Data,filename : String)
     case deleteImage(id:Int)
-
+    case socialLogin(userSocialId : String)
+    case socialSignUp(uerSocialId : String , socialProviderid :Int,firstName: String,lastName: String,email: String,phone: String,password:String)
     private var Methods : HTTPMethod {
         switch self {
         case .signUp:
@@ -54,6 +55,10 @@ enum APIRouter : URLRequestConvertible {
         case .deleteImage:
             return .delete
         case .editeInfo:
+            return .post
+        case .socialSignUp:
+            return .post
+        case .socialLogin:
             return .post
         }
     }
@@ -89,6 +94,10 @@ enum APIRouter : URLRequestConvertible {
             return "/api/media/\(id)"
         case .editeInfo:
             return "/api/profile/user"
+        case .socialSignUp:
+            return "/api/social-signup"
+        case .socialLogin:
+            return "/api/social-login"
         }
     }
     private var headers : HTTPHeaders {
@@ -105,7 +114,7 @@ enum APIRouter : URLRequestConvertible {
             ]
         case .forgetPassword:
             return [
-                HTTPHeaderField.authentication.rawValue: ContentType.token.rawValue,
+                 HTTPHeaderField.authentication.rawValue : " \(ContentType.token.rawValue) \(UserDefaults.standard.string(forKey: Constants.Defaults.authToken)!)",
                 HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue,
                 HTTPHeaderField.contentType.rawValue : ContentType.json.rawValue
             ]
@@ -124,7 +133,6 @@ enum APIRouter : URLRequestConvertible {
             ]
         case .userAddress:
             return [
-                
                 HTTPHeaderField.authentication.rawValue : " \(ContentType.token.rawValue) \(UserDefaults.standard.string(forKey: Constants.Defaults.authToken)!)" ,
                 HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue,
                 HTTPHeaderField.contentType.rawValue : ContentType.json.rawValue
@@ -142,6 +150,12 @@ enum APIRouter : URLRequestConvertible {
                 HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue,
                 HTTPHeaderField.contentType.rawValue : ContentType.json.rawValue
             ]
+        case .socialLogin:
+            return [
+                HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue,
+                HTTPHeaderField.contentType.rawValue : ContentType.json.rawValue,
+                HTTPHeaderField.locale.rawValue : MOLHLanguage.currentAppleLanguage()
+            ]
         case .editUserAddress:
             return [
                 HTTPHeaderField.authentication.rawValue : " \(ContentType.token.rawValue) \(UserDefaults.standard.string(forKey: Constants.Defaults.authToken)!)" ,
@@ -158,8 +172,6 @@ enum APIRouter : URLRequestConvertible {
         case .setdefaultAddress:
             return [
                 HTTPHeaderField.authentication.rawValue : " \(ContentType.token.rawValue) \(UserDefaults.standard.string(forKey: Constants.Defaults.authToken)!)" ,
-                HTTPHeaderField.contentType.rawValue : ContentType.json.rawValue,
-                
                 HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue,
                 HTTPHeaderField.contentType.rawValue : ContentType.json.rawValue]
         case .uploadImage:
@@ -179,6 +191,13 @@ enum APIRouter : URLRequestConvertible {
                 HTTPHeaderField.authentication.rawValue :"\(ContentType.token.rawValue) \(UserDefaults.standard.string(forKey: Constants.Defaults.authToken)!)" ,
                 HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue,
                 HTTPHeaderField.contentType.rawValue : ContentType.json.rawValue
+            ]
+        case .socialSignUp:
+            return [
+                HTTPHeaderField.authentication.rawValue :" \(ContentType.token.rawValue)  \(UserDefaults.standard.string(forKey: Constants.Defaults.authToken) ?? "")",
+                HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue,
+                HTTPHeaderField.contentType.rawValue : ContentType.json.rawValue,
+                HTTPHeaderField.locale.rawValue : MOLHLanguage.currentAppleLanguage()
             ]
         }
     }
@@ -202,6 +221,10 @@ enum APIRouter : URLRequestConvertible {
                 Constants.APIParameterKey.clientSecret:"KNGPHksrLvqRR962gk7qCNmOY960GLQRFEzrRXRv",
                 Constants.APIParameterKey.userName: userName,
                 Constants.APIParameterKey.password: password
+            ]
+        case .socialLogin(let usersocialid) :
+            return [
+                Constants.APIParameterKey.userSocialId : usersocialid
             ]
         case .forgetPassword(let email):
             return [Constants.APIParameterKey.email: email]
@@ -265,6 +288,16 @@ enum APIRouter : URLRequestConvertible {
                 Constants.APIParameterKey.phone:phone ?? "",
                 Constants.APIParameterKey.gender:gender ?? 0,
                 Constants.APIParameterKey.local : Constants.Defaults.local
+            ]
+        case .socialSignUp(let usersocialid , let socialproviderid ,let firstName,let lastName,let email,let phone ,let password ) :
+            return [
+                Constants.APIParameterKey.userSocialId : usersocialid ,
+                Constants.APIParameterKey.socialProviderId : socialproviderid,
+                Constants.APIParameterKey.firstName : firstName,
+                Constants.APIParameterKey.lastName : lastName,
+                Constants.APIParameterKey.email:email,
+                Constants.APIParameterKey.phone:phone,
+                Constants.APIParameterKey.password : password
             ]
         }
     }

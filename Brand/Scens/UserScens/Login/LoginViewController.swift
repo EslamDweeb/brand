@@ -14,6 +14,7 @@ class LoginViewController: UIViewController,ButtonActionDelegate {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
+    var userid : String!
     var loginView = LoginView()
     var toggled = true
     let reachability =  Reachability()
@@ -103,41 +104,62 @@ class LoginViewController: UIViewController,ButtonActionDelegate {
         }
     }
     func faceBookLogin() {
+            let modalController = SocialSignUPVC()
         let fbLoginManager : LoginManager = LoginManager()
         fbLoginManager.logIn(permissions: ["public_profile", "email"], from: self) { (result, error) -> Void in
-            if (error == nil){
-                let fbloginresult : LoginManagerLoginResult = result!
-                // if user cancel the login
-                if (result?.isCancelled)!{
-                    return
-                }
-                if(fbloginresult.grantedPermissions.contains("email")) {
-                    print("permissions: \(String(describing: result?.grantedPermissions))")
-                    print("token: \(String(describing: result?.token?.tokenString))")
-                    
-                    print("user_id: \(String(describing: result?.token?.userID))")
-                    
-                    
-                    let req2 = GraphRequest(graphPath: "me", parameters: ["fields":"email,name"], tokenString: AccessToken.current?.tokenString, version: nil, httpMethod: HTTPMethod(rawValue: "GET"))
-                    
-                    req2.start(completionHandler: { (connection, result, error : Error!) -> Void in
-                        if(error == nil) {
-                            print("result \(String(describing: result))")
-                            guard let Info = result as? [String: Any] else { return }
-                            
-                            print( Info["name"] as? String as Any )
-                            print( Info["email"] as? String as Any )
-                            
-                            
-                        } else {
-                            print("error \(String(describing: error))")
-                        }
-                    })
-                    
+                if (error == nil){
+                    let fbloginresult : LoginManagerLoginResult = result!
+                    // if user cancel the login
+                    if (result?.isCancelled)!{
+                        return
+                    }
+                    if(fbloginresult.grantedPermissions.contains("email")) {
+                        print("permissions: \(String(describing: result?.grantedPermissions))")
+                        print("token: \(String(describing: result?.token?.tokenString))")
+                        self.userid = String(describing: result?.token?.userID)
+                        print("user_id: \(self.userid!)")
+                        
+                        modalController.userid = String(describing: result?.token?.userID)
+                        let req2 = GraphRequest(graphPath: "me", parameters: ["fields":"email,first_name,last_name"], tokenString: AccessToken.current?.tokenString, version: nil, httpMethod: HTTPMethod(rawValue: "GET"))
+                        
+                        req2.start(completionHandler: { (connection, result, error : Error!) -> Void in
+                            if(error == nil) {
+                                print("result \(String(describing: result))")
+                                guard let Info = result as? [String: Any] else { return }
+                                modalController.firstname = Info["first_name"] as? String
+                                modalController.lastname = Info["last_name"] as? String
+                                modalController.email = Info["email"] as? String
+                                print(self.userid!)
+                                APIClient.SocialLogin(usersocialid: Info["id"] as? String ?? "" , complition: { (result) in
+                                    switch result {
+                                    case .success(let user) :
+                                        print("Logged in BEFORE ")
+                                        print(user)
+                                        UserDefaults.standard.set(user.accessToken, forKey: Constants.Defaults.authToken)
+                                        UserDefaults.standard.set(true, forKey: Constants.Defaults.isLogin)
+                                        let dest = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "mainTabVC")
+                                        self.present(dest, animated: true, completion: nil)
+                                        
+                                    case .failure(let error) :
+                                        print(error)
+                                        modalController.provid = 1
+                                        modalController.userid = Info["id"] as? String
+                                        modalController.email = Info["email"] as? String
+                                        modalController.firstname = Info["first_name"] as? String
+                                        modalController.lastname = Info["last_name"] as? String
+                                        print("dhfvwdhjbfhdjsbfhjdsbfjhdhbfjkd")
+                                        self.present(modalController, animated: true, completion: nil)
+                                    }
+                                })
+                            } else {
+                                print("error \(String(describing: error))")
+                            }
+                        })
+                    }else{
+                    self.createAlert(erroMessage: "gjhvgjv")
                 }
             }
         }
-        
     }
 }
 
