@@ -77,7 +77,7 @@ class AddressInfoView: UIView , UITextFieldDelegate{
         let textField = DefaultTextField()
         textField.clearButtonMode = .whileEditing
         textField.font = UIFont(name: "Avenir-Roman", size: 16)
-        textField.attributedPlaceholder = NSAttributedString(string: NSLocalizedString( "person_name", comment: ""), attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
+        textField.attributedPlaceholder = NSAttributedString(string: NSLocalizedString( "person_name", comment: ""), attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightgray3])
         return textField
     }()
     
@@ -85,7 +85,7 @@ class AddressInfoView: UIView , UITextFieldDelegate{
         let textField = DefaultTextField()
         textField.clearButtonMode = .whileEditing
         textField.font = UIFont(name: "Avenir-Roman", size: 16)
-        textField.attributedPlaceholder = NSAttributedString(string:NSLocalizedString( "address_name", comment: ""), attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
+        textField.attributedPlaceholder = NSAttributedString(string:NSLocalizedString( "address_name", comment: ""), attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightgray3])
         return textField
     }()
     
@@ -93,7 +93,7 @@ class AddressInfoView: UIView , UITextFieldDelegate{
         let btn = DropDownBtn()
         btn.dropView.backgroundColor = #colorLiteral(red: 0.9843137255, green: 0.9803921569, blue: 0.9803921569, alpha: 1)
         btn.dropView.cellBGC = #colorLiteral(red: 0.9843137255, green: 0.9803921569, blue: 0.9803921569, alpha: 1)
-        btn.setTitleColor(.black, for: .normal)
+        btn.setTitleColor(.lightgray3, for: .normal)
         btn.titleLabel?.textAlignment = .center
         btn.setImage(#imageLiteral(resourceName: "down - anticon"), for: .normal)
         
@@ -101,13 +101,9 @@ class AddressInfoView: UIView , UITextFieldDelegate{
     }()
     lazy var country:DropDownBtn = {
         let btn = DropDownBtn()
-        //btn.setTitle("Country", for: .normal)
-        btn.setTitleColor(.black, for: .normal)
+        btn.setTitleColor(.lightgray3, for: .normal)
         btn.setImage(#imageLiteral(resourceName: "down - anticon"), for: .normal)
         btn.titleLabel?.textAlignment = .center
-        
-        //        btn.setTitle("Choose your country" , for: .normal)
-        //   btn.setTitleColor(.lightGray, for: .normal)
         btn.dropView.backgroundColor = #colorLiteral(red: 0.9843137255, green: 0.9803921569, blue: 0.9803921569, alpha: 1)
         btn.dropView.cellBGC = #colorLiteral(red: 0.9843137255, green: 0.9803921569, blue: 0.9803921569, alpha: 1)
         return btn
@@ -116,7 +112,7 @@ class AddressInfoView: UIView , UITextFieldDelegate{
         let textField = DefaultTextField()
         textField.clearButtonMode = .whileEditing
         textField.font = UIFont(name: "Avenir-Roman", size: 16)
-        textField.attributedPlaceholder = NSAttributedString(string: NSLocalizedString( "city", comment: "") , attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
+        textField.attributedPlaceholder = NSAttributedString(string: NSLocalizedString( "city", comment: "") , attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightgray3])
         return textField
     }()
     lazy var  phone : DefaultTextField = {
@@ -124,7 +120,7 @@ class AddressInfoView: UIView , UITextFieldDelegate{
         textField.keyboardType = .numberPad
         textField.clearButtonMode = .whileEditing
         textField.font = UIFont(name: "Avenir-Roman", size: 16)
-        textField.attributedPlaceholder = NSAttributedString(string: NSLocalizedString( "phone", comment: "") , attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
+        textField.attributedPlaceholder = NSAttributedString(string: NSLocalizedString( "phone", comment: "") , attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightgray3])
         return textField
     }()
     
@@ -133,14 +129,14 @@ class AddressInfoView: UIView , UITextFieldDelegate{
         textField.keyboardType = .numberPad
         textField.clearButtonMode = .whileEditing
         textField.font = UIFont(name: "Avenir-Roman", size: 16)
-        textField.attributedPlaceholder = NSAttributedString(string: NSLocalizedString( "postal_code", comment: ""), attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
+        textField.attributedPlaceholder = NSAttributedString(string: NSLocalizedString( "postal_code", comment: ""), attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightgray3])
         
         return textField
     }()
     lazy var detailAddress: UITextView = {
         let textView = UITextView()
         textView.text = NSLocalizedString("detailed_address", comment: "")
-        textView.textColor = .black
+        textView.textColor = .lightgray3
         textView.layer.borderWidth = 1
         textView.layer.cornerRadius = 5
         textView.layer.borderColor = UIColor.lightgray.cgColor
@@ -167,24 +163,21 @@ class AddressInfoView: UIView , UITextFieldDelegate{
     lazy var  lat : DefaultTextField = {
         let textField = DefaultTextField()
         textField.clearButtonMode = .whileEditing
-        textField.textColor = .lightGray
         textField.keyboardType = .numbersAndPunctuation
         textField.font = UIFont(name: "Avenir-Roman", size: 16)
-        textField.attributedPlaceholder = NSAttributedString(string: NSLocalizedString( "latVal", comment: ""), attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
+        textField.attributedPlaceholder = NSAttributedString(string: NSLocalizedString( "latVal", comment: ""), attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightgray3])
         return textField
     }()
     lazy var  lang : DefaultTextField = {
         let textField = DefaultTextField()
         textField.clearButtonMode = .whileEditing
         textField.keyboardType = .numbersAndPunctuation
-        textField.textColor = .lightGray
         textField.font = UIFont(name: "Avenir-Roman", size: 16)
-        textField.attributedPlaceholder = NSAttributedString(string: NSLocalizedString( "langVal", comment: ""), attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
+        textField.attributedPlaceholder = NSAttributedString(string: NSLocalizedString( "langVal", comment: ""), attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightgray3])
         return textField
     }()
     lazy var pickLocationBtn: GradBtn = {
         let button = GradBtn()
-        // button.setTitle(LocalizationSystem.sharedInstance.localizedStringForKey(key: "pick_location", comment: ""), for: .normal)
         button.setTitle(NSLocalizedString( "pick_location", comment: ""), for: .normal)
         button.setTitleColor( .white, for: .normal)
         button.titleLabel?.font = UIFont(name: "Avenir-Black", size: 16)
@@ -210,11 +203,7 @@ class AddressInfoView: UIView , UITextFieldDelegate{
     func setupView() {
         self.backgroundColor = .white
         self.addSubview(navView)
-        //        navView.addSubview(addresslable)
-        //        navView.addSubview(backBtn)
         self.addSubview(scrollView)
-        // scrollView.addSubview(logoImage)
-        //  logoImage.isHidden = true
         scrollView.addSubview(View)
         scrollView.addSubview(addressinfoView)
         addressinfoView.addSubview(lable)
@@ -256,10 +245,8 @@ class AddressInfoView: UIView , UITextFieldDelegate{
         lat.delegate = self
         lang.delegate = self
         detailAddress.delegate = self
-        //  self.sendSubviewToBack(addressinfoView)
         addressinfoView.bringSubviewToFront(country.dropView.tableView)
         addressinfoView.bringSubviewToFront(state.dropView.tableView)
-        //  self.bringSubviewToFront(View)
         //add constrains
         
         navView.anchor(top: self.topAnchor, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
@@ -267,7 +254,6 @@ class AddressInfoView: UIView , UITextFieldDelegate{
         
         scrollView.anchor(top: navView.bottomAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         View.anchor(top: scrollView.topAnchor, left: scrollView.leftAnchor, bottom: scrollView.bottomAnchor, right: scrollView.rightAnchor, centerX: scrollView.centerXAnchor, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
-        //logoImage.anchor(top: scrollView.topAnchor,left: nil, bottom: nil, right: nil, centerX: centerXAnchor, centerY: nil, paddingTop: 30, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 170, height: 40, paddingCenterX: 0, paddingCenterY: 0)
         addressinfoView.anchor(top: scrollView.topAnchor, left: scrollView.leftAnchor, bottom: nil, right: scrollView.rightAnchor, centerX: scrollView.centerXAnchor, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 480, paddingCenterX: 0, paddingCenterY: 0)
         addressinfoView.setShadow(shadowColor: UIColor(red: 0, green: 0, blue: 0, alpha: 0.24).cgColor , shadowOffset: CGSize(width: 0, height: 2), shadowOpacity: 0.4, shadowRaduis: 1)
         lable.anchor(top: addressinfoView.topAnchor, left: nil, bottom: nil, right: nil, centerX: addressinfoView.centerXAnchor, centerY: nil, paddingTop: 16, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
@@ -380,7 +366,7 @@ class AddressInfoView: UIView , UITextFieldDelegate{
         textField.layer.borderColor = UIColor.pink.cgColor
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
-        textField.layer.borderColor = UIColor.lightgray.cgColor
+        textField.layer.borderColor = UIColor.lightgray3.cgColor
     }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField.resignFirstResponder() {
@@ -396,12 +382,14 @@ extension AddressInfoView : UITextViewDelegate {
         if textView.text == NSLocalizedString("detailed_address", comment: ""){
             textView.text = ""
         }
+        textView.textColor = .black
         textView.layer.borderColor = UIColor.pink.cgColor
     }
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text == "" {
             textView.text = NSLocalizedString("detailed_address", comment: "")
         }
+        textView.textColor = .lightgray3
         textView.layer.borderColor = UIColor.lightgray.cgColor
     }
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {

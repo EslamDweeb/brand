@@ -14,13 +14,13 @@ class ReviewView: UIView {
     var topConstraint:NSLayoutConstraint?
     lazy var  navView:GradNavView = {
         let navView = GradNavView()
-        navView.titlelabel.text = "My Reviews"
+        navView.titlelabel.text = NSLocalizedString("myReview", comment: "")
         return navView
     }()
 
     lazy var myReviews:UILabel = {
         let label = UILabel()
-        label.text = "My Reviews"
+        label.text = NSLocalizedString("my_reviews", comment: "")
         label.textColor = .black
         label.textAlignment = .center
         label.font = UIFont(name: "Avenir-Heavy", size: 16)
@@ -34,10 +34,11 @@ class ReviewView: UIView {
       coll.register(ReviewCell.self, forCellWithReuseIdentifier: cellID)
         return coll
     }()
-    init(delegate: UICollectionViewDelegate,dataSource: UICollectionViewDataSource) {
+    init(delegate: UICollectionViewDelegate,dataSource: UICollectionViewDataSource,actionDelegate:ButtonActionDelegate) {
         super.init(frame: .zero)
         reviewCollection.delegate = delegate
         reviewCollection.dataSource = dataSource
+        self.actionDelegate = actionDelegate
         setupView()
     }
     required init?(coder aDecoder: NSCoder) {
@@ -50,8 +51,6 @@ class ReviewView: UIView {
     public weak var actionDelegate: ButtonActionDelegate?
     private func addSubViews() {
         addSubview(navView)
-       
-       
         addSubview(myReviews)
         addSubview(reviewCollection)
     }

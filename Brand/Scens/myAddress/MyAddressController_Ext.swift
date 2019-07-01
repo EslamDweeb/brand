@@ -14,7 +14,7 @@ extension MyAddressViewController: UITableViewDelegate,UITableViewDataSource {
             
             myAddressView.lable.isHidden = true
             myAddressView.addBtn.isHidden = true
-            //  tableView.backgroundView = MyAddressTableBG()
+            tableView.backgroundView = MyAddressTableBG()
             
         }
         else{
@@ -40,8 +40,8 @@ extension MyAddressViewController: UITableViewDelegate,UITableViewDataSource {
             { (result) in
                 switch result {
                 case .success(let data):
+                   print(data.errors)
                     print(data)
-                    print("Delete add")
                 case .failure(let error):
                     print(error)
                 }
@@ -54,6 +54,7 @@ extension MyAddressViewController: UITableViewDelegate,UITableViewDataSource {
                     cell.defaultview.isHidden = false
                 }
             }
+          
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
         deleteBtn.backgroundColor = .pink

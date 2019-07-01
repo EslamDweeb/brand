@@ -174,7 +174,7 @@
 		2D32B87122C0F1E800513DD4 /* NotificationVC_Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationVC_Ext.swift; sourceTree = "<group>"; };
 		2D32B87222C0F1E800513DD4 /* SearchController_Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchController_Ext.swift; sourceTree = "<group>"; };
 		2D32B87322C0F1E800513DD4 /* IntroViewController_Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroViewController_Ext.swift; sourceTree = "<group>"; };
-		2D32B87422C0F1E800513DD4 /* Validations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validations.swift; sourceTree = "<group>"; };
+		2D32B87422C0F1E800513DD4 /* Validations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Validations.swift; path = ../Extentions/Validations.swift; sourceTree = "<group>"; };
 		2D32B87522C0F1E800513DD4 /* ReviewController_Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewController_Ext.swift; sourceTree = "<group>"; };
 		2D32B87622C0F1E800513DD4 /* Cart_Ex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cart_Ex.swift; sourceTree = "<group>"; };
 		2D32B87722C0F1E800513DD4 /* Explore_Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Explore_Ext.swift; sourceTree = "<group>"; };
@@ -373,6 +373,7 @@
 				2D32B84422C0F1D000513DD4 /* UIViewControllerExt.swift */,
 				2D32B84522C0F1D000513DD4 /* Reachability.swift */,
 				2D32B84622C0F1D000513DD4 /* textFieldExt.swift */,
+				2D32B87422C0F1E800513DD4 /* Validations.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -385,7 +386,6 @@
 				2D32B87122C0F1E800513DD4 /* NotificationVC_Ext.swift */,
 				2D32B87222C0F1E800513DD4 /* SearchController_Ext.swift */,
 				2D32B87322C0F1E800513DD4 /* IntroViewController_Ext.swift */,
-				2D32B87422C0F1E800513DD4 /* Validations.swift */,
 				2D32B87522C0F1E800513DD4 /* ReviewController_Ext.swift */,
 				2D32B87622C0F1E800513DD4 /* Cart_Ex.swift */,
 				2D32B87722C0F1E800513DD4 /* Explore_Ext.swift */,
@@ -1245,7 +1245,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.solutionplus.Brand;
+				PRODUCT_BUNDLE_IDENTIFIER = brands.sa;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1264,7 +1264,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.solutionplus.Brand;
+				PRODUCT_BUNDLE_IDENTIFIER = brands.sa;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

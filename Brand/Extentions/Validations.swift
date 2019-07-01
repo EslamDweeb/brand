@@ -138,13 +138,14 @@ enum RegEx: String {
 }
 enum AlertMessages: String {
 
-    case invalidLat = "The latitude must be a number"
-     case invalidLng = "The longitude must be a number."
-    case inValidPhone = "Invalid Phone"
-    case inValidCode = "Invalid Postal Code , Must be 5 letters "
+    case invalidLat = "lat"
+    case invalidLng = "lang"
+    case inValidPhone = "invphone"
+    case inValidCode = "invpostal"
     case inValidcity = "Invalid City"
-     case inValidPersonName = "Invalid Person Name"
-     case inValidAddName = "Invalid Address Name"
+    case inValidPersonName = "Invalid Person Name"
+    case inValidProvName = "Invalid Provider Name"
+    case inValidAddName = "Invalid Address Name"
     case inValideEmail = "Invalid Email"
     
     case emptyPhone = "Empty Phone"

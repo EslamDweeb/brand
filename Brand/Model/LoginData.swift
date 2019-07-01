@@ -11,11 +11,12 @@ import Foundation
 struct LoginData: Codable {
     let accessToken: String?
     let message: String?
+    let errors: [String : [String]]?
 }
 
 extension LoginData {
     enum CodingKeys:String,CodingKey {
         case accessToken = "access_token"
-        case message
+        case message,errors
    }
 }

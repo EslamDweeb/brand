@@ -10,7 +10,7 @@ import UIKit
 
 class WishListController: UIViewController,ButtonActionDelegate {
     lazy var mainView: WishListView = {
-        let v = WishListView(delegate: self, dataSource: self)
+        let v = WishListView(delegate: self, dataSource: self,actionDelegate:self)
         v.backgroundColor = .white
         return v
     }()
@@ -37,5 +37,8 @@ class WishListController: UIViewController,ButtonActionDelegate {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    func dissmisController() {
+        self.dismiss(animated: true, completion: nil)
     }
 }

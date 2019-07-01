@@ -8,9 +8,9 @@
 
 import UIKit
 
-class ReviewController: UIViewController {
+class ReviewController: UIViewController,ButtonActionDelegate {
     lazy var mainView: ReviewView = {
-        let v = ReviewView(delegate: self, dataSource: self)
+        let v = ReviewView(delegate: self, dataSource: self,actionDelegate:self)
         v.backgroundColor = UIColor.backgroundColl
         return v
     }()

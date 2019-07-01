@@ -8,9 +8,9 @@
 
 import UIKit
 
-class OrderViewController: UIViewController {
+class OrderViewController: UIViewController,ButtonActionDelegate {
     lazy var mainView: OrderView = {
-        let v = OrderView(delegate: self, dataSource: self)
+        let v = OrderView(delegate: self, dataSource: self,actionDelegate: self)
         v.backgroundColor = UIColor.backgroundColl
         return v
     }()
@@ -32,5 +32,8 @@ Order(orderNumberVal: "12345", dateVal: "22-4-2019", totalVal: "400 SAR", status
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    func dissmisController() {
+        self.dismiss(animated: true, completion: nil)
     }
 }

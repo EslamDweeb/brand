@@ -13,15 +13,11 @@ class OrderView:UIView {
     private let cellID = "cellID"
     var heightConstraint:NSLayoutConstraint?
     var topConstraint:NSLayoutConstraint?
-    
+    var actionDelegate:ButtonActionDelegate?
     lazy var  navView:GradNavView = {
         let navView = GradNavView()
+        navView.backBtn.addTarget(actionDelegate, action: #selector(ButtonActionDelegate.dissmisController), for: .touchUpInside)
         return navView
-    }()
-    lazy var backBtn: UIButton = {
-        let button = UIButton()
-        button.setImage(#imageLiteral(resourceName: "arrowLeftAnticon"), for: .normal)
-        return button
     }()
     lazy var titlelabel:UILabel = {
         let label = UILabel()
@@ -46,10 +42,11 @@ class OrderView:UIView {
         coll.register(OrderCell.self, forCellWithReuseIdentifier: cellID)
         return coll
     }()
-    init(delegate: UICollectionViewDelegate,dataSource: UICollectionViewDataSource) {
+    init(delegate: UICollectionViewDelegate,dataSource: UICollectionViewDataSource,actionDelegate:ButtonActionDelegate) {
         super.init(frame: .zero)
        orderCollection.delegate = delegate
        orderCollection.dataSource = dataSource
+        self.actionDelegate = actionDelegate
         setupView()
     }
     required init?(coder aDecoder: NSCoder) {
@@ -61,7 +58,6 @@ class OrderView:UIView {
     }
     private func addSubViews() {
         addSubview(navView)
-        navView.addSubview(backBtn)
         navView.addSubview(titlelabel)
         addSubview(myOrders)
         addSubview(orderCollection)
@@ -70,7 +66,6 @@ class OrderView:UIView {
         navView.anchor(top: self.topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, centerX: centerXAnchor, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         navView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.12).isActive = true
         titlelabel.anchor(top: nil, left: nil, bottom: navView.bottomAnchor, right: nil, centerX: navView.centerXAnchor, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 20, paddingRight: 0, width: 120, height: 20, paddingCenterX: 0, paddingCenterY: 0)
-        backBtn.anchor(top: nil, left: navView.leftAnchor, bottom: nil, right: nil, centerX: nil, centerY:titlelabel.centerYAnchor, paddingTop: 0, paddingLeft: 20, paddingBottom: 20, paddingRight: 0, width: 20, height: 20, paddingCenterX: 0, paddingCenterY: 0)
         myOrders.anchor(top: navView.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 20, paddingLeft: 24, paddingBottom: 0, paddingRight: 0, width: 100, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         heightConstraint = myOrders.heightAnchor.constraint(equalToConstant: 25)
         heightConstraint?.isActive = true

@@ -24,7 +24,7 @@ class BrandCell:UICollectionViewCell {
         didSet{
             guard let cat = category else{return}
             brandName.text = cat.name
-            let url = URL(string: cat.photo.path)
+            let url = URL(string: cat.photo?.path ?? "")
             Image.kf.setImage(with: url)
         }
     }

@@ -152,7 +152,6 @@ enum APIRouter : URLRequestConvertible {
         case .deleteAddress:
             return [
                 HTTPHeaderField.authentication.rawValue : " \(ContentType.token.rawValue) \(UserDefaults.standard.string(forKey: Constants.Defaults.authToken)!)" ,
-                HTTPHeaderField.contentType.rawValue : ContentType.json.rawValue ,
                 
                 HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue,
                 HTTPHeaderField.contentType.rawValue : ContentType.json.rawValue]
@@ -245,7 +244,7 @@ enum APIRouter : URLRequestConvertible {
                 Constants.APIParameterKey.lng: lng ?? "",
             ]
         case .deleteAddress :
-            return [:]
+            return [Constants.APIParameterKey.method : RequestMethods.delete.rawValue]
         case .setdefaultAddress:
             return [
                 Constants.APIParameterKey.method : RequestMethods.put.rawValue

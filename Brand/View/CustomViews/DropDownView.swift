@@ -8,7 +8,7 @@
 
 import UIKit
 protocol vcProtocol {
-    func getIndexPath(indexPath:IndexPath)
+    func getIndexPath(indexPath:IndexPath,_ sender:DropDownView)
 }
 class DropDownView: UIView,UITableViewDelegate,UITableViewDataSource {
     var dropDownOptions = [[String:Any]]()
@@ -51,7 +51,7 @@ class DropDownView: UIView,UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.indexPath = indexPath
         tableView.reloadData()
-        self.vcDelegate?.getIndexPath(indexPath: self.indexPath!)
+        self.vcDelegate?.getIndexPath(indexPath: self.indexPath!, self)
         self.delegate?.dropDownPressed(string: (dropDownOptions[indexPath.row]["name"] as? String)!)
         
     }

@@ -5,9 +5,30 @@
   Created by Eslam Dweeb on 6/24/19.
   Copyright © 2019 Eslam Dweeb. All rights reserved.
 */
+"allFieldsreq" = " All fields are required ";
+"invphone" = "Invalid Phone number";
+"invpostal" = "Postal Code must contain 5 numbers at least ";
+"Invalid City" = "Invalid City";
+"Invalid Person Name" = "person name must contain 3 letters at least";
+"Invalid Provider Name" = "Invalid Provider Name" ;
+"Invalid Address Name" = "Address must be at least 3 characters";
+"Invalid Email" = "Invalid Email" ;
+"Empty Bio" = "Bio field is required";
+"Empty Phone" = "Phone number is required";
+"Empty Address name" = "Address name is required";
+"Empty Person Name" = " Person Name is required" ;
+"Empty city" = "City Field is required" ;
+"Must Select Your Country" = "Must Select Your Country" ;
+"Must Select Your State" = "Must Select Your State";
+"Empty Email" = "Email field is required";
+"lat" = "The latitude must be a number";
+"latVal" = "latitude";
+"lang" = "The longitude must be a number.";
+"langVal" = "longitude";
 "retry" = "Retry";
 "photo_library" = "Photo Library";
 "camera" = "Camera";
+"person_name" = "Person Name";
 "mustHavePhoto" = "You must upload photo first";
 "no_internet" =" No internet connection";
 "failed_authenticate_please"  = "Failed to authenticate, Please try again";

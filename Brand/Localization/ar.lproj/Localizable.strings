@@ -5,10 +5,31 @@
   Created by Eslam Dweeb on 6/24/19.
   Copyright © 2019 Eslam Dweeb. All rights reserved.
 */
+"allFieldsreq" = " جميع الحقول مطلوبه برجاء ادخل البينات المطلوبه ";
+"invphone" = "رقم هاتف خطا";
+"invpostal" = "رمز بريدي خاطئ يجب ان يكون خمسه ارقام";
+"Invalid City" = "برجاء ادخال مدينه صحيحه";
+"Invalid Person Name" = "اسم المستخدم يجب ان يحتوي علي ثلاثة احرف علي الاقل";
+"Invalid Provider Name" = "برجاء ادخال اسم مزود صحيح" ;
+"Invalid Address Name" = "يجب ان يحتوي العنوان علي ثلاثة احرف علي الاقل";
+"Invalid Email" = "بريد الكتروني خاطئ" ;
+"Empty Bio" = "يجب ادخال سيره ذاتيه ";
+"Empty Phone" = "يجب ادخال رقم هاتف";
+"Empty Address name" = "يجب ادخال عنوان";
+"Empty Person Name" = "يجب ادخال اسم " ;
+"Empty city" = "يجب ادخال مدينه" ;
+"Must Select Your Country" = "يجب اختيار الدوله" ;
+"Must Select Your State" = "يجب اختيار المحافظه";
+"Empty Email" = "يجب ادخال بريد الكتروني ";
+"lat" = "خطوط العرض يجب ان تكون ارقام";
+"lang" = "خطوط الطول يجب ان تكون ارقام";
+"latVal" = "خطوط العرض";
+"langVal" = "خطوط الطول";
 "login" = "تسجيل الدخول";
 "camera" = "الكاميرة";
 "mustHavePhoto" = "يجب ان يكون لديك صوره اولاً";
 "myAddresses" = "عناويني";
+"person_name" = "اسم المستخدم";
 "cart" = "عربة التسوق";
 "wishlist" = "التمنيات";
 "myOrders" = "طلباتي";
@@ -96,7 +117,7 @@
 "email_not_valid" = "بريد الكترونى غير صالح";
 "notification" = "الإشعارات";
 "cart" = "سلة المشتريات";
-"my_reviews" = "My Reviews";
+"my_reviews" = "تقيماتي";
 "get_started" = "فلنبدأ";
 "Email/phone" = "البريد الالكتروني/ الهاتف";
 "CONTINUE"  = "استمرار";

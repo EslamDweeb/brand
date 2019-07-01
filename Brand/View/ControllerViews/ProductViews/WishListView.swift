@@ -14,7 +14,7 @@ class WishListView: UIView {
     
     lazy var  navView:GradNavView = {
         let navView = GradNavView()
-        navView.titlelabel.text = "WishList"
+        navView.titlelabel.text = NSLocalizedString("wishlist", comment: "")
         return navView
         
     }()
@@ -27,10 +27,11 @@ class WishListView: UIView {
         return coll
     }()
     
-    init(delegate: UICollectionViewDelegate,dataSource: UICollectionViewDataSource) {
+    init(delegate: UICollectionViewDelegate,dataSource: UICollectionViewDataSource,actionDelegate:ButtonActionDelegate) {
         super.init(frame: .zero)
         wishCollection.delegate = delegate
         wishCollection.dataSource = dataSource
+        self.ActionDelegete = actionDelegate
         setupView()
     }
     required init?(coder aDecoder: NSCoder) {
