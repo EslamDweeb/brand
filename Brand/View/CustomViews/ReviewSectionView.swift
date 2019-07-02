@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MOLH
 
 class ReviewSectionView:UIView {
 
@@ -54,7 +55,11 @@ class ReviewSectionView:UIView {
         textContainerView.addSubview(textView)
     }
     private func addConstrainsToUI() {
+        if MOLHLanguage.currentAppleLanguage() == "en" {
         titleLable.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 10, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 60, height: 25, paddingCenterX: 0, paddingCenterY: 0)
+        }else{
+        titleLable.anchor(top: topAnchor, left: nil, bottom: nil, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 10, paddingLeft: 0, paddingBottom: 0, paddingRight: 8, width: 60, height: 25, paddingCenterX: 0, paddingCenterY: 0)
+        }
         textContainerView.anchor(top: titleLable.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 10, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 70, paddingCenterX: 0, paddingCenterY: 0)
         textView.anchor(top: textContainerView.topAnchor, left: textContainerView.leftAnchor, bottom: textContainerView.bottomAnchor, right: textContainerView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 5, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
     }

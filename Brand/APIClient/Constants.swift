@@ -54,6 +54,10 @@ struct Constants {
         static let local = "locale"
         static let userSocialId = "user_social_id"
         static let socialProviderId  = "social_provider_id"
+        static let value  = "value"
+        static let review  = "review"
+        static let pros  = "pros"
+        static let cons  = "cons"
     }
 }
 enum RequestMethods: String {

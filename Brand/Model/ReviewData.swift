@@ -11,8 +11,18 @@ import Foundation
 // MARK: - ReviewData
 struct ReviewData: Codable {
     let ratingables: [Ratingable]
+    let message:String?
+    let error:String?
 }
-
+struct ReviewDataUpdated: Codable {
+    let userRating: Ratingable?
+    let message:String?
+    let error:String?
+    enum CodingKeys: String, CodingKey {
+        case error, message
+        case userRating = "user_rating"
+    }
+}
 // MARK: - Ratingable
 struct Ratingable: Codable {
     let id: Int
@@ -20,7 +30,7 @@ struct Ratingable: Codable {
     let objectID: Int
     let objectName: String
     let object: Object
-    let subObjectMedia: String?
+    let subObjectMedia: Photo?
     let ratingStatusID: Int
     let rejectionReason: String?
     let value: Int

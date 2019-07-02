@@ -9,13 +9,15 @@
 import UIKit
 import Cosmos
 import Kingfisher
+import MOLH
 
 class ReviewCell: UICollectionViewCell {
     
     var review:Ratingable? {
         didSet{
             guard let review = review else{return}
-            
+            let url = URL(string: review.subObjectMedia?.path ?? "")
+            image.kf.setImage(with: url)
             rateView.rating = Double(review.value)
             brandName.text = review.object.brand.name
             productName.text = review.objectName
@@ -49,6 +51,7 @@ class ReviewCell: UICollectionViewCell {
     lazy var image: UIImageView = {
         let img = UIImageView()
         img.image = #imageLiteral(resourceName: "XSMax")
+        img.contentMode = .scaleAspectFit
         return img
     }()
     lazy var brandName: UILabel = {
@@ -99,13 +102,30 @@ class ReviewCell: UICollectionViewCell {
     }
     private func addConstrainsToUI() {
         containerView.anchor(top: contentView.topAnchor, left: contentView.leftAnchor, bottom: contentView.bottomAnchor, right: contentView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
-        editeBtn.anchor(top: containerView.topAnchor, left: nil, bottom: nil, right: containerView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 20, paddingLeft: 0, paddingBottom: 0, paddingRight: 12, width: 20, height: 20, paddingCenterX: 0, paddingCenterY: 0)
-        image.anchor(top: containerView.topAnchor, left: containerView.leftAnchor, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 20, paddingLeft: 5, paddingBottom: 0, paddingRight: 0, width: 75, height: 75, paddingCenterX: 0, paddingCenterY: 0)
-         productName.anchor(top: containerView.topAnchor, left: image.rightAnchor   , bottom: nil, right: editeBtn.leftAnchor, centerX: nil, centerY: nil, paddingTop: 20, paddingLeft: 8, paddingBottom: 0, paddingRight: 12, width: 0, height: 45, paddingCenterX: 0, paddingCenterY: 0)
-        brandName.anchor(top: productName.bottomAnchor, left: image.rightAnchor, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 2, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
-        brandName.widthAnchor.constraint(greaterThanOrEqualToConstant: 40).isActive = true
-        rateView.anchor(top: nil, left: brandName.rightAnchor, bottom: nil, right: nil, centerX: nil, centerY: brandName.centerYAnchor, paddingTop: 0, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 40, height: 20, paddingCenterX: 0, paddingCenterY: 3)
-        reviewLbl.anchor(top: image.bottomAnchor, left: containerView.leftAnchor, bottom: nil, right: containerView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 40, paddingCenterX: 0, paddingCenterY: 0)
+       
+        if MOLHLanguage.currentAppleLanguage() == "en"{
+            editeBtn.anchor(top: containerView.topAnchor, left: nil, bottom: nil, right: containerView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 20, paddingLeft: 0, paddingBottom: 0, paddingRight: 12, width: 20, height: 20, paddingCenterX: 0, paddingCenterY: 0)
+            image.anchor(top: containerView.topAnchor, left: containerView.leftAnchor, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 20, paddingLeft: 5, paddingBottom: 0, paddingRight: 0, width: 75, height: 75, paddingCenterX: 0, paddingCenterY: 0)
+            productName.anchor(top: containerView.topAnchor, left: image.rightAnchor   , bottom: nil, right: editeBtn.leftAnchor, centerX: nil, centerY: nil, paddingTop: 20, paddingLeft: 8, paddingBottom: 0, paddingRight: 12, width: 0, height: 45, paddingCenterX: 0, paddingCenterY: 0)
+            brandName.anchor(top: productName.bottomAnchor, left: image.rightAnchor, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 2, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
+            brandName.widthAnchor.constraint(greaterThanOrEqualToConstant: 40).isActive = true
+            rateView.anchor(top: nil, left: brandName.rightAnchor, bottom: nil, right: nil, centerX: nil, centerY: brandName.centerYAnchor, paddingTop: 0, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 40, height: 20, paddingCenterX: 0, paddingCenterY: 3)
+            reviewLbl.anchor(top: image.bottomAnchor, left: containerView.leftAnchor, bottom: nil, right: containerView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 40, paddingCenterX: 0, paddingCenterY: 0)
+            brandName.textAlignment = .left
+            productName.textAlignment = .left
+            reviewLbl.textAlignment = .left
+        }else{
+            editeBtn.anchor(top: containerView.topAnchor, left: containerView.leftAnchor, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 20, paddingLeft: 12, paddingBottom: 0, paddingRight: 0, width: 20, height: 20, paddingCenterX: 0, paddingCenterY: 0)
+            image.anchor(top: containerView.topAnchor, left: nil, bottom: nil, right: containerView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 20, paddingLeft: 0, paddingBottom: 0, paddingRight: 5, width: 75, height: 75, paddingCenterX: 0, paddingCenterY: 0)
+            productName.anchor(top: containerView.topAnchor, left: editeBtn.rightAnchor, bottom: nil, right: image.leftAnchor , centerX: nil, centerY: nil, paddingTop: 20, paddingLeft: 8, paddingBottom: 0, paddingRight: 12, width: 0, height: 45, paddingCenterX: 0, paddingCenterY: 0)
+            brandName.anchor(top: productName.bottomAnchor, left: nil, bottom: nil, right: image.leftAnchor, centerX: nil, centerY: nil, paddingTop: 2, paddingLeft: 0, paddingBottom: 0, paddingRight: 8, width: 0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
+            brandName.widthAnchor.constraint(greaterThanOrEqualToConstant: 40).isActive = true
+            rateView.anchor(top: nil, left: nil, bottom: nil, right: brandName.leftAnchor, centerX: nil, centerY: brandName.centerYAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 16, width: 40, height: 20, paddingCenterX: 0, paddingCenterY: 3)
+            reviewLbl.anchor(top: image.bottomAnchor, left: containerView.leftAnchor, bottom: nil, right: containerView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 40, paddingCenterX: 0, paddingCenterY: 0)
+            brandName.textAlignment = .right
+            productName.textAlignment = .right
+            reviewLbl.textAlignment = .right
+        }
     }
     @objc func handelEditeTapped(){
         guard let review = review else{return}

@@ -17,7 +17,7 @@ struct Photo: Codable {
     let id: Int
     let type: String
     let path: String
-    let title: String
+    let title: String?
     let description: String?
     let main: Bool
 }

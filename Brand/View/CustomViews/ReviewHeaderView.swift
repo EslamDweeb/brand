@@ -8,12 +8,13 @@
 
 import UIKit
 import Cosmos
-
+import MOLH
 class ReviewHeaderView: UIView {
     
     lazy var image: UIImageView = {
         let img = UIImageView()
         img.image = #imageLiteral(resourceName: "XSMax")
+        img.contentMode = .scaleAspectFit
         return img
     }()
     lazy var brandName: UILabel = {
@@ -68,10 +69,18 @@ class ReviewHeaderView: UIView {
         addSubview(rateView)
     }
     private func addConstrainsToUI() {
-        image.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 10, paddingLeft: 16, paddingBottom: 0, paddingRight: 0, width: 75, height: 75, paddingCenterX: 0, paddingCenterY: 0)
-        productName.anchor(top: topAnchor, left: image.rightAnchor, bottom: nil, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 16, paddingLeft: 16, paddingBottom: 0, paddingRight: 80, width: 0, height: 45, paddingCenterX: 0, paddingCenterY: 0)
-        brandName.anchor(top: productName.bottomAnchor, left: image.rightAnchor, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 16, paddingBottom: 0, paddingRight: 0, width: 0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
-        brandName.widthAnchor.constraint(greaterThanOrEqualToConstant: 50).isActive = true
-        rateView.anchor(top: brandName.bottomAnchor, left: image.rightAnchor, bottom: nil, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 16, paddingBottom: 0, paddingRight: 80, width:0, height: 25, paddingCenterX: 0, paddingCenterY: 0)
+        if MOLHLanguage.currentAppleLanguage() == "en" {
+            image.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 10, paddingLeft: 16, paddingBottom: 0, paddingRight: 0, width: 75, height: 75, paddingCenterX: 0, paddingCenterY: 0)
+            productName.anchor(top: topAnchor, left: image.rightAnchor, bottom: nil, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 16, paddingLeft: 16, paddingBottom: 0, paddingRight: 80, width: 0, height: 45, paddingCenterX: 0, paddingCenterY: 0)
+            brandName.anchor(top: productName.bottomAnchor, left: image.rightAnchor, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 16, paddingBottom: 0, paddingRight: 0, width: 0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
+            brandName.widthAnchor.constraint(greaterThanOrEqualToConstant: 50).isActive = true
+          rateView.anchor(top: brandName.bottomAnchor, left: nil, bottom: nil, right: nil, centerX: centerXAnchor, centerY: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width:50, height: 25, paddingCenterX: 0, paddingCenterY: 0)
+        }else{
+            image.anchor(top: topAnchor, left: nil, bottom: nil, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 10, paddingLeft: 0, paddingBottom: 0, paddingRight: 16, width: 75, height: 75, paddingCenterX: 0, paddingCenterY: 0)
+            productName.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: image.leftAnchor, centerX: nil, centerY: nil, paddingTop: 16, paddingLeft: 80, paddingBottom: 0, paddingRight: 16, width: 0, height: 45, paddingCenterX: 0, paddingCenterY: 0)
+            brandName.anchor(top: productName.bottomAnchor, left: nil, bottom: nil, right: image.leftAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 16, width: 0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
+            brandName.widthAnchor.constraint(greaterThanOrEqualToConstant: 50).isActive = true
+            rateView.anchor(top: brandName.bottomAnchor, left: nil, bottom: nil, right: nil, centerX: centerXAnchor, centerY: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width:50, height: 25, paddingCenterX: 0, paddingCenterY: 0)
+        }
     }
 }

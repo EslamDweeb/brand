@@ -12,6 +12,8 @@ import Cosmos
 class AddReviewView: UIView {
     var review:Ratingable? {
         didSet{
+            let url = URL(string: review?.subObjectMedia?.path ?? "")
+            headerView.image.kf.setImage(with: url)
             headerView.brandName.text = review?.object.brand.name
             headerView.productName.text = review?.objectName
             headerView.rateView.rating = Double(review?.value ?? 0)
@@ -49,9 +51,10 @@ class AddReviewView: UIView {
     }()
     lazy var saveBtn: GradBtn = {
         let button = GradBtn()
-        button.setTitle(NSLocalizedString("Save", comment: ""), for: .normal)
+        button.setTitle(NSLocalizedString("save", comment: ""), for: .normal)
         button.setTitleColor( .white, for: .normal)
         button.titleLabel?.font = UIFont(name: "Avenir-Heavy", size: 20)
+        button.addTarget(delegate, action: #selector(ButtonActionDelegate.applyBtnTapped), for: .touchUpInside)
         return button
     }()
     lazy var scrollView: UIScrollView = {

@@ -15,10 +15,15 @@ enum ProductRouter:URLRequestConvertible {
     case categories
     case lastUpdate
     case allReviews
+    case updateReview(value:Int,review:String,pros:String,cons:String,objectId:Int,ratingId:Int)
+    
+    
     private var Methods : HTTPMethod {
         switch self {
         case .brands,.banners,.categories,.lastUpdate,.allReviews:
             return .get
+        case .updateReview:
+            return .post
         }
     }
     private var Paths : String {
@@ -33,6 +38,8 @@ enum ProductRouter:URLRequestConvertible {
             return "/api/last_updates"
         case .allReviews:
             return "/api/ratingables?profile"
+        case .updateReview(_,_,_,_,let objectId,let ratingId):
+            return "/api/ratingables/catalog/\(objectId)/\(ratingId)"
         }
     }
     private var headers : HTTPHeaders {
@@ -42,7 +49,7 @@ enum ProductRouter:URLRequestConvertible {
                     HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue,
                     HTTPHeaderField.contentType.rawValue : ContentType.json.rawValue
                 ]
-         case .allReviews:
+         case .allReviews,.updateReview:
             return [
                 HTTPHeaderField.authentication.rawValue : " \(ContentType.token.rawValue) \(UserDefaults.standard.string(forKey: Constants.Defaults.authToken)!)" ,
                 HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue,
@@ -54,6 +61,14 @@ enum ProductRouter:URLRequestConvertible {
         switch self {
         case .brands,.banners,.categories,.lastUpdate,.allReviews:
             return [:]
+        case .updateReview(let value, let review, let pros, let cons,_,_):
+            return [
+                    Constants.APIParameterKey.method : RequestMethods.put.rawValue,
+                    Constants.APIParameterKey.value: value,
+                    Constants.APIParameterKey.review: review,
+                    Constants.APIParameterKey.pros: pros,
+                    Constants.APIParameterKey.cons: cons
+            ]
         }
     }
     
@@ -83,6 +98,7 @@ enum ProductRouter:URLRequestConvertible {
             var urlRequest = URLRequest(url: url.appendingPathComponent(Paths))
             urlRequest.httpMethod = Methods.rawValue
             urlRequest.headers = headers
+            print(urlRequest)
             if Methods.rawValue == "POST"{
                 if let parameters = parameters {
                     do {

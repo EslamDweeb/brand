@@ -130,4 +130,9 @@ class APIClient {
             complition(response.result)
         }
     }
+    static func updateRview(value:Int,review:String,pros:String,cons:String,objectId:Int,ratingId:Int,complition : @escaping (Result<ReviewDataUpdated,Error>) -> Void) {
+        AF.request(ProductRouter.updateReview(value: value, review: review, pros: pros, cons: cons, objectId: objectId, ratingId: ratingId)).responseDecodable{(response:DataResponse<ReviewDataUpdated>) in
+            complition(response.result)
+        }
+    }
 }

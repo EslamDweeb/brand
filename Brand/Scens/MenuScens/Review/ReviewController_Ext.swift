@@ -36,6 +36,12 @@ extension ReviewController: UICollectionViewDelegate,UICollectionViewDataSource,
         }
         return cell
     }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let cell = collectionView.cellForItem(at: indexPath) as? ReviewCell else{return}
+        let dest = AddReviewController()
+        dest.mainView.review = cell.review
+        self.presentViewController(controller: dest, transitionModal: UIModalTransitionStyle.coverVertical, presentationStyle: nil)
+    }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
       
         return CGSize(width: collectionView.frame.width, height:150)
