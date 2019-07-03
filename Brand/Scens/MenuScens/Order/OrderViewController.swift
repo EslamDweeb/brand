@@ -15,13 +15,7 @@ class OrderViewController: UIViewController,ButtonActionDelegate {
         return v
     }()
     let cellID = "cellID"
-  var orders: [Order] = [
-Order(orderNumberVal: "12345", dateVal: "22-4-2019", totalVal: "400 SAR", statusVal: "Pending"),
-Order(orderNumberVal: "12345", dateVal: "22-4-2019", totalVal: "400 SAR", statusVal: "Pending"),
-Order(orderNumberVal: "12345", dateVal: "22-4-2019", totalVal: "400 SAR", statusVal: "Pending"),
-Order(orderNumberVal: "12345", dateVal: "22-4-2019", totalVal: "400 SAR", statusVal: "Pending"),
-Order(orderNumberVal: "12345", dateVal: "22-4-2019", totalVal: "400 SAR", statusVal: "Pending")
-  ]
+    var orders: [SimpleOrder] = []
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -35,5 +29,23 @@ Order(orderNumberVal: "12345", dateVal: "22-4-2019", totalVal: "400 SAR", status
     }
     func dissmisController() {
         self.dismiss(animated: true, completion: nil)
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        getOrders()
+    }
+    private func getOrders(){
+        mainView.activityStartAnimating(activityColor: #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1), backgroundColor: .clear)
+        APIClient.getOrders { (result) in
+            switch result {
+            case.success(let data):
+                self.orders = data.orders
+                self.mainView.orderCollection.reloadData()
+                self.mainView.activityStopAnimating()
+            case.failure(let error):
+                self.mainView.activityStopAnimating()
+                print(error)
+            }
+        }
     }
 }

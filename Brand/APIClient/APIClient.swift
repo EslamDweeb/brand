@@ -135,4 +135,14 @@ class APIClient {
             complition(response.result)
         }
     }
+    static func getOrders(complition : @escaping (Result<SimpleOrderData,Error>) -> Void) {
+        AF.request(ProductRouter.getOrders  ).responseDecodable{(response:DataResponse<SimpleOrderData>) in
+            complition(response.result)
+        }
+    }
+    static func getOrdersDetails(orderSerial:String,complition : @escaping (Result<OrderData,Error>) -> Void) {
+        AF.request(ProductRouter.getOrderDetails(orderSerial: orderSerial)  ).responseDecodable{(response:DataResponse<OrderData>) in
+            complition(response.result)
+        }
+    }
 }

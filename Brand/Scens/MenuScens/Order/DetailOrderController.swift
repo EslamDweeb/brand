@@ -7,9 +7,10 @@
 //
 
 import UIKit
-class DetailOrder_ViewController : UIViewController ,ButtonActionDelegate{
-    var OrderDetailsview = DetailsOrder_View()
+class DetailorderVC : UIViewController ,ButtonActionDelegate{
+    var OrderDetailsview = DetailorderView()
     let reachability =  Reachability()
+    var orderSerial:String?
     var pro: [procheck] = [
         procheck(productName: "Oppo realme 2 Pro 128 GB", priceSAR: "1665 SAR", QTY : "662"),
         procheck(productName: "Oppo realme 2 Pro 128 GB ….", priceSAR: "165 SAR", QTY : "2"),
@@ -21,7 +22,9 @@ class DetailOrder_ViewController : UIViewController ,ButtonActionDelegate{
     ]
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         handelReachability(reachability: reachability)
+        getOrderDetail()
     }
     override func viewWillDisappear(_ animated: Bool) {
         stopNotifier(reachability: reachability)
@@ -76,11 +79,21 @@ class DetailOrder_ViewController : UIViewController ,ButtonActionDelegate{
         OrderDetailsview.detailsorderView.heightAnchor.constraint(equalToConstant: CGFloat(76 + y)).isActive = true
         
     }
+    
     func saveButtonTapped() {
         
     }
     func dissmisController() {
         self.dismiss(animated: true, completion: nil)
     }
-    
+    private func getOrderDetail(){
+        APIClient.getOrdersDetails(orderSerial: orderSerial ?? "") { (result) in
+            switch result{
+            case.success(let data):
+                print(data)
+            case.failure(let error):
+                print(error)
+            }
+        }
+    }
 }

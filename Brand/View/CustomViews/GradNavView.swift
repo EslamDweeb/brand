@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MOLH
 
 class GradNavView: UIView {
     
@@ -20,12 +21,12 @@ class GradNavView: UIView {
         let label = UILabel()
         label.textColor = .white
         label.textAlignment = .center
-        label.font = UIFont(name: "Avenir-Heavy", size: 14)
+        label.font = UIFont(name: "MuseoSans-700", size: 14)
         return label
     }()
     lazy var backBtn: UIButton = {
         let button = UIButton()
-        button.setImage(#imageLiteral(resourceName: "arrowLeftAnticon"), for: .normal)
+        button.imageEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         return button
     }()
     override func layoutSubviews() {
@@ -49,10 +50,17 @@ class GradNavView: UIView {
         addSubview(backBtn)
     }
     private func setup(){
-        self.setGradientBackground(firstColor: .pink, secondColor: .gradColor1, thirdColor: .gradColor2, startPoint: CGPoint(x: 1, y: 0), endPoint: CGPoint(x: 0, y: 0), location: [0,0.5,1])
-        titlelabel.anchor(top: nil, left: nil, bottom: bottomAnchor, right: nil, centerX: centerXAnchor, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 20, paddingRight: 0, width: 150, height: 20, paddingCenterX: 0, paddingCenterY: 0)
-        backBtn.anchor(top: nil, left: leftAnchor, bottom: nil, right: nil, centerX: nil, centerY:titlelabel.centerYAnchor, paddingTop: 0, paddingLeft: 20, paddingBottom: 20, paddingRight: 0, width: 20, height: 20, paddingCenterX: 0, paddingCenterY: 0)
-        searchBtn.anchor(top: nil, left: nil, bottom: nil, right: rightAnchor, centerX: nil, centerY:titlelabel.centerYAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 20, paddingRight: 20, width: 20, height: 20, paddingCenterX: 0, paddingCenterY: 0)
+       self.setGradientBackground(firstColor: .pink, secondColor: .gradColor1, thirdColor: .gradColor2, startPoint: CGPoint(x: 1, y: 0), endPoint: CGPoint(x: 0, y: 0), location: [0,0.5,1])
+        titlelabel.anchor(top: nil, left: nil, bottom: bottomAnchor, right: nil, centerX: centerXAnchor, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 16, paddingRight: 0, width: 150, height: 20, paddingCenterX: 0, paddingCenterY: 0)
+        if MOLHLanguage.currentAppleLanguage() == "en"{
+            backBtn.anchor(top: nil, left: leftAnchor, bottom: nil, right: nil, centerX: nil, centerY:titlelabel.centerYAnchor, paddingTop: 0, paddingLeft: 10, paddingBottom: 16, paddingRight: 0, width: 40, height: 40, paddingCenterX: 0, paddingCenterY: 0)
+            searchBtn.anchor(top: nil, left: nil, bottom: nil, right: rightAnchor, centerX: nil, centerY:titlelabel.centerYAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 16, paddingRight: 20, width: 20, height: 20, paddingCenterX: 0, paddingCenterY: 0)
+            backBtn.setImage(#imageLiteral(resourceName: "arrowLeftAnticon"), for: .normal)
+        }else{
+            backBtn.anchor(top: nil, left: nil, bottom: nil, right: rightAnchor, centerX: nil, centerY:titlelabel.centerYAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 16, paddingRight:10, width: 40, height: 40, paddingCenterX: 0, paddingCenterY: 0)
+            searchBtn.anchor(top: nil, left: leftAnchor, bottom: nil, right: nil, centerX: nil, centerY:titlelabel.centerYAnchor, paddingTop: 0, paddingLeft: 20, paddingBottom: 16, paddingRight: 0, width: 20, height: 20, paddingCenterX: 0, paddingCenterY: 0)
+            backBtn.setImage(#imageLiteral(resourceName: "arrow-back-rtl"), for: .normal)
+        }
+        
     }
 }
-

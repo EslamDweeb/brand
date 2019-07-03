@@ -31,6 +31,7 @@ extension ReviewController: UICollectionViewDelegate,UICollectionViewDataSource,
         cell.editeBtnTapped = { [weak self]  (review) in
             let dest = AddReviewController()
             dest.mainView.review = review
+            dest.mainView.headerView.rateView.settings.updateOnTouch = true
             self?.dismissPressentededControllers()
             self?.presentViewController(controller: dest, transitionModal: UIModalTransitionStyle.crossDissolve, presentationStyle: nil)
         }
@@ -40,6 +41,9 @@ extension ReviewController: UICollectionViewDelegate,UICollectionViewDataSource,
         guard let cell = collectionView.cellForItem(at: indexPath) as? ReviewCell else{return}
         let dest = AddReviewController()
         dest.mainView.review = cell.review
+        dest.mainView.reviewView.textView.isUserInteractionEnabled = false
+        dest.mainView.prosView.textView.isUserInteractionEnabled = false
+        dest.mainView.consView.textView.isUserInteractionEnabled = false
         self.presentViewController(controller: dest, transitionModal: UIModalTransitionStyle.coverVertical, presentationStyle: nil)
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

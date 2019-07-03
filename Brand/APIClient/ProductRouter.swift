@@ -16,11 +16,11 @@ enum ProductRouter:URLRequestConvertible {
     case lastUpdate
     case allReviews
     case updateReview(value:Int,review:String,pros:String,cons:String,objectId:Int,ratingId:Int)
-    
-    
+    case getOrders
+    case getOrderDetails(orderSerial:String)
     private var Methods : HTTPMethod {
         switch self {
-        case .brands,.banners,.categories,.lastUpdate,.allReviews:
+        case .brands,.banners,.categories,.lastUpdate,.allReviews,.getOrders,.getOrderDetails:
             return .get
         case .updateReview:
             return .post
@@ -40,6 +40,10 @@ enum ProductRouter:URLRequestConvertible {
             return "/api/ratingables?profile"
         case .updateReview(_,_,_,_,let objectId,let ratingId):
             return "/api/ratingables/catalog/\(objectId)/\(ratingId)"
+        case .getOrders:
+            return "/api/orders"
+        case .getOrderDetails(let orderSerial):
+            return "/api/orders/\(orderSerial)"
         }
     }
     private var headers : HTTPHeaders {
@@ -49,7 +53,7 @@ enum ProductRouter:URLRequestConvertible {
                     HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue,
                     HTTPHeaderField.contentType.rawValue : ContentType.json.rawValue
                 ]
-         case .allReviews,.updateReview:
+         case .allReviews,.updateReview,.getOrders,.getOrderDetails:
             return [
                 HTTPHeaderField.authentication.rawValue : " \(ContentType.token.rawValue) \(UserDefaults.standard.string(forKey: Constants.Defaults.authToken)!)" ,
                 HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue,
@@ -59,7 +63,7 @@ enum ProductRouter:URLRequestConvertible {
     }
     private var parameters :Parameters?{
         switch self {
-        case .brands,.banners,.categories,.lastUpdate,.allReviews:
+        case .brands,.banners,.categories,.lastUpdate,.allReviews,.getOrders,.getOrderDetails:
             return [:]
         case .updateReview(let value, let review, let pros, let cons,_,_):
             return [

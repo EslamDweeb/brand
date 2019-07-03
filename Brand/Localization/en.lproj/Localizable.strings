@@ -5,6 +5,10 @@
   Created by Eslam Dweeb on 6/24/19.
   Copyright © 2019 Eslam Dweeb. All rights reserved.
 */
+"orderNumber" = "Order Number";
+"orderDate" = "Order Date";
+"totalAmount" = "Total Amount";
+"orderStatus" = "Order Status";
 "allFieldsreq" = " All fields are required ";
 "invphone" = "Invalid Phone number";
 "invpostal" = "Postal Code must contain 5 numbers at least ";
