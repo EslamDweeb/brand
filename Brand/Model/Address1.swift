@@ -21,6 +21,17 @@ struct Address: Codable {
     let lat :Double?
     let lng : Double?
     var main : Bool
+    
+    func getFullAddressName() ->String{
+        if detailedAddress != nil{
+            return "\(country.name ?? "")-\(state.name ?? "")-\(city)-\(detailedAddress ?? "")"
+        }else{
+            return "\(country.name ?? "")-\(state.name ?? "")-\(city)"
+        }
+    }
+    func getAddressName() ->String{
+        return addressName
+    }
 }
 
 extension Address {

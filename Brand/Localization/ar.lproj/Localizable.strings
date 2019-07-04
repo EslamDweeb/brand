@@ -5,6 +5,7 @@
   Created by Eslam Dweeb on 6/24/19.
   Copyright © 2019 Eslam Dweeb. All rights reserved.
 */
+"Order_Items" = "عناصر الطلب";
 "orderNumber" = "رقم الطلب";
 "orderDate" = "تاريخ الطلب";
 "totalAmount" = "الكميه المطلوبه";
@@ -129,7 +130,7 @@
 "reset" = "اعادة تعيين";
 "Order_Details" = "تفاصيل الطلب";
 ;"الكميه" = "Amount"
-"Order_Items" = "عناصر الطلب";
+
 "Cancel Order" = "الغاء الطلب";
 "Order_Status" = "حاله الطلب";
 

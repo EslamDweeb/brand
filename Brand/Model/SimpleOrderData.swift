@@ -17,23 +17,23 @@ struct SimpleOrder: Codable {
     let id: Int
     let referenceNumber: String
     let totalPrice: Int
-    let statuses: Statuses
+    let status: Statuses
     let createdAt: CreatedAt
     
     enum CodingKeys: String, CodingKey {
         case id
         case referenceNumber = "reference_number"
         case totalPrice = "total_price"
-        case statuses
+        case status
         case createdAt = "created_at"
     }
 }
 // MARK: - Statuses
 struct Statuses: Codable {
-    let id: Int
+    let id: Int?
     let name: String
-    let estimatedDuration: Int
-    let finishedDate, createdAt, updatedAt: CreatedAt
+    let estimatedDuration: Int?
+    let finishedDate, createdAt, updatedAt: CreatedAt?
     
     enum CodingKeys: String, CodingKey {
         case id, name

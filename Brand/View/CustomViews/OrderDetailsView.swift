@@ -8,6 +8,7 @@
 
 
 import UIKit
+import MOLH
 
 class OrderDetailsView: UIView {
     
@@ -16,7 +17,7 @@ class OrderDetailsView: UIView {
         let label = UILabel()
         label.textColor = .black
         label.textAlignment = .left
-        label.font = UIFont(name: "Avenir-Medium", size: 14)
+        label.font = UIFont(name: "Avenir-Medium", size: 12)
         return label
     }()
    
@@ -24,7 +25,7 @@ class OrderDetailsView: UIView {
         let label = UILabel()
         label.textColor = .black
         label.textAlignment = .right
-        label.font = UIFont(name: "Avenir-Medium", size: 14)
+        label.font = UIFont(name: "Avenir-Medium", size: 12)
         return label
     }()
     override func layoutSubviews() {
@@ -47,10 +48,17 @@ class OrderDetailsView: UIView {
        addSubview(Pricelabel)
     }
     private func setup(){
-        namelabel.anchor(top: nil, left: self.leftAnchor, bottom: nil, right: nil, centerX: nil, centerY: centerYAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 8, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
-        //namelabel.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.50).isActive = true
+        if MOLHLanguage.currentAppleLanguage() == "en" {
+        namelabel.anchor(top: nil, left: leftAnchor, bottom: nil, right: nil, centerX: nil, centerY: centerYAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 8, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         Pricelabel.anchor(top: nil, left: nil, bottom: nil, right: self.rightAnchor, centerX: nil, centerY: centerYAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
-    
+            Pricelabel.textAlignment = .right
+            namelabel.textAlignment = .left
+        }else{
+            namelabel.anchor(top: nil, left: nil, bottom: nil, right: rightAnchor, centerX: nil, centerY: centerYAnchor, paddingTop: 0, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
+            Pricelabel.anchor(top: nil, left: leftAnchor, bottom: nil, right: nil, centerX: nil, centerY: centerYAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
+            Pricelabel.textAlignment = .left
+            namelabel.textAlignment = .right
+        }
       
     }
 }

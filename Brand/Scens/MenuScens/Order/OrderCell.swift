@@ -17,12 +17,7 @@ class OrderCell:UICollectionViewCell {
             orderNumberVal.text = order.referenceNumber
             dateVal.text = order.createdAt.date
             totlaVal.text = "\(order.totalPrice)"
-            switch order.statuses.id {
-            case 1:
-                statusVal.text = "pending"
-            default:
-                statusVal.text = "pending"
-            }
+            statusVal.text = order.status.name
         }
     }
     lazy var containerView:UIView = {
@@ -120,7 +115,7 @@ class OrderCell:UICollectionViewCell {
             dateVal.anchor(top: orderNumberVal.bottomAnchor, left: containerView.leftAnchor, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
              dateVal.widthAnchor.constraint(lessThanOrEqualToConstant: 120).isActive = true
              totlaVal.anchor(top: dateVal.bottomAnchor, left: containerView.leftAnchor, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
-             totlaVal.widthAnchor.constraint(lessThanOrEqualToConstant: 100).isActive = true
+             totlaVal.widthAnchor.constraint(lessThanOrEqualToConstant: 140).isActive = true
             statusVal.anchor(top: totlaVal.bottomAnchor, left: containerView.leftAnchor, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
             statusVal.widthAnchor.constraint(lessThanOrEqualToConstant: 100).isActive = true
             
