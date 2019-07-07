@@ -48,7 +48,7 @@ class ExploreBrandViewController:UIViewController,ButtonActionDelegate {
         APIClient.getCategory { (result) in
             switch result{
             case .success(let cat):
-                self.categories = cat.categories
+                self.categories = cat.categories ?? []
                 self.group.leave()
             case .failure(let err):
                 print(err)

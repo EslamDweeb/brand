@@ -18,9 +18,11 @@ enum ProductRouter:URLRequestConvertible {
     case updateReview(value:Int,review:String,pros:String,cons:String,objectId:Int,ratingId:Int)
     case getOrders
     case getOrderDetails(orderSerial:String)
+    case getCategoryInfo(slug:String)
+    case getCategoryProduct(slug:String)
     private var Methods : HTTPMethod {
         switch self {
-        case .brands,.banners,.categories,.lastUpdate,.allReviews,.getOrders,.getOrderDetails:
+        case .brands,.banners,.categories,.lastUpdate,.allReviews,.getOrders,.getOrderDetails,.getCategoryInfo,.getCategoryProduct:
             return .get
         case .updateReview:
             return .post
@@ -44,11 +46,15 @@ enum ProductRouter:URLRequestConvertible {
             return "/api/orders"
         case .getOrderDetails(let orderSerial):
             return "/api/orders/\(orderSerial)"
+        case .getCategoryInfo(let slug):
+            return "/api/categories/\(slug)"
+        case .getCategoryProduct(let slug):
+            return "/api/products?category=\(slug)"
         }
     }
     private var headers : HTTPHeaders {
         switch self {
-        case.brands,.banners,.categories,.lastUpdate:
+        case.brands,.banners,.categories,.lastUpdate,.getCategoryInfo,.getCategoryProduct:
             return [
                     HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue,
                     HTTPHeaderField.contentType.rawValue : ContentType.json.rawValue
@@ -63,7 +69,7 @@ enum ProductRouter:URLRequestConvertible {
     }
     private var parameters :Parameters?{
         switch self {
-        case .brands,.banners,.categories,.lastUpdate,.allReviews,.getOrders,.getOrderDetails:
+        case .brands,.banners,.categories,.lastUpdate,.allReviews,.getOrders,.getOrderDetails,.getCategoryInfo,.getCategoryProduct:
             return [:]
         case .updateReview(let value, let review, let pros, let cons,_,_):
             return [
@@ -78,7 +84,7 @@ enum ProductRouter:URLRequestConvertible {
     
     func asURLRequest() throws -> URLRequest {
         switch self {
-        case .banners,.categories,.allReviews:
+        case .banners,.categories,.allReviews,.getCategoryProduct:
             let url = "\(Constants.ProductionServer.baseURL)\(Paths)"
             let safeUrl = url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
             var urlRequest = URLRequest(url: URL(string: safeUrl!)!)

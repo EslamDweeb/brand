@@ -45,6 +45,17 @@ extension ExploreBrandViewController:UICollectionViewDelegate,UICollectionViewDa
             return cell
         }
     }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == mainView.categoriesCollection{
+            let cell = collectionView.cellForItem(at: indexPath) as? CatogrieCell
+            let dest = SubCategoryVC()
+            dest.mainView.navView.titlelabel.text = cell?.category?.name
+            dest.slug = cell?.category?.slug
+            self.present(dest, animated: true, completion: nil)
+        }else{
+            print("Brand!!!!!!!!!!!!!!!!!!!!!!!")
+        }
+    }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == mainView.brandCollection {
             let  padding:CGFloat = 8 * 4

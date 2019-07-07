@@ -145,4 +145,14 @@ class APIClient {
             complition(response.result)
         }
     }
+    static func getCategoryInfo(slug:String,complition : @escaping (Result<CategoriesData,Error>) -> Void) {
+        AF.request(ProductRouter.getCategoryInfo(slug: slug)).responseDecodable{(response:DataResponse<CategoriesData>) in
+            complition(response.result)
+        }
+    }
+    static func getCategoryProducts(slug:String,complition : @escaping (Result<ProductData,Error>) -> Void) {
+        AF.request(ProductRouter.getCategoryProduct(slug: slug)).responseDecodable{(response:DataResponse<ProductData>) in
+            complition(response.result)
+        }
+    }
 }

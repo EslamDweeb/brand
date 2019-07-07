@@ -9,19 +9,11 @@
 import Foundation
 
 struct CategoriesData: Codable {
-    let categories: [Category]
-    let links: Links
-    let meta: Meta
+    let categories: [Category]?
+    let links: Links?
+    let meta: Meta?
+    let category:Category?
 }
-
-//
-// To parse values from Alamofire responses:
-//
-//   Alamofire.request(url).responseCategory { response in
-//     if let category = response.result.value {
-//       ...
-//     }
-//   }
 
 // MARK: - Category
 struct Category: Codable {
@@ -32,14 +24,20 @@ struct Category: Codable {
     let photo, icon: Icon?
     let isLeaf, visible: Bool
     let childs: [Category]
+    let parentChain:[ParentChain]?
+    let brands:[Brand]?
     
     enum CodingKeys: String, CodingKey {
         case id, parent, level, priority, slug, name, photo, icon
         case isLeaf = "is_leaf"
-        case visible, childs
+        case parentChain = "parents_chain"
+        case visible, childs,brands
     }
 }
-
+struct ParentChain:Codable {
+    let id:Int
+    let slug,name: String
+}
 // MARK: - Icon
 struct Icon: Codable {
     let id: Int

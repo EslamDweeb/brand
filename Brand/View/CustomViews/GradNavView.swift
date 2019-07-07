@@ -51,7 +51,8 @@ class GradNavView: UIView {
     }
     private func setup(){
        self.setGradientBackground(firstColor: .pink, secondColor: .gradColor1, thirdColor: .gradColor2, startPoint: CGPoint(x: 1, y: 0), endPoint: CGPoint(x: 0, y: 0), location: [0,0.5,1])
-        titlelabel.anchor(top: nil, left: nil, bottom: bottomAnchor, right: nil, centerX: centerXAnchor, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 16, paddingRight: 0, width: 150, height: 20, paddingCenterX: 0, paddingCenterY: 0)
+        titlelabel.anchor(top: nil, left: nil, bottom: bottomAnchor, right: nil, centerX: centerXAnchor, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 16, paddingRight: 0, width: 0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
+        titlelabel.widthAnchor.constraint(greaterThanOrEqualToConstant: 100).isActive = true
         if MOLHLanguage.currentAppleLanguage() == "en"{
             backBtn.anchor(top: nil, left: leftAnchor, bottom: nil, right: nil, centerX: nil, centerY:titlelabel.centerYAnchor, paddingTop: 0, paddingLeft: 10, paddingBottom: 16, paddingRight: 0, width: 40, height: 40, paddingCenterX: 0, paddingCenterY: 0)
             searchBtn.anchor(top: nil, left: nil, bottom: nil, right: rightAnchor, centerX: nil, centerY:titlelabel.centerYAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 16, paddingRight: 20, width: 20, height: 20, paddingCenterX: 0, paddingCenterY: 0)
