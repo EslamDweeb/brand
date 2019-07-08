@@ -99,7 +99,7 @@
 		2D32B99022C0F29000513DD4 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D32B97922C0F29000513DD4 /* State.swift */; };
 		2D32B99122C0F29000513DD4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D32B97A22C0F29000513DD4 /* User.swift */; };
 		2D32B99222C0F29000513DD4 /* UploadPhotoInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D32B97B22C0F29000513DD4 /* UploadPhotoInfo.swift */; };
-		2D32B99322C0F29000513DD4 /* WishProductModeltest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D32B97C22C0F29000513DD4 /* WishProductModeltest.swift */; };
+		2D32B99322C0F29000513DD4 /* WishProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D32B97C22C0F29000513DD4 /* WishProduct.swift */; };
 		2D32B99422C0F29000513DD4 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D32B97D22C0F29000513DD4 /* UserData.swift */; };
 		2D32B99522C0F29000513DD4 /* LoginData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D32B97E22C0F29000513DD4 /* LoginData.swift */; };
 		2D32B99622C0F29000513DD4 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D32B97F22C0F29000513DD4 /* Country.swift */; };
@@ -260,7 +260,7 @@
 		2D32B97922C0F29000513DD4 /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		2D32B97A22C0F29000513DD4 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		2D32B97B22C0F29000513DD4 /* UploadPhotoInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadPhotoInfo.swift; sourceTree = "<group>"; };
-		2D32B97C22C0F29000513DD4 /* WishProductModeltest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WishProductModeltest.swift; sourceTree = "<group>"; };
+		2D32B97C22C0F29000513DD4 /* WishProduct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WishProduct.swift; sourceTree = "<group>"; };
 		2D32B97D22C0F29000513DD4 /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		2D32B97E22C0F29000513DD4 /* LoginData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginData.swift; sourceTree = "<group>"; };
 		2D32B97F22C0F29000513DD4 /* Country.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
@@ -647,7 +647,7 @@
 				2D32B97922C0F29000513DD4 /* State.swift */,
 				2D32B97A22C0F29000513DD4 /* User.swift */,
 				2D32B97B22C0F29000513DD4 /* UploadPhotoInfo.swift */,
-				2D32B97C22C0F29000513DD4 /* WishProductModeltest.swift */,
+				2D32B97C22C0F29000513DD4 /* WishProduct.swift */,
 				2D32B97D22C0F29000513DD4 /* UserData.swift */,
 				2D32B97E22C0F29000513DD4 /* LoginData.swift */,
 				2D32B97F22C0F29000513DD4 /* Country.swift */,
@@ -1037,7 +1037,7 @@
 				2D32B96122C0F22C00513DD4 /* PickMapVC.swift in Sources */,
 				2D32B99122C0F29000513DD4 /* User.swift in Sources */,
 				2D7A632922C0FA8B00AF4E78 /* DropDownView.swift in Sources */,
-				2D32B99322C0F29000513DD4 /* WishProductModeltest.swift in Sources */,
+				2D32B99322C0F29000513DD4 /* WishProduct.swift in Sources */,
 				2D32B95B22C0F22C00513DD4 /* MyAddressViewController.swift in Sources */,
 				2D32B98522C0F29000513DD4 /* Date.swift in Sources */,
 				2D32B95E22C0F22C00513DD4 /* SecurityVC.swift in Sources */,

@@ -1098,12 +1098,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Brand/View/Collection&amp;Tables Cells/WishCell.swift"
-            timestampString = "584292334.495111"
+            timestampString = "584292826.1291111"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "13"
-            endingLineNumber = "13"
-            landmarkName = "containerView"
+            startingLineNumber = "14"
+            endingLineNumber = "14"
+            landmarkName = "config"
             landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1114,12 +1114,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Brand/View/Collection&amp;Tables Cells/WishCell.swift"
-            timestampString = "584292334.495167"
+            timestampString = "584292826.129463"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "12"
-            endingLineNumber = "12"
-            landmarkName = "containerView"
+            startingLineNumber = "13"
+            endingLineNumber = "13"
+            landmarkName = "config"
             landmarkType = "24">
             <Locations>
                <Location
@@ -1162,44 +1162,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Brand/View/Collection&amp;Tables Cells/WishCell.swift"
-            timestampString = "584292334.495208"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "14"
-            endingLineNumber = "14"
-            landmarkName = "containerView"
-            landmarkType = "24">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Brand/View/Collection&amp;Tables Cells/WishCell.swift"
-            timestampString = "584292334.4952461"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "16"
-            endingLineNumber = "16"
-            landmarkName = "containerView"
-            landmarkType = "24">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Brand/View/Collection&amp;Tables Cells/WishCell.swift"
-            timestampString = "584292334.4952821"
+            timestampString = "584292826.129703"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "15"
             endingLineNumber = "15"
-            landmarkName = "containerView"
+            landmarkName = "config"
             landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1210,12 +1178,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Brand/View/Collection&amp;Tables Cells/WishCell.swift"
-            timestampString = "584292334.4953181"
+            timestampString = "584292826.12992"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "17"
             endingLineNumber = "17"
-            landmarkName = "containerView"
+            landmarkName = "config"
             landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1226,12 +1194,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Brand/View/Collection&amp;Tables Cells/WishCell.swift"
-            timestampString = "584292334.495353"
+            timestampString = "584292826.130131"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "16"
+            endingLineNumber = "16"
+            landmarkName = "config"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Brand/View/Collection&amp;Tables Cells/WishCell.swift"
+            timestampString = "584292826.130339"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "18"
             endingLineNumber = "18"
-            landmarkName = "containerView"
+            landmarkName = "config"
             landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1242,12 +1226,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Brand/View/Collection&amp;Tables Cells/WishCell.swift"
-            timestampString = "584292334.495388"
+            timestampString = "584292826.130547"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "19"
             endingLineNumber = "19"
-            landmarkName = "containerView"
+            landmarkName = "config"
             landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1258,12 +1242,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Brand/View/Collection&amp;Tables Cells/WishCell.swift"
-            timestampString = "584292334.495422"
+            timestampString = "584292826.1307631"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "20"
             endingLineNumber = "20"
-            landmarkName = "image"
+            landmarkName = "config"
             landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1274,12 +1258,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Brand/View/Collection&amp;Tables Cells/WishCell.swift"
-            timestampString = "584292334.495456"
+            timestampString = "584292826.130975"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "21"
             endingLineNumber = "21"
-            landmarkName = "image"
+            landmarkName = "config"
             landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1290,12 +1274,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Brand/View/Collection&amp;Tables Cells/WishCell.swift"
-            timestampString = "584292334.49549"
+            timestampString = "584292826.131184"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "22"
             endingLineNumber = "22"
-            landmarkName = "image"
+            landmarkName = "config"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Brand/View/Collection&amp;Tables Cells/WishCell.swift"
+            timestampString = "584292826.131394"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
+            landmarkName = "config"
             landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1306,12 +1306,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Brand/View/Collection&amp;Tables Cells/WishCell.swift"
-            timestampString = "584292334.495524"
+            timestampString = "584292826.131604"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "24"
-            endingLineNumber = "24"
-            landmarkName = "image"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "config"
             landmarkType = "24">
             <Locations>
                <Location
@@ -1399,12 +1399,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Brand/View/Collection&amp;Tables Cells/WishCell.swift"
-            timestampString = "584292334.495559"
+            timestampString = "584292826.131813"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "23"
-            endingLineNumber = "23"
-            landmarkName = "image"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
+            landmarkName = "config"
             landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1655,7 +1655,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Brand/Scens/SubCategories/SubCategoryVC.swift"
-            timestampString = "584292334.495733"
+            timestampString = "584292437.813388"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "60"
@@ -1671,7 +1671,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Brand/Scens/SubCategories/SubCategoryVC.swift"
-            timestampString = "584292334.4957711"
+            timestampString = "584292437.813436"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "88"
@@ -1687,7 +1687,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Brand/Scens/SubCategories/SubCategoryVC.swift"
-            timestampString = "584292334.495806"
+            timestampString = "584292437.813473"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "90"
@@ -1703,7 +1703,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Brand/Scens/SubCategories/SubCategoryVC.swift"
-            timestampString = "584292334.495839"
+            timestampString = "584292437.813511"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "93"

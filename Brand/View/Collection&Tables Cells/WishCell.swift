@@ -9,6 +9,7 @@
 import UIKit
 import Kingfisher
 class WishCell: UICollectionViewCell {
+    
     var config:Config? {
         didSet{
             guard let con = config else{return}
@@ -33,6 +34,7 @@ class WishCell: UICollectionViewCell {
     lazy var image: UIImageView = {
         let img = UIImageView()
         img.image = #imageLiteral(resourceName: "XSMax")
+        img.contentMode = .scaleAspectFit
         return img
     }()
     lazy var brandName: UILabel = {
@@ -67,7 +69,6 @@ class WishCell: UICollectionViewCell {
     lazy var trendingLbl: RoundedLable = {
         let lbl = RoundedLable()
         lbl.radius = 5
-        lbl.backGroundColor = .pink
         lbl.RoundedCorner = [UIRectCorner.topRight,UIRectCorner.bottomRight]
        lbl.text = "Trending"
         return lbl
