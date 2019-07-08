@@ -45,7 +45,7 @@ class SubCtegoryView:UIView{
         coll.isScrollEnabled = false
         return coll
     }()
-    lazy var brandCollection: UICollectionView = {
+    lazy var configCollection: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let coll = UICollectionView(frame: .zero,collectionViewLayout: layout)
         coll.backgroundColor = .backgroundColl
@@ -62,8 +62,8 @@ class SubCtegoryView:UIView{
         super.init(frame: .zero)
         categoriesCollection.delegate = delegate
         categoriesCollection.dataSource = dataSource
-        brandCollection.delegate = delegate
-        brandCollection.dataSource = dataSource
+        configCollection.delegate = delegate
+        configCollection.dataSource = dataSource
         self.actionDelegate = actionDelegate
         setupView()
     }
@@ -90,7 +90,7 @@ class SubCtegoryView:UIView{
        scrollView.addSubview(categoriesLable)
        scrollView.addSubview(categoryLogoImage)
        scrollView.addSubview(categoriesCollection)
-       scrollView.addSubview(brandCollection)
+       scrollView.addSubview(configCollection)
     }
     private func addConstrainsToUI() {
         navView.anchor(top: self.topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
@@ -104,6 +104,6 @@ class SubCtegoryView:UIView{
         seeAllBtn.anchor(top: scrollView.topAnchor, left: nil, bottom: nil, right: scrollView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 8, width: 45, height: 20, paddingCenterX: 0, paddingCenterY: 0)
         categoriesCollection.anchor(top: categoriesLable.bottomAnchor, left: scrollView.leftAnchor, bottom: nil, right: scrollView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 85, paddingCenterX: 0, paddingCenterY: 0)
         categoryLogoImage.anchor(top: categoriesCollection.bottomAnchor, left: scrollView.leftAnchor, bottom: nil, right: scrollView.rightAnchor, centerX: scrollView.centerXAnchor, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 100, paddingCenterX: 0, paddingCenterY: 0)
-        brandCollection.anchor(top: categoryLogoImage.bottomAnchor, left: scrollView.leftAnchor, bottom: scrollView.bottomAnchor, right: scrollView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
+        configCollection.anchor(top: categoryLogoImage.bottomAnchor, left: scrollView.leftAnchor, bottom: scrollView.bottomAnchor, right: scrollView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
     }
 }

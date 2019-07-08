@@ -20,9 +20,10 @@ enum ProductRouter:URLRequestConvertible {
     case getOrderDetails(orderSerial:String)
     case getCategoryInfo(slug:String)
     case getCategoryProduct(slug:String)
+    case getWishlist
     private var Methods : HTTPMethod {
         switch self {
-        case .brands,.banners,.categories,.lastUpdate,.allReviews,.getOrders,.getOrderDetails,.getCategoryInfo,.getCategoryProduct:
+        case .brands,.banners,.categories,.lastUpdate,.allReviews,.getOrders,.getOrderDetails,.getCategoryInfo,.getCategoryProduct,.getWishlist:
             return .get
         case .updateReview:
             return .post
@@ -50,6 +51,8 @@ enum ProductRouter:URLRequestConvertible {
             return "/api/categories/\(slug)"
         case .getCategoryProduct(let slug):
             return "/api/products?category=\(slug)"
+        case .getWishlist:
+            return "/api/favorite?type=config"
         }
     }
     private var headers : HTTPHeaders {
@@ -59,7 +62,7 @@ enum ProductRouter:URLRequestConvertible {
                     HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue,
                     HTTPHeaderField.contentType.rawValue : ContentType.json.rawValue
                 ]
-         case .allReviews,.updateReview,.getOrders,.getOrderDetails:
+         case .allReviews,.updateReview,.getOrders,.getOrderDetails,.getWishlist:
             return [
                 HTTPHeaderField.authentication.rawValue : " \(ContentType.token.rawValue) \(UserDefaults.standard.string(forKey: Constants.Defaults.authToken)!)" ,
                 HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue,
@@ -69,7 +72,7 @@ enum ProductRouter:URLRequestConvertible {
     }
     private var parameters :Parameters?{
         switch self {
-        case .brands,.banners,.categories,.lastUpdate,.allReviews,.getOrders,.getOrderDetails,.getCategoryInfo,.getCategoryProduct:
+        case .brands,.banners,.categories,.lastUpdate,.allReviews,.getOrders,.getOrderDetails,.getCategoryInfo,.getCategoryProduct,.getWishlist:
             return [:]
         case .updateReview(let value, let review, let pros, let cons,_,_):
             return [
@@ -84,7 +87,7 @@ enum ProductRouter:URLRequestConvertible {
     
     func asURLRequest() throws -> URLRequest {
         switch self {
-        case .banners,.categories,.allReviews,.getCategoryProduct:
+        case .banners,.categories,.allReviews,.getCategoryProduct,.getWishlist:
             let url = "\(Constants.ProductionServer.baseURL)\(Paths)"
             let safeUrl = url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
             var urlRequest = URLRequest(url: URL(string: safeUrl!)!)

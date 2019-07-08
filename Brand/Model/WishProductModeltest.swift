@@ -8,12 +8,9 @@
 
 import UIKit
 
-struct Wishes {
-    let image: UIImage
-    let brandName: String
-    let productName: String
-    let price: String
-    let disountVal: String
-    let discountPrice: String
+struct Wishes:Codable {
+    let favorites : [Config]
+    let links : Links
+    let meta : Meta
 }
 

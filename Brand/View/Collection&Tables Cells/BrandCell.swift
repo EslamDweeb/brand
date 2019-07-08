@@ -13,10 +13,15 @@ class BrandCell:UICollectionViewCell {
     var brand:Brand? {
         didSet{
             guard let brand = brand else {return}
-            guard let index = brand.logoImage.path.firstIndex(of: " ") else {return}
-            let path = String(brand.logoImage.path.prefix(upTo: index))
-            let url = URL(string:path)
-            Image.kf.setImage(with: url)
+            if brand.logoImage.path.contains(" ") {
+                let index = brand.logoImage.path.firstIndex(of: " ")
+                let path = String(brand.logoImage.path.prefix(upTo: index!))
+                let url = URL(string:path)
+                Image.kf.setImage(with: url)
+            }else{
+                let url = URL(string: brand.logoImage.path)
+                Image.kf.setImage(with: url)
+            }
             brandName.text = brand.name
         }
     }

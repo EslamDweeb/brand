@@ -155,4 +155,9 @@ class APIClient {
             complition(response.result)
         }
     }
+    static func getWishList(complition : @escaping (Result<Wishes,Error>) -> Void) {
+        AF.request(ProductRouter.getWishlist).responseDecodable{(response:DataResponse<Wishes>) in
+            complition(response.result)
+        }
+    }
 }

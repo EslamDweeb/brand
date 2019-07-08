@@ -7,22 +7,21 @@
 //
 
 import UIKit
-
+import Kingfisher
 class WishCell: UICollectionViewCell {
-    var wishe:Wishes? {
+    var config:Config? {
         didSet{
-            guard let wishe = wishe else{return}
-            image.image = wishe.image
-            brandName.text = wishe.brandName
-            productName.text = wishe.productName
-            discountPrice.text = wishe.discountPrice
-            discountLbl.text = wishe.disountVal
-            let disPrice = NSMutableAttributedString(string: wishe.price)
-               disPrice.addAttributes([NSAttributedString.Key.strikethroughStyle: NSUnderlineStyle.single.rawValue,NSAttributedString.Key.strikethroughColor:UIColor.lightGray], range: NSRange(location: 0, length: disPrice.length))
-            priceLbl.attributedText = disPrice
+            guard let con = config else{return}
+            let url = URL(string:con.mainPhoto?.path ?? "")
+            image.kf.setImage(with: url)
+            productName.text = con.name
+            brandName.text = con.brandName
+            priceLbl.text = "\(con.price)"
+            discountLbl.text = "\(Double(con.sale).roundToDecimal(3))"
+            discountPrice.text = "\(con.ReturnPriceAfterSale(price: (Double(priceLbl.text ?? "0"))!, sale: Double(discountLbl.text ?? "0")!))"
+            
         }
     }
-
     lazy var containerView:UIView = {
         let view = UIView()
         view.layer.cornerRadius = 5

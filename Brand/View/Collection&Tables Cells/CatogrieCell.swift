@@ -15,16 +15,24 @@ class CatogrieCell:UICollectionViewCell {
             guard let cat = category else{return}
             brandName.text = cat.name
             let url = URL(string: cat.photo?.path ?? "")
+            Image.kf.indicatorType = .activity
             Image.kf.setImage(with: url)
         }
     }
     var brand:Brand? {
         didSet{
             guard let brand = brand else {return}
-            let index = brand.logoImage.path.firstIndex(of: " ")
-            let path = String(brand.logoImage.path.prefix(upTo: index!))
-            let url = URL(string:path)
-            Image.kf.setImage(with: url)
+            if brand.logoImage.path.contains(" ") {
+                let index = brand.logoImage.path.firstIndex(of: " ")
+                let path = String(brand.logoImage.path.prefix(upTo: index!))
+                let url = URL(string:path)
+                print(url)
+                Image.kf.setImage(with: url)
+            }else{
+                let url = URL(string: brand.logoImage.path)
+                print(url)
+                Image.kf.setImage(with: url)
+            }
             brandName.text = brand.name
         }
     }

@@ -366,6 +366,7 @@
 		2D309E6622CA22C0003709CF /* MenuScens */ = {
 			isa = PBXGroup;
 			children = (
+				2D76701122D390D100445F3D /* Wishlist */,
 				2D32B94D22C0F22C00513DD4 /* Menu */,
 				2D309E6722CA239C003709CF /* Review */,
 				2D339A2322CCD88D004DEA5E /* Order */,
@@ -442,7 +443,6 @@
 		2D32B86E22C0F1E800513DD4 /* Extentions */ = {
 			isa = PBXGroup;
 			children = (
-				2D32B87022C0F1E800513DD4 /* WishListController_Ext.swift */,
 				2D32B87122C0F1E800513DD4 /* NotificationVC_Ext.swift */,
 				2D32B87222C0F1E800513DD4 /* SearchController_Ext.swift */,
 				2D32B87322C0F1E800513DD4 /* IntroViewController_Ext.swift */,
@@ -483,7 +483,6 @@
 				2D32B90722C0F20D00513DD4 /* SearchController.swift */,
 				2D32B90822C0F20D00513DD4 /* FlashSaleController.swift */,
 				2D32B90922C0F20D00513DD4 /* FinalCheckoutController.swift */,
-				2D32B90C22C0F20D00513DD4 /* WishListController.swift */,
 				2D32B90D22C0F20D00513DD4 /* FilterViewController.swift */,
 			);
 			path = Products;
@@ -675,6 +674,15 @@
 				2D7A62D822C0FA8B00AF4E78 /* OrderCell.swift */,
 			);
 			path = Order;
+			sourceTree = "<group>";
+		};
+		2D76701122D390D100445F3D /* Wishlist */ = {
+			isa = PBXGroup;
+			children = (
+				2D32B87022C0F1E800513DD4 /* WishListController_Ext.swift */,
+				2D32B90C22C0F20D00513DD4 /* WishListController.swift */,
+			);
+			path = Wishlist;
 			sourceTree = "<group>";
 		};
 		2D7A62CF22C0FA8B00AF4E78 /* View */ = {
