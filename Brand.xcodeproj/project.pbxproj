@@ -679,6 +679,8 @@
 		2D76701122D390D100445F3D /* Wishlist */ = {
 			isa = PBXGroup;
 			children = (
+				2D7A62E622C0FA8B00AF4E78 /* WishListView.swift */,
+				2D7A62D122C0FA8B00AF4E78 /* WishCell.swift */,
 				2D32B87022C0F1E800513DD4 /* WishListController_Ext.swift */,
 				2D32B90C22C0F20D00513DD4 /* WishListController.swift */,
 			);
@@ -699,7 +701,6 @@
 		2D7A62D022C0FA8B00AF4E78 /* Collection&Tables Cells */ = {
 			isa = PBXGroup;
 			children = (
-				2D7A62D122C0FA8B00AF4E78 /* WishCell.swift */,
 				2D7A62D222C0FA8B00AF4E78 /* CatogrieCell.swift */,
 				2D7A62D322C0FA8B00AF4E78 /* BannerCell.swift */,
 				2D7A62D422C0FA8B00AF4E78 /* FlashCell.swift */,
@@ -740,7 +741,6 @@
 				2D7A62E222C0FA8B00AF4E78 /* SearchFilterView.swift */,
 				2D7A62E322C0FA8B00AF4E78 /* FinalCheckoutView.swift */,
 				2D7A62E522C0FA8B00AF4E78 /* FlashSaleView.swift */,
-				2D7A62E622C0FA8B00AF4E78 /* WishListView.swift */,
 				2D7A62E722C0FA8B00AF4E78 /* CartView.swift */,
 			);
 			path = ProductViews;

@@ -40,7 +40,7 @@ class WishCell: UICollectionViewCell {
     lazy var brandName: UILabel = {
         let lbl = UILabel()
         lbl.font = UIFont(name: "Avenir-Medium", size: 12)
-        lbl.textColor = .lightgray
+        lbl.textColor = .lightDarkGray
         return lbl
     }()
     lazy var productName: UILabel = {
@@ -53,7 +53,7 @@ class WishCell: UICollectionViewCell {
     lazy var priceLbl: UILabel = {
         let lbl = UILabel()
         lbl.font = UIFont(name: "Avenir-Light", size: 13)
-        lbl.textColor = .lightgray
+        lbl.textColor = .lightDarkGray
         return lbl
     }()
     lazy var discountLbl: DiscountLable = {
@@ -64,13 +64,6 @@ class WishCell: UICollectionViewCell {
         let lbl = UILabel()
         lbl.font = UIFont(name: "Avenir-Heavy", size: 14)
         lbl.textColor = .black
-        return lbl
-    }()
-    lazy var trendingLbl: RoundedLable = {
-        let lbl = RoundedLable()
-        lbl.radius = 5
-        lbl.RoundedCorner = [UIRectCorner.topRight,UIRectCorner.bottomRight]
-       lbl.text = "Trending"
         return lbl
     }()
     lazy var favBtn: UIButton = {
@@ -105,7 +98,6 @@ class WishCell: UICollectionViewCell {
          containerView.addSubview(productName)
          containerView.addSubview(priceLbl)
          containerView.addSubview(discountLbl)
-         containerView.addSubview(trendingLbl)
         containerView.addSubview(discountPrice)
          containerView.addSubview(favBtn)
          containerView.addSubview(cartBtn)
@@ -116,8 +108,6 @@ class WishCell: UICollectionViewCell {
         favBtn.anchor(top: containerView.topAnchor, left: nil, bottom: nil, right: containerView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 10, paddingLeft: 0, paddingBottom: 0, paddingRight: 12, width: 15, height: 15, paddingCenterX: 0, paddingCenterY: 0)
         
         image.anchor(top: containerView.topAnchor, left: nil, bottom: nil, right: nil, centerX: containerView.centerXAnchor, centerY: nil, paddingTop: 16, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 145, height: 145, paddingCenterX: 0, paddingCenterY: 0)
-        
-        trendingLbl.anchor(top: containerView.topAnchor, left: containerView.leftAnchor, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 1, paddingBottom: 0, paddingRight: 0, width: 44, height: 20, paddingCenterX: 0, paddingCenterY: 0)
         
         brandName.anchor(top: image.bottomAnchor, left: containerView.leftAnchor, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 10, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 40, height: 20, paddingCenterX: 0, paddingCenterY: 0)
         
