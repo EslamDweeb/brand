@@ -6,4 +6,12 @@
 //  Copyright © 2019 Eslam Dweeb. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+extension UILabel{
+    func setAttributeStringWithStrike(_ title:String){
+        let attributeString = NSMutableAttributedString(string: title)
+        attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: NSMakeRange(0, attributeString.length))
+        self.attributedText = attributeString
+    }
+}

@@ -59,6 +59,6 @@ struct Config: Codable {
         case newPrice = "new_price"
     }
     func ReturnPriceAfterSale(price:Double,sale:Double) ->Double{
-        return price * sale
+        return price - (price * sale)
     }
 }

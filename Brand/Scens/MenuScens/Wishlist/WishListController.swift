@@ -40,13 +40,20 @@ class WishListController: UIViewController,ButtonActionDelegate {
         stopNotifier(reachability: reachability)
     }
     private func getWishlist(){
-        APIClient.getWishList { (result) in
-            switch result{
-            case .success(let data):
-                self.wishes = data.favorites
-                self.mainView.wishCollection.reloadData()
-            case .failure(let error):
-                print(error)
+        DispatchQueue.main.async {
+            self.mainView.activityStartAnimating(activityColor: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.6952322346), backgroundColor: .clear)
+            APIClient.getWishList { (result) in
+                switch result{
+                case .success(let data):
+                    self.wishes = data.favorites
+                    DispatchQueue.main.async {
+                        self.mainView.wishCollection.reloadData()
+                        self.mainView.activityStopAnimating()
+                    }
+                case .failure(let error):
+                    self.mainView.activityStopAnimating()
+                    print(error)
+                }
             }
         }
     }

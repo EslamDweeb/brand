@@ -24,25 +24,53 @@ extension WishListController: UICollectionViewDelegate,UICollectionViewDataSourc
         cell.config = wishes[indexPath.row]
         return cell
     }
+        fileprivate var sectionInsets: UIEdgeInsets {
+            return .zero
+        }
+        fileprivate var itemsPerRow: CGFloat {
+            return 2
+        }
+        fileprivate var interitemSpace: CGFloat {
+            return 8.0
+        }
+        func collectionView(_ collectionView: UICollectionView,
+                            layout collectionViewLayout: UICollectionViewLayout,
+                            sizeForItemAt indexPath: IndexPath) -> CGSize {
+            if collectionView == mainView.wishCollection {
+                let sectionPadding = sectionInsets.left * (itemsPerRow + 1)
+                let interitemPadding = max(0.0, itemsPerRow - 1) * interitemSpace
+                let availableWidth = collectionView.bounds.width - sectionPadding - interitemPadding
+                let widthPerItem = availableWidth / itemsPerRow
+                return CGSize(width: widthPerItem, height: widthPerItem + 50)
+            }else{
+                return collectionView.bounds.size
+            }
+        }
+        func collectionView(_ collectionView: UICollectionView,
+                            layout collectionViewLayout: UICollectionViewLayout,
+                            insetForSectionAt section: Int) -> UIEdgeInsets {
+            if collectionView == mainView.wishCollection {
+                 return sectionInsets
+            }else{
+                return .zero
+            }
+        }
+        func collectionView(_ collectionView: UICollectionView,
+                            layout collectionViewLayout: UICollectionViewLayout,
+                            minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+            if collectionView == mainView.wishCollection {
+                return 8.0
+            }else{
+                return .zero
+            }
+        }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let numOfColums: CGFloat = 2
-        let spaceBtweencells: CGFloat = 4
-        let padding: CGFloat = 4
-        let cellDimension = CGFloat((collectionView.bounds.width - padding) - (numOfColums - 1) * spaceBtweencells) / numOfColums
-        return CGSize(width: cellDimension, height: cellDimension + 130)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 16, left: 2, bottom: 0, right: 2)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 4
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 4
-    }
+        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+            if collectionView == mainView.wishCollection {
+                return interitemSpace
+            }else{
+                return .zero
+            }
+        }
     
 }

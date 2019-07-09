@@ -27,6 +27,7 @@ class RoundedLable: UILabel {
     private func setup() {
         self.backgroundColor = .pink
         self.textColor = .white
+        self.textAlignment = .center
         self.font = UIFont(name: "Avenir-Medium", size: 9)
   
     }
