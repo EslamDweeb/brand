@@ -176,11 +176,9 @@ class AddressInfoView: UIView , UITextFieldDelegate{
         textField.attributedPlaceholder = NSAttributedString(string: NSLocalizedString( "langVal", comment: ""), attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightgray3])
         return textField
     }()
-    lazy var pickLocationBtn: GradBtn = {
-        let button = GradBtn()
-        button.setTitle(NSLocalizedString( "pick_location", comment: ""), for: .normal)
-        button.setTitleColor( .white, for: .normal)
-        button.titleLabel?.font = UIFont(name: "Avenir-Black", size: 16)
+    lazy var pickLocationBtn: borderColoredButtom = {
+        let button = borderColoredButtom()
+        button.setTitle("pick_location".localized, for: .normal)
         return button
     }()
     lazy var save: GradBtn = {

@@ -17,11 +17,8 @@ class GradNavView: UIView {
         button.isHidden = true
         return button
     }()
-    lazy var titlelabel:UILabel = {
-        let label = UILabel()
-        label.textColor = .white
-        label.textAlignment = .center
-        label.font = UIFont(name: "MuseoSans-700", size: 14)
+    lazy var titlelabel:titleLabel = {
+        let label = titleLabel()
         return label
     }()
     lazy var backBtn: UIButton = {

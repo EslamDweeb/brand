@@ -10,11 +10,9 @@ import UIKit
 import MOLH
 class ProfileView : UIView , UITextFieldDelegate{
     public weak var ActionDelegate:ButtonActionDelegate?
-    lazy var dateBtn: UIButton = {
-        let button = UIButton()
+    lazy var dateBtn: BtnImage = {
+        let button = BtnImage()
         button.setImage(#imageLiteral(resourceName: "dateRangeMaterial"), for: .normal)
-        button.frame = CGRect(x: 0, y: 0, width: 46, height: 16)
-        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
         return button
     }()
     lazy var doneBtn: UIBarButtonItem = {
@@ -46,11 +44,11 @@ class ProfileView : UIView , UITextFieldDelegate{
     }()
     lazy var  navView:GradNavView = {
         let navView = GradNavView()
-        navView.titlelabel.text = NSLocalizedString("personal_information", comment: "")
+        navView.titlelabel.text = "personal_information".localized
         return navView
     }()
-  
-  
+    
+    
     lazy var myprofileImage: RoundedImageView = {
         let imageView = RoundedImageView(frame: .zero)
         imageView.addGestureRecognizer(tapGesture)
@@ -58,72 +56,54 @@ class ProfileView : UIView , UITextFieldDelegate{
         return imageView
     }()
     
-    lazy var Namelabel :UILabel = {
-        let label = UILabel()
-        label.text = ""
-        label.font = UIFont(name: " Avenir-Heavy", size: 20)
-        label.textAlignment = .center
-        label.textColor = UIColor.black
+    lazy var Namelabel :HeaderLabel = {
+        let label = HeaderLabel()
         label.isHidden = true
         return label
     }()
     
-    lazy var lineView1: UIView = {
-        let view = UIView()
-        view.backgroundColor = .lightgray
+    lazy var lineView1: lineView = {
+        let view = lineView()
         view.isHidden = true
         return view
     }()
-    lazy var  accountView:UIView = {
-        let View = UIView()
-        View.layer.borderWidth = 1
-        View.layer.cornerRadius = 5
-        View.backgroundColor = .white
-        View.layer.borderColor = #colorLiteral(red: 0.8039215686, green: 0.8039215686, blue: 0.8039215686, alpha: 0.6473371479)
+    lazy var  accountView:shadowView = {
+        let View = shadowView()
         View.isHidden = true
         return View
     }()
-    lazy var EditBtn: UIButton = {
-        let button = UIButton()
+    lazy var EditBtn: BtnImage = {
+        let button = BtnImage()
         button.setImage(#imageLiteral(resourceName: "edit"), for: .normal)
         button.addTarget(ActionDelegate, action: #selector(ButtonActionDelegate.editeButtonTapped(_:)), for: .touchUpInside)
         return button
     }()
-    lazy var Accountinfolabel:UILabel = {
-        let label = UILabel()
-        let title = NSLocalizedString("personal_information", comment: "")
+    lazy var Accountinfolabel:HeaderLabel = {
+        let label = HeaderLabel()
+        let title = "personal_information".localized
         label.text = title
-        label.textColor = UIColor.black
-        label.textAlignment = .center
-        label.font = UIFont(name: "Avenir-Heavy", size: 16)
         return label
     }()
     lazy var  FirstTextFeild : DefaultTextField = {
         let first = DefaultTextField()
-        let title = NSLocalizedString("firstName", comment: "")
-        first.clearButtonMode = .whileEditing
-        first.attributedPlaceholder = NSAttributedString(string: title, attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightgray3,NSAttributedString.Key.font : UIFont(name: "Avenir-Roman", size: 16)!])
-        first.font = UIFont(name: "Avenir-Roman", size: 16)
+        let title = "firstName".localized
+        first.SetAttributePlaceHeader(Title: title)
         first.textColor = .lightgray3
         first.isUserInteractionEnabled = false
         return first
     }()
     lazy var  LastTextFeild : DefaultTextField = {
         let last = DefaultTextField()
-        last.clearButtonMode = .whileEditing
-        let title = NSLocalizedString("lastName", comment: "")
-        last.attributedPlaceholder = NSAttributedString(string: title, attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightgray3,NSAttributedString.Key.font : UIFont(name: "Avenir-Roman", size: 16)!])
-        last.font = UIFont(name: "Avenir-Roman", size: 16)
+        let title = "lastName".localized
+        last.SetAttributePlaceHeader(Title: title)
         last.isUserInteractionEnabled = false
         last.textColor = .lightgray3
         return last
     }()
     lazy var  phoneTextFeild : DefaultTextField = {
         let phone = DefaultTextField()
-        phone.clearButtonMode = .whileEditing
-        let title = NSLocalizedString("phone", comment: "")
-        phone.attributedPlaceholder = NSAttributedString(string: title, attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightgray3,NSAttributedString.Key.font : UIFont(name: "Avenir-Roman", size: 16)!])
-        phone.font = UIFont(name: "Avenir-Roman", size: 16)
+        let title = "phone".localized
+        phone.SetAttributePlaceHeader(Title: title)
         phone.isUserInteractionEnabled = false
         phone.textColor = .lightgray3
         phone.keyboardType = .numberPad
@@ -131,10 +111,8 @@ class ProfileView : UIView , UITextFieldDelegate{
     }()
     lazy var  EmailTextFeild : DefaultTextField = {
         let email = DefaultTextField()
-        email.clearButtonMode = .whileEditing
-        let title = NSLocalizedString("email", comment: "")
-        email.attributedPlaceholder = NSAttributedString(string: title, attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightgray3,NSAttributedString.Key.font : UIFont(name: "Avenir-Roman", size: 16)!])
-        email.font = UIFont(name: "Avenir-Roman", size: 16)
+        let title = "email".localized
+        email.SetAttributePlaceHeader(Title: title)
         email.textColor = .lightgray3
         email.keyboardType = .emailAddress
         email.isUserInteractionEnabled = false
@@ -143,10 +121,8 @@ class ProfileView : UIView , UITextFieldDelegate{
     lazy var  dateTextFeild : DefaultTextField = {
         let date = DefaultTextField()
         date.textColor = .lightgray3
-        date.clearButtonMode = .whileEditing
-        let title = NSLocalizedString("birth_date", comment: "")
-        date.attributedPlaceholder = NSAttributedString(string: title, attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightgray3,NSAttributedString.Key.font : UIFont(name: "Avenir-Roman", size: 16)!])
-        date.font = UIFont(name: "Avenir-Roman", size: 16)
+        let title = "birth_date".localized
+        date.SetAttributePlaceHeader(Title: title)
         date.inputAccessoryView = toolBar
         date.inputView = datePicker
         date.isUserInteractionEnabled = false
@@ -159,18 +135,14 @@ class ProfileView : UIView , UITextFieldDelegate{
         btn.setImage(#imageLiteral(resourceName: "down - anticon"), for: .normal)
         btn.dropView.backgroundColor = #colorLiteral(red: 0.9843137255, green: 0.9803921569, blue: 0.9803921569, alpha: 1)
         btn.dropView.cellBGC = #colorLiteral(red: 0.9843137255, green: 0.9803921569, blue: 0.9803921569, alpha: 1)
-        btn.setTitle( NSLocalizedString("select_gender", comment: ""), for: .normal)
+        btn.setTitle("select_gender".localized, for: .normal)
         btn.setTitleColor(.lightgray3, for: .normal)
-        btn.dropView.dropDownOptions = [["name":NSLocalizedString("Male", comment: "")],["name":NSLocalizedString( "Female", comment: "")]]
+        btn.dropView.dropDownOptions = [["name":"Male".localized],["name":"Female".localized]]
         btn.isEnabled = false
         return btn
     }()
-    lazy var  securityView:UIView = {
-        let View = UIView()
-        View.layer.borderWidth = 1
-        View.layer.cornerRadius = 5
-        View.backgroundColor = .white
-        View.layer.borderColor = #colorLiteral(red: 0.8039215686, green: 0.8039215686, blue: 0.8039215686, alpha: 0.6473371479)
+    lazy var  securityView:shadowView = {
+        let View = shadowView()
         View.isHidden = true
         return View
     }()
@@ -180,22 +152,18 @@ class ProfileView : UIView , UITextFieldDelegate{
         button.addTarget(ActionDelegate, action: #selector(ButtonActionDelegate.editeButtonTapped(_:)), for: .touchUpInside)
         return button
     }()
-    lazy var Securityinfolabel:UILabel = {
-        let label = UILabel()
-        let title = NSLocalizedString("security_info", comment: "")
+    lazy var Securityinfolabel:HeaderLabel = {
+        let label = HeaderLabel()
+        let title = "security_info".localized
         label.text = title
-        label.textColor = UIColor.black
-        label.textAlignment = .center
-        label.font = UIFont(name: "Avenir-Heavy", size: 16)
         return label
     }()
-    lazy var  SecurityTextFeild : UITextField = {
-        let security = UITextField()
-        security.clearButtonMode = .whileEditing
-        let title = NSLocalizedString("stars", comment: "")
-        security.attributedPlaceholder = NSAttributedString(string: title, attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightgray3,NSAttributedString.Key.font : UIFont(name: "Avenir-Roman", size: 16)!])
-        security.font = UIFont(name: "Avenir-Roman", size: 16)
+    lazy var  SecurityTextFeild : DefaultTextField = {
+        let security = DefaultTextField()
+        let title = "stars".localized
         security.isSecureTextEntry = true
+        security.layer.borderWidth = 0
+        security.SetAttributePlaceHeader(Title: title)
         security.isUserInteractionEnabled = false
         return security
     }()
@@ -237,7 +205,7 @@ class ProfileView : UIView , UITextFieldDelegate{
     func setup(){
         self.backgroundColor = .white
         self.addSubview(navView)
-   
+        
         self.addSubview(scrollView)
         scrollView.addSubview(myprofileImage)
         scrollView.addSubview(Namelabel)
@@ -256,7 +224,7 @@ class ProfileView : UIView , UITextFieldDelegate{
         securityView.addSubview(EditsecurBtn)
         securityView.addSubview(Securityinfolabel)
         securityView.addSubview(SecurityTextFeild)
-    
+        
         
         FirstTextFeild.delegate =  self
         LastTextFeild.delegate = self
@@ -275,8 +243,8 @@ class ProfileView : UIView , UITextFieldDelegate{
             EmailTextFeild.textAlignment = .left
             phoneTextFeild.textAlignment = .left
             dateTextFeild.textAlignment = .left
-
-            EditBtn.anchor(top: nil , left: nil, bottom: nil, right: accountView.rightAnchor, centerX: nil, centerY: Accountinfolabel.centerYAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 20, width: 20, height: 20, paddingCenterX: 0, paddingCenterY: 0)
+            
+            EditBtn.anchor(top: nil , left: nil, bottom: nil, right: accountView.rightAnchor, centerX: nil, centerY: Accountinfolabel.centerYAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 10, width: 40, height: 40, paddingCenterX: 0, paddingCenterY: 0)
             EditsecurBtn.anchor(top: nil , left: nil, bottom: nil, right: securityView.rightAnchor, centerX: nil, centerY: Securityinfolabel.centerYAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 20, width: 20, height: 20, paddingCenterX: 0, paddingCenterY: 0)
         }else{
             Genderview.contentHorizontalAlignment = .right
@@ -288,7 +256,7 @@ class ProfileView : UIView , UITextFieldDelegate{
             EmailTextFeild.textAlignment = .right
             phoneTextFeild.textAlignment = .right
             dateTextFeild.textAlignment = .right
-            EditBtn.anchor(top: nil , left: accountView.leftAnchor, bottom: nil, right: nil, centerX: nil, centerY: Accountinfolabel.centerYAnchor, paddingTop: 0, paddingLeft: 20, paddingBottom: 0, paddingRight: 0, width: 20, height: 20, paddingCenterX: 0, paddingCenterY: 0)
+            EditBtn.anchor(top: nil , left: accountView.leftAnchor, bottom: nil, right: nil, centerX: nil, centerY: Accountinfolabel.centerYAnchor, paddingTop: 0, paddingLeft: 10, paddingBottom: 0, paddingRight: 0, width: 40, height: 40, paddingCenterX: 0, paddingCenterY: 0)
             EditsecurBtn.anchor(top: nil , left: securityView.leftAnchor, bottom: nil, right: nil, centerX: nil, centerY: Securityinfolabel.centerYAnchor, paddingTop: 0, paddingLeft: 20, paddingBottom: 0, paddingRight: 0, width: 20, height: 20, paddingCenterX: 0, paddingCenterY: 0)
         }
         navView.anchor(top: self.topAnchor, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
@@ -309,13 +277,13 @@ class ProfileView : UIView , UITextFieldDelegate{
         LastTextFeild.setPadding(left: 8, right: nil)
         EmailTextFeild.anchor(top: LastTextFeild.bottomAnchor, left: accountView.leftAnchor, bottom: nil, right: accountView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 45, paddingCenterX: 0, paddingCenterY: 0)
         EmailTextFeild.setPadding(left: 8, right: nil)
-       
+        
         phoneTextFeild.anchor(top: EmailTextFeild.bottomAnchor, left: accountView.leftAnchor, bottom: nil, right: accountView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 45, paddingCenterX: 0, paddingCenterY: 0)
         phoneTextFeild.setPadding(left: 8, right: nil)
         Genderview.anchor(top: phoneTextFeild.bottomAnchor, left: accountView.leftAnchor, bottom: nil, right: accountView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 45, paddingCenterX: 0, paddingCenterY: 0)
-         dateTextFeild.setPadding(left: 8, right: nil)
+        dateTextFeild.setPadding(left: 8, right: nil)
         dateTextFeild.anchor(top: Genderview.bottomAnchor, left: accountView.leftAnchor, bottom: nil, right: accountView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 45, paddingCenterX: 0, paddingCenterY: 0)
-       
+        
         securityView.anchor(top: accountView.bottomAnchor, left: self.scrollView.leftAnchor, bottom: scrollView.bottomAnchor, right: self.scrollView.rightAnchor, centerX: self.scrollView.centerXAnchor, centerY: nil, paddingTop: 16, paddingLeft: 8, paddingBottom: 10, paddingRight: 8, width: 0, height: 110, paddingCenterX: 0, paddingCenterY: 0)
         securityView.setShadow(shadowColor: UIColor(red: 0, green: 0, blue: 0, alpha: 0.24).cgColor , shadowOffset: CGSize(width: 0, height: 3), shadowOpacity: 0.5, shadowRaduis: 1)
         
@@ -323,7 +291,7 @@ class ProfileView : UIView , UITextFieldDelegate{
         
         SecurityTextFeild.anchor(top: Securityinfolabel.bottomAnchor, left: securityView.leftAnchor, bottom: nil, right: securityView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 25, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 45, paddingCenterX: 0, paddingCenterY: 0)
         SecurityTextFeild.setPadding(left: 8, right: nil)
-       navView.backBtn.addTarget(ActionDelegate, action: #selector(ButtonActionDelegate.dissmisController), for: .touchUpInside)
+        navView.backBtn.addTarget(ActionDelegate, action: #selector(ButtonActionDelegate.dissmisController), for: .touchUpInside)
     }
     init(delegate:ButtonActionDelegate) {
         super.init(frame: .zero)

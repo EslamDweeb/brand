@@ -14,59 +14,51 @@ class SocialSignUPView: UIView , UITextFieldDelegate{
     
     lazy var  navView:GradNavView = {
         let navView = GradNavView()
-        navView.titlelabel.text = NSLocalizedString("socialSignUp", comment: "")
+        navView.titlelabel.text = "socialSignUp".localized
         navView.backBtn.addTarget(actionDelegate, action: #selector(ButtonActionDelegate.dissmisController), for: .touchUpInside)
-        navView.titlelabel.font = UIFont(name: "Avenir-Heavy", size: 16)
         return navView
     }()
     lazy var  FirstTextFeild : DefaultTextField = {
         let first = DefaultTextField()
-        first.clearButtonMode = .whileEditing
-        let title = NSLocalizedString( "firstName", comment: "")
-        first.attributedPlaceholder = NSAttributedString(string: title, attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightgray3,NSAttributedString.Key.font : UIFont(name: "Avenir-Roman", size: 16)!])
+        let title =  "firstName".localized
+        first.SetAttributePlaceHeader(Title: title)
         return first
     }()
     
     lazy var  LastTextFeild : DefaultTextField = {
         let last = DefaultTextField()
-        last.clearButtonMode = .whileEditing
-        let title = NSLocalizedString( "lastName", comment: "")
-        last.attributedPlaceholder = NSAttributedString(string: title, attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightgray3,NSAttributedString.Key.font : UIFont(name: "Avenir-Roman", size: 16)!])
+        let title =  "lastName".localized
+        last.SetAttributePlaceHeader(Title: title)
         return last
     }()
     
     lazy var  phoneTextFeild : DefaultTextField = {
         let phone = DefaultTextField()
-        phone.clearButtonMode = .whileEditing
-        let title = NSLocalizedString( "phone", comment: "")
+        let title =  "phone".localized
         phone.keyboardType = .numberPad
-        phone.attributedPlaceholder = NSAttributedString(string: title, attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightgray3,NSAttributedString.Key.font : UIFont(name: "Avenir-Roman", size: 16)!])
+        phone.SetAttributePlaceHeader(Title: title)
         return phone
     }()
     
     lazy var  EmailTextFeild : DefaultTextField = {
         let email = DefaultTextField()
-        email.clearButtonMode = .whileEditing
-        let title = NSLocalizedString( "email", comment: "")
+        let title =  "email".localized
         email.keyboardType = .emailAddress
-        email.attributedPlaceholder = NSAttributedString(string: title, attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightgray3,NSAttributedString.Key.font : UIFont(name: "Avenir-Roman", size: 16)!])
+        email.SetAttributePlaceHeader(Title: title)
         return email
     }()
     lazy var  PassworfTextFeild : DefaultTextField = {
         let email = DefaultTextField()
-        email.clearButtonMode = .whileEditing
-        let title = NSLocalizedString( "Password", comment: "")
+        let title =  "Password".localized
         email.isSecureTextEntry = true
         email.keyboardType = .emailAddress
-        email.attributedPlaceholder = NSAttributedString(string: title, attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightgray3,NSAttributedString.Key.font : UIFont(name: "Avenir-Roman", size: 16)!])
+        email.SetAttributePlaceHeader(Title: title)
         return email
     }()
     lazy var CreateButton: GradBtn = {
         let button = GradBtn()
-        let title = NSLocalizedString( "sign_up", comment: "")
+        let title = "sign_up".localized
         button.setTitle(title, for: .normal)
-        button.setTitleColor( .white, for: .normal)
-        button.titleLabel?.font = UIFont(name: "Avenir-Heavy", size: 20)
         button.addTarget(actionDelegate, action: #selector(ButtonActionDelegate.signupBtnTapped), for: .touchUpInside)
         return button
     }()

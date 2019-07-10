@@ -21,66 +21,52 @@ class SignUpView : UIView , UITextFieldDelegate {
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
-    lazy var createlabel :UILabel = {
-        let createaccount = UILabel()
-        let title = NSLocalizedString("createAccount", comment: "")
-        createaccount.text = title
-        createaccount.font = UIFont(name: "Avenir-Heavy", size: 20)
-        createaccount.textAlignment = .center
-        createaccount.textColor = UIColor.black
+    lazy var createlabel :HeaderLabel = {
+        let createaccount = HeaderLabel()
+        let title = "createAccount".localized
+        createaccount.font = setFont(name: .fontH, size: 20)
         return createaccount
     }()
     
     lazy var  FirstTextFeild : DefaultTextField = {
         let first = DefaultTextField()
-        first.clearButtonMode = .whileEditing
-        let title = NSLocalizedString("firstName", comment: "")
-        first.attributedPlaceholder = NSAttributedString(string: title, attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightgray3,NSAttributedString.Key.font : UIFont(name: "Avenir-Roman", size: 16)!])
-        first.font = UIFont(name: "Avenir-Roman", size: 16)
+        let title = "firstName".localized
+        first.SetAttributePlaceHeader(Title: title)
         return first
     }()
     
     lazy var  LastTextFeild : DefaultTextField = {
         let last = DefaultTextField()
-        last.clearButtonMode = .whileEditing 
-        let title = NSLocalizedString("lastName", comment: "")
-        last.attributedPlaceholder = NSAttributedString(string: title, attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightgray3,NSAttributedString.Key.font : UIFont(name: "Avenir-Roman", size: 16)!])
-        last.font = UIFont(name: "Avenir-Roman", size: 16)
+        let title = "lastName".localized
+        last.SetAttributePlaceHeader(Title: title)
         return last
     }()
     
     lazy var  phoneTextFeild : DefaultTextField = {
         let phone = DefaultTextField()
-        phone.clearButtonMode = .whileEditing
-        let title = NSLocalizedString("phone", comment: "")
-        phone.attributedPlaceholder = NSAttributedString(string: title, attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightgray3,NSAttributedString.Key.font : UIFont(name: "Avenir-Roman", size: 16)!])
-        phone.font = UIFont(name: "Avenir-Roman", size: 16)
+        let title = "phone".localized
+        phone.SetAttributePlaceHeader(Title: title)
+         phone.keyboardType = .numberPad
         return phone
     }()
     
     lazy var  EmailTextFeild : DefaultTextField = {
         let email = DefaultTextField()
-        email.clearButtonMode = .whileEditing
-           let title = NSLocalizedString("email", comment: "")
-        email.attributedPlaceholder = NSAttributedString(string: title, attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightgray3,NSAttributedString.Key.font : UIFont(name: "Avenir-Roman", size: 16)!])
-        email.font = UIFont(name: "Avenir-Roman", size: 16)
+           let title = "email".localized
+        email.SetAttributePlaceHeader(Title: title)
         return email
     }()
     
     lazy var  PasswordTextFeild : DefaultTextField = {
         let password = DefaultTextField()
-        password.clearButtonMode = .whileEditing
-        let title = NSLocalizedString("password", comment: "")
-        password.attributedPlaceholder = NSAttributedString(string: title, attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightgray3,NSAttributedString.Key.font : UIFont(name: "Avenir-Roman", size: 16)!])
-        password.font = UIFont(name: "Avenir-Roman", size: 16)
+        let title = "password".localized
+        password.SetAttributePlaceHeader(Title: title)
         password.isSecureTextEntry = true
         return password
     }()
-    lazy var eyeBtn: UIButton = {
-        let button = UIButton()
+    lazy var eyeBtn: BtnImage = {
+        let button = BtnImage()
         button.setImage(#imageLiteral(resourceName: "eye-slash - FontAwesome"), for: .normal)
-        button.frame = CGRect(x: 0, y: 0, width: 26, height: 16)
-        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10)
         return button
     }()
     lazy var stackView: UIStackView = {
@@ -99,37 +85,31 @@ class SignUpView : UIView , UITextFieldDelegate {
         stackView.spacing = 0
         return stackView
     }()
-    lazy var Memberlabel :UILabel = {
-        let memberlabel = UILabel()
-        let title = NSLocalizedString("already_a_member_login", comment: "")
+    lazy var Memberlabel :DefaultLabel = {
+        let memberlabel = DefaultLabel()
+        let title = "already_a_member_login".localized
         memberlabel.text = title
-        memberlabel.font = UIFont(name: "Avenir-Medium", size: 16)
-        memberlabel.textAlignment = .center
-        memberlabel.textColor = #colorLiteral(red: 0.3215686275, green: 0.3215686275, blue: 0.3215686275, alpha: 1)
+        memberlabel.textColor = .grayColor
         return memberlabel
     }()
     lazy var CreateButton: GradBtn = {
         let button = GradBtn()
-        let title = NSLocalizedString("signup", comment: "")
+        let title = "signup".localized
         button.setTitle(title, for: .normal)
-        button.setTitleColor( .white, for: .normal)
-        button.titleLabel?.font = UIFont(name: "Avenir-Heavy", size: 20)
         return button
     }()
     lazy var LoginButton: UIButton = {
         let button = UIButton()
-        let title = NSLocalizedString("login", comment: "")
+        let title = "login".localized
         button.setTitle(title, for: .normal)
         button.setTitleColor( .pink, for: .normal)
-        button.titleLabel?.font = UIFont(name: "Avenir-Heavy", size: 16)
+        button.titleLabel?.font = setFont(name: .fontH, size: 16)
         return button
     }()
-    lazy var Descriptionlabel :UILabel = {
-        let descriptionlabel = UILabel()
-        let title = NSLocalizedString("by_signing_up_you_accept_terms_and_privacy_policy", comment: "")
+    lazy var Descriptionlabel :DefaultLabel = {
+        let descriptionlabel = DefaultLabel()
+        let title = "by_signing_up_you_accept_terms_and_privacy_policy".localized
         descriptionlabel.text = title
-        descriptionlabel.font = UIFont(name: "Avenir-Roman", size: 16)
-        descriptionlabel.textAlignment = .center
         descriptionlabel.textColor = UIColor.lightgray3
         descriptionlabel.numberOfLines = 0
         return descriptionlabel

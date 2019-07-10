@@ -13,16 +13,13 @@ class PopupResetPasswordView: UIView,UITextFieldDelegate {
     
     lazy var  navView:GradNavView = {
         let navView = GradNavView()
-         navView.titlelabel.text = NSLocalizedString("reset_password", comment: "")
+         navView.titlelabel.text = "reset_password".localized
         return navView
     }()
    
-    lazy var forgotlabel:UILabel = {
-        let label = UILabel()
-        label.text = NSLocalizedString("forgot_your_password", comment: "")
-        label.textColor = .black
-        label.textAlignment = .center
-        label.font = UIFont(name: "Avenir-Heavy", size: 16)
+    lazy var forgotlabel:HeaderLabel = {
+        let label = HeaderLabel()
+        label.text = "forgot_your_password".localized
         return label
     }()
    
@@ -32,26 +29,22 @@ class PopupResetPasswordView: UIView,UITextFieldDelegate {
         logo.contentMode = .scaleAspectFit
         return logo
     }()
-    lazy var bodyText: UITextView = {
-        let textView = UITextView()
-        textView.text = NSLocalizedString("enter_your_email_phone_below_to_reset_your_password", comment: "")
-        textView.textColor = #colorLiteral(red: 0.3215686275, green: 0.3215686275, blue: 0.3215686275, alpha: 1)
-        textView.font  = UIFont(name: "Avenir-Heavy", size: 16)
-        textView.textAlignment = .center
-        textView.isScrollEnabled = false
-        textView.isEditable = false
+    lazy var bodyText: HeaderLabel = {
+        let textView = HeaderLabel()
+        textView.text = "enter_your_email_phone_below_to_reset_your_password".localized
+        textView.textColor = .grayColor
+       textView.numberOfLines = 0
         return textView
     }()
     lazy var  textField : DefaultTextField = {
         let textField = DefaultTextField()
-        textField.attributedPlaceholder = NSAttributedString(string: NSLocalizedString("Email/phone", comment: ""), attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
+        let title = "Email/phone".localized
+        textField.SetAttributePlaceHeader(Title: title)
         return textField
     }()
     lazy var continueBtn: GradBtn = {
         let button = GradBtn()
-        button.setTitle(NSLocalizedString("CONTINUE", comment: ""), for: .normal)
-        button.setTitleColor( .white, for: .normal)
-        button.titleLabel?.font = UIFont(name: "Avenir-Heavy", size: 20)
+        button.setTitle("CONTINUE".localized, for: .normal)
         return button
     }()
    
