@@ -95,6 +95,7 @@ class ResetCodeView: UIView {
     lazy var lable2:DefaultLabel = {
         let lable = DefaultLabel()
         lable.text = "didn_t_receive_a_code".localized
+        lable.textColor = .grayColor
         return lable
     }()
     lazy var requestCodeBtn: UIButton = {
