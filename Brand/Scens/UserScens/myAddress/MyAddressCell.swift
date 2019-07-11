@@ -27,37 +27,20 @@ class MyAddressCell: UITableViewCell {
         }
     }
     
-    lazy var view: UIView = {
-        let view = UIView()
-        view.layer.borderWidth = 1
-        view.layer.cornerRadius = 5
-        view.layer.borderColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 0.65)
-        view.backgroundColor = .white
+    lazy var view: shadowView = {
+        let view = shadowView()
         view.layer.masksToBounds = true
         view.clipsToBounds = true
         return view
     }()
-    lazy var addressName: UILabel = {
-        let lable = UILabel()
-        lable.font = UIFont(name: "Avenir-Heavy", size: 16)
-        lable.textColor = .black
-        if MOLHLanguage.currentAppleLanguage() == "ar" {
-            lable.textAlignment = .right
-        }else{
-            lable.textAlignment = .left
-        }
+    lazy var addressName: HeaderLabelAlign = {
+        let lable = HeaderLabelAlign()
         return lable
     }()
-    lazy var addressDescription: UILabel = {
-        let lable = UILabel()
-        lable.font = UIFont(name: "Avenir-Medium", size: 14)
-        lable.textColor = .lightgray3
+    lazy var addressDescription: DescriptionLabel = {
+        let lable = DescriptionLabel()
         lable.numberOfLines = 0
-        if MOLHLanguage.currentAppleLanguage() == "ar" {
-            lable.textAlignment = .right
-        }else{
-            lable.textAlignment = .left
-        }
+        lable.textColor = .lightgray3
         return lable
     }()
     

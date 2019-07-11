@@ -14,7 +14,7 @@ class WishListView: UIView {
     
     lazy var  navView:GradNavView = {
         let navView = GradNavView()
-        navView.titlelabel.text = NSLocalizedString("wishlist", comment: "")
+        navView.titlelabel.text = "wishlist".localized
         return navView
         
     }()

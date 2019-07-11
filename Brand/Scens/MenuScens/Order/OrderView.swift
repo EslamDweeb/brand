@@ -17,16 +17,13 @@ class OrderView:UIView {
     var actionDelegate:ButtonActionDelegate?
     lazy var  navView:GradNavView = {
         let navView = GradNavView()
-        navView.titlelabel.text = NSLocalizedString("myOrders", comment: "")
+        navView.titlelabel.text = "myOrders".localized
         navView.backBtn.addTarget(actionDelegate, action: #selector(ButtonActionDelegate.dissmisController), for: .touchUpInside)
         return navView
     }()
-    lazy var myOrders:UILabel = {
-        let label = UILabel()
-        label.text = NSLocalizedString("myOrders", comment: "")
-        label.textColor = .black
-        label.textAlignment = .left
-        label.font = UIFont(name: "Avenir-Heavy", size: 16)
+    lazy var myOrders:HeaderLabelAlign = {
+        let label = HeaderLabelAlign()
+        label.text = "myOrders".localized
         return label
     }()
     lazy var orderCollection: UICollectionView = {
@@ -61,11 +58,11 @@ class OrderView:UIView {
         
         if MOLHLanguage.currentAppleLanguage() == "en" {
             myOrders.anchor(top: navView.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 20, paddingLeft: 16, paddingBottom: 0, paddingRight: 0, width: 100, height: 0, paddingCenterX: 0, paddingCenterY: 0)
-            myOrders.textAlignment = .left
+         //   myOrders.textAlignment = .left
 
         }else{
             myOrders.anchor(top: navView.bottomAnchor, left: nil, bottom: nil, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 20, paddingLeft: 0, paddingBottom: 0, paddingRight: 16, width: 100, height: 0, paddingCenterX: 0, paddingCenterY: 0)
-            myOrders.textAlignment = .right
+         //   myOrders.textAlignment = .right
         }
         heightConstraint = myOrders.heightAnchor.constraint(equalToConstant: 25)
         heightConstraint?.isActive = true

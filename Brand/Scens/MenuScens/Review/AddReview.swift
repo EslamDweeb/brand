@@ -25,8 +25,7 @@ class AddReviewView: UIView {
     weak var delegate:ButtonActionDelegate?
     lazy var  navView:GradNavView = {
         let navView = GradNavView()
-        navView.titlelabel.text = NSLocalizedString("myReview", comment: "")
-        navView.titlelabel.font = UIFont(name: "Avenir-Heavy", size: 14)
+        navView.titlelabel.text = "myReview".localized
         navView.backBtn.addTarget(delegate, action: #selector(ButtonActionDelegate.dissmisController), for: .touchUpInside)
         return navView
         }()
@@ -51,9 +50,7 @@ class AddReviewView: UIView {
     }()
     lazy var saveBtn: GradBtn = {
         let button = GradBtn()
-        button.setTitle(NSLocalizedString("save", comment: ""), for: .normal)
-        button.setTitleColor( .white, for: .normal)
-        button.titleLabel?.font = UIFont(name: "Avenir-Heavy", size: 20)
+        button.setTitle("save".localized, for: .normal)
         button.addTarget(delegate, action: #selector(ButtonActionDelegate.applyBtnTapped), for: .touchUpInside)
         return button
     }()

@@ -41,7 +41,7 @@ extension WishListController: UICollectionViewDelegate,UICollectionViewDataSourc
                 let interitemPadding = max(0.0, itemsPerRow - 1) * interitemSpace
                 let availableWidth = collectionView.bounds.width - sectionPadding - interitemPadding
                 let widthPerItem = availableWidth / itemsPerRow
-                return CGSize(width: widthPerItem, height: widthPerItem + 50)
+                return CGSize(width: widthPerItem, height: widthPerItem + 30)
             }else{
                 return collectionView.bounds.size
             }

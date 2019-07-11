@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-
+import MOLH
 class DefaultLabel : UILabel {
     
     override init(frame: CGRect) {
@@ -16,6 +16,7 @@ class DefaultLabel : UILabel {
         self.font =  self.setFont(name: .fontM, size: 16)
         self.textAlignment = .center
         self.textColor = UIColor.blackColor
+       // self.numberOfLines = 0
         setup()
     }
     
@@ -31,8 +32,21 @@ class DefaultLabel : UILabel {
 class HeaderLabel : DefaultLabel {
     
     override func setup() {
-        numberOfLines = 0
+       self.numberOfLines = 0
         self.font =  self.setFont(name: .fontH, size: 16)
+    }
+    
+}
+class HeaderLabelAlign : DefaultLabel {
+    
+    override func setup() {
+        self.numberOfLines = 0
+        self.font =  self.setFont(name: .fontH, size: 16)
+        if MOLHLanguage.currentAppleLanguage() == "ar" {
+            textAlignment = .right
+        }else{
+            textAlignment = .left
+        }
     }
     
 }
@@ -41,6 +55,19 @@ class titleLabel : DefaultLabel {
     override func setup() {
         self.font =  self.setFont(name: .fontH, size: 18)
         self.textColor = UIColor.white
+        
+    }
+    
+}
+class DescriptionLabel : DefaultLabel {
+    
+    override func setup() {
+        self.font =  self.setFont(name: .fontM, size: 14)
+        if MOLHLanguage.currentAppleLanguage() == "ar" {
+            textAlignment = .right
+        }else{
+        textAlignment = .left
+        }
     }
     
 }

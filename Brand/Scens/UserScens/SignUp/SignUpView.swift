@@ -25,6 +25,7 @@ class SignUpView : UIView , UITextFieldDelegate {
         let createaccount = HeaderLabel()
         let title = "createAccount".localized
         createaccount.font = setFont(name: .fontH, size: 20)
+        createaccount.text = title
         return createaccount
     }()
     

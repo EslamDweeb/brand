@@ -42,12 +42,10 @@ class DetailorderView : UIView , UITextFieldDelegate ,FlexibleSteppedProgressBar
         View.layer.borderColor = #colorLiteral(red: 0.8039215686, green: 0.8039215686, blue: 0.8039215686, alpha: 0.6473371479)
         return View
     }()
-    lazy var Orderdetailslabel:UILabel = {
-        let label = UILabel()
-        label.textColor = .black
-        label.text = NSLocalizedString("Order_Details", comment: "")
-        label.font = UIFont(name: "Avenir-Heavy", size: 16)
-        label.textAlignment = .left
+    lazy var Orderdetailslabel:HeaderLabelAlign = {
+        let label = HeaderLabelAlign()
+        label.text = "Order_Details".localized
+       
         return label
     }()
     
@@ -60,20 +58,14 @@ class DetailorderView : UIView , UITextFieldDelegate ,FlexibleSteppedProgressBar
         View.Pricelabel.textColor = .pink
         return View
     }()
-    lazy var orderstatusview: UIView = {
-        let View = UIView()
-        View.layer.borderWidth = 1
-        View.layer.cornerRadius = 5
-        View.backgroundColor = .white
-        View.layer.borderColor = #colorLiteral(red: 0.8039215686, green: 0.8039215686, blue: 0.8039215686, alpha: 0.6473371479)
+    lazy var orderstatusview: shadowView = {
+        let View = shadowView()
         return View
     }()
-    lazy var Orderstatuslabel:UILabel = {
-        let label = UILabel()
-        label.textColor = .black
-        label.text = NSLocalizedString("orderStatus", comment: "")
-        label.font = UIFont(name: "Avenir-Heavy", size: 14)
-        label.textAlignment = .left
+    lazy var Orderstatuslabel:HeaderLabelAlign = {
+        let label = HeaderLabelAlign()
+        label.text = "orderStatus".localized
+        label.font = UIFont(name: .fontH, size: 14)
         return label
     }()
     lazy var Statusbar : FlexibleSteppedProgressBar = {
@@ -95,44 +87,31 @@ class DetailorderView : UIView , UITextFieldDelegate ,FlexibleSteppedProgressBar
         status.stepTextFont = UIFont(name: "Avenir-Medium", size: 12)
         return status
     }()
-    lazy var addressview: UIView = {
-        let View = UIView()
-        View.layer.borderWidth = 1
-        View.layer.cornerRadius = 5
-        View.backgroundColor = .white
-        View.layer.borderColor = #colorLiteral(red: 0.8039215686, green: 0.8039215686, blue: 0.8039215686, alpha: 0.6473371479)
+    lazy var addressview: shadowView = {
+        let View = shadowView()
         return View
     }()
     
   
-    lazy var addressName: UILabel = {
-        let lable = UILabel()
-        lable.text = NSLocalizedString("My Home", comment: "")
-        
-        lable.font = UIFont(name: "Avenir-Heavy", size: 16)
+    lazy var addressName: HeaderLabel = {
+        let lable = HeaderLabel()
+        lable.text = "My Home".localized
         return lable
     }()
-    lazy var addressDescription: UILabel = {
-        let lable = UILabel()
+    lazy var addressDescription: DescriptionLabel = {
+        let lable = DescriptionLabel()
         lable.text = " Ksa - Qussaim - unizaa- 24 freedom st. - 16 block"
-        lable.font = UIFont(name: "Avenir-Medium", size: 14)
-        lable.textColor = .black
         return lable
     }()
     
-    lazy var  orderitemsview:UIView = {
-        let View = UIView()
-        View.layer.borderWidth = 1
-        View.layer.cornerRadius = 5
-        View.backgroundColor = .white
-        View.layer.borderColor = #colorLiteral(red: 0.8039215686, green: 0.8039215686, blue: 0.8039215686, alpha: 0.6473371479)
+    lazy var  orderitemsview:shadowView = {
+        let View = shadowView()
         return View
     }()
-    lazy var Orderitemlabel:UILabel = {
-        let lable = UILabel()
-        lable.text = NSLocalizedString("Order_Items", comment: "")
-        lable.textColor = .black
-        lable.font = UIFont(name: "Avenir-Heavy", size: 14)
+    lazy var Orderitemlabel:HeaderLabel = {
+        let lable = HeaderLabel()
+        lable.text = "Order_Items".localized
+        lable.font = UIFont(name: .fontH, size: 14)
         return lable
     }()
     lazy var  constantorderView:productCheckout = {
@@ -158,7 +137,7 @@ class DetailorderView : UIView , UITextFieldDelegate ,FlexibleSteppedProgressBar
     }()
     lazy var notelabel:UILabel = {
         let lable = UILabel()
-        lable.text = NSLocalizedString("Cancelorderafter24", comment: "")
+        lable.text = "Cancelorderafter24".localized
         lable.textColor = .lightgray2
         lable.textAlignment = .center
         lable.font = UIFont(name: "Avenir-Medium", size: 12)

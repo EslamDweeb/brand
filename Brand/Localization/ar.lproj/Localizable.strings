@@ -135,4 +135,4 @@
 
 "Cancel Order" = "الغاء الطلب";
 "Order_Status" = "حاله الطلب";
-
+"didn’t_have_Address" =  "ناسف لا يوجد لديك عناوين" ;
