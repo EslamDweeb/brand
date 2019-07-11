@@ -13,6 +13,7 @@ class ProfileVC :UIViewController,ButtonActionDelegate {
     var user : User?
     var photoId:Int?
     let reachability =  Reachability()
+    var imagepicker: customImagePicker?
     lazy var profileView: ProfileView = {
         let view = ProfileView(delegate: self)
         return view
@@ -28,16 +29,17 @@ class ProfileVC :UIViewController,ButtonActionDelegate {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        imagepicker =  customImagePicker(deleget: self, imagePicker: imagePickerViewController, viewController: self)
         imagePickerViewController.delegate = self
         if UserDefaults.standard.string(forKey: Constants.Defaults.authToken) != ""{
-             self.getUserInfo()
+            self.getUserInfo()
         }else{
             self.present(LoginViewController(), animated: true, completion: nil)
         }
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-       
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -100,13 +102,13 @@ class ProfileVC :UIViewController,ButtonActionDelegate {
             profileView.Genderview.isEnabled = true
             profileView.Genderview.setTitleColor(.black, for: .normal)
             profileView.EditBtn.setImage(#imageLiteral(resourceName: "save - material"), for: .normal)
-              toggle = !toggle
+            toggle = !toggle
         }else{
             self.profileView.activityStartAnimating(activityColor: #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1), backgroundColor: .clear)
             if self.profileView.EmailTextFeild.isValidEmail(self.profileView.EmailTextFeild.text){
                 if (profileView.LastTextFeild.text == "" || profileView.LastTextFeild.text == nil ){
-                let response = Validation.shared.validate(values: (ValidationType.PersonName ,profileView.FirstTextFeild.text!),
-(ValidationType.Email ,profileView.EmailTextFeild.text!),(ValidationType.phone ,profileView.phoneTextFeild.text!) )
+                    let response = Validation.shared.validate(values: (ValidationType.PersonName ,profileView.FirstTextFeild.text!),
+                                                              (ValidationType.Email ,profileView.EmailTextFeild.text!),(ValidationType.phone ,profileView.phoneTextFeild.text!) )
                     switch response {
                     case .success:
                         
@@ -115,14 +117,14 @@ class ProfileVC :UIViewController,ButtonActionDelegate {
                         profileView.EmailTextFeild.isUserInteractionEnabled = false
                         profileView.phoneTextFeild.isUserInteractionEnabled = false
                         profileView.dateTextFeild.isUserInteractionEnabled = false
-                        profileView.Genderview.setTitleColor(.lightGray, for: .normal)
+                        profileView.Genderview.setTitleColor(.lightgray3, for: .normal)
                         profileView.Genderview.isEnabled = false
                         
-                        profileView.FirstTextFeild.textColor = .black
-                        profileView.LastTextFeild.textColor = .black
-                        profileView.EmailTextFeild.textColor = .black
-                        profileView.phoneTextFeild.textColor = .black
-                        profileView.dateTextFeild.textColor = .black
+                        profileView.FirstTextFeild.textColor = .lightgray3
+                        profileView.LastTextFeild.textColor = .lightgray3
+                        profileView.EmailTextFeild.textColor = .lightgray3
+                        profileView.phoneTextFeild.textColor = .lightgray3
+                        profileView.dateTextFeild.textColor = .lightgray3
                         
                         let date: [String] = user?.birthdate?.date.components(separatedBy: " ") ?? [""]
                         if self.user?.firstname == profileView.FirstTextFeild.text &&
@@ -155,7 +157,7 @@ class ProfileVC :UIViewController,ButtonActionDelegate {
                         createAlert(erroMessage: NSLocalizedString( "lastName_Validation", comment: ""))
                     }
                     let response = Validation.shared.validate(values: (ValidationType.PersonName ,profileView.FirstTextFeild.text!),(ValidationType.PersonName ,profileView.LastTextFeild.text!), (ValidationType.Email ,profileView.EmailTextFeild.text!),
-                            (ValidationType.phone ,profileView.phoneTextFeild.text!) )
+                                                              (ValidationType.phone ,profileView.phoneTextFeild.text!) )
                     switch response {
                     case .success:
                         
@@ -164,7 +166,7 @@ class ProfileVC :UIViewController,ButtonActionDelegate {
                         profileView.EmailTextFeild.isUserInteractionEnabled = false
                         profileView.phoneTextFeild.isUserInteractionEnabled = false
                         profileView.dateTextFeild.isUserInteractionEnabled = false
-                        profileView.Genderview.setTitleColor(.lightGray, for: .normal)
+                        profileView.Genderview.setTitleColor(.lightgray3, for: .normal)
                         profileView.Genderview.isEnabled = false
                         
                         profileView.FirstTextFeild.textColor = .lightgray3
@@ -190,7 +192,7 @@ class ProfileVC :UIViewController,ButtonActionDelegate {
                             editeInfoRequest()
                         }
                     case .failure(_, let message):
-                       
+                        
                         let alert = UIAlertController(title: NSLocalizedString( "Validation Message", comment: ""), message: NSLocalizedString( message.rawValue, comment: ""), preferredStyle: .alert)
                         alert.addAction(UIAlertAction(title: NSLocalizedString( "ok", comment: ""), style: .cancel, handler: nil))
                         self.present(alert, animated: true)
@@ -198,10 +200,10 @@ class ProfileVC :UIViewController,ButtonActionDelegate {
                         print(message.localized())
                     }
                 }
-       
+                
                 
             }else{
-                 self.profileView.activityStopAnimating()
+                self.profileView.activityStopAnimating()
                 self.createAlert(erroMessage: NSLocalizedString( "enter_valid_email", comment: ""))
             }
         }
@@ -212,78 +214,78 @@ class ProfileVC :UIViewController,ButtonActionDelegate {
         {
             gen = (self.profileView.Genderview.dropView.indexPath?.row ?? -1 ) + 1
         }
-
+        
         APIClient.editeUserInfo(firstName: profileView.FirstTextFeild.text ?? "", lastName:  profileView.LastTextFeild.text ?? "", email:  profileView.EmailTextFeild.text ?? "", phone:  profileView.phoneTextFeild.text ?? "", birthDate:  profileView.dateTextFeild.text ?? "", gender:  gen) { (result) in
             switch result {
             case.success( let data):
                 self.user = data.user
-                 self.profileView.activityStopAnimating()
-                 self.profileView.Namelabel.text =  "\(self.profileView.FirstTextFeild.text ?? "") \(self.profileView.LastTextFeild.text ?? "")"
-                        self.createAlert(title: nil, erroMessage: data.message ?? "")
+                self.profileView.activityStopAnimating()
+                self.profileView.Namelabel.text =  "\(self.profileView.FirstTextFeild.text ?? "") \(self.profileView.LastTextFeild.text ?? "")"
+                self.createAlert(title: nil, erroMessage: data.message ?? "")
             case .failure(let error):
-                 self.profileView.activityStopAnimating()
+                self.profileView.activityStopAnimating()
                 print(error)
             }
         }
     }
-      func getUserInfo() {
+    func getUserInfo() {
         self.profileView.activityStartAnimating(activityColor: #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1), backgroundColor: .clear)
-            APIClient.UserInfo(complition: { (result) in
-                switch result {
-                case .success(let data):
-                    if data.message != "" && data.message != nil {
-                        let dest = LoginViewController()
-                        self.present(dest, animated: true, completion: nil)
-                    }else{
+        APIClient.UserInfo(complition: { (result) in
+            switch result {
+            case .success(let data):
+                if data.message != "" && data.message != nil {
+                    let dest = LoginViewController()
+                    self.present(dest, animated: true, completion: nil)
+                }else{
                     DispatchQueue.main.async {
                         if  UserDefaults.standard.string(forKey: Constants.Defaults.authToken) != ""{
-                        self.user = data.user
-                        self.profileView.FirstTextFeild.text = data.user!.firstname
-                        self.profileView.LastTextFeild.text = data.user!.lastname
-                        self.profileView.Namelabel.text =  "\(self.profileView.FirstTextFeild.text ?? "") \(self.profileView.LastTextFeild.text ?? "")"
-                        self.profileView.EmailTextFeild.text = data.user!.email
-                        self.profileView.phoneTextFeild.text = data.user!.phone
-                        if(data.user?.photo?.path == nil)
-                        {
-                            self.profileView.activityStopAnimating()
-                            self.profileView.myprofileImage.image = #imageLiteral(resourceName: "defaultImage")
-                            self.profileView.myprofileImage.isHidden = false
-                            self.profileView.Namelabel.isHidden = false
-                            self.profileView.lineView1.isHidden = false
-                            self.profileView.accountView.isHidden = false
-                            self.profileView.securityView.isHidden = false
+                            self.user = data.user
+                            self.profileView.FirstTextFeild.text = data.user!.firstname
+                            self.profileView.LastTextFeild.text = data.user!.lastname
+                            self.profileView.Namelabel.text =  "\(self.profileView.FirstTextFeild.text ?? "") \(self.profileView.LastTextFeild.text ?? "")"
+                            self.profileView.EmailTextFeild.text = data.user!.email
+                            self.profileView.phoneTextFeild.text = data.user!.phone
+                            if(data.user?.photo?.path == nil)
+                            {
+                                self.profileView.activityStopAnimating()
+                                self.profileView.myprofileImage.image = #imageLiteral(resourceName: "defaultImage")
+                                self.profileView.myprofileImage.isHidden = false
+                                self.profileView.Namelabel.isHidden = false
+                                self.profileView.lineView1.isHidden = false
+                                self.profileView.accountView.isHidden = false
+                                self.profileView.securityView.isHidden = false
+                            }
+                            else
+                            {
+                                self.profileView.activityStopAnimating()
+                                let url = URL(string: (data.user?.photo?.path)!)
+                                self.profileView.myprofileImage.kf.setImage(with: url)
+                                self.profileView.myprofileImage.isHidden = false
+                                self.profileView.Namelabel.isHidden = false
+                                self.profileView.lineView1.isHidden = false
+                                self.profileView.accountView.isHidden = false
+                                self.profileView.securityView.isHidden = false
+                            }
+                            let date: [String] = data.user?.birthdate?.date.components(separatedBy: " ") ?? [""]
+                            self.profileView.dateTextFeild.text = date[0]
+                            if data.user!.gender == 2 {
+                                self.profileView.Genderview.setTitle(NSLocalizedString( "Female", comment: ""), for: .normal)
+                                self.gen = 2
+                            }else if data.user!.gender == 1  {
+                                self.profileView.Genderview.setTitle(NSLocalizedString( "Male", comment: ""), for: .normal)
+                                self.gen = 1
+                            }
+                        }else{
+                            self.present(LoginViewController(), animated: true, completion: nil)
                         }
-                        else
-                        {
-                            self.profileView.activityStopAnimating()
-                            let url = URL(string: (data.user?.photo?.path)!)
-                            self.profileView.myprofileImage.kf.setImage(with: url)
-                            self.profileView.myprofileImage.isHidden = false
-                            self.profileView.Namelabel.isHidden = false
-                            self.profileView.lineView1.isHidden = false
-                            self.profileView.accountView.isHidden = false
-                            self.profileView.securityView.isHidden = false
-                        }
-                        let date: [String] = data.user?.birthdate?.date.components(separatedBy: " ") ?? [""]
-                        self.profileView.dateTextFeild.text = date[0]
-                        if data.user!.gender == 2 {
-                             self.profileView.Genderview.setTitle(NSLocalizedString( "Female", comment: ""), for: .normal)
-                            self.gen = 2
-                        }else if data.user!.gender == 1  {
-                             self.profileView.Genderview.setTitle(NSLocalizedString( "Male", comment: ""), for: .normal)
-                            self.gen = 1
-                          }
-                           }else{
-                             self.present(LoginViewController(), animated: true, completion: nil)
-                         }
-                       }
                     }
-                case .failure(let error):
-                     self.profileView.activityStopAnimating()
-                    print(error)
                 }
-            })
-       }
+            case .failure(let error):
+                self.profileView.activityStopAnimating()
+                print(error)
+            }
+        })
+    }
 }
 
 

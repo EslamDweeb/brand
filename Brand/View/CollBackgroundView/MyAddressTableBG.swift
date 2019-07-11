@@ -17,19 +17,14 @@ class MyAddressTableBG : UIView{
         return img
     }()
     public weak var actionDelegate: ButtonActionDelegate?
-    lazy var lable:UILabel = {
-        let lbl = UILabel()
-        lbl.text = "Sorry you didn’t have Address"
-        lbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.8)
-        lbl.font = UIFont(name: "Avenir-Medium", size: 16)
-        lbl.textAlignment = .center
+    lazy var lable:DefaultLabel = {
+        let lbl = DefaultLabel()
+        lbl.text = "didn’t_have_Address".localized
         return lbl
     }()
     lazy var addbtn: GradBtn = {
         let button = GradBtn()
-        button.setTitle(NSLocalizedString("New Address", comment: ""), for: .normal)
-        button.setTitleColor( .white, for: .normal)
-        button.titleLabel?.font = UIFont(name: "Avenir-Black", size: 16)
+        button.setTitle("New Address".localized, for: .normal)
         return button
     }()
     override init(frame: CGRect) {

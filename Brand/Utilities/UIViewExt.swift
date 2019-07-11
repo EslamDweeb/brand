@@ -10,6 +10,9 @@ import UIKit
 
 extension UIView {
     // function take 2 colors and startPoint & endPoint (Start of Gradient and End of it) and location(where the to color seprate) to set gradient
+    func setFont(name: String , size : CGFloat) -> UIFont {
+        return UIFont(name: name, size: size)!
+    }
     func setGradientBackground(firstColor:UIColor,secondColor:UIColor,thirdColor:UIColor,startPoint: CGPoint,endPoint: CGPoint,location: [NSNumber]) {
         let gradientLayer = CAGradientLayer()
         gradientLayer.colors = [firstColor.cgColor,secondColor.cgColor,thirdColor.cgColor]

@@ -29,12 +29,12 @@ class MenuView: UIView {
         table.separatorStyle = .none
         return table
     }()
-    lazy var lable:UILabel = {
-      let lbl = UILabel()
-        lbl.text = NSLocalizedString("followus", comment: "")
+    lazy var lable:HeaderLabel = {
+      let lbl = HeaderLabel()
+        lbl.text = "followus".localized
         lbl.textColor = .darkGray
-        lbl.textAlignment = .center
-        lbl.font = UIFont(name: "Avenir-Heavy", size: 14)
+    
+        lbl.font = UIFont(name: .fontH, size: 14)
         return lbl
     }()
     lazy var FBButton: UIButton = {

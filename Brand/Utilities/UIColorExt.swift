@@ -9,7 +9,11 @@
 import UIKit
 //Extension for App color(Color Assets)
 extension UIColor {
+    static let blackColor = UIColor(red: 30/255, green: 30/255, blue: 30/255, alpha: 1)
+    static let grayColor = UIColor(red: 82/255, green: 82/255, blue: 82/255, alpha: 1)
+
     static let pink = UIColor(red: 250/255, green: 113/255, blue: 205/255, alpha: 1)
+    
     static let magenta = UIColor(red: 142/255, green:68/255, blue:173/255, alpha: 1)
     static let forgotColor = UIColor(red: 178/255, green: 178/255, blue: 178/255, alpha: 1)
     static let lightgray = UIColor(red: 239/255, green: 239/255, blue: 239/255, alpha: 1.0)

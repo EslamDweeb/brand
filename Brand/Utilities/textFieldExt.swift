@@ -8,6 +8,9 @@
 
 import UIKit
 extension UITextField {
+    func SetAttributePlaceHeader(Title : String ){
+        self.attributedPlaceholder = NSAttributedString(string: Title, attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightgray3,NSAttributedString.Key.font : setFont(name: .fontM, size: 16)])
+    }
     
     func setPadding( left: CGFloat? = nil, right: CGFloat? = nil){
         if let left = left {

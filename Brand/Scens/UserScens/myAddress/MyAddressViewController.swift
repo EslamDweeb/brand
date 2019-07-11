@@ -12,7 +12,7 @@ import UIKit
 //}
 class MyAddressViewController: UIViewController ,ButtonActionDelegate{
     // var delegetadd : addressDelegate?
-    
+    var mainIndexPah:Int?
     var myAddressView = MyAddressView()
     var rrr = MyAddressTableBG()
     var defaultAddress = [IndexPath]()
@@ -64,9 +64,15 @@ class MyAddressViewController: UIViewController ,ButtonActionDelegate{
                     switch result {
                     case .success(let data) :
                         print(data)
+                        var mainIndex = 0
                         if data.data.count != 0{
                             for address in data.data {
                                 self.addresses.append(Address(id: address.id, country: address.country, state: address.state, city: address.city, addressName: address.addressName, detailedAddress: address.detailedAddress, personName: address.personName, phone: address.phone, postalCode:  address.postalCode, lat: address.lat, lng: address.lng, main: address.main))
+                                if address.main {
+                                    self.mainIndexPah = mainIndex
+                                }
+                                mainIndex += 1
+                                
                             }
                             
                             DispatchQueue.main.async {

@@ -31,7 +31,7 @@ class AddressInfoView: UIView , UITextFieldDelegate{
     }
     lazy var  navView:GradNavView = {
         let navView = GradNavView()
-        navView.titlelabel.text = NSLocalizedString( "address_info", comment: "")
+        navView.titlelabel.text =  "address_info".localized
         return navView
     }()
     lazy var scrollView: UIScrollView = {
@@ -42,50 +42,28 @@ class AddressInfoView: UIView , UITextFieldDelegate{
         let View = UIView()
         return View
     }()
-    //    lazy var logoImage: UIImageView = {
-    //        let logo = UIImageView()
-    //        logo.image = #imageLiteral(resourceName: "logoName")
-    //        logo.contentMode = .scaleAspectFit
-    //        return logo
-    //    }()
-    lazy var  addressinfoView:UIView = {
-        let View = UIView()
-        View.layer.borderWidth = 1
-        View.layer.cornerRadius = 5
-        View.backgroundColor = .white
-        View.layer.borderColor = #colorLiteral(red: 0.8039215686, green: 0.8039215686, blue: 0.8039215686, alpha: 0.6473371479)
+    lazy var  addressinfoView:shadowView = {
+        let View = shadowView()
         return View
     }()
-    lazy var  locationView:UIView = {
-        let View = UIView()
-        View.layer.borderWidth = 1
-        View.layer.cornerRadius = 5
-        View.backgroundColor = .white
-        View.layer.borderColor = #colorLiteral(red: 0.8039215686, green: 0.8039215686, blue: 0.8039215686, alpha: 0.6473371479)
+    lazy var  locationView:shadowView = {
+        let View = shadowView()
         return View
     }()
-    lazy var lable:UILabel = {
-        let lable = UILabel()
-        lable.text = NSLocalizedString( "address_info", comment: "")
-        lable.textColor = .black
-        lable.textAlignment = .center
-        lable.font = UIFont(name: "Avenir-Heavy", size: 14)
-        lable.font = UIFont.boldSystemFont(ofSize: 16)
+    lazy var lable:HeaderLabel = {
+        let lable = HeaderLabel()
+        lable.text = "address_info".localized
         return lable
     }()
     lazy var  PersonName : DefaultTextField = {
         let textField = DefaultTextField()
-        textField.clearButtonMode = .whileEditing
-        textField.font = UIFont(name: "Avenir-Roman", size: 16)
-        textField.attributedPlaceholder = NSAttributedString(string: NSLocalizedString( "person_name", comment: ""), attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightgray3])
+        textField.SetAttributePlaceHeader(Title: "person_name".localized)
         return textField
     }()
     
     lazy var  addressName : DefaultTextField = {
         let textField = DefaultTextField()
-        textField.clearButtonMode = .whileEditing
-        textField.font = UIFont(name: "Avenir-Roman", size: 16)
-        textField.attributedPlaceholder = NSAttributedString(string:NSLocalizedString( "address_name", comment: ""), attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightgray3])
+        textField.SetAttributePlaceHeader(Title: "address_name".localized)
         return textField
     }()
     
@@ -110,27 +88,22 @@ class AddressInfoView: UIView , UITextFieldDelegate{
     }()
     lazy var  city : DefaultTextField = {
         let textField = DefaultTextField()
-        textField.clearButtonMode = .whileEditing
-        textField.font = UIFont(name: "Avenir-Roman", size: 16)
-        textField.attributedPlaceholder = NSAttributedString(string: NSLocalizedString( "city", comment: "") , attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightgray3])
+       
+        textField.SetAttributePlaceHeader(Title: "city".localized)
         return textField
     }()
     lazy var  phone : DefaultTextField = {
         let textField = DefaultTextField()
         textField.keyboardType = .numberPad
-        textField.clearButtonMode = .whileEditing
-        textField.font = UIFont(name: "Avenir-Roman", size: 16)
-        textField.attributedPlaceholder = NSAttributedString(string: NSLocalizedString( "phone", comment: "") , attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightgray3])
+      
+        textField.SetAttributePlaceHeader(Title: "phone".localized)
         return textField
     }()
     
     lazy var  postalcode : DefaultTextField = {
         let textField = DefaultTextField()
         textField.keyboardType = .numberPad
-        textField.clearButtonMode = .whileEditing
-        textField.font = UIFont(name: "Avenir-Roman", size: 16)
-        textField.attributedPlaceholder = NSAttributedString(string: NSLocalizedString( "postal_code", comment: ""), attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightgray3])
-        
+        textField.SetAttributePlaceHeader(Title: "postal_code".localized)
         return textField
     }()
     lazy var detailAddress: UITextView = {
@@ -145,49 +118,37 @@ class AddressInfoView: UIView , UITextFieldDelegate{
         return textView
     }()
     
-    lazy var  lineView:UIView = {
-        let lineView = UIView()
-        lineView.backgroundColor = .lightgray
-        return lineView
+    lazy var  line:lineView = {
+        let line = lineView()
+        return line
     }()
-    lazy var locationlable:UILabel = {
-        let lable = UILabel()
-        lable.text = NSLocalizedString( "location", comment: "")
-        //  lable.text = "Location"
-        lable.textColor = .black
-        lable.textAlignment = .center
-        lable.font = UIFont(name: "Avenir-Heavy", size: 14)
-        lable.font = UIFont.boldSystemFont(ofSize: 16)
+    lazy var locationlable:HeaderLabel = {
+        let lable = HeaderLabel()
+        lable.text = "location".localized
         return lable
     }()
     lazy var  lat : DefaultTextField = {
         let textField = DefaultTextField()
-        textField.clearButtonMode = .whileEditing
+
         textField.keyboardType = .numbersAndPunctuation
-        textField.font = UIFont(name: "Avenir-Roman", size: 16)
-        textField.attributedPlaceholder = NSAttributedString(string: NSLocalizedString( "latVal", comment: ""), attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightgray3])
+      
+        textField.SetAttributePlaceHeader(Title: "latVal".localized)
         return textField
     }()
     lazy var  lang : DefaultTextField = {
         let textField = DefaultTextField()
-        textField.clearButtonMode = .whileEditing
         textField.keyboardType = .numbersAndPunctuation
-        textField.font = UIFont(name: "Avenir-Roman", size: 16)
-        textField.attributedPlaceholder = NSAttributedString(string: NSLocalizedString( "langVal", comment: ""), attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightgray3])
+        textField.SetAttributePlaceHeader(Title: "langVal".localized)
         return textField
     }()
-    lazy var pickLocationBtn: GradBtn = {
-        let button = GradBtn()
-        button.setTitle(NSLocalizedString( "pick_location", comment: ""), for: .normal)
-        button.setTitleColor( .white, for: .normal)
-        button.titleLabel?.font = UIFont(name: "Avenir-Black", size: 16)
+    lazy var pickLocationBtn: borderColoredButtom = {
+        let button = borderColoredButtom()
+        button.setTitle("pick_location".localized, for: .normal)
         return button
     }()
     lazy var save: GradBtn = {
         let button = GradBtn()
-        button.setTitle(NSLocalizedString( "save", comment: ""), for: .normal)
-        button.setTitleColor( .white, for: .normal)
-        button.titleLabel?.font = UIFont(name: "Avenir-Black", size: 16)
+        button.setTitle( "save".localized, for: .normal)
         return button
     }()
     
@@ -218,7 +179,7 @@ class AddressInfoView: UIView , UITextFieldDelegate{
         addressinfoView.addSubview(detailAddress)
         scrollView.addSubview(locationView)
         locationView.addSubview(locationlable)
-        locationView.addSubview(lineView)
+        locationView.addSubview(line)
         locationView.addSubview(stackView3)
         stackView3.addArrangedSubview(lat)
         stackView3.addArrangedSubview(lang)
@@ -226,14 +187,7 @@ class AddressInfoView: UIView , UITextFieldDelegate{
         scrollView.addSubview(save)
         
         //Add sapce in textFields
-        addressName.setPadding(left: 16, right: 16)
-        city.setPadding( left: 16, right: 16)
-        PersonName.setPadding(left: 16, right: 16)
-        phone.setPadding( left: 16, right: 16)
-        postalcode.setPadding( left: 16, right: 16)
-        lat.setPadding(left: 16, right: 16)
-        lang.setPadding(left: 16, right: 16)
-        
+       
         // add textfielsdeleget
         PersonName.delegate = self
         addressName.delegate = self
@@ -277,8 +231,8 @@ class AddressInfoView: UIView , UITextFieldDelegate{
         locationView.anchor(top: addressinfoView.bottomAnchor, left: scrollView.leftAnchor, bottom: nil, right: scrollView.rightAnchor, centerX: scrollView.centerXAnchor, centerY: nil, paddingTop: 30, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 208, paddingCenterX: 0, paddingCenterY: 0)
         locationView.setShadow(shadowColor: UIColor(red: 0, green: 0, blue: 0, alpha: 0.24).cgColor , shadowOffset: CGSize(width: 0, height: 2), shadowOpacity: 0.4, shadowRaduis: 1)
         locationlable.anchor(top: locationView.topAnchor, left: nil, bottom: nil, right: nil, centerX: locationView.centerXAnchor, centerY: nil, paddingTop: 12, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
-        lineView.anchor(top: locationlable.bottomAnchor, left: locationView.leftAnchor, bottom: nil, right: locationView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 12, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0.5, paddingCenterX: 0, paddingCenterY: 0)
-        stackView3.anchor(top: lineView.bottomAnchor, left: locationView.leftAnchor, bottom: nil, right: locationView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 30, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
+        line.anchor(top: locationlable.bottomAnchor, left: locationView.leftAnchor, bottom: nil, right: locationView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 12, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0.5, paddingCenterX: 0, paddingCenterY: 0)
+        stackView3.anchor(top: line.bottomAnchor, left: locationView.leftAnchor, bottom: nil, right: locationView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 30, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         lat.anchor(top: nil, left: nil, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 48, paddingCenterX: 0, paddingCenterY: 0)
         lang.anchor(top: nil, left: nil, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 48, paddingCenterX: 0, paddingCenterY: 0)
         pickLocationBtn.anchor(top: stackView3.bottomAnchor, left: locationView.leftAnchor, bottom: nil, right: locationView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 30, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 45, paddingCenterX: 0, paddingCenterY: 0)
@@ -350,15 +304,6 @@ class AddressInfoView: UIView , UITextFieldDelegate{
         state.titleEdgeInsets = UIEdgeInsets(top: 0, left: 1, bottom: 0, right: 28)
         state.imageEdgeInsets = UIEdgeInsets(top: 0, left: state.frame.size.width - 28, bottom: 0, right: 8)
         detailAddress.textContainerInset = UIEdgeInsets(top: 8, left: 12, bottom: 8, right: 12)
-        
-        addressName.setPadding(left: 16, right: 16)
-        city.setPadding( left: 16, right: 16)
-        PersonName.setPadding(left: 16, right: 16)
-        phone.setPadding( left: 16, right: 16)
-        postalcode.setPadding( left: 16, right: 16)
-        lat.setPadding(left: 16, right: 16)
-        lang.setPadding(left: 16, right: 16)
-        
     }
     func textFieldDidBeginEditing(_ textField: UITextField) {
         state.dissmisDropDown()

@@ -11,18 +11,14 @@ import UIKit
 class ResetCodeView: UIView {
     lazy var  navView:GradNavView = {
         let navView = GradNavView()
-        navView.titlelabel.text = NSLocalizedString("reset_password", comment: "")
+        navView.titlelabel.text = "reset_password".localized
         return navView
     }()
     
     
-    lazy var lable:UILabel = {
-        let lable = UILabel()
-        lable.text = NSLocalizedString("we_will_send_you_a_short_code_to_reet_your_password", comment: "")
-        lable.textColor = .black
-        lable.textAlignment = .center
-        lable.numberOfLines = -1
-        lable.font = UIFont(name: "Avenir-Heavy", size: 16)
+    lazy var lable:HeaderLabel = {
+        let lable = HeaderLabel()
+        lable.text = "we_will_send_you_a_short_code_to_reet_your_password".localized
         return lable
     }()
     lazy var logoImage: UIImageView = {
@@ -67,57 +63,46 @@ class ResetCodeView: UIView {
         text.textAlignment = .center
         return text
     }()
-    lazy var lineView1: UIView = {
-        let view = UIView()
-        view.backgroundColor = .lightgray
+    lazy var lineView1: lineView = {
+        let view = lineView()
         return view
     }()
-    lazy var lineView2: UIView = {
-        let view = UIView()
-        view.backgroundColor = .lightgray
+    lazy var lineView2: lineView = {
+        let view = lineView()
         return view
     }()
-    lazy var lineView3: UIView = {
-        let view = UIView()
-        view.backgroundColor = .lightgray
+    lazy var lineView3: lineView = {
+        let view = lineView()
         return view
     }()
-    lazy var lineView4: UIView = {
-        let view = UIView()
-        view.backgroundColor = .lightgray
+    lazy var lineView4: lineView = {
+        let view = lineView()
         return view
     }()
-    lazy var lineView5: UIView = {
-        let view = UIView()
-        view.backgroundColor = .lightgray
+    lazy var lineView5: lineView = {
+        let view = lineView()
         return view
     }()
-    lazy var lineView6: UIView = {
-        let view = UIView()
-        view.backgroundColor = .lightgray
+    lazy var lineView6: lineView = {
+        let view = lineView()
         return view
     }()
     lazy var continueBtn: GradBtn = {
         let button = GradBtn(enabledd: false)
-        
-        button.setTitle(NSLocalizedString("CONTINUE", comment: ""), for: .normal)
-        button.setTitleColor( .white, for: .normal)
-        button.titleLabel?.font = UIFont(name: "Avenir-Heavy", size: 20)
+        button.setTitle("CONTINUE".localized, for: .normal)
         return button
     }()
-    lazy var lable2:UILabel = {
-        let lable = UILabel()
-        lable.text = NSLocalizedString("didn_t_receive_a_code", comment: "")
-        lable.textColor = .lightgray
-        lable.textAlignment = .center
-        lable.font = UIFont(name: "Avenir-Heavy", size: 14)
+    lazy var lable2:DefaultLabel = {
+        let lable = DefaultLabel()
+        lable.text = "didn_t_receive_a_code".localized
+        lable.textColor = .grayColor
         return lable
     }()
     lazy var requestCodeBtn: UIButton = {
         let button = UIButton()
-        button.setTitle(NSLocalizedString("request_new_one", comment: ""), for: .normal)
+        button.setTitle("request_new_one".localized, for: .normal)
         button.setTitleColor( .pink, for: .normal)
-        button.titleLabel?.font = UIFont(name: "Avenir-Heavy", size: 14)
+        button.titleLabel?.font = setFont(name: .fontH, size: 16)
         return button
     }()
     lazy var containerStackView: UIStackView = {

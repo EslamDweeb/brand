@@ -26,8 +26,8 @@ class IntroPageCell: UICollectionViewCell {
     }()
     private let pageBody: UITextView = {
         let textView = UITextView()
-        textView.text = "We are happy to join us"
-        textView.font  = UIFont(name: "Avenir-black", size: 18)
+        textView.text = "We are happy to join us".localized
+        textView.font  = UIFont(name: .fontH, size: 18)
         textView.textAlignment = .center
         textView.isScrollEnabled = false
         textView.isEditable = false

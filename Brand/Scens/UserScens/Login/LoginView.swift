@@ -16,54 +16,44 @@ class LoginView: UIView, UITextFieldDelegate {
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
-     lazy var headerText: UITextView = {
-        let textView = UITextView()
-        let title = NSLocalizedString("please_login_to_continue", comment: "")
-        textView.text = title
-        textView.font  = UIFont(name: "Avenir-Heavy", size: 20)
-        textView.textAlignment = .center
-        textView.isScrollEnabled = false
-        textView.isEditable = false
-        return textView
+     lazy var headerText: HeaderLabel = {
+        let lable = HeaderLabel()
+        let title = "please_login_to_continue".localized
+         lable.font =  self.setFont(name: .fontH, size: 20)
+         lable.text = title
+        return lable
     }()
 
     lazy var  email : DefaultTextField = {
         let email = DefaultTextField()
-        email.clearButtonMode = .whileEditing
-        email.font = UIFont(name: "Avenir-Roman", size: 16)
-        let title = NSLocalizedString("email_phone", comment: "")
-        email.attributedPlaceholder = NSAttributedString(string: title, attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightgray3,NSAttributedString.Key.font : UIFont(name: "Avenir-Roman", size: 16)!])
+        let title = "email_phone".localized
+        email.SetAttributePlaceHeader(Title: title)
         return email
     }()
      lazy var  password : DefaultTextField = {
         let password = DefaultTextField()
         password.isSecureTextEntry = true
-        let title = NSLocalizedString("password", comment: "")
-        password.attributedPlaceholder = NSAttributedString(string: title, attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightgray3,NSAttributedString.Key.font : UIFont(name: "Avenir-Roman", size: 16)!])
-        password.font = UIFont(name: "Avenir-Roman", size: 16)
+        let title = "password".localized
+        password.SetAttributePlaceHeader(Title: title)
         return password
     }()
-    lazy var eyeBtn: UIButton = {
-        let button = UIButton()
+    lazy var eyeBtn: BtnImage = {
+        let button = BtnImage()
         button.setImage(#imageLiteral(resourceName: "eye-slash - FontAwesome"), for: .normal)
-        button.frame = CGRect(x: 0, y: 0, width: 26, height: 16)
-        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10)
         return button
     }()
     lazy var forgotBtn: UIButton = {
         let button = UIButton()
-        let title = NSLocalizedString("forgotPassword", comment: "")
+        let title = "forgotPassword".localized
         button.setTitle(title, for: .normal)
         button.setTitleColor( .forgotColor, for: .normal)
-        button.titleLabel?.font = UIFont(name: "Avenir-Heavy", size: 14)
+        button.titleLabel?.font = setFont(name: .fontH, size: 14)
         return button
     }()
      lazy var loginBtn: GradBtn = {
         let button = GradBtn()
-         let title = NSLocalizedString("login", comment: "")
+         let title = "login".localized
         button.setTitle(title, for: .normal)
-        button.setTitleColor( .white, for: .normal)
-        button.titleLabel?.font = UIFont(name: "Avenir-Heavy", size: 20)
         return button
     }()
     lazy var stackView: UIStackView = {
@@ -75,21 +65,18 @@ class LoginView: UIView, UITextFieldDelegate {
         return stackView
     }()
 
-    lazy var signUpText :UILabel = {
-        let memberlabel = UILabel()
-        let title = NSLocalizedString("don_t_have_an_acount", comment: "")
-        memberlabel.text = title
-        memberlabel.font = UIFont(name: "Avenir-Medium", size: 16)
-        memberlabel.textAlignment = .center
-        memberlabel.textColor = #colorLiteral(red: 0.3215686275, green: 0.3215686275, blue: 0.3215686275, alpha: 1)
+    lazy var signUpText :DefaultLabel = {
+        let memberlabel = DefaultLabel()
+        memberlabel.text =  "don_t_have_an_acount".localized
+        memberlabel.textColor = .grayColor
         return memberlabel
     }()
      lazy var signUptBtn: UIButton = {
         let button = UIButton()
-         let title = NSLocalizedString("signup", comment: "")
+         let title = "signup".localized
         button.setTitle(title, for: .normal)
         button.setTitleColor( .pink, for: .normal)
-        button.titleLabel?.font = UIFont(name: "Avenir-Heavy", size: 16)
+        button.titleLabel?.font = setFont(name: .fontH, size: 16)
         return button
     }()
     lazy var lineView1: UIView = {
@@ -102,16 +89,11 @@ class LoginView: UIView, UITextFieldDelegate {
         view.backgroundColor = .forgotColor
         return view
     }()
-       lazy var socialText: UITextView = {
-            let textView = UITextView()
-        let title = NSLocalizedString("or_login_with", comment: "")
-            textView.text = title
-            textView.textColor = #colorLiteral(red: 0.3215686275, green: 0.3215686275, blue: 0.3215686275, alpha: 1)
-            textView.font  = UIFont(name: "Avenir-Heavy", size: 16)
-            textView.textAlignment = .center
-            textView.isScrollEnabled = false
-            textView.isEditable = false
-            return textView
+       lazy var socialText: DefaultLabel = {
+            let label = DefaultLabel()
+        let title = "or_login_with".localized
+            label.text = title
+            return label
         }()
     
     lazy var FBButton: UIButton = {
@@ -173,9 +155,6 @@ class LoginView: UIView, UITextFieldDelegate {
         email.delegate = self
        password.delegate = self
     // add padding to text view
-  
-    email.setPadding(left: 16, right: 16)
-    password.setPadding( left: 16, right: 16)
     password.rightView = eyeBtn
     password.rightViewMode = .always
         // Add constrains

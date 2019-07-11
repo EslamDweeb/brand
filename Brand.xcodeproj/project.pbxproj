@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		01A7E64922D5DC4400C6E037 /* StringExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A7E64822D5DC4400C6E037 /* StringExt.swift */; };
+		01A7E64B22D5DCC200C6E037 /* customLabels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A7E64A22D5DCC200C6E037 /* customLabels.swift */; };
+		01A7E64F22D5DD5500C6E037 /* lineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A7E64E22D5DD5500C6E037 /* lineView.swift */; };
+		01A7E65122D5DD8F00C6E037 /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A7E65022D5DD8F00C6E037 /* ShadowView.swift */; };
+		01A7E65322D5DE0400C6E037 /* CustomImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A7E65222D5DE0400C6E037 /* CustomImagePicker.swift */; };
 		2D2D5FC022D1EED400E9E0B7 /* SubCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2D5FBF22D1EED400E9E0B7 /* SubCategoryView.swift */; };
 		2D2D5FC222D1F5CE00E9E0B7 /* SubCategoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2D5FC122D1F5CE00E9E0B7 /* SubCategoryVC.swift */; };
 		2D2D5FC422D20E4900E9E0B7 /* SubCategoryVC_Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2D5FC322D20E4900E9E0B7 /* SubCategoryVC_Ext.swift */; };
@@ -145,7 +150,7 @@
 		2D7A632922C0FA8B00AF4E78 /* DropDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7A62F622C0FA8B00AF4E78 /* DropDownView.swift */; };
 		2D7A632A22C0FA8B00AF4E78 /* DropDownBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7A62F722C0FA8B00AF4E78 /* DropDownBtn.swift */; };
 		2D7A632B22C0FA8B00AF4E78 /* AnimatedAddressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7A62F822C0FA8B00AF4E78 /* AnimatedAddressView.swift */; };
-		2D7A632C22C0FA8B00AF4E78 /* GradBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7A62F922C0FA8B00AF4E78 /* GradBtn.swift */; };
+		2D7A632C22C0FA8B00AF4E78 /* customBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7A62F922C0FA8B00AF4E78 /* customBtn.swift */; };
 		2D7A632D22C0FA8B00AF4E78 /* CheckoutProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7A62FA22C0FA8B00AF4E78 /* CheckoutProductView.swift */; };
 		2D7A632E22C0FA8B00AF4E78 /* CustomizedTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7A62FB22C0FA8B00AF4E78 /* CustomizedTabBar.swift */; };
 		2D7A632F22C0FA8B00AF4E78 /* OrderDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7A62FC22C0FA8B00AF4E78 /* OrderDetailsView.swift */; };
@@ -166,6 +171,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		01A7E64822D5DC4400C6E037 /* StringExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExt.swift; sourceTree = "<group>"; };
+		01A7E64A22D5DCC200C6E037 /* customLabels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = customLabels.swift; sourceTree = "<group>"; };
+		01A7E64E22D5DD5500C6E037 /* lineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lineView.swift; sourceTree = "<group>"; };
+		01A7E65022D5DD8F00C6E037 /* ShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
+		01A7E65222D5DE0400C6E037 /* CustomImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImagePicker.swift; sourceTree = "<group>"; };
 		1D733062CB38AA870F7CE805 /* Pods-Brand.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Brand.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Brand/Pods-Brand.debug.xcconfig"; sourceTree = "<group>"; };
 		2D2D5FBF22D1EED400E9E0B7 /* SubCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubCategoryView.swift; sourceTree = "<group>"; };
 		2D2D5FC122D1F5CE00E9E0B7 /* SubCategoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubCategoryVC.swift; sourceTree = "<group>"; };
@@ -307,7 +317,7 @@
 		2D7A62F622C0FA8B00AF4E78 /* DropDownView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropDownView.swift; sourceTree = "<group>"; };
 		2D7A62F722C0FA8B00AF4E78 /* DropDownBtn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropDownBtn.swift; sourceTree = "<group>"; };
 		2D7A62F822C0FA8B00AF4E78 /* AnimatedAddressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedAddressView.swift; sourceTree = "<group>"; };
-		2D7A62F922C0FA8B00AF4E78 /* GradBtn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradBtn.swift; sourceTree = "<group>"; };
+		2D7A62F922C0FA8B00AF4E78 /* customBtn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = customBtn.swift; sourceTree = "<group>"; };
 		2D7A62FA22C0FA8B00AF4E78 /* CheckoutProductView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckoutProductView.swift; sourceTree = "<group>"; };
 		2D7A62FB22C0FA8B00AF4E78 /* CustomizedTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomizedTabBar.swift; sourceTree = "<group>"; };
 		2D7A62FC22C0FA8B00AF4E78 /* OrderDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderDetailsView.swift; sourceTree = "<group>"; };
@@ -451,6 +461,8 @@
 				2D32B84622C0F1D000513DD4 /* textFieldExt.swift */,
 				2D32B87422C0F1E800513DD4 /* Validations.swift */,
 				2D61C19622D494C200591879 /* UIlabel_EXt.swift */,
+				01A7E64822D5DC4400C6E037 /* StringExt.swift */,
+				01A7E65222D5DE0400C6E037 /* CustomImagePicker.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -800,7 +812,7 @@
 				2D7A62F622C0FA8B00AF4E78 /* DropDownView.swift */,
 				2D7A62F722C0FA8B00AF4E78 /* DropDownBtn.swift */,
 				2D7A62F822C0FA8B00AF4E78 /* AnimatedAddressView.swift */,
-				2D7A62F922C0FA8B00AF4E78 /* GradBtn.swift */,
+				2D7A62F922C0FA8B00AF4E78 /* customBtn.swift */,
 				2D7A62FA22C0FA8B00AF4E78 /* CheckoutProductView.swift */,
 				2D7A62FB22C0FA8B00AF4E78 /* CustomizedTabBar.swift */,
 				2D7A62FC22C0FA8B00AF4E78 /* OrderDetailsView.swift */,
@@ -812,6 +824,9 @@
 				2D7A630322C0FA8B00AF4E78 /* DefaultTextField.swift */,
 				2D7A630422C0FA8B00AF4E78 /* DiscountLable.swift */,
 				2D339A2122CCA4F1004DEA5E /* OrderLables.swift */,
+				01A7E64A22D5DCC200C6E037 /* customLabels.swift */,
+				01A7E64E22D5DD5500C6E037 /* lineView.swift */,
+				01A7E65022D5DD8F00C6E037 /* ShadowView.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -1054,6 +1069,7 @@
 				2D32B98522C0F29000513DD4 /* Date.swift in Sources */,
 				2D32B95E22C0F22C00513DD4 /* SecurityVC.swift in Sources */,
 				2D32B84A22C0F1D000513DD4 /* UIViewControllerExt.swift in Sources */,
+				01A7E65122D5DD8F00C6E037 /* ShadowView.swift in Sources */,
 				2D32B92822C0F20D00513DD4 /* EnterNewPasswordViewController.swift in Sources */,
 				2D7573D922D73971005A3ACA /* ExploreCell.swift in Sources */,
 				2D7A633322C0FA8B00AF4E78 /* GradNavView.swift in Sources */,
@@ -1114,7 +1130,9 @@
 				2D7A632E22C0FA8B00AF4E78 /* CustomizedTabBar.swift in Sources */,
 				2D32B93622C0F21A00513DD4 /* ButtonActionDelegate.swift in Sources */,
 				2D32B98822C0F29000513DD4 /* UserAddresses.swift in Sources */,
+				01A7E64F22D5DD5500C6E037 /* lineView.swift in Sources */,
 				2D7A632022C0FA8B00AF4E78 /* OrderView.swift in Sources */,
+				01A7E64922D5DC4400C6E037 /* StringExt.swift in Sources */,
 				2D32B92E22C0F20D00513DD4 /* TabBarViewController.swift in Sources */,
 				2D7A633622C0FA8B00AF4E78 /* DefaultTextField.swift in Sources */,
 				2D32B95622C0F22C00513DD4 /* SignUpViewController.swift in Sources */,
@@ -1126,6 +1144,7 @@
 				2D7A633722C0FA8B00AF4E78 /* DiscountLable.swift in Sources */,
 				2D32B8FE22C0F20600513DD4 /* ProductRouter.swift in Sources */,
 				2D7A632222C0FA8B00AF4E78 /* SplashView.swift in Sources */,
+				01A7E65322D5DE0400C6E037 /* CustomImagePicker.swift in Sources */,
 				2D32B87C22C0F1E800513DD4 /* WishListController_Ext.swift in Sources */,
 				2D7573DB22D7526E005A3ACA /* ExploreData.swift in Sources */,
 				2D7A631B22C0FA8B00AF4E78 /* FinalCheckoutView.swift in Sources */,
@@ -1149,7 +1168,7 @@
 				2D32B91F22C0F20D00513DD4 /* CarController.swift in Sources */,
 				2D7A633122C0FA8B00AF4E78 /* RoundedImageView.swift in Sources */,
 				2D7A631D22C0FA8B00AF4E78 /* FlashSaleView.swift in Sources */,
-				2D7A632C22C0FA8B00AF4E78 /* GradBtn.swift in Sources */,
+				2D7A632C22C0FA8B00AF4E78 /* customBtn.swift in Sources */,
 				2D32B87F22C0F1E800513DD4 /* IntroViewController_Ext.swift in Sources */,
 				2D7A630F22C0FA8B00AF4E78 /* FlashCell.swift in Sources */,
 				2D32B96022C0F22C00513DD4 /* ProfileVC_Ext.swift in Sources */,
@@ -1161,6 +1180,7 @@
 				2D32B91C22C0F20D00513DD4 /* OrderViewController.swift in Sources */,
 				2D32B87B22C0F1E800513DD4 /* HomeVC_EXT.swift in Sources */,
 				2D7A631C22C0FA8B00AF4E78 /* ReviewView.swift in Sources */,
+				01A7E64B22D5DCC200C6E037 /* customLabels.swift in Sources */,
 				2D32B84822C0F1D000513DD4 /* UIButtonExt.swift in Sources */,
 				2D32B96A22C0F22C00513DD4 /* LoginViewController.swift in Sources */,
 				2D7A632A22C0FA8B00AF4E78 /* DropDownBtn.swift in Sources */,

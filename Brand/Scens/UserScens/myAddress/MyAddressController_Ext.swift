@@ -28,6 +28,11 @@ extension MyAddressViewController: UITableViewDelegate,UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! MyAddressCell
         let address = addresses[indexPath.row]
         cell.address = address
+        if address.main {
+             cell.defaultview.isHidden = false
+        }else{
+             cell.defaultview.isHidden = true
+        }
         if addresses.count == 1 {
             cell.defaultview.isHidden = false
         }
@@ -82,25 +87,16 @@ extension MyAddressViewController: UITableViewDelegate,UITableViewDataSource {
         APIClient.Setdefaultaddress(Id: String(self.addresses[indexPath.row].id))
         { (result) in
             switch result {
-            case .success(let data) :
-                
-                print(data)
-                print("Set default")
-                
+            case .success( _) :
+                       self.addresses[indexPath.row].main = true
+                       self.addresses[self.mainIndexPah!].main = false
+                       self.mainIndexPah = indexPath.row
+                       self .myAddressView.tableView.reloadData()
             case .failure(let error) :
                 print(error)
                 
             }
         }
-        print(indexPath)
-        for i in 0...addresses.count-1 {
-            let  cell  = self.myAddressView.tableView.cellForRow(at: [0,i]) as! MyAddressCell
-            if i == indexPath.row {
-                cell.defaultview.isHidden = false
-            }else{
-                cell.defaultview.isHidden = true
-            }
-        }
-        
+       
     }
 }

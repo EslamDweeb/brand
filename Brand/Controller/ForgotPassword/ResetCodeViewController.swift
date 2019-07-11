@@ -46,7 +46,7 @@ class ResetCodeViewController: UIViewController,ButtonActionDelegate {
     }
     func setupDelegate(){
         resetView.textField1.becomeFirstResponder()
-         resetView.actionDelegate = self
+        resetView.actionDelegate = self
         resetView.textField1.delegate = self
         resetView.textField2.delegate = self
         resetView.textField3.delegate = self
