@@ -155,9 +155,6 @@ class LoginView: UIView, UITextFieldDelegate {
         email.delegate = self
        password.delegate = self
     // add padding to text view
-  
-    email.setPadding(left: 16, right: 16)
-    password.setPadding( left: 16, right: 16)
     password.rightView = eyeBtn
     password.rightViewMode = .always
         // Add constrains

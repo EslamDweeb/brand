@@ -16,6 +16,7 @@ class DefaultTextField: UITextField {
         layer.borderWidth = 1
         layer.cornerRadius = 3
         layer.borderColor = UIColor.lightgray.cgColor
+        setPadding(left: 16, right: 16)
         setup()
     }
     required init?(coder aDecoder: NSCoder) {

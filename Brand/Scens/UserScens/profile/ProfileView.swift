@@ -192,12 +192,7 @@ class ProfileView : UIView , UITextFieldDelegate{
             Genderview.imageEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: Genderview.frame.size.width - 28)
         }
         
-        FirstTextFeild.setPadding(left: 16, right: 16)
-        LastTextFeild.setPadding(left: 16, right: 16)
-        phoneTextFeild.setPadding(left: 16, right: 16)
-        EmailTextFeild.setPadding(left: 16, right: 16)
-        dateTextFeild.setPadding(left: 16, right: 16)
-        SecurityTextFeild.setPadding(left: 16, right: 16)
+      
         dateTextFeild.rightView = dateBtn
         dateTextFeild.rightViewMode = .always
     }

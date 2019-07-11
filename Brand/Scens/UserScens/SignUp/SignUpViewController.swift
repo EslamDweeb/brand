@@ -24,7 +24,39 @@ class SignUpViewController: UIViewController , ButtonActionDelegate{
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        let rightswipe = UISwipeGestureRecognizer(target: self, action: #selector(self.handleswipe(sender:)))
+        rightswipe.direction = .right
+        view.addGestureRecognizer(rightswipe)
+        let leftswipe = UISwipeGestureRecognizer(target: self, action: #selector(self.handleswipe(sender:)))
+        leftswipe.direction = .left
+        view.addGestureRecognizer(leftswipe)
+     
         signupView.ActionDelegate = self
+    }
+    @objc func handleswipe(sender : UISwipeGestureRecognizer){
+        if sender.state == .ended {
+            switch sender.direction {
+            case .right :
+                
+                let transition: CATransition = CATransition()
+                transition.duration = 0.5
+                transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+                transition.type = CATransitionType.reveal
+                transition.subtype = CATransitionSubtype.fromLeft
+                self.view.window!.layer.add(transition, forKey: nil)
+                self.dismiss(animated: false, completion: nil)
+            case .left :
+                let transition: CATransition = CATransition()
+                transition.duration = 0.5
+                transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+                transition.type = CATransitionType.reveal
+                transition.subtype = CATransitionSubtype.fromRight
+                self.view.window!.layer.add(transition, forKey: nil)
+                self.dismiss(animated: false, completion: nil)
+            default : break
+            }
+        }
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         handelReachability(reachability: reachability)

@@ -132,12 +132,8 @@ class SignUpView : UIView , UITextFieldDelegate {
         stackView2.addArrangedSubview(Memberlabel)
         stackView2.addArrangedSubview(LoginButton)
         scrollView.addSubview(Descriptionlabel)
+
         
-        FirstTextFeild.setPadding(left: 16, right: 16)
-        LastTextFeild.setPadding(left: 16, right: 16)
-        PasswordTextFeild.setPadding(left: 16, right: 16)
-        phoneTextFeild.setPadding(left: 16, right: 16)
-        EmailTextFeild.setPadding(left: 16, right: 16)
         PasswordTextFeild.rightView = eyeBtn
         PasswordTextFeild.rightViewMode = .always
         
@@ -190,13 +186,7 @@ class SignUpView : UIView , UITextFieldDelegate {
             phoneTextFeild.textAlignment = .right
             PasswordTextFeild.textAlignment = .right
         }
-        FirstTextFeild.setPadding(left: 16, right: 16)
-        LastTextFeild.setPadding(left: 16, right: 16)
-        PasswordTextFeild.setPadding(left: 16, right: 16)
-        phoneTextFeild.setPadding(left: 16, right: 16)
-        EmailTextFeild.setPadding(left: 16, right: 16)
-        eyeBtn.frame = CGRect(x: 0, y: 0, width: 36, height: 16)
-        eyeBtn.imageEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+
         PasswordTextFeild.rightView = eyeBtn
         PasswordTextFeild.rightViewMode = .always
         
