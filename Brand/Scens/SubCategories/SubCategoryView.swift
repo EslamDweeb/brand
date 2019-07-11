@@ -12,6 +12,7 @@ class SubCtegoryView:UIView{
     weak var actionDelegate:ButtonActionDelegate?
     
     let cellID = "cellID"
+    let cellID2 = "cellID2"
     lazy var  navView:GradNavView = {
         let navView = GradNavView()
         navView.titlelabel.text = NSLocalizedString("subCategorie", comment: "")
@@ -49,7 +50,7 @@ class SubCtegoryView:UIView{
         let layout = UICollectionViewFlowLayout()
         let coll = UICollectionView(frame: .zero,collectionViewLayout: layout)
         coll.backgroundColor = .backgroundColl
-        coll.register(WishCell.self, forCellWithReuseIdentifier: cellID)
+        coll.register(WishCell.self, forCellWithReuseIdentifier: cellID2)
         return coll
     }()
     lazy var categoryLogoImage:UIImageView = {

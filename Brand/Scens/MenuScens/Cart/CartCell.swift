@@ -7,28 +7,36 @@
 //
 
 import UIKit
+import Kingfisher
+
 class  CartCell: UITableViewCell {
     
-    var cart: Cart? {
+    var cart: CartItem? {
         didSet {
             guard let cart = cart else{return}
-            Image.image = cart.image
-            brandName.text = cart.brandName
-            productName.text = cart.productName
-            discountPrice.text = cart.priceSAR
-            discountLbl.text = cart.DisCount
-            let disPrice = NSMutableAttributedString(string: cart.lastprice)
-            disPrice.addAttributes([NSAttributedString.Key.strikethroughStyle: NSUnderlineStyle.single.rawValue,NSAttributedString.Key.strikethroughColor:UIColor.lightGray], range: NSRange(location: 0, length: disPrice.length))
-            priceLbl.attributedText = disPrice
-            QTY.text = cart.QTY
-            if cart.outStack == true{
-                Out.isHidden = false
+            let url = URL(string: cart.config.mainPhoto?.path ?? "")
+            Image.kf.indicatorType = .activity
+            Image.kf.setImage(with: url)
+            brandName.text = cart.config.brandName
+            productName.text = cart.config.name
+            if cart.config.sale != 0 {
+                discountLbl.text = "\( Double(cart.config.sale).roundToDecimal(3))"
+                discountPrice.text = "\(cart.config.ReturnPriceAfterSale(price: Double(cart.config.price), sale: Double(cart.config.sale)).roundToDecimal(3))SAR"
+                priceLbl.setAttributeStringWithStrike("\(cart.config.price)")
             }else{
-                Out.isHidden = true
+                discountLbl.isHidden = true
+                discountPrice.text = "\(cart.config.price)"
+                priceLbl.isHidden = true
             }
+            QTY.text = "QTY:\(cart.qty)"
+            if cart.qty != 0{
+                Out.isHidden = true
+            }else if cart.qty < Int(QTY.text ?? "0") ?? 0{
+                Out.text = "Quantity exceeded"
             }
         }
-
+    }
+    
     lazy var containerView:UIView = {
         let view = UIView()
         view.layer.cornerRadius = 5
@@ -46,17 +54,18 @@ class  CartCell: UITableViewCell {
     lazy var Image: UIImageView = {
         let img = UIImageView()
         img.image = #imageLiteral(resourceName: "XSMax")
+        img.contentMode = .scaleAspectFit
         return img
     }()
     lazy var brandName: UILabel = {
         let lbl = UILabel()
         lbl.font = UIFont(name: "Avenir-Medium", size: 12)
-        lbl.textColor = .lightgray
+        lbl.textColor = .lightDarkGray
         return lbl
     }()
     lazy var productName: UILabel = {
         let lbl = UILabel()
-        lbl.font = UIFont(name: "Avenir-Medium", size: 12)
+        lbl.font = UIFont(name: "Avenir-Heavy", size: 12)
         lbl.numberOfLines = 2
         lbl.textColor = .black
         lbl.textAlignment = .left
@@ -65,7 +74,7 @@ class  CartCell: UITableViewCell {
     lazy var priceLbl: UILabel = {
         let lbl = UILabel()
         lbl.font = UIFont(name: "Avenir-Light", size: 13)
-        lbl.textColor = .lightgray
+        lbl.textColor = .lightDarkGray
         return lbl
     }()
     lazy var discountLbl: DiscountLable = {
@@ -92,7 +101,7 @@ class  CartCell: UITableViewCell {
         lbl.textAlignment = .right
         return lbl
     }()
-   
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setup()
@@ -101,8 +110,8 @@ class  CartCell: UITableViewCell {
         super.init(coder: aDecoder)
         setup()
     }
-  
-  
+    
+    
     private func setup(){
         contentView.addSubview(containerView)
         containerView.addSubview(Image)
@@ -115,22 +124,22 @@ class  CartCell: UITableViewCell {
         containerView.addSubview(infoBtn)
         containerView.addSubview(Out)
         
-  
+        
         containerView.anchor(top: contentView.topAnchor, left: contentView.leftAnchor, bottom: contentView.bottomAnchor, right: contentView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 8, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
-         containerView.setShadow(shadowColor: UIColor(red: 0, green: 0, blue: 0, alpha: 0.24).cgColor , shadowOffset: CGSize(width: 0, height: 2), shadowOpacity: 0.4, shadowRaduis: 1)
+        containerView.setShadow(shadowColor: UIColor(red: 0, green: 0, blue: 0, alpha: 0.24).cgColor , shadowOffset: CGSize(width: 0, height: 2), shadowOpacity: 0.4, shadowRaduis: 1)
         Image.anchor(top: containerView.topAnchor, left: containerView.leftAnchor, bottom: containerView.bottomAnchor, right: nil, centerX: nil, centerY: containerView.centerYAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 8, paddingRight: 0, width: 80, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         brandName.anchor(top: containerView.topAnchor, left: Image.rightAnchor, bottom: nil, right: containerView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 16, paddingLeft: 16, paddingBottom: 0, paddingRight: 50, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         productName.anchor(top: brandName.bottomAnchor, left: Image.rightAnchor, bottom: nil, right: containerView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 16, paddingBottom: 0, paddingRight: 8, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         priceLbl.anchor(top: productName.bottomAnchor, left: Image.rightAnchor, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 16, paddingBottom: 0, paddingRight: 0, width: 100, height: 0, paddingCenterX: 0, paddingCenterY: 0)
-         discountLbl.anchor(top: productName.bottomAnchor, left: priceLbl.rightAnchor, bottom: nil, right: nil, centerX: nil, centerY: priceLbl.centerYAnchor, paddingTop: 8, paddingLeft: 16, paddingBottom: 0, paddingRight: 0, width: 40, height: 0, paddingCenterX: 0, paddingCenterY: 0)
+        discountLbl.anchor(top: productName.bottomAnchor, left: priceLbl.rightAnchor, bottom: nil, right: nil, centerX: nil, centerY: priceLbl.centerYAnchor, paddingTop: 8, paddingLeft: 16, paddingBottom: 0, paddingRight: 0, width: 40, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         QTY.anchor(top: priceLbl.bottomAnchor, left: Image.rightAnchor, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 16, paddingBottom: 0, paddingRight: 0, width: 150, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         Out.anchor(top: nil, left: nil, bottom: nil, right: containerView.rightAnchor, centerX: nil, centerY: QTY.centerYAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 8, width: 100, height: 0, paddingCenterX: 0, paddingCenterY: 0)
-         discountPrice.anchor(top: QTY.bottomAnchor, left: Image.rightAnchor, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 16, paddingBottom: 0, paddingRight: 0, width: 200, height: 0, paddingCenterX: 0, paddingCenterY: 0)
-         infoBtn.anchor(top: nil, left: nil, bottom: nil, right: containerView.rightAnchor, centerX: nil, centerY: discountPrice.centerYAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 8, width: 20, height: 20, paddingCenterX: 0, paddingCenterY: 0)
+        discountPrice.anchor(top: QTY.bottomAnchor, left: Image.rightAnchor, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 16, paddingBottom: 0, paddingRight: 0, width: 200, height: 0, paddingCenterX: 0, paddingCenterY: 0)
+        infoBtn.anchor(top: nil, left: nil, bottom: nil, right: containerView.rightAnchor, centerX: nil, centerY: discountPrice.centerYAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 8, width: 20, height: 20, paddingCenterX: 0, paddingCenterY: 0)
         
-       
+        
     }
     @objc func handelinfoTapped(){
-      
+        
     }
 }

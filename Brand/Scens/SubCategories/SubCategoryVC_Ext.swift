@@ -19,7 +19,7 @@ extension SubCategoryVC:UICollectionViewDelegate,UICollectionViewDataSource,UICo
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == mainView.configCollection{
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as? WishCell else {return UICollectionViewCell()}
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID2, for: indexPath) as? WishCell else {return UICollectionViewCell()}
             cell.config = configs[indexPath.row]
             return cell
         }else if collectionView == mainView.categoriesCollection {

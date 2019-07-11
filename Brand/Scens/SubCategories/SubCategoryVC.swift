@@ -20,6 +20,7 @@ class SubCategoryVC:UIViewController,ButtonActionDelegate{
     var subCategories = [Category]()
     var configs = [Config]()
     let cellID = "cellID"
+    let cellID2 = "cellID2"
     let dispatchGroup = DispatchGroup()
     let reachability =  Reachability()
 
@@ -35,12 +36,12 @@ class SubCategoryVC:UIViewController,ButtonActionDelegate{
         super.viewDidLoad()
         mainView.configCollection.delegate = self
         mainView.configCollection.dataSource = self
-        getVCData(slug: self.slug ?? "")
+//        getVCData(slug: self.slug ?? "")
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         handelReachability(reachability: reachability)
-
+        getVCData(slug: self.slug ?? "")
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -83,16 +84,21 @@ class SubCategoryVC:UIViewController,ButtonActionDelegate{
     }
     private func getCategoryProducts(){
         APIClient.getCategoryProducts(slug: slug ?? "") { (result) in
+            var configss = [Config]()
             switch result{
             case .success(let data):
+                 DispatchQueue.main.async {
                 for product in data.products{
-                    DispatchQueue.main.async {
                        for config in product.configs {
-                          self.configs.append(config)
+                          configss.append(config)
                          }
-                     }
-                    self.mainView.configCollection.reloadData()
-                  }
+                    
+                    }
+                     self.configs = configss
+                     self.mainView.configCollection.reloadData()
+                    print("dtatadtdattdat!@#$#@!@#$#@!@#$#@!",self.configs)
+                 }
+                
                   self.dispatchGroup.leave()
             case .failure(let error):
                 print(error)

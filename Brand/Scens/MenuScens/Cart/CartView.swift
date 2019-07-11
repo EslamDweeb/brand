@@ -8,23 +8,13 @@
 
 import UIKit
 class CartView : UIView  {
-    
+    var bottomConstrain:NSLayoutConstraint?
+    var heightConstrain:NSLayoutConstraint?
     lazy var  navView:GradNavView = {
         let navView = GradNavView()
+          navView.backBtn.addTarget(actionDelegate, action: #selector(ButtonActionDelegate.dissmisController), for: .touchUpInside)
+        navView.titlelabel.text = NSLocalizedString("cart", comment: "")
         return navView
-    }()
-    lazy var backBtn: UIButton = {
-        let button = UIButton()
-        button.setImage(#imageLiteral(resourceName: "arrowLeftAnticon"), for: .normal)
-        return button
-    }()
-    lazy var titlelabel:UILabel = {
-        let label = UILabel()
-        label.text = "Cart"
-        label.textColor = .white
-        label.textAlignment = .center
-        label.font = UIFont(name: "Avenir-Heavy", size: 14)
-        return label
     }()
     lazy var Totalsar:UILabel = {
         let label = UILabel()
@@ -57,30 +47,36 @@ class CartView : UIView  {
         tableView.backgroundColor = UIColor.backgroundCell
         return tableView
     }()
+    lazy var scrollView: UIScrollView = {
+        let scroll = UIScrollView()
+        return scroll
+    }()
       public weak var actionDelegate: ButtonActionDelegate?
     func setupView() {
         self.backgroundColor = .backgroundColl
         tableView.backgroundColor = .clear
         //add subViews
         addSubview(navView)
-        addSubview(tableView)
-        navView.addSubview(backBtn)
-        navView.addSubview(titlelabel)
-        addSubview(Totalsar)
-        addSubview(ItemsNum)
-        addSubview(save)
+        addSubview(scrollView)
+        scrollView.addSubview(tableView)
+        scrollView.addSubview(Totalsar)
+        scrollView.addSubview(ItemsNum)
+        scrollView.addSubview(save)
         //add constrains
         navView.anchor(top: self.topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, centerX: centerXAnchor, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         navView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.12).isActive = true
-        titlelabel.anchor(top: nil, left: nil, bottom: navView.bottomAnchor, right: nil, centerX: navView.centerXAnchor, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 20, paddingRight: 0, width: 120, height: 20, paddingCenterX: 0, paddingCenterY: 0)
-        backBtn.anchor(top: nil, left: navView.leftAnchor, bottom: nil, right: nil, centerX: nil, centerY:titlelabel.centerYAnchor, paddingTop: 0, paddingLeft: 20, paddingBottom: 20, paddingRight: 0, width: 20, height: 20, paddingCenterX: 0, paddingCenterY: 0)
-
-        tableView.anchor(top: navView.bottomAnchor, left:  leftAnchor, bottom: Totalsar.topAnchor, right:  rightAnchor, centerX: nil, centerY: nil, paddingTop:24, paddingLeft: 8, paddingBottom: 24, paddingRight: 8, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
-       Totalsar.anchor(top: nil, left: self.leftAnchor, bottom: save.topAnchor, right: nil, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 16, paddingBottom:16, paddingRight: 0, width: 0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
-        ItemsNum.anchor(top: nil, left: nil, bottom: nil, right: self.rightAnchor, centerX: nil, centerY: Totalsar.centerYAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight:16, width: 0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
-        save.anchor(top: nil, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 16, paddingBottom: 40, paddingRight: 16, width: 0, height: 45, paddingCenterX: 0, paddingCenterY: 0)
+        scrollView.anchor(top: navView.bottomAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
+        
+        tableView.anchor(top: scrollView.topAnchor, left: scrollView.leftAnchor, bottom: nil, right: scrollView.rightAnchor, centerX: scrollView.centerXAnchor, centerY: nil, paddingTop:16, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
+        bottomConstrain = tableView.heightAnchor.constraint(greaterThanOrEqualToConstant: 160 * 5)
+        bottomConstrain?.isActive = true
+        
+       Totalsar.anchor(top: tableView.bottomAnchor, left: scrollView.leftAnchor, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 16, paddingLeft: 16, paddingBottom:0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
+        heightConstrain = Totalsar.heightAnchor.constraint(equalToConstant: 20)
+        heightConstrain?.isActive = true
+        ItemsNum.anchor(top: nil, left: nil, bottom: nil, right: scrollView.rightAnchor, centerX: nil, centerY: Totalsar.centerYAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight:16, width: 0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
+        save.anchor(top: Totalsar.bottomAnchor, left: scrollView.leftAnchor, bottom: scrollView.bottomAnchor, right: scrollView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 16, paddingLeft: 16, paddingBottom: 40, paddingRight: 16, width: 0, height: 45, paddingCenterX: 0, paddingCenterY: 0)
         save.addTarget(actionDelegate, action: #selector(ButtonActionDelegate.saveButtonTapped), for: .touchDragInside)
-        navView.backBtn.addTarget(actionDelegate, action: #selector(ButtonActionDelegate.dissmisController), for: .touchUpInside)
     }
     override init(frame: CGRect) {
         super.init(frame: frame)

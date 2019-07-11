@@ -160,4 +160,14 @@ class APIClient {
             complition(response.result)
         }
     }
+    static func getCartData(complition : @escaping (Result<CartData,Error>) -> Void) {
+        AF.request(ProductRouter.getCartData).responseDecodable{(response:DataResponse<CartData>) in
+            complition(response.result)
+        }
+    }
+    static func getExploreData(complition : @escaping (Result<ExploreData,Error>) -> Void) {
+        AF.request(ProductRouter.getExploreData).responseDecodable{(response:DataResponse<ExploreData>) in
+            complition(response.result)
+        }
+    }
 }

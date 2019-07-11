@@ -27,17 +27,30 @@ class HomeView: UIView{
         collection.backgroundColor = .clear
         return collection
     }()
-
+    lazy var mainCollection: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        let coll = UICollectionView(frame: .zero,collectionViewLayout: layout)
+        coll.backgroundColor = .backgroundColl
+        coll.register(ExploreCell.self, forCellWithReuseIdentifier: cellID)
+        coll.isScrollEnabled = false
+        return coll
+    }()
     lazy var flashSaleImage: UIImageView = {
        let imageView = UIImageView()
         imageView.image = #imageLiteral(resourceName: "adsCopy4")
         imageView.contentMode = .scaleAspectFill
         return imageView
     }()
+    lazy var scrollView: UIScrollView = {
+        let scroll = UIScrollView()
+        return scroll
+    }()
     init(delegate:UICollectionViewDelegate,dataSource:UICollectionViewDataSource) {
         super.init(frame: .zero)
         bannerCollectionView.delegate = delegate
         bannerCollectionView.dataSource = dataSource
+        mainCollection.delegate = delegate
+        mainCollection.dataSource = dataSource
         setup()
     }
     
@@ -52,15 +65,18 @@ class HomeView: UIView{
     
     private func addSubViews() {
         addSubview(navView)
-        addSubview(bannerCollectionView)
-        addSubview(flashSaleImage)
+        addSubview(scrollView)
+        scrollView.addSubview(mainCollection)
+        scrollView.addSubview(bannerCollectionView)
+        scrollView.addSubview(flashSaleImage)
     }
     private func SetContraintToUI() {
         navView.anchor(top:topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         navView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.12).isActive = true
+        scrollView.anchor(top: navView.bottomAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
+        bannerCollectionView.anchor(top: scrollView.topAnchor, left: scrollView.leftAnchor, bottom: nil, right: scrollView.rightAnchor, centerX: scrollView.centerXAnchor, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 95, paddingCenterX: 0, paddingCenterY: 0)
         
-        bannerCollectionView.anchor(top: navView.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 95, paddingCenterX: 0, paddingCenterY: 0)
-        
-         flashSaleImage.anchor(top: bannerCollectionView.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 95, paddingCenterX: 0, paddingCenterY: 0)
+         flashSaleImage.anchor(top: bannerCollectionView.bottomAnchor, left: scrollView.leftAnchor, bottom: nil, right: scrollView.rightAnchor, centerX: scrollView.centerXAnchor, centerY: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 95, paddingCenterX: 0, paddingCenterY: 0)
+        mainCollection.anchor(top: flashSaleImage.bottomAnchor, left: scrollView.leftAnchor, bottom: scrollView.bottomAnchor, right: scrollView.rightAnchor, centerX: scrollView.centerXAnchor, centerY: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 1000, paddingCenterX: 0, paddingCenterY: 0)
     }
 }

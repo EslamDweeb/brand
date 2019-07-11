@@ -12,17 +12,25 @@ extension CartController: UITableViewDelegate , UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if cartpro.count == 0 {
-            cartv.tableView.bottomAnchor.constraint(equalTo: cartv.bottomAnchor, constant: 0).isActive = true
-           
-            cartv.Totalsar.isHidden = true
-            cartv.ItemsNum.isHidden = true
-            cartv.save.isHidden = true
+           // mainView.bottomConstrain?.constant = 0
+            mainView.heightConstrain?.constant = 0
+//            UIView.animate(withDuration: 0.2) {
+//                self.mainView.layoutIfNeeded()
+//            }
+            mainView.Totalsar.isHidden = true
+            mainView.ItemsNum.isHidden = true
+            mainView.save.isHidden = true
             tableView.backgroundView = CartTableBG()
         }
         else{
-            cartv.Totalsar.isHidden = false
-            cartv.ItemsNum.isHidden = false
-            cartv.save.isHidden = false
+          //  mainView.bottomConstrain?.constant = 160 * 5
+            mainView.heightConstrain?.constant = 20
+//            UIView.animate(withDuration: 0.2) {
+//                self.mainView.layoutIfNeeded()
+//            }
+            mainView.Totalsar.isHidden = false
+            mainView.ItemsNum.isHidden = false
+            mainView.save.isHidden = false
             tableView.backgroundView = nil
         }
        
@@ -35,7 +43,7 @@ extension CartController: UITableViewDelegate , UITableViewDataSource {
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let deleteBtn = UITableViewRowAction(style: .destructive, title: "Delete") { (_, indexPath) in
             
-//            _  = self.cartv.tableView.cellForRow(at: indexPath) as! CartCell
+//            _  = self.mainView.tableView.cellForRow(at: indexPath) as! CartCell
             self.cartpro.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
@@ -53,6 +61,8 @@ extension CartController: UITableViewDelegate , UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! CartCell
         let cart = cartpro[indexPath.row]
         cell.cart = cart
+        mainView.ItemsNum.text = "\(cartpro.count)"
+        mainView.Totalsar.text = self.getTotalCartItemsPrice()
         return cell
     }
     

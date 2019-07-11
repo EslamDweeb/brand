@@ -21,9 +21,11 @@ enum ProductRouter:URLRequestConvertible {
     case getCategoryInfo(slug:String)
     case getCategoryProduct(slug:String)
     case getWishlist
+    case getCartData
+    case getExploreData
     private var Methods : HTTPMethod {
         switch self {
-        case .brands,.banners,.categories,.lastUpdate,.allReviews,.getOrders,.getOrderDetails,.getCategoryInfo,.getCategoryProduct,.getWishlist:
+        case .brands,.banners,.categories,.lastUpdate,.allReviews,.getOrders,.getOrderDetails,.getCategoryInfo,.getCategoryProduct,.getWishlist,.getCartData,.getExploreData:
             return .get
         case .updateReview:
             return .post
@@ -53,16 +55,20 @@ enum ProductRouter:URLRequestConvertible {
             return "/api/products?category=\(slug)"
         case .getWishlist:
             return "/api/favorite?type=config"
+        case .getCartData:
+            return "/api/cart-items"
+        case .getExploreData:
+            return "/api/explore"
         }
     }
     private var headers : HTTPHeaders {
         switch self {
-        case.brands,.banners,.categories,.lastUpdate,.getCategoryInfo,.getCategoryProduct:
+        case.brands,.banners,.categories,.lastUpdate,.getCategoryInfo,.getCategoryProduct,.getExploreData:
             return [
                     HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue,
                     HTTPHeaderField.contentType.rawValue : ContentType.json.rawValue
                 ]
-         case .allReviews,.updateReview,.getOrders,.getOrderDetails,.getWishlist:
+         case .allReviews,.updateReview,.getOrders,.getOrderDetails,.getWishlist,.getCartData:
             return [
                 HTTPHeaderField.authentication.rawValue : " \(ContentType.token.rawValue) \(UserDefaults.standard.string(forKey: Constants.Defaults.authToken)!)" ,
                 HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue,
@@ -72,7 +78,7 @@ enum ProductRouter:URLRequestConvertible {
     }
     private var parameters :Parameters?{
         switch self {
-        case .brands,.banners,.categories,.lastUpdate,.allReviews,.getOrders,.getOrderDetails,.getCategoryInfo,.getCategoryProduct,.getWishlist:
+        case .brands,.banners,.categories,.lastUpdate,.allReviews,.getOrders,.getOrderDetails,.getCategoryInfo,.getCategoryProduct,.getWishlist,.getCartData,.getExploreData:
             return [:]
         case .updateReview(let value, let review, let pros, let cons,_,_):
             return [

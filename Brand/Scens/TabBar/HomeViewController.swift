@@ -15,7 +15,12 @@ class HomeViewController:UIViewController{
     var timer : Timer?
     var newBanners = [Banner]()
     var arrangedBanners:[Banner]?
-
+    var exploreData:ExploreData?
+    let reachability =  Reachability()
+    let titleArray  = [NSLocalizedString("recommendedProduct", comment: ""),
+                       NSLocalizedString("latestProduct", comment: ""),
+                       NSLocalizedString("popularProduct", comment: "")
+    ]
     lazy var mainView: HomeView = {
         let v = HomeView(delegate: self, dataSource: self)
         return v
@@ -36,35 +41,57 @@ class HomeViewController:UIViewController{
             mainView.bannerCollectionView.scrollToItem(at: IndexPath(item:0, section: 0), at: .right, animated: true)
         }
     }
- 
+    
     override func loadView() {
         super.loadView()
-       view = mainView
+        view = mainView
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-      
+        
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        handelReachability(reachability: reachability)
+        getExploreData()
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         guard let data = UserDefaults.standard.data(forKey: Constants.Defaults.banners) else {return}
-            do {
-               newBanners = try JSONDecoder().decode([Banner].self, from: data)
-                self.arrangedBanners = self.newBanners.sorted(by: { $0.appPriority < $1.appPriority })
-                self.mainView.bannerCollectionView.reloadData()
-                if self.arrangedBanners!.count != 0 {
-                 self.startTimer()
-               }
-                print(newBanners)
+        do {
+            newBanners = try JSONDecoder().decode([Banner].self, from: data)
+            self.arrangedBanners = self.newBanners.sorted(by: { $0.appPriority < $1.appPriority })
+            self.mainView.bannerCollectionView.reloadData()
+            if self.arrangedBanners!.count != 0 {
+                self.startTimer()
+            }
+            print(newBanners)
             
-              } catch {
-                  print(error)
-           }
+        } catch {
+            print(error)
         }
+    }
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        stopNotifier(reachability: reachability)
         timer?.invalidate()
         timer = nil
+    }
+    private func getExploreData(){
+        DispatchQueue.main.async {
+            self.mainView.activityStartAnimating(activityColor: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.6952322346), backgroundColor: .clear)
+            APIClient.getExploreData { (result) in
+                switch result {
+                case.success(let data):
+                    self.exploreData = data
+                    print(data)
+                    self.mainView.activityStopAnimating()
+                case.failure(let error):
+                    print(error)
+                    self.mainView.activityStopAnimating()
+                }
+            }
+        }
     }
 }

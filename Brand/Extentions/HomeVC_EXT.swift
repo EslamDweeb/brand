@@ -9,26 +9,63 @@
 import UIKit
 
 extension HomeViewController:UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
-    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        if collectionView == mainView.mainCollection {
+            return 3
+        }else{
+            return 1
+        }
+    }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return arrangedBanners?.count ?? 0
+        if collectionView == mainView.bannerCollectionView{
+            return arrangedBanners?.count ?? 0
+        }else if collectionView == mainView.mainCollection{
+            if section == 0 {
+                return exploreData?.recommended?.count ?? 0
+            }else if section == 1 {
+                return exploreData?.latest?.count ?? 0
+            }else{
+                return exploreData?.popular?.count ?? 0
+            }
+        }
+        return 3
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as? BannerCell else{return UICollectionViewCell()}
-        cell.banner = arrangedBanners?[indexPath.row]
-        
-        return cell
+        if collectionView == mainView.bannerCollectionView{
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as? BannerCell else{return UICollectionViewCell()}
+            cell.banner = arrangedBanners?[indexPath.row]
+            return cell
+        }else{
+             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as? ExploreCell else{return UICollectionViewCell()}
+            if indexPath.section == 0{
+                cell.titleLabel.text = titleArray[indexPath.section]
+                cell.configArray = exploreData?.recommended ?? []
+            }else if indexPath.section == 1{
+                cell.titleLabel.text = titleArray[indexPath.section]
+                cell.configArray = exploreData?.latest ?? []
+            }else{
+                cell.titleLabel.text = titleArray[indexPath.section]
+                cell.configArray = exploreData?.popular ?? []
+            }
+            return cell
+        }
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        if let url = URL(string: arrangedBanners![indexPath.row].url ) {
-            UIApplication.shared.open(url, options: [:])
+        if collectionView == mainView.bannerCollectionView{
+            if let url = URL(string: arrangedBanners![indexPath.row].url ) {
+                UIApplication.shared.open(url, options: [:])
+            }
+        }else{
+            print("HI!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
         }
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
+        if collectionView == mainView.bannerCollectionView{
+            return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
+        }else{
+            return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
+        }
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
             return 0
@@ -42,9 +79,10 @@ extension HomeViewController:UICollectionViewDataSource,UICollectionViewDelegate
 //        }
 //    }
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView == mainView.bannerCollectionView{
         currentIndex = Int(scrollView.contentOffset.x / mainView.bannerCollectionView.frame.size.width)
+        }
 //        mainView.pageController.currentPage = currentIndex
-
     }
     
 }

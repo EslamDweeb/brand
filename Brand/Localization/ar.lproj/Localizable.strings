@@ -5,6 +5,9 @@
   Created by Eslam Dweeb on 6/24/19.
   Copyright © 2019 Eslam Dweeb. All rights reserved.
 */
+"recommendedProduct" = "Recommended Products";
+"latestProduct" = "Latest Products";
+"popularProduct" = "Popular Products";
 "subCategorie" = "subCategorie";
 "browesBy" = "Browse by sub category";
 "Order_Items" = "عناصر الطلب";

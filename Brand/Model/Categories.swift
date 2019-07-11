@@ -68,7 +68,7 @@ struct Parent: Codable {
 struct Links: Codable {
     let first, last: String
     let prev: String?
-    let next: String
+    let next: String?
 }
 
 // MARK: - Meta
