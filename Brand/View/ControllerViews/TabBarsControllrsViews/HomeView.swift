@@ -39,14 +39,22 @@ class HomeView: UIView{
        let imageView = UIImageView()
         imageView.image = #imageLiteral(resourceName: "adsCopy4")
         imageView.contentMode = .scaleAspectFill
+        imageView.isUserInteractionEnabled = true
+        imageView.addGestureRecognizer(tap)
         return imageView
+    }()
+    lazy var tap:UITapGestureRecognizer = {
+        let tap = UITapGestureRecognizer(target: actionDelegate, action: #selector(ButtonActionDelegate.imageViewTapped))
+        return tap
     }()
     lazy var scrollView: UIScrollView = {
         let scroll = UIScrollView()
         return scroll
     }()
-    init(delegate:UICollectionViewDelegate,dataSource:UICollectionViewDataSource) {
+    weak var actionDelegate:ButtonActionDelegate?
+    init(delegate:UICollectionViewDelegate,dataSource:UICollectionViewDataSource,buttonDelegate:ButtonActionDelegate) {
         super.init(frame: .zero)
+        self.actionDelegate = buttonDelegate
         bannerCollectionView.delegate = delegate
         bannerCollectionView.dataSource = dataSource
         mainCollection.delegate = delegate
@@ -77,6 +85,6 @@ class HomeView: UIView{
         bannerCollectionView.anchor(top: scrollView.topAnchor, left: scrollView.leftAnchor, bottom: nil, right: scrollView.rightAnchor, centerX: scrollView.centerXAnchor, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 95, paddingCenterX: 0, paddingCenterY: 0)
         
          flashSaleImage.anchor(top: bannerCollectionView.bottomAnchor, left: scrollView.leftAnchor, bottom: nil, right: scrollView.rightAnchor, centerX: scrollView.centerXAnchor, centerY: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 95, paddingCenterX: 0, paddingCenterY: 0)
-        mainCollection.anchor(top: flashSaleImage.bottomAnchor, left: scrollView.leftAnchor, bottom: scrollView.bottomAnchor, right: scrollView.rightAnchor, centerX: scrollView.centerXAnchor, centerY: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 1000, paddingCenterX: 0, paddingCenterY: 0)
+        mainCollection.anchor(top: flashSaleImage.bottomAnchor, left: scrollView.leftAnchor, bottom: scrollView.bottomAnchor, right: scrollView.rightAnchor, centerX: scrollView.centerXAnchor, centerY: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 890, paddingCenterX: 0, paddingCenterY: 0)
     }
 }

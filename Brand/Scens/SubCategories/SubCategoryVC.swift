@@ -89,7 +89,7 @@ class SubCategoryVC:UIViewController,ButtonActionDelegate{
             case .success(let data):
                  DispatchQueue.main.async {
                 for product in data.products{
-                       for config in product.configs {
+                    for config in product.configs ?? [] {
                           configss.append(config)
                          }
                     

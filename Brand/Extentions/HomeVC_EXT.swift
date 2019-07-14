@@ -21,11 +21,17 @@ extension HomeViewController:UICollectionViewDataSource,UICollectionViewDelegate
             return arrangedBanners?.count ?? 0
         }else if collectionView == mainView.mainCollection{
             if section == 0 {
-                return exploreData?.recommended?.count ?? 0
+                let x = recomendedCount
+                print(x)
+                return (exploreData?.recommended?.count ?? 0) - x
             }else if section == 1 {
-                return exploreData?.latest?.count ?? 0
+                let x = latestCount
+                print(x)
+                return (exploreData?.latest?.count ?? 0) - x
             }else{
-                return exploreData?.popular?.count ?? 0
+                let x = popularCount
+                print(x)
+                return (exploreData?.popular?.count ?? 0) - x
             }
         }
         return 3
@@ -38,10 +44,10 @@ extension HomeViewController:UICollectionViewDataSource,UICollectionViewDelegate
             return cell
         }else{
              guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as? ExploreCell else{return UICollectionViewCell()}
-            if indexPath.section == 0{
+            if indexPath == IndexPath(row: 0, section: 0){
                 cell.titleLabel.text = titleArray[indexPath.section]
                 cell.configArray = exploreData?.recommended ?? []
-            }else if indexPath.section == 1{
+            }else if indexPath == IndexPath(row: 0, section: 1){
                 cell.titleLabel.text = titleArray[indexPath.section]
                 cell.configArray = exploreData?.latest ?? []
             }else{
@@ -64,7 +70,7 @@ extension HomeViewController:UICollectionViewDataSource,UICollectionViewDelegate
         if collectionView == mainView.bannerCollectionView{
             return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
         }else{
-            return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
+            return CGSize(width: mainView.frame.width, height: 300)
         }
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {

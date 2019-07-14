@@ -6,6 +6,7 @@
   Copyright © 2019 Eslam Dweeb. All rights reserved.
 */
 "recommendedProduct" = "Recommended Products";
+"flashSale" = "Flash sale";
 "latestProduct" = "Latest Products";
 "popularProduct" = "Popular Products";
 "subCategorie" = "subCategorie";

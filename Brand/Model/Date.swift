@@ -11,3 +11,14 @@ import Foundation
 struct Dates:Codable {    
     let date: String
 }
+struct NewDate:Codable {
+    let date: String
+    let timezoneType: Int
+    let timezone: String
+    
+    enum CodingKeys: String, CodingKey {
+        case date
+        case timezoneType = "timezone_type"
+        case timezone
+    }
+}

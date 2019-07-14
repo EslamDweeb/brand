@@ -7,19 +7,21 @@
 //
 
 import UIKit
-
+import Kingfisher
 class FlashCell:UICollectionViewCell {
     
-    var flash:FlashSale? {
+    var flash:Flash? {
         didSet {
             guard let flash = flash else{return}
-            image.image = flash.image
-            timeLbl.text = flash.time
-            discountLbl.text = flash.discountVal
-            productName.text = flash.productName
-            if flash.quant == 0 {
-                soldView.isHidden = false
-            }
+            let url = URL(string: flash.offerImage.path)
+            image.kf.indicatorType = .activity
+            image.kf.setImage(with: url)
+            //timeLbl.text = flash.time
+            discountLbl.text = "\(flash.salePct.roundToDecimal(3))"
+            productName.text = flash.offerName
+//            if flash.quant == 0 {
+//                soldView.isHidden = false
+//            }
         }
     }
     

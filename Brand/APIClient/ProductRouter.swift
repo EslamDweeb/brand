@@ -23,9 +23,10 @@ enum ProductRouter:URLRequestConvertible {
     case getWishlist
     case getCartData
     case getExploreData
+    case getFlashData
     private var Methods : HTTPMethod {
         switch self {
-        case .brands,.banners,.categories,.lastUpdate,.allReviews,.getOrders,.getOrderDetails,.getCategoryInfo,.getCategoryProduct,.getWishlist,.getCartData,.getExploreData:
+        case .brands,.banners,.categories,.lastUpdate,.allReviews,.getOrders,.getOrderDetails,.getCategoryInfo,.getCategoryProduct,.getWishlist,.getCartData,.getExploreData,.getFlashData:
             return .get
         case .updateReview:
             return .post
@@ -59,11 +60,13 @@ enum ProductRouter:URLRequestConvertible {
             return "/api/cart-items"
         case .getExploreData:
             return "/api/explore"
+        case .getFlashData:
+            return "/api/flash"
         }
     }
     private var headers : HTTPHeaders {
         switch self {
-        case.brands,.banners,.categories,.lastUpdate,.getCategoryInfo,.getCategoryProduct,.getExploreData:
+        case.brands,.banners,.categories,.lastUpdate,.getCategoryInfo,.getCategoryProduct,.getExploreData,.getFlashData:
             return [
                     HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue,
                     HTTPHeaderField.contentType.rawValue : ContentType.json.rawValue
@@ -78,7 +81,7 @@ enum ProductRouter:URLRequestConvertible {
     }
     private var parameters :Parameters?{
         switch self {
-        case .brands,.banners,.categories,.lastUpdate,.allReviews,.getOrders,.getOrderDetails,.getCategoryInfo,.getCategoryProduct,.getWishlist,.getCartData,.getExploreData:
+        case .brands,.banners,.categories,.lastUpdate,.allReviews,.getOrders,.getOrderDetails,.getCategoryInfo,.getCategoryProduct,.getWishlist,.getCartData,.getExploreData,.getFlashData:
             return [:]
         case .updateReview(let value, let review, let pros, let cons,_,_):
             return [

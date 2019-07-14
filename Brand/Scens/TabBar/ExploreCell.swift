@@ -39,6 +39,8 @@ class ExploreCell:UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     func setup(){
+        addSubview(titleLabel)
+        addSubview(productCollectionView)
         if MOLHLanguage.currentAppleLanguage() == "en"{
             titleLabel.textAlignment = .left
           
@@ -52,7 +54,7 @@ class ExploreCell:UICollectionViewCell {
 extension ExploreCell:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-      return configArray.count
+       return configArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -60,6 +62,10 @@ extension ExploreCell:UICollectionViewDelegate,UICollectionViewDataSource,UIColl
         cell.config = configArray[indexPath.item]
         return cell
     }
-    
-    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: (collectionView.frame.width / 3) , height: 250)
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
+    }
 }

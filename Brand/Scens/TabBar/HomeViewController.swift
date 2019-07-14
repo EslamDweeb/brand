@@ -9,9 +9,12 @@
 import UIKit
 import SafariServices
 
-class HomeViewController:UIViewController{
+class HomeViewController:UIViewController,ButtonActionDelegate{
     let cellID = "CellID"
     var currentIndex = 0
+    var popularCount = 0
+    var recomendedCount = 0
+    var latestCount = 0
     var timer : Timer?
     var newBanners = [Banner]()
     var arrangedBanners:[Banner]?
@@ -22,7 +25,7 @@ class HomeViewController:UIViewController{
                        NSLocalizedString("popularProduct", comment: "")
     ]
     lazy var mainView: HomeView = {
-        let v = HomeView(delegate: self, dataSource: self)
+        let v = HomeView(delegate: self, dataSource: self,buttonDelegate: self)
         return v
     }()
     
@@ -49,12 +52,11 @@ class HomeViewController:UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        getExploreData()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         handelReachability(reachability: reachability)
-        getExploreData()
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -85,13 +87,23 @@ class HomeViewController:UIViewController{
                 switch result {
                 case.success(let data):
                     self.exploreData = data
+                    self.recomendedCount = (data.recommended?.count ?? 0) - 1
+                    self.popularCount = (data.popular?.count ?? 0) - 1
+                    self.latestCount = (data.latest?.count ?? 0) - 1
+                    print("\(self.recomendedCount)")
+                    print("\(self.popularCount)")
+                    print("\(self.latestCount)")
                     print(data)
                     self.mainView.activityStopAnimating()
+                    self.mainView.mainCollection.reloadData()
                 case.failure(let error):
                     print(error)
                     self.mainView.activityStopAnimating()
                 }
             }
         }
+    }
+    func imageViewTapped() {
+        self.present(FlashSaleController(), animated: true, completion: nil)
     }
 }

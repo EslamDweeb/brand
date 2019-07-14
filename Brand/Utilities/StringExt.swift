@@ -6,7 +6,6 @@
 //  Copyright © 2019 Eslam Dweeb. All rights reserved.
 //
 import Foundation
-import  UIKit
 import MOLH
 extension String {
     static let fontM  =  "Avenir-Medium"
@@ -15,6 +14,4 @@ extension String {
     var localized : String {
         return NSLocalizedString(self, comment: "")
     }
-    
-    
 }

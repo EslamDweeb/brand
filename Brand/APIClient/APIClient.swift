@@ -170,4 +170,9 @@ class APIClient {
             complition(response.result)
         }
     }
+    static func getFlashData(complition : @escaping (Result<FlashData,Error>) -> Void) {
+        AF.request(ProductRouter.getFlashData).responseDecodable{(response:DataResponse<FlashData>) in
+            complition(response.result)
+        }
+    }
 }
