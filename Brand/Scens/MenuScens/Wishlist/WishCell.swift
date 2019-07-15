@@ -66,9 +66,29 @@ class WishCell: UICollectionViewCell {
     }()
     lazy var favBtn: UIButton = {
         let btn = UIButton()
-        btn.setImage(#imageLiteral(resourceName: "invalidName"), for: .normal)
+        let image = UIImage(named: "wish")
+        btn.setImage(image, for: .normal)
+        btn.addTarget(self, action: #selector(addToWishList), for: .touchUpInside)
         return btn
     }()
+    var isFav = false
+    @objc func addToWishList(){
+        if isFav == true {
+            let image = UIImage(named: "wish")
+            favBtn.setImage(image, for: .normal)
+        }else{
+            let image = UIImage(named: "invalidName")
+            favBtn.setImage(image, for: .normal)
+        }
+        APIClient.toggleFav(id: config?.id ?? 0) { (result) in
+            switch result {
+            case.success(_):
+                self.isFav = !self.isFav
+            case .failure(_):
+                break
+            }
+        }
+    }
     lazy var cartBtn: UIButton = {
         let btn = UIButton()
         btn.setImage(#imageLiteral(resourceName: "add-to-the-cart"), for: .normal)

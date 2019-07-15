@@ -28,8 +28,6 @@ class FlashSaleController: UIViewController,ButtonActionDelegate {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        date = self.convertDateFormatter(date: "2019-07-03 18:30:00")
-        print(date)
         getFlashData()
     }
     func dissmisController() {
@@ -42,7 +40,6 @@ class FlashSaleController: UIViewController,ButtonActionDelegate {
                 switch result {
                 case.success(let data):
                     self.flashes = data.flashes
-                    print(data)
                     self.mainView.activityStopAnimating()
                     self.mainView.flashCollection.reloadData()
                 case.failure(let error):

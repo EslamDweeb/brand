@@ -44,6 +44,7 @@ extension HomeViewController:UICollectionViewDataSource,UICollectionViewDelegate
             return cell
         }else{
              guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as? ExploreCell else{return UICollectionViewCell()}
+            //cell.delegate = self
             if indexPath == IndexPath(row: 0, section: 0){
                 cell.titleLabel.text = titleArray[indexPath.section]
                 cell.configArray = exploreData?.recommended ?? []
@@ -93,3 +94,8 @@ extension HomeViewController:UICollectionViewDataSource,UICollectionViewDelegate
     
 }
 
+//extension HomeViewController:ExploreCellDelegate{
+//    func presentController() {
+
+//    }
+//}

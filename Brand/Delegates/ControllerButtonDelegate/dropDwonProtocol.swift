@@ -12,3 +12,6 @@ protocol dropDwonProtocol {
     func dropDownPressed(string: String)
     func returnIndexPath(indexPath:IndexPath) -> IndexPath
 }
+protocol ExploreCellDelegate:class{
+    func presentController()
+}

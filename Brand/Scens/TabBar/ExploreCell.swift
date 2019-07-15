@@ -33,7 +33,7 @@ class ExploreCell:UICollectionViewCell {
         productCollectionView.dataSource = self
         setup()
     }
-    
+    weak var delegate:ExploreCellDelegate?
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -63,7 +63,7 @@ extension ExploreCell:UICollectionViewDelegate,UICollectionViewDataSource,UIColl
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: (collectionView.frame.width / 3) , height: 250)
+        return CGSize(width: (collectionView.frame.width / 2.5) , height: 230)
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)

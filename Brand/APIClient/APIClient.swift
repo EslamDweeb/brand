@@ -155,8 +155,8 @@ class APIClient {
             complition(response.result)
         }
     }
-    static func getWishList(complition : @escaping (Result<Wishes,Error>) -> Void) {
-        AF.request(ProductRouter.getWishlist).responseDecodable{(response:DataResponse<Wishes>) in
+    static func getWishList(pageNumber:Int,complition : @escaping (Result<Wishes,Error>) -> Void) {
+        AF.request(ProductRouter.getWishlist(pageNumber: pageNumber)).responseDecodable{(response:DataResponse<Wishes>) in
             complition(response.result)
         }
     }
@@ -175,4 +175,15 @@ class APIClient {
             complition(response.result)
         }
     }
+    static func getAllProductConfigs(slug:String,complition : @escaping (Result<ProductConfigs,Error>) -> Void) {
+        AF.request(ProductRouter.getAllProductConfigs(slug: slug)).responseDecodable{(response:DataResponse<ProductConfigs>) in
+            complition(response.result)
+        }
+    }
+    static func toggleFav(id:Int,complition : @escaping (Result<UserData,Error>) -> Void) {
+        AF.request(ProductRouter.toggleFav(id: id)).responseDecodable{(response:DataResponse<UserData>) in
+            complition(response.result)
+        }
+    }
 }
+

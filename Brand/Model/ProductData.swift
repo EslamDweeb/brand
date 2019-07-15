@@ -62,3 +62,7 @@ struct Config: Codable {
         return price - (price * sale)
     }
 }
+
+struct ProductConfigs:Codable {
+    let configs:[Config]
+}

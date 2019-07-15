@@ -12,7 +12,15 @@ extension WishListController: UICollectionViewDelegate,UICollectionViewDataSourc
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if wishes.count == 0 {
-            collectionView.backgroundView = CellBackgroundView(delegate: self)
+            switch vcType{
+            case .wishList:
+                collectionView.backgroundView = CellBackgroundView(delegate: self)
+            case .allProduct:
+                let view = CellBackgroundView(delegate: self)
+                view.lable.text = "New Products"
+                view.button.isHidden = true
+                collectionView.backgroundView = view
+            }
         }else{
             collectionView.backgroundView = nil
         }
@@ -22,6 +30,14 @@ extension WishListController: UICollectionViewDelegate,UICollectionViewDataSourc
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID , for: indexPath) as? WishCell else{return UICollectionViewCell () }
         cell.config = wishes[indexPath.row]
+        switch vcType{
+        case .wishList:
+            let image = UIImage(named: "invalidName")
+            cell.favBtn.setImage(image, for: .normal)
+        case .allProduct:
+            let image = UIImage(named: "wish")
+            cell.favBtn.setImage(image, for: .normal)
+        }
         return cell
     }
         fileprivate var sectionInsets: UIEdgeInsets {
@@ -72,5 +88,9 @@ extension WishListController: UICollectionViewDelegate,UICollectionViewDataSourc
                 return .zero
             }
         }
-    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if (wishes.count - 1 ) <= indexPath.row {
+            self.infinitePaging()
+        }else{return}
+    }
 }

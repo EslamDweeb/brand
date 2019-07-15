@@ -20,15 +20,17 @@ enum ProductRouter:URLRequestConvertible {
     case getOrderDetails(orderSerial:String)
     case getCategoryInfo(slug:String)
     case getCategoryProduct(slug:String)
-    case getWishlist
+    case getWishlist(pageNumber:Int)
     case getCartData
     case getExploreData
     case getFlashData
+    case getAllProductConfigs(slug:String)
+    case toggleFav(id:Int)
     private var Methods : HTTPMethod {
         switch self {
-        case .brands,.banners,.categories,.lastUpdate,.allReviews,.getOrders,.getOrderDetails,.getCategoryInfo,.getCategoryProduct,.getWishlist,.getCartData,.getExploreData,.getFlashData:
+        case .brands,.banners,.categories,.lastUpdate,.allReviews,.getOrders,.getOrderDetails,.getCategoryInfo,.getCategoryProduct,.getWishlist,.getCartData,.getExploreData,.getFlashData,.getAllProductConfigs:
             return .get
-        case .updateReview:
+        case .updateReview,.toggleFav:
             return .post
         }
     }
@@ -54,24 +56,28 @@ enum ProductRouter:URLRequestConvertible {
             return "/api/categories/\(slug)"
         case .getCategoryProduct(let slug):
             return "/api/products?category=\(slug)"
-        case .getWishlist:
-            return "/api/favorite?type=config"
+        case .getWishlist(let pageNumber):
+            return "/api/favorite?type=config&page=\(pageNumber)"
         case .getCartData:
             return "/api/cart-items"
         case .getExploreData:
             return "/api/explore"
         case .getFlashData:
             return "/api/flash"
+        case .getAllProductConfigs(let slug):
+            return "/api/configs?brands=\(slug)"
+        case .toggleFav(let id):
+            return "/api/favorite/configs/\(id)"
         }
     }
     private var headers : HTTPHeaders {
         switch self {
-        case.brands,.banners,.categories,.lastUpdate,.getCategoryInfo,.getCategoryProduct,.getExploreData,.getFlashData:
+        case.brands,.banners,.categories,.lastUpdate,.getCategoryInfo,.getCategoryProduct,.getExploreData,.getFlashData,.getAllProductConfigs:
             return [
                     HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue,
                     HTTPHeaderField.contentType.rawValue : ContentType.json.rawValue
                 ]
-         case .allReviews,.updateReview,.getOrders,.getOrderDetails,.getWishlist,.getCartData:
+         case .allReviews,.updateReview,.getOrders,.getOrderDetails,.getWishlist,.getCartData,.toggleFav:
             return [
                 HTTPHeaderField.authentication.rawValue : " \(ContentType.token.rawValue) \(UserDefaults.standard.string(forKey: Constants.Defaults.authToken)!)" ,
                 HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue,
@@ -81,7 +87,7 @@ enum ProductRouter:URLRequestConvertible {
     }
     private var parameters :Parameters?{
         switch self {
-        case .brands,.banners,.categories,.lastUpdate,.allReviews,.getOrders,.getOrderDetails,.getCategoryInfo,.getCategoryProduct,.getWishlist,.getCartData,.getExploreData,.getFlashData:
+        case .brands,.banners,.categories,.lastUpdate,.allReviews,.getOrders,.getOrderDetails,.getCategoryInfo,.getCategoryProduct,.getWishlist,.getCartData,.getExploreData,.getFlashData,.getAllProductConfigs:
             return [:]
         case .updateReview(let value, let review, let pros, let cons,_,_):
             return [
@@ -91,12 +97,14 @@ enum ProductRouter:URLRequestConvertible {
                     Constants.APIParameterKey.pros: pros,
                     Constants.APIParameterKey.cons: cons
             ]
+        case .toggleFav:
+            return  [Constants.APIParameterKey.method : RequestMethods.put.rawValue]
         }
     }
     
     func asURLRequest() throws -> URLRequest {
         switch self {
-        case .banners,.categories,.allReviews,.getCategoryProduct,.getWishlist:
+        case .banners,.categories,.allReviews,.getCategoryProduct,.getWishlist,.getAllProductConfigs:
             let url = "\(Constants.ProductionServer.baseURL)\(Paths)"
             let safeUrl = url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
             var urlRequest = URLRequest(url: URL(string: safeUrl!)!)

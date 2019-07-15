@@ -16,12 +16,12 @@ class FlashCell:UICollectionViewCell {
             let url = URL(string: flash.offerImage.path)
             image.kf.indicatorType = .activity
             image.kf.setImage(with: url)
-            //timeLbl.text = flash.time
+            timeLbl.text = flash.startDate.convertDateFormatter(formate:"h a")
             discountLbl.text = "\(flash.salePct.roundToDecimal(3))"
             productName.text = flash.offerName
-//            if flash.quant == 0 {
-//                soldView.isHidden = false
-//            }
+            if flash.soldOut == true {
+                soldView.isHidden = false
+            }
         }
     }
     
@@ -57,7 +57,7 @@ class FlashCell:UICollectionViewCell {
     lazy var timeLbl: RoundedLable = {
         let lbl = RoundedLable()
         lbl.textAlignment = .center
-        lbl.backGroundColor = .discountColor
+        lbl.backgroundColor = UIColor.discountColor
         lbl.radius = 5
         lbl.RoundedCorner = [UIRectCorner.bottomLeft,UIRectCorner.topLeft]
         return lbl
@@ -101,9 +101,9 @@ class FlashCell:UICollectionViewCell {
     private  func addConstrainsToUI() {
         containerView.anchor(top: contentView.topAnchor, left: contentView.leftAnchor, bottom: contentView.bottomAnchor, right: contentView.rightAnchor, centerX: nil
             , centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
-        discountLbl.anchor(top: containerView.topAnchor, left: containerView.leftAnchor, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 16, paddingLeft: 2, paddingBottom: 0, paddingRight: 0, width: 45, height: 18, paddingCenterX: 0, paddingCenterY: 0)
-          timeLbl.anchor(top: containerView.topAnchor, left: nil, bottom: nil, right: containerView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 16, paddingLeft: 0, paddingBottom: 0, paddingRight: 2, width: 45, height: 18, paddingCenterX: 0, paddingCenterY: 0)
-        image.anchor(top: containerView.topAnchor, left: nil, bottom: nil, right: nil, centerX: containerView.centerXAnchor, centerY: nil, paddingTop: 32, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 145, height: 145, paddingCenterX: 0, paddingCenterY: 0)
+        discountLbl.anchor(top: containerView.topAnchor, left: containerView.leftAnchor, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 2, paddingBottom: 0, paddingRight: 0, width: 45, height: 18, paddingCenterX: 0, paddingCenterY: 0)
+          timeLbl.anchor(top: containerView.topAnchor, left: nil, bottom: nil, right: containerView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 2, width: 45, height: 18, paddingCenterX: 0, paddingCenterY: 0)
+        image.anchor(top: timeLbl.bottomAnchor, left: nil, bottom: nil, right: nil, centerX: containerView.centerXAnchor, centerY: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 145, height: 145, paddingCenterX: 0, paddingCenterY: 0)
         productName.anchor(top: image.bottomAnchor, left: containerView.leftAnchor, bottom: nil, right: containerView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 40, paddingCenterX: 0, paddingCenterY: 0)
         soldView.anchor(top: contentView.topAnchor, left: contentView.leftAnchor, bottom: contentView.bottomAnchor, right: contentView.rightAnchor, centerX: nil
             , centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)

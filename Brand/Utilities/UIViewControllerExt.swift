@@ -141,7 +141,7 @@ extension UIViewController {
         let documentsDirectory = paths[0]
         return documentsDirectory
     }
-    func convertDateFormatter(date: String) -> String {
+    func convertDateFormatter(date: String,formate:String) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyy-MM-dd HH:mm:ss"//this your string date format
         dateFormatter.timeZone = NSTimeZone(name: "UTC") as TimeZone?
@@ -152,12 +152,9 @@ extension UIViewController {
 //            assert(false, "no date from string")
             return ""
         }
-        
-        dateFormatter.dateFormat = "MMM d, h:mm a"///this is what you want to convert format
+        dateFormatter.dateFormat = formate ///this is what you want to convert format
         dateFormatter.timeZone = NSTimeZone(name: "UTC") as TimeZone?
         let timeStamp = dateFormatter.string(from: convertedDate!)
-        
-        print(timeStamp)
         return timeStamp
     }
 }

@@ -18,6 +18,7 @@ struct Flash:Codable {
     let appVisibility, siteVisibility: Bool
     let product: Product
     let offerImage: Photo
+    let soldOut:Bool
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -29,5 +30,6 @@ struct Flash:Codable {
         case siteVisibility = "site_visibility"
         case product
         case offerImage = "offer_image"
+        case soldOut = "sold_out"
     }
 }

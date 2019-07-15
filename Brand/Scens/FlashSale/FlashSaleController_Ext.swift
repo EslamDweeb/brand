@@ -19,7 +19,7 @@ extension FlashSaleController: UICollectionViewDelegate,UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: (collectionView.frame.width / 2) - 16, height: (collectionView.frame.width / 2 ) + 20)
+        return CGSize(width: (collectionView.frame.width / 2) - 16, height: (collectionView.frame.width / 2 ) + 10)
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
@@ -30,5 +30,15 @@ extension FlashSaleController: UICollectionViewDelegate,UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 8
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath) as? FlashCell
+        if cell?.flash?.soldOut == false{
+            let dest = WishListController()
+            dest.mainView.navView.titlelabel.text = "All Product"
+            dest.mainView.navView.searchBtn.isHidden = false
+            dest.vcType = .allProduct
+            self.present(dest, animated: true, completion: nil)
+        }
     }
 }
