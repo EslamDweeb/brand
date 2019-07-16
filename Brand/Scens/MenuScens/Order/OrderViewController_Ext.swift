@@ -10,26 +10,37 @@ import UIKit
 
 extension OrderViewController: UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if orders.count == 0 {
-//            mainView.myOrders.topAnchor.constraint(equalTo: mainView.navView.bottomAnchor, constant: 0).isActive = true
-            mainView.heightConstraint?.constant = 0
-            mainView.topConstraint?.constant = 0
-            UIView.animate(withDuration: 0.2) {
-                self.mainView.layoutIfNeeded()
-            }
-            collectionView.backgroundView = OrderBackgroundView()
+//        if orders.count == 0 {
+//
+//            mainView.heightConstraint?.constant = 0
+//            mainView.topConstraint?.constant = 0
+//            UIView.animate(withDuration: 0.2) {
+//                self.mainView.layoutIfNeeded()
+//            }
+//            collectionView.backgroundView = OrderBackgroundView()
+//        }else{
+//            mainView.heightConstraint?.constant = 25
+//            mainView.topConstraint?.constant = 16
+//            collectionView.backgroundView = nil
+//        }
+        if mainView.line1.isHidden == false {
+            return self.ordersPending.count
+        }else if mainView.line2.isHidden == false {
+             return self.ordersDelivered.count
         }else{
-            mainView.heightConstraint?.constant = 25
-            mainView.topConstraint?.constant = 16
-            collectionView.backgroundView = nil
+             return self.ordersOthers.count
         }
-        return orders.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as? OrderCell else{ return UICollectionViewCell() }
-        cell.order = orders[indexPath.item]
-        
+        if mainView.line1.isHidden == false {
+           cell.order = ordersPending[indexPath.item]
+        }else if mainView.line2.isHidden == false {
+            cell.order = ordersDelivered[indexPath.item]
+        }else{
+           cell.order = ordersOthers[indexPath.item]
+        }
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

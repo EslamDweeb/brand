@@ -32,6 +32,10 @@ import UIKit
     @objc optional func changeBtn()
      @objc optional func addBtn()
      @objc optional func handelSeeAllBtn()
+      @objc optional func  getPendingTapped()
+    @objc optional func  getDeliveredTapped()
+    @objc optional func  getOtherTapped()
+   
 }
 @objc protocol DisplayViewControllerDelegate {
     

@@ -129,10 +129,8 @@ class DetailorderView : UIView , UITextFieldDelegate ,FlexibleSteppedProgressBar
     
     lazy var confirmBtn: GradBtn = {
         let button = GradBtn()
-        let title = NSLocalizedString("Cancel Order", comment: "")
+        let title = "Cancel Order".localized
         button.setTitle(title, for: .normal)
-        button.setTitleColor( .white, for: .normal)
-        button.titleLabel?.font = UIFont(name: "Avenir-Heavy", size: 20)
         return button
     }()
     lazy var notelabel:UILabel = {
@@ -140,7 +138,7 @@ class DetailorderView : UIView , UITextFieldDelegate ,FlexibleSteppedProgressBar
         lable.text = "Cancelorderafter24".localized
         lable.textColor = .lightgray2
         lable.textAlignment = .center
-        lable.font = UIFont(name: "Avenir-Medium", size: 12)
+        lable.font = UIFont(name: .fontM, size: 12)
         return lable
     }()
     public weak var actionDelegete : ButtonActionDelegate?

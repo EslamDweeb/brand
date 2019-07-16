@@ -12,22 +12,15 @@ extension CartController: UITableViewDelegate , UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if cartpro.count == 0 {
-           // mainView.bottomConstrain?.constant = 0
+          
             mainView.heightConstrain?.constant = 0
-//            UIView.animate(withDuration: 0.2) {
-//                self.mainView.layoutIfNeeded()
-//            }
             mainView.Totalsar.isHidden = true
             mainView.ItemsNum.isHidden = true
             mainView.save.isHidden = true
             tableView.backgroundView = CartTableBG()
         }
         else{
-          //  mainView.bottomConstrain?.constant = 160 * 5
             mainView.heightConstrain?.constant = 20
-//            UIView.animate(withDuration: 0.2) {
-//                self.mainView.layoutIfNeeded()
-//            }
             mainView.Totalsar.isHidden = false
             mainView.ItemsNum.isHidden = false
             mainView.save.isHidden = false
@@ -42,8 +35,6 @@ extension CartController: UITableViewDelegate , UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let deleteBtn = UITableViewRowAction(style: .destructive, title: "Delete") { (_, indexPath) in
-            
-//            _  = self.mainView.tableView.cellForRow(at: indexPath) as! CartCell
             self.cartpro.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
@@ -65,6 +56,10 @@ extension CartController: UITableViewDelegate , UITableViewDataSource {
         mainView.Totalsar.text = self.getTotalCartItemsPrice()
         return cell
     }
-    
+//    override func updateViewConstraints() {
+//        
+//        self.mainView.tableView.heightAnchor.constraint(equalToConstant: self.mainView.tableView.contentSize.height + 50 ).isActive = true
+//        super.updateViewConstraints()
+//    }
     
 }

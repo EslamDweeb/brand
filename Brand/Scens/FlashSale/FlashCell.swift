@@ -25,12 +25,8 @@ class FlashCell:UICollectionViewCell {
         }
     }
     
-    lazy var containerView:UIView = {
-        let view = UIView()
-        view.layer.cornerRadius = 5
-        view.layer.borderWidth = 1
-        view.layer.borderColor = UIColor.backgroundCell.cgColor
-        view.backgroundColor = .white
+    lazy var containerView:shadowView = {
+        let view = shadowView()
         return view
     }()
     lazy var image: UIImageView = {

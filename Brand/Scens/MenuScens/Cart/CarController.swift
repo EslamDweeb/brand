@@ -76,5 +76,7 @@ class CartController : UIViewController ,ButtonActionDelegate{
         }
         return "\(totalPrice.roundToDecimal(3))"
     }
+   
+   
 }
 
