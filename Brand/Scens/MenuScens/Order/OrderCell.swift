@@ -16,7 +16,7 @@ class OrderCell:UICollectionViewCell {
             guard let order = order else{return}
             orderNumberVal.text = order.referenceNumber
             dateVal.text = order.createdAt.date
-            totlaVal.text = "\(order.totalPrice ?? 0)"
+            totlaVal.text = "\(order.totalPrice!)"
             statusVal.text = order.status.name
         }
     }
@@ -56,9 +56,9 @@ class OrderCell:UICollectionViewCell {
         let lbl = OrderValueLable()
         return lbl
     }()
-    lazy var statusVal: UILabel = {
-        let lbl = UILabel()
-        lbl.font = UIFont(name: "Avenir-Heavy", size: 12)
+    lazy var statusVal: OrderValueLable = {
+        let lbl = OrderValueLable()
+        lbl.font = UIFont(name: .fontH , size: 12)
         lbl.textColor = .pink
         return lbl
     }()
@@ -96,10 +96,10 @@ class OrderCell:UICollectionViewCell {
             totla.anchor(top: date.bottomAnchor, left: containerView.leftAnchor, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 100, height: 20, paddingCenterX: 0, paddingCenterY: 0)
             status.anchor(top: totla.bottomAnchor, left: containerView.leftAnchor, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 100, height: 20, paddingCenterX: 0, paddingCenterY: 0)
             
-            orderNumberVal.anchor(top: containerView.topAnchor, left: nil, bottom: nil, right: containerView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 8, width: 80, height: 20, paddingCenterX: 0, paddingCenterY: 0)
-            dateVal.anchor(top: orderNumberVal.bottomAnchor, left: nil, bottom: nil, right: containerView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 8, width: 80, height: 20, paddingCenterX: 0, paddingCenterY: 0)
-            totlaVal.anchor(top: dateVal.bottomAnchor, left: nil, bottom: nil, right: containerView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 8, width: 80, height: 20, paddingCenterX: 0, paddingCenterY: 0)
-            statusVal.anchor(top: totlaVal.bottomAnchor, left: nil, bottom: nil, right: containerView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 8, width: 80, height: 20, paddingCenterX: 0, paddingCenterY: 0)
+            orderNumberVal.anchor(top: containerView.topAnchor, left: nil, bottom: nil, right: containerView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 8, width: 100, height: 20, paddingCenterX: 0, paddingCenterY: 0)
+            dateVal.anchor(top: orderNumberVal.bottomAnchor, left: nil, bottom: nil, right: containerView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 8, width: 100, height: 20, paddingCenterX: 0, paddingCenterY: 0)
+            totlaVal.anchor(top: dateVal.bottomAnchor, left: nil, bottom: nil, right: containerView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 8, width: 100, height: 20, paddingCenterX: 0, paddingCenterY: 0)
+            statusVal.anchor(top: totlaVal.bottomAnchor, left: nil, bottom: nil, right: containerView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 8, width: 100, height: 20, paddingCenterX: 0, paddingCenterY: 0)
         }else{
             orderNumber.anchor(top: containerView.topAnchor, left: nil, bottom: nil, right: containerView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 8, width: 100, height: 20, paddingCenterX: 0, paddingCenterY: 0)
             date.anchor(top: orderNumber.bottomAnchor, left: nil, bottom: nil, right: containerView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 8, width: 100, height: 20, paddingCenterX: 0, paddingCenterY: 0)

@@ -88,7 +88,7 @@ struct Status: Codable {
     let id: Int
     let name: String
     let estimatedDuration: Int
-    let finishedDate, createdAt, updatedAt: CreatedAt
+    let finishedDate, createdAt, updatedAt: CreatedAt?
     
     enum CodingKeys: String, CodingKey {
         case id, name

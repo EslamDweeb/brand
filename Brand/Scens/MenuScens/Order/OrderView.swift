@@ -42,6 +42,7 @@ class OrderView:UIView {
         let button = UIButton()
         let title =  "PENDING".localized
         button.setTitle(title, for: .normal)
+        button.titleLabel?.font = UIFont(name:.fontH, size: 14)
         button.setTitleColor(.white, for: .normal)
         button.addTarget(actionDelegate, action: #selector(ButtonActionDelegate.getPendingTapped), for: .touchUpInside)
         return button
@@ -50,7 +51,7 @@ class OrderView:UIView {
         let button = UIButton()
         let title =  "DELIVERED".localized
         button.setTitle(title, for: .normal)
-       // button.setFont(name: .fontH, size: 16)
+        button.titleLabel?.font = UIFont(name:.fontH, size: 14)
         button.setTitleColor(.white, for: .normal)
         button.addTarget(actionDelegate, action: #selector(ButtonActionDelegate.getDeliveredTapped), for: .touchUpInside)
         
@@ -59,6 +60,7 @@ class OrderView:UIView {
     lazy var Otherbtn : UIButton = {
         let button = UIButton()
         let title =  "OTHER".localized
+        button.titleLabel?.font = UIFont(name:.fontH, size: 14)
         button.setTitle(title, for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.addTarget(actionDelegate, action: #selector(ButtonActionDelegate.getOtherTapped), for: .touchUpInside)

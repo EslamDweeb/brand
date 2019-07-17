@@ -12,7 +12,7 @@ import MOLH
 class OrderKeyLable: UILabel {
     override init(frame: CGRect) {
         super.init(frame: frame)
-       self.font = UIFont(name: "Avenir-Heavy", size: 12)
+       self.font = UIFont(name: .fontH, size: 12)
        self.textColor = .lightDarkGray
     }
     
@@ -23,7 +23,12 @@ class OrderKeyLable: UILabel {
 class OrderValueLable: UILabel {
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.font = UIFont(name: "Avenir-Medium", size: 12)
+        self.font = UIFont(name: .fontM, size: 12)
+        if MOLHLanguage.currentAppleLanguage() == "en" {
+           self.textAlignment = .right
+        }else {
+            self.textAlignment = .left
+        }
         self.textColor = #colorLiteral(red: 0.5254901961, green: 0.5254901961, blue: 0.5254901961, alpha: 1)
     }
     required init?(coder aDecoder: NSCoder) {

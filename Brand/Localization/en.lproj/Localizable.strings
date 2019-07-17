@@ -140,3 +140,10 @@
 "followus" = "Follow us on";
 "settings" = "Settings";
 "didn’t_have_Address" = "Sorry you didn’t have Address";
+"Unit price" = "Unit price";
+"Name" = "Name";
+"QTY" = "QTY" ;
+"Shipping Method" = "Shipping Method";
+"Shipping fee" = "Shipping fee";
+"Billing Method" = "Billing Method";
+"Billing Fee" = "Billing Fee";

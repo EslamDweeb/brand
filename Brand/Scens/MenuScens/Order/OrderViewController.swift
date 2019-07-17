@@ -48,6 +48,7 @@ class OrderViewController: UIViewController,ButtonActionDelegate {
         self.mainView.line1.isHidden = true
         self.mainView.line2.isHidden = true
         self.mainView.line3.isHidden = false
+        
         }
         self.mainView.orderCollection.reloadData()
         

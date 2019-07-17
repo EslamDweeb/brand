@@ -13,19 +13,17 @@ import MOLH
 class OrderDetailsView: UIView {
     
     
-    lazy var namelabel:UILabel = {
-        let label = UILabel()
-        label.textColor = .black
-        label.textAlignment = .left
-        label.font = UIFont(name: "Avenir-Medium", size: 12)
+    lazy var namelabel:HeaderLabelAlign = {
+        let label = HeaderLabelAlign()
+     //   label.textColor =  .lightGray
+        label.font = UIFont(name: .fontM, size: 12)
         return label
     }()
    
-    lazy var Pricelabel:UILabel = {
-        let label = UILabel()
-        label.textColor = .black
-        label.textAlignment = .right
-        label.font = UIFont(name: "Avenir-Medium", size: 12)
+    lazy var Pricelabel:HeaderLabelAlign = {
+        let label = HeaderLabelAlign()
+      //   label.textColor =  .lightGray
+        label.font = UIFont(name: .fontM, size: 12)
         return label
     }()
     override func layoutSubviews() {

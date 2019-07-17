@@ -14,17 +14,31 @@ class DetailorderView : UIView , UITextFieldDelegate ,FlexibleSteppedProgressBar
     var order:Order? {
         didSet{
             guard let order = order else{return}
-            self.addressName.text = order.address?.getAddressName()
+            self.addressName.text = order.address?.addressName
             self.addressDescription.text = order.address?.getFullAddressName()
-            self.totalView.namelabel.text = NSLocalizedString("totalAmount", comment: "")
+            self.totalView.namelabel.text = "totalAmount".localized
             self.totalView.Pricelabel.text = "\(order.totalPrice)"
+            self.ordernum.Pricelabel.text = order.referenceNumber
+             self.orderdate.Pricelabel.text = order.createdAt.date
+             self.shippingMethod.Pricelabel.text = order.shippingMethod?.name
+             self.shippingFee.Pricelabel.text = "\(order.shippingMethod?.fees ?? 0)"
+             self.billingMethod.Pricelabel.text = order.billingMethod?.name
+            self.billingFee.Pricelabel.text = "\(order.billingMethod?.fees ?? 0)"
+           
+            if order.statuses.count != 0 && order.statuses.count <= 4 {
+               self.Statusbar.currentIndex = order.statuses.count - 1
+            }else {
+              //  self.Statusbar.currentIndex = -1
+            }
+        
+           
         }
     }
     
     
     lazy var  navView:GradNavView = {
         let navView = GradNavView()
-        navView.titlelabel.text = NSLocalizedString("Order_Details", comment: "")
+        navView.titlelabel.text = "Order_Details".localized
         return navView
     }()
     
@@ -34,12 +48,8 @@ class DetailorderView : UIView , UITextFieldDelegate ,FlexibleSteppedProgressBar
         return scrollView
     }()
     
-    lazy var  detailsorderView:UIView = {
-        let View = UIView()
-        View.layer.borderWidth = 1
-        View.layer.cornerRadius = 5
-        View.backgroundColor = .white
-        View.layer.borderColor = #colorLiteral(red: 0.8039215686, green: 0.8039215686, blue: 0.8039215686, alpha: 0.6473371479)
+    lazy var  detailsorderView:shadowView = {
+        let View = shadowView()
         return View
     }()
     lazy var Orderdetailslabel:HeaderLabelAlign = {
@@ -51,11 +61,40 @@ class DetailorderView : UIView , UITextFieldDelegate ,FlexibleSteppedProgressBar
     
     lazy var  totalView:OrderDetailsView = {
         let View = OrderDetailsView()
-        View.namelabel.text = NSLocalizedString("Amount", comment: "")
-        View.namelabel.font = UIFont(name: "Avenir-Heavy", size: 12)
-        View.Pricelabel.text = NSLocalizedString("10293 SAR", comment: "")
-        View.Pricelabel.font = UIFont(name: "Avenir-Heavy", size: 12)
+        View.namelabel.text = "Amount".localized
+        View.namelabel.font = UIFont(name: .fontH, size: 12)
+        View.Pricelabel.font = UIFont(name: .fontH, size: 12)
         View.Pricelabel.textColor = .pink
+        return View
+    }()
+    lazy var  ordernum:OrderDetailsView = {
+        let View = OrderDetailsView()
+        View.namelabel.text = "orderNumber".localized
+        return View
+    }()
+    lazy var  orderdate:OrderDetailsView = {
+        let View = OrderDetailsView()
+        View.namelabel.text = "orderDate".localized
+        return View
+    }()
+    lazy var  shippingMethod:OrderDetailsView = {
+        let View = OrderDetailsView()
+        View.namelabel.text = "Shipping Method".localized
+        return View
+    }()
+    lazy var  shippingFee:OrderDetailsView = {
+        let View = OrderDetailsView()
+        View.namelabel.text = "Shipping fee".localized
+        return View
+    }()
+    lazy var  billingMethod:OrderDetailsView = {
+        let View = OrderDetailsView()
+        View.namelabel.text = "Billing Method".localized
+        return View
+    }()
+    lazy var  billingFee:OrderDetailsView = {
+        let View = OrderDetailsView()
+        View.namelabel.text = "Billing Fee".localized
         return View
     }()
     lazy var orderstatusview: shadowView = {
@@ -83,8 +122,9 @@ class DetailorderView : UIView , UITextFieldDelegate ,FlexibleSteppedProgressBar
         status.radius = 12
         status.progressRadius = 12
         status.progressLineHeight = 5
-        status.currentIndex = 1
-        status.stepTextFont = UIFont(name: "Avenir-Medium", size: 12)
+       // status.currentIndex = 0
+    
+        status.stepTextFont = UIFont(name: .fontM, size: 12)
         return status
     }()
     lazy var addressview: shadowView = {
@@ -93,8 +133,8 @@ class DetailorderView : UIView , UITextFieldDelegate ,FlexibleSteppedProgressBar
     }()
     
   
-    lazy var addressName: HeaderLabel = {
-        let lable = HeaderLabel()
+    lazy var addressName: HeaderLabelAlign = {
+        let lable = HeaderLabelAlign()
         lable.text = "My Home".localized
         return lable
     }()
@@ -108,20 +148,20 @@ class DetailorderView : UIView , UITextFieldDelegate ,FlexibleSteppedProgressBar
         let View = shadowView()
         return View
     }()
-    lazy var Orderitemlabel:HeaderLabel = {
-        let lable = HeaderLabel()
+    lazy var Orderitemlabel:HeaderLabelAlign = {
+        let lable = HeaderLabelAlign()
         lable.text = "Order_Items".localized
         lable.font = UIFont(name: .fontH, size: 14)
         return lable
     }()
     lazy var  constantorderView:productCheckout = {
         let View = productCheckout()
-        View.namelabel.text = NSLocalizedString("Name", comment: "")
-        View.namelabel.font = UIFont(name: "Avenir-Heavy", size: 12)
-        View.Qlabel.text = NSLocalizedString("QTY", comment: "")
-        View.Qlabel.font = UIFont(name: "Avenir-Heavy", size: 12)
-        View.Pricelabel.text = NSLocalizedString("Unit price", comment: "")
-        View.Pricelabel.font = UIFont(name: "Avenir-Heavy", size: 12)
+        View.namelabel.text = "Name".localized
+        View.namelabel.font = UIFont(name: .fontH, size: 12)
+        View.Qlabel.text = "QTY".localized
+        View.Qlabel.font = UIFont(name: .fontH, size: 12)
+        View.Pricelabel.text = "Unit price".localized
+        View.Pricelabel.font = UIFont(name: .fontH, size: 12)
         return View
     }()
     
@@ -133,12 +173,11 @@ class DetailorderView : UIView , UITextFieldDelegate ,FlexibleSteppedProgressBar
         button.setTitle(title, for: .normal)
         return button
     }()
-    lazy var notelabel:UILabel = {
-        let lable = UILabel()
+    lazy var notelabel:DescriptionLabel12 = {
+        let lable = DescriptionLabel12()
         lable.text = "Cancelorderafter24".localized
         lable.textColor = .lightgray2
         lable.textAlignment = .center
-        lable.font = UIFont(name: .fontM, size: 12)
         return lable
     }()
     public weak var actionDelegete : ButtonActionDelegate?
@@ -151,6 +190,12 @@ class DetailorderView : UIView , UITextFieldDelegate ,FlexibleSteppedProgressBar
         scrollView.addSubview(detailsorderView)
         detailsorderView.addSubview(Orderdetailslabel)
         detailsorderView.addSubview(totalView)
+         detailsorderView.addSubview(ordernum)
+         detailsorderView.addSubview(orderdate)
+         detailsorderView.addSubview(shippingMethod)
+         detailsorderView.addSubview(shippingFee)
+         detailsorderView.addSubview(billingMethod)
+         detailsorderView.addSubview(billingFee)
         scrollView.addSubview(orderstatusview)
         orderstatusview.addSubview(Orderstatuslabel)
         orderstatusview.addSubview(Statusbar)
@@ -169,14 +214,20 @@ class DetailorderView : UIView , UITextFieldDelegate ,FlexibleSteppedProgressBar
         
         scrollView.anchor(top: navView.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, centerX: self.centerXAnchor, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         
-        detailsorderView.anchor(top: scrollView.topAnchor, left: scrollView.leftAnchor, bottom: nil, right: scrollView.rightAnchor, centerX: scrollView.centerXAnchor, centerY: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height:0, paddingCenterX: 0, paddingCenterY: 0)
+        detailsorderView.anchor(top: scrollView.topAnchor, left: scrollView.leftAnchor, bottom: nil, right: scrollView.rightAnchor, centerX: scrollView.centerXAnchor, centerY: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height:225, paddingCenterX: 0, paddingCenterY: 0)
         detailsorderView.setShadow(shadowColor: UIColor(red: 0, green: 0, blue: 0, alpha: 0.24).cgColor , shadowOffset: CGSize(width: 0, height: 2), shadowOpacity: 0.4, shadowRaduis: 1)
-        
-       
-        totalView.anchor(top: nil, left: detailsorderView.leftAnchor, bottom: detailsorderView.bottomAnchor, right: detailsorderView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 14, paddingBottom: 8, paddingRight: 14, width: 0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
+    
+        Orderdetailslabel.anchor(top: detailsorderView.topAnchor, left: detailsorderView.leftAnchor, bottom: nil, right: detailsorderView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
+        ordernum.anchor(top: Orderdetailslabel.bottomAnchor, left: detailsorderView.leftAnchor, bottom: nil, right: detailsorderView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
+        orderdate.anchor(top: ordernum.bottomAnchor, left: detailsorderView.leftAnchor, bottom: nil, right: detailsorderView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
+        shippingMethod.anchor(top: orderdate.bottomAnchor, left: detailsorderView.leftAnchor, bottom: nil, right: detailsorderView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
+        shippingFee.anchor(top: shippingMethod.bottomAnchor, left: detailsorderView.leftAnchor, bottom: nil, right: detailsorderView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
+        billingMethod.anchor(top: shippingFee.bottomAnchor, left: detailsorderView.leftAnchor, bottom: nil, right: detailsorderView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
+        billingFee.anchor(top: billingMethod.bottomAnchor, left: detailsorderView.leftAnchor, bottom: nil, right: detailsorderView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
+        totalView.anchor(top: billingFee.bottomAnchor, left: detailsorderView.leftAnchor, bottom: detailsorderView.bottomAnchor, right: detailsorderView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 16, paddingBottom: 8, paddingRight: 16, width: 0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
         orderstatusview.anchor(top: detailsorderView.bottomAnchor, left: scrollView.leftAnchor, bottom: nil, right: scrollView.rightAnchor, centerX: scrollView.centerXAnchor, centerY: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height:120, paddingCenterX: 0, paddingCenterY: 0)
         orderstatusview.setShadow(shadowColor: UIColor(red: 0, green: 0, blue: 0, alpha: 0.24).cgColor , shadowOffset: CGSize(width: 0, height: 2), shadowOpacity: 0.4, shadowRaduis: 1)
-       
+        
         Statusbar.anchor(top: Orderstatuslabel.bottomAnchor, left: orderstatusview.leftAnchor, bottom: orderstatusview.bottomAnchor, right: orderstatusview.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 22, paddingBottom: 16, paddingRight: 24, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         addressview.anchor(top: orderstatusview.bottomAnchor, left: scrollView.leftAnchor, bottom: nil, right: scrollView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 75, paddingCenterX: 0, paddingCenterY: 0)
         addressName.anchor(top: addressview.topAnchor, left: addressview.leftAnchor, bottom: nil, right: addressview.rightAnchor, centerX: nil, centerY: nil, paddingTop: 16, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
@@ -192,13 +243,8 @@ class DetailorderView : UIView , UITextFieldDelegate ,FlexibleSteppedProgressBar
         notelabel.anchor(top: confirmBtn.bottomAnchor, left: scrollView.leftAnchor, bottom: scrollView.bottomAnchor, right: scrollView.rightAnchor, centerX: scrollView.centerXAnchor, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 32, paddingRight: 8, width: 0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
                 navView.backBtn.addTarget(self.actionDelegete, action: #selector(ButtonActionDelegate.dissmisController), for: .touchUpInside)
         
-        if MOLHLanguage.currentAppleLanguage() == "en" {
-             Orderdetailslabel.anchor(top: detailsorderView.topAnchor, left: detailsorderView.leftAnchor, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 16, paddingBottom: 0, paddingRight: 0, width: 0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
-             Orderstatuslabel.anchor(top: orderstatusview.topAnchor, left: orderstatusview.leftAnchor, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 16, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
-        }else{
-             Orderdetailslabel.anchor(top: detailsorderView.topAnchor, left: nil, bottom: nil, right: detailsorderView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 16, width: 0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
-             Orderstatuslabel.anchor(top: orderstatusview.topAnchor, left: nil, bottom: nil, right: orderstatusview.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 16, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
-        }
+         Orderstatuslabel.anchor(top: orderstatusview.topAnchor, left: orderstatusview.leftAnchor, bottom: nil, right: orderstatusview.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
+       
     }
     override init(frame: CGRect) {
         super.init(frame: frame)
