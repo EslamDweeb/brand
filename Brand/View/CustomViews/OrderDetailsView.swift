@@ -13,17 +13,15 @@ import MOLH
 class OrderDetailsView: UIView {
     
     
-    lazy var namelabel:HeaderLabelAlign = {
-        let label = HeaderLabelAlign()
+    lazy var namelabel:DescriptionLabel12 = {
+        let label = DescriptionLabel12()
      //   label.textColor =  .lightGray
-        label.font = UIFont(name: .fontM, size: 12)
         return label
     }()
    
-    lazy var Pricelabel:HeaderLabelAlign = {
-        let label = HeaderLabelAlign()
+    lazy var Pricelabel:DescriptionLabel12 = {
+        let label = DescriptionLabel12()
       //   label.textColor =  .lightGray
-        label.font = UIFont(name: .fontM, size: 12)
         return label
     }()
     override func layoutSubviews() {
@@ -47,7 +45,7 @@ class OrderDetailsView: UIView {
     }
     private func setup(){
         if MOLHLanguage.currentAppleLanguage() == "en" {
-        namelabel.anchor(top: nil, left: leftAnchor, bottom: nil, right: nil, centerX: nil, centerY: centerYAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 8, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
+        namelabel.anchor(top: nil, left: leftAnchor, bottom: nil, right: nil, centerX: nil, centerY: centerYAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         Pricelabel.anchor(top: nil, left: nil, bottom: nil, right: self.rightAnchor, centerX: nil, centerY: centerYAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
             Pricelabel.textAlignment = .right
             namelabel.textAlignment = .left

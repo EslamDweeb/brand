@@ -17,6 +17,12 @@ class DetailorderView : UIView , UITextFieldDelegate ,FlexibleSteppedProgressBar
             self.addressName.text = order.address?.addressName
             self.addressDescription.text = order.address?.getFullAddressName()
             self.totalView.namelabel.text = "totalAmount".localized
+             self.ordernum.namelabel.text = "orderNumber".localized
+            self.orderdate.namelabel.text = "orderDate".localized
+            self.shippingMethod.namelabel.text = "Shipping Method".localized
+            self.shippingFee.namelabel.text = "Shipping fee".localized
+            self.billingFee.namelabel.text = "Billing Fee".localized
+            self.billingMethod.namelabel.text = "Billing Method".localized
             self.totalView.Pricelabel.text = "\(order.totalPrice)"
             self.ordernum.Pricelabel.text = order.referenceNumber
              self.orderdate.Pricelabel.text = order.createdAt.date
@@ -25,11 +31,7 @@ class DetailorderView : UIView , UITextFieldDelegate ,FlexibleSteppedProgressBar
              self.billingMethod.Pricelabel.text = order.billingMethod?.name
             self.billingFee.Pricelabel.text = "\(order.billingMethod?.fees ?? 0)"
            
-            if order.statuses.count != 0 && order.statuses.count <= 4 {
-               self.Statusbar.currentIndex = order.statuses.count - 1
-            }else {
-              //  self.Statusbar.currentIndex = -1
-            }
+            
         
            
         }
@@ -61,7 +63,6 @@ class DetailorderView : UIView , UITextFieldDelegate ,FlexibleSteppedProgressBar
     
     lazy var  totalView:OrderDetailsView = {
         let View = OrderDetailsView()
-        View.namelabel.text = "Amount".localized
         View.namelabel.font = UIFont(name: .fontH, size: 12)
         View.Pricelabel.font = UIFont(name: .fontH, size: 12)
         View.Pricelabel.textColor = .pink
@@ -69,32 +70,26 @@ class DetailorderView : UIView , UITextFieldDelegate ,FlexibleSteppedProgressBar
     }()
     lazy var  ordernum:OrderDetailsView = {
         let View = OrderDetailsView()
-        View.namelabel.text = "orderNumber".localized
         return View
     }()
     lazy var  orderdate:OrderDetailsView = {
         let View = OrderDetailsView()
-        View.namelabel.text = "orderDate".localized
         return View
     }()
     lazy var  shippingMethod:OrderDetailsView = {
         let View = OrderDetailsView()
-        View.namelabel.text = "Shipping Method".localized
         return View
     }()
     lazy var  shippingFee:OrderDetailsView = {
         let View = OrderDetailsView()
-        View.namelabel.text = "Shipping fee".localized
         return View
     }()
     lazy var  billingMethod:OrderDetailsView = {
         let View = OrderDetailsView()
-        View.namelabel.text = "Billing Method".localized
         return View
     }()
     lazy var  billingFee:OrderDetailsView = {
         let View = OrderDetailsView()
-        View.namelabel.text = "Billing Fee".localized
         return View
     }()
     lazy var orderstatusview: shadowView = {
@@ -107,9 +102,20 @@ class DetailorderView : UIView , UITextFieldDelegate ,FlexibleSteppedProgressBar
         label.font = UIFont(name: .fontH, size: 14)
         return label
     }()
+    lazy var img : UIImageView = {
+        let img = UIImageView()
+        img.image = #imageLiteral(resourceName: "add-to-the-cart")
+        img.isHidden = true
+        return img
+    }()
+    lazy var statuslabel : HeaderLabel = {
+        let label = HeaderLabel()
+        label.text = "Canceld"
+        label.isHidden = true
+        return label
+    }()
     lazy var Statusbar : FlexibleSteppedProgressBar = {
         let status = FlexibleSteppedProgressBar()
-  
         status.currentSelectedCenterColor = .pink
         status.currentSelectedTextColor = .pink
         status.lastStateCenterColor = .pink
@@ -122,8 +128,6 @@ class DetailorderView : UIView , UITextFieldDelegate ,FlexibleSteppedProgressBar
         status.radius = 12
         status.progressRadius = 12
         status.progressLineHeight = 5
-       // status.currentIndex = 0
-    
         status.stepTextFont = UIFont(name: .fontM, size: 12)
         return status
     }()
@@ -199,6 +203,8 @@ class DetailorderView : UIView , UITextFieldDelegate ,FlexibleSteppedProgressBar
         scrollView.addSubview(orderstatusview)
         orderstatusview.addSubview(Orderstatuslabel)
         orderstatusview.addSubview(Statusbar)
+        orderstatusview.addSubview(img)
+        orderstatusview.addSubview(statuslabel)
         scrollView.addSubview(addressview)
         addressview.addSubview(addressName)
         addressview.addSubview(addressDescription)
@@ -214,20 +220,22 @@ class DetailorderView : UIView , UITextFieldDelegate ,FlexibleSteppedProgressBar
         
         scrollView.anchor(top: navView.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, centerX: self.centerXAnchor, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         
-        detailsorderView.anchor(top: scrollView.topAnchor, left: scrollView.leftAnchor, bottom: nil, right: scrollView.rightAnchor, centerX: scrollView.centerXAnchor, centerY: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height:225, paddingCenterX: 0, paddingCenterY: 0)
+        detailsorderView.anchor(top: scrollView.topAnchor, left: scrollView.leftAnchor, bottom: nil, right: scrollView.rightAnchor, centerX: scrollView.centerXAnchor, centerY: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height:0, paddingCenterX: 0, paddingCenterY: 0)
         detailsorderView.setShadow(shadowColor: UIColor(red: 0, green: 0, blue: 0, alpha: 0.24).cgColor , shadowOffset: CGSize(width: 0, height: 2), shadowOpacity: 0.4, shadowRaduis: 1)
     
         Orderdetailslabel.anchor(top: detailsorderView.topAnchor, left: detailsorderView.leftAnchor, bottom: nil, right: detailsorderView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
-        ordernum.anchor(top: Orderdetailslabel.bottomAnchor, left: detailsorderView.leftAnchor, bottom: nil, right: detailsorderView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
-        orderdate.anchor(top: ordernum.bottomAnchor, left: detailsorderView.leftAnchor, bottom: nil, right: detailsorderView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
+        ordernum.anchor(top: Orderdetailslabel.bottomAnchor, left: detailsorderView.leftAnchor, bottom: nil, right: detailsorderView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
+        orderdate.anchor(top: ordernum.bottomAnchor, left: detailsorderView.leftAnchor, bottom: nil, right: detailsorderView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
         shippingMethod.anchor(top: orderdate.bottomAnchor, left: detailsorderView.leftAnchor, bottom: nil, right: detailsorderView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
         shippingFee.anchor(top: shippingMethod.bottomAnchor, left: detailsorderView.leftAnchor, bottom: nil, right: detailsorderView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
         billingMethod.anchor(top: shippingFee.bottomAnchor, left: detailsorderView.leftAnchor, bottom: nil, right: detailsorderView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
         billingFee.anchor(top: billingMethod.bottomAnchor, left: detailsorderView.leftAnchor, bottom: nil, right: detailsorderView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
-        totalView.anchor(top: billingFee.bottomAnchor, left: detailsorderView.leftAnchor, bottom: detailsorderView.bottomAnchor, right: detailsorderView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 16, paddingBottom: 8, paddingRight: 16, width: 0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
+        totalView.anchor(top: billingFee.bottomAnchor, left: detailsorderView.leftAnchor, bottom: nil, right: detailsorderView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 16, paddingBottom: 8, paddingRight: 16, width: 0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
         orderstatusview.anchor(top: detailsorderView.bottomAnchor, left: scrollView.leftAnchor, bottom: nil, right: scrollView.rightAnchor, centerX: scrollView.centerXAnchor, centerY: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height:120, paddingCenterX: 0, paddingCenterY: 0)
         orderstatusview.setShadow(shadowColor: UIColor(red: 0, green: 0, blue: 0, alpha: 0.24).cgColor , shadowOffset: CGSize(width: 0, height: 2), shadowOpacity: 0.4, shadowRaduis: 1)
-        
+         Orderstatuslabel.anchor(top: orderstatusview.topAnchor, left: orderstatusview.leftAnchor, bottom: nil, right: orderstatusview.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
+        img.anchor(top: Orderstatuslabel.bottomAnchor, left: nil, bottom: nil, right: nil, centerX: orderstatusview.centerXAnchor, centerY: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 30, height: 25, paddingCenterX: 0, paddingCenterY: 0)
+        statuslabel.anchor(top: img.bottomAnchor, left: nil, bottom: orderstatusview.bottomAnchor, right: nil, centerX: orderstatusview.centerXAnchor, centerY: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 16, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         Statusbar.anchor(top: Orderstatuslabel.bottomAnchor, left: orderstatusview.leftAnchor, bottom: orderstatusview.bottomAnchor, right: orderstatusview.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 22, paddingBottom: 16, paddingRight: 24, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         addressview.anchor(top: orderstatusview.bottomAnchor, left: scrollView.leftAnchor, bottom: nil, right: scrollView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 75, paddingCenterX: 0, paddingCenterY: 0)
         addressName.anchor(top: addressview.topAnchor, left: addressview.leftAnchor, bottom: nil, right: addressview.rightAnchor, centerX: nil, centerY: nil, paddingTop: 16, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
@@ -243,7 +251,7 @@ class DetailorderView : UIView , UITextFieldDelegate ,FlexibleSteppedProgressBar
         notelabel.anchor(top: confirmBtn.bottomAnchor, left: scrollView.leftAnchor, bottom: scrollView.bottomAnchor, right: scrollView.rightAnchor, centerX: scrollView.centerXAnchor, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 32, paddingRight: 8, width: 0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
                 navView.backBtn.addTarget(self.actionDelegete, action: #selector(ButtonActionDelegate.dissmisController), for: .touchUpInside)
         
-         Orderstatuslabel.anchor(top: orderstatusview.topAnchor, left: orderstatusview.leftAnchor, bottom: nil, right: orderstatusview.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
+        
        
     }
     override init(frame: CGRect) {

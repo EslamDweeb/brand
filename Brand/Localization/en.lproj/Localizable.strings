@@ -147,3 +147,6 @@
 "Shipping fee" = "Shipping fee";
 "Billing Method" = "Billing Method";
 "Billing Fee" = "Billing Fee";
+"PENDING" = "PENDING";
+"DELIVERED" = "DELIVERED";
+"OTHER" = "OTHER";
