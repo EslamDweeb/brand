@@ -19,6 +19,8 @@
 		2D309E6122CA01CC003709CF /* SocialSingupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D309E6022CA01CC003709CF /* SocialSingupView.swift */; };
 		2D309E6322CA02FC003709CF /* SocialSignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D309E6222CA02FC003709CF /* SocialSignUpVC.swift */; };
 		2D309E6922CA2DD9003709CF /* ReviewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D309E6822CA2DD9003709CF /* ReviewData.swift */; };
+		2D319C9E22DF526700EDC509 /* ItemDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D319C9D22DF526700EDC509 /* ItemDetailHeaderView.swift */; };
+		2D319CA022DF653700EDC509 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D319C9F22DF653700EDC509 /* CustomTabBar.swift */; };
 		2D32B82D22C0EE8100513DD4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D32B82C22C0EE8100513DD4 /* AppDelegate.swift */; };
 		2D32B83222C0EE8100513DD4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D32B83022C0EE8100513DD4 /* Main.storyboard */; };
 		2D32B83722C0EE9400513DD4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D32B83522C0EE9400513DD4 /* LaunchScreen.storyboard */; };
@@ -184,6 +186,8 @@
 		2D309E6022CA01CC003709CF /* SocialSingupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialSingupView.swift; sourceTree = "<group>"; };
 		2D309E6222CA02FC003709CF /* SocialSignUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialSignUpVC.swift; sourceTree = "<group>"; };
 		2D309E6822CA2DD9003709CF /* ReviewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewData.swift; sourceTree = "<group>"; };
+		2D319C9D22DF526700EDC509 /* ItemDetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailHeaderView.swift; sourceTree = "<group>"; };
+		2D319C9F22DF653700EDC509 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		2D32B82922C0EE8100513DD4 /* Brand.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Brand.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D32B82C22C0EE8100513DD4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2D32B83122C0EE8100513DD4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -414,6 +418,8 @@
 		2D319C9C22DF4EA800EDC509 /* ItemDetail */ = {
 			isa = PBXGroup;
 			children = (
+				2D319C9D22DF526700EDC509 /* ItemDetailHeaderView.swift */,
+				2D319C9F22DF653700EDC509 /* CustomTabBar.swift */,
 			);
 			path = ItemDetail;
 			sourceTree = "<group>";
@@ -1201,8 +1207,10 @@
 				2D32B96A22C0F22C00513DD4 /* LoginViewController.swift in Sources */,
 				2D7A632A22C0FA8B00AF4E78 /* DropDownBtn.swift in Sources */,
 				2D309E6322CA02FC003709CF /* SocialSignUpVC.swift in Sources */,
+				2D319CA022DF653700EDC509 /* CustomTabBar.swift in Sources */,
 				2D32B99B22C0F29000513DD4 /* AllCountriesmodel.swift in Sources */,
 				2D7A633B22C0FA8B00AF4E78 /* OrderBackgroundView.swift in Sources */,
+				2D319C9E22DF526700EDC509 /* ItemDetailHeaderView.swift in Sources */,
 				2D32B84C22C0F1D000513DD4 /* textFieldExt.swift in Sources */,
 				2D32B99A22C0F29000513DD4 /* Address1.swift in Sources */,
 				2D32B92A22C0F20D00513DD4 /* ResetCodeViewController.swift in Sources */,
