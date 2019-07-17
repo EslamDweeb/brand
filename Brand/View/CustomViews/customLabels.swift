@@ -71,4 +71,16 @@ class DescriptionLabel : DefaultLabel {
     }
     
 }
+class DescriptionLabel12 : DefaultLabel {
+    
+    override func setup() {
+        self.font =  self.setFont(name: .fontM, size: 12)
+        if MOLHLanguage.currentAppleLanguage() == "ar" {
+            textAlignment = .right
+        }else{
+            textAlignment = .left
+        }
+    }
+    
+}
 

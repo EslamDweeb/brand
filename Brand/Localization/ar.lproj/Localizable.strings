@@ -5,6 +5,17 @@
   Created by Eslam Dweeb on 6/24/19.
   Copyright © 2019 Eslam Dweeb. All rights reserved.
 */
+
+"Cancel Order" = "الغاء الطلب";
+"Order_Status" = "حاله الطلب";
+"didn’t_have_Address" =  "ناسف لا يوجد لديك عناوين";
+"Unit price" = "سعر الوحده";
+"Name" = "الاسم";
+"QTY" = "الكميه";
+"Shipping Method" = "طريقه الشحن";
+"Shipping fee" = "ضريبه الشحن";
+"Billing Method" = "طريقه الدفع";
+"Billing Fee" = "ضريبه الدفع";
 "recommendedProduct" = "Recommended Products";
 "latestProduct" = "Latest Products";
 "popularProduct" = "Popular Products";
@@ -137,6 +148,3 @@
 "Order_Details" = "تفاصيل الطلب";
 ;"الكميه" = "Amount"
 
-"Cancel Order" = "الغاء الطلب";
-"Order_Status" = "حاله الطلب";
-"didn’t_have_Address" =  "ناسف لا يوجد لديك عناوين" ;

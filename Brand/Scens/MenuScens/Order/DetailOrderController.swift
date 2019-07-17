@@ -12,8 +12,12 @@ class DetailorderVC : UIViewController ,ButtonActionDelegate{
     let reachability =  Reachability()
     var orderSerial:String?
     var pro: [Item] = []
-    var itemDetail =  [ NSLocalizedString("orderNumber", comment: ""):"data.order.referenceNumber",
-                        NSLocalizedString("orderDate", comment: ""):" data.order.createdAt.date"
+    var itemDetail =  [ "orderNumber".localized:"data.order.referenceNumber",
+                        "orderDate".localized:" data.order.createdAt.date",
+                        "Shipping Method".localized:"",
+                        "Shipping fee".localized:"",
+                        "Billing Method".localized:"",
+                        "Billing Fee".localized:""
     ]
     var x = 0
     var y = 0
@@ -61,8 +65,12 @@ class DetailorderVC : UIViewController ,ButtonActionDelegate{
                     DispatchQueue.main.async {
                         self.mainView.order = data.order
                         self.pro = data.order.items ?? []
-                        self.itemDetail [ NSLocalizedString("orderNumber", comment: "")] = data.order.referenceNumber
-                        self.itemDetail[NSLocalizedString("orderDate", comment: "")] = data.order.createdAt.date
+//                        self.itemDetail [ "orderNumber".localized] = data.order.referenceNumber
+//                        self.itemDetail["orderDate".localized] = data.order.createdAt.date
+//                        self.itemDetail["Shipping Method".localized] = data.order.shippingMethod?.name
+//                        self.itemDetail["Shipping fee".localized] = "\(data.order.shippingMethod?.fees ?? 0)"
+//                        self.itemDetail["Billing Method".localized] = data.order.billingMethod?.name
+//                        self.itemDetail["Billing Fee".localized] = "\(data.order.billingMethod?.fees ?? 0)"
                         self.createItemDetailView()
                         self.CreateOrderDetailView()
                         self.mainView.activityStopAnimating()
@@ -76,6 +84,11 @@ class DetailorderVC : UIViewController ,ButtonActionDelegate{
     }
     private func createItemDetailView(){
         print(pro)
+        if self.pro.count == 0 {
+             self.mainView.orderitemsview.isHidden = true
+        }else{
+             self.mainView.orderitemsview.isHidden = false
+        
         for i in self.pro {
             let addview : productCheckout = {
                 let view = productCheckout()
@@ -94,22 +107,25 @@ class DetailorderVC : UIViewController ,ButtonActionDelegate{
         UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
             self.mainView.layoutIfNeeded()
         }, completion: nil)
+        }
     }
     private func CreateOrderDetailView(){
+        print(self.itemDetail)
         for (key,val) in self.itemDetail {
-            let addview : OrderDetailsView = {
-                let view = OrderDetailsView()
-                view.namelabel.text = key
-                view.Pricelabel.text  = "\(val)"
-                return view
-            }()
-            self.mainView.detailsorderView.addSubview(addview)
-            
-            addview.anchor(top: self.mainView.detailsorderView.topAnchor, left: self.mainView.detailsorderView.leftAnchor, bottom: nil, right: self.mainView.detailsorderView.rightAnchor, centerX: nil, centerY: nil, paddingTop: CGFloat(40 + self.y), paddingLeft: 16, paddingBottom: 0, paddingRight:16, width: 0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
+//            let addview : OrderDetailsView = {
+//                let view = OrderDetailsView()
+//                view.namelabel.text = key
+//                view.Pricelabel.text  = "\(val)"
+//                return view
+//            }()
+//            self.mainView.detailsorderView.addSubview(addview)
+
+//            addview.anchor(top: self.mainView.detailsorderView.topAnchor, left: self.mainView.detailsorderView.leftAnchor, bottom: nil, right: self.mainView.detailsorderView.rightAnchor, centerX: nil, centerY: nil, paddingTop: CGFloat(40 + self.y), paddingLeft: 16, paddingBottom: 0, paddingRight:16, width: 0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
             self.y += 25
-            
+
         }
-        self.mainView.detailsorderView.heightAnchor.constraint(equalToConstant: CGFloat(76 + self.y)).isActive = true
+        print(y)
+        self.mainView.detailsorderView.heightAnchor.constraint(equalToConstant: CGFloat(225)).isActive = true
         UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
             self.mainView.layoutIfNeeded()
         }, completion: nil)

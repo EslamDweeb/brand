@@ -11,25 +11,20 @@ import MOLH
 class productCheckout: UIView {
     
     
-    lazy var namelabel:UILabel = {
-        let label = UILabel()
-        label.textColor = .black
-        label.textAlignment = .left
-        label.font = UIFont(name: "Avenir-Medium", size: 12)
+    lazy var namelabel:DescriptionLabel12 = {
+        let label = DescriptionLabel12()
         return label
     }()
-    lazy var Qlabel:UILabel = {
-        let label = UILabel()
-        label.textColor = .black
+    lazy var Qlabel:DescriptionLabel12 = {
+        let label = DescriptionLabel12()
         label.textAlignment = .center
-        label.font = UIFont(name: "Avenir-Medium", size: 12)
         return label
     }()
-    lazy var Pricelabel:UILabel = {
-        let label = UILabel()
-        label.textColor = .black
+    lazy var Pricelabel:DescriptionLabel12 = {
+        let label = DescriptionLabel12()
+//        label.textColor = .black
         label.textAlignment = .center
-        label.font = UIFont(name: "Avenir-Medium", size: 12)
+//        label.font = UIFont(name: "Avenir-Medium", size: 12)
         return label
     }()
     override func layoutSubviews() {
