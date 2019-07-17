@@ -13,7 +13,7 @@ class FlashSaleView: UIView {
     
     lazy var  navView:GradNavView = {
         let navView = GradNavView()
-        navView.titlelabel.text = NSLocalizedString("flashSale", comment: "")
+        navView.titlelabel.text = "flashSale".localized
         navView.backBtn.addTarget(actionDelegate, action: #selector(ButtonActionDelegate.dissmisController), for: .touchUpInside)
         return navView
     }()

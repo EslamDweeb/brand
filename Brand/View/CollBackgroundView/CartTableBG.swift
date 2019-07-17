@@ -18,19 +18,15 @@ class CartTableBG : UIView{
         return img
     }()
     
-    lazy var lable:UILabel = {
-        let lbl = UILabel()
+    lazy var lable:DefaultLabel = {
+        let lbl = DefaultLabel()
         lbl.text = "opps! Your cart is empty"
-        lbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.8)
-        lbl.font = UIFont(name: "Avenir-Medium", size: 16)
         lbl.textAlignment = .center
         return lbl
     }()
     lazy var startbtn: GradBtn = {
         let button = GradBtn()
-        button.setTitle(NSLocalizedString("Start shopping", comment: ""), for: .normal)
-        button.setTitleColor( .white, for: .normal)
-        button.titleLabel?.font = UIFont(name: "Avenir-Black", size: 16)
+        button.setTitle("Start shopping".localized, for: .normal)
         return button
     }()
     override init(frame: CGRect) {
@@ -53,9 +49,9 @@ class CartTableBG : UIView{
         
     }
     private func addConstarinsToUI() {
-        image.anchor(top: nil, left: nil, bottom: nil, right: nil, centerX: centerXAnchor, centerY: centerYAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 230, height: 200, paddingCenterX: 0, paddingCenterY: -70)
+        image.anchor(top: nil, left: nil, bottom: nil, right: nil, centerX: self.centerXAnchor, centerY: self.centerYAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 230, height: 200, paddingCenterX: 0, paddingCenterY: -70)
         
-        lable.anchor(top: image.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 40, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
-        startbtn.anchor(top: lable.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 24, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 45, paddingCenterX: 0, paddingCenterY: 0)
+        lable.anchor(top: image.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 40, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
+        startbtn.anchor(top: lable.bottomAnchor, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, centerX: nil, centerY: nil, paddingTop: 24, paddingLeft: 0, paddingBottom: 0, paddingRight:0, width: 0, height: 45, paddingCenterX: 0, paddingCenterY: 0)
     }
 }

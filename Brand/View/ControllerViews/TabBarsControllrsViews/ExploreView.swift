@@ -7,44 +7,39 @@
 //
 
 import UIKit
-
+import MOLH
 class ExploreView:UIView{
     let cellID = "cellID"
     lazy var  navView:GradNavView = {
         let navView = GradNavView()
-        navView.titlelabel.text = "Explore Brands"
+        navView.titlelabel.text = "Explore Brands".localized
         navView.backBtn.isHidden = true
         navView.searchBtn.isHidden = false
         return navView
     }()
 
-    lazy var categoriesLable:UILabel = {
-        let label = UILabel()
+    lazy var categoriesLable:HeaderLabelAlign = {
+        let label = HeaderLabelAlign()
         label.text = "Explore by categories"
-        label.textColor = .black
-        label.textAlignment = .left
-        label.font = UIFont(name: "Avenir-Heavy", size: 14)
+        label.font = UIFont(name: .fontH, size: 14)
         return label
     }()
-    lazy var brandLable:UILabel = {
-        let label = UILabel()
+    lazy var brandLable:HeaderLabelAlign = {
+        let label = HeaderLabelAlign()
         label.text = "Explore All brands"
-        label.textColor = .black
-        label.textAlignment = .left
-        label.font = UIFont(name: "Avenir-Heavy", size: 14)
+        label.font = UIFont(name: .fontH, size: 14)
         return label
     }()
     lazy var seeAllBtn: UIButton = {
         let button = UIButton()
         button.setTitle("See all", for: .normal)
         button.setTitleColor(.pink, for: .normal)
-        button.titleLabel?.font = UIFont(name: "Avenir-Heavy", size: 14)
+        button.titleLabel?.font = UIFont(name:.fontH, size: 14)
         button.addTarget(actionDelegate, action: #selector(ButtonActionDelegate.handelSeeAllBtn), for: .touchUpInside)
         return button
     }()
-    lazy var lineView:UIView = {
-        let view = UIView()
-        view.backgroundColor = #colorLiteral(red: 0.8470588235, green: 0.8470588235, blue: 0.8470588235, alpha: 1)
+    lazy var lineView1:lineView = {
+        let view = lineView()
         return view
     }()
     lazy var categoriesCollection: UICollectionView = {
@@ -87,7 +82,7 @@ class ExploreView:UIView{
         addSubview(seeAllBtn)
         addSubview(categoriesLable)
          addSubview(brandLable)
-         addSubview(lineView)
+         addSubview(lineView1)
          addSubview(categoriesCollection)
          addSubview(brandCollection)
         
@@ -95,11 +90,20 @@ class ExploreView:UIView{
     private func addConstrainsToUI() {
         navView.anchor(top: self.topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, centerX: centerXAnchor, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         navView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.12).isActive = true
-        categoriesLable.anchor(top: navView.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 150, height: 20, paddingCenterX: 0, paddingCenterY: 0)
-        seeAllBtn.anchor(top: navView.bottomAnchor, left: nil, bottom: nil, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 8, width: 45, height: 20, paddingCenterX: 0, paddingCenterY: 0)
+        if MOLHLanguage.currentAppleLanguage() == "en"{
+            categoriesLable.anchor(top: navView.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 150, height: 20, paddingCenterX: 0, paddingCenterY: 0)
+            seeAllBtn.anchor(top: navView.bottomAnchor, left: nil, bottom: nil, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 8, width: 45, height: 20, paddingCenterX: 0, paddingCenterY: 0)
+              brandLable.anchor(top: lineView1.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 150, height: 20, paddingCenterX: 0, paddingCenterY: 0)
+        }else {
+            categoriesLable.anchor(top: navView.bottomAnchor, left: nil, bottom: nil, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 8, width: 150, height: 20, paddingCenterX: 0, paddingCenterY: 0)
+            seeAllBtn.anchor(top: navView.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 45, height: 20, paddingCenterX: 0, paddingCenterY: 0)
+            brandLable.anchor(top: lineView1.bottomAnchor, left: nil, bottom: nil, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 8, width: 150, height: 20, paddingCenterX: 0, paddingCenterY: 0)
+        }
+        
+        
         categoriesCollection.anchor(top: categoriesLable.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 85, paddingCenterX: 0, paddingCenterY: 0)
-        lineView.anchor(top: categoriesCollection.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 1, paddingCenterX: 0, paddingCenterY: 0)
-        brandLable.anchor(top: lineView.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 150, height: 20, paddingCenterX: 0, paddingCenterY: 0)
+        lineView1.anchor(top: categoriesCollection.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 1, paddingCenterX: 0, paddingCenterY: 0)
+      
         brandCollection.anchor(top: brandLable.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
     }
 }

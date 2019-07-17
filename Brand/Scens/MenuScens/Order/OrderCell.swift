@@ -20,22 +20,18 @@ class OrderCell:UICollectionViewCell {
             statusVal.text = order.status.name
         }
     }
-    lazy var containerView:UIView = {
-        let view = UIView()
-        view.layer.cornerRadius = 5
-        view.layer.borderWidth = 1
-        view.layer.borderColor = UIColor.backgroundCell.cgColor
-        view.backgroundColor = .white
+    lazy var containerView:shadowView = {
+        let view = shadowView()
         return view
     }()
     lazy var orderNumber: OrderKeyLable = {
         let lbl = OrderKeyLable()
-        lbl.text = NSLocalizedString("orderNumber", comment: "")
+        lbl.text = "orderNumber".localized
         return lbl
     }()
     lazy var date: OrderKeyLable = {
         let lbl = OrderKeyLable()
-        lbl.text = NSLocalizedString("orderDate", comment: "")
+        lbl.text = "orderDate".localized
         return lbl
     }()
     lazy var totla: OrderKeyLable = {

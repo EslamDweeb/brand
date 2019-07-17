@@ -8,7 +8,7 @@
 
 import UIKit
 import Kingfisher
-
+import MOLH
 class  CartCell: UITableViewCell {
     
     var cart: CartItem? {
@@ -37,12 +37,8 @@ class  CartCell: UITableViewCell {
         }
     }
     
-    lazy var containerView:UIView = {
-        let view = UIView()
-        view.layer.cornerRadius = 5
-        view.layer.borderWidth = 1
-        view.backgroundColor = .white
-        view.layer.borderColor = #colorLiteral(red: 0.8039215686, green: 0.8039215686, blue: 0.8039215686, alpha: 0.6473371479)
+    lazy var containerView:shadowView = {
+        let view = shadowView()
         return view
     }()
     lazy var infoBtn: UIButton = {
@@ -57,23 +53,21 @@ class  CartCell: UITableViewCell {
         img.contentMode = .scaleAspectFit
         return img
     }()
-    lazy var brandName: UILabel = {
-        let lbl = UILabel()
-        lbl.font = UIFont(name: "Avenir-Medium", size: 12)
+    lazy var brandName: DescriptionLabel = {
+        let lbl = DescriptionLabel()
+        lbl.font = UIFont(name: .fontM, size: 12)
         lbl.textColor = .lightDarkGray
         return lbl
     }()
-    lazy var productName: UILabel = {
-        let lbl = UILabel()
-        lbl.font = UIFont(name: "Avenir-Heavy", size: 12)
+    lazy var productName: HeaderLabelAlign = {
+        let lbl = HeaderLabelAlign()
+        lbl.font = UIFont(name: .fontH, size: 12)
         lbl.numberOfLines = 2
-        lbl.textColor = .black
-        lbl.textAlignment = .left
         return lbl
     }()
-    lazy var priceLbl: UILabel = {
-        let lbl = UILabel()
-        lbl.font = UIFont(name: "Avenir-Light", size: 13)
+    lazy var priceLbl: HeaderLabelAlign = {
+        let lbl = HeaderLabelAlign()
+        lbl.font = UIFont(name: .fontM, size: 13)
         lbl.textColor = .lightDarkGray
         return lbl
     }()
@@ -81,24 +75,21 @@ class  CartCell: UITableViewCell {
         let lbl = DiscountLable()
         return lbl
     }()
-    lazy var discountPrice: UILabel = {
-        let lbl = UILabel()
-        lbl.font = UIFont(name: "Avenir-Heavy", size: 14)
-        lbl.textColor = .black
+    lazy var discountPrice: HeaderLabelAlign = {
+        let lbl = HeaderLabelAlign()
+        lbl.font = UIFont(name: .fontH, size: 14)
         return lbl
     }()
-    lazy var QTY: UILabel = {
-        let lbl = UILabel()
-        lbl.font = UIFont(name: "Avenir-Heavy", size: 14)
-        lbl.textColor = .black
+    lazy var QTY: HeaderLabelAlign = {
+        let lbl = HeaderLabelAlign()
+        lbl.font = UIFont(name: .fontH, size: 14)
         return lbl
     }()
-    lazy var Out: UILabel = {
-        let lbl = UILabel()
-        lbl.font = UIFont(name: "Avenir-Heavy", size: 14)
+    lazy var Out: HeaderLabelAlign = {
+        let lbl = HeaderLabelAlign()
+        lbl.font = UIFont(name: .fontH, size: 14)
         lbl.textColor = #colorLiteral(red: 0.9814127088, green: 0.4449456334, blue: 0.8044757247, alpha: 1)
-        lbl.text = "Out of stock"
-        lbl.textAlignment = .right
+        lbl.text = "Out of stock".localized
         return lbl
     }()
     
@@ -127,6 +118,7 @@ class  CartCell: UITableViewCell {
         
         containerView.anchor(top: contentView.topAnchor, left: contentView.leftAnchor, bottom: contentView.bottomAnchor, right: contentView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 8, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         containerView.setShadow(shadowColor: UIColor(red: 0, green: 0, blue: 0, alpha: 0.24).cgColor , shadowOffset: CGSize(width: 0, height: 2), shadowOpacity: 0.4, shadowRaduis: 1)
+        if MOLHLanguage.currentAppleLanguage() == "en" {
         Image.anchor(top: containerView.topAnchor, left: containerView.leftAnchor, bottom: containerView.bottomAnchor, right: nil, centerX: nil, centerY: containerView.centerYAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 8, paddingRight: 0, width: 80, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         brandName.anchor(top: containerView.topAnchor, left: Image.rightAnchor, bottom: nil, right: containerView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 16, paddingLeft: 16, paddingBottom: 0, paddingRight: 50, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         productName.anchor(top: brandName.bottomAnchor, left: Image.rightAnchor, bottom: nil, right: containerView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 16, paddingBottom: 0, paddingRight: 8, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
@@ -136,7 +128,19 @@ class  CartCell: UITableViewCell {
         Out.anchor(top: nil, left: nil, bottom: nil, right: containerView.rightAnchor, centerX: nil, centerY: QTY.centerYAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 8, width: 100, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         discountPrice.anchor(top: QTY.bottomAnchor, left: Image.rightAnchor, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 16, paddingBottom: 0, paddingRight: 0, width: 200, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         infoBtn.anchor(top: nil, left: nil, bottom: nil, right: containerView.rightAnchor, centerX: nil, centerY: discountPrice.centerYAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 8, width: 20, height: 20, paddingCenterX: 0, paddingCenterY: 0)
-        
+        }else{
+            Image.anchor(top: containerView.topAnchor, left: nil, bottom: containerView.bottomAnchor, right: containerView.rightAnchor, centerX: nil, centerY: containerView.centerYAnchor, paddingTop: 8, paddingLeft: 0, paddingBottom: 8, paddingRight: 8, width: 80, height: 0, paddingCenterX: 0, paddingCenterY: 0)
+            brandName.anchor(top: containerView.topAnchor, left: containerView.leftAnchor, bottom: nil, right: Image.leftAnchor, centerX: nil, centerY: nil, paddingTop: 16, paddingLeft: 50, paddingBottom: 0, paddingRight: 16, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
+            productName.anchor(top: brandName.bottomAnchor, left: containerView.leftAnchor, bottom: nil, right: Image.leftAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 16, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
+            priceLbl.anchor(top: productName.bottomAnchor, left: nil, bottom: nil, right: Image.leftAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 16, width: 100, height: 0, paddingCenterX: 0, paddingCenterY: 0)
+            discountLbl.anchor(top: productName.bottomAnchor, left: nil, bottom: nil, right: priceLbl.leftAnchor, centerX: nil, centerY: priceLbl.centerYAnchor, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 16, width: 40, height: 0, paddingCenterX: 0, paddingCenterY: 0)
+            QTY.anchor(top: priceLbl.bottomAnchor, left: nil, bottom: nil, right: Image.leftAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 16, width: 150, height: 0, paddingCenterX: 0, paddingCenterY: 0)
+            Out.anchor(top: nil, left: containerView.leftAnchor, bottom: nil, right: nil, centerX: nil, centerY: QTY.centerYAnchor, paddingTop: 0, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 100, height: 0, paddingCenterX: 0, paddingCenterY: 0)
+            discountPrice.anchor(top: QTY.bottomAnchor, left: nil, bottom: nil, right: Image.leftAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 16, width: 200, height: 0, paddingCenterX: 0, paddingCenterY: 0)
+            infoBtn.anchor(top: nil, left: containerView.leftAnchor, bottom: nil, right: nil, centerX: nil, centerY: discountPrice.centerYAnchor, paddingTop: 0, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 20, height: 20, paddingCenterX: 0, paddingCenterY: 0)
+            
+            
+        }
         
     }
     @objc func handelinfoTapped(){

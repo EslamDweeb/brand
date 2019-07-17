@@ -14,16 +14,14 @@ class ReviewView: UIView {
     var topConstraint:NSLayoutConstraint?
     lazy var  navView:GradNavView = {
         let navView = GradNavView()
-        navView.titlelabel.text = NSLocalizedString("myReview", comment: "")
+        navView.titlelabel.text = "myReview".localized
         return navView
     }()
 
-    lazy var myReviews:UILabel = {
-        let label = UILabel()
-        label.text = NSLocalizedString("my_reviews", comment: "")
-        label.textColor = .black
-        label.textAlignment = .center
-        label.font = UIFont(name: "Avenir-Heavy", size: 16)
+    lazy var myReviews:HeaderLabelAlign = {
+        let label = HeaderLabelAlign()
+        label.text = "my_reviews".localized
+        
         return label
     }()
    
@@ -59,11 +57,11 @@ class ReviewView: UIView {
         navView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.12).isActive = true
         heightConstraint = myReviews.heightAnchor.constraint(equalToConstant: 25)
         heightConstraint?.isActive = true
-        if MOLHLanguage.currentAppleLanguage() == "en" {
-            myReviews.anchor(top: navView.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 20, paddingLeft: 16, paddingBottom: 0, paddingRight: 0, width: 100, height: 0, paddingCenterX: 0, paddingCenterY: 0)
-        }else{
-            myReviews.anchor(top: navView.bottomAnchor, left: nil, bottom: nil, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 20, paddingLeft: 0, paddingBottom: 0, paddingRight: 16, width: 100, height: 0, paddingCenterX: 0, paddingCenterY: 0)
-        }
+       // if MOLHLanguage.currentAppleLanguage() == "en" {
+            myReviews.anchor(top: navView.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 20, paddingLeft: 16, paddingBottom: 0, paddingRight: 18, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
+      //  }else{
+//            myReviews.anchor(top: navView.bottomAnchor, left: nil, bottom: nil, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 20, paddingLeft: 0, paddingBottom: 0, paddingRight: 16, width: 100, height: 0, paddingCenterX: 0, paddingCenterY: 0)
+      //  }
         reviewCollection.anchor(top: nil, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         topConstraint = reviewCollection.topAnchor.constraint(equalTo: myReviews.bottomAnchor, constant: 16)
         topConstraint?.isActive = true

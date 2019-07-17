@@ -16,7 +16,7 @@ struct SimpleOrderData: Codable {
 struct SimpleOrder: Codable {
     let id: Int
     let referenceNumber: String
-    let totalPrice: Int
+    let totalPrice: Double?
     let status: Statuses
     let createdAt: CreatedAt
     

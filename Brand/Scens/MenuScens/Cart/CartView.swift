@@ -13,31 +13,21 @@ class CartView : UIView  {
     lazy var  navView:GradNavView = {
         let navView = GradNavView()
           navView.backBtn.addTarget(actionDelegate, action: #selector(ButtonActionDelegate.dissmisController), for: .touchUpInside)
-        navView.titlelabel.text = NSLocalizedString("cart", comment: "")
+        navView.titlelabel.text = "cart".localized
         return navView
     }()
-    lazy var Totalsar:UILabel = {
-        let label = UILabel()
-        label.text = "Total 1245 Sar"
-        label.textColor = .black
-        label.textAlignment = .center
-        label.font = UIFont(name: "Avenir-Heavy", size: 15)
+    lazy var Totalsar:HeaderLabel = {
+        let label = HeaderLabel()
         return label
     }()
     
-    lazy var ItemsNum:UILabel = {
-        let label = UILabel()
-        label.text = "8 item"
-        label.textColor = .black
-        label.textAlignment = .center
-        label.font = UIFont(name: "Avenir-Heavy", size: 15)
+    lazy var ItemsNum:HeaderLabel = {
+        let label = HeaderLabel()
         return label
     }()
     lazy var save: GradBtn = {
         let button = GradBtn()
-        button.setTitle(NSLocalizedString("Checkout New", comment: ""), for: .normal)
-        button.setTitleColor( .white, for: .normal)
-        button.titleLabel?.font = UIFont(name: "Avenir-Black", size: 16)
+        button.setTitle( "Checkout New".localized , for: .normal)
         return button
     }()
     lazy var tableView:UITableView = {
@@ -68,7 +58,7 @@ class CartView : UIView  {
         scrollView.anchor(top: navView.bottomAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         
         tableView.anchor(top: scrollView.topAnchor, left: scrollView.leftAnchor, bottom: nil, right: scrollView.rightAnchor, centerX: scrollView.centerXAnchor, centerY: nil, paddingTop:16, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
-        bottomConstrain = tableView.heightAnchor.constraint(greaterThanOrEqualToConstant: 160 * 5)
+        bottomConstrain = tableView.heightAnchor.constraint(greaterThanOrEqualToConstant: 157 * 4)
         bottomConstrain?.isActive = true
         
        Totalsar.anchor(top: tableView.bottomAnchor, left: scrollView.leftAnchor, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 16, paddingLeft: 16, paddingBottom:0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
