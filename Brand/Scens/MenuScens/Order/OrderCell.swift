@@ -16,7 +16,7 @@ class OrderCell:UICollectionViewCell {
             guard let order = order else{return}
             orderNumberVal.text = order.referenceNumber
             dateVal.text = order.createdAt.date
-            totlaVal.text = "\(order.totalPrice)"
+            totlaVal.text = "\(order.totalPrice ?? 0)"
             statusVal.text = order.status.name
         }
     }

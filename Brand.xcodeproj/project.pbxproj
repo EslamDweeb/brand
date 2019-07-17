@@ -411,6 +411,13 @@
 			path = Review;
 			sourceTree = "<group>";
 		};
+		2D319C9C22DF4EA800EDC509 /* ItemDetail */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ItemDetail;
+			sourceTree = "<group>";
+		};
 		2D32B82022C0EE8000513DD4 = {
 			isa = PBXGroup;
 			children = (
@@ -572,6 +579,7 @@
 		2D32B93722C0F22C00513DD4 /* Scens */ = {
 			isa = PBXGroup;
 			children = (
+				2D319C9C22DF4EA800EDC509 /* ItemDetail */,
 				2D9AAABA22DB6AAC000CF118 /* FlashSale */,
 				2D32B91622C0F20D00513DD4 /* TabBar */,
 				2D2D5FBE22D1EE9000E9E0B7 /* SubCategories */,

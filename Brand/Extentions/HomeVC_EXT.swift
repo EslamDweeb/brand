@@ -48,10 +48,12 @@ extension HomeViewController:UICollectionViewDataSource,UICollectionViewDelegate
             if indexPath == IndexPath(row: 0, section: 0){
                 cell.titleLabel.text = titleArray[indexPath.section]
                 cell.configArray = exploreData?.recommended ?? []
-            }else if indexPath == IndexPath(row: 0, section: 1){
+            }
+            if indexPath == IndexPath(row: 0, section: 1){
                 cell.titleLabel.text = titleArray[indexPath.section]
                 cell.configArray = exploreData?.latest ?? []
-            }else{
+            }
+            if indexPath == IndexPath(row: 0, section: 2){
                 cell.titleLabel.text = titleArray[indexPath.section]
                 cell.configArray = exploreData?.popular ?? []
             }
