@@ -52,10 +52,11 @@ class HomeViewController:UIViewController,ButtonActionDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getExploreData()
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        getExploreData()
         handelReachability(reachability: reachability)
     }
     override func viewDidAppear(_ animated: Bool) {

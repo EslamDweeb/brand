@@ -19,7 +19,7 @@ struct Order: Codable {
     let shippingMethod, billingMethod: IngMethod?
     let address: Address?
     let coupon: String?
-    let totalPrice: Int
+    let totalPrice: Double
     let items: [Item]?
     let statuses: [Status]
     let createdAt: CreatedAt

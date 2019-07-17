@@ -17,6 +17,7 @@ class WishCell: UICollectionViewCell {
             image.kf.setImage(with: url)
             productName.text = con.name
             brandName.text = con.brandName
+            isFav = con.isFavorite
             if con.sale != 0  {
                 priceLbl.setAttributeStringWithStrike("\(con.price)")
                 discountLbl.text = "\(Double(con.sale).roundToDecimal(3))"
@@ -82,7 +83,8 @@ class WishCell: UICollectionViewCell {
         }
         APIClient.toggleFav(id: config?.id ?? 0) { (result) in
             switch result {
-            case.success(_):
+            case.success(let data):
+                print(data)
                 self.isFav = !self.isFav
             case .failure(_):
                 break
