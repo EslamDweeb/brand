@@ -66,7 +66,7 @@ class HomeViewController:UIViewController,ButtonActionDelegate{
             newBanners = try JSONDecoder().decode([Banner].self, from: data)
             self.arrangedBanners = self.newBanners.sorted(by: { $0.appPriority < $1.appPriority })
             self.mainView.bannerCollectionView.reloadData()
-            if self.arrangedBanners!.count != 0 {
+            if self.arrangedBanners?.count != 0 {
                 self.startTimer()
             }
             print(newBanners)
