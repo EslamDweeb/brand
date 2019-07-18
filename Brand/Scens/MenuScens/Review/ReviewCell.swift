@@ -27,8 +27,8 @@ class ReviewCell: UICollectionViewCell {
     }
     var editeBtnTapped: ( (_ review: Ratingable) -> () )?
     
-    lazy var containerView:shadowView = {
-        let view = shadowView()
+    lazy var containerView:ShadowView = {
+        let view = ShadowView()
         return view
     }()
     lazy var rateView:CosmosView = {

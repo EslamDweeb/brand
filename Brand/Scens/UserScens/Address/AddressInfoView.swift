@@ -42,12 +42,12 @@ class AddressInfoView: UIView , UITextFieldDelegate{
         let View = UIView()
         return View
     }()
-    lazy var  addressinfoView:shadowView = {
-        let View = shadowView()
+    lazy var  addressinfoView:ShadowView = {
+        let View = ShadowView()
         return View
     }()
-    lazy var  locationView:shadowView = {
-        let View = shadowView()
+    lazy var  locationView:ShadowView = {
+        let View = ShadowView()
         return View
     }()
     lazy var lable:HeaderLabel = {

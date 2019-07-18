@@ -50,8 +50,8 @@ class DetailorderView : UIView , UITextFieldDelegate ,FlexibleSteppedProgressBar
         return scrollView
     }()
     
-    lazy var  detailsorderView:shadowView = {
-        let View = shadowView()
+    lazy var  detailsorderView:ShadowView = {
+        let View = ShadowView()
         return View
     }()
     lazy var Orderdetailslabel:HeaderLabelAlign = {
@@ -92,8 +92,8 @@ class DetailorderView : UIView , UITextFieldDelegate ,FlexibleSteppedProgressBar
         let View = OrderDetailsView()
         return View
     }()
-    lazy var orderstatusview: shadowView = {
-        let View = shadowView()
+    lazy var orderstatusview: ShadowView = {
+        let View = ShadowView()
         return View
     }()
     lazy var Orderstatuslabel:HeaderLabelAlign = {
@@ -131,8 +131,8 @@ class DetailorderView : UIView , UITextFieldDelegate ,FlexibleSteppedProgressBar
         status.stepTextFont = UIFont(name: .fontM, size: 12)
         return status
     }()
-    lazy var addressview: shadowView = {
-        let View = shadowView()
+    lazy var addressview: ShadowView = {
+        let View = ShadowView()
         return View
     }()
     
@@ -148,8 +148,8 @@ class DetailorderView : UIView , UITextFieldDelegate ,FlexibleSteppedProgressBar
         return lable
     }()
     
-    lazy var  orderitemsview:shadowView = {
-        let View = shadowView()
+    lazy var  orderitemsview:ShadowView = {
+        let View = ShadowView()
         return View
     }()
     lazy var Orderitemlabel:HeaderLabelAlign = {

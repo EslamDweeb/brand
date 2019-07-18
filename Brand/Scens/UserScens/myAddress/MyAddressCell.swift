@@ -27,8 +27,8 @@ class MyAddressCell: UITableViewCell {
         }
     }
     
-    lazy var view: shadowView = {
-        let view = shadowView()
+    lazy var view: ShadowView = {
+        let view = ShadowView()
         view.layer.masksToBounds = true
         view.clipsToBounds = true
         return view

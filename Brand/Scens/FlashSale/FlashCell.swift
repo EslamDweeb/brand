@@ -25,8 +25,8 @@ class FlashCell:UICollectionViewCell {
         }
     }
     
-    lazy var containerView:shadowView = {
-        let view = shadowView()
+    lazy var containerView:ShadowView = {
+        let view = ShadowView()
         return view
     }()
     lazy var image: UIImageView = {
