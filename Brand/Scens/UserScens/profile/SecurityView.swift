@@ -11,8 +11,8 @@ import MOLH
 
 class securityinfoView : UIView , UITextFieldDelegate{
     
-    lazy var containerView: shadowView = {
-        let view = shadowView()
+    lazy var containerView: ShadowView = {
+        let view = ShadowView()
         return view
     }()
     lazy var eyeBtnCurrent: BtnImage = {

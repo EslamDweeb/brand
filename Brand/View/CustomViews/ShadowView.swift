@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class shadowView : UIView {
+class ShadowView : UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)

@@ -67,8 +67,8 @@ class ProfileView : UIView , UITextFieldDelegate{
         view.isHidden = true
         return view
     }()
-    lazy var  accountView:shadowView = {
-        let View = shadowView()
+    lazy var  accountView:ShadowView = {
+        let View = ShadowView()
         View.isHidden = true
         return View
     }()
@@ -141,8 +141,8 @@ class ProfileView : UIView , UITextFieldDelegate{
         btn.isEnabled = false
         return btn
     }()
-    lazy var  securityView:shadowView = {
-        let View = shadowView()
+    lazy var  securityView:ShadowView = {
+        let View = ShadowView()
         View.isHidden = true
         return View
     }()

@@ -20,8 +20,8 @@ class OrderCell:UICollectionViewCell {
             statusVal.text = order.status.name
         }
     }
-    lazy var containerView:shadowView = {
-        let view = shadowView()
+    lazy var containerView:ShadowView = {
+        let view = ShadowView()
         return view
     }()
     lazy var orderNumber: OrderKeyLable = {
