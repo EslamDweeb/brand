@@ -57,7 +57,7 @@ class CartView : UIView  {
         navView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.12).isActive = true
         scrollView.anchor(top: navView.bottomAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         
-        tableView.anchor(top: scrollView.topAnchor, left: scrollView.leftAnchor, bottom: nil, right: scrollView.rightAnchor, centerX: scrollView.centerXAnchor, centerY: nil, paddingTop:16, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
+        tableView.anchor(top: scrollView.topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, centerX: nil, centerY: nil, paddingTop:16, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         bottomConstrain = tableView.heightAnchor.constraint(greaterThanOrEqualToConstant: 157 * 4)
         bottomConstrain?.isActive = true
         
@@ -65,7 +65,7 @@ class CartView : UIView  {
         heightConstrain = Totalsar.heightAnchor.constraint(equalToConstant: 20)
         heightConstrain?.isActive = true
         ItemsNum.anchor(top: nil, left: nil, bottom: nil, right: scrollView.rightAnchor, centerX: nil, centerY: Totalsar.centerYAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight:16, width: 0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
-        save.anchor(top: Totalsar.bottomAnchor, left: scrollView.leftAnchor, bottom: scrollView.bottomAnchor, right: scrollView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 16, paddingLeft: 16, paddingBottom: 40, paddingRight: 16, width: 0, height: 45, paddingCenterX: 0, paddingCenterY: 0)
+        save.anchor(top: Totalsar.bottomAnchor, left: scrollView.leftAnchor, bottom: scrollView.bottomAnchor, right: scrollView.rightAnchor, centerX: scrollView.centerXAnchor, centerY: nil, paddingTop: 16, paddingLeft: 16, paddingBottom: 40, paddingRight: 16, width: 0, height: 45, paddingCenterX: 0, paddingCenterY: 0)
         save.addTarget(actionDelegate, action: #selector(ButtonActionDelegate.saveButtonTapped), for: .touchDragInside)
     }
     override init(frame: CGRect) {

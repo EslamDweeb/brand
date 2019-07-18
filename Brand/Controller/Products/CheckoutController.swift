@@ -98,16 +98,16 @@ class CheckoutController: UIViewController ,ButtonActionDelegate ,UITableViewDat
     }
     var ss = true
     func defaultmethod1() {
-        if  mainView.defaultviewcash.isHidden == true {
-            mainView.defaultviewcash.isHidden = false
-            mainView.defaultviewcredit.isHidden = true
-        }
+//        if  mainView.defaultviewcash.isHidden == true {
+//            mainView.defaultviewcash.isHidden = false
+//            mainView.defaultviewcredit.isHidden = true
+//        }
     }
     func defaultmethod2() {
-        if  mainView.defaultviewcredit.isHidden == true {
-            mainView.defaultviewcredit.isHidden = false
-            mainView.defaultviewcash.isHidden = true
-        }
+//        if  mainView.defaultviewcredit.isHidden == true {
+//            mainView.defaultviewcredit.isHidden = false
+//            mainView.defaultviewcash.isHidden = true
+//        }
     }
     func dissmisController() {
         self.dismiss(animated: true, completion: nil)

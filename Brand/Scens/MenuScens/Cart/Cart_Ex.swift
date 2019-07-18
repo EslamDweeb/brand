@@ -14,12 +14,14 @@ extension CartController: UITableViewDelegate , UITableViewDataSource {
         if cartpro.count == 0 {
           
             mainView.heightConstrain?.constant = 0
+            mainView.bottomConstrain?.constant = view.frame.width + 100
             mainView.Totalsar.isHidden = true
             mainView.ItemsNum.isHidden = true
             mainView.save.isHidden = true
             tableView.backgroundView = CartTableBG()
         }
         else{
+            mainView.bottomConstrain?.constant = CGFloat(165 * cartpro.count)
             mainView.heightConstrain?.constant = 20
             mainView.Totalsar.isHidden = false
             mainView.ItemsNum.isHidden = false

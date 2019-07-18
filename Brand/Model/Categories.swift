@@ -73,10 +73,9 @@ struct Links: Codable {
 
 // MARK: - Meta
 struct Meta: Codable {
-    let currentPage, from, lastPage: Int
+    let currentPage, from, lastPage: Int?
     let path: String
-    let perPage, to, total: Int
-    
+    let perPage, to, total: Int?
     enum CodingKeys: String, CodingKey {
         case currentPage = "current_page"
         case from
