@@ -185,5 +185,11 @@ class APIClient {
             complition(response.result)
         }
     }
+    
+    static func getShippimgMethod(complition : @escaping (Result<shippingModel,Error>) -> Void) {
+        AF.request(APIRouter.getshippingMethod).responseDecodable {  (response : DataResponse<shippingModel>) in
+            complition(response.result)
+        }
+    }
 }
 

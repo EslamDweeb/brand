@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 class ShippingView :UIView {
-    
+     var HeightConstrain:NSLayoutConstraint?
     lazy var  navView:GradNavView = {
         let navView = GradNavView()
         navView.titlelabel.text =  "Shipping".localized
@@ -43,7 +43,7 @@ class ShippingView :UIView {
     }()
     lazy var addressDescription: DescriptionLabel = {
         let lable = DescriptionLabel()
-        lable.textColor = .lightgray
+        lable.textColor = .lightGray
         return lable
     }()
     
@@ -58,6 +58,7 @@ class ShippingView :UIView {
     
     lazy var viewnoaddress: UIView = {
         let view = UIView()
+        view.isHidden = true
         return view
     }()
     lazy var addnewaddBtn: GradBtn = {
@@ -82,6 +83,21 @@ class ShippingView :UIView {
         lable.text = "Shipping method".localized
         return lable
     }()
+    lazy var shippingCollectionview : UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.register(shippingMethodCell.self, forCellWithReuseIdentifier: "cell")
+        collectionView.backgroundColor  = .white
+        collectionView.isPagingEnabled = true
+        collectionView.showsVerticalScrollIndicator = false
+        return collectionView
+    }()
+    lazy var save: GradBtn = {
+        let button = GradBtn()
+        button.setTitle("Continue".localized, for: .normal)
+        return button
+    }()
     public weak var actionDelegete : ButtonActionDelegate?
     func setup()  {
         self.backgroundColor = #colorLiteral(red: 0.9803921569, green: 0.9843137255, blue: 0.9843137255, alpha: 1)
@@ -98,6 +114,8 @@ class ShippingView :UIView {
         viewnoaddress.addSubview(addresstext)
         viewnoaddress.addSubview(addnewaddBtn)
        scrollView.addSubview(shippingMethodlbl)
+        scrollView.addSubview(shippingCollectionview)
+        scrollView.addSubview(save)
         navView.anchor(top: self.topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, centerX: centerXAnchor, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         navView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.12).isActive = true
       
@@ -118,9 +136,13 @@ class ShippingView :UIView {
         addresstext.anchor(top: AddressImage.bottomAnchor, left: viewnoaddress.leftAnchor, bottom: nil, right: viewnoaddress.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         addnewaddBtn.anchor(top: addresstext.bottomAnchor, left: viewnoaddress.leftAnchor, bottom: nil, right: viewnoaddress.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 45, paddingCenterX: 0, paddingCenterY: 0)
         shippingMethodlbl.anchor(top: viewwithAddress.bottomAnchor, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, centerX: nil, centerY: nil, paddingTop: 16, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
-       
+       shippingCollectionview.anchor(top: shippingMethodlbl.bottomAnchor, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, centerX: nil, centerY: nil, paddingTop: 16, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
+        HeightConstrain = shippingCollectionview.heightAnchor.constraint(equalToConstant: 0)
+        HeightConstrain?.isActive = true
+        save.anchor(top: shippingCollectionview.bottomAnchor, left: self.leftAnchor, bottom: scrollView.bottomAnchor, right: self.rightAnchor, centerX: nil, centerY: nil, paddingTop: 16, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 45, paddingCenterX: 0, paddingCenterY: 0)
         changeBtn.addTarget(actionDelegete, action:#selector(ButtonActionDelegate.changeBtn), for: .touchUpInside)
        addnewaddBtn.addTarget(actionDelegete, action:#selector(ButtonActionDelegate.addBtn), for: .touchUpInside)
+        
        
         
         

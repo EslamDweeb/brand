@@ -29,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,MOLHResetable {
         MOLH.shared.specialKeyWords = ["Cancel","Done"]
         window = UIWindow()
         window?.makeKeyAndVisible()
-        window?.rootViewController = SplashViewController()
+        window?.rootViewController = ShippingVC()
         TWTRTwitter.sharedInstance().start(withConsumerKey: "KUkghIKbyb7SsRULpDfjCmK30", consumerSecret: "mgpVgM29xQLZhg37Z7cKkhQ6FLaYhWOdJdp5MKVQEtfUpN9HgK")
         ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
 
