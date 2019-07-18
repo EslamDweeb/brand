@@ -8,6 +8,7 @@
 "seeAll" = "See all";
 "relatedProduct" = "Related Products";
 "description" = "Description";
+"Shipping" = "Shipping";
 "recommendedProduct" = "Recommended Products";
 "flashSale" = "Flash sale";
 "latestProduct" = "Latest Products";
@@ -153,3 +154,4 @@
 "PENDING" = "PENDING";
 "DELIVERED" = "DELIVERED";
 "OTHER" = "OTHER";
+

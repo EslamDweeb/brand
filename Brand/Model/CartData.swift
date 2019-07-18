@@ -12,7 +12,7 @@ import UIKit
 struct CartData: Codable {
     let cartItems: [CartItem]
     let links: Links
-    let meta: Meta
+    let meta: Meta?
     
     enum CodingKeys: String, CodingKey {
         case cartItems = "cart_items"
@@ -26,7 +26,7 @@ struct CartItem: Codable {
     let sellerNotes: String?
     let qty: Int
     let options: [Option]
-    let itemOverallPrice, totalCartItemsPrice: Int
+    let itemOverallPrice, totalCartItemsPrice: Double
     
     enum CodingKeys: String, CodingKey {
         case id, config

@@ -40,12 +40,13 @@ class CartController : UIViewController ,ButtonActionDelegate{
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+         getCartData()
         stopNotifier(reachability: reachability)
     }
     //MARK:- Helper Functions
 
     func saveButtonTapped() {
-        
+        self.presentViewController(controller: ShippingVC(), transitionModal: nil, presentationStyle: nil)
     }
     
     func dissmisController() {
@@ -76,7 +77,8 @@ class CartController : UIViewController ,ButtonActionDelegate{
         }
         return "\(totalPrice.roundToDecimal(3))"
     }
-   
-   
-}
+  
+    
+    }
+
 

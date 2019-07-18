@@ -8,6 +8,7 @@
 "seeAll" = "الكل";
 "relatedProduct" = "المنتجات ذات صله";
 "description" = "التفاصيل";
+"Shipping" = "Shipping";
 "PENDING" = "قيد الانتظار";
 "DELIVERED" = "تم التسليم";
 "OTHER" = "غير ذلك";
