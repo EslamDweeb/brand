@@ -11,6 +11,8 @@ import UIKit
 class ShippingVC: UIViewController , ButtonActionDelegate {
      let reachability =  Reachability()
      var addresses = [Address]()
+    var shippingMethodarr = [ShippingMethod]()
+    var enable = [Bool]()
     var defaultaddress : Address?
     lazy var mainView: ShippingView = {
         let v = ShippingView()
@@ -26,6 +28,8 @@ class ShippingVC: UIViewController , ButtonActionDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         mainView.actionDelegete = self
+        mainView.shippingCollectionview.delegate = self
+        mainView.shippingCollectionview.dataSource = self
     }
     override func viewWillDisappear(_ animated: Bool) {
         stopNotifier(reachability: reachability)
@@ -42,9 +46,8 @@ class ShippingVC: UIViewController , ButtonActionDelegate {
         super.viewWillAppear(animated)
          handelReachability(reachability: reachability)
         addresses.removeAll()
-        
         mainView.activityStartAnimating(activityColor: #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1), backgroundColor: .clear)
-        DispatchQueue.main.async {
+       
             APIClient.UserAddress
                 { (result) in
                     switch result {
@@ -67,10 +70,7 @@ class ShippingVC: UIViewController , ButtonActionDelegate {
                                     }
                                 }
                             }
-                            DispatchQueue.main.async {
-                              //  self.mainView.tableView.reloadData()
                                 self.mainView.activityStopAnimating()
-                            }
                         }else{
                             self.mainView.viewnoaddress.isHidden = false
                             self.mainView.viewwithAddress.isHidden = true
@@ -81,7 +81,48 @@ class ShippingVC: UIViewController , ButtonActionDelegate {
                         self.mainView.activityStopAnimating()
                     }
             }
-        }
+          
+            APIClient.getShippimgMethod(complition: { (result)in
+                switch result {
+                case .success(let data):
+                    for method in data.shippingMethods {
+                        self.shippingMethodarr.append(method)
+                    }
+                    DispatchQueue.main.async {
+                        self.mainView.shippingCollectionview.reloadData()
+                        self.mainView.activityStopAnimating()
+                    }
+                case .failure(let error) :
+                    print(error)
+                    self.mainView.activityStopAnimating()
+                }
+            })
+                
+            
+        
     }
+//    func checkShippingMethod() -> [Bool] {
+//        let arr = [Bool]()
+//        for shippning in shippingMethodarr {
+////            if contains(shippning.country.states, defaultaddress.state) {
+////
+////            }
+////            contains
+//
+//           // shippning.country.states?.contains(where: { (defaultaddress.state) -> Bool in
+//
+//           //     if shippning.country.states.
+//            //})
+//            let contains = shippning.country.states.contains(where: {$0 == defaultaddress.state})
+//            if contains {
+//                print("Contains")
+//            }
+//            else {
+//                print("Doesn't Contain")
+//            }
+//        }
+//        return [true]
+//    }
+//
    
 }

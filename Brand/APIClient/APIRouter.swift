@@ -26,6 +26,7 @@ enum APIRouter : URLRequestConvertible {
     case deleteImage(id:Int)
     case socialLogin(userSocialId : String)
     case socialSignUp(uerSocialId : String , socialProviderid :Int,firstName: String,lastName: String,email: String,phone: String,password:String)
+    case getshippingMethod
     private var Methods : HTTPMethod {
         switch self {
         case .signUp:
@@ -60,6 +61,8 @@ enum APIRouter : URLRequestConvertible {
             return .post
         case .socialLogin:
             return .post
+        case .getshippingMethod:
+            return .get
         }
     }
     private var Paths : String {
@@ -98,6 +101,8 @@ enum APIRouter : URLRequestConvertible {
             return "/api/social-signup"
         case .socialLogin:
             return "/api/social-login"
+        case .getshippingMethod:
+            return "/api/shipping-methods"
         }
     }
     private var headers : HTTPHeaders {
@@ -199,6 +204,12 @@ enum APIRouter : URLRequestConvertible {
                 HTTPHeaderField.contentType.rawValue : ContentType.json.rawValue,
                 HTTPHeaderField.locale.rawValue : MOLHLanguage.currentAppleLanguage()
             ]
+        case .getshippingMethod:
+            return [
+                HTTPHeaderField.authentication.rawValue :" \(ContentType.token.rawValue)  \(UserDefaults.standard.string(forKey: Constants.Defaults.authToken) ?? "")",
+                HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue,
+        
+            ]
         }
     }
     private var parameters :Parameters?{
@@ -299,6 +310,8 @@ enum APIRouter : URLRequestConvertible {
                 Constants.APIParameterKey.phone:phone,
                 Constants.APIParameterKey.password : password
             ]
+        case .getshippingMethod:
+            return [:]
         }
     }
 
