@@ -22,7 +22,7 @@ class DiscountLable: UILabel {
         font = UIFont(name: "Avenir-Heavy", size: 13)
         self.textColor = .white
         self.textAlignment = .center
-        self.backgroundColor = .discountColor
+        self.backgroundColor = .pink
         self.roundCorners(.allCorners, radius: 5)
     }
     

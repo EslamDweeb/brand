@@ -41,7 +41,7 @@ struct Config: Codable {
     let gender: Int
     let sale: Double
     let price, qty: Int
-    let brandName: String?
+    let brand: Brand?
     let isFlashOffer: Bool
     let mainPhoto: Photo?
     let isFavorite: Bool
@@ -51,7 +51,7 @@ struct Config: Codable {
         case id
         case productID = "product_id"
         case slug, name, gender, sale, price, qty
-        case brandName = "brand_name"
+        case brand = "brand"
         case isFlashOffer = "is_flash_offer"
         case mainPhoto = "main_photo"
         case isFavorite = "is_favorite"

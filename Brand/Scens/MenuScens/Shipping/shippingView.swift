@@ -26,8 +26,8 @@ class ShippingView :UIView {
         return lable
     }()
     
-    lazy var viewwithAddress: shadowView = {
-        let view = shadowView()
+    lazy var viewwithAddress: ShadowView = {
+        let view = ShadowView()
         view.isHidden = true
         return view
     }()
@@ -87,7 +87,7 @@ class ShippingView :UIView {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.register(shippingMethodCell.self, forCellWithReuseIdentifier: "cell")
+        //collectionView.register(shippingMethodCell.self, forCellWithReuseIdentifier: "cell")
         collectionView.backgroundColor  = .white
         collectionView.isPagingEnabled = true
         collectionView.showsVerticalScrollIndicator = false

@@ -12,30 +12,13 @@ class DetailView: UIView {
     let cellID = "cellID"
     var branTitle: String?
     var contryTitle:String?
+    var tags:[Tag]?
     lazy var brandLable:UILabel = {
         let lbl = UILabel()
-        let attributedString = NSMutableAttributedString(string: "Brand : \(branTitle ?? "Apple")", attributes: [
-            .font: UIFont(name: "Avenir-Heavy", size: 14.0)!,
-            .foregroundColor: UIColor.black
-            ])
-        attributedString.addAttributes([
-            .font: UIFont(name: "Avenir-Medium", size: 12.0)!,
-            .foregroundColor: UIColor(white: 135.0 / 255.0, alpha: 1.0)
-            ], range: NSRange(location: 8, length: branTitle?.count ?? 5))
-        lbl.attributedText = attributedString
         return lbl
     }()
     lazy var madeInLable:UILabel = {
         let lbl = UILabel()
-        let attributedString = NSMutableAttributedString(string: "Made in : \(contryTitle ?? "France")", attributes: [
-            .font: UIFont(name: "Avenir-Heavy", size: 14.0)!,
-            .foregroundColor: UIColor(white: 0.0, alpha: 1.0)
-            ])
-        attributedString.addAttributes([
-            .font: UIFont(name: "Avenir-Medium", size: 12.0)!,
-            .foregroundColor: UIColor(white: 135.0 / 255.0, alpha: 1.0)
-            ], range: NSRange(location: 10, length: contryTitle?.count ?? 6))
-         lbl.attributedText = attributedString
         return lbl
     }()
     lazy var infoBtn:UIButton = {
@@ -48,11 +31,12 @@ class DetailView: UIView {
     lazy var tagsCollection:UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
+       // layout.estimatedItemSize =  CGSize(width: 60, height: 30)
         let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collection.backgroundColor = .white
         collection.register(TagsCell.self, forCellWithReuseIdentifier: cellID)
-        //        collection.delegate = delegate
-        //        collection.dataSource = dataSource
+        collection.delegate = self
+        collection.dataSource = self
         collection.showsHorizontalScrollIndicator = false
         return collection
     }()
@@ -70,6 +54,7 @@ class DetailView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     private func setupView(){
+        backgroundColor = .white
         addSubViews()
         addConstraintsToViews()
     }
@@ -87,4 +72,50 @@ class DetailView: UIView {
         tagsCollection.anchor(top: brandLable.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 40, paddingCenterX: 0, paddingCenterY: 0)
         lineView.anchor(top: nil, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 1, paddingCenterX: 0, paddingCenterY: 0)
     }
+    func setLableTitles(){
+        let BrandattributedString = NSMutableAttributedString(string: "Brand : \(branTitle ?? "Apple")", attributes: [
+            .font: UIFont(name: "Avenir-Heavy", size: 14.0)!,
+            .foregroundColor: UIColor.black
+            ])
+        BrandattributedString.addAttributes([
+            .font: UIFont(name: "Avenir-Medium", size: 12.0)!,
+            .foregroundColor: UIColor(white: 135.0 / 255.0, alpha: 1.0)
+            ], range: NSRange(location: 8, length: branTitle?.count ?? 5))
+        brandLable.attributedText = BrandattributedString
+        
+        
+        let attributedString = NSMutableAttributedString(string: "Made in : \(contryTitle ?? "France")", attributes: [
+            .font: UIFont(name: "Avenir-Heavy", size: 14.0)!,
+            .foregroundColor: UIColor(white: 0.0, alpha: 1.0)
+            ])
+        attributedString.addAttributes([
+            .font: UIFont(name: "Avenir-Medium", size: 12.0)!,
+            .foregroundColor: UIColor(white: 135.0 / 255.0, alpha: 1.0)
+            ], range: NSRange(location: 10, length: contryTitle?.count ?? 6))
+        madeInLable.attributedText = attributedString
+    }
+}
+extension DetailView:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return tags?.count ?? 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath)as?TagsCell else{return UICollectionViewCell()}
+        cell.tags = tags?[indexPath.row]
+        return cell
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: (collectionView.frame.width/5), height: 30)
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 12, bottom: 0, right: 12)
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+            return 8
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+            return 8
+    }
+    
 }

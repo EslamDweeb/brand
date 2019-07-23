@@ -136,8 +136,8 @@ class CheckOutView :UIView {
 //
 //        return view
 //    }()
-lazy var viewwithAddress: shadowView = {
-    let view = shadowView()
+lazy var viewwithAddress: ShadowView = {
+    let view = ShadowView()
     view.isHidden = true
     return view
 }()

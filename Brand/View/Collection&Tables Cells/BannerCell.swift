@@ -17,10 +17,17 @@ class BannerCell:UICollectionViewCell {
             bannerImage.kf.setImage(with: url)
         }
     }
+    var photo:Media? {
+        didSet{
+            guard let ph = photo else{return}
+            let url = URL(string: ph.path)
+            bannerImage.kf.setImage(with: url)
+        }
+    }
     lazy var bannerImage: UIImageView = {
         let imageView = UIImageView()
         imageView.image = #imageLiteral(resourceName: "ads")
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleToFill  
         return imageView
     }()
     override init(frame: CGRect) {

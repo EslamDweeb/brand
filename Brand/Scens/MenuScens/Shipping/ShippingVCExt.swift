@@ -28,11 +28,12 @@ extension ShippingVC  :  UICollectionViewDelegateFlowLayout  , UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? shippingMethodCell else {
-            return UICollectionViewCell()
-        }
-        cell.name = shippingMethodarr[indexPath.row]
-        return cell
+//        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? shippingMethodCell else {
+//            return UICollectionViewCell()
+//        }
+//        cell.name = shippingMethodarr[indexPath.row]
+//        return cell
+        return UICollectionViewCell()
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.width / 3 - 8 , height: 100 )
@@ -44,14 +45,14 @@ extension ShippingVC  :  UICollectionViewDelegateFlowLayout  , UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath) as? shippingMethodCell
-        cell?.defaultview.isHidden  = false
-    }
-    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath) as? shippingMethodCell
-        cell?.defaultview.isHidden  = true
-    }
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        let cell = collectionView.cellForItem(at: indexPath) as? shippingMethodCell
+//        cell?.defaultview.isHidden  = false
+//    }
+//    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+//        let cell = collectionView.cellForItem(at: indexPath) as? shippingMethodCell
+//        cell?.defaultview.isHidden  = true
+//    }
 
 
 }

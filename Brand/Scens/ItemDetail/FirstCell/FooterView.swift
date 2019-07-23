@@ -10,6 +10,7 @@ import UIKit
 
 class FooterView:UIView{
     let cellID = "cellID"
+    var configs:[Config]?
     lazy var titleLbl:UILabel = {
         let lbl = UILabel()
         lbl.font = UIFont(name: .fontH, size: 16)
@@ -19,6 +20,7 @@ class FooterView:UIView{
     lazy var seeall:UIButton = {
         let lbl = UIButton()
         lbl.setTitle(NSLocalizedString("seeAll", comment: ""), for: .normal)
+        lbl.setTitleColor(.pink, for: .normal)
         return lbl
     }()
     lazy var productCollectionView:UICollectionView = {
@@ -27,6 +29,8 @@ class FooterView:UIView{
         let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collection.register(WishCell.self, forCellWithReuseIdentifier: cellID)
         collection.backgroundColor = .clear
+        collection.delegate = self
+        collection.dataSource = self
         return collection
     }()
     override init(frame: CGRect) {
@@ -38,6 +42,7 @@ class FooterView:UIView{
         fatalError("init(coder:) has not been implemented")
     }
     private func setupView(){
+        backgroundColor = .white
         addSubViews()
         addConstraintsToViews()
     }
@@ -47,8 +52,32 @@ class FooterView:UIView{
         addSubview(productCollectionView)
     }
     private func addConstraintsToViews() {
-        titleLbl.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right:nil, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 90, height: 20, paddingCenterX: 0, paddingCenterY: 0)
-        seeall.anchor(top: topAnchor, left: nil, bottom: nil, right:rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 16, width: 45, height: 20, paddingCenterX: 0, paddingCenterY: 0)
-        productCollectionView.anchor(top: titleLbl.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 200, paddingCenterX: 0, paddingCenterY: 0)
+        titleLbl.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right:nil, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 150, height: 20, paddingCenterX: 0, paddingCenterY: 0)
+        seeall.anchor(top: topAnchor, left: nil, bottom: nil, right:rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 16, width: 60, height: 20, paddingCenterX: 0, paddingCenterY: 0)
+        productCollectionView.anchor(top: titleLbl.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 300, paddingCenterX: 0, paddingCenterY: 0)
     }
+}
+extension FooterView:UICollectionViewDelegateFlowLayout,UICollectionViewDelegate,UICollectionViewDataSource{
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return configs?.count ?? 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath)as?WishCell else{return UICollectionViewCell()}
+        cell.config = configs?[indexPath.row]
+        return cell
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+            return CGSize(width: 180, height:  230)
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+    }
+        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+            return 8
+        }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 8
+    }
+    
 }

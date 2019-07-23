@@ -16,7 +16,7 @@ class WishCell: UICollectionViewCell {
             let url = URL(string:con.mainPhoto?.path ?? "")
             image.kf.setImage(with: url)
             productName.text = con.name
-            brandName.text = con.brandName
+            brandName.text = con.brand?.name ?? ""
             isFav = con.isFavorite
             if con.sale != 0  {
                 priceLbl.setAttributeStringWithStrike("\(con.price)")

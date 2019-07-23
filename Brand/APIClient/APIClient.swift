@@ -191,5 +191,10 @@ class APIClient {
             complition(response.result)
         }
     }
+    static func getItemDetail(slug:String,complition : @escaping (Result<ItemDetailInfo,Error>) -> Void) {
+        AF.request(ProductRouter.getitemDetail(slug: slug)).responseDecodable{(response:DataResponse<ItemDetailInfo>) in
+            complition(response.result)
+        }
+    }
 }
 

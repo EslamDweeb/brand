@@ -37,6 +37,7 @@ class DescriptionView:UIView{
         fatalError("init(coder:) has not been implemented")
     }
     private func setupView(){
+        backgroundColor = .white
         addSubViews()
         addConstraintsToViews()
     }
@@ -48,7 +49,7 @@ class DescriptionView:UIView{
     private func addConstraintsToViews() {
         descripTitleLbl.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right:nil, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 90, height: 20, paddingCenterX: 0, paddingCenterY: 0)
         descripLbl.anchor(top: descripTitleLbl.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
-        descripLbl.heightAnchor.constraint(lessThanOrEqualToConstant: 1000).isActive = true
+        descripLbl.heightAnchor.constraint(lessThanOrEqualToConstant: 300).isActive = true
         lineView.anchor(top: nil, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 1, paddingCenterX: 0, paddingCenterY: 0)
     }
 }

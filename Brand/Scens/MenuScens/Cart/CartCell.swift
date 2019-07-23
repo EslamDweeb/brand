@@ -17,7 +17,7 @@ class  CartCell: UITableViewCell {
             let url = URL(string: cart.config.mainPhoto?.path ?? "")
             Image.kf.indicatorType = .activity
             Image.kf.setImage(with: url)
-            brandName.text = cart.config.brandName
+            brandName.text = cart.config.brand?.name ??  ""
             productName.text = cart.config.name
             if cart.config.sale != 0 {
                 discountLbl.text = "\( Double(cart.config.sale).roundToDecimal(3))"
