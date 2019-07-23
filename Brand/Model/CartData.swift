@@ -53,7 +53,7 @@ struct Option: Codable {
 }
 struct ProductOptionValue: Codable {
     let id: Int
-    let value: String
+    let value: String?
     let addsPrice: Int
     
     enum CodingKeys: String, CodingKey {
