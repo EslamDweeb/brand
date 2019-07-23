@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		013F25D922E6F1410028E146 /* cellShipping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013F25D822E6F1410028E146 /* cellShipping.swift */; };
 		01A7E64922D5DC4400C6E037 /* StringExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A7E64822D5DC4400C6E037 /* StringExt.swift */; };
 		01A7E64B22D5DCC200C6E037 /* customLabels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A7E64A22D5DCC200C6E037 /* customLabels.swift */; };
 		01A7E64F22D5DD5500C6E037 /* lineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A7E64E22D5DD5500C6E037 /* lineView.swift */; };
@@ -15,7 +16,6 @@
 		01DF99EC22E0867600658DCF /* shippingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DF99EB22E0867600658DCF /* shippingView.swift */; };
 		01DF99EE22E086B200658DCF /* ShippingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DF99ED22E086B100658DCF /* ShippingVC.swift */; };
 		01DF99F022E087A400658DCF /* ShippingVCExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DF99EF22E087A400658DCF /* ShippingVCExt.swift */; };
-		01DF99F222E0A2D100658DCF /* shippingMethodCellfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DF99F122E0A2D100658DCF /* shippingMethodCellfile.swift */; };
 		01DF99F422E0A9A800658DCF /* shippingMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DF99F322E0A9A800658DCF /* shippingMethod.swift */; };
 		2D2D5FC022D1EED400E9E0B7 /* SubCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2D5FBF22D1EED400E9E0B7 /* SubCategoryView.swift */; };
 		2D2D5FC222D1F5CE00E9E0B7 /* SubCategoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2D5FC122D1F5CE00E9E0B7 /* SubCategoryVC.swift */; };
@@ -184,6 +184,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		013F25D822E6F1410028E146 /* cellShipping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cellShipping.swift; sourceTree = "<group>"; };
 		01A7E64822D5DC4400C6E037 /* StringExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExt.swift; sourceTree = "<group>"; };
 		01A7E64A22D5DCC200C6E037 /* customLabels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = customLabels.swift; sourceTree = "<group>"; };
 		01A7E64E22D5DD5500C6E037 /* lineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lineView.swift; sourceTree = "<group>"; };
@@ -192,7 +193,6 @@
 		01DF99EB22E0867600658DCF /* shippingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = shippingView.swift; sourceTree = "<group>"; };
 		01DF99ED22E086B100658DCF /* ShippingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShippingVC.swift; sourceTree = "<group>"; };
 		01DF99EF22E087A400658DCF /* ShippingVCExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShippingVCExt.swift; sourceTree = "<group>"; };
-		01DF99F122E0A2D100658DCF /* shippingMethodCellfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = shippingMethodCellfile.swift; sourceTree = "<group>"; };
 		01DF99F322E0A9A800658DCF /* shippingMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = shippingMethod.swift; sourceTree = "<group>"; };
 		1D733062CB38AA870F7CE805 /* Pods-Brand.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Brand.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Brand/Pods-Brand.debug.xcconfig"; sourceTree = "<group>"; };
 		2D2D5FBF22D1EED400E9E0B7 /* SubCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubCategoryView.swift; sourceTree = "<group>"; };
@@ -385,7 +385,7 @@
 				01DF99EB22E0867600658DCF /* shippingView.swift */,
 				01DF99ED22E086B100658DCF /* ShippingVC.swift */,
 				01DF99EF22E087A400658DCF /* ShippingVCExt.swift */,
-				01DF99F122E0A2D100658DCF /* shippingMethodCellfile.swift */,
+				013F25D822E6F1410028E146 /* cellShipping.swift */,
 			);
 			path = Shipping;
 			sourceTree = "<group>";
@@ -1141,6 +1141,7 @@
 				2D32B95B22C0F22C00513DD4 /* MyAddressViewController.swift in Sources */,
 				2D32B98522C0F29000513DD4 /* Date.swift in Sources */,
 				2D32B95E22C0F22C00513DD4 /* SecurityVC.swift in Sources */,
+				013F25D922E6F1410028E146 /* cellShipping.swift in Sources */,
 				2D32B84A22C0F1D000513DD4 /* UIViewControllerExt.swift in Sources */,
 				01A7E65122D5DD8F00C6E037 /* ShadowView.swift in Sources */,
 				2D32B92822C0F20D00513DD4 /* EnterNewPasswordViewController.swift in Sources */,
@@ -1226,7 +1227,6 @@
 				2D7A632222C0FA8B00AF4E78 /* SplashView.swift in Sources */,
 				01A7E65322D5DE0400C6E037 /* CustomImagePicker.swift in Sources */,
 				2D32B87C22C0F1E800513DD4 /* WishListController_Ext.swift in Sources */,
-				01DF99F222E0A2D100658DCF /* shippingMethodCellfile.swift in Sources */,
 				2D7573DB22D7526E005A3ACA /* ExploreData.swift in Sources */,
 				2D7A631B22C0FA8B00AF4E78 /* FinalCheckoutView.swift in Sources */,
 				2D32B92322C0F20D00513DD4 /* ReviewController.swift in Sources */,
