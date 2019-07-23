@@ -28,7 +28,7 @@ extension ShippingVC  :  UICollectionViewDelegateFlowLayout  , UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? shippingMethodCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? ShippingMethodCell else {
             return UICollectionViewCell()
         }
         cell.name = shippingMethodarr[indexPath.row]
@@ -45,11 +45,11 @@ extension ShippingVC  :  UICollectionViewDelegateFlowLayout  , UICollectionViewD
         return 0
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath) as? shippingMethodCell
+        let cell = collectionView.cellForItem(at: indexPath) as? ShippingMethodCell
         cell?.defaultview.isHidden  = false
     }
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath) as? shippingMethodCell
+        let cell = collectionView.cellForItem(at: indexPath) as? ShippingMethodCell
         cell?.defaultview.isHidden  = true
     }
 
