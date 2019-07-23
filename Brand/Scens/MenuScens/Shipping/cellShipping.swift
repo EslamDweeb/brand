@@ -42,6 +42,7 @@ class ShippingMethodCell : UICollectionViewCell {
         view.layer.cornerRadius = 3
         view.isHidden = true
         view.layer.masksToBounds = true
+        view.isHidden = true
         return view
     }()
     

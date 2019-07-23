@@ -30,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,MOLHResetable {
         window = UIWindow()
         window?.makeKeyAndVisible()
 
-        window?.rootViewController = ShippingVC()
+        window?.rootViewController = SplashViewController()
 
         TWTRTwitter.sharedInstance().start(withConsumerKey: "KUkghIKbyb7SsRULpDfjCmK30", consumerSecret: "mgpVgM29xQLZhg37Z7cKkhQ6FLaYhWOdJdp5MKVQEtfUpN9HgK")
         ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
