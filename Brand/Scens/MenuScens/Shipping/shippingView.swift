@@ -26,8 +26,8 @@ class ShippingView :UIView {
         return lable
     }()
     
-    lazy var viewwithAddress: shadowView = {
-        let view = shadowView()
+    lazy var viewwithAddress: ShadowView = {
+        let view = ShadowView()
         view.isHidden = true
         return view
     }()
