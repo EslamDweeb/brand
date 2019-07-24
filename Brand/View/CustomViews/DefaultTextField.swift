@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import MOLH
 class DefaultTextField: UITextField {
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -17,6 +17,11 @@ class DefaultTextField: UITextField {
         layer.cornerRadius = 3
         layer.borderColor = UIColor.lightgray.cgColor
         setPadding(left: 16, right: 16)
+//        if MOLHLanguage.currentAppleLanguage() == "en"{
+//           self.textAlignment = .left
+//        }else{
+//            self.textAlignment = .right
+//        }
         setup()
     }
     required init?(coder aDecoder: NSCoder) {

@@ -7,12 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0107D05B22E853970007BF5A /* BillingMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0107D05A22E853970007BF5A /* BillingMethod.swift */; };
 		013F25D922E6F1410028E146 /* cellShipping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013F25D822E6F1410028E146 /* cellShipping.swift */; };
 		01A7E64922D5DC4400C6E037 /* StringExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A7E64822D5DC4400C6E037 /* StringExt.swift */; };
 		01A7E64B22D5DCC200C6E037 /* customLabels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A7E64A22D5DCC200C6E037 /* customLabels.swift */; };
 		01A7E64F22D5DD5500C6E037 /* lineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A7E64E22D5DD5500C6E037 /* lineView.swift */; };
 		01A7E65122D5DD8F00C6E037 /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A7E65022D5DD8F00C6E037 /* ShadowView.swift */; };
 		01A7E65322D5DE0400C6E037 /* CustomImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A7E65222D5DE0400C6E037 /* CustomImagePicker.swift */; };
+		01D83B0022E85A2900F7C496 /* billingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D83AFF22E85A2900F7C496 /* billingCell.swift */; };
+		01D83B0222E85B4E00F7C496 /* billingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D83B0122E85B4E00F7C496 /* billingView.swift */; };
+		01D83B0422E85B9D00F7C496 /* billngVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D83B0322E85B9D00F7C496 /* billngVC.swift */; };
+		01D83B0622E85BB100F7C496 /* billingVCExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D83B0522E85BB100F7C496 /* billingVCExt.swift */; };
 		01DF99EC22E0867600658DCF /* shippingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DF99EB22E0867600658DCF /* shippingView.swift */; };
 		01DF99EE22E086B200658DCF /* ShippingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DF99ED22E086B100658DCF /* ShippingVC.swift */; };
 		01DF99F022E087A400658DCF /* ShippingVCExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DF99EF22E087A400658DCF /* ShippingVCExt.swift */; };
@@ -192,12 +197,17 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0107D05A22E853970007BF5A /* BillingMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillingMethod.swift; sourceTree = "<group>"; };
 		013F25D822E6F1410028E146 /* cellShipping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cellShipping.swift; sourceTree = "<group>"; };
 		01A7E64822D5DC4400C6E037 /* StringExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExt.swift; sourceTree = "<group>"; };
 		01A7E64A22D5DCC200C6E037 /* customLabels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = customLabels.swift; sourceTree = "<group>"; };
 		01A7E64E22D5DD5500C6E037 /* lineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lineView.swift; sourceTree = "<group>"; };
 		01A7E65022D5DD8F00C6E037 /* ShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
 		01A7E65222D5DE0400C6E037 /* CustomImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImagePicker.swift; sourceTree = "<group>"; };
+		01D83AFF22E85A2900F7C496 /* billingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = billingCell.swift; sourceTree = "<group>"; };
+		01D83B0122E85B4E00F7C496 /* billingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = billingView.swift; sourceTree = "<group>"; };
+		01D83B0322E85B9D00F7C496 /* billngVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = billngVC.swift; sourceTree = "<group>"; };
+		01D83B0522E85BB100F7C496 /* billingVCExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = billingVCExt.swift; sourceTree = "<group>"; };
 		01DF99EB22E0867600658DCF /* shippingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = shippingView.swift; sourceTree = "<group>"; };
 		01DF99ED22E086B100658DCF /* ShippingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShippingVC.swift; sourceTree = "<group>"; };
 		01DF99EF22E087A400658DCF /* ShippingVCExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShippingVCExt.swift; sourceTree = "<group>"; };
@@ -395,6 +405,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		01D83AFE22E859D300F7C496 /* Billing */ = {
+			isa = PBXGroup;
+			children = (
+				01D83AFF22E85A2900F7C496 /* billingCell.swift */,
+				01D83B0122E85B4E00F7C496 /* billingView.swift */,
+				01D83B0322E85B9D00F7C496 /* billngVC.swift */,
+				01D83B0522E85BB100F7C496 /* billingVCExt.swift */,
+			);
+			path = Billing;
+			sourceTree = "<group>";
+		};
 		01DF99EA22E0861600658DCF /* Shipping */ = {
 			isa = PBXGroup;
 			children = (
@@ -442,6 +463,7 @@
 		2D309E6622CA22C0003709CF /* MenuScens */ = {
 			isa = PBXGroup;
 			children = (
+				01D83AFE22E859D300F7C496 /* Billing */,
 				01DF99EA22E0861600658DCF /* Shipping */,
 				2D1625A622D6016100F2B50E /* Cart */,
 				2D76701122D390D100445F3D /* Wishlist */,
@@ -757,6 +779,7 @@
 				2D9AAAB822DB6880000CF118 /* FlashesData.swift */,
 				01DF99F322E0A9A800658DCF /* shippingMethod.swift */,
 				2D3547F722E5ECF900A570B2 /* ItemDetailInfo.swift */,
+				0107D05A22E853970007BF5A /* BillingMethod.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1190,12 +1213,14 @@
 				2D7A633322C0FA8B00AF4E78 /* GradNavView.swift in Sources */,
 				01DF99EE22E086B200658DCF /* ShippingVC.swift in Sources */,
 				01DF99F422E0A9A800658DCF /* shippingMethod.swift in Sources */,
+				0107D05B22E853970007BF5A /* BillingMethod.swift in Sources */,
 				2D32B98722C0F29000513DD4 /* LastUpdateModel.swift in Sources */,
 				2D339A2522CCE9BC004DEA5E /* SimpleOrderData.swift in Sources */,
 				2D7A632B22C0FA8B00AF4E78 /* AnimatedAddressView.swift in Sources */,
 				2D32B98B22C0F29000513DD4 /* IntroPage.swift in Sources */,
 				2D7A632822C0FA8B00AF4E78 /* SucessPopupView.swift in Sources */,
 				2D32B88522C0F1E800513DD4 /* FlashSaleController_Ext.swift in Sources */,
+				01D83B0422E85B9D00F7C496 /* billngVC.swift in Sources */,
 				2D7A633422C0FA8B00AF4E78 /* ReviewSectionView.swift in Sources */,
 				2D32B92222C0F20D00513DD4 /* FinalCheckoutController.swift in Sources */,
 				2D32B99022C0F29000513DD4 /* State.swift in Sources */,
@@ -1213,12 +1238,14 @@
 				2D32B84922C0F1D000513DD4 /* UIViewExt.swift in Sources */,
 				2D7A631122C0FA8B00AF4E78 /* NotificationCell.swift in Sources */,
 				2D309E6122CA01CC003709CF /* SocialSingupView.swift in Sources */,
+				01D83B0222E85B4E00F7C496 /* billingView.swift in Sources */,
 				2D7A631222C0FA8B00AF4E78 /* BrandCell.swift in Sources */,
 				2D7A633C22C0FA8B00AF4E78 /* CartTableBG.swift in Sources */,
 				2D32B95822C0F22C00513DD4 /* MyAddressCell.swift in Sources */,
 				2D339A2222CCA4F1004DEA5E /* OrderLables.swift in Sources */,
 				2D32B95922C0F22C00513DD4 /* MyAddressController_Ext.swift in Sources */,
 				2D7A630E22C0FA8B00AF4E78 /* BannerCell.swift in Sources */,
+				01D83B0622E85BB100F7C496 /* billingVCExt.swift in Sources */,
 				01DF99EC22E0867600658DCF /* shippingView.swift in Sources */,
 				2D32B91D22C0F20D00513DD4 /* CheckoutController.swift in Sources */,
 				2D7A631A22C0FA8B00AF4E78 /* SearchFilterView.swift in Sources */,
@@ -1263,6 +1290,7 @@
 				2D32B98D22C0F29000513DD4 /* BannersData.swift in Sources */,
 				2D3547F622E5E80500A570B2 /* ColorView.swift in Sources */,
 				2D7A632422C0FA8B00AF4E78 /* NotificationsView.swift in Sources */,
+				01D83B0022E85A2900F7C496 /* billingCell.swift in Sources */,
 				2D32B99422C0F29000513DD4 /* UserData.swift in Sources */,
 				2D32B98E22C0F29000513DD4 /* Categories.swift in Sources */,
 				2D32B95C22C0F22C00513DD4 /* SecurityView.swift in Sources */,

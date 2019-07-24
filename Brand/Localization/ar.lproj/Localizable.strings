@@ -5,6 +5,16 @@
   Created by Eslam Dweeb on 6/24/19.
   Copyright © 2019 Eslam Dweeb. All rights reserved.
 */
+
+;"الكميه" = "Amount"
+"copoun" = "كود";
+"Copoun_discount" = "قيمه الخصم";
+"Apply Copoun" = "ادخل الكود";
+"Your Addresses" = "عناوينك";
+"Shippingـmethod" = "طريقه الشحن";
+"Pilling_method" = "طريقه الدفع ";
+"Shipping_Addresses" = "عنوان الشحن";
+"Checkout_New" = "Checkout New";
 "size" = "الحجم";
 "color" = "الالوان";
 "seeAll" = "الكل";
@@ -154,5 +164,3 @@
 "There is no Address" = "لا يوجد عنوان";
 "reset" = "اعادة تعيين";
 "Order_Details" = "تفاصيل الطلب";
-;"الكميه" = "Amount"
-

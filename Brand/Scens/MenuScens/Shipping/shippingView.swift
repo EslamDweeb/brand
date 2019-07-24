@@ -8,10 +8,13 @@
 
 import Foundation
 import UIKit
+import MOLH
 class ShippingView :UIView {
      var HeightConstrain:NSLayoutConstraint?
-     var HeightConstrainTableView:NSLayoutConstraint?
+     var HeightConstrainView:NSLayoutConstraint?
+    var HeightConstrainForTableView:NSLayoutConstraint?
      var topConstrainlabel:NSLayoutConstraint?
+    var topConstraintabel:NSLayoutConstraint?
     
     lazy var  navView:GradNavView = {
         let navView = GradNavView()
@@ -31,7 +34,7 @@ class ShippingView :UIView {
     }()
     lazy var shippinglbl:HeaderLabelAlign = {
         let lable = HeaderLabelAlign()
-        lable.text = "Shipping Addresses".localized
+        lable.text = "Shipping_Addresses".localized
         return lable
     }()
     
@@ -89,7 +92,7 @@ class ShippingView :UIView {
     }()
     lazy var shippingMethodlbl:HeaderLabelAlign = {
         let lable = HeaderLabelAlign()
-        lable.text = "Shipping method".localized
+        lable.text = "Shippingـmethod".localized
         return lable
     }()
     lazy var shippingCollectionview : UICollectionView = {
@@ -104,7 +107,7 @@ class ShippingView :UIView {
     }()
     lazy var save: GradBtn = {
         let button = GradBtn()
-        button.setTitle("Continue".localized, for: .normal)
+        button.setTitle("txt_continue".localized, for: .normal)
         return button
     }()
     lazy var  ExchangeView:ShadowView = {
@@ -158,15 +161,24 @@ class ShippingView :UIView {
       
         scrollView.anchor(top: navView.bottomAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, centerX: self.centerXAnchor, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         BGView.anchor(top: self.topAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
-        shippinglbl.anchor(top: scrollView.topAnchor, left: self.leftAnchor, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
-       
+        shippinglbl.anchor(top: scrollView.topAnchor, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
+        if MOLHLanguage.currentAppleLanguage() == "en" {
+             defaultview.anchor(top: viewwithAddress.topAnchor, left: viewwithAddress.leftAnchor, bottom: viewwithAddress.bottomAnchor, right: nil, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 6, height: 0, paddingCenterX: 0, paddingCenterY: 0)
+            changeBtn.anchor(top: viewwithAddress.topAnchor, left: nil, bottom: nil, right: viewwithAddress.rightAnchor, centerX: nil, centerY: nil, paddingTop: 6, paddingLeft: 0, paddingBottom: 0, paddingRight: 6, width: 35, height: 35, paddingCenterX: 0, paddingCenterY: 0)
+             addnewadd.anchor(top: ExchangeView.topAnchor, left: nil, bottom: nil, right: ExchangeView.rightAnchor, centerX: nil, centerY: nil, paddingTop: -25, paddingLeft: 0, paddingBottom: 0, paddingRight: 8, width: 50, height: 50, paddingCenterX: 0, paddingCenterY: 0)
+            
+        }else{
+            defaultview.anchor(top: viewwithAddress.topAnchor, left: nil, bottom: viewwithAddress.bottomAnchor, right: viewwithAddress.rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 6, height: 0, paddingCenterX: 0, paddingCenterY: 0)
+            changeBtn.anchor(top: viewwithAddress.topAnchor, left: viewwithAddress.leftAnchor, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 6, paddingLeft: 6, paddingBottom: 0, paddingRight: 0, width: 35, height: 35, paddingCenterX: 0, paddingCenterY: 0)
+            addnewadd.anchor(top: ExchangeView.topAnchor, left: ExchangeView.leftAnchor, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: -25, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 50, height: 50, paddingCenterX: 0, paddingCenterY: 0)
+        }
+        
         
         viewwithAddress.anchor(top: shippinglbl.bottomAnchor, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, centerX: self.centerXAnchor, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 90, paddingCenterX: 0, paddingCenterY: 0)
-        defaultview.anchor(top: viewwithAddress.topAnchor, left: viewwithAddress.leftAnchor, bottom: viewwithAddress.bottomAnchor, right: nil, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 6, height: 0, paddingCenterX: 0, paddingCenterY: 0)
+       
         addressName.anchor(top: viewwithAddress.topAnchor, left: viewwithAddress.leftAnchor, bottom: nil, right: viewwithAddress.rightAnchor, centerX: nil, centerY: nil, paddingTop: 16, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
         addressDescription.anchor(top: addressName.bottomAnchor, left: viewwithAddress.leftAnchor, bottom: nil, right: viewwithAddress.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         self.viewwithAddress.setShadow(shadowColor: UIColor(red: 0, green: 0, blue: 0, alpha:0.24).cgColor, shadowOffset: CGSize(width: 0, height: 3), shadowOpacity: 0.6, shadowRaduis: 1)
-        changeBtn.anchor(top: viewwithAddress.topAnchor, left: nil, bottom: nil, right: viewwithAddress.rightAnchor, centerX: nil, centerY: nil, paddingTop: 6, paddingLeft: 0, paddingBottom: 0, paddingRight: 6, width: 35, height: 35, paddingCenterX: 0, paddingCenterY: 0)
         
         viewnoaddress.anchor(top: shippinglbl.bottomAnchor, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, centerX: self.centerXAnchor, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 90, paddingCenterX: 0, paddingCenterY: 0)
         AddressImage.anchor(top: viewnoaddress.topAnchor, left: viewnoaddress.leftAnchor, bottom: nil, right: viewnoaddress.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 30, paddingBottom: 0, paddingRight: 30, width: 0, height: 100, paddingCenterX: 0, paddingCenterY: 0)
@@ -176,26 +188,32 @@ class ShippingView :UIView {
        shippingCollectionview.anchor(top: shippingMethodlbl.bottomAnchor, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, centerX: nil, centerY: nil, paddingTop: 16, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         HeightConstrain = shippingCollectionview.heightAnchor.constraint(equalToConstant: 0)
         HeightConstrain?.isActive = true
-        save.anchor(top: shippingCollectionview.bottomAnchor, left: self.leftAnchor, bottom: scrollView.bottomAnchor, right: self.rightAnchor, centerX: nil, centerY: nil, paddingTop: 16, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 45, paddingCenterX: 0, paddingCenterY: 0)
+        save.anchor(top: nil, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, centerX: nil, centerY: nil, paddingTop: 16, paddingLeft: 8, paddingBottom: 24, paddingRight: 8, width: 0, height: 45, paddingCenterX: 0, paddingCenterY: 0)
         changeBtn.addTarget(actionDelegete, action:#selector(ButtonActionDelegate.changeBtn), for: .touchUpInside)
        addnewaddBtn.addTarget(actionDelegete, action:#selector(ButtonActionDelegate.addBtn), for: .touchUpInside)
         addnewadd.addTarget(actionDelegete, action:#selector(ButtonActionDelegate.addBtn), for: .touchUpInside)
+        save.addTarget(actionDelegete, action: #selector(ButtonActionDelegate.saveButtonTapped), for: .touchUpInside)
         ExchangeView.anchor(top: nil, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, centerX: self.centerXAnchor, centerY: nil, paddingTop: 0, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
-        HeightConstrainTableView = ExchangeView.heightAnchor.constraint(equalToConstant: 0)
-        HeightConstrainTableView?.isActive = true
+        HeightConstrainView = ExchangeView.heightAnchor.constraint(equalToConstant: 0)
+        HeightConstrainView?.isActive = true
         youraddlabel.anchor(top: nil, left: ExchangeView.leftAnchor, bottom: nil, right: ExchangeView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         topConstrainlabel = youraddlabel.topAnchor.constraint(equalTo: ExchangeView.topAnchor, constant: 0)
         topConstrainlabel?.isActive = true
-        tableView.anchor(top: youraddlabel.bottomAnchor, left: ExchangeView.leftAnchor, bottom: ExchangeView.bottomAnchor, right: ExchangeView.rightAnchor, centerX: ExchangeView.centerXAnchor, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
-        addnewadd.anchor(top: ExchangeView.topAnchor, left: nil, bottom: nil, right: ExchangeView.rightAnchor, centerX: nil, centerY: nil, paddingTop: -25, paddingLeft: 0, paddingBottom: 0, paddingRight: 8, width: 50, height: 50, paddingCenterX: 0, paddingCenterY: 0)
+        tableView.anchor(top: nil, left: ExchangeView.leftAnchor, bottom: nil, right: ExchangeView.rightAnchor, centerX: ExchangeView.centerXAnchor, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
+        topConstraintabel = tableView.topAnchor.constraint(equalTo: youraddlabel.bottomAnchor, constant: 0)
+        HeightConstrainForTableView = tableView.heightAnchor.constraint(equalToConstant: 0)
+        HeightConstrainForTableView?.isActive = true
+        topConstraintabel?.isActive = true
+       
         
         changeBtn.addTarget(actionDelegete, action:#selector(ButtonActionDelegate.changeBtn), for: .touchUpInside)
        
         
         
     }
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(delegete : ButtonActionDelegate) {
+        super.init(frame: .zero)
+        self.actionDelegete = delegete
         setup()
     }
     
