@@ -27,9 +27,11 @@ enum ProductRouter:URLRequestConvertible {
     case getAllProductConfigs(slug:String)
     case toggleFav(id:Int)
     case getitemDetail(slug:String)
+    case getConfigReview(id:Int)
+    case getConfigRating(id:Int)
     private var Methods : HTTPMethod {
         switch self {
-        case .brands,.banners,.categories,.lastUpdate,.allReviews,.getOrders,.getOrderDetails,.getCategoryInfo,.getCategoryProduct,.getWishlist,.getCartData,.getExploreData,.getFlashData,.getAllProductConfigs,.getitemDetail:
+        case .brands,.banners,.categories,.lastUpdate,.allReviews,.getOrders,.getOrderDetails,.getCategoryInfo,.getCategoryProduct,.getWishlist,.getCartData,.getExploreData,.getFlashData,.getAllProductConfigs,.getitemDetail,.getConfigReview,.getConfigRating:
             return .get
         case .updateReview,.toggleFav:
             return .post
@@ -71,6 +73,10 @@ enum ProductRouter:URLRequestConvertible {
             return "/api/favorite/configs/\(id)"
         case .getitemDetail(let slug):
             return "/api/configs/\(slug)"
+        case .getConfigReview(let id):
+            return "/api/ratingables?type=catalog&id=\(id)"
+        case .getConfigRating(let id):
+            return "/api/model-ratings/\(id)"
         }
     }
     private var headers : HTTPHeaders {
@@ -80,7 +86,7 @@ enum ProductRouter:URLRequestConvertible {
                     HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue,
                     HTTPHeaderField.contentType.rawValue : ContentType.json.rawValue
                 ]
-         case .allReviews,.updateReview,.getOrders,.getOrderDetails,.getWishlist,.getCartData,.toggleFav,.getExploreData,.getitemDetail:
+         case .allReviews,.updateReview,.getOrders,.getOrderDetails,.getWishlist,.getCartData,.toggleFav,.getExploreData,.getitemDetail,.getConfigReview,.getConfigRating:
             return [
                 HTTPHeaderField.authentication.rawValue : " \(ContentType.token.rawValue) \(UserDefaults.standard.string(forKey: Constants.Defaults.authToken)!)" ,
                 HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue,
@@ -90,7 +96,7 @@ enum ProductRouter:URLRequestConvertible {
     }
     private var parameters :Parameters?{
         switch self {
-        case .brands,.banners,.categories,.lastUpdate,.allReviews,.getOrders,.getOrderDetails,.getCategoryInfo,.getCategoryProduct,.getWishlist,.getCartData,.getExploreData,.getFlashData,.getAllProductConfigs,.getitemDetail:
+        case .brands,.banners,.categories,.lastUpdate,.allReviews,.getOrders,.getOrderDetails,.getCategoryInfo,.getCategoryProduct,.getWishlist,.getCartData,.getExploreData,.getFlashData,.getAllProductConfigs,.getitemDetail,.getConfigReview,.getConfigRating:
             return [:]
         case .updateReview(let value, let review, let pros, let cons,_,_):
             return [
@@ -107,7 +113,7 @@ enum ProductRouter:URLRequestConvertible {
     
     func asURLRequest() throws -> URLRequest {
         switch self {
-        case .banners,.categories,.allReviews,.getCategoryProduct,.getWishlist,.getAllProductConfigs:
+        case .banners,.categories,.allReviews,.getCategoryProduct,.getWishlist,.getAllProductConfigs,.getConfigReview:
             let url = "\(Constants.ProductionServer.baseURL)\(Paths)"
             let safeUrl = url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
             var urlRequest = URLRequest(url: URL(string: safeUrl!)!)

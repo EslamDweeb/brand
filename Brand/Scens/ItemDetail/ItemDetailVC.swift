@@ -12,6 +12,7 @@ class ItemDetailVC: UIViewController {
     let headerID = "headerID"
     let cellID = "cellID"
     var itemDetails:ItemDetailInfo?
+    
     var slug:String?
     lazy var mainView:ItemDetailVCView = {
         let v = ItemDetailVCView(collectionDelegate: self, CollectionDataSource: self)
@@ -37,7 +38,7 @@ class ItemDetailVC: UIViewController {
         //hani-laptop-751586
         //noura-456735
         DispatchQueue.main.async {
-            APIClient.getItemDetail(slug: self.slug ?? "hani-laptop-751586") { (result) in
+            APIClient.getItemDetail(slug: self.slug ?? "noura-456735") { (result) in
                 switch result{
                 case .success(let data):
                     DispatchQueue.main.async {
@@ -51,6 +52,7 @@ class ItemDetailVC: UIViewController {
             }
         }
     }
+  
 }
 extension ItemDetailVC:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
     
@@ -87,5 +89,4 @@ extension ItemDetailVC:UICollectionViewDelegate,UICollectionViewDataSource,UICol
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return CGSize(width: collectionView.frame.width, height: 350) //add your height here
     }
-    
 }

@@ -201,8 +201,18 @@ class APIClient {
             complition(response.result)
         }
     }
+<<<<<<< HEAD
     static func getCheckoutData(flag : Bool ,shippingID: Int,billingID: Int,addressID: Int,coupon: String, complition : @escaping (Result<checkoutModel,Error>) -> Void) {
         AF.request(APIRouter.checkout(flag : flag , shippingId: shippingID, billingId: billingID, addressId: addressID, coupon: coupon)).responseDecodable {  (response : DataResponse<checkoutModel>) in
+=======
+    static func getConfigReviews(id:Int,complition : @escaping (Result<ReviewData,Error>) -> Void) {
+        AF.request(ProductRouter.getConfigReview(id: id)).responseDecodable{(response:DataResponse<ReviewData>) in
+            complition(response.result)
+        }
+    }
+    static func getConfigRating(id:Int,complition : @escaping (Result<OverallRatingData,Error>) -> Void) {
+        AF.request(ProductRouter.getConfigRating(id: id)).responseDecodable{(response:DataResponse<OverallRatingData>) in
+>>>>>>> b7a13a57ac61fb75b222fc89f65ec54ec3587695
             complition(response.result)
         }
     }

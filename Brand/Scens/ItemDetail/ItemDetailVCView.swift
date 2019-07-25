@@ -40,8 +40,9 @@ class ItemDetailVCView:UIView {
     
     private func setupView(){
         addSubview(mainCollectionView)
-        mainCollectionView.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 920, paddingCenterX: 0, paddingCenterY: 0)
+        mainCollectionView.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         mainCollectionView.backgroundColor = .white
         mainCollectionView.contentInset.top = -UIApplication.shared.statusBarFrame.height
+        mainCollectionView.heightAnchor.constraint(lessThanOrEqualToConstant: 920).isActive = true
     }
 }
