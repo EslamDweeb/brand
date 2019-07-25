@@ -28,6 +28,7 @@ enum APIRouter : URLRequestConvertible {
     case socialSignUp(uerSocialId : String , socialProviderid :Int,firstName: String,lastName: String,email: String,phone: String,password:String)
     case getshippingMethod
       case getbillingMethod
+    case checkout(flag: Bool , shippingId : Int , billingId : Int , addressId : Int , coupon : String)
     private var Methods : HTTPMethod {
         switch self {
         case .signUp:
@@ -66,6 +67,8 @@ enum APIRouter : URLRequestConvertible {
             return .get
         case .getbillingMethod:
             return .get
+        case .checkout:
+            return .post
         }
     }
     private var Paths : String {
@@ -93,7 +96,6 @@ enum APIRouter : URLRequestConvertible {
             return "/api/profile/addresses/\(ID)"
         case .setdefaultAddress(let ID):
             return "/api/toggle/address/\(ID)/main"
-            
         case .uploadImage:
             return "/api/profile/photo"
         case .deleteImage(let id):
@@ -108,6 +110,13 @@ enum APIRouter : URLRequestConvertible {
             return "/api/shipping-methods"
         case .getbillingMethod:
             return "/api/billing-methods"
+        case .checkout(let flag,_, _, _, _):
+            if flag {
+                 return "/api/orders/check"
+            }else{
+                 return "/api/orders"
+            }
+           
         }
     }
     private var headers : HTTPHeaders {
@@ -221,6 +230,12 @@ enum APIRouter : URLRequestConvertible {
                 HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue,
                 
             ]
+        case .checkout:
+            return [
+                HTTPHeaderField.authentication.rawValue :" \(ContentType.token.rawValue)  \(UserDefaults.standard.string(forKey: Constants.Defaults.authToken) ?? "")",
+                HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue ,
+                HTTPHeaderField.contentType.rawValue  : ContentType.json.rawValue ,
+                HTTPHeaderField.locale.rawValue : MOLHLanguage.currentAppleLanguage()]
         }
     }
     private var parameters :Parameters?{
@@ -326,6 +341,25 @@ enum APIRouter : URLRequestConvertible {
         case .getbillingMethod:
             return [:]
             
+        case .checkout(_ ,let shippingId, let billingId, let addressId, let coupon):
+            if coupon == "" {
+                return [
+                    Constants.APIParameterKey.shippingID : shippingId ,
+                    Constants.APIParameterKey.billingID : billingId,
+                    Constants.APIParameterKey.AddressID : addressId
+                    
+                ]
+            }else {
+                return [
+                    Constants.APIParameterKey.shippingID : shippingId ,
+                    Constants.APIParameterKey.billingID : billingId,
+                    Constants.APIParameterKey.AddressID : addressId ,
+                    Constants.APIParameterKey.coupon : coupon 
+                    
+                ]
+            }
+            
+           
         }
     }
 

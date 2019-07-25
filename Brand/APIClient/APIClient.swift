@@ -201,5 +201,10 @@ class APIClient {
             complition(response.result)
         }
     }
+    static func getCheckoutData(flag : Bool ,shippingID: Int,billingID: Int,addressID: Int,coupon: String, complition : @escaping (Result<checkoutModel,Error>) -> Void) {
+        AF.request(APIRouter.checkout(flag : flag , shippingId: shippingID, billingId: billingID, addressId: addressID, coupon: coupon)).responseDecodable {  (response : DataResponse<checkoutModel>) in
+            complition(response.result)
+        }
+    }
 }
 

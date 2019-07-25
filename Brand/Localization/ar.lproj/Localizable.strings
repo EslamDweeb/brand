@@ -5,8 +5,10 @@
   Created by Eslam Dweeb on 6/24/19.
   Copyright © 2019 Eslam Dweeb. All rights reserved.
 */
-
-;"الكميه" = "Amount"
+"tax" = "ضريبه";
+"Confirm" = "تاكيد الطلب";
+"total" = "الاجمالي";
+"Amount" = "الكميه";
 "copoun" = "كود";
 "Copoun_discount" = "قيمه الخصم";
 "Apply Copoun" = "ادخل الكود";

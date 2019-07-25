@@ -5,6 +5,9 @@
   Created by Eslam Dweeb on 6/24/19.
   Copyright © 2019 Eslam Dweeb. All rights reserved.
 */
+"tax" = "Tax";
+"Confirm" = "Confirm & pay";
+"total" = "Total";
 "copoun" = "Copoun";
 "Copoun_discount" = "Copoun discount";
 "Apply Copoun" = "Apply Copoun";
