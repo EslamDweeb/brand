@@ -58,7 +58,7 @@ extension ShippingVC  :  UICollectionViewDelegateFlowLayout  , UICollectionViewD
         }else {
              mainView.HeightConstrain?.constant = 0
         }
-        UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
+        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
             self.mainView.layoutIfNeeded()
         }, completion: nil)
         return shippingMethodarr.count
@@ -92,6 +92,7 @@ extension ShippingVC  :  UICollectionViewDelegateFlowLayout  , UICollectionViewD
         let cell = collectionView.cellForItem(at: indexPath) as? ShippingMethodCell
         if self.activeShippingMethod[indexPath.row] {
              cell?.defaultview.isHidden  = false
+            self.MianShippingID = shippingMethodarr[indexPath.row].id
         }else{
             cell?.defaultview.isHidden  = true
         }

@@ -6,6 +6,14 @@
   Copyright © 2019 Eslam Dweeb. All rights reserved.
 */
 "addReview" = "Add review";
+"copoun" = "Copoun";
+"Copoun_discount" = "Copoun discount";
+"Apply Copoun" = "Apply Copoun";
+"Your Addresses" = "Your Addresses";
+"Shippingـmethod" = "Shipping method";
+"Shipping_Addresses" = "Shipping Addresses";
+"Pilling_method" = "Pilling method";
+"Checkout_New" = "Checkout New";
 "size" = "Size";
 "color" = "Color";
 "seeAll" = "See all";

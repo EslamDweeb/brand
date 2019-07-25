@@ -11,13 +11,14 @@ import UIKit
 class ShippingVC: UIViewController , ButtonActionDelegate {
      let reachability =  Reachability()
      var addresses = [Address]()
+    var MianShippingID : Int?
     var activeShippingMethod  =  [Bool]()
     var shippingMethodarr = [ShippingMethod]()
     var enable = [Bool]()
      var mainIndexPah:Int?
     var defaultaddress : Address?
     lazy var mainView: ShippingView = {
-        let v = ShippingView()
+        let v = ShippingView(delegete : self)
         return v
     }()
     enum CardState {
@@ -37,7 +38,6 @@ class ShippingVC: UIViewController , ButtonActionDelegate {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        mainView.actionDelegete = self
         mainView.shippingCollectionview.delegate = self
         mainView.shippingCollectionview.dataSource = self
         mainView.tableView.delegate = self
@@ -57,13 +57,26 @@ class ShippingVC: UIViewController , ButtonActionDelegate {
     override func viewWillDisappear(_ animated: Bool) {
         stopNotifier(reachability: reachability)
     }
-
+    func saveButtonTapped() {
+        let  VC = BillingVC()
+        if MianShippingID != nil && self.defaultaddress != nil{
+        VC.addressID = self.defaultaddress!.id
+        VC.shippingId = MianShippingID!
+           
+         self.present(VC, animated: true, completion: nil)
+        }else {
+            self.createAlert(erroMessage: "You Must select Your Address and Your Shipping Methoud")
+        }
+    }
     func changeBtn() {
            animateTransitionIfNeeded(state: nextState)
     }
     func addBtn() {
         let address = AddressInfoViewController()
         self.present(address, animated: true, completion: nil)
+    }
+    func dissmisController() {
+        self.dismiss(animated: true, completion: nil)
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -114,14 +127,15 @@ class ShippingVC: UIViewController , ButtonActionDelegate {
             APIClient.getShippimgMethod(complition: { (result)in
                 switch result {
                 case .success(let data):
+                    
                     for method in data.shippingMethods {
                         self.shippingMethodarr.append(method)
                     }
-                    DispatchQueue.main.async {
+                   
                         self.activeShippingMethod = self.checkShippingMethod()
                         self.mainView.shippingCollectionview.reloadData()
                         self.mainView.activityStopAnimating()
-                    }
+                    
                 case .failure(let error) :
                     print(error)
                     self.mainView.activityStopAnimating()
@@ -157,27 +171,30 @@ class ShippingVC: UIViewController , ButtonActionDelegate {
                 switch state {
                 case .expanded:
                   
-                    mainView.HeightConstrainTableView?.constant = self.view.frame.height / 2
-                   
+                    mainView.HeightConstrainView?.constant = self.view.frame.height / 2
+                    mainView.HeightConstrainForTableView?.constant = self.view.frame.height / 2 - 27
                     UIView.animate(withDuration: 0.9, delay: 0, options: .curveLinear, animations: {
                         self.mainView.layoutIfNeeded()
                          self.mainView.addnewadd.isHidden = false
                        
                     })
+                    
                       self.mainView.topConstrainlabel?.constant  = 8
+                     self.mainView.topConstraintabel?.constant  = 8
                      self.cardVisible = !self.cardVisible
                     self.mainView.BGView.isHidden = false
                 
                 case .collapsed:
                     
-                    mainView.HeightConstrainTableView?.constant = 0
-                   
+                    mainView.HeightConstrainView?.constant = 0
+                    self.mainView.HeightConstrainForTableView?.constant = 0
                     UIView.animate(withDuration: 0.9, delay: 0, options: .curveLinear, animations: {
                         self.mainView.layoutIfNeeded()
                         
                     })
                     self.mainView.topConstrainlabel?.constant  = 0
-
+                     self.mainView.topConstraintabel?.constant  = 0
+                   
                     self.mainView.addnewadd.isHidden = true
                      self.mainView.BGView.isHidden = true
                      self.cardVisible = !self.cardVisible

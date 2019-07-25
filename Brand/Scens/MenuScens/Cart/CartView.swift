@@ -27,7 +27,7 @@ class CartView : UIView  {
     }()
     lazy var save: GradBtn = {
         let button = GradBtn()
-        button.setTitle( "Checkout New".localized , for: .normal)
+        button.setTitle( "Checkout_New".localized , for: .normal)
         return button
     }()
     lazy var tableView:UITableView = {
@@ -58,7 +58,7 @@ class CartView : UIView  {
         scrollView.anchor(top: navView.bottomAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         
         tableView.anchor(top: scrollView.topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, centerX: nil, centerY: nil, paddingTop:16, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
-        bottomConstrain = tableView.heightAnchor.constraint(greaterThanOrEqualToConstant: 157 * 4)
+        bottomConstrain = tableView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.71)
         bottomConstrain?.isActive = true
         
        Totalsar.anchor(top: tableView.bottomAnchor, left: scrollView.leftAnchor, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 16, paddingLeft: 16, paddingBottom:0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)

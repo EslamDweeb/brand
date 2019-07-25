@@ -1,17 +1,15 @@
-
 //
-//  shippingMethodCell.swift
+//  billingCell.swift
 //  Brand
 //
-//  Created by nada dyaa on 7/18/19.
+//  Created by nada dyaa on 7/24/19.
 //  Copyright © 2019 Eslam Dweeb. All rights reserved.
 //
-
 import Foundation
 import UIKit
 import MOLH
-class ShippingMethodCell : UICollectionViewCell {
-    var name : ShippingMethod? {
+class BillingMethodCell : UICollectionViewCell {
+    var name : BillingMethod? {
         didSet{
             guard let name = name
                 else {return}
@@ -42,7 +40,6 @@ class ShippingMethodCell : UICollectionViewCell {
         view.layer.cornerRadius = 3
         view.isHidden = true
         view.layer.masksToBounds = true
-        view.isHidden = true
         return view
     }()
     
@@ -70,14 +67,15 @@ class ShippingMethodCell : UICollectionViewCell {
     func addSetupComstrains()  {
         view.anchor(top: self.topAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         //        view.setShadow(shadowColor: UIColor(red: 0, green: 0, blue: 0, alpha: 0.24).cgColor , shadowOffset: CGSize(width: 0, height: 2), shadowOpacity: 0.5, shadowRaduis: 1)
+        
         if MOLHLanguage.currentAppleLanguage() == "en" {
-            defaultview.anchor(top: self.topAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: nil, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 6, height: 0, paddingCenterX: 0, paddingCenterY: 0)
+             defaultview.anchor(top: self.topAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: nil, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 6, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         }else{
-            defaultview.anchor(top: self.topAnchor, left: nil, bottom: self.bottomAnchor, right: self.rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 6, height: 0, paddingCenterX: 0, paddingCenterY: 0)
+             defaultview.anchor(top: self.topAnchor, left: nil, bottom: self.bottomAnchor, right: self.rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 6, height: 0, paddingCenterX: 0, paddingCenterY: 0)
             
         }
-        
-        Image.anchor(top: nil, left: nil, bottom: nil, right: nil, centerX: self.centerXAnchor, centerY: self.centerYAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 40, height: 40, paddingCenterX: 0, paddingCenterY: -15)
+       
+        Image.anchor(top: self.topAnchor, left: nil, bottom: nil, right: nil, centerX: self.centerXAnchor, centerY: nil, paddingTop: 4, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 60, height: 60, paddingCenterX: 0, paddingCenterY: 0)
         namelbl.anchor(top: nil, left: self.leftAnchor, bottom: bottomAnchor, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 6, paddingBottom: 4, paddingRight: 6, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
     }
     

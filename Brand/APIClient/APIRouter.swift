@@ -27,6 +27,7 @@ enum APIRouter : URLRequestConvertible {
     case socialLogin(userSocialId : String)
     case socialSignUp(uerSocialId : String , socialProviderid :Int,firstName: String,lastName: String,email: String,phone: String,password:String)
     case getshippingMethod
+      case getbillingMethod
     private var Methods : HTTPMethod {
         switch self {
         case .signUp:
@@ -62,6 +63,8 @@ enum APIRouter : URLRequestConvertible {
         case .socialLogin:
             return .post
         case .getshippingMethod:
+            return .get
+        case .getbillingMethod:
             return .get
         }
     }
@@ -103,6 +106,8 @@ enum APIRouter : URLRequestConvertible {
             return "/api/social-login"
         case .getshippingMethod:
             return "/api/shipping-methods"
+        case .getbillingMethod:
+            return "/api/billing-methods"
         }
     }
     private var headers : HTTPHeaders {
@@ -210,6 +215,12 @@ enum APIRouter : URLRequestConvertible {
                 HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue,
         
             ]
+        case .getbillingMethod:
+            return [
+                HTTPHeaderField.authentication.rawValue :" \(ContentType.token.rawValue)  \(UserDefaults.standard.string(forKey: Constants.Defaults.authToken) ?? "")",
+                HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue,
+                
+            ]
         }
     }
     private var parameters :Parameters?{
@@ -312,6 +323,9 @@ enum APIRouter : URLRequestConvertible {
             ]
         case .getshippingMethod:
             return [:]
+        case .getbillingMethod:
+            return [:]
+            
         }
     }
 
