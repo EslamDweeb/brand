@@ -55,6 +55,8 @@ class MainCollCell:UICollectionViewCell,UICollectionViewDelegate,UICollectionVie
             return cell
         case 1:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: secondCell, for: indexPath)as? SecondeCell else{return UICollectionViewCell()}
+            cell.specs = itemDetails?.config.specs
+            cell.tableView.reloadData()
             return cell
         case 2:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: thirdCell, for: indexPath)as? ThirdCell else{return UICollectionViewCell()}

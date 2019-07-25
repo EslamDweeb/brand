@@ -37,7 +37,7 @@ class ItemDetailVC: UIViewController {
         //hani-laptop-751586
         //noura-456735
         DispatchQueue.main.async {
-            APIClient.getItemDetail(slug: self.slug ?? "hani-laptop-751586") { (result) in
+            APIClient.getItemDetail(slug: self.slug ?? "noura-456735") { (result) in
                 switch result{
                 case .success(let data):
                     DispatchQueue.main.async {
