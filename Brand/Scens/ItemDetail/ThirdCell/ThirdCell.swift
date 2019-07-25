@@ -11,6 +11,8 @@ import UIKit
 class ThirdCell:UICollectionViewCell{
     let cellID = "cellID"
     lazy var header = ThirdCellHeadView()
+    lazy var reviews = [Ratingable]()
+    
     lazy var reviewCollectionView:UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -38,11 +40,12 @@ class ThirdCell:UICollectionViewCell{
 }
 extension ThirdCell:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 8
+        return reviews.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
          guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as? ThirdCellReviewCell else{ return UICollectionViewCell() }
+        cell.review = reviews[indexPath.row]
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

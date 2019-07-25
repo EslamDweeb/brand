@@ -196,5 +196,15 @@ class APIClient {
             complition(response.result)
         }
     }
+    static func getConfigReviews(id:Int,complition : @escaping (Result<ReviewData,Error>) -> Void) {
+        AF.request(ProductRouter.getConfigReview(id: id)).responseDecodable{(response:DataResponse<ReviewData>) in
+            complition(response.result)
+        }
+    }
+    static func getConfigRating(id:Int,complition : @escaping (Result<OverallRatingData,Error>) -> Void) {
+        AF.request(ProductRouter.getConfigRating(id: id)).responseDecodable{(response:DataResponse<OverallRatingData>) in
+            complition(response.result)
+        }
+    }
 }
 

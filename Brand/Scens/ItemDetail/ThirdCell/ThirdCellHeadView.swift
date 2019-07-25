@@ -10,7 +10,19 @@ import UIKit
 import Cosmos
 
 class ThirdCellHeadView:UIView {
-    
+    var ratingData:OverallRating?{
+        didSet{
+            guard let rate = ratingData else{return}
+            firstProgressView.progress.progressValue = CGFloat(rate.oneStarCount)
+            secondProgressView.progress.progressValue = CGFloat(rate.twoStarCount)
+            thirdProgressView.progress.progressValue = CGFloat(rate.threeStarCount)
+            fourthProgressView.progress.progressValue = CGFloat(rate.fourStarCount)
+            fifthProgressView.progress.progressValue = CGFloat(rate.fiveStarCount)
+            ratingValueLable.text = rate.avgValue
+            ratingUserNumberLable.text = "\(rate.totalCount)"
+            rateView.rating = Double(rate.avgValue) ?? 0
+        }
+    }
     lazy var firstProgressView = RateProgressView()
     lazy var secondProgressView = RateProgressView()
     lazy var thirdProgressView = RateProgressView()
@@ -76,12 +88,20 @@ class ThirdCellHeadView:UIView {
         super.init(frame: frame)
         setupView()
     }
+    private func setLableText(){
+        firstProgressView.numberLable.text = "1"
+        secondProgressView.numberLable.text = "2"
+        thirdProgressView.numberLable.text = "3"
+        fourthProgressView.numberLable.text = "4"
+        fifthProgressView.numberLable.text = "5"
+    }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     private func setupView(){
-        addSubViews()
+        setLableText()
+        addSubViews() 
         addConstriantsToViews()
     }
     private func addSubViews(){

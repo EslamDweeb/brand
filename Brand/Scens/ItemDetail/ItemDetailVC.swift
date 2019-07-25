@@ -12,6 +12,7 @@ class ItemDetailVC: UIViewController {
     let headerID = "headerID"
     let cellID = "cellID"
     var itemDetails:ItemDetailInfo?
+    
     var slug:String?
     lazy var mainView:ItemDetailVCView = {
         let v = ItemDetailVCView(collectionDelegate: self, CollectionDataSource: self)
@@ -51,6 +52,7 @@ class ItemDetailVC: UIViewController {
             }
         }
     }
+  
 }
 extension ItemDetailVC:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
     
@@ -87,5 +89,4 @@ extension ItemDetailVC:UICollectionViewDelegate,UICollectionViewDataSource,UICol
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return CGSize(width: collectionView.frame.width, height: 350) //add your height here
     }
-    
 }

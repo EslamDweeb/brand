@@ -19,7 +19,7 @@ class ReviewCell: UICollectionViewCell {
             let url = URL(string: review.subObjectMedia?.path ?? "")
             image.kf.setImage(with: url)
             rateView.rating = Double(review.value)
-            brandName.text = review.object.brand.name
+            brandName.text = review.object?.brand.name
             productName.text = review.objectName
             reviewLbl.text = review.review
             

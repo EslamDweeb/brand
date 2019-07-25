@@ -12,7 +12,16 @@ import Kingfisher
 import MOLH
 
 class ThirdCellReviewCell:UICollectionViewCell{
-    
+    var review:Ratingable? {
+        didSet{
+            guard let review = review else{return}
+            let url = URL(string: review.subObjectMedia?.path ?? "")
+            image.kf.setImage(with: url)
+            rateView.rating = Double(review.value)
+            nameLbl.text = review.userFullName
+            reviewLbl.text = review.review
+        }
+    }
     lazy var containerView:ShadowView = {
         let view = ShadowView()
         return view
