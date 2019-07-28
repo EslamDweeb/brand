@@ -57,7 +57,18 @@ class BillingVC: UIViewController , ButtonActionDelegate {
         self.dismiss(animated: true, completion: nil)
     }
     func saveButtonTapped() {
-        
+        let  VC = checkoutVC()
+        if MianbillingID != nil {
+            if mainView.copoundiscount.isHidden == true {
+                 VC.orderdata = orderdataop(shippingID: shippingId, billingID: MianbillingID, addreddID: addressID, coupon: "")
+            }else {
+                VC.orderdata = orderdataop(shippingID: shippingId, billingID: MianbillingID, addreddID: addressID, coupon: self.mainView.copounTextFeild.text)
+            }
+           
+            self.present(VC, animated: true, completion: nil)
+        }else {
+            self.createAlert(erroMessage: "You Must select Your Billing Methoud")
+        }
     }
     func changeBtn() {
         if mainView.copounTextFeild.text!.count > 3 {

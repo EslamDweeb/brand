@@ -7,8 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0107D05B22E853970007BF5A /* BillingMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0107D05A22E853970007BF5A /* BillingMethod.swift */; };
 		013F25D922E6F1410028E146 /* cellShipping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013F25D822E6F1410028E146 /* cellShipping.swift */; };
+		01524C3722E99715004D2A45 /* checkoutmodel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01524C3622E99715004D2A45 /* checkoutmodel.swift */; };
+		01524C3922E997FD004D2A45 /* BillingMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01524C3822E997FD004D2A45 /* BillingMethod.swift */; };
+		01524C3C22E9A4C9004D2A45 /* checkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01524C3B22E9A4C9004D2A45 /* checkoutView.swift */; };
+		01524C3E22E9A4D8004D2A45 /* checkoutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01524C3D22E9A4D8004D2A45 /* checkoutVC.swift */; };
+		01524C4022E9B683004D2A45 /* orderdataobject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01524C3F22E9B683004D2A45 /* orderdataobject.swift */; };
 		01A7E64922D5DC4400C6E037 /* StringExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A7E64822D5DC4400C6E037 /* StringExt.swift */; };
 		01A7E64B22D5DCC200C6E037 /* customLabels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A7E64A22D5DCC200C6E037 /* customLabels.swift */; };
 		01A7E64F22D5DD5500C6E037 /* lineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A7E64E22D5DD5500C6E037 /* lineView.swift */; };
@@ -203,8 +207,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0107D05A22E853970007BF5A /* BillingMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillingMethod.swift; sourceTree = "<group>"; };
 		013F25D822E6F1410028E146 /* cellShipping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cellShipping.swift; sourceTree = "<group>"; };
+		01524C3622E99715004D2A45 /* checkoutmodel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = checkoutmodel.swift; sourceTree = "<group>"; };
+		01524C3822E997FD004D2A45 /* BillingMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillingMethod.swift; sourceTree = "<group>"; };
+		01524C3B22E9A4C9004D2A45 /* checkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = checkoutView.swift; sourceTree = "<group>"; };
+		01524C3D22E9A4D8004D2A45 /* checkoutVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = checkoutVC.swift; sourceTree = "<group>"; };
+		01524C3F22E9B683004D2A45 /* orderdataobject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = orderdataobject.swift; sourceTree = "<group>"; };
 		01A7E64822D5DC4400C6E037 /* StringExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExt.swift; sourceTree = "<group>"; };
 		01A7E64A22D5DCC200C6E037 /* customLabels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = customLabels.swift; sourceTree = "<group>"; };
 		01A7E64E22D5DD5500C6E037 /* lineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lineView.swift; sourceTree = "<group>"; };
@@ -418,6 +426,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		01524C3A22E9A4A0004D2A45 /* checkOut */ = {
+			isa = PBXGroup;
+			children = (
+				01524C3B22E9A4C9004D2A45 /* checkoutView.swift */,
+				01524C3D22E9A4D8004D2A45 /* checkoutVC.swift */,
+			);
+			path = checkOut;
+			sourceTree = "<group>";
+		};
 		01D83AFE22E859D300F7C496 /* Billing */ = {
 			isa = PBXGroup;
 			children = (
@@ -476,6 +493,7 @@
 		2D309E6622CA22C0003709CF /* MenuScens */ = {
 			isa = PBXGroup;
 			children = (
+				01524C3A22E9A4A0004D2A45 /* checkOut */,
 				01D83AFE22E859D300F7C496 /* Billing */,
 				01DF99EA22E0861600658DCF /* Shipping */,
 				2D1625A622D6016100F2B50E /* Cart */,
@@ -792,7 +810,9 @@
 				2D9AAAB822DB6880000CF118 /* FlashesData.swift */,
 				01DF99F322E0A9A800658DCF /* shippingMethod.swift */,
 				2D3547F722E5ECF900A570B2 /* ItemDetailInfo.swift */,
-				0107D05A22E853970007BF5A /* BillingMethod.swift */,
+				01524C3622E99715004D2A45 /* checkoutmodel.swift */,
+				01524C3822E997FD004D2A45 /* BillingMethod.swift */,
+				01524C3F22E9B683004D2A45 /* orderdataobject.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1235,14 +1255,15 @@
 				2D32B98522C0F29000513DD4 /* Date.swift in Sources */,
 				2D32B95E22C0F22C00513DD4 /* SecurityVC.swift in Sources */,
 				013F25D922E6F1410028E146 /* cellShipping.swift in Sources */,
+				01524C3722E99715004D2A45 /* checkoutmodel.swift in Sources */,
 				2D32B84A22C0F1D000513DD4 /* UIViewControllerExt.swift in Sources */,
+				01524C4022E9B683004D2A45 /* orderdataobject.swift in Sources */,
 				01A7E65122D5DD8F00C6E037 /* ShadowView.swift in Sources */,
 				2D32B92822C0F20D00513DD4 /* EnterNewPasswordViewController.swift in Sources */,
 				2D7573D922D73971005A3ACA /* ExploreCell.swift in Sources */,
 				2D7A633322C0FA8B00AF4E78 /* GradNavView.swift in Sources */,
 				01DF99EE22E086B200658DCF /* ShippingVC.swift in Sources */,
 				01DF99F422E0A9A800658DCF /* shippingMethod.swift in Sources */,
-				0107D05B22E853970007BF5A /* BillingMethod.swift in Sources */,
 				2D32B98722C0F29000513DD4 /* LastUpdateModel.swift in Sources */,
 				2D339A2522CCE9BC004DEA5E /* SimpleOrderData.swift in Sources */,
 				2D7A632B22C0FA8B00AF4E78 /* AnimatedAddressView.swift in Sources */,
@@ -1274,6 +1295,7 @@
 				2D339A2222CCA4F1004DEA5E /* OrderLables.swift in Sources */,
 				2D32B95922C0F22C00513DD4 /* MyAddressController_Ext.swift in Sources */,
 				2D7A630E22C0FA8B00AF4E78 /* BannerCell.swift in Sources */,
+				01524C3E22E9A4D8004D2A45 /* checkoutVC.swift in Sources */,
 				01D83B0622E85BB100F7C496 /* billingVCExt.swift in Sources */,
 				01DF99EC22E0867600658DCF /* shippingView.swift in Sources */,
 				2D32B91D22C0F20D00513DD4 /* CheckoutController.swift in Sources */,
@@ -1285,6 +1307,7 @@
 				2D7A631322C0FA8B00AF4E78 /* OrderCell.swift in Sources */,
 				2D32B99722C0F29000513DD4 /* Media.swift in Sources */,
 				2D7A632F22C0FA8B00AF4E78 /* OrderDetailsView.swift in Sources */,
+				01524C3922E997FD004D2A45 /* BillingMethod.swift in Sources */,
 				2D2D5FC622D23D6A00E9E0B7 /* ProductData.swift in Sources */,
 				2D7A631E22C0FA8B00AF4E78 /* WishListView.swift in Sources */,
 				2D32B96522C0F22C00513DD4 /* MenuCell.swift in Sources */,
@@ -1352,6 +1375,7 @@
 				2D91BB0322E45CBA002F5424 /* FirstCell.swift in Sources */,
 				2D32B99922C0F29000513DD4 /* OrderData.swift in Sources */,
 				2D32B96422C0F22C00513DD4 /* AddressInfoViewController.swift in Sources */,
+				01524C3C22E9A4C9004D2A45 /* checkoutView.swift in Sources */,
 				2D32B95A22C0F22C00513DD4 /* MyAddressView.swift in Sources */,
 				2D32B95D22C0F22C00513DD4 /* ProfileVC.swift in Sources */,
 				2D32B95F22C0F22C00513DD4 /* ProfileView.swift in Sources */,

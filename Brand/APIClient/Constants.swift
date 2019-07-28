@@ -58,6 +58,13 @@ struct Constants {
         static let review  = "review"
         static let pros  = "pros"
         static let cons  = "cons"
+        static let shippingID = "shipping_method_id"
+        static let billingID = "billing_method_id"
+        static let AddressID = "address_id"
+        static let coupon = "coupon_serial"
+        
+        
+        
     }
 }
 enum RequestMethods: String {

@@ -32,6 +32,7 @@ extension BillingVC  :  UICollectionViewDelegateFlowLayout  , UICollectionViewDe
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? BillingMethodCell else {
             return UICollectionViewCell()
         }
+        cell.defaultview.isHidden = true
         cell.name = billingMethodarr[indexPath.row]
         return cell
     }
