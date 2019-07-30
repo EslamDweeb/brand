@@ -61,6 +61,9 @@ struct Config: Codable {
     func ReturnPriceAfterSale(price:Double,sale:Double) ->Double{
         return price - (price * sale)
     }
+    func ReturnPricepersent(sale:Double) -> String{
+        return "\( Double(round(sale * 100) / 100) * 100) %"
+    }
 }
 
 struct ProductConfigs:Codable {

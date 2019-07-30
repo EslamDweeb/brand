@@ -20,15 +20,15 @@ class  CartCell: UITableViewCell {
             brandName.text = cart.config.brand?.name ??  ""
             productName.text = cart.config.name
             if cart.config.sale != 0 {
-                discountLbl.text = "\( Double(cart.config.sale).roundToDecimal(3))"
-                discountPrice.text = "\(cart.config.ReturnPriceAfterSale(price: Double(cart.config.price), sale: Double(cart.config.sale)).roundToDecimal(3))SAR"
+                discountLbl.text = cart.config.ReturnPricepersent(sale: cart.config.sale)
+                discountPrice.text = "\(cart.config.ReturnPriceAfterSale(price: Double(cart.config.price), sale: Double(cart.config.sale)).roundToDecimal(3)) SAR"
                 priceLbl.setAttributeStringWithStrike("\(cart.config.price)")
             }else{
                 discountLbl.isHidden = true
                 discountPrice.text = "\(cart.config.price)"
                 priceLbl.isHidden = true
             }
-            QTY.text = "QTY:\(cart.qty)"
+            QTY.text = "QTY: \(cart.qty)"
             if cart.qty != 0{
                 Out.isHidden = true
             }else if cart.qty < Int(QTY.text ?? "0") ?? 0{
@@ -123,7 +123,7 @@ class  CartCell: UITableViewCell {
         brandName.anchor(top: containerView.topAnchor, left: Image.rightAnchor, bottom: nil, right: containerView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 16, paddingLeft: 16, paddingBottom: 0, paddingRight: 50, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         productName.anchor(top: brandName.bottomAnchor, left: Image.rightAnchor, bottom: nil, right: containerView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 16, paddingBottom: 0, paddingRight: 8, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         priceLbl.anchor(top: productName.bottomAnchor, left: Image.rightAnchor, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 16, paddingBottom: 0, paddingRight: 0, width: 100, height: 0, paddingCenterX: 0, paddingCenterY: 0)
-        discountLbl.anchor(top: productName.bottomAnchor, left: priceLbl.rightAnchor, bottom: nil, right: nil, centerX: nil, centerY: priceLbl.centerYAnchor, paddingTop: 8, paddingLeft: 16, paddingBottom: 0, paddingRight: 0, width: 40, height: 0, paddingCenterX: 0, paddingCenterY: 0)
+        discountLbl.anchor(top: productName.bottomAnchor, left: priceLbl.rightAnchor, bottom: nil, right: nil, centerX: nil, centerY: priceLbl.centerYAnchor, paddingTop: 8, paddingLeft: 16, paddingBottom: 0, paddingRight: 0, width: 50, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         QTY.anchor(top: priceLbl.bottomAnchor, left: Image.rightAnchor, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 16, paddingBottom: 0, paddingRight: 0, width: 150, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         Out.anchor(top: nil, left: nil, bottom: nil, right: containerView.rightAnchor, centerX: nil, centerY: QTY.centerYAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 8, width: 100, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         discountPrice.anchor(top: QTY.bottomAnchor, left: Image.rightAnchor, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 16, paddingBottom: 0, paddingRight: 0, width: 200, height: 0, paddingCenterX: 0, paddingCenterY: 0)

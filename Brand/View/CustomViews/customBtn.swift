@@ -13,9 +13,7 @@ class DefaultButtom: UIButton {
     
     init(enabledd : Bool? = nil ) {
         super.init(frame: .zero)
-        self.titleLabel?.font = setFont(name: .fontH, size: 20)
-        setCornerRadius(radius: 3)
-        Enabledd = enabledd ?? true
+          self.Enabledd = enabledd ?? true
         setup()
     }
     required init?(coder aDecoder: NSCoder) {
@@ -23,6 +21,9 @@ class DefaultButtom: UIButton {
         setup()
     }
     func setup(){
+        self.titleLabel?.font = setFont(name: .fontH, size: 20)
+        setCornerRadius(radius: 3)
+      
     }
 }
 class GradBtn  : DefaultButtom {
@@ -33,7 +34,11 @@ class GradBtn  : DefaultButtom {
         if Enabledd ?? true  {
             self.backgroundColor = .pink
             self.setShadow(shadowColor: UIColor.pink.cgColor, shadowOffset: CGSize(width: 0, height: 2), shadowOpacity: 1, shadowRaduis: 4)
+            setCornerRadius(radius: 3)
+            
         }else{
+            setCornerRadius(radius: 3)
+            
             self.backgroundColor = .lightgray
         }
     }

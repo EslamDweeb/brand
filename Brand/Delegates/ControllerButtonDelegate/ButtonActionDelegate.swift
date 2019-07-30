@@ -38,6 +38,5 @@ import UIKit
    
 }
 @objc protocol DisplayViewControllerDelegate {
-    
     @objc  func doSomethingWith(lat : Double , len : Double)
 }
