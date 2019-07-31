@@ -62,11 +62,11 @@ extension HomeViewController:UICollectionViewDataSource,UICollectionViewDelegate
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == mainView.bannerCollectionView{
-            if let url = URL(string: arrangedBanners![indexPath.row].url ) {
+            if let url = URL(string: arrangedBanners![indexPath.row].url! ) {
                 UIApplication.shared.open(url, options: [:])
             }
         }else{
-            print("HI!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+                print("HI!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
         }
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

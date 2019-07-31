@@ -35,7 +35,7 @@ import UIKit
       @objc optional func  getPendingTapped()
     @objc optional func  getDeliveredTapped()
     @objc optional func  getOtherTapped()
-   
+  @objc optional func infoTapped(_ sender: UIButton)
 }
 @objc protocol DisplayViewControllerDelegate {
     @objc  func doSomethingWith(lat : Double , len : Double)

@@ -218,5 +218,10 @@ class APIClient {
             complition(response.result)
         }
     }
+    static func deleteCart(id:Int,complition : @escaping (Result<checkoutModel,Error>) -> Void){
+        AF.request(APIRouter.deleteCartItem(id:id)).responseDecodable{(response: DataResponse<checkoutModel>) in
+            complition(response.result)
+        }
+    }
 
 }

@@ -36,7 +36,8 @@ struct BannersData:Codable {
 }
 struct Banner:Codable {
     let id,appPriority: Int
-    let name,url: String
+    let name: String
+    let url : String?
     let photos:Photo
     let appVisibility:Bool
 }

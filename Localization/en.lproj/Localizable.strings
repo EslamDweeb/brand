@@ -169,3 +169,9 @@
 "PENDING" = "PENDING";
 "DELIVERED" = "DELIVERED";
 "OTHER" = "OTHER";
+"Items" = "Items: ";
+"TotalAmount" = "Total Amount: ";
+"sar" = "SAR" ;
+"exceeded" = "Quantity exceeded";
+"Outofstock" = "Out of stock";
+"QTY" = "QTY";

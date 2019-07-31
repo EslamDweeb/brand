@@ -17,4 +17,5 @@ pod 'Cosmos', '~> 18.0'
 pod 'Kingfisher', '~> 5.0'
 pod 'MOLH'
 pod 'FlexibleSteppedProgressBar'
+pod 'EasyTipView', '~> 2.0.4'
 end

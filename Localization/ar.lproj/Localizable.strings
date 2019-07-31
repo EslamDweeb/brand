@@ -1,3 +1,16 @@
+/*
+ Localizable.strings
+ Brand
+ 
+ Created by nada dyaa on 7/30/19.
+ Copyright © 2019 Eslam Dweeb. All rights reserved.
+ */
+"QTY" = "الكميه ";
+"Outofstock" = "نفذ من المتجر";
+"exceeded" = "نفذت الكميه";
+"sar" = "ريال سعودي";
+"TotalAmount" = "السعر الكلي: ";
+"Items" = "الكميه: ";
 "Pilling_method" = "طريقه الدفع ";
 "Shippingـmethod" = "طريقه الشحن";
 "Your Addresses" = "عناوينك";
@@ -23,7 +36,6 @@
 "didn’t_have_Address" =  "ناسف لا يوجد لديك عناوين";
 "Unit price" = "سعر الوحده";
 "Name" = "الاسم";
-"QTY" = "الكميه";
 "Shipping Method" = "طريقه الشحن";
 "Shipping fee" = "ضريبه الشحن";
 "Billing Method" = "طريقه الدفع";
