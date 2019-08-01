@@ -28,7 +28,7 @@ extension MenuViewController : UITableViewDataSource , UITableViewDelegate {
         {
             cell.titleLabel.text = LoggedArray[indexPath.row]
             cell.icon.image = UIImage(named: loggedimagesnames[indexPath.row])
-            if cell.titleLabel.text == NSLocalizedString( "language", comment: ""){
+            if cell.titleLabel.text == "language".localized{
                 cell.ContainerView.isHidden = false
             }
         }
@@ -36,7 +36,7 @@ extension MenuViewController : UITableViewDataSource , UITableViewDelegate {
         {
             cell.titleLabel.text = NotLoggedArray[indexPath.row]
             cell.icon.image = UIImage(named: notloggedimagesnames[indexPath.row])
-            if cell.titleLabel.text == NSLocalizedString( "language", comment: ""){
+            if cell.titleLabel.text == "language".localized{
                 cell.ContainerView.isHidden = false
             }
         }
@@ -57,68 +57,68 @@ extension MenuViewController : UITableViewDataSource , UITableViewDelegate {
         if cell.isSelected {cell.backgroundColor = .pink} else {cell.backgroundColor = .clear}
         cell.titleLabel.text = labelname
         switch labelname {
-        case NSLocalizedString( "personal_information", comment: ""):
+        case "personal_information".localized:
             self.present(ProfileVC(), animated: true) {
                 cell.backgroundColor = .clear
             }
-        case NSLocalizedString( "myAddresses", comment: ""):
+        case "myAddresses".localized:
             self.present(MyAddressViewController(), animated: true) {
                 cell.backgroundColor = .clear
             }
-        case NSLocalizedString( "logout", comment: ""):
+        case "logout".localized:
             UserDefaults.standard.set("", forKey: Constants.Defaults.authToken)
             UserDefaults.standard.set(false, forKey: Constants.Defaults.isLogin)
             mainView.newTable.reloadData()
             self.present(SplashViewController(), animated: true) {
                 cell.backgroundColor = .clear
             }
-        case NSLocalizedString( "login", comment: ""):
+        case "login".localized:
             self.present(LoginViewController(), animated: true) {
                 cell.backgroundColor = .clear
             }
             
-        case NSLocalizedString( "language", comment: ""):
+        case "language".localized:
             // NSLocalizedString("localize me please" , comment: "")
             MOLH.setLanguageTo(MOLHLanguage.currentAppleLanguage() == "ar" ? "en" : "ar")
             MOLH.reset(transition: .transitionCrossDissolve)
             self.mainView.newTable.reloadData()
-        case NSLocalizedString( "myOrders", comment: ""):
+        case "myOrders".localized:
             self.present(OrderViewController(), animated: true) {
                 cell.backgroundColor = .clear
             }
-        case NSLocalizedString( "myReview", comment: ""):
+        case "myReview".localized:
             self.present(ReviewController(), animated: true) {
                 cell.backgroundColor = .clear
             }
-        case NSLocalizedString( "cart", comment: ""):
+        case "cart".localized:
             self.present(CartController(), animated: true) {
                 cell.backgroundColor = .clear
             }
-        case NSLocalizedString( "wishlist", comment: ""):
+        case "wishlist".localized:
             self.present(WishListController(), animated: true) {
                 cell.backgroundColor = .clear
             }
-        case NSLocalizedString( "about", comment: ""):
+        case "about".localized:
             self.present(LoginViewController(), animated: true) {
                 cell.backgroundColor = .clear
             }
-        case NSLocalizedString( "terms&privacy", comment: ""):
+        case "terms&privacy".localized:
             self.present(LoginViewController(), animated: true) {
                 cell.backgroundColor = .clear
             }
-        case NSLocalizedString( "customerService", comment: ""):
+        case "customerService".localized:
             self.present(LoginViewController(), animated: true) {
                 cell.backgroundColor = .clear
             }
-        case NSLocalizedString( "returnPolicy", comment: ""):
+        case "returnPolicy".localized:
             self.present(LoginViewController(), animated: true) {
                 cell.backgroundColor = .clear
             }
-        case NSLocalizedString( "saleInBrand", comment: ""):
+        case "saleInBrand".localized:
             self.present(LoginViewController(), animated: true) {
                 cell.backgroundColor = .clear
             }
-        case NSLocalizedString( "buyFromBrand", comment: ""):
+        case "buyFromBrand".localized:
             self.present(LoginViewController(), animated: true) {
                 cell.backgroundColor = .clear
             }
