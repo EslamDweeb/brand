@@ -30,6 +30,7 @@ enum APIRouter : URLRequestConvertible {
       case getbillingMethod
     case checkout(flag: Bool , shippingId : Int , billingId : Int , addressId : Int , coupon : String)
      case deleteCartItem(id:Int)
+      case searshItem(name:String)
     private var Methods : HTTPMethod {
         switch self {
         case .signUp:
@@ -72,6 +73,8 @@ enum APIRouter : URLRequestConvertible {
             return .post
         case .deleteCartItem:
          return   .post
+        case .searshItem:
+            return .get
         }
     }
     private var Paths : String {
@@ -122,6 +125,8 @@ enum APIRouter : URLRequestConvertible {
            
         case .deleteCartItem(let id):
             return "/api/cart-items/\(id)"
+        case .searshItem(let name):
+             return "/api/configs?name=\(name)"
         }
     }
     private var headers : HTTPHeaders {
@@ -248,6 +253,10 @@ enum APIRouter : URLRequestConvertible {
                 HTTPHeaderField.contentType.rawValue : ContentType.json.rawValue
               
             ]
+        case .searshItem:
+            return [ HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue
+            ]
+            
         }
     }
     private var parameters :Parameters?{
@@ -377,11 +386,33 @@ enum APIRouter : URLRequestConvertible {
                       HTTPHeaderField.locale.rawValue : MOLHLanguage.currentAppleLanguage()
             
             ]
+        case .searshItem:
+            return [:]
         }
     }
 
 
     func asURLRequest() throws -> URLRequest {
+        switch self {
+        case .searshItem:
+            let url = "\(Constants.ProductionServer.baseURL)\(Paths)"
+            let safeUrl = url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+            var urlRequest = URLRequest(url: URL(string: safeUrl!)!)
+            urlRequest.httpMethod = Methods.rawValue
+            urlRequest.headers = headers
+            if Methods.rawValue != "GET"{
+                if let parameters = parameters {
+                    do {
+                        urlRequest.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: [])
+                    }catch{
+                        throw AFError.parameterEncodingFailed(reason:.jsonEncodingFailed(error: error))
+                    }
+                }
+            }
+            return urlRequest
+        default:
+        
+        
             let url = try Constants.ProductionServer.baseURL.asURL()
             var urlRequest = URLRequest(url: url.appendingPathComponent(Paths))
             urlRequest.httpMethod = Methods.rawValue
@@ -399,4 +430,5 @@ enum APIRouter : URLRequestConvertible {
             }
              return urlRequest
         }
+    }
 }

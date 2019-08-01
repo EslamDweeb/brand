@@ -223,5 +223,11 @@ class APIClient {
             complition(response.result)
         }
     }
+    
+    static func getsearchitems(name:String,complition : @escaping (Result<searchModel,Error>) -> Void){
+        AF.request(APIRouter.searshItem(name: name)).responseDecodable{(response: DataResponse<searchModel>) in
+            complition(response.result)
+        }
+    }
 
 }

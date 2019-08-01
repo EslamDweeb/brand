@@ -43,7 +43,7 @@ class WishCell: UICollectionViewCell {
     lazy var image: UIImageView = {
         let img = UIImageView()
         img.image = #imageLiteral(resourceName: "XSMax")
-        img.contentMode = .scaleAspectFill
+        img.contentMode = .scaleToFill
         return img
     }()
     lazy var brandName: DescriptionLabel = {
