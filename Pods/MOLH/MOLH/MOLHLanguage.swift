@@ -31,9 +31,11 @@ open class MOLHLanguage {
         let userdef = UserDefaults.standard
         let langArray = userdef.object(forKey: APPLE_LANGUAGE_KEY) as! NSArray
         let current = langArray.firstObject as! String
-        let endIndex = current.index(current.startIndex, offsetBy: 2)
-        let currentWithoutLocale = current[current.startIndex..<endIndex]
-        return String(currentWithoutLocale)
+        if let hyphenIndex = current.firstIndex(of: "-") {
+            return String(current[..<hyphenIndex])
+        } else {
+            return current
+        }
     }
     
     /**
@@ -106,7 +108,7 @@ open class MOLHLanguage {
      @return true if its a right to left language
      */
     public static func isRTLLanguage() -> Bool {
-        return currentLocaleIdentifier().hasPrefix("ar") || currentLocaleIdentifier().hasPrefix("fa")
+        return !RTLLanguages.filter{$0 == currentLocaleIdentifier()}.isEmpty
     }
     
     /**
@@ -117,6 +119,8 @@ open class MOLHLanguage {
      @return true if its a right to left language
      */
     public static func isRTLLanguage(language: String) -> Bool {
-        return language.hasPrefix("ar") || language.hasPrefix("fa")
+        return !RTLLanguages.filter{language == $0}.isEmpty
     }
+    
+    private static let RTLLanguages = ["ar", "fr", "he", "ckb-IQ","ckb-IR", "ur"]
 }

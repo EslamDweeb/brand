@@ -5,6 +5,7 @@
  Created by nada dyaa on 7/30/19.
  Copyright © 2019 Eslam Dweeb. All rights reserved.
  */
+"cart" = "سلة المشتريات";
 "QTY" = "الكميه ";
 "Outofstock" = "نفذ من المتجر";
 "exceeded" = "نفذت الكميه";
@@ -70,7 +71,6 @@
 "mustHavePhoto" = "يجب ان يكون لديك صوره اولاً";
 "myAddresses" = "عناويني";
 "person_name" = "اسم المستخدم";
-"cart" = "عربة التسوق";
 "wishlist" = "التمنيات";
 "myOrders" = "طلباتي";
 "myReview" = "تقييمي";
@@ -159,7 +159,7 @@
 "cancel" = "إلغاء";
 "email_not_valid" = "بريد الكترونى غير صالح";
 "notification" = "الإشعارات";
-"cart" = "سلة المشتريات";
+
 "my_reviews" = "تقيماتي";
 "get_started" = "فلنبدأ";
 "Email/phone" = "البريد الالكتروني/ الهاتف";
