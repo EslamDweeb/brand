@@ -18,7 +18,7 @@ struct Product: Codable {
     let slug: String
     let sellerNotes: String?
     let configs: [Config]?
-    let tags: [String]?
+    let tags: [Tag]?
     let appVisibility, siteVisibility, flashOffer, eligibleForFreeShipping: Bool
     let configurable: Bool
     let video, file: String?

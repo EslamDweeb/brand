@@ -38,11 +38,10 @@ class ThirdCellReviewCell:UICollectionViewCell{
         rate.settings.fillMode = .half
         return rate
     }()
-    lazy var image: UIImageView = {
-        let img = UIImageView()
-        img.image = #imageLiteral(resourceName: "XSMax")
-        img.contentMode = .scaleAspectFit
-        
+    lazy var image: RoundedImageView = {
+        let img = RoundedImageView(frame: .zero)
+//        img.image = #imageLiteral(resourceName: "XSMax")
+//        img.contentMode = .scaleAspectFill
         return img
     }()
     lazy var nameLbl: DescriptionLabel = {
@@ -67,7 +66,8 @@ class ThirdCellReviewCell:UICollectionViewCell{
         super.init(coder: aDecoder)
     }
     private func setup(){
-        image.layer.cornerRadius = image.frame.width / 2
+//        image.layer.cornerRadius = image.frame.width / 2
+//        image.clipsToBounds = true
         addSubViews()
         addConstrainsToUI()
     }
