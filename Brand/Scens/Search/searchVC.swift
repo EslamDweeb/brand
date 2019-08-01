@@ -34,13 +34,14 @@ class searchVC: UIViewController,ButtonActionDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         handelReachability(reachability: reachability)
+                  getItems()
+        }
+    func getItems()  {
         DispatchQueue.main.async {
             self.mainView.activityStartAnimating(activityColor: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.6952322346), backgroundColor: .clear)
             APIClient.getsearchitems(name: "bl", complition: { (result) in
                 switch result{
                 case .success(let data):
-  
-                    print("nada  \(data.configs)")
                     self.searchitems = data.configs!
                     DispatchQueue.main.async {
                         self.mainView.searchCollection.reloadData()
@@ -51,10 +52,9 @@ class searchVC: UIViewController,ButtonActionDelegate {
                     print(error)
                 }
             })
-            print("hiiii")
+           
         }
-        }
-        
+    }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
