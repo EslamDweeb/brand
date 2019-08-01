@@ -94,7 +94,6 @@ class HomeViewController:UIViewController,ButtonActionDelegate{
                     print("\(self.recomendedCount)")
                     print("\(self.popularCount)")
                     print("\(self.latestCount)")
-                    print(data)
                     self.mainView.activityStopAnimating()
                     self.mainView.mainCollection.reloadData()
                 case.failure(let error):

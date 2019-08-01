@@ -15,6 +15,11 @@ class  RateProgressView:UIView{
         lbl.font = setFont(name: .fontM, size: 8)
         return lbl
     }()
+    lazy var numberOfUserLable:UILabel = {
+        let lbl = UILabel()
+        lbl.font = setFont(name: .fontM, size: 8)
+        return lbl
+    }()
     lazy var progress:LinearProgressBar = {
        let prog = LinearProgressBar()
         prog.trackColor = #colorLiteral(red: 0.8941176471, green: 0.8941176471, blue: 0.8941176471, alpha: 1)
@@ -32,6 +37,7 @@ class  RateProgressView:UIView{
         stack.spacing = 2
         stack.addArrangedSubview(numberLable)
         stack.addArrangedSubview(progress)
+        stack.addArrangedSubview(numberOfUserLable)
         return stack
     }()
     
@@ -40,9 +46,11 @@ class  RateProgressView:UIView{
        
         addSubview(hStackView)
         numberLable.widthAnchor.constraint(equalToConstant: 5).isActive = true
-        numberLable.heightAnchor.constraint(equalToConstant: 11).isActive = true
+       // numberLable.heightAnchor.constraint(equalToConstant: 11).isActive = true
+        numberOfUserLable.widthAnchor.constraint(equalToConstant: 30).isActive = true
+        //numberOfUserLable.heightAnchor.constraint(equalToConstant: 15).isActive = true
         progress.widthAnchor.constraint(equalToConstant: 157).isActive = true
-        progress.heightAnchor.constraint(equalToConstant: 5.5).isActive = true
+        //progress.heightAnchor.constraint(equalToConstant: 5.5).isActive = true
         hStackView.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
     }
     

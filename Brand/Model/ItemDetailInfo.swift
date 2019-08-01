@@ -13,11 +13,12 @@ struct ItemDetailInfo:Codable {
 }
 struct DetailedConfig:Codable {
     let id, productID: Int
-    let productSlug, slug, sku: String
+    let productSlug, slug: String
     let catalogID: Int
     let catalogName: String
     let catalogPhoto: Media
-    let name, configDescription, sellerNotes, madeIn: String
+    let name,madeIn: String
+    let configDescription,sku,sellerNotes:String?
     let gender: Int
     let sale: Double
     let price: Int
@@ -26,16 +27,16 @@ struct DetailedConfig:Codable {
     let vendor: Vendor
     let brand: Brand?
     let overallRating, overallRatingCount, modelRatingID: Double
-    let productOptions: [ProductOptionValues]
-    let discounts: [Discount]
-    let mainPhoto: Media
-    let photos: [Media]
+    let productOptions: [ProductOptions]
+    let discounts: [Discount]?
+    let mainPhoto: Media?
+    let photos: [Media]?
     let video, file: Media?
     let sellTimes: Int
     let isFavorite: Bool
-    let tags: [Tag]
+    let tags: [Tag]?
     let configOptions: [ConfigOption]
-    let specs: [Spec]
+    let specs: [Spec]?
     let isEligibleForFreeShipping: Bool
     let relatedProducts: [Config]?
     let inCart, canRate: Bool
@@ -92,7 +93,8 @@ struct Input: Codable {
 struct ConfigOptionValue: Codable {
     let id: Int
     let value: String
-    let selected, available: Bool
+    let available: Bool
+//     let selected, available: Bool
 }
 
 // MARK: - Discount
@@ -109,10 +111,10 @@ struct Discount: Codable {
 struct ProductOptions: Codable {
     let id, optionID: Int
     let name, inputType: String
-    let values: [ProductOptionValues]
+    let values: [ProductOptionValues]?
     let addsPrice: Int
     let isRequired: Bool
-    let selected: String
+//    let selected: String
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -122,7 +124,7 @@ struct ProductOptions: Codable {
         case values
         case addsPrice = "adds_price"
         case isRequired = "is_required"
-        case selected
+//        case selected
     }
 }
 

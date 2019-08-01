@@ -17,11 +17,17 @@ class WishCell: UICollectionViewCell {
             image.kf.setImage(with: url)
             productName.text = con.name
             brandName.text = con.brand?.name ?? ""
-            isFav = con.isFavorite
+            if config?.isFavorite == false {
+                let image = UIImage(named: "emptyHeart")
+                favBtn.setImage(image, for: .normal)
+            }else if config?.isFavorite == true{
+                let image = UIImage(named: "filledHeart")
+                favBtn.setImage(image, for: .normal)
+            }
             if con.sale != 0  {
                 priceLbl.setAttributeStringWithStrike("\(con.price)")
-                discountLbl.text = "\(Double(con.sale).roundToDecimal(3))"
-                discountPrice.text = "\(con.ReturnPriceAfterSale(price: (Double(priceLbl.text ?? "0"))!, sale: Double(discountLbl.text ?? "0")!))"
+                discountLbl.text = "\(con.ReturnPricepersent(sale: Double(con.sale).roundToDecimal(3)))"
+                discountPrice.text = "\(con.ReturnPriceAfterSale(price: (Double(priceLbl.text ?? "0") ?? 0), sale: Double(discountLbl.text ?? "0") ?? 0))"
             }else{
                  priceLbl.text = "\(con.price)"
                  priceLbl.textColor = .black
@@ -37,7 +43,7 @@ class WishCell: UICollectionViewCell {
     lazy var image: UIImageView = {
         let img = UIImageView()
         img.image = #imageLiteral(resourceName: "XSMax")
-        img.contentMode = .scaleAspectFit 
+        img.contentMode = .scaleAspectFill
         return img
     }()
     lazy var brandName: DescriptionLabel = {
@@ -67,18 +73,18 @@ class WishCell: UICollectionViewCell {
     }()
     lazy var favBtn: UIButton = {
         let btn = UIButton()
-        let image = UIImage(named: "wish")
+        let image = UIImage(named: "emptyHeart")
         btn.setImage(image, for: .normal)
         btn.addTarget(self, action: #selector(addToWishList), for: .touchUpInside)
         return btn
     }()
-    var isFav = false
+    var isFav = true
     @objc func addToWishList(){
-        if isFav == true {
-            let image = UIImage(named: "wish")
+        if isFav == false {
+            let image = UIImage(named: "emptyHeart")
             favBtn.setImage(image, for: .normal)
         }else{
-            let image = UIImage(named: "invalidName")
+            let image = UIImage(named: "filledHeart")
             favBtn.setImage(image, for: .normal)
         }
         APIClient.toggleFav(id: config?.id ?? 0) { (result) in
@@ -102,6 +108,7 @@ class WishCell: UICollectionViewCell {
     }
     override init(frame: CGRect) {
         super.init(frame: frame)
+     
         setup()
     }
     required init?(coder aDecoder: NSCoder) {
@@ -128,7 +135,7 @@ class WishCell: UICollectionViewCell {
         
         favBtn.anchor(top: containerView.topAnchor, left: nil, bottom: nil, right: containerView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 4, width: 40, height: 40, paddingCenterX: 0, paddingCenterY: 0)
         
-        image.anchor(top: containerView.topAnchor, left: nil, bottom: nil, right: nil, centerX: containerView.centerXAnchor, centerY: nil, paddingTop: 12, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 120, height: 120, paddingCenterX: 0, paddingCenterY: 0)
+        image.anchor(top: containerView.topAnchor, left: containerView.leftAnchor, bottom: nil, right: containerView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 120, paddingCenterX: 0, paddingCenterY: 0)
         
         brandName.anchor(top: image.bottomAnchor, left: containerView.leftAnchor, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
         brandName.widthAnchor.constraint(greaterThanOrEqualToConstant: 40).isActive = true
@@ -140,7 +147,7 @@ class WishCell: UICollectionViewCell {
         
         discountPrice.anchor(top: productName.bottomAnchor, left: priceLbl.rightAnchor, bottom: nil, right: containerView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width:0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
         
-        cartBtn.anchor(top: image.bottomAnchor, left: nil, bottom: nil, right: containerView.rightAnchor, centerX: nil, centerY: nil, paddingTop: -8, paddingLeft: 0, paddingBottom: 0, paddingRight: 8, width: 45, height: 45, paddingCenterX: 0, paddingCenterY: 0)
+        cartBtn.anchor(top: nil, left: nil, bottom: image.bottomAnchor, right: containerView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: -20, paddingRight: 0, width: 50, height: 50, paddingCenterX: 0, paddingCenterY: 0)
     }
 }
 

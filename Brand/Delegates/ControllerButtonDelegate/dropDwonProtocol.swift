@@ -13,5 +13,5 @@ protocol dropDwonProtocol {
     func returnIndexPath(indexPath:IndexPath) -> IndexPath
 }
 protocol ExploreCellDelegate:class{
-    func presentController()
+    func presentController(slug:String)
 }

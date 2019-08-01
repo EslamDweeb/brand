@@ -44,7 +44,7 @@ extension HomeViewController:UICollectionViewDataSource,UICollectionViewDelegate
             return cell
         }else{
              guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as? ExploreCell else{return UICollectionViewCell()}
-            //cell.delegate = self
+            cell.delegate = self
             if indexPath == IndexPath(row: 0, section: 0){
                 cell.titleLabel.text = titleArray[indexPath.section]
                 cell.configArray = exploreData?.recommended ?? []
@@ -62,7 +62,7 @@ extension HomeViewController:UICollectionViewDataSource,UICollectionViewDelegate
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == mainView.bannerCollectionView{
-            if let url = URL(string: arrangedBanners![indexPath.row].url ) {
+            if let url = URL(string: arrangedBanners![indexPath.row].url ?? "" ) {
                 UIApplication.shared.open(url, options: [:])
             }
         }else{
@@ -96,8 +96,10 @@ extension HomeViewController:UICollectionViewDataSource,UICollectionViewDelegate
     
 }
 
-//extension HomeViewController:ExploreCellDelegate{
-//    func presentController() {
-
-//    }
-//}
+extension HomeViewController:ExploreCellDelegate{
+    func presentController(slug: String) {
+        let dest = ItemDetailVC()
+        dest.slug = slug
+        self.present(dest, animated: true, completion: nil)
+    }
+}

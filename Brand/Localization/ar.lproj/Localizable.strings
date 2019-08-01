@@ -5,16 +5,12 @@
   Created by Eslam Dweeb on 6/24/19.
   Copyright © 2019 Eslam Dweeb. All rights reserved.
 */
-<<<<<<< HEAD
 "tax" = "ضريبه";
 "Confirm" = "تاكيد الطلب";
 "total" = "الاجمالي";
 "Amount" = "الكميه";
-=======
 "addReview" = "اضف تقيم";
-
 ;"الكميه" = "Amount"
->>>>>>> b7a13a57ac61fb75b222fc89f65ec54ec3587695
 "copoun" = "كود";
 "Copoun_discount" = "قيمه الخصم";
 "Apply Copoun" = "ادخل الكود";

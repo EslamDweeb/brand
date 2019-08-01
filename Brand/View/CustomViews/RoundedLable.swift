@@ -28,7 +28,8 @@ class RoundedLable: UILabel {
         self.backgroundColor = .pink
         self.textColor = .white
         self.textAlignment = .center
-        self.font = UIFont(name: "Avenir-Medium", size: 9)
+        self.font = UIFont(name: .fontL, size: 12)
   
     }
+    
 }

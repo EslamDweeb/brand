@@ -31,6 +31,7 @@ class ProfileVC :UIViewController,ButtonActionDelegate {
         super.viewDidLoad()
         imagepicker =  customImagePicker(deleget: self, imagePicker: imagePickerViewController, viewController: self)
         imagePickerViewController.delegate = self
+        print(UserDefaults.standard.string(forKey: Constants.Defaults.authToken) ?? "")
         if UserDefaults.standard.string(forKey: Constants.Defaults.authToken) != ""{
             self.getUserInfo()
         }else{

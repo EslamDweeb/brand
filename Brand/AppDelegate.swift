@@ -18,8 +18,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,MOLHResetable {
         let appDlg = UIApplication.shared.delegate as? AppDelegate
         appDlg?.window?.rootViewController = SplashViewController()
     }
-    
-
     var window: UIWindow?
 
 

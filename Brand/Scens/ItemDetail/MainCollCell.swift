@@ -9,14 +9,16 @@
 import UIKit
 
 class MainCollCell:UICollectionViewCell,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
-  
+    
     let firstCell = "firstCell"
     let secondCell = "secondCell"
     let thirdCell = "thirdCell"
     var itemDetails:ItemDetailInfo?
     var reviews = [Ratingable]()
     var rateData:OverallRating?
-     let group = DispatchGroup()
+    let group = DispatchGroup()
+    var row:Int?
+    var handelCellSwipe:((_ row:Int) -> ())?
     lazy var pageCollectionView:UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -35,43 +37,7 @@ class MainCollCell:UICollectionViewCell,UICollectionViewDelegate,UICollectionVie
         addSubview(pageCollectionView)
         pageCollectionView.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
     }
-    fileprivate func getRatingAndReviewInfo(catlogID:Int,modalID:Int){
-        self.activityStartAnimating(activityColor: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.6952322346), backgroundColor: .clear)
-        group.enter()
-        getRatingData(id:modalID)
-        group.enter()
-        getReviewData(id:catlogID)
-        group.notify(queue: .main) {
-            self.activityStopAnimating()
-            print("finish!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-        }
-    }
-    fileprivate func getRatingData(id:Int){
-        APIClient.getConfigRating(id: id) { (result) in
-            switch result{
-            case.success(let data):
-                print(data)
-                self.rateData = data.overallRating
-                self.group.leave()
-            case.failure(let error):
-                print(error)
-                self.group.leave()
-            }
-        }
-    }
-    fileprivate func getReviewData(id:Int){
-        APIClient.getConfigReviews(id: id) { (result) in
-            switch result{
-            case.success(let data):
-                self.reviews = data.ratingables
-                print(data)
-                self.group.leave()
-            case.failure(let error):
-                print(error)
-                self.group.leave()
-            }
-        }
-    }
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -87,8 +53,21 @@ class MainCollCell:UICollectionViewCell,UICollectionViewDelegate,UICollectionVie
             cell.getDescriptionViewData(description:itemDetails?.config.configDescription ?? "")
             cell.getFooterViewData(configs: itemDetails?.config.relatedProducts ?? [])
             if itemDetails?.config.configOptions != nil {
-                cell.getSizeViewData(configOption: (itemDetails?.config.configOptions[0])!)
-                cell.getColorViewData(configOption: (itemDetails?.config.configOptions[1])!)
+                if itemDetails?.config.configOptions.count == 1{
+                    if itemDetails?.config.configOptions[0].name == "color" {
+                        cell.getColorViewData(configOption: (itemDetails?.config.configOptions[0])!)
+                    }else if itemDetails?.config.configOptions[0].name == "size"{
+                        cell.getSizeViewData(configOption: (itemDetails?.config.configOptions[0])!)
+                    }
+                }else if itemDetails?.config.configOptions.count ?? 0 > 1 {
+                    for option in itemDetails?.config.configOptions ?? [] {
+                        if option.name == "color"{
+                            cell.getColorViewData(configOption:option)
+                        }else if option.name == "size"{
+                            cell.getSizeViewData(configOption:option)
+                        }
+                    }
+                }
             }
             return cell
         case 1:
@@ -116,9 +95,18 @@ class MainCollCell:UICollectionViewCell,UICollectionViewDelegate,UICollectionVie
         return 0
     }
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-//        guard let thirdCell = collectionView.cellForItem(at: IndexPath(row: 2, section: 0)) as? ThirdCell else{return}
-        if indexPath.row == 1{
-            getRatingAndReviewInfo(catlogID: itemDetails?.config.catalogID ?? 0,modalID: Int(itemDetails?.config.modelRatingID ?? 0))
-        }
+        ////        guard let thirdCell = collectionView.cellForItem(at: IndexPath(row: 2, section: 0)) as? ThirdCell else{return}
+        //        if indexPath.row == 1{
+        //            getRatingAndReviewInfo(catlogID: itemDetails?.config.catalogID ?? 0,modalID: Int(itemDetails?.config.modelRatingID ?? 0))
+        //        }
+          //self.handelCellSwipe?(indexPath.row)
     }
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+          let x = targetContentOffset.pointee.x
+           self.row = Int(x/self.frame.width)
+           self.handelCellSwipe?(row!)
+    }
+//    func handelSwipe(_ row:Int){
+//        pageCollectionView.scrollToItem(at: IndexPath(row: row, section: 0), at: .centeredHorizontally, animated: true)
+//    }
 }

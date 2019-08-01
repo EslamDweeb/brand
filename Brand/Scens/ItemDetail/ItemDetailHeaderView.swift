@@ -85,7 +85,7 @@ class ItemDetailHeaderView: UIView {
         lable.text = "200"
         return lable
     }()
-    lazy var customtabBar = CustomTabBar()
+    lazy var customtabBar = CustomTabBar(actionDelegate: actionDelegate!)
     init(_ collectionDelegate:UICollectionViewDelegate,_ collectionDataSource:UICollectionViewDataSource,_ buttonAction:ButtonActionDelegate){
         super.init(frame: .zero)
         self.actionDelegate = buttonAction
@@ -128,26 +128,27 @@ class ItemDetailHeaderView: UIView {
     }
 }
 
-class ItemDetailCollHeader:UICollectionReusableView,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,ButtonActionDelegate {
+class ItemDetailCollHeader:UICollectionReusableView,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,ButtonActionDelegate{
     var photos = [Media]()
     let cellID = "cellID"
+    var dismissVC: (()->())?
+    var handelTabBarTapped: ((_ tag:UITapGestureRecognizer)->())?
+    var handelFlowBtnTapped: ((_ sender:UIButton)->())?
+    //weak var actionDelegate:ButtonActionDelegate?
     lazy var header:ItemDetailHeaderView = {
         let header = ItemDetailHeaderView(self, self, self)
         header.backgroundColor = .black
         return header
     }()
-    
-    override init(frame: CGRect) {
+    var senderTag:String?
+    override init(frame:CGRect) {
         super.init(frame: frame)
         addSubview(header)
         header.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height:0, paddingCenterX: 0, paddingCenterY: 0)
     }
-    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    
     func setData(rating:Double,numberOfuserRating:Double,price:Double,sale:Double?,name:String,numberOfPages:Int){
         header.rateView.rating = rating
         header.titlelable.text = name
@@ -178,5 +179,18 @@ class ItemDetailCollHeader:UICollectionReusableView,UICollectionViewDelegate,UIC
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0
+    }
+    func dissmisController() {
+        self.dismissVC?()
+    }
+    func customTabBarTapped(_ sender: UITapGestureRecognizer) {
+        self.handelTabBarTapped?(sender)
+    }
+    func flowButtonTapped(_ sender: UIButton) {
+        self.handelFlowBtnTapped?(sender)
+    }
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        let x = targetContentOffset.pointee.x
+        header.pageControl.currentPage = Int(x/self.frame.width)
     }
 }

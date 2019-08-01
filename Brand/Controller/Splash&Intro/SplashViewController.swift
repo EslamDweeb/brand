@@ -96,7 +96,8 @@ class SplashViewController: UIViewController {
                     self?.setEncodedData(data: data.banners, Constants.Defaults.banners)
                     self?.group.leave()
                 }
-            case .failure(_):
+            case .failure(let error):
+                print(error)
                 self?.createAlert(erroMessage: "Error: Server Error please try again")
             }
         }

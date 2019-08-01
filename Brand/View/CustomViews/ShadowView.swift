@@ -26,6 +26,7 @@ class ShadowView : UIView {
         self.layer.cornerRadius = 5
         self.backgroundColor = .white
         self.layer.borderColor = #colorLiteral(red: 0.8039215686, green: 0.8039215686, blue: 0.8039215686, alpha: 0.6473371479)
+        self.clipsToBounds = true
     }
     
     

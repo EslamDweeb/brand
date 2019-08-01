@@ -43,7 +43,7 @@ struct Config: Codable {
     let price, qty: Int
     let brand: Brand?
     let isFlashOffer: Bool
-    let mainPhoto: Photo?
+    let mainPhoto: Media?
     let isFavorite: Bool
     let oldPrice, newPrice: Int?
     
@@ -60,6 +60,9 @@ struct Config: Codable {
     }
     func ReturnPriceAfterSale(price:Double,sale:Double) ->Double{
         return price - (price * sale)
+    }
+    func ReturnPricepersent(sale:Double) -> String{
+        return "\( Double(round(sale * 100) / 100) * 100) %"
     }
 }
 

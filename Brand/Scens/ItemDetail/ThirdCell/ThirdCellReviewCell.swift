@@ -15,7 +15,7 @@ class ThirdCellReviewCell:UICollectionViewCell{
     var review:Ratingable? {
         didSet{
             guard let review = review else{return}
-            let url = URL(string: review.subObjectMedia?.path ?? "")
+            let url = URL(string: review.userPhoto?.path ?? "")
             image.kf.setImage(with: url)
             rateView.rating = Double(review.value)
             nameLbl.text = review.userFullName
@@ -42,7 +42,7 @@ class ThirdCellReviewCell:UICollectionViewCell{
         let img = UIImageView()
         img.image = #imageLiteral(resourceName: "XSMax")
         img.contentMode = .scaleAspectFit
-        img.layer.cornerRadius = img.frame.width / 2
+        
         return img
     }()
     lazy var nameLbl: DescriptionLabel = {
@@ -67,6 +67,7 @@ class ThirdCellReviewCell:UICollectionViewCell{
         super.init(coder: aDecoder)
     }
     private func setup(){
+        image.layer.cornerRadius = image.frame.width / 2
         addSubViews()
         addConstrainsToUI()
     }

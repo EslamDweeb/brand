@@ -63,9 +63,13 @@ extension ExploreCell:UICollectionViewDelegate,UICollectionViewDataSource,UIColl
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: (collectionView.frame.width / 2.5) , height: 230)
+        return CGSize(width: 160 , height: 210)
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let cell = collectionView.cellForItem(at: indexPath) as? WishCell else{return}
+        delegate?.presentController(slug: cell.config?.slug ?? "")
     }
 }

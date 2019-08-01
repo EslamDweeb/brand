@@ -88,7 +88,7 @@ enum ProductRouter:URLRequestConvertible {
                 ]
          case .allReviews,.updateReview,.getOrders,.getOrderDetails,.getWishlist,.getCartData,.toggleFav,.getExploreData,.getitemDetail,.getConfigReview,.getConfigRating:
             return [
-                HTTPHeaderField.authentication.rawValue : " \(ContentType.token.rawValue) \(UserDefaults.standard.string(forKey: Constants.Defaults.authToken)!)" ,
+                HTTPHeaderField.authentication.rawValue : " \(ContentType.token.rawValue) \(UserDefaults.standard.string(forKey: Constants.Defaults.authToken) ?? "")" ,
                 HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue,
                 HTTPHeaderField.contentType.rawValue : ContentType.json.rawValue
             ]

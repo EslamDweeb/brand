@@ -18,8 +18,13 @@ class ThirdCellHeadView:UIView {
             thirdProgressView.progress.progressValue = CGFloat(rate.threeStarCount)
             fourthProgressView.progress.progressValue = CGFloat(rate.fourStarCount)
             fifthProgressView.progress.progressValue = CGFloat(rate.fiveStarCount)
+            firstProgressView.numberOfUserLable.text = "(\(rate.oneStarCount)user)"
+            secondProgressView.numberOfUserLable.text = "(\(rate.twoStarCount)user)"
+            thirdProgressView.numberOfUserLable.text = "(\(rate.threeStarCount)user)"
+            fourthProgressView.numberOfUserLable.text = "(\(rate.fourStarCount)user)"
+            fifthProgressView.numberOfUserLable.text = "(\(rate.fiveStarCount)user)"
             ratingValueLable.text = rate.avgValue
-            ratingUserNumberLable.text = "\(rate.totalCount)"
+            ratingUserNumberLable.text = "(\(rate.totalCount)User)"
             rateView.rating = Double(rate.avgValue) ?? 0
         }
     }
@@ -111,8 +116,8 @@ class ThirdCellHeadView:UIView {
     private func addConstriantsToViews(){
         vStackView.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 32, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         vStackView2.anchor(top: topAnchor, left: nil, bottom: nil, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 24, paddingLeft: 0, paddingBottom: 0, paddingRight: 8, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
-        firstProgressView.widthAnchor.constraint(lessThanOrEqualToConstant: 170).isActive = true
-        firstProgressView.heightAnchor.constraint(lessThanOrEqualToConstant: 11).isActive = true
+        firstProgressView.widthAnchor.constraint(lessThanOrEqualToConstant: 210).isActive = true
+        firstProgressView.heightAnchor.constraint(lessThanOrEqualToConstant: 20).isActive = true
         addReviewBtn.widthAnchor.constraint(greaterThanOrEqualToConstant: 150).isActive = true
         addReviewBtn.heightAnchor.constraint(lessThanOrEqualToConstant: 30).isActive = true
     }

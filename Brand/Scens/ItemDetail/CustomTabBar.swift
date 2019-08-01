@@ -9,23 +9,27 @@
 import UIKit
 
 class CustomTabBar: UIView {
-    
+    weak var actionDelegate:ButtonActionDelegate?
     lazy var detailnBtn:CustomTabBarButton = {
-        let btn = CustomTabBarButton()
-        btn.iconImageView.image = #imageLiteral(resourceName: "infoCircleAnticon")
+        let btn = CustomTabBarButton(tapDelegate: actionDelegate!)
+        btn.iconImageView.image = #imageLiteral(resourceName: "infofill")
         btn.titleLable.text = "Details"
+        btn.tapGesture.name = "details"
+        btn.titleLable.textColor = .pink
         return btn
     }()
     lazy var specsBtn:CustomTabBarButton = {
-        let btn = CustomTabBarButton()
+        let btn = CustomTabBarButton(tapDelegate: actionDelegate!)
         btn.iconImageView.image = #imageLiteral(resourceName: "specsEmpty")
         btn.titleLable.text = "Specs"
+        btn.tapGesture.name = "specs"
         return btn
     }()
     lazy var reviewBtn:CustomTabBarButton = {
-        let btn = CustomTabBarButton()
+        let btn = CustomTabBarButton(tapDelegate: actionDelegate!)
         btn.iconImageView.image = #imageLiteral(resourceName: "areaChartAnticon")
         btn.titleLable.text = "Review"
+        btn.tapGesture.name = "review"
         return btn
     }()
     lazy var stackView:UIStackView = {
@@ -41,16 +45,19 @@ class CustomTabBar: UIView {
     lazy var favBtn:UIButton = {
         let btn = UIButton()
         btn.setImage(#imageLiteral(resourceName: "fav"), for: .normal)
+        btn.addTarget(actionDelegate, action: #selector(ButtonActionDelegate.flowButtonTapped(_:)), for: .touchUpInside)
         return btn
     }()
     lazy var cartBtn:UIButton = {
         let btn = UIButton()
         let image = UIImage(named: "cart22")
         btn.setImage(image, for: .normal)
+        btn.addTarget(actionDelegate, action: #selector(ButtonActionDelegate.flowButtonTapped(_:)), for: .touchUpInside)
         return btn
     }()
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(actionDelegate:ButtonActionDelegate) {
+        super.init(frame: .zero)
+        self.actionDelegate = actionDelegate
         setupView()
     }
     
@@ -61,15 +68,12 @@ class CustomTabBar: UIView {
     private func setupView(){
         addSubViews()
         addConstraintsToViews()
+        setShadowAndBoreder()
     }
     private func addSubViews(){
         addSubview(stackView)
         addSubview(favBtn)
         addSubview(cartBtn)
-    }
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        setShadowAndBoreder()
     }
     private func addConstraintsToViews(){
         detailnBtn.anchor(top: nil, left: nil, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 70, height: 50, paddingCenterX: 0, paddingCenterY: 0)
@@ -79,7 +83,7 @@ class CustomTabBar: UIView {
         
     }
     private func setShadowAndBoreder(){
-        self.setShadow(shadowColor: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), shadowOffset: CGSize(width: 0, height: 1), shadowOpacity: 0.1, shadowRaduis: 2)
+        self.setShadow(shadowColor: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.5), shadowOffset: CGSize(width: 0, height: 1), shadowOpacity: 0.1, shadowRaduis: 1)
         self.backgroundColor = .white
     }
 }
