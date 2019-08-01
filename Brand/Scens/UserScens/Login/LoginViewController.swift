@@ -12,7 +12,7 @@ import FBSDKLoginKit
 
 class LoginViewController: UIViewController,ButtonActionDelegate {
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
+        return .default
     }
     var userid : String!
     var loginView = LoginView()
