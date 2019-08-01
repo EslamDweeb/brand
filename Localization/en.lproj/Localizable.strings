@@ -2,9 +2,10 @@
   Localizable.strings
   Brand
 
-  Created by Eslam Dweeb on 6/24/19.
+  Created by nada dyaa on 7/30/19.
   Copyright © 2019 Eslam Dweeb. All rights reserved.
 */
+
 "tax" = "Tax";
 "Confirm" = "Confirm & pay";
 "total" = "Total";
@@ -168,4 +169,9 @@
 "PENDING" = "PENDING";
 "DELIVERED" = "DELIVERED";
 "OTHER" = "OTHER";
-
+"Items" = "Items: ";
+"TotalAmount" = "Total Amount: ";
+"sar" = "SAR" ;
+"exceeded" = "Quantity exceeded";
+"Outofstock" = "Out of stock";
+"QTY" = "QTY";

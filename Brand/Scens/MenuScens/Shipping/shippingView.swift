@@ -15,6 +15,7 @@ class ShippingView :UIView {
     var HeightConstrainForTableView:NSLayoutConstraint?
      var topConstrainlabel:NSLayoutConstraint?
     var topConstraintabel:NSLayoutConstraint?
+    var topConstrainshippinglabel:NSLayoutConstraint?
     
     lazy var  navView:GradNavView = {
         let navView = GradNavView()
@@ -139,15 +140,16 @@ class ShippingView :UIView {
         addSubview(scrollView)
         addSubview(BGView)
         scrollView.addSubview(shippinglbl)
+        scrollView.addSubview(viewnoaddress)
+        viewnoaddress.addSubview(AddressImage)
+        viewnoaddress.addSubview(addresstext)
+        viewnoaddress.addSubview(addnewaddBtn)
         scrollView.addSubview(viewwithAddress)
         viewwithAddress.addSubview(addressName)
         viewwithAddress.addSubview(addressDescription)
         viewwithAddress.addSubview(defaultview)
         viewwithAddress.addSubview(changeBtn)
-        scrollView.addSubview(viewnoaddress)
-        viewnoaddress.addSubview(AddressImage)
-        viewnoaddress.addSubview(addresstext)
-        viewnoaddress.addSubview(addnewaddBtn)
+       
        scrollView.addSubview(shippingMethodlbl)
         scrollView.addSubview(shippingCollectionview)
         scrollView.addSubview(save)
@@ -155,13 +157,14 @@ class ShippingView :UIView {
         ExchangeView.addSubview(tableView)
         ExchangeView.addSubview(youraddlabel)
         ExchangeView.addSubview(addnewadd)
-        self.bringSubviewToFront(addnewadd)
+         self.bringSubviewToFront(addnewadd)
+        // self.bringSubviewToFront(addnewaddBtn)
         navView.anchor(top: self.topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, centerX: centerXAnchor, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         navView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.12).isActive = true
       
         scrollView.anchor(top: navView.bottomAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, centerX: self.centerXAnchor, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         BGView.anchor(top: self.topAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
-        shippinglbl.anchor(top: scrollView.topAnchor, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
+        shippinglbl.anchor(top: scrollView.topAnchor, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, centerX: nil, centerY: nil, paddingTop: 16, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
         if MOLHLanguage.currentAppleLanguage() == "en" {
              defaultview.anchor(top: viewwithAddress.topAnchor, left: viewwithAddress.leftAnchor, bottom: viewwithAddress.bottomAnchor, right: nil, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 6, height: 0, paddingCenterX: 0, paddingCenterY: 0)
             changeBtn.anchor(top: viewwithAddress.topAnchor, left: nil, bottom: nil, right: viewwithAddress.rightAnchor, centerX: nil, centerY: nil, paddingTop: 6, paddingLeft: 0, paddingBottom: 0, paddingRight: 6, width: 35, height: 35, paddingCenterX: 0, paddingCenterY: 0)
@@ -180,11 +183,13 @@ class ShippingView :UIView {
         addressDescription.anchor(top: addressName.bottomAnchor, left: viewwithAddress.leftAnchor, bottom: nil, right: viewwithAddress.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         self.viewwithAddress.setShadow(shadowColor: UIColor(red: 0, green: 0, blue: 0, alpha:0.24).cgColor, shadowOffset: CGSize(width: 0, height: 3), shadowOpacity: 0.6, shadowRaduis: 1)
         
-        viewnoaddress.anchor(top: shippinglbl.bottomAnchor, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, centerX: self.centerXAnchor, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 90, paddingCenterX: 0, paddingCenterY: 0)
-        AddressImage.anchor(top: viewnoaddress.topAnchor, left: viewnoaddress.leftAnchor, bottom: nil, right: viewnoaddress.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 30, paddingBottom: 0, paddingRight: 30, width: 0, height: 100, paddingCenterX: 0, paddingCenterY: 0)
+        viewnoaddress.anchor(top: shippinglbl.bottomAnchor, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, centerX: self.centerXAnchor, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 200, paddingCenterX: 0, paddingCenterY: 0)
+        AddressImage.anchor(top: viewnoaddress.topAnchor, left: viewnoaddress.leftAnchor, bottom: nil, right: viewnoaddress.rightAnchor, centerX: nil, centerY: nil, paddingTop: 16, paddingLeft: 30, paddingBottom: 0, paddingRight: 30, width: 0, height: 100, paddingCenterX: 0, paddingCenterY: 0)
         addresstext.anchor(top: AddressImage.bottomAnchor, left: viewnoaddress.leftAnchor, bottom: nil, right: viewnoaddress.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         addnewaddBtn.anchor(top: addresstext.bottomAnchor, left: viewnoaddress.leftAnchor, bottom: nil, right: viewnoaddress.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 45, paddingCenterX: 0, paddingCenterY: 0)
-        shippingMethodlbl.anchor(top: viewwithAddress.bottomAnchor, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, centerX: nil, centerY: nil, paddingTop: 16, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
+        shippingMethodlbl.anchor(top: nil, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
+        topConstrainshippinglabel = shippingMethodlbl.topAnchor.constraint(equalTo: viewnoaddress.bottomAnchor, constant:100)
+        topConstrainshippinglabel?.isActive = true
        shippingCollectionview.anchor(top: shippingMethodlbl.bottomAnchor, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, centerX: nil, centerY: nil, paddingTop: 16, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         HeightConstrain = shippingCollectionview.heightAnchor.constraint(equalToConstant: 0)
         HeightConstrain?.isActive = true
@@ -207,7 +212,7 @@ class ShippingView :UIView {
        
         
         changeBtn.addTarget(actionDelegete, action:#selector(ButtonActionDelegate.changeBtn), for: .touchUpInside)
-       
+    
         
         
     }

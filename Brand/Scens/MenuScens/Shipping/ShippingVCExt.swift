@@ -92,9 +92,10 @@ extension ShippingVC  :  UICollectionViewDelegateFlowLayout  , UICollectionViewD
         let cell = collectionView.cellForItem(at: indexPath) as? ShippingMethodCell
         if self.activeShippingMethod[indexPath.row] {
              cell?.defaultview.isHidden  = false
-            self.MianShippingID = shippingMethodarr[indexPath.row].id
+             self.MianShippingID = shippingMethodarr[indexPath.row].id
         }else{
             cell?.defaultview.isHidden  = true
+             self.MianShippingID = nil
         }
         }
         

@@ -1,30 +1,33 @@
-/* 
-  Localizable.strings
-  Brand
-
-  Created by Eslam Dweeb on 6/24/19.
-  Copyright © 2019 Eslam Dweeb. All rights reserved.
-*/
-"tax" = "ضريبه";
-"Confirm" = "تاكيد الطلب";
-"total" = "الاجمالي";
-"Amount" = "الكميه";
+/*
+ Localizable.strings
+ Brand
+ 
+ Created by nada dyaa on 7/30/19.
+ Copyright © 2019 Eslam Dweeb. All rights reserved.
+ */
+"QTY" = "الكميه ";
+"Outofstock" = "نفذ من المتجر";
+"exceeded" = "نفذت الكميه";
+"sar" = "ريال سعودي";
+"TotalAmount" = "السعر الكلي: ";
+"Items" = "الكميه: ";
+"Pilling_method" = "طريقه الدفع ";
+"Shippingـmethod" = "طريقه الشحن";
+"Your Addresses" = "عناوينك";
+"Apply Copoun" = "ادخل الكود";
+"Copoun_discount" = "قيمه الخصم";
+"copoun" = "كود";
 "addReview" = "اضف تقيم";
 ;"الكميه" = "Amount"
-"copoun" = "كود";
-"Copoun_discount" = "قيمه الخصم";
-"Apply Copoun" = "ادخل الكود";
-"Your Addresses" = "عناوينك";
-"Shippingـmethod" = "طريقه الشحن";
-"Pilling_method" = "طريقه الدفع ";
-"Shipping_Addresses" = "عنوان الشحن";
-"Checkout_New" = "Checkout New";
-"size" = "الحجم";
-"color" = "الالوان";
-"seeAll" = "الكل";
-"relatedProduct" = "المنتجات ذات صله";
-"description" = "التفاصيل";
-"Shipping" = "Shipping";
+"total" = "الاجمالي";
+"Amount" = "الكميه";
+"Confirm" = "تاكيد الطلب";
+"tax" = "ضريبه";
+"Order_Details" = "تفاصيل الطلب";
+"reset" = "اعادة تعيين";
+"There is no Address" = "لا يوجد عنوان";
+"CONTINUE"  = "استمرار";
+"txt_continue"  = "استمرار";
 "PENDING" = "قيد الانتظار";
 "DELIVERED" = "تم التسليم";
 "OTHER" = "غير ذلك";
@@ -33,17 +36,10 @@
 "didn’t_have_Address" =  "ناسف لا يوجد لديك عناوين";
 "Unit price" = "سعر الوحده";
 "Name" = "الاسم";
-"QTY" = "الكميه";
 "Shipping Method" = "طريقه الشحن";
 "Shipping fee" = "ضريبه الشحن";
 "Billing Method" = "طريقه الدفع";
 "Billing Fee" = "ضريبه الدفع";
-"recommendedProduct" = "Recommended Products";
-"latestProduct" = "Latest Products";
-"popularProduct" = "Popular Products";
-"flashSale" = "Flash sale";
-"subCategorie" = "subCategorie";
-"browesBy" = "Browse by sub category";
 "Order_Items" = "عناصر الطلب";
 "orderNumber" = "رقم الطلب";
 "orderDate" = "تاريخ الطلب";
@@ -83,11 +79,15 @@
 "terms&privacy" = "الشروط والخصوصية";
 "customerService" = "خدمة العملاء";
 "returnPolicy" = "سياسة العائدات";
-"saleInBrand" = "Saled On Brands Sa";
-"buyFromBrand" = "Buy From Brands Sa";
 "logout" = "تسجيل الخروج";
 "followus" = "اتبعنا";
 "settings" = "الإعدادات";
+"description" = "التفاصيل";
+"relatedProduct" = "المنتجات ذات صله";
+"seeAll" = "الكل";
+"color" = "الالوان";
+"size" = "الحجم";
+"Shipping_Addresses" = "عنوان الشحن";
 "photo_library" = "مكتبة الصور";
 "app_name" = "BrandsApp";
 "retry" = "اعادة المحاولة";
@@ -116,7 +116,7 @@
 "don_t_have_an_acount" = "ليس لديك حساب؟ ";
 "or_login_with" = "أو تسجيل الدخول عبر";
 "please_login_to_continue" = "للإستمرار يرجى تسجيل الدخول";
-"txt_continue"  = "استمرار";
+
 "forgot_your_password" = "نسيت كلمة السر";
 "enter_your_email_phone_below_to_reset_your_password" =" يرجى إدخال البريد الإلكترونى أو الهاتف لإعادة تعين كلمة السر";
 "new_address" ="عنوان جديد";
@@ -145,7 +145,6 @@
 "personal_info" = "بيانات المستخدم";
 "security_info" = "بيانات الحماية";
 "address_info" = "بيانات العنوان";
-"stars" = "****************";
 "current_password" = "الرقم السري الحالي";
 "profile" = "المستخدم";
 "birth_date" = "تاريخ الميلاد";
@@ -164,7 +163,14 @@
 "my_reviews" = "تقيماتي";
 "get_started" = "فلنبدأ";
 "Email/phone" = "البريد الالكتروني/ الهاتف";
-"CONTINUE"  = "استمرار";
-"There is no Address" = "لا يوجد عنوان";
-"reset" = "اعادة تعيين";
-"Order_Details" = "تفاصيل الطلب";
+"Shipping" = "Shipping";
+"saleInBrand" = "Saled On Brands Sa";
+"buyFromBrand" = "Buy From Brands Sa";
+"recommendedProduct" = "Recommended Products";
+"latestProduct" = "Latest Products";
+"popularProduct" = "Popular Products";
+"flashSale" = "Flash sale";
+"subCategorie" = "subCategorie";
+"browesBy" = "Browse by sub category";
+"stars" = "****************";
+"Checkout_New" = "Checkout New";

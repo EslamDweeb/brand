@@ -66,7 +66,7 @@ extension HomeViewController:UICollectionViewDataSource,UICollectionViewDelegate
                 UIApplication.shared.open(url, options: [:])
             }
         }else{
-            print("HI!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+                print("HI!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
         }
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

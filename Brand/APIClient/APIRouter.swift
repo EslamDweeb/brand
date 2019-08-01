@@ -29,6 +29,7 @@ enum APIRouter : URLRequestConvertible {
     case getshippingMethod
       case getbillingMethod
     case checkout(flag: Bool , shippingId : Int , billingId : Int , addressId : Int , coupon : String)
+     case deleteCartItem(id:Int)
     private var Methods : HTTPMethod {
         switch self {
         case .signUp:
@@ -69,6 +70,8 @@ enum APIRouter : URLRequestConvertible {
             return .get
         case .checkout:
             return .post
+        case .deleteCartItem:
+         return   .post
         }
     }
     private var Paths : String {
@@ -117,6 +120,8 @@ enum APIRouter : URLRequestConvertible {
                  return "/api/orders"
             }
            
+        case .deleteCartItem(let id):
+            return "/api/cart-items/\(id)"
         }
     }
     private var headers : HTTPHeaders {
@@ -236,6 +241,13 @@ enum APIRouter : URLRequestConvertible {
                 HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue ,
                 HTTPHeaderField.contentType.rawValue  : ContentType.json.rawValue ,
                 HTTPHeaderField.locale.rawValue : MOLHLanguage.currentAppleLanguage()]
+        case .deleteCartItem:
+            return [
+                HTTPHeaderField.authentication.rawValue :" \(ContentType.token.rawValue)  \(UserDefaults.standard.string(forKey: Constants.Defaults.authToken) ?? "")",
+                HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue,
+                HTTPHeaderField.contentType.rawValue : ContentType.json.rawValue
+              
+            ]
         }
     }
     private var parameters :Parameters?{
@@ -360,6 +372,11 @@ enum APIRouter : URLRequestConvertible {
             }
             
            
+        case .deleteCartItem:
+            return [Constants.APIParameterKey.method : RequestMethods.delete.rawValue ,
+                      HTTPHeaderField.locale.rawValue : MOLHLanguage.currentAppleLanguage()
+            
+            ]
         }
     }
 

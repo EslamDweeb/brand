@@ -20,8 +20,8 @@ class CheckoutView : UIView {
             self.billinglabel.text = "\(order.billingMethod.name)"
             self.shippingFee.namelabel.text = "Shipping fee".localized
             self.billingFee.namelabel.text = "Billing Fee".localized
-            self.shippingFee.Pricelabel.text = "\(order.shippingMethod.fees)(+\(order.shippingMethod.additionalTax) \("tax".localized)"
-            self.billingFee.Pricelabel.text = "\(order.billingMethod.fees)(+\(order.billingMethod.additionalTax) \("tax".localized)"
+            self.shippingFee.Pricelabel.text = "\(order.shippingMethod.fees)(+\(order.shippingMethod.additionalTax) \("tax".localized))"
+            self.billingFee.Pricelabel.text = "\(order.billingMethod.fees)(+\(order.billingMethod.additionalTax) \("tax".localized))"
             self.totalView.namelabel.text = "total".localized
             self.totalView.Pricelabel.text = "\(order.totalPrice)"
             self.subtotal.namelabel.text = "Subtotal".localized

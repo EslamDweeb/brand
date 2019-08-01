@@ -1,6 +1,7 @@
 PODS:
   - Alamofire (5.0.0-beta.6)
   - Cosmos (18.0.1)
+  - EasyTipView (2.0.4)
   - FBSDKCoreKit (5.0.2):
     - FBSDKCoreKit/Basics (= 5.0.2)
     - FBSDKCoreKit/Core (= 5.0.2)
@@ -29,6 +30,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire (~> 5.0.0-beta.2)
   - Cosmos (~> 18.0)
+  - EasyTipView (~> 2.0.4)
   - FBSDKCoreKit
   - FBSDKLoginKit
   - FlexibleSteppedProgressBar
@@ -43,6 +45,7 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
     - Cosmos
+    - EasyTipView
     - FBSDKCoreKit
     - FBSDKLoginKit
     - FlexibleSteppedProgressBar
@@ -57,6 +60,7 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Alamofire: cd08a4402bd12cacd0c66f23fb12fec8d6b965e4
   Cosmos: 7dfaa3f52584ca5f94ab74b5c2e264019cc9f7f5
+  EasyTipView: 4f8beae0a82db2ca4a9b5fd658785fc5f61d296b
   FBSDKCoreKit: 3e41c402eb64ea7799c71833ff9e5690f27b9c42
   FBSDKLoginKit: a88f36da648e4c5d60eb261c63eac067abb97130
   FlexibleSteppedProgressBar: 402203e2981409ce3785a5dbd3df0234093fbd58
@@ -68,6 +72,6 @@ SPEC CHECKSUMS:
   TwitterCore: 8cbc9ad34d91c63a0035ea05bfbfc0d7ca72a28c
   TwitterKit: 5e4f41d70b9abdb41df5467f52d7aa2c0fd26ebb
 
-PODFILE CHECKSUM: 22fbbdfe902c2ccb2a9141809dc49c23b0e7e6a8
+PODFILE CHECKSUM: 0c13d6bd48cabc2248f2da6db1a1b40dbbb01e53
 
 COCOAPODS: 1.5.3

@@ -214,8 +214,14 @@ class APIClient {
     }
     static func getConfigRating(id:Int,complition : @escaping (Result<OverallRatingData,Error>) -> Void) {
         AF.request(ProductRouter.getConfigRating(id: id)).responseDecodable{(response:DataResponse<OverallRatingData>) in
+
             complition(response.result)
         }
     }
-}
+    static func deleteCart(id:Int,complition : @escaping (Result<checkoutModel,Error>) -> Void){
+        AF.request(APIRouter.deleteCartItem(id:id)).responseDecodable{(response: DataResponse<checkoutModel>) in
+            complition(response.result)
+        }
+    }
 
+}

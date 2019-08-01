@@ -111,7 +111,7 @@ class checkoutVC : UIViewController ,ButtonActionDelegate{
         }
     }
     private func CreateOrderDetailView(){
-        self.mainView.detailsorderView.heightAnchor.constraint(equalToConstant: CGFloat(170)).isActive = true
+        self.mainView.detailsorderView.heightAnchor.constraint(equalToConstant: CGFloat(160)).isActive = true
         UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
             self.mainView.layoutIfNeeded()
         }, completion: nil)
