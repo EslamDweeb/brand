@@ -20,10 +20,13 @@ class WishCell: UICollectionViewCell {
             if config?.isFavorite == false {
                 let image = UIImage(named: "emptyHeart")
                 favBtn.setImage(image, for: .normal)
+                
             }else if config?.isFavorite == true{
                 let image = UIImage(named: "filledHeart")
                 favBtn.setImage(image, for: .normal)
+                
             }
+            isFav =  config?.isFavorite ?? false
             if con.sale != 0  {
                 priceLbl.setAttributeStringWithStrike("\(con.price)")
                 discountLbl.text = "\(con.ReturnPricepersent(sale: Double(con.sale).roundToDecimal(3)))"
@@ -80,7 +83,7 @@ class WishCell: UICollectionViewCell {
     }()
     var isFav = true
     @objc func addToWishList(){
-        if isFav == false {
+        if isFav != false {
             let image = UIImage(named: "emptyHeart")
             favBtn.setImage(image, for: .normal)
         }else{

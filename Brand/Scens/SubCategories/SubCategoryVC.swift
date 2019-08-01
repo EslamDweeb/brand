@@ -87,6 +87,15 @@ class SubCategoryVC:UIViewController,ButtonActionDelegate{
             var configss = [Config]()
             switch result{
             case .success(let data):
+
+                 DispatchQueue.main.async {
+                    for product in data.products {
+                    for config in product.configs ?? [] {
+                          configss.append(config)
+                         }
+                    }
+                 }
+
                 DispatchQueue.main.async {
                     for product in data.products {
                         for config in product.configs ?? [] {
@@ -104,4 +113,5 @@ class SubCategoryVC:UIViewController,ButtonActionDelegate{
             }
         }
     }
+            
 }
