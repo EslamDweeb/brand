@@ -25,10 +25,14 @@ class searchView : UIView  , UITextFieldDelegate {
     
     lazy var searchCollection: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        let coll = UICollectionView(frame: .zero,collectionViewLayout: layout)
-        coll.backgroundColor = .backgroundColl
-        coll.register(WishCell.self, forCellWithReuseIdentifier: "cellID")
-        return coll
+        layout.scrollDirection = .vertical
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.register(WishCell.self, forCellWithReuseIdentifier: "cellID")
+        collectionView.backgroundColor  = .white
+        collectionView.isPagingEnabled = true
+        collectionView.showsVerticalScrollIndicator = false
+        return collectionView
+       
     }()
     lazy var searchBtn: BtnImage = {
         let button = BtnImage()
@@ -56,7 +60,7 @@ class searchView : UIView  , UITextFieldDelegate {
         navView.anchor(top: self.topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, centerX: centerXAnchor, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         navView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.12).isActive = true
           searchtextFeild.anchor(top: navView.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, centerX: centerXAnchor, centerY: nil, paddingTop: 8, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 50, paddingCenterX: 0, paddingCenterY: 0)
-        searchCollection.anchor(top: searchtextFeild.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, centerX: centerXAnchor, centerY: nil, paddingTop: 16, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
+        searchCollection.anchor(top: searchtextFeild.bottomAnchor, left: leftAnchor, bottom: self.bottomAnchor, right: rightAnchor, centerX: centerXAnchor, centerY: nil, paddingTop: 16, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         if MOLHLanguage.currentAppleLanguage() == "en" {
            searchtextFeild.leftView = searchBtn
             searchtextFeild.leftViewMode = .always
