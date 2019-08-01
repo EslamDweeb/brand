@@ -23,7 +23,7 @@ class SubCategoryVC:UIViewController,ButtonActionDelegate{
     let cellID2 = "cellID2"
     let dispatchGroup = DispatchGroup()
     let reachability =  Reachability()
-
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -36,7 +36,7 @@ class SubCategoryVC:UIViewController,ButtonActionDelegate{
         super.viewDidLoad()
         mainView.configCollection.delegate = self
         mainView.configCollection.dataSource = self
-//        getVCData(slug: self.slug ?? "")
+        //        getVCData(slug: self.slug ?? "")
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -60,7 +60,7 @@ class SubCategoryVC:UIViewController,ButtonActionDelegate{
         dispatchGroup.enter()
         getCategoryProducts()
         dispatchGroup.enter()
-         getSubCategory(slug: slug)
+        getSubCategory(slug: slug)
         dispatchGroup.notify(queue: .main){
             self.mainView.categoriesCollection.reloadData()
             self.mainView.configCollection.reloadData()
@@ -72,8 +72,8 @@ class SubCategoryVC:UIViewController,ButtonActionDelegate{
             switch result{
             case .success(let data):
                 DispatchQueue.main.async {
-                self.subCategories = data.category?.childs ?? []
-                   self.mainView.categoriesCollection.reloadData()
+                    self.subCategories = data.category?.childs ?? []
+                    self.mainView.categoriesCollection.reloadData()
                 }
                 self.dispatchGroup.leave()
             case .failure(let error):
@@ -87,23 +87,31 @@ class SubCategoryVC:UIViewController,ButtonActionDelegate{
             var configss = [Config]()
             switch result{
             case .success(let data):
+
                  DispatchQueue.main.async {
                     for product in data.products {
                     for config in product.configs ?? [] {
                           configss.append(config)
                          }
-                    
                     }
-                     self.configs = configss
-                     self.mainView.configCollection.reloadData()
-                    print("dtatadtdattdat!@#$#@!@#$#@!@#$#@!",self.configs)
                  }
-                
-                  self.dispatchGroup.leave()
+
+                DispatchQueue.main.async {
+                    for product in data.products{
+                        for config in product.configs ?? [] {
+                            configss.append(config)
+                        }
+                    }
+                    self.configs = configss
+                    self.mainView.configCollection.reloadData()
+                    print("dtatadtdattdat!@#$#@!@#$#@!@#$#@!",self.configs)
+                }
+                self.dispatchGroup.leave()
             case .failure(let error):
                 print(error)
                 self.dispatchGroup.leave()
             }
         }
     }
+            
 }

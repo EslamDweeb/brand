@@ -17,6 +17,12 @@ extension SubCategoryVC:UICollectionViewDelegate,UICollectionViewDataSource,UICo
         }
     }
     
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if collectionView == mainView.configCollection{
+            mainView.heightCollectionConfig?.constant = collectionView.contentSize.height + 20
+        }
+    }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == mainView.configCollection{
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID2, for: indexPath) as? WishCell else {return UICollectionViewCell()}

@@ -14,20 +14,6 @@ class MenuViewController: UIViewController,ButtonActionDelegate {
     let fbURLID = URL(string: "https://www.facebook.com")
     let twURLID = URL(string: "https://www.twitter.com")
     let LoggedArray = [
-//                       NSLocalizedString("personal_information", comment: ""),
-//                       NSLocalizedString("myAddresses", comment: ""),
-//                       NSLocalizedString("cart", comment: ""),
-//                       NSLocalizedString("wishlist", comment: ""),
-//                       NSLocalizedString("myOrders", comment: ""),
-//                       NSLocalizedString("myReview", comment: ""),
-//                       NSLocalizedString("language", comment: ""),
-//                       NSLocalizedString("about", comment: ""),
-//                       NSLocalizedString("terms&privacy", comment: ""),
-//                       NSLocalizedString("customerService", comment: ""),
-//                       NSLocalizedString("returnPolicy", comment: "") ,
-//                       NSLocalizedString("saleInBrand", comment: ""),
-//                       NSLocalizedString("buyFromBrand", comment: ""),
-//                       NSLocalizedString("logout", comment: "")
         "personal_information".localized,
         "myAddresses".localized,
         "cart".localized,
@@ -46,15 +32,6 @@ class MenuViewController: UIViewController,ButtonActionDelegate {
     ]
     
     let NotLoggedArray = [
-//                          NSLocalizedString("login", comment: ""),
-//                          NSLocalizedString("language", comment: ""),
-//                          NSLocalizedString("about", comment: ""),
-//                          NSLocalizedString("terms&privacy", comment: ""),
-//                          NSLocalizedString("customerService", comment: ""),
-//                          NSLocalizedString("returnPolicy", comment: "") ,
-//                          NSLocalizedString("saleInBrand", comment: ""),
-//                          NSLocalizedString("buyFromBrand", comment: "")
-        
         "login".localized,
         "language".localized,
         "about".localized,
@@ -63,7 +40,6 @@ class MenuViewController: UIViewController,ButtonActionDelegate {
         "returnPolicy".localized,
         "saleInBrand".localized,
         "buyFromBrand".localized,
-        
     ]
     
     let loggedimagesnames = ["personal info","address","cart-4","wishlist","my orders","reviews","language","about","terms and policy","customer service","return policy","sell","buy","logout"]

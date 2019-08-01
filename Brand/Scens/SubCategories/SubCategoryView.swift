@@ -59,6 +59,9 @@ class SubCtegoryView:UIView{
         logo.contentMode = .scaleAspectFill
         return logo
     }()
+    
+    var heightCollectionConfig : NSLayoutConstraint?
+    
     init(delegate: UICollectionViewDelegate,dataSource: UICollectionViewDataSource,actionDelegate:ButtonActionDelegate) {
         super.init(frame: .zero)
         categoriesCollection.delegate = delegate
@@ -75,6 +78,13 @@ class SubCtegoryView:UIView{
          scroll.showsVerticalScrollIndicator = false
           return scroll
     }()
+    
+    lazy var parentViewScrollView : UIView = {
+        let v = UIView()
+        v.backgroundColor = .white
+        return v
+    }()
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setupView()
@@ -87,11 +97,12 @@ class SubCtegoryView:UIView{
     private func addSubViews(){
         addSubview(navView)
         addSubview(scrollView)
-       scrollView.addSubview(seeAllBtn)
-       scrollView.addSubview(categoriesLable)
-       scrollView.addSubview(categoryLogoImage)
-       scrollView.addSubview(categoriesCollection)
-       scrollView.addSubview(configCollection)
+        scrollView.addSubview(parentViewScrollView)
+       parentViewScrollView.addSubview(seeAllBtn)
+       parentViewScrollView.addSubview(categoriesLable)
+       parentViewScrollView.addSubview(categoryLogoImage)
+       parentViewScrollView.addSubview(categoriesCollection)
+       parentViewScrollView.addSubview(configCollection)
     }
     private func addConstrainsToUI() {
         navView.anchor(top: self.topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
@@ -99,12 +110,18 @@ class SubCtegoryView:UIView{
         
          scrollView.anchor(top: navView.bottomAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         
-        categoriesLable.anchor(top: scrollView.topAnchor, left: scrollView.leftAnchor, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
+        parentViewScrollView.anchor(top: scrollView.topAnchor, left: scrollView.leftAnchor , bottom: scrollView.bottomAnchor , right: scrollView.rightAnchor , centerX: nil , centerY: nil , paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0 , height: 0 , paddingCenterX: 0, paddingCenterY: 0)
+        parentViewScrollView.widthAnchor.constraint(equalTo: scrollView.widthAnchor , multiplier: 1.0).isActive = true
+        parentViewScrollView.heightAnchor.constraint(equalTo: scrollView.heightAnchor, multiplier: 1.0 ).isActive = true
+        
+        categoriesLable.anchor(top: parentViewScrollView.topAnchor, left: scrollView.leftAnchor, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
         categoriesLable.widthAnchor.constraint(greaterThanOrEqualToConstant: 100).isActive = true
         
-        seeAllBtn.anchor(top: scrollView.topAnchor, left: nil, bottom: nil, right: scrollView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 8, width: 45, height: 20, paddingCenterX: 0, paddingCenterY: 0)
-        categoriesCollection.anchor(top: categoriesLable.bottomAnchor, left: scrollView.leftAnchor, bottom: nil, right: scrollView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 85, paddingCenterX: 0, paddingCenterY: 0)
-        categoryLogoImage.anchor(top: categoriesCollection.bottomAnchor, left: scrollView.leftAnchor, bottom: nil, right: scrollView.rightAnchor, centerX: scrollView.centerXAnchor, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 100, paddingCenterX: 0, paddingCenterY: 0)
-        configCollection.anchor(top: categoryLogoImage.bottomAnchor, left: scrollView.leftAnchor, bottom: scrollView.bottomAnchor, right: scrollView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
+        seeAllBtn.anchor(top: parentViewScrollView.topAnchor, left: nil, bottom: nil, right: scrollView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 8, width: 45, height: 20, paddingCenterX: 0, paddingCenterY: 0)
+        categoriesCollection.anchor(top: categoriesLable.bottomAnchor, left: parentViewScrollView.leftAnchor, bottom: nil, right: parentViewScrollView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 85, paddingCenterX: 0, paddingCenterY: 0)
+        categoryLogoImage.anchor(top: categoriesCollection.bottomAnchor, left: parentViewScrollView.leftAnchor, bottom: nil, right: parentViewScrollView.rightAnchor, centerX: parentViewScrollView.centerXAnchor, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 100, paddingCenterX: 0, paddingCenterY: 0)
+        configCollection.anchor(top: categoryLogoImage.bottomAnchor, left: parentViewScrollView.leftAnchor, bottom: parentViewScrollView.bottomAnchor, right: parentViewScrollView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
+        heightCollectionConfig = configCollection.heightAnchor.constraint(equalToConstant: 200)
+    //    heightCollectionConfig?.isActive = true
     }
 }
