@@ -35,7 +35,9 @@ class HomeViewController:UIViewController,ButtonActionDelegate{
     func startTimer(){
         timer = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(timerAction), userInfo: nil, repeats: true)
     }
-    
+    func searchTapped() {
+        self.present(searchVC(), animated: true, completion: nil)
+    }
     @objc func timerAction(){
         let indexPath = mainView.bannerCollectionView.indexPath(for: mainView.bannerCollectionView.visibleCells[0])!
         if indexPath.row < arrangedBanners!.count - 1 {

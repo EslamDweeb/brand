@@ -6,7 +6,7 @@
 //  Copyright © 2019 Eslam Dweeb. All rights reserved.
 //
  import UIKit
- import MOLH
+ //import MOLH
  import FlexibleSteppedProgressBar
 
 class DetailorderView : UIView , UITextFieldDelegate ,FlexibleSteppedProgressBarDelegate {

@@ -29,14 +29,19 @@ class searchView : UIView  , UITextFieldDelegate {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(WishCell.self, forCellWithReuseIdentifier: "cellID")
         collectionView.backgroundColor  = .white
-        collectionView.isPagingEnabled = true
-        collectionView.showsVerticalScrollIndicator = false
+     //   collectionView.isPagingEnabled = true
+      //  collectionView.showsVerticalScrollIndicator = false
         return collectionView
        
     }()
     lazy var searchBtn: BtnImage = {
         let button = BtnImage()
         button.setImage(#imageLiteral(resourceName: "edit"), for: .normal)
+        return button
+    }()
+    lazy var FilterBtn: BtnImage = {
+        let button = BtnImage()
+        button.setImage(#imageLiteral(resourceName: "addButton-1"), for: .normal)
         return button
     }()
     init(delegate: UICollectionViewDelegate,dataSource: UICollectionViewDataSource,actionDelegate:ButtonActionDelegate) {
@@ -56,6 +61,7 @@ class searchView : UIView  , UITextFieldDelegate {
         addSubview(navView)
         addSubview(searchtextFeild)
         addSubview(searchCollection)
+        addSubview(FilterBtn)
         searchtextFeild.delegate = self
         navView.anchor(top: self.topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, centerX: centerXAnchor, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         navView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.12).isActive = true
@@ -64,10 +70,15 @@ class searchView : UIView  , UITextFieldDelegate {
         if MOLHLanguage.currentAppleLanguage() == "en" {
            searchtextFeild.leftView = searchBtn
             searchtextFeild.leftViewMode = .always
+            FilterBtn.anchor(top: nil, left: nil, bottom: self.safeAreaLayoutGuide.bottomAnchor, right: self.safeAreaLayoutGuide.rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 10, width: 80, height: 80, paddingCenterX: 0, paddingCenterY: 0)
         }else{
+            
+             FilterBtn.anchor(top: nil, left: self.safeAreaLayoutGuide.leftAnchor, bottom: self.safeAreaLayoutGuide.bottomAnchor, right: nil, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 10, paddingBottom: 0, paddingRight: 0, width: 80, height: 80, paddingCenterX: 0, paddingCenterY: 0)
             searchtextFeild.rightView = searchBtn
             searchtextFeild.rightViewMode = .always
         }
+        searchtextFeild.addTarget(actionDelegate, action: #selector(ButtonActionDelegate.changeBtn), for: .editingChanged)
+       FilterBtn.addTarget(actionDelegate, action: #selector(ButtonActionDelegate.applyBtnTapped), for: .touchUpInside)
     }
     func textFieldDidBeginEditing(_ textField: UITextField) {
         textField.layer.borderColor = UIColor.pink.cgColor

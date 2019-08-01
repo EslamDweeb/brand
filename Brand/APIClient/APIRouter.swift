@@ -30,7 +30,7 @@ enum APIRouter : URLRequestConvertible {
       case getbillingMethod
     case checkout(flag: Bool , shippingId : Int , billingId : Int , addressId : Int , coupon : String)
      case deleteCartItem(id:Int)
-      case searshItem(name:String)
+    case searshItem(name:String,brand : String , origin :String,  price : String ,rate : String)
     private var Methods : HTTPMethod {
         switch self {
         case .signUp:
@@ -125,8 +125,8 @@ enum APIRouter : URLRequestConvertible {
            
         case .deleteCartItem(let id):
             return "/api/cart-items/\(id)"
-        case .searshItem(let name):
-             return "/api/configs?name=\(name)"
+        case .searshItem(let name,let brand ,let origin , let price , let rate):
+             return "/api/configs?name=\(name)&brands=\(brand)&origin=\(origin)&price_between=\(price)&rate=\(rate)"
         }
     }
     private var headers : HTTPHeaders {

@@ -224,8 +224,8 @@ class APIClient {
         }
     }
     
-    static func getsearchitems(name:String,complition : @escaping (Result<searchModel,Error>) -> Void){
-        AF.request(APIRouter.searshItem(name: name)).responseDecodable{(response: DataResponse<searchModel>) in
+    static func getsearchitems(name:String,brand : String , origin :String,  price : String ,rate : String,complition : @escaping (Result<searchModel,Error>) -> Void){
+        AF.request(APIRouter.searshItem(name: name, brand: brand, origin: origin, price: price, rate: rate)).responseDecodable{(response: DataResponse<searchModel>) in
             complition(response.result)
         }
     }

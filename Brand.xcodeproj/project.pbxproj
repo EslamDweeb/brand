@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -31,6 +31,8 @@
 		01F03AAD22F2DDCE0033F89A /* searchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F03AAC22F2DDCE0033F89A /* searchView.swift */; };
 		01F03AAF22F2DEF50033F89A /* searchVCExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F03AAE22F2DEF50033F89A /* searchVCExt.swift */; };
 		01F03AB122F2EB140033F89A /* searchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F03AB022F2EB140033F89A /* searchModel.swift */; };
+		01F03AB422F320150033F89A /* searchFilterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F03AB322F320150033F89A /* searchFilterVC.swift */; };
+		01F03AB622F320240033F89A /* searchFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F03AB522F320240033F89A /* searchFilterView.swift */; };
 		2D2D5FC022D1EED400E9E0B7 /* SubCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2D5FBF22D1EED400E9E0B7 /* SubCategoryView.swift */; };
 		2D2D5FC222D1F5CE00E9E0B7 /* SubCategoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2D5FC122D1F5CE00E9E0B7 /* SubCategoryVC.swift */; };
 		2D2D5FC422D20E4900E9E0B7 /* SubCategoryVC_Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2D5FC322D20E4900E9E0B7 /* SubCategoryVC_Ext.swift */; };
@@ -240,6 +242,8 @@
 		01F03AAC22F2DDCE0033F89A /* searchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = searchView.swift; sourceTree = "<group>"; };
 		01F03AAE22F2DEF50033F89A /* searchVCExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = searchVCExt.swift; sourceTree = "<group>"; };
 		01F03AB022F2EB140033F89A /* searchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = searchModel.swift; sourceTree = "<group>"; };
+		01F03AB322F320150033F89A /* searchFilterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = searchFilterVC.swift; sourceTree = "<group>"; };
+		01F03AB522F320240033F89A /* searchFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = searchFilterView.swift; sourceTree = "<group>"; };
 		1D733062CB38AA870F7CE805 /* Pods-Brand.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Brand.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Brand/Pods-Brand.debug.xcconfig"; sourceTree = "<group>"; };
 		2D2D5FBF22D1EED400E9E0B7 /* SubCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubCategoryView.swift; sourceTree = "<group>"; };
 		2D2D5FC122D1F5CE00E9E0B7 /* SubCategoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubCategoryVC.swift; sourceTree = "<group>"; };
@@ -485,6 +489,15 @@
 			path = Search;
 			sourceTree = "<group>";
 		};
+		01F03AB222F31F870033F89A /* searchFilter */ = {
+			isa = PBXGroup;
+			children = (
+				01F03AB322F320150033F89A /* searchFilterVC.swift */,
+				01F03AB522F320240033F89A /* searchFilterView.swift */,
+			);
+			path = searchFilter;
+			sourceTree = "<group>";
+		};
 		2D1625A622D6016100F2B50E /* Cart */ = {
 			isa = PBXGroup;
 			children = (
@@ -722,6 +735,7 @@
 		2D32B93722C0F22C00513DD4 /* Scens */ = {
 			isa = PBXGroup;
 			children = (
+				01F03AB222F31F870033F89A /* searchFilter */,
 				01F03AA922F2DD950033F89A /* Search */,
 				2D319C9C22DF4EA800EDC509 /* ItemDetail */,
 				2D9AAABA22DB6AAC000CF118 /* FlashSale */,
@@ -1172,38 +1186,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Brand/Pods-Brand-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/Cosmos/Cosmos.framework",
-				"${BUILT_PRODUCTS_DIR}/EasyTipView/EasyTipView.framework",
-				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
-				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
-				"${BUILT_PRODUCTS_DIR}/FlexibleSteppedProgressBar/FlexibleSteppedProgressBar.framework",
-				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
-				"${BUILT_PRODUCTS_DIR}/MOLH/MOLH.framework",
-				"${PODS_ROOT}/TwitterCore/iOS/TwitterCore.framework",
-				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-Brand/Pods-Brand-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cosmos.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EasyTipView.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FlexibleSteppedProgressBar.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MOLH.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwitterCore.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwitterKit.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-Brand/Pods-Brand-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Brand/Pods-Brand-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Brand/Pods-Brand-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		7F342D37A4BAA1C265EEF214 /* [CP] Copy Pods Resources */ = {
@@ -1212,26 +1203,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Brand/Pods-Brand-resources.sh",
-				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
-				"${PODS_ROOT}/GooglePlacePicker/Frameworks/GooglePlacePicker.framework/Resources/GooglePlacePicker.bundle",
-				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
-				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework/TwitterKitResources.bundle",
+				"${PODS_ROOT}/Target Support Files/Pods-Brand/Pods-Brand-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlacePicker.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlaces.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TwitterKitResources.bundle",
+				"${PODS_ROOT}/Target Support Files/Pods-Brand/Pods-Brand-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Brand/Pods-Brand-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Brand/Pods-Brand-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1302,6 +1282,7 @@
 				2D32B95722C0F22C00513DD4 /* SignUpView.swift in Sources */,
 				01DF99F022E087A400658DCF /* ShippingVCExt.swift in Sources */,
 				2D32B88122C0F1E800513DD4 /* ReviewController_Ext.swift in Sources */,
+				01F03AB422F320150033F89A /* searchFilterVC.swift in Sources */,
 				2D32B8FD22C0F20600513DD4 /* APIClient.swift in Sources */,
 				2D32B92C22C0F20D00513DD4 /* ContainerViewController.swift in Sources */,
 				2D7A631722C0FA8B00AF4E78 /* SearchView.swift in Sources */,
@@ -1368,6 +1349,7 @@
 				2D32B92E22C0F20D00513DD4 /* TabBarViewController.swift in Sources */,
 				2D35862222E0665300F70FBE /* CustomTabBarButton.swift in Sources */,
 				2D7A633622C0FA8B00AF4E78 /* DefaultTextField.swift in Sources */,
+				01F03AB622F320240033F89A /* searchFilterView.swift in Sources */,
 				01F03AAD22F2DDCE0033F89A /* searchView.swift in Sources */,
 				2D32B95622C0F22C00513DD4 /* SignUpViewController.swift in Sources */,
 				2D32B98D22C0F29000513DD4 /* BannersData.swift in Sources */,

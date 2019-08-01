@@ -35,6 +35,7 @@ import UIKit
       @objc optional func  getPendingTapped()
     @objc optional func  getDeliveredTapped()
     @objc optional func  getOtherTapped()
+     @objc optional func  searchTapped()
     @objc optional func  customTabBarTapped(_ sender:UITapGestureRecognizer)
     @objc optional func  flowButtonTapped(_ sender:UIButton)
   @objc optional func infoTapped(_ sender: UIButton)

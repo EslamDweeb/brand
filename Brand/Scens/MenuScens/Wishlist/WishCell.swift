@@ -78,7 +78,7 @@ class WishCell: UICollectionViewCell {
         btn.addTarget(self, action: #selector(addToWishList), for: .touchUpInside)
         return btn
     }()
-    var isFav = true
+    var isFav = false
     @objc func addToWishList(){
         if isFav == false {
             let image = UIImage(named: "emptyHeart")

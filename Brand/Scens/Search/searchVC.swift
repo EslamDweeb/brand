@@ -31,15 +31,26 @@ class searchVC: UIViewController,ButtonActionDelegate {
     func dissmisController() {
         self.dismiss(animated: true, completion: nil)
     }
+    
+    func changeBtn() {
+        if mainView.searchtextFeild.text!.count >= 3 {
+            getItems( text: mainView.searchtextFeild.text!)
+        }else{
+            searchitems = []
+            self.mainView.searchCollection.reloadData()
+        }
+    }
+    func applyBtnTapped() {
+        self.present(searchFilterVC(), animated: true, completion: nil)
+    }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         handelReachability(reachability: reachability)
-                  getItems()
         }
-    func getItems()  {
+    func getItems(text : String )  {
         DispatchQueue.main.async {
             self.mainView.activityStartAnimating(activityColor: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.6952322346), backgroundColor: .clear)
-            APIClient.getsearchitems(name: "bl", complition: { (result) in
+            APIClient.getsearchitems(name: text, brand: "", origin: "", price: "", rate: "", complition: { (result) in
                 switch result{
                 case .success(let data):
                     self.searchitems = data.configs!
