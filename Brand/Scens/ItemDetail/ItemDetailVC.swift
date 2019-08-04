@@ -161,6 +161,7 @@ extension ItemDetailVC:UICollectionViewDelegate,UICollectionViewDataSource,UICol
                 self.changeCustomTabBarBtnColor(name: self.globalHeader.header.customtabBar.reviewBtn.tapGesture.name ?? "",headerView:self.globalHeader)
             }
         }
+         handelAddReviewTapped(cell:cell)
         cell.pageCollectionView.reloadData()
         return cell
     }
@@ -216,5 +217,14 @@ extension ItemDetailVC:UICollectionViewDelegate,UICollectionViewDataSource,UICol
             headerView.header.customtabBar.reviewBtn.titleLable.textColor = .pink
         }
     }
-    private func handelFlowButtonTapped(){    }
+    private func handelAddReviewTapped(cell:MainCollCell){
+        cell.handelThirdCellAddReview = {[weak self] in
+            guard let self = self else {return}
+            let dest = AddReviewController()
+            dest.catlogId = self.itemDetails?.config.catalogID
+            dest.editeFlag = false
+            dest.mainView.setHeaderViewData(self.itemDetails?.config.brand?.name ?? "", self.itemDetails?.config.name ?? "",5, self.itemDetails?.config.mainPhoto?.path)
+            self.present(dest, animated: true, completion: nil)
+        }
+    }
 }

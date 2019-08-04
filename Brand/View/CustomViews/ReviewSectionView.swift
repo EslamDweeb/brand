@@ -24,14 +24,11 @@ class ReviewSectionView:UIView {
      lazy var textView:UITextView = {
         let text = UITextView()
         text.font = UIFont(name: "Avenir-Medium", size: 12)
-        text.text = "Speaking comes to most people as naturally as breathing. On many occasions our words are uttered without conscious thought; in fact we rarely stop and think about what we are saying. Thousands of words"
         text.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.3)
         return text
     }()
     override func layoutSubviews() {
         super.layoutSubviews()
-        self.layer.borderWidth = 1
-        self.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.1588516695)
         textContainerView.layer.borderWidth = 1
         textContainerView.layer.borderColor = #colorLiteral(red: 0.8588235294, green: 0.8588235294, blue: 0.8588235294, alpha: 1)
         textContainerView.layer.cornerRadius = 5

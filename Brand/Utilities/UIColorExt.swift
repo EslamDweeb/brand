@@ -30,8 +30,10 @@ extension UIColor {
     static let lightgray3 = UIColor(red: 216/255, green: 216/255, blue: 216/255, alpha: 1)
     static let lightDarkGray = UIColor(red: 45/255, green: 45/255, blue: 45/255, alpha: 1)
     static let lightgray4 = UIColor(red: 215/255, green: 215/255, blue: 215/255, alpha: 1)
+
     static let blackTransparent = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.5016395499)
     static let grayBackgroundCell = #colorLiteral(red: 0.8941176471, green: 0.8941176471, blue: 0.8941176471, alpha: 1)
     static let grayTextCell = #colorLiteral(red: 0.537254902, green: 0.537254902, blue: 0.537254902, alpha: 1)
     
+
 }

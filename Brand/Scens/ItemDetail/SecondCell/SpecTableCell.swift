@@ -16,6 +16,8 @@ class SpecTAbleCell:UITableViewCell{
             valLable.text = "\(sp.value) \(sp.specKey.unit.name)"
         }
     }
+    var stackLeftAnchor:NSLayoutConstraint?
+    var stackRightAnchor:NSLayoutConstraint?
     lazy var keyLable:UILabel = {
         let lbl = UILabel()
         lbl.font = setFont(name: .fontH, size: 14)
@@ -37,6 +39,7 @@ class SpecTAbleCell:UITableViewCell{
         stack.spacing = 0
         stack.addArrangedSubview(keyLable)
         stack.addArrangedSubview(valLable)
+        stack.alignment = .center
         return stack
     }()
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -49,9 +52,11 @@ class SpecTAbleCell:UITableViewCell{
     }
     
     private func setupView(){
-        addSubview(stackView)
-        stackView.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
-        //keyLable.widthAnchor.constraint(equalToConstant: self.frame.width / 2).isActive = true
-        keyLable.heightAnchor.constraint(equalToConstant: 50).isActive = true
+    
+        if spec != nil {
+            addSubview(stackView)
+            keyLable.heightAnchor.constraint(equalToConstant: 50).isActive = true
+                stackView.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 16, paddingLeft: 0, paddingBottom: 0, paddingRight: 16, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
+        }
     }
 }

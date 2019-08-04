@@ -19,6 +19,7 @@ class MainCollCell:UICollectionViewCell,UICollectionViewDelegate,UICollectionVie
     let group = DispatchGroup()
     var row:Int?
     var handelCellSwipe:((_ row:Int) -> ())?
+    var handelThirdCellAddReview:(() -> ())?
     lazy var pageCollectionView:UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -80,6 +81,10 @@ class MainCollCell:UICollectionViewCell,UICollectionViewDelegate,UICollectionVie
             cell.header.ratingData = self.rateData
             cell.reviews = self.reviews
             cell.reviewCollectionView.reloadData()
+            cell.handelAddReviewButtonTapped = { [weak self] in
+                guard let self = self else{return}
+                self.handelThirdCellAddReview?()
+            }
             return cell
         default:
             return UICollectionViewCell()

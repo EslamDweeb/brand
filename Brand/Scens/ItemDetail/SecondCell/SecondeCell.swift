@@ -35,7 +35,7 @@ class SecondeCell:UICollectionViewCell{
 }
 extension SecondeCell:UITableViewDataSource,UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if specs == nil {
+        if specs?.count == 0 {
             let view = MyAddressTableBG()
             view.image.image = #imageLiteral(resourceName: "No product")
             view.lable.text = "No specification"

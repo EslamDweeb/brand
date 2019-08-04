@@ -71,10 +71,12 @@ class ThirdCellHeadView:UIView {
         rate.settings.fillMode = .half
         return rate
     }()
+    weak var actioDelegate:ButtonActionDelegate?
     lazy var addReviewBtn:GradBtn = {
         let btn = GradBtn()
         btn.setTitle(NSLocalizedString("addReview", comment: ""), for: .normal)
         btn.titleLabel?.font = setFont(name: .fontM, size: 14)
+        btn.addTarget(actioDelegate, action: #selector(ButtonActionDelegate.addBtn), for: .touchUpInside)
         return btn
     }()
     lazy var vStackView2:UIStackView = {
@@ -89,8 +91,9 @@ class ThirdCellHeadView:UIView {
         stack.alignment = .center
         return stack
     }()
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(buttonActionDelegate:ButtonActionDelegate) {
+        super.init(frame: .zero)
+        self.actioDelegate = buttonActionDelegate
         setupView()
     }
     private func setLableText(){
