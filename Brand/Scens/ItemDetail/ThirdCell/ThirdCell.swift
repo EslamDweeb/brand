@@ -8,9 +8,10 @@
 
 import UIKit
 
-class ThirdCell:UICollectionViewCell{
+class ThirdCell:UICollectionViewCell,ButtonActionDelegate{
     let cellID = "cellID"
-    lazy var header = ThirdCellHeadView()
+    var handelAddReviewButtonTapped:(() -> ())?
+    lazy var header = ThirdCellHeadView(buttonActionDelegate: self)
     lazy var reviews = [Ratingable]()
     
     lazy var reviewCollectionView:UICollectionView = {
@@ -63,5 +64,7 @@ extension ThirdCell:UICollectionViewDelegate,UICollectionViewDataSource,UICollec
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 8
     }
-    
+    func addBtn() {
+        self.handelAddReviewButtonTapped?()
+    }
 }

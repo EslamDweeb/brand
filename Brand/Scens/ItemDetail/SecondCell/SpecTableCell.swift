@@ -52,14 +52,11 @@ class SpecTAbleCell:UITableViewCell{
     }
     
     private func setupView(){
-        addSubview(stackView)
-      
-        keyLable.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        if spec == nil {
-              stackView.anchor(top: topAnchor, left: nil, bottom: bottomAnchor, right: nil, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
-        }else{
-              stackView.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 16, paddingLeft: 0, paddingBottom: 0, paddingRight: 16, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
+    
+        if spec != nil {
+            addSubview(stackView)
+            keyLable.heightAnchor.constraint(equalToConstant: 50).isActive = true
+                stackView.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 16, paddingLeft: 0, paddingBottom: 0, paddingRight: 16, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         }
-     
     }
 }

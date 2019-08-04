@@ -15,6 +15,7 @@ enum ProductRouter:URLRequestConvertible {
     case categories
     case lastUpdate
     case allReviews
+    case addReview(id:Int,value:Int,review:String,pros:String,cons:String)
     case updateReview(value:Int,review:String,pros:String,cons:String,objectId:Int,ratingId:Int)
     case getOrders
     case getOrderDetails(orderSerial:String)
@@ -33,7 +34,7 @@ enum ProductRouter:URLRequestConvertible {
         switch self {
         case .brands,.banners,.categories,.lastUpdate,.allReviews,.getOrders,.getOrderDetails,.getCategoryInfo,.getCategoryProduct,.getWishlist,.getCartData,.getExploreData,.getFlashData,.getAllProductConfigs,.getitemDetail,.getConfigReview,.getConfigRating:
             return .get
-        case .updateReview,.toggleFav:
+        case .updateReview,.toggleFav,.addReview:
             return .post
         }
     }
@@ -49,6 +50,8 @@ enum ProductRouter:URLRequestConvertible {
             return "/api/last_updates"
         case .allReviews:
             return "/api/ratingables?profile"
+        case .addReview(let id,_,_,_,_):
+            return "/api/ratingables/catalog/\(id)"
         case .updateReview(_,_,_,_,let objectId,let ratingId):
             return "/api/ratingables/catalog/\(objectId)/\(ratingId)"
         case .getOrders:
@@ -86,7 +89,7 @@ enum ProductRouter:URLRequestConvertible {
                     HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue,
                     HTTPHeaderField.contentType.rawValue : ContentType.json.rawValue
                 ]
-         case .allReviews,.updateReview,.getOrders,.getOrderDetails,.getWishlist,.getCartData,.toggleFav,.getExploreData,.getitemDetail,.getConfigReview,.getConfigRating:
+         case .allReviews,.updateReview,.getOrders,.getOrderDetails,.getWishlist,.getCartData,.toggleFav,.getExploreData,.getitemDetail,.getConfigReview,.getConfigRating,.addReview:
             return [
                 HTTPHeaderField.authentication.rawValue : " \(ContentType.token.rawValue) \(UserDefaults.standard.string(forKey: Constants.Defaults.authToken) ?? "")" ,
                 HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue,
@@ -105,6 +108,13 @@ enum ProductRouter:URLRequestConvertible {
                     Constants.APIParameterKey.review: review,
                     Constants.APIParameterKey.pros: pros,
                     Constants.APIParameterKey.cons: cons
+            ]
+        case .addReview(_,let value, let review, let pros, let cons):
+            return [
+                Constants.APIParameterKey.value: value,
+                Constants.APIParameterKey.review: review,
+                Constants.APIParameterKey.pros: pros,
+                Constants.APIParameterKey.cons: cons
             ]
         case .toggleFav:
             return  [Constants.APIParameterKey.method : RequestMethods.put.rawValue]
