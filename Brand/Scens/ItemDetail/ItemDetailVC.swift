@@ -12,7 +12,6 @@ class ItemDetailVC: UIViewController,ButtonActionDelegate {
     let headerID = "headerID"
     let cellID = "cellID"
     var itemDetails:ItemDetailInfo?
-      let group = DispatchGroup()
     var reviews = [Ratingable]()
     var rateData:OverallRating?
     var globalHeader : ItemDetailCollHeader!
@@ -47,19 +46,10 @@ class ItemDetailVC: UIViewController,ButtonActionDelegate {
         getRatingAndReviewInfo()
     }
     fileprivate func getRatingAndReviewInfo(){
-        group.enter()
+       
         getItemData()
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
-            self.group.enter()
-            self.getRatingData(id:Int(self.itemDetails?.config.modelRatingID ?? 0))
-            self.group.enter()
-            self.getReviewData(id:Int(self.itemDetails?.config.catalogID ?? 0))
-        }
-        group.notify(queue: .main) {
-            self.mainView.activityStopAnimating()
-            print("finish!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-        }
-        //self.pageCollectionView.reloadData()
+        
+
     }
     fileprivate func getItemData(){
         APIClient.getItemDetail(slug: self.slug ?? "noura-456735") { (result) in
@@ -67,10 +57,12 @@ class ItemDetailVC: UIViewController,ButtonActionDelegate {
             case .success(let data):
                     self.itemDetails = data
                     self.mainView.mainCollectionView.reloadData()
-                    self.group.leave()
+                    self.getRatingData(id:Int(self.itemDetails?.config.modelRatingID ?? 0))
+                    self.getReviewData(id:Int(self.itemDetails?.config.catalogID ?? 0))
+                    self.mainView.activityStopAnimating()
                     print(data)
             case .failure(let error):
-                self.group.leave()
+                self.mainView.activityStopAnimating()
                 print(error)
             }
         }
@@ -82,10 +74,8 @@ class ItemDetailVC: UIViewController,ButtonActionDelegate {
                 print(data)
                 self.rateData = data.overallRating
                  self.mainView.mainCollectionView.reloadData()
-                self.group.leave()
             case.failure(let error):
                 print(error)
-                self.group.leave()
             }
         }
     }
@@ -96,13 +86,18 @@ class ItemDetailVC: UIViewController,ButtonActionDelegate {
                 self.reviews = data.ratingables
                  self.mainView.mainCollectionView.reloadData()
                 print(data)
-                self.group.leave()
             case.failure(let error):
                 print(error)
-                self.group.leave()
             }
         }
     }
+    
+    func addViewAddToCart () {
+        let viewAddToCart = ViewAddToCart()
+        self.view.addSubview(viewAddToCart)
+        viewAddToCart.anchor(top: self.view.topAnchor , left: self.view.leftAnchor , bottom: self.view.bottomAnchor , right: self.view.rightAnchor , centerX: nil , centerY: nil , paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
+    }
+    
 //    func dissmisController() {
 //        self.dismiss(animated: true, completion: nil)
 //    }
@@ -124,7 +119,7 @@ extension ItemDetailVC:UICollectionViewDelegate,UICollectionViewDataSource,UICol
         }
         header.handelFlowBtnTapped = { [weak self](sender) in
             guard let self = self else {return}
-            if sender == header.header.customtabBar.favBtn{
+            if sender == header.header.favBtn{
                 APIClient.toggleFav(id: self.itemDetails?.config.id ?? 0) { (result) in
                     switch result {
                     case.success(let data):
@@ -133,7 +128,9 @@ extension ItemDetailVC:UICollectionViewDelegate,UICollectionViewDataSource,UICol
                         break
                     }
                 }
-            }else if sender == header.header.customtabBar.cartBtn{
+            }else if sender == header.header.cartBtn {
+                self.addViewAddToCart()
+                
                 
             }
         }

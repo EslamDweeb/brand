@@ -94,6 +94,21 @@ class ItemDetailHeaderView: UIView {
         setupView()
     }
     
+    
+    lazy var favBtn:UIButton = {
+        let btn = UIButton()
+        btn.setImage(#imageLiteral(resourceName: "fav"), for: .normal)
+        btn.addTarget(actionDelegate, action: #selector(ButtonActionDelegate.flowButtonTapped(_:)), for: .touchUpInside)
+        return btn
+    }()
+    lazy var cartBtn:UIButton = {
+        let btn = UIButton()
+        let image = UIImage(named: "cart22")
+        btn.setImage(image, for: .normal)
+        btn.addTarget(actionDelegate, action: #selector(ButtonActionDelegate.flowButtonTapped(_:)), for: .touchUpInside)
+        return btn
+    }()
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -107,6 +122,8 @@ class ItemDetailHeaderView: UIView {
         addSubview(backBtn)
         addSubview(titlelable)
         addSubview(customtabBar)
+        addSubview(favBtn)
+        addSubview(cartBtn)
         addSubview(finalPriceLable)
         addSubview(priceLable)
         addSubview(discountLbl)
@@ -124,7 +141,12 @@ class ItemDetailHeaderView: UIView {
         rateView.anchor(top: nil, left: discountLbl.rightAnchor, bottom: nil, right: nil, centerX: nil, centerY: discountLbl.centerYAnchor, paddingTop: 0, paddingLeft:8, paddingBottom: 0, paddingRight: 0, width: 65, height: 20, paddingCenterX: 0, paddingCenterY: 5)
          numberOFReviewerLable.anchor(top: nil, left: rateView.rightAnchor, bottom: nil, right: nil, centerX: nil, centerY: priceLable.centerYAnchor, paddingTop: 0, paddingLeft: 2, paddingBottom: 0, paddingRight: 0, width: 50, height: 20, paddingCenterX: 0, paddingCenterY: 0)
         finalPriceLable.anchor(top: priceLable.bottomAnchor, left: nil, bottom: nil, right: nil, centerX: centerXAnchor, centerY: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 100, height: 30, paddingCenterX: 0, paddingCenterY: 0)
-        customtabBar.anchor(top: finalPriceLable.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 50, paddingCenterX: 0, paddingCenterY: 0)
+        customtabBar.anchor(top: finalPriceLable.bottomAnchor, left: leftAnchor, bottom: nil , right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 50, paddingCenterX: 0, paddingCenterY: 0)
+        
+        cartBtn.anchor(top: nil , left: leftAnchor , bottom: bottomAnchor , right: nil , centerX: nil , centerY: nil , paddingTop: 0, paddingLeft: 0 , paddingBottom: 0 , paddingRight: 16 , width: 45, height: 45, paddingCenterX: 0, paddingCenterY: 0)
+      
+        favBtn.anchor(top: nil , left: nil , bottom: bottomAnchor , right: rightAnchor , centerX: nil , centerY: nil , paddingTop: 0, paddingLeft: 0 , paddingBottom: 0 , paddingRight: 16 , width: 45, height: 45, paddingCenterX: 0, paddingCenterY: 0)
+       
     }
 }
 

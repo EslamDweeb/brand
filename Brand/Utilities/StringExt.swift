@@ -19,6 +19,21 @@ extension String {
 
 class YString {
     
+    static var productOptions : String { return getText(key: "productOptions") }
+    static var itemPrice : String { return getText(key: "itemPrice") }
+    static var quantity : String { return getText(key: "quantity") }
+    static var totalPrice : String { return getText(key: "totalPrice" ) }
+    static var addToCart : String { return getText(key: "addToCart") }
+    
+    static func getText (key : String) -> String {
+        
+        if MOLHLanguage.currentAppleLanguage().contains("en") {
+            return enString[key] ?? key
+        }else {
+            return arString[key] ?? key
+        }
+        
+    }
     static private let arString : [String : String] = [
         "cart" : "سلة المشتريات",
         "QTY" : "الكميه ",
@@ -188,6 +203,11 @@ class YString {
         "browesBy" : "Browse by sub category",
         "stars" : "****************",
         "Checkout_New" : "Checkout New",
+        "productOptions" : "خيارات المنتج",
+        "itemPrice" : "سعر المنتج",
+        "quantity" : "الكمية",
+        "totalPrice" : "السعر الكلي" ,
+        "addToCart" : "اضف الي العربة"
 
     ]
     
@@ -358,18 +378,15 @@ class YString {
         "sar" : "SAR"  ,
         "exceeded" : "Quantity exceeded" ,
         "Outofstock" : "Out of stock" ,
-        "QTY" : "QTY"
+        "QTY" : "QTY" ,
+        "productOptions" : "Product options",
+        "itemPrice" : "Item price",
+        "quantity" : "Quantity",
+        "totalPrice" : "Total price" ,
+        "addToCart" : "Add to cart"
 
     ]
     
-    static func getText (key : String) -> String {
-        
-        if MOLHLanguage.currentAppleLanguage().contains("en") {
-            return enString[key] ?? key
-        }else {
-            return arString[key] ?? key
-        }
-        
-    }
+    
     
 }

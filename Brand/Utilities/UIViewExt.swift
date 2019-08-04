@@ -115,3 +115,9 @@ extension UIView {
     }
 }
 
+
+extension UITableViewCell {
+    static func getIdentifier () -> String  {
+        return String(describing: self )
+    }
+}
