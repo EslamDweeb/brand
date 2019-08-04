@@ -46,7 +46,7 @@ class WishCell: UICollectionViewCell {
     lazy var image: UIImageView = {
         let img = UIImageView()
         img.image = #imageLiteral(resourceName: "XSMax")
-        img.contentMode = .scaleAspectFill
+        img.contentMode = .scaleToFill
         return img
     }()
     lazy var brandName: DescriptionLabel = {
@@ -81,7 +81,7 @@ class WishCell: UICollectionViewCell {
         btn.addTarget(self, action: #selector(addToWishList), for: .touchUpInside)
         return btn
     }()
-    var isFav = true
+    var isFav = false
     @objc func addToWishList(){
         if isFav != false {
             let image = UIImage(named: "emptyHeart")

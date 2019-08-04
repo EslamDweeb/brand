@@ -15,6 +15,7 @@ class HomeView: UIView{
         navView.titlelabel.text = "Explore Brands"
         navView.backBtn.isHidden = true
         navView.searchBtn.isHidden = false
+        navView.searchBtn.addTarget(actionDelegate, action: #selector(ButtonActionDelegate.searchTapped), for: .touchUpInside)
         return navView
     }()
     

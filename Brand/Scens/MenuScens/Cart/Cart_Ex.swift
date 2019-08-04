@@ -78,6 +78,7 @@ extension CartController: UITableViewDelegate , UITableViewDataSource {
         cell.selectionStyle = .none
         cell.infoBtn.tag = indexPath.row
         cell.infoBtn.addTarget(self, action: #selector(ButtonActionDelegate.infoTapped(_:)), for: .touchUpInside)
+
         
 //        mainView.ItemsNum.text = "\("Items".localized )\(cartpro.count)"
 //        mainView.Totalsar.text = "\("TotalAmount".localized) \(self.getTotalCartItemsPrice())"
