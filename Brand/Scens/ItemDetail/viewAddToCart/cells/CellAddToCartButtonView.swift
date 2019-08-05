@@ -23,6 +23,10 @@ class CellAddToCartButtonView : UITableViewCell {
         return l
     }()
     
+    var isCellSelected : Bool {
+        return labelTextInView.textColor != .grayTextCell
+    }
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style , reuseIdentifier: reuseIdentifier )
         initViews()
@@ -32,6 +36,7 @@ class CellAddToCartButtonView : UITableViewCell {
     }
     
     private func initViews () {
+        self.selectionStyle = .none
         viewSelection.addSubview(labelTextInView)
         self.addSubview(viewSelection)
         
@@ -39,9 +44,21 @@ class CellAddToCartButtonView : UITableViewCell {
         viewSelection.anchor(top: self.topAnchor , left: self.leftAnchor , bottom: self.bottomAnchor , right: self.rightAnchor , centerX: nil , centerY: nil , paddingTop: 4, paddingLeft: 4, paddingBottom: 4, paddingRight: 4, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
     }
     
-    func setTextLabel (name : String , price : String ) {
+    func setTextLabel (name : String , price : Int ) {
         labelTextInView.text = "\(name) ( +\(price) SAR )"
     }
+    
+    
+    func selectItem () {
+        labelTextInView.textColor = .white
+        viewSelection.backgroundColor = .magenta
+    }
+    
+    func deSelectItem () {
+        labelTextInView.textColor = .grayTextCell
+        viewSelection.backgroundColor = .grayBackgroundCell
+    }
+    
     
     
 }

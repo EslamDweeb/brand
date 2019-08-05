@@ -7,8 +7,12 @@
 //
 
 import UIKit
+import AKPickerView
+
 
 class ViewAddToCart : UIView {
+    
+    var presenter : ProAddToCartPresenter?
     
     lazy var scrollView : UIScrollView = {
        let s = UIScrollView()
@@ -75,12 +79,7 @@ class ViewAddToCart : UIView {
         return l
     }()
     
-    lazy var picker : UIPickerView = {
-       let p = UIPickerView()
-        p.dataSource = self
-        p.delegate = self
-        return p
-    }()
+
     var rotationAngel : CGFloat?
     
     lazy var labelTotalPrice : UILabel = {
@@ -102,6 +101,16 @@ class ViewAddToCart : UIView {
     }()
     
     
+    lazy var pickerView : AKPickerView = {
+       let p = AKPickerView()
+        p.layer.borderWidth = 1
+        p.layer.borderColor = UIColor.blackTransparent.cgColor
+        p.layer.cornerRadius = 5
+        p.delegate = self
+        p.dataSource = self
+        return p
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame )
         initViews()
@@ -119,21 +128,29 @@ class ViewAddToCart : UIView {
         
         addView()
         addConstraint()
-        labelItemPrice.text = YString.itemPrice + "\n" + "45523"
+        
         labelTotalPrice.text = YString.totalPrice + "\n" + "78465"
-        picker.transform = CGAffineTransform(rotationAngle: rotationAngel ?? 0 )
         
     }
     
-    lazy var imageMinusCount : UIImageView = {
-       let image = UIImageView()
-        image.image = #imageLiteral(resourceName: "nextButton")
+    lazy var imageMinusCount : UIButton = {
+       let image = UIButton()
+        image.setImage(#imageLiteral(resourceName: "minus"), for: .normal)
+        image.backgroundColor = .white
+        image.layer.borderWidth = 0.5
+        image.layer.borderColor = UIColor.pink.cgColor
+        image.layer.cornerRadius = 5
+        
         return image
     }()
     
-    lazy var imageAddCount : UIImageView = {
-       let image = UIImageView ()
-        image.image = #imageLiteral(resourceName: "filledHeart")
+    lazy var imageAddCount : UIButton = {
+        let image = UIButton()
+        image.setImage(#imageLiteral(resourceName: "plus"), for: .normal)
+        image.backgroundColor = .pink
+        image.layer.borderWidth = 0.5
+        image.layer.borderColor = UIColor.pink.cgColor
+        image.layer.cornerRadius = 5
         return image
     }()
     
@@ -148,15 +165,25 @@ class ViewAddToCart : UIView {
         viewParentScroll.addSubview(tableView)
         viewParentScroll.addSubview(labelItemPrice)
         viewParentScroll.addSubview(quantity)
+        viewParentScroll.addSubview( pickerView )
         viewParentScroll.addSubview(imageMinusCount)
         viewParentScroll.addSubview(imageAddCount)
         viewParentScroll.addSubview(labelTotalPrice)
         viewParentScroll.addSubview(buttonAddToCart)
+        
     }
     
-    
     private func addConstraint () {
-        viewContainer.anchor(top: self.safeAreaLayoutGuide.topAnchor , left: self.leftAnchor , bottom: self.safeAreaLayoutGuide.bottomAnchor , right: self.rightAnchor , centerX: nil , centerY: nil , paddingTop: 16, paddingLeft: 16, paddingBottom: 16 , paddingRight: 16 , width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
+//        viewContainer.anchor(top: self.safeAreaLayoutGuide.topAnchor , left: self.leftAnchor , bottom: self.safeAreaLayoutGuide.bottomAnchor , right: self.rightAnchor , centerX: nil , centerY: nil , paddingTop: 16, paddingLeft: 16, paddingBottom: 16 , paddingRight: 16 , width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
+        
+        viewContainer.translatesAutoresizingMaskIntoConstraints = false
+        viewContainer.topAnchor.constraint(greaterThanOrEqualTo : self.safeAreaLayoutGuide.topAnchor , constant: 16) .isActive = true
+        viewContainer.leftAnchor.constraint(equalTo: self.leftAnchor , constant: 16 ).isActive = true
+        viewContainer.rightAnchor.constraint(equalTo: self.rightAnchor , constant: -16 ).isActive = true
+        viewContainer.bottomAnchor.constraint(greaterThanOrEqualTo: self.safeAreaLayoutGuide.bottomAnchor , constant: 16 ).isActive = true
+        viewContainer.centerXAnchor.constraint(equalTo: self.centerXAnchor , constant: 0).isActive = true
+        viewContainer.centerYAnchor.constraint(equalTo: self.centerYAnchor , constant: 0 ).isActive = true
+        
         
         closeButton.anchor(top: viewContainer.topAnchor , left: viewContainer.leftAnchor , bottom: nil, right: nil, centerX: nil , centerY: nil , paddingTop: 16, paddingLeft: 16 , paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         labelProductOption.anchor(top: viewContainer.topAnchor  , left: nil, bottom: nil , right: nil , centerX: viewContainer.centerXAnchor , centerY: nil , paddingTop: 16 , paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
@@ -179,12 +206,19 @@ class ViewAddToCart : UIView {
         quantity.anchor(top: self.labelItemPrice.bottomAnchor , left: self.viewParentScroll.leftAnchor , bottom: nil , right: self.viewParentScroll.rightAnchor , centerX: nil , centerY: nil , paddingTop: 16 , paddingLeft: 16, paddingBottom: 16, paddingRight: 16 , width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         
        imageMinusCount.anchor(top: quantity.bottomAnchor , left: self.viewParentScroll.leftAnchor , bottom: nil , right: nil , centerX: nil, centerY: nil, paddingTop: 20 , paddingLeft: 32 , paddingBottom: 0, paddingRight: 0, width: 25, height: 25 , paddingCenterX: 0, paddingCenterY: 0)
-       imageAddCount.anchor(top: quantity.bottomAnchor , left: nil , bottom: nil  , right: nil  , centerX: nil, centerY: nil, paddingTop: 20 , paddingLeft: 0 , paddingBottom: 0, paddingRight: 32 , width: 25, height: 25 , paddingCenterX: 0, paddingCenterY: 0)
+        
+       imageAddCount.anchor(top: quantity.bottomAnchor , left: nil , bottom: nil  , right: self.viewParentScroll.rightAnchor  , centerX: nil, centerY: nil, paddingTop: 20 , paddingLeft: 0 , paddingBottom: 0, paddingRight: 32 , width: 25, height: 25 , paddingCenterX: 0, paddingCenterY: 0)
+        
+        pickerView.anchor(top: nil , left: imageMinusCount.rightAnchor , bottom: nil , right: imageAddCount.leftAnchor , centerX: nil , centerY: imageAddCount.centerYAnchor , paddingTop: 0 , paddingLeft: 16, paddingBottom: 0  , paddingRight: 16, width: 0, height: 30, paddingCenterX: 0, paddingCenterY: 0)
         
         labelTotalPrice.anchor(top: imageAddCount.bottomAnchor , left: self.viewParentScroll.leftAnchor , bottom: nil  , right: self.viewParentScroll.rightAnchor , centerX: nil , centerY: nil , paddingTop: 16 , paddingLeft: 16, paddingBottom: 16, paddingRight: 16, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         
         buttonAddToCart.anchor(top: labelTotalPrice.bottomAnchor , left: viewParentScroll.leftAnchor , bottom: viewParentScroll.bottomAnchor , right: viewParentScroll.rightAnchor , centerX: nil , centerY: nil , paddingTop: 16, paddingLeft: 16, paddingBottom: 16, paddingRight: 16, width: 0, height: 50 , paddingCenterX: 0, paddingCenterY: 0)
        
+    }
+    
+    func setPrice () {
+        labelItemPrice.text = YString.itemPrice + "\n" + "\( self.presenter?.priceProduct ?? 0 )"
     }
     
     @objc private func addToCartAction () {
@@ -208,15 +242,50 @@ extension ViewAddToCart : UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return presenter?.productOptions.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: CellAddToCartDropDown.getIdentifier() , for: indexPath) as! CellAddToCartDropDown
-        let cell = tableView.dequeueReusableCell(withIdentifier: CellAddToCartButtonView.getIdentifier() , for: indexPath ) as! CellAddToCartButtonView
-        cell.setTextLabel(name: "name \(indexPath.row)", price: "345")
-        return cell
+        let singleObjc = presenter?.productOptions[indexPath.row]
+        if singleObjc?.values?.count ?? 0 > 0 {
+              let cell = tableView.dequeueReusableCell(withIdentifier: CellAddToCartDropDown.getIdentifier() , for: indexPath) as! CellAddToCartDropDown
+            cell.setupCell(values: singleObjc?.values ?? [] , parentID: singleObjc?.id ?? 0 )
+            cell.completion = { [weak self ] ( value , parentID )  in
+                if let index = self?.presenter?.selectedValues.firstIndex(where: { $0.parentID == parentID }) {
+                    self?.presenter?.selectedValues[index].value = value
+                }else {
+                    self?.presenter?.selectedValues.append( (parentID : parentID , value : value) )
+                }
+
+            }
+            return  cell
+        }else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: CellAddToCartButtonView.getIdentifier() , for: indexPath ) as! CellAddToCartButtonView
+            cell.setTextLabel(name: singleObjc?.name ?? ""  , price: singleObjc?.addsPrice ?? 0)
+            return cell
+        }
+
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let cell = tableView.cellForRow(at: indexPath) as? CellAddToCartButtonView {
+            let singleObjc = presenter?.productOptions[indexPath.row]
+            
+            if let index = self.presenter?.selectedProductOption.firstIndex(where: { $0.id == singleObjc?.id }) {
+                self.presenter?.selectedProductOption.remove(at: index)
+            }else {
+                self.presenter?.selectedProductOption.append( singleObjc! )
+            }
+            
+            if cell.isCellSelected {
+                cell.deSelectItem()
+            }else {
+                cell.selectItem()
+            }
+
+        }
+    }
+    
    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return CGFloat(50)
@@ -224,21 +293,19 @@ extension ViewAddToCart : UITableViewDataSource, UITableViewDelegate {
     
 }
 
-extension ViewAddToCart : UIPickerViewDelegate , UIPickerViewDataSource {
+extension ViewAddToCart : AKPickerViewDelegate , AKPickerViewDataSource {
     
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
+    func numberOfItems(in pickerView: AKPickerView!) -> UInt {
+            return 120
     }
     
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return 6
+    func pickerView(_ pickerView: AKPickerView!, titleForItem item: Int) -> String! {
+        return "   \( item + 1 )   "
     }
     
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        print("row : \(row)")
+    func pickerView(_ pickerView: AKPickerView!, didSelectItem item: Int) {
+        print("\( item + 1)")
     }
-    
-    
     
 }
 

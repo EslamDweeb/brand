@@ -93,7 +93,13 @@ class ItemDetailVC: UIViewController,ButtonActionDelegate {
     }
     
     func addViewAddToCart () {
+        let config = itemDetails?.config
+        let viewPresenter : ProAddToCartPresenter = AddToCartPresenter(saleProduct: config?.sale ?? 0.0 , priceProduct: Double(config?.price ?? 0) , quantityProduct : config?.qty ?? 0 , maxQuantity: config?.maxQty ?? 0 , minQuantity: config?.minQty ?? 0 , productOptions: config?.productOptions ?? [] )
         let viewAddToCart = ViewAddToCart()
+        viewAddToCart.presenter = viewPresenter
+        viewAddToCart.setPrice()
+
+        
         self.view.addSubview(viewAddToCart)
         viewAddToCart.anchor(top: self.view.topAnchor , left: self.view.leftAnchor , bottom: self.view.bottomAnchor , right: self.view.rightAnchor , centerX: nil , centerY: nil , paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
     }
@@ -130,7 +136,6 @@ extension ItemDetailVC:UICollectionViewDelegate,UICollectionViewDataSource,UICol
                 }
             }else if sender == header.header.cartBtn {
                 self.addViewAddToCart()
-                
                 
             }
         }
