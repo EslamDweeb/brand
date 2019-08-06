@@ -24,6 +24,9 @@ class YString {
     static var quantity : String { return getText(key: "quantity") }
     static var totalPrice : String { return getText(key: "totalPrice" ) }
     static var addToCart : String { return getText(key: "addToCart") }
+    static var selectOption : String { return getText(key: "selectOption") }
+    static var done : String { return getText(key: "done") }
+    
     
     static func getText (key : String) -> String {
         
@@ -207,7 +210,9 @@ class YString {
         "itemPrice" : "سعر المنتج",
         "quantity" : "الكمية",
         "totalPrice" : "السعر الكلي" ,
-        "addToCart" : "اضف الي العربة"
+        "addToCart" : "اضف الي العربة",
+        "selectOption" : "اختر" ,
+        "done" : "تم"
 
     ]
     
@@ -383,8 +388,10 @@ class YString {
         "itemPrice" : "Item price",
         "quantity" : "Quantity",
         "totalPrice" : "Total price" ,
-        "addToCart" : "Add to cart"
-
+        "addToCart" : "Add to cart",
+        "selectOption" : "Select option",
+        "done" : "Done"
+        
     ]
     
     

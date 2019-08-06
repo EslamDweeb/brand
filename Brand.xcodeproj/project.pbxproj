@@ -213,6 +213,7 @@
 		811637A422F6DD1D00402ADD /* ViewAddToCart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811637A322F6DD1D00402ADD /* ViewAddToCart.swift */; };
 		811637A722F725F800402ADD /* CellAddToCartDropDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811637A622F725F800402ADD /* CellAddToCartDropDown.swift */; };
 		811637A922F7260C00402ADD /* CellAddToCartButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811637A822F7260C00402ADD /* CellAddToCartButtonView.swift */; };
+		8183D1D322F8302600E64539 /* ViewAddToCartPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8183D1D222F8302600E64539 /* ViewAddToCartPresenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -430,6 +431,7 @@
 		811637A322F6DD1D00402ADD /* ViewAddToCart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewAddToCart.swift; sourceTree = "<group>"; };
 		811637A622F725F800402ADD /* CellAddToCartDropDown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellAddToCartDropDown.swift; sourceTree = "<group>"; };
 		811637A822F7260C00402ADD /* CellAddToCartButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellAddToCartButtonView.swift; sourceTree = "<group>"; };
+		8183D1D222F8302600E64539 /* ViewAddToCartPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewAddToCartPresenter.swift; sourceTree = "<group>"; };
 		E17F424A357E4DE1EABD0724 /* Pods_Brand.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Brand.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC765D8AD81D240700CFD342 /* Pods-Brand.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Brand.release.xcconfig"; path = "Pods/Target Support Files/Pods-Brand/Pods-Brand.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1088,11 +1090,20 @@
 		811637A522F725A900402ADD /* viewAddToCart */ = {
 			isa = PBXGroup;
 			children = (
+				8183D1D122F8300A00E64539 /* cells */,
 				811637A322F6DD1D00402ADD /* ViewAddToCart.swift */,
+				8183D1D222F8302600E64539 /* ViewAddToCartPresenter.swift */,
+			);
+			path = viewAddToCart;
+			sourceTree = "<group>";
+		};
+		8183D1D122F8300A00E64539 /* cells */ = {
+			isa = PBXGroup;
+			children = (
 				811637A622F725F800402ADD /* CellAddToCartDropDown.swift */,
 				811637A822F7260C00402ADD /* CellAddToCartButtonView.swift */,
 			);
-			path = viewAddToCart;
+			path = cells;
 			sourceTree = "<group>";
 		};
 		BAAF93BADA5130D3E32CAB3B /* Frameworks */ = {
@@ -1274,6 +1285,7 @@
 				2D7A632922C0FA8B00AF4E78 /* DropDownView.swift in Sources */,
 				2D32B99322C0F29000513DD4 /* WishProduct.swift in Sources */,
 				2D32B95B22C0F22C00513DD4 /* MyAddressViewController.swift in Sources */,
+				8183D1D322F8302600E64539 /* ViewAddToCartPresenter.swift in Sources */,
 				2D32B98522C0F29000513DD4 /* Date.swift in Sources */,
 				2D32B95E22C0F22C00513DD4 /* SecurityVC.swift in Sources */,
 				013F25D922E6F1410028E146 /* cellShipping.swift in Sources */,
