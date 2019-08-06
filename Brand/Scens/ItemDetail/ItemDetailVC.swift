@@ -96,11 +96,10 @@ class ItemDetailVC: UIViewController,ButtonActionDelegate {
         let config = itemDetails?.config
         
         let viewAddToCart = ViewAddToCart()
-        let viewPresenter : ProAddToCartPresenter = AddToCartPresenter(addToCartView: viewAddToCart , saleProduct: config?.sale ?? 0.0 , priceProduct: Double(config?.price ?? 0) , quantityProduct : config?.qty ?? 0 , maxQuantity: config?.maxQty ?? 0 , minQuantity: config?.minQty ?? 0 , productOptions: config?.productOptions ?? [] )
+        let viewPresenter : ProAddToCartPresenter = AddToCartPresenter(addToCartView: viewAddToCart, configID: config?.id ?? 0 , saleProduct: config?.sale ?? 0.0 , priceProduct: Double(config?.price ?? 0) , quantityProduct : config?.qty ?? 0 , maxQuantity: config?.maxQty ?? 0 , minQuantity: config?.minQty ?? 0 , productOptions: config?.productOptions ?? [] )
         viewAddToCart.presenter = viewPresenter
         viewAddToCart.setPrice()
 
-        
         self.view.addSubview(viewAddToCart)
         viewAddToCart.anchor(top: self.view.topAnchor , left: self.view.leftAnchor , bottom: self.view.bottomAnchor , right: self.view.rightAnchor , centerX: nil , centerY: nil , paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
     }

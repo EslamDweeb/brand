@@ -214,6 +214,7 @@
 		811637A722F725F800402ADD /* CellAddToCartDropDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811637A622F725F800402ADD /* CellAddToCartDropDown.swift */; };
 		811637A922F7260C00402ADD /* CellAddToCartButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811637A822F7260C00402ADD /* CellAddToCartButtonView.swift */; };
 		8183D1D322F8302600E64539 /* ViewAddToCartPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8183D1D222F8302600E64539 /* ViewAddToCartPresenter.swift */; };
+		81A1DA1A22F9AC3700051319 /* ModelAddedCartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A1DA1922F9AC3700051319 /* ModelAddedCartData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -432,6 +433,7 @@
 		811637A622F725F800402ADD /* CellAddToCartDropDown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellAddToCartDropDown.swift; sourceTree = "<group>"; };
 		811637A822F7260C00402ADD /* CellAddToCartButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellAddToCartButtonView.swift; sourceTree = "<group>"; };
 		8183D1D222F8302600E64539 /* ViewAddToCartPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewAddToCartPresenter.swift; sourceTree = "<group>"; };
+		81A1DA1922F9AC3700051319 /* ModelAddedCartData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelAddedCartData.swift; sourceTree = "<group>"; };
 		E17F424A357E4DE1EABD0724 /* Pods_Brand.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Brand.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC765D8AD81D240700CFD342 /* Pods-Brand.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Brand.release.xcconfig"; path = "Pods/Target Support Files/Pods-Brand/Pods-Brand.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -866,6 +868,7 @@
 				01524C3822E997FD004D2A45 /* BillingMethod.swift */,
 				01524C3F22E9B683004D2A45 /* orderdataobject.swift */,
 				01F03AB022F2EB140033F89A /* searchModel.swift */,
+				81A1DA1922F9AC3700051319 /* ModelAddedCartData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1358,6 +1361,7 @@
 				2D32B88322C0F1E800513DD4 /* Explore_Ext.swift in Sources */,
 				01F03AAF22F2DEF50033F89A /* searchVCExt.swift in Sources */,
 				2D32B92B22C0F20D00513DD4 /* SplashViewController.swift in Sources */,
+				81A1DA1A22F9AC3700051319 /* ModelAddedCartData.swift in Sources */,
 				2D35250022E875B00066FA70 /* LinearProgressBar.swift in Sources */,
 				2D32B99622C0F29000513DD4 /* Country.swift in Sources */,
 				2D377E5622E0C222003551BD /* FooterView.swift in Sources */,

@@ -20,6 +20,12 @@ class CellAddToCartDropDown : UITableViewCell {
         return t
     }()
     
+    lazy var labelTitle : UILabel = {
+        let l = UILabel()
+        l.font = setFont(name: .fontM , size: 15 )
+        return l
+    }()
+    
     private var values : [ProductOptionValues] = []
     private var parentID : Int = 0
     var selectedValue : ProductOptionValues? = nil
@@ -41,7 +47,9 @@ class CellAddToCartDropDown : UITableViewCell {
         addToolBar()
         self.selectionStyle = .none
         self.contentView.addSubview(textField)
-        textField.anchor(top: self.contentView.topAnchor , left: self.contentView.leftAnchor , bottom: self.contentView.bottomAnchor , right: self.contentView.rightAnchor , centerX: nil , centerY: nil , paddingTop: 4, paddingLeft: 0, paddingBottom: 4 , paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
+        self.contentView.addSubview(labelTitle)
+        labelTitle.anchor(top: self.contentView.topAnchor , left: self.contentView.leftAnchor , bottom: nil , right: nil , centerX: nil, centerY: nil , paddingTop: 0, paddingLeft: 0 , paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
+        textField.anchor(top: labelTitle.bottomAnchor , left: self.contentView.leftAnchor , bottom: self.contentView.bottomAnchor , right: self.contentView.rightAnchor , centerX: nil , centerY: nil , paddingTop: 2, paddingLeft: 0, paddingBottom: 2 , paddingRight: 0, width: 0, height: 40 , paddingCenterX: 0, paddingCenterY: 0)
     }
     
     
@@ -62,7 +70,8 @@ class CellAddToCartDropDown : UITableViewCell {
     }
     
     
-    func setupCell (values : [ProductOptionValues], parentID : Int ) {
+    func setupCell (title : String , values : [ProductOptionValues], parentID : Int ) {
+        self.labelTitle.text = title
         self.values = values
         self.parentID = parentID
         pickerView.delegate = self

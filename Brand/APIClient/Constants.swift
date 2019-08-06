@@ -62,8 +62,10 @@ struct Constants {
         static let billingID = "billing_method_id"
         static let AddressID = "address_id"
         static let coupon = "coupon_serial"
-        
-        
+        static let configID = "config_id"
+        static let qty = "qty"
+        static let optionIds = "option_ids"
+        static let productOptionValueIds = "product_option_value_ids"
         
     }
 }

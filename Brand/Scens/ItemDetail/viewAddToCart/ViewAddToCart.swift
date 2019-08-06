@@ -183,15 +183,15 @@ class ViewAddToCart : UIView {
         
     }
     private func addConstraint () {
-//        viewContainer.anchor(top: self.safeAreaLayoutGuide.topAnchor , left: self.leftAnchor , bottom: self.safeAreaLayoutGuide.bottomAnchor , right: self.rightAnchor , centerX: nil , centerY: nil , paddingTop: 16, paddingLeft: 16, paddingBottom: 16 , paddingRight: 16 , width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
+        viewContainer.anchor(top: self.safeAreaLayoutGuide.topAnchor , left: self.leftAnchor , bottom: self.safeAreaLayoutGuide.bottomAnchor , right: self.rightAnchor , centerX: nil , centerY: nil , paddingTop: 16, paddingLeft: 16, paddingBottom: 16 , paddingRight: 16 , width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         
-        viewContainer.translatesAutoresizingMaskIntoConstraints = false
-        viewContainer.topAnchor.constraint(greaterThanOrEqualTo : self.safeAreaLayoutGuide.topAnchor , constant: 16) .isActive = true
-        viewContainer.leftAnchor.constraint(equalTo: self.leftAnchor , constant: 16 ).isActive = true
-        viewContainer.rightAnchor.constraint(equalTo: self.rightAnchor , constant: -16 ).isActive = true
-        viewContainer.bottomAnchor.constraint(greaterThanOrEqualTo: self.safeAreaLayoutGuide.bottomAnchor , constant: 16 ).isActive = true
-        viewContainer.centerXAnchor.constraint(equalTo: self.centerXAnchor , constant: 0).isActive = true
-        viewContainer.centerYAnchor.constraint(equalTo: self.centerYAnchor , constant: 0 ).isActive = true
+//        viewContainer.translatesAutoresizingMaskIntoConstraints = false
+//        viewContainer.topAnchor.constraint(greaterThanOrEqualTo : self.safeAreaLayoutGuide.topAnchor , constant: 16) .isActive = true
+//        viewContainer.leftAnchor.constraint(equalTo: self.leftAnchor , constant: 16 ).isActive = true
+//        viewContainer.rightAnchor.constraint(equalTo: self.rightAnchor , constant: -16 ).isActive = true
+//        viewContainer.bottomAnchor.constraint(greaterThanOrEqualTo: self.safeAreaLayoutGuide.bottomAnchor , constant: 16 ).isActive = true
+//        viewContainer.centerXAnchor.constraint(equalTo: self.centerXAnchor , constant: 0).isActive = true
+//        viewContainer.centerYAnchor.constraint(equalTo: self.centerYAnchor , constant: 0 ).isActive = true
         
         
         closeButton.anchor(top: viewContainer.topAnchor , left: viewContainer.leftAnchor , bottom: nil, right: nil, centerX: nil , centerY: nil , paddingTop: 16, paddingLeft: 16 , paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
@@ -252,6 +252,8 @@ class ViewAddToCart : UIView {
     
     @objc private func addToCartAction () {
         
+        presenter?.addProductToCart()
+        
     }
     
     @objc private func doNothing (){
@@ -297,9 +299,9 @@ extension ViewAddToCart : UITableViewDataSource, UITableViewDelegate {
                 let ss = ProductOptionValues(id: -1 , value: YString.selectOption , addsPrice: 0 )
                 var s = singleObjc?.values
                 s?.insert(ss , at: 0 )
-                cell.setupCell(values: s ?? []  , parentID: singleObjc?.id ?? 0 )
+                cell.setupCell(title: singleObjc?.name ?? "" , values: s ?? []  , parentID: singleObjc?.id ?? 0 )
             }else {
-                 cell.setupCell(values: singleObjc?.values ?? [] , parentID: singleObjc?.id ?? 0 )
+                cell.setupCell(title: singleObjc?.name ?? "" , values: singleObjc?.values ?? [] , parentID: singleObjc?.id ?? 0 )
             }
            
             if singleObjc?.isRequired ?? false {
@@ -348,9 +350,15 @@ extension ViewAddToCart : UITableViewDataSource, UITableViewDelegate {
     
    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return CGFloat(50)
+        let singleObjc = presenter?.productOptions[indexPath.row]
+        if singleObjc?.values?.count ?? 0 > 0 {
+            return UITableView.automaticDimension
+        }else {
+            return CGFloat(50)
+        }
+        
     }
-    
+
 }
 
 extension ViewAddToCart : AKPickerViewDelegate , AKPickerViewDataSource {
@@ -374,6 +382,12 @@ extension ViewAddToCart : AKPickerViewDelegate , AKPickerViewDataSource {
 
 extension ViewAddToCart : ProAddToCartView {
     
+    func productAddedToCart(model: ModelAddedCartData) {
+        print("message : \(model.message ?? "" )")
+        self.dismiss()
+    }
     
-    
+    func errorAddProductToCart(errors: String) {
+        print("error message : \( errors )")
+    }
 }

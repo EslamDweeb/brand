@@ -397,3 +397,13 @@ class YString {
     
     
 }
+
+func getError (error : [String : [String]]) -> String {
+    var   text = ""
+    for (_,v) in error {
+        for i in v {
+            text += " \(i) "
+        }
+    }
+    return text
+}
