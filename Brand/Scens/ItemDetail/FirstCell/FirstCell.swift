@@ -9,12 +9,23 @@
 import UIKit
 
 class FirstCell:UICollectionViewCell{
+    let cellID = "cellID"
+    var configOptionArray:[ConfigOption]?
     let detailView = DetailView()
     let descriptionView = DescriptionView()
     let footerView = FooterView()
-    let sizeView = SizeView()
-    let colorView = ColorView()
     var detailViewHeightConstraint:NSLayoutConstraint?
+    var configOptionTableViewHeightConstraint:NSLayoutConstraint?
+    var footerViewHeightConstraint:NSLayoutConstraint?
+    lazy var configOptionTableView:UITableView = {
+        let table = UITableView()
+        table.isScrollEnabled = false
+        table.register(ConfigOptionTableCell.self, forCellReuseIdentifier: cellID)
+        table.separatorStyle = .none
+        table.delegate = self
+        table.dataSource = self
+        return table
+    }()
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
@@ -30,8 +41,7 @@ class FirstCell:UICollectionViewCell{
     private func addSubViews(){
         addSubview(detailView)
         addSubview(descriptionView)
-        addSubview(sizeView)
-        addSubview(colorView)
+        addSubview(configOptionTableView)
         addSubview(footerView)
         self.backgroundColor = .white
     }
@@ -40,9 +50,12 @@ class FirstCell:UICollectionViewCell{
         detailViewHeightConstraint = detailView.heightAnchor.constraint(equalToConstant: 40)
         detailViewHeightConstraint?.isActive = true
         descriptionView.anchor(top: detailView.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 120, paddingCenterX: 0, paddingCenterY: 0)
-        sizeView.anchor(top: descriptionView.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 100, paddingCenterX: 0, paddingCenterY: 0)
-        colorView.anchor(top: sizeView.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 100, paddingCenterX: 0, paddingCenterY: 0)
-        footerView.anchor(top: colorView.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 350, paddingCenterX: 0, paddingCenterY: 0)
+        configOptionTableView.anchor(top: descriptionView.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
+        configOptionTableViewHeightConstraint = configOptionTableView.heightAnchor.constraint(equalToConstant: 20)
+        configOptionTableViewHeightConstraint?.isActive = true
+        footerView.anchor(top: configOptionTableView.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
+        footerViewHeightConstraint = footerView.heightAnchor.constraint(equalToConstant: 0)
+        footerViewHeightConstraint?.isActive = true
     }
     func getDetailViewData(brandName name:String,madeIN:String,tags:[Tag]){
         detailView.branTitle = name
@@ -70,13 +83,38 @@ class FirstCell:UICollectionViewCell{
     func getFooterViewData(configs:[Config]){
         footerView.configs = configs
         footerView.productCollectionView.reloadData()
+        if configs.count != 0 {
+            footerViewHeightConstraint?.constant = 220
+            UIView.animate(withDuration: 0.1) {
+                self.layoutIfNeeded()
+            }
+        }else{
+            footerView.removeFromSuperview()
+        }
     }
-    func getSizeViewData(configOption:ConfigOption){
-        sizeView.configOption = configOption
-        sizeView.sizeCollection.reloadData()
+}
+extension FirstCell:UITableViewDataSource,UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return configOptionArray?.count ?? 0
     }
-    func getColorViewData(configOption:ConfigOption){
-        colorView.configOption = configOption
-        colorView.colorCollection.reloadData()
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath)as? ConfigOptionTableCell else {return UITableViewCell()}
+        cell.configOption = configOptionArray?[indexPath.row]
+        cell.configValueCollection.reloadData()
+        return cell
+    }
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if configOptionArray?.count ?? 0 == 0 {
+            configOptionTableViewHeightConstraint?.constant = 0
+            UIView.animate(withDuration: 0.1) {
+                self.layoutIfNeeded()
+            }
+        }else{
+            configOptionTableViewHeightConstraint?.constant = tableView.contentSize.height + 8
+            UIView.animate(withDuration: 0.1) {
+                self.layoutIfNeeded()
+            }
+        }
     }
 }

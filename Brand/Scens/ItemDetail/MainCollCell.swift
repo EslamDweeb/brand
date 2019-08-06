@@ -55,23 +55,8 @@ class MainCollCell:UICollectionViewCell,UICollectionViewDelegate,UICollectionVie
             cell.getDetailViewData(brandName:itemDetails?.config.brand?.name ?? "",madeIN: itemDetails?.config.madeIn ?? "",tags:itemDetails?.config.tags ?? [])
             cell.getDescriptionViewData(description:itemDetails?.config.configDescription ?? "")
             cell.getFooterViewData(configs: itemDetails?.config.relatedProducts ?? [])
-            if itemDetails?.config.configOptions != nil {
-                if itemDetails?.config.configOptions.count == 1{
-                    if itemDetails?.config.configOptions[0].name == "color" {
-                        cell.getColorViewData(configOption: (itemDetails?.config.configOptions[0])!)
-                    }else if itemDetails?.config.configOptions[0].name == "size"{
-                        cell.getSizeViewData(configOption: (itemDetails?.config.configOptions[0])!)
-                    }
-                }else if itemDetails?.config.configOptions.count ?? 0 > 1 {
-                    for option in itemDetails?.config.configOptions ?? [] {
-                        if option.name == "color"{
-                            cell.getColorViewData(configOption:option)
-                        }else if option.name == "size"{
-                            cell.getSizeViewData(configOption:option)
-                        }
-                    }
-                }
-            }
+            cell.configOptionArray = itemDetails?.config.configOptions
+            cell.configOptionTableView.reloadData()
             return cell
         case 1:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: secondCell, for: indexPath)as? SecondeCell else{return UICollectionViewCell()}

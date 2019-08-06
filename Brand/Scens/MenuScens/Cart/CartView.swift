@@ -12,7 +12,8 @@ class CartView : UIView  {
     var heightConstrain:NSLayoutConstraint?
     lazy var  navView:GradNavView = {
         let navView = GradNavView()
-          navView.backBtn.addTarget(actionDelegate, action: #selector(ButtonActionDelegate.dissmisController), for: .touchUpInside)
+        navView.backBtn.isHidden = true
+        navView.backBtn.addTarget(actionDelegate, action: #selector(ButtonActionDelegate.dissmisController), for: .touchUpInside)
         navView.titlelabel.text = "cart".localized
         return navView
     }()
