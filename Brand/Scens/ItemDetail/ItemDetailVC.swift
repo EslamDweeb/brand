@@ -94,8 +94,9 @@ class ItemDetailVC: UIViewController,ButtonActionDelegate {
     
     func addViewAddToCart () {
         let config = itemDetails?.config
-        let viewPresenter : ProAddToCartPresenter = AddToCartPresenter(saleProduct: config?.sale ?? 0.0 , priceProduct: Double(config?.price ?? 0) , quantityProduct : config?.qty ?? 0 , maxQuantity: config?.maxQty ?? 0 , minQuantity: config?.minQty ?? 0 , productOptions: config?.productOptions ?? [] )
+        
         let viewAddToCart = ViewAddToCart()
+        let viewPresenter : ProAddToCartPresenter = AddToCartPresenter(addToCartView: viewAddToCart , saleProduct: config?.sale ?? 0.0 , priceProduct: Double(config?.price ?? 0) , quantityProduct : config?.qty ?? 0 , maxQuantity: config?.maxQty ?? 0 , minQuantity: config?.minQty ?? 0 , productOptions: config?.productOptions ?? [] )
         viewAddToCart.presenter = viewPresenter
         viewAddToCart.setPrice()
 

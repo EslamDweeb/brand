@@ -7,10 +7,12 @@
 //
 
 protocol ProAddToCartView {
-    
+
 }
 
 protocol ProAddToCartPresenter {
+    
+    var addToCartView : ProAddToCartView! {get}
     
     var saleProduct : Double { get }
     var priceProduct : Double { get }
@@ -18,16 +20,20 @@ protocol ProAddToCartPresenter {
     var maxQuantity : Int { get }
     var minQuantity : Int { get }
     var productOptions : [ProductOptions] { get }
+
     var selectedValues : [(parentID : Int , value : ProductOptionValues )] { get set }
     var selectedProductOption : [ ProductOptions ] { get set }
+    var selectedQuantity : Int {get set}
+    
+    func getNumberOfItemsInPicker() -> Int
     
 }
 
 
 class AddToCartPresenter : ProAddToCartPresenter {
     
-    
-    
+    var addToCartView: ProAddToCartView!
+
     var saleProduct: Double = 0.0
     var priceProduct: Double = 0.0
     var quantityProduct: Int = 0
@@ -36,8 +42,10 @@ class AddToCartPresenter : ProAddToCartPresenter {
     var productOptions: [ProductOptions] = []
     var selectedValues: [(parentID: Int, value: ProductOptionValues )] = []
     var selectedProductOption: [ProductOptions] = []
+    var selectedQuantity = 0
     
-    init(saleProduct: Double, priceProduct: Double, quantityProduct: Int, maxQuantity: Int, minQuantity: Int, productOptions: [ProductOptions]) {
+    init(addToCartView: ProAddToCartView , saleProduct: Double, priceProduct: Double, quantityProduct: Int, maxQuantity: Int, minQuantity: Int, productOptions: [ProductOptions]) {
+        self.addToCartView = addToCartView
         self.saleProduct = saleProduct
         self.priceProduct = priceProduct
         self.quantityProduct = quantityProduct
@@ -47,6 +55,12 @@ class AddToCartPresenter : ProAddToCartPresenter {
         
     }
     
+    func getNumberOfItemsInPicker() -> Int {
+        if maxQuantity < minQuantity {
+            return 0
+        }
+        return maxQuantity  - minQuantity
+    }
     
     
 }

@@ -12,7 +12,13 @@ import AKPickerView
 
 class ViewAddToCart : UIView {
     
-    var presenter : ProAddToCartPresenter?
+    var presenter : ProAddToCartPresenter? {
+        didSet {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1 ) {
+                self.calculateTotalPrice()
+            }
+        }
+    }
     
     lazy var scrollView : UIScrollView = {
        let s = UIScrollView()
@@ -128,12 +134,15 @@ class ViewAddToCart : UIView {
         
         addView()
         addConstraint()
+        configrationViews()
         
-        labelTotalPrice.text = YString.totalPrice + "\n" + "78465"
         
     }
     
-    lazy var imageMinusCount : UIButton = {
+    
+    
+    
+    lazy var buttonMinusCount : UIButton = {
        let image = UIButton()
         image.setImage(#imageLiteral(resourceName: "minus"), for: .normal)
         image.backgroundColor = .white
@@ -144,7 +153,7 @@ class ViewAddToCart : UIView {
         return image
     }()
     
-    lazy var imageAddCount : UIButton = {
+    lazy var buttonAddCount : UIButton = {
         let image = UIButton()
         image.setImage(#imageLiteral(resourceName: "plus"), for: .normal)
         image.backgroundColor = .pink
@@ -154,6 +163,7 @@ class ViewAddToCart : UIView {
         return image
     }()
     
+   
     
     private func addView () {
         
@@ -166,13 +176,12 @@ class ViewAddToCart : UIView {
         viewParentScroll.addSubview(labelItemPrice)
         viewParentScroll.addSubview(quantity)
         viewParentScroll.addSubview( pickerView )
-        viewParentScroll.addSubview(imageMinusCount)
-        viewParentScroll.addSubview(imageAddCount)
+        viewParentScroll.addSubview(buttonMinusCount)
+        viewParentScroll.addSubview(buttonAddCount)
         viewParentScroll.addSubview(labelTotalPrice)
         viewParentScroll.addSubview(buttonAddToCart)
         
     }
-    
     private func addConstraint () {
 //        viewContainer.anchor(top: self.safeAreaLayoutGuide.topAnchor , left: self.leftAnchor , bottom: self.safeAreaLayoutGuide.bottomAnchor , right: self.rightAnchor , centerX: nil , centerY: nil , paddingTop: 16, paddingLeft: 16, paddingBottom: 16 , paddingRight: 16 , width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         
@@ -205,21 +214,41 @@ class ViewAddToCart : UIView {
 
         quantity.anchor(top: self.labelItemPrice.bottomAnchor , left: self.viewParentScroll.leftAnchor , bottom: nil , right: self.viewParentScroll.rightAnchor , centerX: nil , centerY: nil , paddingTop: 16 , paddingLeft: 16, paddingBottom: 16, paddingRight: 16 , width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         
-       imageMinusCount.anchor(top: quantity.bottomAnchor , left: self.viewParentScroll.leftAnchor , bottom: nil , right: nil , centerX: nil, centerY: nil, paddingTop: 20 , paddingLeft: 32 , paddingBottom: 0, paddingRight: 0, width: 25, height: 25 , paddingCenterX: 0, paddingCenterY: 0)
+       buttonMinusCount.anchor(top: quantity.bottomAnchor , left: self.viewParentScroll.leftAnchor , bottom: nil , right: nil , centerX: nil, centerY: nil, paddingTop: 20 , paddingLeft: 32 , paddingBottom: 0, paddingRight: 0, width: 25, height: 25 , paddingCenterX: 0, paddingCenterY: 0)
         
-       imageAddCount.anchor(top: quantity.bottomAnchor , left: nil , bottom: nil  , right: self.viewParentScroll.rightAnchor  , centerX: nil, centerY: nil, paddingTop: 20 , paddingLeft: 0 , paddingBottom: 0, paddingRight: 32 , width: 25, height: 25 , paddingCenterX: 0, paddingCenterY: 0)
+       buttonAddCount.anchor(top: quantity.bottomAnchor , left: nil , bottom: nil  , right: self.viewParentScroll.rightAnchor  , centerX: nil, centerY: nil, paddingTop: 20 , paddingLeft: 0 , paddingBottom: 0, paddingRight: 32 , width: 25, height: 25 , paddingCenterX: 0, paddingCenterY: 0)
         
-        pickerView.anchor(top: nil , left: imageMinusCount.rightAnchor , bottom: nil , right: imageAddCount.leftAnchor , centerX: nil , centerY: imageAddCount.centerYAnchor , paddingTop: 0 , paddingLeft: 16, paddingBottom: 0  , paddingRight: 16, width: 0, height: 30, paddingCenterX: 0, paddingCenterY: 0)
+        pickerView.anchor(top: nil , left: buttonMinusCount.rightAnchor , bottom: nil , right: buttonAddCount.leftAnchor , centerX: nil , centerY: buttonAddCount.centerYAnchor , paddingTop: 0 , paddingLeft: 16, paddingBottom: 0  , paddingRight: 16, width: 0, height: 30, paddingCenterX: 0, paddingCenterY: 0)
         
-        labelTotalPrice.anchor(top: imageAddCount.bottomAnchor , left: self.viewParentScroll.leftAnchor , bottom: nil  , right: self.viewParentScroll.rightAnchor , centerX: nil , centerY: nil , paddingTop: 16 , paddingLeft: 16, paddingBottom: 16, paddingRight: 16, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
+        labelTotalPrice.anchor(top: buttonAddCount.bottomAnchor , left: self.viewParentScroll.leftAnchor , bottom: nil  , right: self.viewParentScroll.rightAnchor , centerX: nil , centerY: nil , paddingTop: 16 , paddingLeft: 16, paddingBottom: 16, paddingRight: 16, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         
         buttonAddToCart.anchor(top: labelTotalPrice.bottomAnchor , left: viewParentScroll.leftAnchor , bottom: viewParentScroll.bottomAnchor , right: viewParentScroll.rightAnchor , centerX: nil , centerY: nil , paddingTop: 16, paddingLeft: 16, paddingBottom: 16, paddingRight: 16, width: 0, height: 50 , paddingCenterX: 0, paddingCenterY: 0)
        
     }
+    private func configrationViews () {
+        buttonAddCount.addTarget(self , action: #selector(actionAddCount), for: .touchUpInside)
+        buttonMinusCount.addTarget(self , action: #selector(actionMinusCount), for: .touchUpInside )
+    }
+    
     
     func setPrice () {
         labelItemPrice.text = YString.itemPrice + "\n" + "\( self.presenter?.priceProduct ?? 0 )"
     }
+    
+    @objc private func actionAddCount () {
+        if pickerView.selectedItem == (presenter?.maxQuantity ?? 0 ) - (presenter?.minQuantity ?? 0 ) - 1  {
+            return
+        }
+        pickerView.selectItem( pickerView.selectedItem + 1 , animated: true )
+    }
+    
+    @objc private func actionMinusCount () {
+        if pickerView.selectedItem == 0 {
+            return
+        }
+        pickerView.selectItem(pickerView.selectedItem - 1 , animated: true )
+    }
+    
     
     @objc private func addToCartAction () {
         
@@ -231,6 +260,21 @@ class ViewAddToCart : UIView {
     
     @objc private func dismiss () {
         self.removeFromSuperview()
+    }
+    
+    func calculateTotalPrice () {
+        
+        let totalOptions = presenter?.selectedProductOption.map({$0.addsPrice})
+        let totalValues = presenter?.selectedValues.map({$0.value.addsPrice})
+        var totalPriceProduct : Double = presenter?.priceProduct ?? 0.0
+        totalOptions?.forEach({ (int) in
+            totalPriceProduct = totalPriceProduct + Double(int)
+        })
+        totalValues?.forEach({ (int) in
+            totalPriceProduct = totalPriceProduct + Double(int)
+        })
+        totalPriceProduct = totalPriceProduct * Double( (presenter?.selectedQuantity == 0) ? ( presenter?.minQuantity ?? 0 ) : ( presenter?.selectedQuantity ?? 0 ) )
+        labelTotalPrice.text = YString.totalPrice + "\n" + "\(totalPriceProduct)"
     }
     
 }
@@ -249,14 +293,30 @@ extension ViewAddToCart : UITableViewDataSource, UITableViewDelegate {
         let singleObjc = presenter?.productOptions[indexPath.row]
         if singleObjc?.values?.count ?? 0 > 0 {
               let cell = tableView.dequeueReusableCell(withIdentifier: CellAddToCartDropDown.getIdentifier() , for: indexPath) as! CellAddToCartDropDown
-            cell.setupCell(values: singleObjc?.values ?? [] , parentID: singleObjc?.id ?? 0 )
+            if !(singleObjc?.isRequired ?? true ) {
+                let ss = ProductOptionValues(id: -1 , value: YString.selectOption , addsPrice: 0 )
+                var s = singleObjc?.values
+                s?.insert(ss , at: 0 )
+                cell.setupCell(values: s ?? []  , parentID: singleObjc?.id ?? 0 )
+            }else {
+                 cell.setupCell(values: singleObjc?.values ?? [] , parentID: singleObjc?.id ?? 0 )
+            }
+           
+            if singleObjc?.isRequired ?? false {
+                cell.selectDefault()
+            }
             cell.completion = { [weak self ] ( value , parentID )  in
                 if let index = self?.presenter?.selectedValues.firstIndex(where: { $0.parentID == parentID }) {
-                    self?.presenter?.selectedValues[index].value = value
+                    if value.id == -1 {
+                        self?.presenter?.selectedValues.remove(at: index)
+                    }else {
+                        self?.presenter?.selectedValues[index].value = value
+                    }
+                    
                 }else {
                     self?.presenter?.selectedValues.append( (parentID : parentID , value : value) )
                 }
-
+                self?.calculateTotalPrice()
             }
             return  cell
         }else {
@@ -282,8 +342,8 @@ extension ViewAddToCart : UITableViewDataSource, UITableViewDelegate {
             }else {
                 cell.selectItem()
             }
-
         }
+        calculateTotalPrice()
     }
     
    
@@ -296,16 +356,24 @@ extension ViewAddToCart : UITableViewDataSource, UITableViewDelegate {
 extension ViewAddToCart : AKPickerViewDelegate , AKPickerViewDataSource {
     
     func numberOfItems(in pickerView: AKPickerView!) -> UInt {
-            return 120
+        return UInt( presenter?.getNumberOfItemsInPicker() ?? 0 )
     }
     
     func pickerView(_ pickerView: AKPickerView!, titleForItem item: Int) -> String! {
-        return "   \( item + 1 )   "
+        return "   \( item + (presenter?.minQuantity ?? 0 ) )   "
     }
     
     func pickerView(_ pickerView: AKPickerView!, didSelectItem item: Int) {
-        print("\( item + 1)")
+        let count = item + (presenter?.minQuantity ?? 0 )
+        print("\( count )")
+        presenter?.selectedQuantity = count
+        calculateTotalPrice()
     }
     
 }
 
+extension ViewAddToCart : ProAddToCartView {
+    
+    
+    
+}

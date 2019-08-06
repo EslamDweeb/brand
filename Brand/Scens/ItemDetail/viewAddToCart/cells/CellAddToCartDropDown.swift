@@ -70,10 +70,28 @@ class CellAddToCartDropDown : UITableViewCell {
         pickerView.reloadAllComponents()
     }
     
+    func selectDefault () {
+        if self.values.count > 0 {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                self.selectedValue = self.values[0]
+                self.textField.text = (self.values[0].value ?? "" ) + " ( +\(self.values[0].addsPrice) SAR ) "
+                self.completion?(self.selectedValue! , self.parentID )
+            }
+        }
+    }
+    
     @objc private func donePicker () {
         if selectedValue == nil , values.count > 0 {
+            if values[0].id == -1 {
+                selectedValue = values[0]
+                textField.text = ""
+                textField.placeholder = YString.selectOption
+                completion?(selectedValue! , parentID )
+                return
+            }
+            
             selectedValue = values[0]
-            textField.text = selectedValue?.value
+            textField.text = (selectedValue?.value ?? "" ) + " ( +\(selectedValue?.addsPrice ?? 0 ) SAR ) "
             completion?(selectedValue! , parentID )
         }
         self.endEditing(true)
@@ -92,12 +110,22 @@ extension CellAddToCartDropDown : UIPickerViewDelegate , UIPickerViewDataSource 
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return values[row].value
+        if values[row].id == -1 {
+            return (values[row].value ?? "" )
+        }
+        return (values[row].value ?? "" ) + " ( +\(values[row].addsPrice) SAR ) "
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if values[row].id == -1 {
+            selectedValue = values[row]
+            textField.text = ""
+            textField.placeholder = YString.selectOption
+            completion?(selectedValue! , parentID )
+            return
+        }
         selectedValue = values[row]
-        textField.text = selectedValue?.value
+        textField.text = (values[row].value ?? "" ) + " ( +\(values[row].addsPrice) SAR ) "
         completion?(selectedValue! , parentID )
         print ("value : \(values[row].value )")
     }
