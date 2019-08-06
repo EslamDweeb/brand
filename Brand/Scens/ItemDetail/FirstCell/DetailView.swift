@@ -45,6 +45,8 @@ class DetailView: UIView {
         line.backgroundColor = .lightgray3
         return line
     }()
+    var brandNameHeight:NSLayoutConstraint?
+    var TagsCollHeight:NSLayoutConstraint?
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
@@ -66,10 +68,17 @@ class DetailView: UIView {
         addSubview(lineView)
     }
     private func addConstraintsToViews() {
-        brandLable.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: madeInLable.leftAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
-        infoBtn.anchor(top: nil, left: nil, bottom: nil, right: rightAnchor, centerX: nil, centerY: brandLable.centerYAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 16, width: 30, height: 30, paddingCenterX: 0, paddingCenterY: 0)
-        madeInLable.anchor(top: topAnchor, left: nil, bottom: nil, right: infoBtn.leftAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 24, width: 0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
-        tagsCollection.anchor(top: brandLable.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 40, paddingCenterX: 0, paddingCenterY: 0)
+        brandLable.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 16, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
+        brandLable.widthAnchor.constraint(greaterThanOrEqualToConstant: 30).isActive = true
+        brandNameHeight = brandLable.heightAnchor.constraint(equalToConstant: 0)
+        brandNameHeight?.isActive = true
+        infoBtn.anchor(top: nil, left: nil, bottom: nil, right: rightAnchor, centerX: nil, centerY: madeInLable.centerYAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 16, width: 30, height: 30, paddingCenterX: 0, paddingCenterY: 0)
+        madeInLable.anchor(top: topAnchor, left: nil ,bottom: nil, right: infoBtn.leftAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 16, width: 0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
+        madeInLable.widthAnchor.constraint(greaterThanOrEqualToConstant: 30).isActive = true
+
+        tagsCollection.anchor(top: madeInLable.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
+        TagsCollHeight = tagsCollection.heightAnchor.constraint(equalToConstant: 0)
+        TagsCollHeight?.isActive = true
         lineView.anchor(top: nil, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 1, paddingCenterX: 0, paddingCenterY: 0)
     }
     func setLableTitles(){

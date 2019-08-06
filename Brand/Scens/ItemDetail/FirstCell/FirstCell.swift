@@ -32,10 +32,11 @@ class FirstCell:UICollectionViewCell{
         addSubview(sizeView)
         addSubview(colorView)
         addSubview(footerView)
-        //self.backgroundColor = .white
+        self.backgroundColor = .white
     }
     private func addConstraintstoViews(){
-        detailView.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 20, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 100, paddingCenterX: 0, paddingCenterY: 0)
+        detailView.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 20, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
+        detailView.heightAnchor.constraint(greaterThanOrEqualToConstant: 40).isActive = true
         descriptionView.anchor(top: detailView.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 120, paddingCenterX: 0, paddingCenterY: 0)
         sizeView.anchor(top: descriptionView.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 100, paddingCenterX: 0, paddingCenterY: 0)
         colorView.anchor(top: sizeView.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 100, paddingCenterX: 0, paddingCenterY: 0)
@@ -47,6 +48,18 @@ class FirstCell:UICollectionViewCell{
         detailView.tags = tags
         detailView.tagsCollection.reloadData()
         detailView.setLableTitles()
+        if name != "" {
+            detailView.brandNameHeight?.constant = 20
+            UIView.animate(withDuration: 0.1) {
+                self.layoutIfNeeded()
+            }
+        }
+        if tags.count != 0 {
+            detailView.TagsCollHeight?.constant = 40
+            UIView.animate(withDuration: 0.1) {
+                self.layoutIfNeeded()
+            }
+        }
     }
     func getDescriptionViewData(description:String){
         descriptionView.descripLbl.text = description

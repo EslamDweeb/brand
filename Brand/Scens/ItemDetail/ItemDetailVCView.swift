@@ -18,6 +18,7 @@ class ItemDetailVCView:UIView {
         coll.register(ItemDetailCollHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerID)
         coll.register(MainCollCell.self, forCellWithReuseIdentifier: cellID)
         //coll.isPagingEnabled = true
+        coll.backgroundColor = .clear
         return coll
     }()
     lazy var scrollView:UIScrollView = {

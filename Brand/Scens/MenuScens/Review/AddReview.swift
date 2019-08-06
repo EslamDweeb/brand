@@ -58,7 +58,13 @@ class AddReviewView: UIView {
         let scroll = UIScrollView()
         return scroll
     }()
-
+    lazy var tapGesture:UITapGestureRecognizer = {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handelTapGesture))
+        return tap
+    }()
+    @objc func handelTapGesture(){
+        self.endEditing(true)
+    }
     init(delegate:ButtonActionDelegate){
         super.init(frame: .zero)
         self.delegate = delegate
@@ -74,6 +80,7 @@ class AddReviewView: UIView {
     private func addSubViews() {
         addSubview(navView)
         addSubview(scrollView)
+        self.addGestureRecognizer(tapGesture)
         scrollView.addSubview(headerView)
         scrollView.addSubview(reviewView)
         scrollView.addSubview(prosView)
@@ -93,4 +100,5 @@ class AddReviewView: UIView {
     func setHeaderViewData(_ BrandName:String,_ ProductName:String, _ RateValue:Double,_ imagePath:String?){
          headerView.setDataToView(BrandName,ProductName,RateValue,imagePath)
     }
+    
 }
