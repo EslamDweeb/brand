@@ -175,7 +175,7 @@ class ItemDetailCollHeader:UICollectionReusableView,UICollectionViewDelegate,UIC
         header.rateView.rating = rating
         header.titlelable.text = name
         header.priceLable.setAttributeStringWithStrike("\(price)")
-        header.discountLbl.text = "\(sale ?? 0)"
+        header.discountLbl.text = ReturnPricepersent(sale: sale ?? 0)
         header.numberOFReviewerLable.text = "(\(numberOfuserRating) user)"
         header.finalPriceLable.text = "\(getFinalPrice(price: price, sale: sale))"
         header.pageControl.numberOfPages = numberOfPages
@@ -183,7 +183,9 @@ class ItemDetailCollHeader:UICollectionReusableView,UICollectionViewDelegate,UIC
     private func getFinalPrice(price:Double,sale:Double?) -> Double{
         return price - (price * (sale ?? 1))
     }
-    
+     func ReturnPricepersent(sale:Double) -> String{
+        return "\( Double(round(sale * 100) / 100) * 100) %"
+    }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return photos.count
     }

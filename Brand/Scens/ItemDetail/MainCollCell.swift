@@ -31,11 +31,13 @@ class MainCollCell:UICollectionViewCell,UICollectionViewDelegate,UICollectionVie
         coll.delegate = self
         coll.dataSource = self
         //coll.isPagingEnabled = true
+        coll.showsHorizontalScrollIndicator = false
         return coll
     }()
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(pageCollectionView)
+        self.backgroundColor = .white
         pageCollectionView.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
     }
     
