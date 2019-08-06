@@ -31,6 +31,7 @@ enum APIRouter : URLRequestConvertible {
     case checkout(flag: Bool , shippingId : Int , billingId : Int , addressId : Int , coupon : String)
      case deleteCartItem(id:Int)
     case searshItem(name:String,brand : String , origin :String,  price : String ,rate : String)
+     case getProductFilter
     private var Methods : HTTPMethod {
         switch self {
         case .signUp:
@@ -75,6 +76,8 @@ enum APIRouter : URLRequestConvertible {
          return   .post
         case .searshItem:
             return .get
+        case .getProductFilter:
+             return .get
         }
     }
     private var Paths : String {
@@ -126,7 +129,9 @@ enum APIRouter : URLRequestConvertible {
         case .deleteCartItem(let id):
             return "/api/cart-items/\(id)"
         case .searshItem(let name,let brand ,let origin , let price , let rate):
-             return "/api/configs?name=\(name)&brands=\(brand)&origin=\(origin)&price_between=\(price)&rate=\(rate)"
+             return "/api/configs?brands=\(brand)&origin=\(origin)&price_between=\(price)&rate=\(rate)&name=\(name)"
+        case .getProductFilter:
+            return "/api/product-filters"
         }
     }
     private var headers : HTTPHeaders {
@@ -257,6 +262,13 @@ enum APIRouter : URLRequestConvertible {
             return [ HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue
             ]
             
+            case .getProductFilter:
+                return [
+                    HTTPHeaderField.authentication.rawValue : " \(ContentType.token.rawValue) \(UserDefaults.standard.string(forKey: Constants.Defaults.authToken)!)",
+                    HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue,
+                    HTTPHeaderField.contentType.rawValue : ContentType.json.rawValue
+            ]
+          
         }
     }
     private var parameters :Parameters?{
@@ -388,6 +400,8 @@ enum APIRouter : URLRequestConvertible {
             ]
         case .searshItem:
             return [:]
+        case .getProductFilter:
+             return [:]
         }
     }
 
@@ -400,6 +414,8 @@ enum APIRouter : URLRequestConvertible {
             var urlRequest = URLRequest(url: URL(string: safeUrl!)!)
             urlRequest.httpMethod = Methods.rawValue
             urlRequest.headers = headers
+            print(urlRequest)
+             
             if Methods.rawValue != "GET"{
                 if let parameters = parameters {
                     do {
@@ -417,6 +433,7 @@ enum APIRouter : URLRequestConvertible {
             var urlRequest = URLRequest(url: url.appendingPathComponent(Paths))
             urlRequest.httpMethod = Methods.rawValue
             urlRequest.headers = headers
+            
             if Methods.rawValue != "GET"{
                 if let parameters = parameters {
                     do {

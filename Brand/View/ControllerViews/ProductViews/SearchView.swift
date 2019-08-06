@@ -8,10 +8,9 @@
 
 import UIKit
 
-class SearchView: UIView {
+class SearchView: UIView  {
     private let cellID = "cellID"
     weak var actionDelegate:ButtonActionDelegate?
-    
     lazy var  navView:GradNavView = {
         let navView = GradNavView()
         return navView
@@ -23,7 +22,7 @@ class SearchView: UIView {
     }()
     lazy var titlelabel:UILabel = {
         let label = UILabel()
-        label.text = "Search"
+        label.text = "Search".localized
         label.textColor = .white
         label.textAlignment = .center
         label.font = UIFont(name: "Avenir-Heavy", size: 14)
@@ -62,11 +61,12 @@ class SearchView: UIView {
         btn.addTarget(actionDelegate, action: #selector(ButtonActionDelegate.filterBtnTapped), for: .touchUpInside)
         return btn
     }()
-    init(delegate: UICollectionViewDelegate,dataSource: UICollectionViewDataSource,actionDelegate:ButtonActionDelegate) {
+    init(delegate: UICollectionViewDelegate,dataSource: UICollectionViewDataSource,actionDelegate:ButtonActionDelegate , searchdeleget : UISearchBarDelegate) {
         super.init(frame: .zero)
         self.actionDelegate = actionDelegate
         searchCollection.delegate = delegate
         searchCollection.dataSource = dataSource
+       searchBar.delegate = searchdeleget
         setupView()
     }
     required init?(coder aDecoder: NSCoder) {

@@ -8,9 +8,17 @@
 
 
 import UIKit
+protocol isAbleToReceiveData {
+    func pass(data: [Config])  //data: string is an example parameter
+}
 
-
-class searchVC: UIViewController,ButtonActionDelegate {
+class searchVC: UIViewController,ButtonActionDelegate , isAbleToReceiveData{
+    func pass(data: [Config]) {
+        
+        print(data)
+        searchitems = data
+         self.mainView.searchCollection.reloadData()
+    }
     lazy var mainView: searchView = {
         let v = searchView(delegate: self , dataSource: self, actionDelegate: self)
         v.backgroundColor = .white
@@ -27,6 +35,7 @@ class searchVC: UIViewController,ButtonActionDelegate {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+
     }
     func dissmisController() {
         self.dismiss(animated: true, completion: nil)
@@ -37,17 +46,23 @@ class searchVC: UIViewController,ButtonActionDelegate {
             getItems( text: mainView.searchtextFeild.text!)
         }else{
             searchitems = []
+            self.mainView.FilterBtn.isHidden = true
             self.mainView.searchCollection.reloadData()
         }
     }
     func applyBtnTapped() {
-        self.present(searchFilterVC(), animated: true, completion: nil)
+         let CV = FilterViewController()
+        CV.name = mainView.searchtextFeild.text!
+        CV.delegate = self
+        self.presentViewController(controller: CV, transitionModal: .crossDissolve, presentationStyle: .overCurrentContext)
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+       
         handelReachability(reachability: reachability)
         }
     func getItems(text : String )  {
+        searchitems.removeAll()
         DispatchQueue.main.async {
             self.mainView.activityStartAnimating(activityColor: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.6952322346), backgroundColor: .clear)
             APIClient.getsearchitems(name: text, brand: "", origin: "", price: "", rate: "", complition: { (result) in
@@ -55,6 +70,11 @@ class searchVC: UIViewController,ButtonActionDelegate {
                 case .success(let data):
                     self.searchitems = data.configs!
                     DispatchQueue.main.async {
+                        if self.searchitems.count != 0 {
+                             self.mainView.FilterBtn.isHidden = false
+                        }else{
+                             self.mainView.FilterBtn.isHidden = true
+                        }
                         self.mainView.searchCollection.reloadData()
                         self.mainView.activityStopAnimating()
                     }

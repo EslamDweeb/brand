@@ -31,7 +31,6 @@ class DropDownBtn: UIButton, dropDwonProtocol {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.addTarget(self, action: #selector(clickat), for: .touchUpInside)
-
     }
     @objc func clickat(){
         if isOpen == false {

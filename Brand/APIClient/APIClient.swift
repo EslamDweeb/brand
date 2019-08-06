@@ -130,6 +130,11 @@ class APIClient {
             complition(response.result)
         }
     }
+    static func addRview(id:Int,value:Int,review:String,pros:String,cons:String,complition : @escaping (Result<ReviewDataUpdated,Error>) -> Void) {
+        AF.request(ProductRouter.addReview(id: id,value: value, review: review, pros: pros, cons: cons)).responseDecodable{(response:DataResponse<ReviewDataUpdated>) in
+            complition(response.result)
+        }
+    }
     static func updateRview(value:Int,review:String,pros:String,cons:String,objectId:Int,ratingId:Int,complition : @escaping (Result<ReviewDataUpdated,Error>) -> Void) {
         AF.request(ProductRouter.updateReview(value: value, review: review, pros: pros, cons: cons, objectId: objectId, ratingId: ratingId)).responseDecodable{(response:DataResponse<ReviewDataUpdated>) in
             complition(response.result)
@@ -226,6 +231,11 @@ class APIClient {
     
     static func getsearchitems(name:String,brand : String , origin :String,  price : String ,rate : String,complition : @escaping (Result<searchModel,Error>) -> Void){
         AF.request(APIRouter.searshItem(name: name, brand: brand, origin: origin, price: price, rate: rate)).responseDecodable{(response: DataResponse<searchModel>) in
+            complition(response.result)
+        }
+    }
+    static func getproductFilters(complition : @escaping (Result<FilterModel,Error>) -> Void) {
+        AF.request(APIRouter.getProductFilter).responseDecodable {  (response : DataResponse<FilterModel>) in
             complition(response.result)
         }
     }

@@ -11,6 +11,16 @@ import UIKit
 extension searchVC : UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if searchitems.count == 0 {
+            let view = ReviewBGView()
+            view.image.image = #imageLiteral(resourceName: "No product")
+            view.lable.text = "NO Result"
+            view.backgroundColor = .clear
+            collectionView.backgroundView = view
+            
+        }else{
+             collectionView.backgroundView  = nil
+        }
         return searchitems.count
     }
 

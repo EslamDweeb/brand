@@ -12,7 +12,6 @@ class ItemDetailVC: UIViewController,ButtonActionDelegate {
     let headerID = "headerID"
     let cellID = "cellID"
     var itemDetails:ItemDetailInfo?
-      let group = DispatchGroup()
     var reviews = [Ratingable]()
     var rateData:OverallRating?
     var globalHeader : ItemDetailCollHeader!
@@ -47,19 +46,10 @@ class ItemDetailVC: UIViewController,ButtonActionDelegate {
         getRatingAndReviewInfo()
     }
     fileprivate func getRatingAndReviewInfo(){
-        group.enter()
+       
         getItemData()
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
-            self.group.enter()
-            self.getRatingData(id:Int(self.itemDetails?.config.modelRatingID ?? 0))
-            self.group.enter()
-            self.getReviewData(id:Int(self.itemDetails?.config.catalogID ?? 0))
-        }
-        group.notify(queue: .main) {
-            self.mainView.activityStopAnimating()
-            print("finish!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-        }
-        //self.pageCollectionView.reloadData()
+        
+
     }
     fileprivate func getItemData(){
         APIClient.getItemDetail(slug: self.slug ?? "noura-456735") { (result) in
@@ -67,10 +57,12 @@ class ItemDetailVC: UIViewController,ButtonActionDelegate {
             case .success(let data):
                     self.itemDetails = data
                     self.mainView.mainCollectionView.reloadData()
-                    self.group.leave()
+                    self.getRatingData(id:Int(self.itemDetails?.config.modelRatingID ?? 0))
+                    self.getReviewData(id:Int(self.itemDetails?.config.catalogID ?? 0))
+                    self.mainView.activityStopAnimating()
                     print(data)
             case .failure(let error):
-                self.group.leave()
+                self.mainView.activityStopAnimating()
                 print(error)
             }
         }
@@ -82,10 +74,8 @@ class ItemDetailVC: UIViewController,ButtonActionDelegate {
                 print(data)
                 self.rateData = data.overallRating
                  self.mainView.mainCollectionView.reloadData()
-                self.group.leave()
             case.failure(let error):
                 print(error)
-                self.group.leave()
             }
         }
     }
@@ -96,13 +86,24 @@ class ItemDetailVC: UIViewController,ButtonActionDelegate {
                 self.reviews = data.ratingables
                  self.mainView.mainCollectionView.reloadData()
                 print(data)
-                self.group.leave()
             case.failure(let error):
                 print(error)
-                self.group.leave()
             }
         }
     }
+    
+    func addViewAddToCart () {
+        let config = itemDetails?.config
+        let viewPresenter : ProAddToCartPresenter = AddToCartPresenter(saleProduct: config?.sale ?? 0.0 , priceProduct: Double(config?.price ?? 0) , quantityProduct : config?.qty ?? 0 , maxQuantity: config?.maxQty ?? 0 , minQuantity: config?.minQty ?? 0 , productOptions: config?.productOptions ?? [] )
+        let viewAddToCart = ViewAddToCart()
+        viewAddToCart.presenter = viewPresenter
+        viewAddToCart.setPrice()
+
+        
+        self.view.addSubview(viewAddToCart)
+        viewAddToCart.anchor(top: self.view.topAnchor , left: self.view.leftAnchor , bottom: self.view.bottomAnchor , right: self.view.rightAnchor , centerX: nil , centerY: nil , paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
+    }
+    
 //    func dissmisController() {
 //        self.dismiss(animated: true, completion: nil)
 //    }
@@ -124,7 +125,7 @@ extension ItemDetailVC:UICollectionViewDelegate,UICollectionViewDataSource,UICol
         }
         header.handelFlowBtnTapped = { [weak self](sender) in
             guard let self = self else {return}
-            if sender == header.header.customtabBar.favBtn{
+            if sender == header.header.favBtn{
                 APIClient.toggleFav(id: self.itemDetails?.config.id ?? 0) { (result) in
                     switch result {
                     case.success(let data):
@@ -133,7 +134,8 @@ extension ItemDetailVC:UICollectionViewDelegate,UICollectionViewDataSource,UICol
                         break
                     }
                 }
-            }else if sender == header.header.customtabBar.cartBtn{
+            }else if sender == header.header.cartBtn {
+                self.addViewAddToCart()
                 
             }
         }
@@ -164,6 +166,7 @@ extension ItemDetailVC:UICollectionViewDelegate,UICollectionViewDataSource,UICol
                 self.changeCustomTabBarBtnColor(name: self.globalHeader.header.customtabBar.reviewBtn.tapGesture.name ?? "",headerView:self.globalHeader)
             }
         }
+         handelAddReviewTapped(cell:cell)
         cell.pageCollectionView.reloadData()
         return cell
     }
@@ -219,5 +222,14 @@ extension ItemDetailVC:UICollectionViewDelegate,UICollectionViewDataSource,UICol
             headerView.header.customtabBar.reviewBtn.titleLable.textColor = .pink
         }
     }
-    private func handelFlowButtonTapped(){    }
+    private func handelAddReviewTapped(cell:MainCollCell){
+        cell.handelThirdCellAddReview = {[weak self] in
+            guard let self = self else {return}
+            let dest = AddReviewController()
+            dest.catlogId = self.itemDetails?.config.catalogID
+            dest.editeFlag = false
+            dest.mainView.setHeaderViewData(self.itemDetails?.config.brand?.name ?? "", self.itemDetails?.config.name ?? "",5, self.itemDetails?.config.mainPhoto?.path)
+            self.present(dest, animated: true, completion: nil)
+        }
+    }
 }

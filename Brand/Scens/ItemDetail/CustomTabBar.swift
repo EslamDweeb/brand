@@ -42,19 +42,19 @@ class CustomTabBar: UIView {
         stack.addArrangedSubview(reviewBtn)
         return stack
     }()
-    lazy var favBtn:UIButton = {
-        let btn = UIButton()
-        btn.setImage(#imageLiteral(resourceName: "fav"), for: .normal)
-        btn.addTarget(actionDelegate, action: #selector(ButtonActionDelegate.flowButtonTapped(_:)), for: .touchUpInside)
-        return btn
-    }()
-    lazy var cartBtn:UIButton = {
-        let btn = UIButton()
-        let image = UIImage(named: "cart22")
-        btn.setImage(image, for: .normal)
-        btn.addTarget(actionDelegate, action: #selector(ButtonActionDelegate.flowButtonTapped(_:)), for: .touchUpInside)
-        return btn
-    }()
+//    lazy var favBtn:UIButton = {
+//        let btn = UIButton()
+//        btn.setImage(#imageLiteral(resourceName: "fav"), for: .normal)
+//        btn.addTarget(actionDelegate, action: #selector(ButtonActionDelegate.flowButtonTapped(_:)), for: .touchUpInside)
+//        return btn
+//    }()
+//    lazy var cartBtn:UIButton = {
+//        let btn = UIButton()
+//        let image = UIImage(named: "cart22")
+//        btn.setImage(image, for: .normal)
+//        btn.addTarget(actionDelegate, action: #selector(ButtonActionDelegate.flowButtonTapped(_:)), for: .touchUpInside)
+//        return btn
+//    }()
     init(actionDelegate:ButtonActionDelegate) {
         super.init(frame: .zero)
         self.actionDelegate = actionDelegate
@@ -72,14 +72,14 @@ class CustomTabBar: UIView {
     }
     private func addSubViews(){
         addSubview(stackView)
-        addSubview(favBtn)
-        addSubview(cartBtn)
+//        addSubview(favBtn)
+//        addSubview(cartBtn)
     }
     private func addConstraintsToViews(){
         detailnBtn.anchor(top: nil, left: nil, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 70, height: 50, paddingCenterX: 0, paddingCenterY: 0)
         stackView.anchor(top: nil, left: nil, bottom: nil, right: nil, centerX: centerXAnchor, centerY: centerYAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
-        cartBtn.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: -24, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 48, height: 48, paddingCenterX: 0, paddingCenterY: 0)
-        favBtn.anchor(top: topAnchor, left: nil, bottom: nil, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: -24, paddingLeft: 0, paddingBottom: 0, paddingRight: 8, width: 48, height: 48, paddingCenterX: 0, paddingCenterY: 0)
+//        cartBtn.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: -24, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 48, height: 48, paddingCenterX: 0, paddingCenterY: 0)
+//        favBtn.anchor(top: topAnchor, left: nil, bottom: nil, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: -24, paddingLeft: 0, paddingBottom: 0, paddingRight: 8, width: 48, height: 48, paddingCenterX: 0, paddingCenterY: 0)
         
     }
     private func setShadowAndBoreder(){

@@ -19,7 +19,33 @@ extension String {
 
 class YString {
     
+    static var productOptions : String { return getText(key: "productOptions") }
+    static var itemPrice : String { return getText(key: "itemPrice") }
+    static var quantity : String { return getText(key: "quantity") }
+    static var totalPrice : String { return getText(key: "totalPrice" ) }
+    static var addToCart : String { return getText(key: "addToCart") }
+    static var selectOption : String { return getText(key: "selectOption") }
+    static var done : String { return getText(key: "done") }
+    
+    
+    static func getText (key : String) -> String {
+        
+        if MOLHLanguage.currentAppleLanguage().contains("en") {
+            return enString[key] ?? key
+        }else {
+            return arString[key] ?? key
+        }
+        
+    }
     static private let arString : [String : String] = [
+       "apply" : "تنفيذ" ,
+        "Search" :  "بحث",
+        "Search filter" : "بحث متقدم",
+        "price" : "السعر",
+        "rate"  :  "تقيم",
+        "Made_in" : "مصنوعه في",
+        "from" : "من",
+        "to" : "الي",
         "cart" : "سلة المشتريات",
         "QTY" : "الكميه ",
         "Outofstock" : "نفذ من المتجر",
@@ -188,10 +214,26 @@ class YString {
         "browesBy" : "Browse by sub category",
         "stars" : "****************",
         "Checkout_New" : "Checkout New",
+        "productOptions" : "خيارات المنتج",
+        "itemPrice" : "سعر المنتج",
+        "quantity" : "الكمية",
+        "totalPrice" : "السعر الكلي" ,
+        "addToCart" : "اضف الي العربة",
+        "selectOption" : "اختر" ,
+        "done" : "تم"
 
     ]
     
     static private let enString : [String : String] = [
+       
+         "Search" : "Search" ,
+        "apply" : "Apply" ,
+        "Search filter" :  "Search filter" ,
+        "rate"  :  "rate",
+        "Made_in" : "Made in",
+        "from" : "From",
+        "to" : "To",
+        "price" : "Price",
         "cart" : "Cart" ,
         "tax" : "Tax" ,
         "Confirm" : "Confirm & pay" ,
@@ -358,18 +400,17 @@ class YString {
         "sar" : "SAR"  ,
         "exceeded" : "Quantity exceeded" ,
         "Outofstock" : "Out of stock" ,
-        "QTY" : "QTY"
-
+        "QTY" : "QTY" ,
+        "productOptions" : "Product options",
+        "itemPrice" : "Item price",
+        "quantity" : "Quantity",
+        "totalPrice" : "Total price" ,
+        "addToCart" : "Add to cart",
+        "selectOption" : "Select option",
+        "done" : "Done"
+        
     ]
     
-    static func getText (key : String) -> String {
-        
-        if MOLHLanguage.currentAppleLanguage().contains("en") {
-            return enString[key] ?? key
-        }else {
-            return arString[key] ?? key
-        }
-        
-    }
+    
     
 }

@@ -39,7 +39,7 @@ class AddressInfoViewController: UIViewController, ButtonActionDelegate , Displa
             if "\(address.postalCode ?? nil  ?? 0)" == "nil" {
                 self.addressView.postalcode.text = ""
             }else {
-                self.addressView.postalcode.text =  "\(address.postalCode!)"
+                self.addressView.postalcode.text =  "\(address.postalCode ?? 0)"
             }
         }
     }
