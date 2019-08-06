@@ -12,13 +12,11 @@ class NotificationView:UIView {
     let cellID = "cellID"
     lazy var  navView:GradNavView = {
         let navView = GradNavView()
+        navView.backBtn.isHidden = true
+        navView.titlelabel.text = YString.notification
         return navView
     }()
-    lazy var backBtn: UIButton = {
-        let button = UIButton()
-        button.setImage(#imageLiteral(resourceName: "arrowLeftAnticon"), for: .normal)
-        return button
-    }()
+ 
     lazy var titlelabel:UILabel = {
         let label = UILabel()
         label.text = "Notifications"
@@ -59,8 +57,7 @@ class NotificationView:UIView {
     }
     private func addSubViews() {
         addSubview(navView)
-        navView.addSubview(backBtn)
-        navView.addSubview(titlelabel)
+       
         addSubview(newLable)
         addSubview(tableView)
  
@@ -68,8 +65,6 @@ class NotificationView:UIView {
     private func addConstrainsToUI() {
         navView.anchor(top: self.topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, centerX: centerXAnchor, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         navView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.12).isActive = true
-        titlelabel.anchor(top: nil, left: nil, bottom: navView.bottomAnchor, right: nil, centerX: navView.centerXAnchor, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 20, paddingRight: 0, width: 120, height: 20, paddingCenterX: 0, paddingCenterY: 0)
-        backBtn.anchor(top: nil, left: navView.leftAnchor, bottom: nil, right: nil, centerX: nil, centerY:titlelabel.centerYAnchor, paddingTop: 0, paddingLeft: 20, paddingBottom: 20, paddingRight: 0, width: 20, height: 20, paddingCenterX: 0, paddingCenterY: 0)
         newLable.anchor(top: navView.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 16, paddingBottom: 0, paddingRight: 8, width: 0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
         tableView.anchor(top: newLable.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
     }
