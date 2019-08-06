@@ -14,6 +14,7 @@ class FirstCell:UICollectionViewCell{
     let footerView = FooterView()
     let sizeView = SizeView()
     let colorView = ColorView()
+    var detailViewHeightConstraint:NSLayoutConstraint?
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
@@ -36,7 +37,8 @@ class FirstCell:UICollectionViewCell{
     }
     private func addConstraintstoViews(){
         detailView.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 20, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
-        detailView.heightAnchor.constraint(greaterThanOrEqualToConstant: 40).isActive = true
+        detailViewHeightConstraint = detailView.heightAnchor.constraint(equalToConstant: 40)
+        detailViewHeightConstraint?.isActive = true
         descriptionView.anchor(top: detailView.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 120, paddingCenterX: 0, paddingCenterY: 0)
         sizeView.anchor(top: descriptionView.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 100, paddingCenterX: 0, paddingCenterY: 0)
         colorView.anchor(top: sizeView.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 100, paddingCenterX: 0, paddingCenterY: 0)
@@ -55,9 +57,10 @@ class FirstCell:UICollectionViewCell{
             }
         }
         if tags.count != 0 {
+            detailViewHeightConstraint?.constant = 80
             detailView.TagsCollHeight?.constant = 40
             UIView.animate(withDuration: 0.1) {
-                self.layoutIfNeeded()
+                 self.layoutIfNeeded()
             }
         }
     }

@@ -167,12 +167,12 @@
                   moduleName = "Brand"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/eslamdweeb/Desktop/Brand/Brand/Scens/UserScens/SignUp/SignUpViewController.swift"
-                  timestampString = "586686707.270378"
+                  timestampString = "586775982.788419"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "102"
                   endingLineNumber = "102"
-                  offsetFromSymbolStart = "9338">
+                  offsetFromSymbolStart = "9383">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -182,7 +182,7 @@
                   moduleName = "Brand"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/eslamdweeb/Desktop/Brand/Brand/Scens/UserScens/SignUp/SignUpViewController.swift"
-                  timestampString = "586686707.271925"
+                  timestampString = "586775982.7899081"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "104"
@@ -215,7 +215,7 @@
                   moduleName = "Brand"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/eslamdweeb/Desktop/Brand/Brand/Scens/UserScens/SignUp/SignUpViewController.swift"
-                  timestampString = "586686707.2756521"
+                  timestampString = "586775982.7936291"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "104"
@@ -230,7 +230,7 @@
                   moduleName = "Brand"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/eslamdweeb/Desktop/Brand/Brand/Scens/UserScens/SignUp/SignUpViewController.swift"
-                  timestampString = "586686707.277148"
+                  timestampString = "586775982.795366"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "104"
@@ -245,7 +245,7 @@
                   moduleName = "Brand"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/eslamdweeb/Desktop/Brand/Brand/Scens/UserScens/SignUp/SignUpViewController.swift"
-                  timestampString = "586686707.278643"
+                  timestampString = "586775982.796977"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "104"
@@ -278,7 +278,7 @@
                   moduleName = "Brand"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/eslamdweeb/Desktop/Brand/Brand/Scens/UserScens/SignUp/SignUpViewController.swift"
-                  timestampString = "586686707.282874"
+                  timestampString = "586775982.801598"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "104"
@@ -293,7 +293,7 @@
                   moduleName = "Brand"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/eslamdweeb/Desktop/Brand/Brand/Scens/UserScens/SignUp/SignUpViewController.swift"
-                  timestampString = "586686707.284281"
+                  timestampString = "586775982.803118"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "104"
@@ -308,7 +308,7 @@
                   moduleName = "Brand"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/eslamdweeb/Desktop/Brand/Brand/Scens/UserScens/SignUp/SignUpViewController.swift"
-                  timestampString = "586686707.285655"
+                  timestampString = "586775982.804579"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "104"
@@ -683,6 +683,38 @@
             startingLineNumber = "128"
             endingLineNumber = "128"
             landmarkName = "signup()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Brand/Scens/ItemDetail/FirstCell/FirstCell.swift"
+            timestampString = "586776431.429935"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "getDetailViewData(brandName:madeIN:tags:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Brand/Scens/ItemDetail/ItemDetailHeaderView.swift"
+            timestampString = "586776431.4300261"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "178"
+            endingLineNumber = "178"
+            landmarkName = "setData(rating:numberOfuserRating:price:sale:name:numberOfPages:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

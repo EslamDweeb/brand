@@ -76,6 +76,9 @@ struct DetailedConfig:Codable {
         case inCart = "in_cart"
         case canRate = "can_rate"
     }
+    func ReturnPricepersent(sale:Double) -> String{
+        return "\( Double(round(sale * 100) / 100) * 100) %"
+    }
 }
 // MARK: - ConfigOption
 struct ConfigOption: Codable {
