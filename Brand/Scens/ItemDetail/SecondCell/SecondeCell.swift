@@ -40,6 +40,7 @@ extension SecondeCell:UITableViewDataSource,UITableViewDelegate{
             view.image.image = #imageLiteral(resourceName: "No product")
             view.lable.text = "No specification"
             view.addbtn.isHidden = true
+            view.backgroundColor = .white
             tableView.backgroundView = view
         }else{
             tableView.backgroundView = nil

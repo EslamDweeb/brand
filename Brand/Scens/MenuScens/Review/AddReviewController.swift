@@ -31,6 +31,9 @@ class AddReviewController:UIViewController,ButtonActionDelegate {
         self.dismiss(animated: true, completion: nil)
     }
     func applyBtnTapped() {
+        DispatchQueue.main.async {
+            self.mainView.activityStartAnimating(activityColor: #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1), backgroundColor: .clear)
+        }
         if editeFlag == true{
             updateReviewRquest(value:Int(mainView.headerView.rateView.rating),review:mainView.reviewView.textView.text,pros:mainView.prosView.textView.text,cons:mainView.consView.textView.text,objectId:mainView.review?.objectID ?? 0,ratingId:mainView.review?.id ?? 0)
         }else{
@@ -38,7 +41,6 @@ class AddReviewController:UIViewController,ButtonActionDelegate {
         }
     }
     private func updateReviewRquest(value:Int,review:String,pros:String,cons:String,objectId:Int,ratingId:Int){
-        mainView.activityStartAnimating(activityColor: #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1), backgroundColor: .clear)
         APIClient.updateRview(value: value, review: review, pros: pros, cons: cons, objectId: objectId, ratingId: ratingId) { (result) in
             switch result{
             case.success(let data):
@@ -59,8 +61,15 @@ class AddReviewController:UIViewController,ButtonActionDelegate {
             switch result{
             case.success(let data):
                 print(data)
+                self.mainView.activityStopAnimating()
+                self.createAlert(title: nil, erroMessage: data.message ?? "")
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(3)){
+                    self.dismissPressentededControllers()
+                    self.dissmisController()
+                }
             case .failure(let error):
                 print(error)
+                self.mainView.activityStopAnimating()
             }
         }
     }

@@ -31,11 +31,13 @@ class MainCollCell:UICollectionViewCell,UICollectionViewDelegate,UICollectionVie
         coll.delegate = self
         coll.dataSource = self
         //coll.isPagingEnabled = true
+        coll.showsHorizontalScrollIndicator = false
         return coll
     }()
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(pageCollectionView)
+        self.backgroundColor = .white
         pageCollectionView.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
     }
     
@@ -53,23 +55,8 @@ class MainCollCell:UICollectionViewCell,UICollectionViewDelegate,UICollectionVie
             cell.getDetailViewData(brandName:itemDetails?.config.brand?.name ?? "",madeIN: itemDetails?.config.madeIn ?? "",tags:itemDetails?.config.tags ?? [])
             cell.getDescriptionViewData(description:itemDetails?.config.configDescription ?? "")
             cell.getFooterViewData(configs: itemDetails?.config.relatedProducts ?? [])
-            if itemDetails?.config.configOptions != nil {
-                if itemDetails?.config.configOptions.count == 1{
-                    if itemDetails?.config.configOptions[0].name == "color" {
-                        cell.getColorViewData(configOption: (itemDetails?.config.configOptions[0])!)
-                    }else if itemDetails?.config.configOptions[0].name == "size"{
-                        cell.getSizeViewData(configOption: (itemDetails?.config.configOptions[0])!)
-                    }
-                }else if itemDetails?.config.configOptions.count ?? 0 > 1 {
-                    for option in itemDetails?.config.configOptions ?? [] {
-                        if option.name == "color"{
-                            cell.getColorViewData(configOption:option)
-                        }else if option.name == "size"{
-                            cell.getSizeViewData(configOption:option)
-                        }
-                    }
-                }
-            }
+            cell.configOptionArray = itemDetails?.config.configOptions
+            cell.configOptionTableView.reloadData()
             return cell
         case 1:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: secondCell, for: indexPath)as? SecondeCell else{return UICollectionViewCell()}

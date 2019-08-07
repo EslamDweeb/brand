@@ -56,10 +56,8 @@ class ItemDetailVC: UIViewController,ButtonActionDelegate {
             switch result{
             case .success(let data):
                     self.itemDetails = data
-                    self.mainView.mainCollectionView.reloadData()
                     self.getRatingData(id:Int(self.itemDetails?.config.modelRatingID ?? 0))
                     self.getReviewData(id:Int(self.itemDetails?.config.catalogID ?? 0))
-                    self.mainView.activityStopAnimating()
                     print(data)
             case .failure(let error):
                 self.mainView.activityStopAnimating()
@@ -73,8 +71,8 @@ class ItemDetailVC: UIViewController,ButtonActionDelegate {
             case.success(let data):
                 print(data)
                 self.rateData = data.overallRating
-                 self.mainView.mainCollectionView.reloadData()
             case.failure(let error):
+                  self.mainView.activityStopAnimating()
                 print(error)
             }
         }
@@ -85,28 +83,26 @@ class ItemDetailVC: UIViewController,ButtonActionDelegate {
             case.success(let data):
                 self.reviews = data.ratingables
                  self.mainView.mainCollectionView.reloadData()
+                  self.mainView.activityStopAnimating()
                 print(data)
             case.failure(let error):
                 print(error)
+                  self.mainView.activityStopAnimating()
             }
         }
     }
     
     func addViewAddToCart () {
         let config = itemDetails?.config
-        let viewPresenter : ProAddToCartPresenter = AddToCartPresenter(saleProduct: config?.sale ?? 0.0 , priceProduct: Double(config?.price ?? 0) , quantityProduct : config?.qty ?? 0 , maxQuantity: config?.maxQty ?? 0 , minQuantity: config?.minQty ?? 0 , productOptions: config?.productOptions ?? [] )
+        
         let viewAddToCart = ViewAddToCart()
+        let viewPresenter : ProAddToCartPresenter = AddToCartPresenter(addToCartView: viewAddToCart, configID: config?.id ?? 0 , saleProduct: config?.sale ?? 0.0 , priceProduct: Double(config?.price ?? 0) , quantityProduct : config?.qty ?? 0 , maxQuantity: config?.maxQty ?? 0 , minQuantity: config?.minQty ?? 0 , productOptions: config?.productOptions ?? [] )
         viewAddToCart.presenter = viewPresenter
         viewAddToCart.setPrice()
 
-        
         self.view.addSubview(viewAddToCart)
         viewAddToCart.anchor(top: self.view.topAnchor , left: self.view.leftAnchor , bottom: self.view.bottomAnchor , right: self.view.rightAnchor , centerX: nil , centerY: nil , paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
     }
-    
-//    func dissmisController() {
-//        self.dismiss(animated: true, completion: nil)
-//    }
 }
 extension ItemDetailVC:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
     
@@ -154,15 +150,11 @@ extension ItemDetailVC:UICollectionViewDelegate,UICollectionViewDataSource,UICol
         cell.rateData = self.rateData
         cell.handelCellSwipe = { [weak self](row) in
             guard let self = self else{return}
-//            guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: self.headerID, for: indexPath) as? ItemDetailCollHeader else{return}
             if row == 0 {
-                //header.header.customtabBar.detailnBtn.tapGesture.name = "details"
                 self.changeCustomTabBarBtnColor(name: self.globalHeader.header.customtabBar.detailnBtn.tapGesture.name ?? "",headerView: self.globalHeader)
             }else if row == 1 {
-                //header.header.customtabBar.detailnBtn.tapGesture.name = "specs"
                 self.changeCustomTabBarBtnColor(name: self.globalHeader.header.customtabBar.specsBtn.tapGesture.name ?? "",headerView: self.globalHeader)
             }else if row == 2 {
-               //header.header.customtabBar.detailnBtn.tapGesture.name = "review"
                 self.changeCustomTabBarBtnColor(name: self.globalHeader.header.customtabBar.reviewBtn.tapGesture.name ?? "",headerView:self.globalHeader)
             }
         }

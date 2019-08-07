@@ -91,7 +91,9 @@ extension MenuViewController : UITableViewDataSource , UITableViewDelegate {
                 cell.backgroundColor = .clear
             }
         case "cart".localized:
-            self.present(CartController(), animated: true) {
+            let dest = CartController()
+            dest.mainView.navView.backBtn.isHidden = false
+            self.present(dest, animated: true) {
                 cell.backgroundColor = .clear
             }
         case "wishlist".localized:

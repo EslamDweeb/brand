@@ -20,6 +20,12 @@ class CellAddToCartDropDown : UITableViewCell {
         return t
     }()
     
+    lazy var labelTitle : UILabel = {
+        let l = UILabel()
+        l.font = setFont(name: .fontM , size: 15 )
+        return l
+    }()
+    
     private var values : [ProductOptionValues] = []
     private var parentID : Int = 0
     var selectedValue : ProductOptionValues? = nil
@@ -41,7 +47,9 @@ class CellAddToCartDropDown : UITableViewCell {
         addToolBar()
         self.selectionStyle = .none
         self.contentView.addSubview(textField)
-        textField.anchor(top: self.contentView.topAnchor , left: self.contentView.leftAnchor , bottom: self.contentView.bottomAnchor , right: self.contentView.rightAnchor , centerX: nil , centerY: nil , paddingTop: 4, paddingLeft: 0, paddingBottom: 4 , paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
+        self.contentView.addSubview(labelTitle)
+        labelTitle.anchor(top: self.contentView.topAnchor , left: self.contentView.leftAnchor , bottom: nil , right: nil , centerX: nil, centerY: nil , paddingTop: 0, paddingLeft: 0 , paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
+        textField.anchor(top: labelTitle.bottomAnchor , left: self.contentView.leftAnchor , bottom: self.contentView.bottomAnchor , right: self.contentView.rightAnchor , centerX: nil , centerY: nil , paddingTop: 2, paddingLeft: 0, paddingBottom: 2 , paddingRight: 0, width: 0, height: 40 , paddingCenterX: 0, paddingCenterY: 0)
     }
     
     
@@ -62,7 +70,8 @@ class CellAddToCartDropDown : UITableViewCell {
     }
     
     
-    func setupCell (values : [ProductOptionValues], parentID : Int ) {
+    func setupCell (title : String , values : [ProductOptionValues], parentID : Int ) {
+        self.labelTitle.text = title
         self.values = values
         self.parentID = parentID
         pickerView.delegate = self
@@ -70,10 +79,28 @@ class CellAddToCartDropDown : UITableViewCell {
         pickerView.reloadAllComponents()
     }
     
+    func selectDefault () {
+        if self.values.count > 0 {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                self.selectedValue = self.values[0]
+                self.textField.text = (self.values[0].value ?? "" ) + " ( +\(self.values[0].addsPrice) SAR ) "
+                self.completion?(self.selectedValue! , self.parentID )
+            }
+        }
+    }
+    
     @objc private func donePicker () {
         if selectedValue == nil , values.count > 0 {
+            if values[0].id == -1 {
+                selectedValue = values[0]
+                textField.text = ""
+                textField.placeholder = YString.selectOption
+                completion?(selectedValue! , parentID )
+                return
+            }
+            
             selectedValue = values[0]
-            textField.text = selectedValue?.value
+            textField.text = (selectedValue?.value ?? "" ) + " ( +\(selectedValue?.addsPrice ?? 0 ) SAR ) "
             completion?(selectedValue! , parentID )
         }
         self.endEditing(true)
@@ -92,12 +119,22 @@ extension CellAddToCartDropDown : UIPickerViewDelegate , UIPickerViewDataSource 
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return values[row].value
+        if values[row].id == -1 {
+            return (values[row].value ?? "" )
+        }
+        return (values[row].value ?? "" ) + " ( +\(values[row].addsPrice) SAR ) "
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if values[row].id == -1 {
+            selectedValue = values[row]
+            textField.text = ""
+            textField.placeholder = YString.selectOption
+            completion?(selectedValue! , parentID )
+            return
+        }
         selectedValue = values[row]
-        textField.text = selectedValue?.value
+        textField.text = (values[row].value ?? "" ) + " ( +\(values[row].addsPrice) SAR ) "
         completion?(selectedValue! , parentID )
         print ("value : \(values[row].value )")
     }

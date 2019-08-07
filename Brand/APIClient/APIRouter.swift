@@ -32,6 +32,8 @@ enum APIRouter : URLRequestConvertible {
      case deleteCartItem(id:Int)
     case searshItem(name:String,brand : String , origin :String,  price : String ,rate : String)
      case getProductFilter
+    
+    case addToCart (config_id : Int , qty : Int , option_ids : [Int]? , product_option_value_ids : [Int]? )
     private var Methods : HTTPMethod {
         switch self {
         case .signUp:
@@ -78,6 +80,8 @@ enum APIRouter : URLRequestConvertible {
             return .get
         case .getProductFilter:
              return .get
+        case .addToCart :
+            return .post
         }
     }
     private var Paths : String {
@@ -132,6 +136,9 @@ enum APIRouter : URLRequestConvertible {
              return "/api/configs?brands=\(brand)&origin=\(origin)&price_between=\(price)&rate=\(rate)&name=\(name)"
         case .getProductFilter:
             return "/api/product-filters"
+             return "/api/configs?name=\(name)&brands=\(brand)&origin=\(origin)&price_between=\(price)&rate=\(rate)"
+        case .addToCart :
+            return "/api/cart-items"
         }
     }
     private var headers : HTTPHeaders {
@@ -269,6 +276,13 @@ enum APIRouter : URLRequestConvertible {
                     HTTPHeaderField.contentType.rawValue : ContentType.json.rawValue
             ]
           
+        case .addToCart :
+            return [
+                HTTPHeaderField.authentication.rawValue :" \(ContentType.token.rawValue)  \(UserDefaults.standard.string(forKey: Constants.Defaults.authToken) ?? "")",
+                HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue ,
+                HTTPHeaderField.contentType.rawValue  : ContentType.json.rawValue ,
+                HTTPHeaderField.locale.rawValue : MOLHLanguage.currentAppleLanguage()
+            ]
         }
     }
     private var parameters :Parameters?{
@@ -380,7 +394,6 @@ enum APIRouter : URLRequestConvertible {
                     Constants.APIParameterKey.shippingID : shippingId ,
                     Constants.APIParameterKey.billingID : billingId,
                     Constants.APIParameterKey.AddressID : addressId
-                    
                 ]
             }else {
                 return [
@@ -388,7 +401,6 @@ enum APIRouter : URLRequestConvertible {
                     Constants.APIParameterKey.billingID : billingId,
                     Constants.APIParameterKey.AddressID : addressId ,
                     Constants.APIParameterKey.coupon : coupon 
-                    
                 ]
             }
             
@@ -402,7 +414,34 @@ enum APIRouter : URLRequestConvertible {
             return [:]
         case .getProductFilter:
              return [:]
+            
+        case .addToCart(let config_id , let qty , let option_ids? , let  product_option_value_ids?) :
+            return [
+                Constants.APIParameterKey.configID : config_id ,
+                Constants.APIParameterKey.qty : qty,
+                Constants.APIParameterKey.optionIds : option_ids  ,
+                Constants.APIParameterKey.productOptionValueIds : product_option_value_ids
+            ]
+            
+        case .addToCart(let config_id, let qty, .none, let product_option_value_ids?):
+            return [
+                Constants.APIParameterKey.configID : config_id ,
+                Constants.APIParameterKey.qty : qty,
+                Constants.APIParameterKey.productOptionValueIds : product_option_value_ids
+            ]
+        case .addToCart(let config_id, let qty, let option_ids?, .none):
+            return [
+                Constants.APIParameterKey.configID : config_id ,
+                Constants.APIParameterKey.qty : qty,
+                Constants.APIParameterKey.optionIds : option_ids
+            ]
+        case .addToCart(let config_id, let qty , option_ids: .none, product_option_value_ids: .none):
+            return [
+                Constants.APIParameterKey.configID : config_id ,
+                Constants.APIParameterKey.qty : qty
+            ]
         }
+        
     }
 
 

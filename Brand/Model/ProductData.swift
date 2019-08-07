@@ -46,6 +46,9 @@ struct Config: Codable {
     let mainPhoto: Media?
     let isFavorite: Bool
     let oldPrice, newPrice: Int?
+    let min_qty : Int?
+    let max_qty : Int?
+    let in_cart : Bool?
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -57,6 +60,9 @@ struct Config: Codable {
         case isFavorite = "is_favorite"
         case oldPrice = "old_price"
         case newPrice = "new_price"
+        case min_qty = "min_qty"
+        case max_qty = "max_qty"
+        case in_cart = "in_cart"
     }
     func ReturnPriceAfterSale(price:Double,sale:Double) ->Double{
         return price - (price * sale)
