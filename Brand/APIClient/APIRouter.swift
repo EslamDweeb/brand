@@ -136,7 +136,6 @@ enum APIRouter : URLRequestConvertible {
              return "/api/configs?brands=\(brand)&origin=\(origin)&price_between=\(price)&rate=\(rate)&name=\(name)"
         case .getProductFilter:
             return "/api/product-filters"
-             return "/api/configs?name=\(name)&brands=\(brand)&origin=\(origin)&price_between=\(price)&rate=\(rate)"
         case .addToCart :
             return "/api/cart-items"
         }
@@ -266,9 +265,21 @@ enum APIRouter : URLRequestConvertible {
               
             ]
         case .searshItem:
-            return [ HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue
-            ]
+            if UserDefaults.standard.string(forKey: Constants.Defaults.authToken) != nil {
+                return [
+                    HTTPHeaderField.authentication.rawValue :" \(ContentType.token.rawValue)  \(UserDefaults.standard.string(forKey: Constants.Defaults.authToken) ?? "")",
+                    HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue,
+                    HTTPHeaderField.contentType.rawValue : ContentType.json.rawValue
+                    
+                ]
+            }else {
+                return [ HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue
+                ]
+                
+            }
+           
             
+           
             case .getProductFilter:
                 return [
                     HTTPHeaderField.authentication.rawValue : " \(ContentType.token.rawValue) \(UserDefaults.standard.string(forKey: Constants.Defaults.authToken)!)",

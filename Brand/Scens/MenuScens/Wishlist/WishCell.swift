@@ -84,6 +84,8 @@ class WishCell: UICollectionViewCell {
     }()
     var isFav = false
     @objc func addToWishList(){
+         if UserDefaults.standard.string(forKey: Constants.Defaults.authToken) != nil {
+        
         if isFav != false {
             let image = UIImage(named: "emptyHeart")
             favBtn.setImage(image, for: .normal)
@@ -99,7 +101,9 @@ class WishCell: UICollectionViewCell {
             case .failure(_):
                 break
             }
-        }
+            }
+            
+         }
     }
     lazy var cartBtn: UIButton = {
         let btn = UIButton()

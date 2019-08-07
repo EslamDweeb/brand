@@ -236,7 +236,10 @@ class APIClient {
     }
     static func getproductFilters(complition : @escaping (Result<FilterModel,Error>) -> Void) {
         AF.request(APIRouter.getProductFilter).responseDecodable {  (response : DataResponse<FilterModel>) in
-    
+            complition(response.result)
+        }
+        
+    }
     static func AddProductToCart (config_id: Int , qty: Int , option_ids: [Int]?, product_option_value_ids: [Int]? ,complition : @escaping (Result<ModelAddedCartData,Error>) -> Void) {
         AF.request(APIRouter.addToCart(config_id: config_id , qty: qty , option_ids: option_ids , product_option_value_ids: product_option_value_ids )).responseDecodable {(response : DataResponse<ModelAddedCartData>) in
             complition(response.result)
