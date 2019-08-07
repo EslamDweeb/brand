@@ -156,7 +156,7 @@ class ShippingView :UIView {
         self.addSubview(ExchangeView)
         ExchangeView.addSubview(tableView)
         ExchangeView.addSubview(youraddlabel)
-        ExchangeView.addSubview(addnewadd)
+        self.addSubview(addnewadd)
          self.bringSubviewToFront(addnewadd)
         // self.bringSubviewToFront(addnewaddBtn)
         navView.anchor(top: self.topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, centerX: centerXAnchor, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)

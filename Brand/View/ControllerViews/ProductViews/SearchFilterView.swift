@@ -103,10 +103,10 @@ class SearchFilterView: UIView , UITextFieldDelegate{
         let btn = DropDownBtn()
         btn.setTitleColor(.lightgray3, for: .normal)
         btn.setImage(#imageLiteral(resourceName: "down - anticon"), for: .normal)
-       // btn.titleLabel?.textAlignment = .center
+        btn.titleLabel?.textAlignment = .center
         btn.dropView.backgroundColor = #colorLiteral(red: 0.9843137255, green: 0.9803921569, blue: 0.9803921569, alpha: 1)
         btn.dropView.cellBGC = #colorLiteral(red: 0.9843137255, green: 0.9803921569, blue: 0.9803921569, alpha: 1)
-        btn.height.constant = 100
+      
         return btn
     }()
 //    lazy var sizeLable:UILabel = {
@@ -214,6 +214,7 @@ class SearchFilterView: UIView , UITextFieldDelegate{
         containerView.anchor(top: nil, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, centerX: self.centerXAnchor, centerY: self.centerYAnchor, paddingTop: 0, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 340, paddingCenterX: 0, paddingCenterY: 0)
         addConstraintToHeaderView()
         if MOLHLanguage.currentAppleLanguage()  == "en" {
+          
             brandLable.anchor(top: HeaderView.bottomAnchor, left: containerView.leftAnchor, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 20, paddingLeft: 16, paddingBottom: 0, paddingRight: 0, width: 45, height: 20, paddingCenterX: 0, paddingCenterY: 0)
             priceLable.anchor(top: brandLable.bottomAnchor, left: containerView.leftAnchor, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 30, paddingLeft: 16, paddingBottom: 0, paddingRight: 0, width: 45, height: 20, paddingCenterX: 0, paddingCenterY: 0)
             madeInLable.anchor(top: priceLable.bottomAnchor, left: containerView.leftAnchor, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 30, paddingLeft: 16, paddingBottom: 0, paddingRight: 0, width: 65, height: 20, paddingCenterX: 0, paddingCenterY: 0)
@@ -276,6 +277,25 @@ class SearchFilterView: UIView , UITextFieldDelegate{
             return false
         }
         return true
+        
+    }
+    override func layoutSubviews() {
+        super.layoutSubviews()
+         if MOLHLanguage.currentAppleLanguage() == "en" {
+        bradDropDown.contentHorizontalAlignment = .left
+        bradDropDown.titleEdgeInsets = UIEdgeInsets(top: 0, left: 1, bottom: 0, right: 28)
+        bradDropDown.imageEdgeInsets = UIEdgeInsets(top: 0, left: bradDropDown.frame.size.width - 28, bottom: 0, right: 8)
+        madeInDropDown.contentHorizontalAlignment = .left
+        madeInDropDown.titleEdgeInsets = UIEdgeInsets(top: 0, left: 1, bottom: 0, right: 28)
+        madeInDropDown.imageEdgeInsets = UIEdgeInsets(top: 0, left: madeInDropDown.frame.size.width - 28, bottom: 0, right: 8)
+         }else{
+            bradDropDown.contentHorizontalAlignment = .right
+            bradDropDown.titleEdgeInsets = UIEdgeInsets(top: 0, left: 28, bottom: 0, right: 1)
+            bradDropDown.imageEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: bradDropDown.frame.size.width - 28)
+            madeInDropDown.contentHorizontalAlignment = .right
+            madeInDropDown.titleEdgeInsets = UIEdgeInsets(top: 0, left: 28, bottom: 0, right: 1)
+            madeInDropDown.imageEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: madeInDropDown.frame.size.width - 28)
+        }
         
     }
 }

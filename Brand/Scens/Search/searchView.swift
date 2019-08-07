@@ -36,7 +36,7 @@ class searchView : UIView  , UITextFieldDelegate {
     }()
     lazy var searchBtn: BtnImage = {
         let button = BtnImage()
-        button.setImage(#imageLiteral(resourceName: "edit"), for: .normal)
+        button.setImage(#imageLiteral(resourceName: "search icon"), for: .normal)
         return button
     }()
     lazy var FilterBtn: BtnImage = {
@@ -68,15 +68,17 @@ class searchView : UIView  , UITextFieldDelegate {
         navView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.12).isActive = true
           searchtextFeild.anchor(top: navView.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, centerX: centerXAnchor, centerY: nil, paddingTop: 8, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 50, paddingCenterX: 0, paddingCenterY: 0)
         searchCollection.anchor(top: searchtextFeild.bottomAnchor, left: leftAnchor, bottom: self.bottomAnchor, right: rightAnchor, centerX: centerXAnchor, centerY: nil, paddingTop: 16, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
+        searchtextFeild.leftView = searchBtn
+        searchtextFeild.leftViewMode = .always
         if MOLHLanguage.currentAppleLanguage() == "en" {
-           searchtextFeild.rightView = searchBtn
-            searchtextFeild.rightViewMode = .always
+//            searchtextFeild.rightView = searchBtn
+//            searchtextFeild.rightViewMode = .always
             FilterBtn.anchor(top: nil, left: nil, bottom: self.safeAreaLayoutGuide.bottomAnchor, right: self.safeAreaLayoutGuide.rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 10, width: 80, height: 80, paddingCenterX: 0, paddingCenterY: 0)
         }else{
             
              FilterBtn.anchor(top: nil, left: self.safeAreaLayoutGuide.leftAnchor, bottom: self.safeAreaLayoutGuide.bottomAnchor, right: nil, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 10, paddingBottom: 0, paddingRight: 0, width: 80, height: 80, paddingCenterX: 0, paddingCenterY: 0)
-            searchtextFeild.leftView = searchBtn
-            searchtextFeild.leftViewMode = .always
+//            searchtextFeild.leftView = searchBtn
+//            searchtextFeild.leftViewMode = .always
         }
         searchtextFeild.addTarget(actionDelegate, action: #selector(ButtonActionDelegate.changeBtn), for: .editingChanged)
        FilterBtn.addTarget(actionDelegate, action: #selector(ButtonActionDelegate.applyBtnTapped), for: .touchUpInside)
@@ -92,6 +94,20 @@ class searchView : UIView  , UITextFieldDelegate {
             return false
         }
         return true
+    }
+    override func layoutSubviews() {
+        super.layoutSubviews()
+//        if MOLHLanguage.currentAppleLanguage() == "en" {
+//            searchtextFeild.rightView = searchBtn
+//            searchtextFeild.rightViewMode = .always
+//            searchtextFeild.leftView = nil
+//            searchtextFeild.leftViewMode = .always
+//                
+//        }
+//        else {
+//            searchtextFeild.leftView = searchBtn
+//            searchtextFeild.leftViewMode = .always
+//            }
     }
    
 }
