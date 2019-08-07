@@ -17,6 +17,7 @@ extension CartController: UITableViewDelegate , UITableViewDataSource {
             mainView.Totalsar.isHidden = true
             mainView.ItemsNum.isHidden = true
             mainView.save.isHidden = true
+            tableView.separatorStyle = .none
             tableView.backgroundView = CartTableBG()
         }
         else{

@@ -11,7 +11,7 @@ import Foundation
 struct FilterModel: Codable {
     let brands: [Brandfilter]?
     let origin: [Origin]?
-    let colors: [Brandfilter]?
+    let colors: [colorfilter]?
 }
 
 // MARK: - Brand
@@ -19,6 +19,11 @@ struct Brandfilter: Codable {
     let name, slug: String
 }
 
+// MARK: - Brand
+struct colorfilter: Codable {
+    let id : Int
+      let value : String
+}
 // MARK: - Origin
 struct Origin: Codable {
     let madeIn: String?

@@ -246,8 +246,8 @@ class SearchFilterView: UIView , UITextFieldDelegate{
         }
       
        
-        fromTextFeild.heightAnchor.constraint(equalToConstant: 30).isActive = true
-        toTextFeild.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        fromTextFeild.heightAnchor.constraint(equalToConstant: 35).isActive = true
+        toTextFeild.heightAnchor.constraint(equalToConstant: 35).isActive = true
         
 
         applyButton.anchor(top: nil, left: containerView.leftAnchor, bottom: containerView.bottomAnchor, right: containerView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 8, paddingBottom: 20, paddingRight: 8, width: 0, height: 40, paddingCenterX: 0, paddingCenterY: 0)
