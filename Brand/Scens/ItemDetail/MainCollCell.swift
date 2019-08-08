@@ -20,6 +20,7 @@ class MainCollCell:UICollectionViewCell,UICollectionViewDelegate,UICollectionVie
     var row:Int?
     var handelCellSwipe:((_ row:Int) -> ())?
     var handelThirdCellAddReview:(() -> ())?
+    var handelFooterViewClouserAction:((_ slug:String)->())?
     lazy var pageCollectionView:UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -57,6 +58,10 @@ class MainCollCell:UICollectionViewCell,UICollectionViewDelegate,UICollectionVie
             cell.getFooterViewData(configs: itemDetails?.config.relatedProducts ?? [])
             cell.configOptionArray = itemDetails?.config.configOptions
             cell.configOptionTableView.reloadData()
+            cell.footerView.HandelSelectedCellAction = {[weak self] (slug) in
+                guard let self = self else{return}
+                self.handelFooterViewClouserAction?(slug)
+            }
             return cell
         case 1:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: secondCell, for: indexPath)as? SecondeCell else{return UICollectionViewCell()}

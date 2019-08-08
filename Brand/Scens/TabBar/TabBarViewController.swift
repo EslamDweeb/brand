@@ -11,8 +11,8 @@ import UIKit
 class TabBarViewController: UITabBarController {
     let indetifer = "ExploreVC"
     let MenuViewControllers = MenuViewController()
-    let ExploreViewControllers = ExploreBrandViewController()
-    let HomeViewControllers = HomeViewController()
+    let ExploreViewControllers = HomeVC()
+    let HomeViewControllers = ExploreVC()
     let NotificationViewControllers = NotificationsViewController()
     let CartViewControllers = CartController()
     var homebtn: UIButton = {

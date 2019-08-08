@@ -54,7 +54,7 @@ class FirstCell:UICollectionViewCell{
         configOptionTableViewHeightConstraint = configOptionTableView.heightAnchor.constraint(equalToConstant: 20)
         configOptionTableViewHeightConstraint?.isActive = true
         footerView.anchor(top: configOptionTableView.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
-        footerViewHeightConstraint = footerView.heightAnchor.constraint(equalToConstant: 0)
+        footerViewHeightConstraint = footerView.heightAnchor.constraint(equalToConstant: 10)
         footerViewHeightConstraint?.isActive = true
     }
     func getDetailViewData(brandName name:String,madeIN:String,tags:[Tag]){
@@ -83,13 +83,18 @@ class FirstCell:UICollectionViewCell{
     func getFooterViewData(configs:[Config]){
         footerView.configs = configs
         footerView.productCollectionView.reloadData()
-        if configs.count != 0 {
+        if configs.count != 0{
+            footerView.titleLbl.isHidden = false
             footerViewHeightConstraint?.constant = 220
             UIView.animate(withDuration: 0.1) {
                 self.layoutIfNeeded()
             }
         }else{
-            footerView.removeFromSuperview()
+            footerViewHeightConstraint?.constant = 0
+            footerView.titleLbl.isHidden = true
+            UIView.animate(withDuration: 0.1) {
+                self.layoutIfNeeded()
+            }
         }
     }
 }
