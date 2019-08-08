@@ -66,7 +66,6 @@ class CartController : UIViewController ,ButtonActionDelegate{
         }
       
             tipView.show(forView: cell.infoBtn , withinSuperview: self.mainView)
-        
 //        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
 // tipView.dismiss()
 //        }
@@ -102,7 +101,6 @@ class CartController : UIViewController ,ButtonActionDelegate{
         return "\(totalPrice)"
     }
   
-    
     }
 
 
