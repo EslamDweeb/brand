@@ -25,19 +25,25 @@ struct CartItem: Codable {
     let config: Config
     let sellerNotes: String?
     let qty: Int
-    let options: [Option]
+    let selectedOptions: [SelectedOption]
     let itemOverallPrice, totalCartItemsPrice: Double
-    
+    let productOptions: [ProductOptions]
+   
+
     enum CodingKeys: String, CodingKey {
         case id, config
         case sellerNotes = "seller_notes"
-        case qty, options
+        case qty
+        case selectedOptions = "options"
+        case productOptions = "options_"
         case itemOverallPrice = "item_overall_price"
         case totalCartItemsPrice = "total_cart_items_price"
     }
+
+    
 }
 // MARK: - Option
-struct Option: Codable {
+struct SelectedOption: Codable {
     let id, optionID: Int
     let inputType: String
     let addsPrice: Int

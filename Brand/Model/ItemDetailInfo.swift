@@ -116,7 +116,7 @@ struct ProductOptions: Codable {
     let name, inputType: String
     let values: [ProductOptionValues]?
     let addsPrice: Int
-    let isRequired: Bool
+    let isRequired, selected: Bool?
 //    let selected: String
     
     enum CodingKeys: String, CodingKey {
@@ -127,7 +127,7 @@ struct ProductOptions: Codable {
         case values
         case addsPrice = "adds_price"
         case isRequired = "is_required"
-//        case selected
+        case selected
     }
 }
 
@@ -136,10 +136,12 @@ struct ProductOptionValues: Codable {
     let id: Int
     let value: String?
     let addsPrice: Int
+    let selected: Bool?
     
     enum CodingKeys: String, CodingKey {
         case id, value
         case addsPrice = "adds_price"
+        case selected
     }
 }
 //// MARK: - RelatedProduct

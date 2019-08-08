@@ -15,7 +15,12 @@ class ViewAddToCart : UIView {
     var presenter : ProAddToCartPresenter? {
         didSet {
             DispatchQueue.main.asyncAfter(deadline: .now() + 1 ) {
-                self.calculateTotalPrice()
+                if self.presenter?.isEdit == false {
+                    self.calculateTotalPrice()
+                }else {
+                    self.tableView.reloadData()
+                }
+                
             }
         }
     }
@@ -279,6 +284,10 @@ class ViewAddToCart : UIView {
         labelTotalPrice.text = YString.totalPrice + "\n" + "\(totalPriceProduct)"
     }
     
+    
+    
+    
+    
 }
 
 extension ViewAddToCart : UITableViewDataSource, UITableViewDelegate {
@@ -293,18 +302,18 @@ extension ViewAddToCart : UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let singleObjc = presenter?.productOptions[indexPath.row]
+        
         if singleObjc?.values?.count ?? 0 > 0 {
               let cell = tableView.dequeueReusableCell(withIdentifier: CellAddToCartDropDown.getIdentifier() , for: indexPath) as! CellAddToCartDropDown
             if !(singleObjc?.isRequired ?? true ) {
-                let ss = ProductOptionValues(id: -1 , value: YString.selectOption , addsPrice: 0 )
+                let ss = ProductOptionValues(id: -1 , value: YString.selectOption , addsPrice: 0 , selected: false )
                 var s = singleObjc?.values
                 s?.insert(ss , at: 0 )
                 cell.setupCell(title: singleObjc?.name ?? "" , values: s ?? []  , parentID: singleObjc?.id ?? 0 )
             }else {
                 cell.setupCell(title: singleObjc?.name ?? "" , values: singleObjc?.values ?? [] , parentID: singleObjc?.id ?? 0 )
             }
-           
-            if singleObjc?.isRequired ?? false {
+            if singleObjc?.isRequired ?? false && presenter?.isEdit == false {
                 cell.selectDefault()
             }
             cell.completion = { [weak self ] ( value , parentID )  in
@@ -323,7 +332,13 @@ extension ViewAddToCart : UITableViewDataSource, UITableViewDelegate {
             return  cell
         }else {
             let cell = tableView.dequeueReusableCell(withIdentifier: CellAddToCartButtonView.getIdentifier() , for: indexPath ) as! CellAddToCartButtonView
-            cell.setTextLabel(name: singleObjc?.name ?? ""  , price: singleObjc?.addsPrice ?? 0)
+            cell.setTextLabel(name: singleObjc?.name ?? ""  , price: singleObjc?.addsPrice ?? 0 , selected: false )
+          //  if singleObjc?.selected ?? false {
+                self.presenter?.selectedProductOption.append( singleObjc! )
+                cell.isCellSelected = true
+//            }else {
+//                cell.isCellSelected = false
+//            }
             return cell
         }
 
@@ -335,15 +350,12 @@ extension ViewAddToCart : UITableViewDataSource, UITableViewDelegate {
             
             if let index = self.presenter?.selectedProductOption.firstIndex(where: { $0.id == singleObjc?.id }) {
                 self.presenter?.selectedProductOption.remove(at: index)
+                cell.isCellSelected = false
             }else {
                 self.presenter?.selectedProductOption.append( singleObjc! )
+                cell.isCellSelected = true
             }
             
-            if cell.isCellSelected {
-                cell.deSelectItem()
-            }else {
-                cell.selectItem()
-            }
         }
         calculateTotalPrice()
     }
@@ -389,5 +401,6 @@ extension ViewAddToCart : ProAddToCartView {
     
     func errorAddProductToCart(errors: String) {
         print("error message : \( errors )")
+        self.dismiss()
     }
 }

@@ -39,7 +39,7 @@ extension CartController: UITableViewDelegate , UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let deleteBtn = UITableViewRowAction(style: .destructive, title: "Delete") { (_, indexPath) in
+        let deleteBtn = UITableViewRowAction(style: .destructive, title: YString.delete ) { (_, indexPath) in
           //  self.mainView.activityStartAnimating(activityColor: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.6952322346), backgroundColor: .clear)
             APIClient.deleteCart(id: self.cartpro[indexPath.row].id, complition:{ (result) in
                 switch result{
@@ -60,14 +60,16 @@ extension CartController: UITableViewDelegate , UITableViewDataSource {
            
         }
         deleteBtn.backgroundColor = .pink
-        let editeBtn = UITableViewRowAction(style: .normal, title: "Edite", handler: editeAction)
+        let editeBtn = UITableViewRowAction(style: .normal, title: YString.edit , handler: editAction )
         editeBtn.backgroundColor = .lightGray
         
         return[deleteBtn,editeBtn]
     }
-    func editeAction(action: UITableViewRowAction, indexPath: IndexPath){
-            
-        }
+    func editAction(action: UITableViewRowAction, indexPath: IndexPath){
+        
+        self.addViewAddToCart(cartItem: self.cartpro[indexPath.row] )
+        
+    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! CartCell

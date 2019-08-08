@@ -572,7 +572,6 @@
 		2D319C9C22DF4EA800EDC509 /* ItemDetail */ = {
 			isa = PBXGroup;
 			children = (
-				811637A522F725A900402ADD /* viewAddToCart */,
 				2D3547EE22E5BF1F00A570B2 /* ThirdCell */,
 				2D3547ED22E5BF1300A570B2 /* SecondCell */,
 				2D377E5422E0C1C4003551BD /* FirstCell */,
@@ -745,6 +744,7 @@
 		2D32B93722C0F22C00513DD4 /* Scens */ = {
 			isa = PBXGroup;
 			children = (
+				811637A522F725A900402ADD /* viewAddToCart */,
 				01F03AB222F31F870033F89A /* searchFilter */,
 				01F03AA922F2DD950033F89A /* Search */,
 				2D319C9C22DF4EA800EDC509 /* ItemDetail */,

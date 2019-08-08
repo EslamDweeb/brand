@@ -77,15 +77,28 @@ class CellAddToCartDropDown : UITableViewCell {
         pickerView.delegate = self
         pickerView.dataSource = self
         pickerView.reloadAllComponents()
+        
+        if let index = values.firstIndex(where: { $0.selected == true }) , isEditing {
+            selectDefault(index: index)
+        }
+        
     }
     
-    func selectDefault () {
+    func selectDefault (index : Int = 0 ) {
         if self.values.count > 0 {
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                self.selectedValue = self.values[0]
-                self.textField.text = (self.values[0].value ?? "" ) + " ( +\(self.values[0].addsPrice) SAR ) "
+                self.selectedValue = self.values[index]
+                self.textField.text = (self.values[index].value ?? "" ) + " ( +\(self.values[index].addsPrice) SAR ) "
                 self.completion?(self.selectedValue! , self.parentID )
             }
+        }
+    }
+    
+    func selectedValueFromEdit (value : ProductOptionValues ) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.selectedValue = value
+            self.textField.text = (value.value ?? "" ) + " ( +\(value.addsPrice) SAR ) "
+            self.completion?(self.selectedValue! , self.parentID )
         }
     }
     

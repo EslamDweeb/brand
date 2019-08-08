@@ -27,6 +27,9 @@ class YString {
     static var selectOption : String { return getText(key: "selectOption") }
     static var done : String { return getText(key: "done") }
     static var notification:String {return getText(key: "notification")}
+    static var delete : String { return getText(key: "delete") }
+    static var edit : String { return getText(key: "edit") }
+    
     
     static func getText (key : String) -> String {
         
@@ -407,8 +410,7 @@ class YString {
         "totalPrice" : "Total price" ,
         "addToCart" : "Add to cart",
         "selectOption" : "Select option",
-        "done" : "Done"
-        
+        "done" : "Done"        
     ]
     
     

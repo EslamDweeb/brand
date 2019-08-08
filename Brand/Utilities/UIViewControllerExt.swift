@@ -159,4 +159,28 @@ extension UIViewController {
         let timeStamp = dateFormatter.string(from: convertedDate!)
         return timeStamp
     }
+    
+    
+    func addViewAddToCart (config : DetailedConfig? = nil  , cartItem : CartItem? = nil  ) {
+        
+        let viewAddToCart = ViewAddToCart()
+        var viewPresenter : ProAddToCartPresenter?
+        
+        if config == nil && cartItem != nil {
+            let configInCart = cartItem?.config
+            viewPresenter = AddToCartPresenter(addToCartView: viewAddToCart, configID: configInCart?.id ?? 0 , saleProduct: configInCart?.sale ?? 0.0 , priceProduct: Double(configInCart?.price ?? 0) , quantityProduct : configInCart?.qty ?? 0 , maxQuantity: configInCart?.max_qty ?? 0 , minQuantity: configInCart?.min_qty ?? 0 , productOptions: cartItem?.productOptions ?? [] , selectedOptionsToEdit : cartItem?.selectedOptions ?? [] , selectedQuantityToEdit : cartItem?.qty ?? 0 , isEdit: true )
+        }else if cartItem == nil , config != nil {
+            viewPresenter = AddToCartPresenter(addToCartView: viewAddToCart, configID: config?.id ?? 0 , saleProduct: config?.sale ?? 0.0 , priceProduct: Double(config?.price ?? 0) , quantityProduct : config?.qty ?? 0 , maxQuantity: config?.maxQty ?? 0 , minQuantity: config?.minQty ?? 0 , productOptions: config?.productOptions ?? [] )
+        }else {
+            return
+        }
+        
+        viewAddToCart.presenter = viewPresenter
+        viewAddToCart.setPrice()
+        
+        self.view.addSubview(viewAddToCart)
+        viewAddToCart.anchor(top: self.view.topAnchor , left: self.view.leftAnchor , bottom: self.view.bottomAnchor , right: self.view.rightAnchor , centerX: nil , centerY: nil , paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
+    }
+    
+    
 }

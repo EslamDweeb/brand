@@ -22,10 +22,12 @@ protocol ProAddToCartPresenter {
     var minQuantity : Int { get }
     var configID : Int {get}
     var productOptions : [ProductOptions] { get }
-
     var selectedValues : [(parentID : Int , value : ProductOptionValues )] { get set }
     var selectedProductOption : [ ProductOptions ] { get set }
     var selectedQuantity : Int {get set}
+    var selectedOptionsToEdit : [SelectedOption] {get}
+    var selectedQuantityToEdit : Int { get }
+    var isEdit : Bool {get}
     
     func getNumberOfItemsInPicker() -> Int
     
@@ -49,7 +51,12 @@ class AddToCartPresenter : ProAddToCartPresenter {
     var selectedProductOption: [ProductOptions] = []
     var selectedQuantity = 0
     
-    init(addToCartView: ProAddToCartView , configID : Int , saleProduct: Double, priceProduct: Double, quantityProduct: Int, maxQuantity: Int, minQuantity: Int, productOptions: [ProductOptions]) {
+    var selectedOptionsToEdit : [SelectedOption] = []
+    var selectedQuantityToEdit : Int = 0
+    var isEdit: Bool = false
+    
+    init(addToCartView: ProAddToCartView , configID : Int , saleProduct: Double, priceProduct: Double, quantityProduct: Int, maxQuantity: Int, minQuantity: Int, productOptions: [ProductOptions] ,
+         selectedOptionsToEdit : [SelectedOption] = [] , selectedQuantityToEdit : Int = 0 , isEdit : Bool = false  ) {
         self.configID = configID
         self.addToCartView = addToCartView
         self.saleProduct = saleProduct
@@ -58,6 +65,9 @@ class AddToCartPresenter : ProAddToCartPresenter {
         self.minQuantity = minQuantity
         self.maxQuantity = maxQuantity
         self.productOptions = productOptions
+        self.selectedOptionsToEdit = selectedOptionsToEdit
+        self.selectedQuantityToEdit = selectedQuantityToEdit
+        self.isEdit = isEdit
         
     }
     
