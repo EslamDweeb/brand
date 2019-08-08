@@ -93,4 +93,11 @@ extension WishListController: UICollectionViewDelegate,UICollectionViewDataSourc
             self.infinitePaging()
         }else{return}
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let dest = ItemDetailVC()
+        dest.slug = slug
+        self.present(dest, animated: true, completion: nil)
+    }
+    
 }

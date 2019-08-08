@@ -22,6 +22,7 @@ extension CartController: UITableViewDelegate , UITableViewDataSource {
         }
         else{
             
+            
             self.mainView.ItemsNum.text = "\("Items".localized )\(self.cartpro.count)"
             self.mainView.Totalsar.text = "\("TotalAmount".localized) \(self.getTotalCartItemsPrice()) \("sar".localized)"
 //            mainView.bottomConstrain?.constant = CGFloat(165 * cartpro.count)

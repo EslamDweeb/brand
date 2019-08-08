@@ -119,6 +119,10 @@ class  CartCell: UITableViewCell {
     
     
     private func setup(){
+        
+        backgroundColor = .backgroundColl
+        contentView.backgroundColor = .backgroundColl
+        
         contentView.addSubview(containerView)
         containerView.addSubview(Image)
         containerView.addSubview(brandName)

@@ -47,5 +47,11 @@ extension searchVC : UICollectionViewDelegate,UICollectionViewDataSource,UIColle
        return 4
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let dest = ItemDetailVC()
+        dest.slug = searchitems[indexPath.row].slug
+        self.present(dest, animated: true, completion: nil)
+    }
+    
 }
 

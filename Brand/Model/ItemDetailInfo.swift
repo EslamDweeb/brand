@@ -26,7 +26,7 @@ struct DetailedConfig:Codable {
     let qty, minQty, maxQty: Int
     let vendor: Vendor
     let brand: Brand?
-    let overallRating, overallRatingCount, modelRatingID: Double
+    let overallRating, overallRatingCount, modelRatingID: Double?
     let productOptions: [ProductOptions]
     let discounts: [Discount]?
     let mainPhoto: Media?

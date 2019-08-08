@@ -47,14 +47,20 @@ extension ShippingVC  :  UICollectionViewDelegateFlowLayout  , UICollectionViewD
         animateTransitionIfNeeded(state: nextState)
         
     }
+    
+//    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+//        mainView.HeightConstrain?.constant = collectionView.contentSize.height + 10
+//    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if shippingMethodarr.count != 0 {
             if shippingMethodarr.count % 3 != 0 {
-                mainView.HeightConstrain?.constant = CGFloat(Int (((shippingMethodarr.count) / 3 ) * 100)) + 100
+                mainView.HeightConstrain?.constant = CGFloat(Int (((shippingMethodarr.count) / 3 ) * 100)) + 110
             }else{
-              mainView.HeightConstrain?.constant = CGFloat(Int (((shippingMethodarr.count) / 3 ) * 100))
+              mainView.HeightConstrain?.constant = CGFloat(Int (((shippingMethodarr.count) / 3 ) * 100)) + 10
             }
-            mainView.HeightConstrain?.constant = CGFloat(Int (((shippingMethodarr.count  ) / 3 ) * 100))
+            
+           // mainView.HeightConstrain?.constant = CGFloat(Int (((shippingMethodarr.count  ) / 3 ) * 100))
         }else {
              mainView.HeightConstrain?.constant = 0
         }

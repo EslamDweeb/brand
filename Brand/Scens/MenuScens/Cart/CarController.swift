@@ -41,6 +41,7 @@ class CartController : UIViewController ,ButtonActionDelegate{
         mainView.actionDelegate = self
         mainView.tableView.delegate = self
         mainView.tableView.dataSource = self
+        mainView.tableView.backgroundColor = .backgroundColl
         
     }
     override func viewWillAppear(_ animated: Bool) {
