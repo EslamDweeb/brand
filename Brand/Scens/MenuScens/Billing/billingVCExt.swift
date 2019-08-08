@@ -13,11 +13,11 @@ extension BillingVC  :  UICollectionViewDelegateFlowLayout  , UICollectionViewDe
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if billingMethodarr.count != 0 {
             if billingMethodarr.count % 2 != 0 {
-                mainView.hieghtConstrainView?.constant = CGFloat(Int (((billingMethodarr.count) / 2 ) * 100)) + 120
+                mainView.hieghtConstrainView?.constant = CGFloat(Int (((billingMethodarr.count) / 2 ) * 100)) + 110
             }else{
-                mainView.hieghtConstrainView?.constant = CGFloat(Int (((billingMethodarr.count) / 2 ) * 100)) + 20
+                mainView.hieghtConstrainView?.constant = CGFloat(Int (((billingMethodarr.count) / 2 ) * 100)) + 10
             }
-            mainView.hieghtConstrainView?.constant = CGFloat(Int (((billingMethodarr.count  ) / 2 ) * 100)) + 20
+          //  mainView.hieghtConstrainView?.constant = CGFloat(Int (((billingMethodarr.count  ) / 2 ) * 100)) + 20
         }else {
             mainView.hieghtConstrainView?.constant = 0
         }

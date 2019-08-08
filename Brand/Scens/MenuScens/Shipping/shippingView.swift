@@ -101,7 +101,7 @@ class ShippingView :UIView {
         layout.scrollDirection = .vertical
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(ShippingMethodCell.self, forCellWithReuseIdentifier: "cell")
-        collectionView.backgroundColor  = .white
+        collectionView.backgroundColor  = #colorLiteral(red: 0.9803921569, green: 0.9843137255, blue: 0.9843137255, alpha: 1)
         collectionView.isPagingEnabled = true
         collectionView.showsVerticalScrollIndicator = false
         return collectionView

@@ -35,7 +35,7 @@ class CartView : UIView  {
         let tableView = UITableView()
        tableView.register(CartCell.self, forCellReuseIdentifier: "cellId")
         tableView.separatorStyle = .none
-        tableView.backgroundColor = UIColor.backgroundCell
+        tableView.backgroundColor = UIColor.backgroundColl
         tableView.showsVerticalScrollIndicator = false
         //tableView.allowsSelection = false
         return tableView
@@ -47,7 +47,6 @@ class CartView : UIView  {
       public weak var actionDelegate: ButtonActionDelegate?
     func setupView() {
         self.backgroundColor = .backgroundColl
-        tableView.backgroundColor = .clear
         //add subViews
         addSubview(navView)
       //  addSubview(scrollView)

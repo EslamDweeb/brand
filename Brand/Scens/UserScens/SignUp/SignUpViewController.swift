@@ -85,10 +85,10 @@ class SignUpViewController: UIViewController , ButtonActionDelegate{
         if signupView.FirstTextFeild.text != "" || signupView.EmailTextFeild.text != "" || signupView.phoneTextFeild.text != "" || signupView.PasswordTextFeild.text != "" {
             if signupView.FirstTextFeild.text != "" && signupView.FirstTextFeild.isValidLastName(signupView.FirstTextFeild.text) == false {
                 self.signupView.activityStopAnimating()
-                createAlert(title: nil, erroMessage: NSLocalizedString( "firstName_Validation", comment: ""))
+                createAlert(title: nil, erroMessage: "firstName_Validation".localized)
             }else if  signupView.LastTextFeild.text != "" && signupView.LastTextFeild.isValidLastName(signupView.FirstTextFeild.text) == false {
                 self.signupView.activityStopAnimating()
-                createAlert(title: nil, erroMessage: NSLocalizedString( "lastName_Validation", comment: ""))
+                createAlert(title: nil, erroMessage:  "lastName_Validation".localized)
             }else if  signupView.EmailTextFeild.text != "" && signupView.EmailTextFeild.isValidEmail(signupView.EmailTextFeild.text) == false {
                 self.signupView.activityStopAnimating()
                 createAlert(title: nil, erroMessage: NSLocalizedString( "email_validation", comment: ""))

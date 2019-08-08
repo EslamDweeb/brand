@@ -54,6 +54,7 @@ class MyAddressCell: UITableViewCell {
     }()
     private func setupLayou() {
         self.selectionStyle = .none
+        self.backgroundColor = .backgroundColl
         addSubview(view)
         view.addSubview(addressName)
         view.addSubview(addressDescription)
