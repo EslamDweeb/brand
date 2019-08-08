@@ -53,7 +53,10 @@ class IntroViewController: UICollectionViewController, UICollectionViewDelegateF
     }()
     
     @objc private func startBtn() {
-        self.presentViewController(controller:  LoginViewController(), transitionModal:  .crossDissolve, presentationStyle: nil)
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        let dest = storyBoard.instantiateViewController(withIdentifier: "mainTabVC")
+        self.presentViewController(controller: dest, transitionModal: .crossDissolve, presentationStyle: nil)
+     
     }
     
     lazy var pageControl: UIPageControl = {

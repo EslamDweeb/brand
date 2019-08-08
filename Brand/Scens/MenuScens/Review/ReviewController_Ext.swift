@@ -28,23 +28,26 @@ extension ReviewController: UICollectionViewDelegate,UICollectionViewDataSource,
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as? ReviewCell else{ return UICollectionViewCell() }
         cell.review = reviews[indexPath.item]
-        cell.editeBtnTapped = { [weak self]  (review) in
+        cell.editeBtnTapped = { [weak self]  (review,flag) in
+            guard let self = self else{return}
             let dest = AddReviewController()
             dest.mainView.review = review
+            dest.editeFlag = flag
             dest.mainView.headerView.rateView.settings.updateOnTouch = true
-            self?.dismissPressentededControllers()
-            self?.presentViewController(controller: dest, transitionModal: UIModalTransitionStyle.crossDissolve, presentationStyle: nil)
+            self.dismissPressentededControllers()
+            self.presentViewController(controller: dest, transitionModal: UIModalTransitionStyle.crossDissolve, presentationStyle: nil)
         }
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let cell = collectionView.cellForItem(at: indexPath) as? ReviewCell else{return}
-        let dest = AddReviewController()
-        dest.mainView.review = cell.review
-        dest.mainView.reviewView.textView.isUserInteractionEnabled = false
-        dest.mainView.prosView.textView.isUserInteractionEnabled = false
-        dest.mainView.consView.textView.isUserInteractionEnabled = false
-        self.presentViewController(controller: dest, transitionModal: UIModalTransitionStyle.coverVertical, presentationStyle: nil)
+//        guard let cell = collectionView.cellForItem(at: indexPath) as? ReviewCell else{return}
+//        let dest = AddReviewController()
+//        dest.mainView.review = cell.review
+//
+//        dest.mainView.reviewView.textView.isUserInteractionEnabled = false
+//        dest.mainView.prosView.textView.isUserInteractionEnabled = false
+//        dest.mainView.consView.textView.isUserInteractionEnabled = false
+//        self.presentViewController(controller: dest, transitionModal: UIModalTransitionStyle.coverVertical, presentationStyle: nil)
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
       

@@ -39,19 +39,28 @@ class AddReviewController:UIViewController,ButtonActionDelegate {
         }else{
             addReviewRequest(id: catlogId!, value: Int(mainView.headerView.rateView.rating), review: mainView.reviewView.textView.text, pros: mainView.prosView.textView.text, cons: mainView.consView.textView.text)
         }
+       
     }
     private func updateReviewRquest(value:Int,review:String,pros:String,cons:String,objectId:Int,ratingId:Int){
         APIClient.updateRview(value: value, review: review, pros: pros, cons: cons, objectId: objectId, ratingId: ratingId) { (result) in
             switch result{
             case.success(let data):
-                if data.error != nil {
-                    self.createAlert(title: nil, erroMessage: data.error ?? "")
+                if data.errors != nil {
+                    self.createAlert(title: nil, erroMessage: data.errors ?? "")
                 }else{
                     self.createAlert(title: nil, erroMessage: data.message ?? "")
                 }
                 self.mainView.activityStopAnimating()
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(3)){
+                   if    data.errors == nil {
+                    self.dismissPressentededControllers()
+                    self.dissmisController()
+                    }
+                    
+                }
             case.failure(let error):
                 self.mainView.activityStopAnimating()
+                self.createAlert(title: nil, erroMessage: error.localizedDescription  )
                 print(error)
             }
         }
@@ -62,14 +71,23 @@ class AddReviewController:UIViewController,ButtonActionDelegate {
             case.success(let data):
                 print(data)
                 self.mainView.activityStopAnimating()
-                self.createAlert(title: nil, erroMessage: data.message ?? "")
+                if data.errors != nil {
+                    self.createAlert(title: nil, erroMessage: data.errors ?? "")
+                }else{
+                    self.createAlert(title: nil, erroMessage: data.message ?? "")
+                }
+             //   self.createAlert(title: nil, erroMessage: data.message ?? "")
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(3)){
-                    self.dismissPressentededControllers()
-                    self.dissmisController()
+                    if    data.errors == nil {
+                        self.dismissPressentededControllers()
+                        self.dissmisController()
+                    }
                 }
             case .failure(let error):
                 print(error)
-                self.mainView.activityStopAnimating()
+                  self.mainView.activityStopAnimating()
+                self.createAlert(title: nil, erroMessage: error.localizedDescription  )
+
             }
         }
     }

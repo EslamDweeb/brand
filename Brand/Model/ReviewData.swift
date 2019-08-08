@@ -12,14 +12,14 @@ import Foundation
 struct ReviewData: Codable {
     let ratingables: [Ratingable]
     let message:String?
-    let error:String?
+    let errors:String?
 }
 struct ReviewDataUpdated: Codable {
     let userRating: Ratingable?
     let message:String?
-    let error:String?
+    let errors:String?
     enum CodingKeys: String, CodingKey {
-        case error, message
+        case errors, message
         case userRating = "user_rating"
     }
 }
