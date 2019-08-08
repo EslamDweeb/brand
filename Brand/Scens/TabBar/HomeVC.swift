@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ExploreBrandViewController:UIViewController,ButtonActionDelegate {
+class HomeVC:UIViewController,ButtonActionDelegate {
     let cellID = "cellID"
     var brands = [Brand]()
     var categories = [Category]()

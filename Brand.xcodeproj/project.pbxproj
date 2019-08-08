@@ -52,7 +52,7 @@
 		2D32B84A22C0F1D000513DD4 /* UIViewControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D32B84422C0F1D000513DD4 /* UIViewControllerExt.swift */; };
 		2D32B84B22C0F1D000513DD4 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D32B84522C0F1D000513DD4 /* Reachability.swift */; };
 		2D32B84C22C0F1D000513DD4 /* textFieldExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D32B84622C0F1D000513DD4 /* textFieldExt.swift */; };
-		2D32B87B22C0F1E800513DD4 /* HomeVC_EXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D32B86F22C0F1E800513DD4 /* HomeVC_EXT.swift */; };
+		2D32B87B22C0F1E800513DD4 /* ExploreVC_Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D32B86F22C0F1E800513DD4 /* ExploreVC_Ext.swift */; };
 		2D32B87C22C0F1E800513DD4 /* WishListController_Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D32B87022C0F1E800513DD4 /* WishListController_Ext.swift */; };
 		2D32B87D22C0F1E800513DD4 /* NotificationVC_Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D32B87122C0F1E800513DD4 /* NotificationVC_Ext.swift */; };
 		2D32B87E22C0F1E800513DD4 /* SearchController_Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D32B87222C0F1E800513DD4 /* SearchController_Ext.swift */; };
@@ -60,7 +60,7 @@
 		2D32B88022C0F1E800513DD4 /* Validations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D32B87422C0F1E800513DD4 /* Validations.swift */; };
 		2D32B88122C0F1E800513DD4 /* ReviewController_Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D32B87522C0F1E800513DD4 /* ReviewController_Ext.swift */; };
 		2D32B88222C0F1E800513DD4 /* Cart_Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D32B87622C0F1E800513DD4 /* Cart_Ex.swift */; };
-		2D32B88322C0F1E800513DD4 /* Explore_Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D32B87722C0F1E800513DD4 /* Explore_Ext.swift */; };
+		2D32B88322C0F1E800513DD4 /* HomeVC_Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D32B87722C0F1E800513DD4 /* HomeVC_Ext.swift */; };
 		2D32B88422C0F1E800513DD4 /* OrderViewController_Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D32B87822C0F1E800513DD4 /* OrderViewController_Ext.swift */; };
 		2D32B88522C0F1E800513DD4 /* FlashSaleController_Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D32B87922C0F1E800513DD4 /* FlashSaleController_Ext.swift */; };
 		2D32B88622C0F1E800513DD4 /* ResetCodeViewController_Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D32B87A22C0F1E800513DD4 /* ResetCodeViewController_Ext.swift */; };
@@ -86,9 +86,9 @@
 		2D32B92A22C0F20D00513DD4 /* ResetCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D32B91222C0F20D00513DD4 /* ResetCodeViewController.swift */; };
 		2D32B92B22C0F20D00513DD4 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D32B91422C0F20D00513DD4 /* SplashViewController.swift */; };
 		2D32B92C22C0F20D00513DD4 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D32B91522C0F20D00513DD4 /* ContainerViewController.swift */; };
-		2D32B92D22C0F20D00513DD4 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D32B91722C0F20D00513DD4 /* HomeViewController.swift */; };
+		2D32B92D22C0F20D00513DD4 /* ExploreVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D32B91722C0F20D00513DD4 /* ExploreVC.swift */; };
 		2D32B92E22C0F20D00513DD4 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D32B91822C0F20D00513DD4 /* TabBarViewController.swift */; };
-		2D32B92F22C0F20D00513DD4 /* ExploreBrandsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D32B91922C0F20D00513DD4 /* ExploreBrandsViewController.swift */; };
+		2D32B92F22C0F20D00513DD4 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D32B91922C0F20D00513DD4 /* HomeVC.swift */; };
 		2D32B93022C0F20D00513DD4 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D32B91B22C0F20D00513DD4 /* Notifications.swift */; };
 		2D32B93522C0F21A00513DD4 /* dropDwonProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D32B93322C0F21A00513DD4 /* dropDwonProtocol.swift */; };
 		2D32B93622C0F21A00513DD4 /* ButtonActionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D32B93422C0F21A00513DD4 /* ButtonActionDelegate.swift */; };
@@ -270,7 +270,7 @@
 		2D32B84422C0F1D000513DD4 /* UIViewControllerExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExt.swift; sourceTree = "<group>"; };
 		2D32B84522C0F1D000513DD4 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		2D32B84622C0F1D000513DD4 /* textFieldExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = textFieldExt.swift; sourceTree = "<group>"; };
-		2D32B86F22C0F1E800513DD4 /* HomeVC_EXT.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeVC_EXT.swift; path = ../../Extentions/HomeVC_EXT.swift; sourceTree = "<group>"; };
+		2D32B86F22C0F1E800513DD4 /* ExploreVC_Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExploreVC_Ext.swift; path = ../../Extentions/ExploreVC_Ext.swift; sourceTree = "<group>"; };
 		2D32B87022C0F1E800513DD4 /* WishListController_Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WishListController_Ext.swift; sourceTree = "<group>"; };
 		2D32B87122C0F1E800513DD4 /* NotificationVC_Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationVC_Ext.swift; sourceTree = "<group>"; };
 		2D32B87222C0F1E800513DD4 /* SearchController_Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchController_Ext.swift; sourceTree = "<group>"; };
@@ -278,7 +278,7 @@
 		2D32B87422C0F1E800513DD4 /* Validations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Validations.swift; path = ../Extentions/Validations.swift; sourceTree = "<group>"; };
 		2D32B87522C0F1E800513DD4 /* ReviewController_Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewController_Ext.swift; sourceTree = "<group>"; };
 		2D32B87622C0F1E800513DD4 /* Cart_Ex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cart_Ex.swift; sourceTree = "<group>"; };
-		2D32B87722C0F1E800513DD4 /* Explore_Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Explore_Ext.swift; sourceTree = "<group>"; };
+		2D32B87722C0F1E800513DD4 /* HomeVC_Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeVC_Ext.swift; sourceTree = "<group>"; };
 		2D32B87822C0F1E800513DD4 /* OrderViewController_Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderViewController_Ext.swift; sourceTree = "<group>"; };
 		2D32B87922C0F1E800513DD4 /* FlashSaleController_Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlashSaleController_Ext.swift; sourceTree = "<group>"; };
 		2D32B87A22C0F1E800513DD4 /* ResetCodeViewController_Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetCodeViewController_Ext.swift; sourceTree = "<group>"; };
@@ -304,9 +304,9 @@
 		2D32B91222C0F20D00513DD4 /* ResetCodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetCodeViewController.swift; sourceTree = "<group>"; };
 		2D32B91422C0F20D00513DD4 /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		2D32B91522C0F20D00513DD4 /* ContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
-		2D32B91722C0F20D00513DD4 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		2D32B91722C0F20D00513DD4 /* ExploreVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExploreVC.swift; sourceTree = "<group>"; };
 		2D32B91822C0F20D00513DD4 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
-		2D32B91922C0F20D00513DD4 /* ExploreBrandsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExploreBrandsViewController.swift; sourceTree = "<group>"; };
+		2D32B91922C0F20D00513DD4 /* HomeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		2D32B91B22C0F20D00513DD4 /* Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		2D32B93322C0F21A00513DD4 /* dropDwonProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = dropDwonProtocol.swift; sourceTree = "<group>"; };
 		2D32B93422C0F21A00513DD4 /* ButtonActionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonActionDelegate.swift; sourceTree = "<group>"; };
@@ -706,11 +706,11 @@
 		2D32B91622C0F20D00513DD4 /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
-				2D32B86F22C0F1E800513DD4 /* HomeVC_EXT.swift */,
-				2D32B87722C0F1E800513DD4 /* Explore_Ext.swift */,
-				2D32B91722C0F20D00513DD4 /* HomeViewController.swift */,
+				2D32B86F22C0F1E800513DD4 /* ExploreVC_Ext.swift */,
+				2D32B87722C0F1E800513DD4 /* HomeVC_Ext.swift */,
+				2D32B91722C0F20D00513DD4 /* ExploreVC.swift */,
 				2D32B91822C0F20D00513DD4 /* TabBarViewController.swift */,
-				2D32B91922C0F20D00513DD4 /* ExploreBrandsViewController.swift */,
+				2D32B91922C0F20D00513DD4 /* HomeVC.swift */,
 				2D7573D822D73971005A3ACA /* ExploreCell.swift */,
 			);
 			path = TabBar;
@@ -1258,7 +1258,7 @@
 				2D32B95522C0F22C00513DD4 /* IntroViewController.swift in Sources */,
 				2D32B84B22C0F1D000513DD4 /* Reachability.swift in Sources */,
 				2D32B99522C0F29000513DD4 /* LoginData.swift in Sources */,
-				2D32B92F22C0F20D00513DD4 /* ExploreBrandsViewController.swift in Sources */,
+				2D32B92F22C0F20D00513DD4 /* HomeVC.swift in Sources */,
 				2D32B92922C0F20D00513DD4 /* PopUpResetPassowrdViewController.swift in Sources */,
 				2D7A632622C0FA8B00AF4E78 /* ResetCodeView.swift in Sources */,
 				2D35862422E06F0700F70FBE /* ItemDetailVC.swift in Sources */,
@@ -1277,7 +1277,7 @@
 				2D32B88022C0F1E800513DD4 /* Validations.swift in Sources */,
 				2D7A631822C0FA8B00AF4E78 /* AddReview.swift in Sources */,
 				2D9AAAB922DB6880000CF118 /* FlashesData.swift in Sources */,
-				2D32B92D22C0F20D00513DD4 /* HomeViewController.swift in Sources */,
+				2D32B92D22C0F20D00513DD4 /* ExploreVC.swift in Sources */,
 				2D32B98C22C0F29000513DD4 /* testproCheckout.swift in Sources */,
 				2D32B90022C0F20600513DD4 /* IntroPageCell.swift in Sources */,
 				2D7A633D22C0FA8B00AF4E78 /* MyAddressTableBG.swift in Sources */,
@@ -1358,7 +1358,7 @@
 				2D7A631522C0FA8B00AF4E78 /* ExploreView.swift in Sources */,
 				2D2D5FC422D20E4900E9E0B7 /* SubCategoryVC_Ext.swift in Sources */,
 				2D7A633022C0FA8B00AF4E78 /* ReviewHeaderView.swift in Sources */,
-				2D32B88322C0F1E800513DD4 /* Explore_Ext.swift in Sources */,
+				2D32B88322C0F1E800513DD4 /* HomeVC_Ext.swift in Sources */,
 				01F03AAF22F2DEF50033F89A /* searchVCExt.swift in Sources */,
 				2D32B92B22C0F20D00513DD4 /* SplashViewController.swift in Sources */,
 				81A1DA1A22F9AC3700051319 /* ModelAddedCartData.swift in Sources */,
@@ -1435,7 +1435,7 @@
 				2D32B87E22C0F1E800513DD4 /* SearchController_Ext.swift in Sources */,
 				2D32B98F22C0F29000513DD4 /* ErrorsModel.swift in Sources */,
 				2D32B91C22C0F20D00513DD4 /* OrderViewController.swift in Sources */,
-				2D32B87B22C0F1E800513DD4 /* HomeVC_EXT.swift in Sources */,
+				2D32B87B22C0F1E800513DD4 /* ExploreVC_Ext.swift in Sources */,
 				01233A1B22F9CDB5005D2B52 /* FilterProductModel.swift in Sources */,
 				2D7A631C22C0FA8B00AF4E78 /* ReviewView.swift in Sources */,
 				2D3547F022E5BF4100A570B2 /* SecondeCell.swift in Sources */,

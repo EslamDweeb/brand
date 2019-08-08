@@ -19,12 +19,19 @@ class ExploreCell:UICollectionViewCell {
         label.font = UIFont(name: "Avenir-Heavy", size: 14)
         return label
     }()
+    lazy var seeall:UIButton = {
+        let lbl = UIButton()
+        lbl.setTitle(NSLocalizedString("seeAll", comment: ""), for: .normal)
+        lbl.setTitleColor(.pink, for: .normal)
+        return lbl
+    }()
     lazy var productCollectionView:UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collection.register(WishCell.self, forCellWithReuseIdentifier: cellID)
         collection.backgroundColor = .clear
+        collection.showsHorizontalScrollIndicator = false
         return collection
     }()
     override init(frame: CGRect) {
@@ -41,14 +48,16 @@ class ExploreCell:UICollectionViewCell {
     func setup(){
         addSubview(titleLabel)
         addSubview(productCollectionView)
+        addSubview(seeall)
         if MOLHLanguage.currentAppleLanguage() == "en"{
             titleLabel.textAlignment = .left
           
         }else{
             titleLabel.textAlignment = .right
         }
-          titleLabel.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
-        productCollectionView.anchor(top: titleLabel.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
+          titleLabel.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 4, paddingLeft: 8, paddingBottom: 0, paddingRight: 80, width: 0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
+           seeall.anchor(top: topAnchor, left: nil, bottom: nil, right:rightAnchor, centerX: nil, centerY: nil, paddingTop: 4, paddingLeft: 0, paddingBottom: 0, paddingRight: 8, width: 60, height: 20, paddingCenterX: 0, paddingCenterY: 0)
+        productCollectionView.anchor(top: titleLabel.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
     }
 }
 extension ExploreCell:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {

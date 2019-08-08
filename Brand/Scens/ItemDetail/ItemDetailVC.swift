@@ -17,6 +17,14 @@ class ItemDetailVC: UIViewController,ButtonActionDelegate {
     var globalHeader : ItemDetailCollHeader!
     
     var slug:String?
+    
+    static func create (slug : String) -> ItemDetailVC {
+        let vc = ItemDetailVC()
+        vc.slug = slug
+        return vc
+    }
+    
+    
     lazy var mainView:ItemDetailVCView = {
         let v = ItemDetailVCView(collectionDelegate: self, CollectionDataSource: self)
         v.backgroundColor = .white
@@ -150,6 +158,10 @@ extension ItemDetailVC:UICollectionViewDelegate,UICollectionViewDataSource,UICol
         }
          handelAddReviewTapped(cell:cell)
         cell.pageCollectionView.reloadData()
+        cell.handelFooterViewClouserAction = {[weak self] (slug) in
+            guard let self = self else{return}
+            self.reloadController(slug: slug)
+        }
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -213,5 +225,8 @@ extension ItemDetailVC:UICollectionViewDelegate,UICollectionViewDataSource,UICol
             dest.mainView.setHeaderViewData(self.itemDetails?.config.brand?.name ?? "", self.itemDetails?.config.name ?? "",5, self.itemDetails?.config.mainPhoto?.path)
             self.present(dest, animated: true, completion: nil)
         }
+    }
+    private func reloadController(slug: String){
+        self.presentViewController(controller: ItemDetailVC.create(slug: slug), transitionModal:.crossDissolve, presentationStyle: nil)
     }
 }

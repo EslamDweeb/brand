@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension HomeViewController:UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
+extension ExploreVC:UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         if collectionView == mainView.mainCollection {
             return 3
@@ -96,7 +96,7 @@ extension HomeViewController:UICollectionViewDataSource,UICollectionViewDelegate
     
 }
 
-extension HomeViewController:ExploreCellDelegate{
+extension ExploreVC:ExploreCellDelegate{
     func presentController(slug: String) {
         let dest = ItemDetailVC()
         dest.slug = slug

@@ -34,6 +34,12 @@ class WishListController: UIViewController,ButtonActionDelegate {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+//        switch vcType {
+//        case .wishList:
+//            getWishlist(pageNumber: currentPage)
+//        case .allProduct:
+//            getAllProducts()
+//        }
     }
     func dissmisController() {
         self.dismiss(animated: true, completion: nil)
@@ -41,17 +47,19 @@ class WishListController: UIViewController,ButtonActionDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         handelReachability(reachability: reachability)
+        switchBetweenServices(vcType: self.vcType)
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        stopNotifier(reachability: reachability)
+    }
+    private func switchBetweenServices(vcType:VCType){
         switch vcType {
         case .wishList:
             getWishlist(pageNumber: currentPage)
         case .allProduct:
             getAllProducts()
         }
-        
-    }
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        stopNotifier(reachability: reachability)
     }
     private func getWishlist(pageNumber:Int){
         DispatchQueue.main.async {
@@ -63,8 +71,8 @@ class WishListController: UIViewController,ButtonActionDelegate {
                     self.lastPage = data.meta.lastPage
                     DispatchQueue.main.async {
                         self.mainView.wishCollection.reloadData()
-                        self.mainView.activityStopAnimating()
                     }
+                    self.mainView.activityStopAnimating()
                 case .failure(let error):
                     self.mainView.activityStopAnimating()
                     print(error)
@@ -90,6 +98,9 @@ class WishListController: UIViewController,ButtonActionDelegate {
             })
             print("hiiiiiiiiiiiiiiii**&&(*&(&*(")
         }
+    }
+    func applyBtnTapped() {
+        self.present(searchVC(), animated: true, completion: nil)
     }
     func infinitePaging(){
         if currentPage <= lastPage ?? 0 {

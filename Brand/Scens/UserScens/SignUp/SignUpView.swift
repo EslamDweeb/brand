@@ -9,12 +9,16 @@
 import UIKit
 import MOLH
 class SignUpView : UIView , UITextFieldDelegate {
-    
+    var logotopConstrain : NSLayoutConstraint?
     lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         return scrollView
     }()
-    
+    lazy var closeImg : BtnImage = {
+        let btn  = BtnImage()
+        btn.setImage(#imageLiteral(resourceName: "crossAnticon"), for: .normal)
+        return btn
+    }()
     lazy var logoImage: UIImageView = {
         let imageView = UIImageView()
         imageView.image = #imageLiteral(resourceName: "logoName")
@@ -121,6 +125,7 @@ class SignUpView : UIView , UITextFieldDelegate {
         self.backgroundColor = .white
         self.addSubview(scrollView)
         scrollView.addSubview(logoImage)
+        self.addSubview(closeImg)
         scrollView.addSubview(createlabel)
         scrollView.addSubview(stackView)
         stackView.addArrangedSubview(FirstTextFeild)
@@ -146,8 +151,16 @@ class SignUpView : UIView , UITextFieldDelegate {
         EmailTextFeild.delegate = self
         
       scrollView.anchor(top: topAnchor, left: leftAnchor , bottom: bottomAnchor, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
-        logoImage.anchor(top: scrollView.topAnchor, left: nil, bottom: nil, right: nil, centerX: scrollView.centerXAnchor, centerY: nil, paddingTop: 150, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 170, height: 40, paddingCenterX: 0, paddingCenterY: 0)
-        createlabel.anchor(top: logoImage.bottomAnchor, left: nil, bottom: nil, right: nil, centerX: scrollView.centerXAnchor, centerY: nil, paddingTop: 70, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 170, height: 40, paddingCenterX: 0, paddingCenterY: 0)
+        logoImage.anchor(top: nil, left: nil, bottom: nil, right: nil, centerX: scrollView.centerXAnchor, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 170, height: 40, paddingCenterX: 0, paddingCenterY: 0)
+                logotopConstrain = logoImage.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 0)
+                logotopConstrain?.isActive = true
+        if MOLHLanguage.currentAppleLanguage() == "en"{
+            closeImg.anchor(top: self.topAnchor, left: self.leftAnchor, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 20, paddingLeft: 10, paddingBottom: 0, paddingRight: 0, width: 50, height: 50, paddingCenterX: 0, paddingCenterY: 0)
+        }else{
+            closeImg.anchor(top: self.topAnchor, left: nil, bottom: nil, right: self.rightAnchor, centerX: nil, centerY: nil, paddingTop: 20, paddingLeft: 0, paddingBottom: 0, paddingRight: 10, width: 50, height: 50, paddingCenterX: 0, paddingCenterY: 0)
+        }
+       
+        createlabel.anchor(top: logoImage.bottomAnchor, left: nil, bottom: nil, right: nil, centerX: scrollView.centerXAnchor, centerY: nil, paddingTop: 50, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 170, height: 40, paddingCenterX: 0, paddingCenterY: 0)
             FirstTextFeild.anchor(top: nil, left: nil, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 50, paddingCenterX: 0, paddingCenterY: 0)
           LastTextFeild.anchor(top: nil, left: nil, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 50, paddingCenterX: 0, paddingCenterY: 0)
         stackView.anchor(top: createlabel.bottomAnchor, left: scrollView.leftAnchor, bottom: nil, right: scrollView.rightAnchor, centerX: scrollView.centerXAnchor, centerY: nil, paddingTop: 40, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
@@ -161,6 +174,7 @@ class SignUpView : UIView , UITextFieldDelegate {
         LoginButton.addTarget(self.ActionDelegate, action:  #selector(ButtonActionDelegate.loginBtnTapped), for: .touchUpInside)
         CreateButton.addTarget(self.ActionDelegate, action: #selector(ButtonActionDelegate.signup), for: .touchUpInside)
           eyeBtn.addTarget(self.ActionDelegate, action: #selector(ButtonActionDelegate.togglePassword(_:)), for: .touchUpInside)
+        closeImg.addTarget(self.ActionDelegate, action: #selector(ButtonActionDelegate.dissmisController), for: .touchUpInside)
     }
     override init(frame: CGRect) {
         super.init(frame:frame)
@@ -173,6 +187,9 @@ class SignUpView : UIView , UITextFieldDelegate {
     }
     override func layoutSubviews() {
         super.layoutSubviews()
+
+         logotopConstrain?.constant =  self.frame.size.height * 0.12
+       // logoImage.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: self.frame.size.height * 0.12)
         if MOLHLanguage.currentAppleLanguage() == "en" {
             
             FirstTextFeild.textAlignment = .left
@@ -204,5 +221,6 @@ class SignUpView : UIView , UITextFieldDelegate {
         }
         return true
     }
+  
     
 }

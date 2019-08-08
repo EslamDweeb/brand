@@ -9,12 +9,17 @@
 import UIKit
 import MOLH
 class LoginView: UIView, UITextFieldDelegate {
-    
+     var logotopConstrain : NSLayoutConstraint?
      lazy var logoImage: UIImageView = {
         let imageView = UIImageView()
         imageView.image = #imageLiteral(resourceName: "logoName")
         imageView.contentMode = .scaleAspectFit
         return imageView
+    }()
+    lazy var closeImg : BtnImage = {
+        let btn  = BtnImage()
+         btn.setImage(#imageLiteral(resourceName: "crossAnticon"), for: .normal)
+        return btn
     }()
      lazy var headerText: HeaderLabel = {
         let lable = HeaderLabel()
@@ -134,6 +139,7 @@ class LoginView: UIView, UITextFieldDelegate {
         // add subViews
         self.backgroundColor = .white
         self.addSubview(scrollView)
+       self.addSubview(closeImg)
         scrollView.addSubview(logoImage)
         scrollView.addSubview(headerText)
         scrollView.addSubview(stackView)
@@ -160,10 +166,15 @@ class LoginView: UIView, UITextFieldDelegate {
         // Add constrains
 
         scrollView.anchor(top: self.topAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
-    
+    if MOLHLanguage.currentAppleLanguage() == "en"{
+        closeImg.anchor(top: self.topAnchor, left: self.leftAnchor, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 20, paddingLeft: 10, paddingBottom: 0, paddingRight: 0, width: 50, height: 50, paddingCenterX: 0, paddingCenterY: 0)
+    }else{
+        closeImg.anchor(top: self.topAnchor, left: nil, bottom: nil, right: self.rightAnchor, centerX: nil, centerY: nil, paddingTop: 20, paddingLeft: 0, paddingBottom: 0, paddingRight: 10, width: 50, height: 50, paddingCenterX: 0, paddingCenterY: 0)
+    }
         logoImage.anchor(top: nil, left: nil, bottom: nil, right: nil, centerX: scrollView.centerXAnchor, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 170, height: 45, paddingCenterX: 0, paddingCenterY: 0)
-        logoImage.topAnchor.constraint(greaterThanOrEqualTo: scrollView.topAnchor, constant: 200).isActive = true
-    
+//        logoImage.topAnchor.constraint(greaterThanOrEqualTo: scrollView.topAnchor, constant: 200).isActive = true
+    logotopConstrain = logoImage.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 0)
+    logotopConstrain?.isActive = true
         headerText.anchor(top: logoImage.bottomAnchor, left: nil, bottom: nil, right: nil, centerX: scrollView.centerXAnchor, centerY: nil, paddingTop: 40, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 250, height: 35, paddingCenterX: 0, paddingCenterY: 0)
         
         stackView.anchor(top: headerText.bottomAnchor, left: scrollView.leftAnchor, bottom: nil, right: scrollView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 40, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
@@ -200,6 +211,7 @@ class LoginView: UIView, UITextFieldDelegate {
    
     eyeBtn.addTarget(self.actionDelegate, action: #selector(ButtonActionDelegate.togglePassword(_:)), for: .touchUpInside)
     forgotBtn.addTarget(self.actionDelegate, action: #selector(ButtonActionDelegate.forgotPassword), for: .touchUpInside)
+     closeImg.addTarget(self.actionDelegate, action: #selector(ButtonActionDelegate.dissmisController), for: .touchUpInside)
     }
     
     override init(frame: CGRect) {
@@ -212,6 +224,7 @@ class LoginView: UIView, UITextFieldDelegate {
     }
     override func layoutSubviews() {
         super.layoutSubviews()
+          logotopConstrain?.constant =  self.frame.size.height * 0.12
         if MOLHLanguage.currentAppleLanguage() == "en" {
             email.textAlignment = .left
             password.textAlignment = .left

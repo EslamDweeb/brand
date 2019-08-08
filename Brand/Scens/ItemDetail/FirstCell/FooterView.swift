@@ -11,18 +11,19 @@ import UIKit
 class FooterView:UIView{
     let cellID = "cellID"
     var configs:[Config]?
+    var HandelSelectedCellAction:((_ slug:String)->())?
     lazy var titleLbl:UILabel = {
         let lbl = UILabel()
         lbl.font = UIFont(name: .fontH, size: 16)
         lbl.text = NSLocalizedString("relatedProduct", comment: "")
         return lbl
     }()
-    lazy var seeall:UIButton = {
-        let lbl = UIButton()
-        lbl.setTitle(NSLocalizedString("seeAll", comment: ""), for: .normal)
-        lbl.setTitleColor(.pink, for: .normal)
-        return lbl
-    }()
+//    lazy var seeall:UIButton = {
+//        let lbl = UIButton()
+//        lbl.setTitle(NSLocalizedString("seeAll", comment: ""), for: .normal)
+//        lbl.setTitleColor(.pink, for: .normal)
+//        return lbl
+//    }()
     lazy var productCollectionView:UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -48,12 +49,12 @@ class FooterView:UIView{
     }
     private func addSubViews() {
         addSubview(titleLbl)
-        addSubview(seeall)
+       // addSubview(seeall)
         addSubview(productCollectionView)
     }
     private func addConstraintsToViews() {
-        titleLbl.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right:nil, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 16, width: 150, height: 20, paddingCenterX: 0, paddingCenterY: 0)
-        seeall.anchor(top: topAnchor, left: nil, bottom: nil, right:rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 8, width: 60, height: 20, paddingCenterX: 0, paddingCenterY: 0)
+        titleLbl.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right:nil, centerX: nil, centerY: nil, paddingTop: 4, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 150, height: 20, paddingCenterX: 0, paddingCenterY: 0)
+      //  seeall.anchor(top: topAnchor, left: nil, bottom: nil, right:rightAnchor, centerX: nil, centerY: nil, paddingTop: 4, paddingLeft: 0, paddingBottom: 0, paddingRight: 8, width: 60, height: 20, paddingCenterX: 0, paddingCenterY: 0)
         productCollectionView.anchor(top: titleLbl.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 220, paddingCenterX: 0, paddingCenterY: 0)
     }
 }
@@ -79,5 +80,8 @@ extension FooterView:UICollectionViewDelegateFlowLayout,UICollectionViewDelegate
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 8
     }
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+       // guard let cell = collectionView.cellForItem(at: indexPath) as?WishCell else{return}
+        self.HandelSelectedCellAction?(configs?[indexPath.row].slug ?? "")
+    }
 }

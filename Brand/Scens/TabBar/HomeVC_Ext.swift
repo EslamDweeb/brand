@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension ExploreBrandViewController:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
+extension HomeVC:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == mainView.categoriesCollection {
             if toggel == false {
@@ -63,18 +63,12 @@ extension ExploreBrandViewController:UICollectionViewDelegate,UICollectionViewDa
             let itemWidth = width / 3
         return CGSize(width: itemWidth, height: itemWidth + 4)
         }else{
-            let  padding:CGFloat = 8 * 7
-            let width = collectionView.frame.width - padding
-            let itemWidth = width / 6
-            return CGSize(width: itemWidth, height:  itemWidth)
+            return CGSize(width: collectionView.bounds.width / 6 - 16, height:  220)
         }
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+        return UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
     }
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-//        return 4
-//    }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 8
     }
