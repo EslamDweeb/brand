@@ -25,7 +25,7 @@ class ReviewCell: UICollectionViewCell {
             
         }
     }
-    var editeBtnTapped: ( (_ review: Ratingable) -> () )?
+    var editeBtnTapped: ( (_ review: Ratingable,_ flag:Bool) -> () )?
     
     lazy var containerView:ShadowView = {
         let view = ShadowView()
@@ -139,6 +139,6 @@ class ReviewCell: UICollectionViewCell {
     }
     @objc func handelEditeTapped(){
         guard let review = review else{return}
-        editeBtnTapped?(review)
+        editeBtnTapped?(review,true)
     }
 }

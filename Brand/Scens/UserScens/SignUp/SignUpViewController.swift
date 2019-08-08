@@ -18,6 +18,7 @@ class SignUpViewController: UIViewController , ButtonActionDelegate{
     override func loadView() {
         super.loadView()
         view = signupView
+      
     }
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -56,9 +57,12 @@ class SignUpViewController: UIViewController , ButtonActionDelegate{
             default : break
             }
         }
-        
+    }
+    func dissmisController() {
+         self.dismiss(animated: false, completion: nil)
     }
     override func viewWillAppear(_ animated: Bool) {
+       
         handelReachability(reachability: reachability)
     }
     override func viewWillDisappear(_ animated: Bool) {

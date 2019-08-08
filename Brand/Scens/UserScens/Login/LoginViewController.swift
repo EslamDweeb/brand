@@ -62,6 +62,9 @@ class LoginViewController: UIViewController,ButtonActionDelegate {
         }
         
     }
+    func dissmisController() {
+          self.dismiss(animated: false, completion: nil)
+    }
     override func viewWillAppear(_ animated: Bool) {
               self.dismissPressentededControllers()
         handelReachability(reachability: reachability)

@@ -91,6 +91,9 @@ class WishListController: UIViewController,ButtonActionDelegate {
             print("hiiiiiiiiiiiiiiii**&&(*&(&*(")
         }
     }
+    func applyBtnTapped() {
+        self.present(searchVC(), animated: true, completion: nil)
+    }
     func infinitePaging(){
         if currentPage <= lastPage ?? 0 {
             currentPage += 1

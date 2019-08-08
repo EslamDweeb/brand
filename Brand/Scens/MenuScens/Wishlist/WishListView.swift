@@ -15,6 +15,7 @@ class WishListView: UIView {
     lazy var  navView:GradNavView = {
         let navView = GradNavView()
         navView.titlelabel.text = "wishlist".localized
+        
         return navView
         
     }()
@@ -51,7 +52,9 @@ class WishListView: UIView {
         navView.anchor(top: self.topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, centerX: centerXAnchor, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         navView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.12).isActive = true
    
-        wishCollection.anchor(top: navView.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
+        wishCollection.anchor(top: navView.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 5, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         navView.backBtn.addTarget(ActionDelegete, action: #selector(ButtonActionDelegate.dissmisController), for: .touchUpInside)
+        navView.searchBtn.addTarget(ActionDelegete, action: #selector(ButtonActionDelegate.applyBtnTapped), for: .touchUpInside)
+        
     }
 }
