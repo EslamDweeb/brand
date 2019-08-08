@@ -86,11 +86,13 @@ class SearchFilterView: UIView , UITextFieldDelegate{
         let from = DefaultTextField()
         from.clearButtonMode = .whileEditing
         from.SetAttributePlaceHeader(Title: "from".localized)
+        from.keyboardType = .numberPad
         return from
     }()
     lazy var  toTextFeild : DefaultTextField = {
         let to = DefaultTextField()
         to.SetAttributePlaceHeader(Title: "to".localized)
+        to.keyboardType = .numberPad
         return to
     }()
     lazy var madeInLable:HeaderLabel = {

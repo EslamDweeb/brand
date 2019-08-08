@@ -182,28 +182,28 @@ class CheckoutView : UIView {
         
         addSubview(navView)
         addSubview(scrollView)
-        addSubview(orderitemsview)
+        scrollView.addSubview(orderitemsview)
         orderitemsview.addSubview(Orderitemlabel)
         orderitemsview.addSubview(constantorderView)
-        addSubview(shippingview)
+        scrollView.addSubview(shippingview)
         shippingview.addSubview(shippinglabel)
         shippingview.addSubview(img)
         shippingview.addSubview(defaultview1)
-        addSubview(billingview)
+        scrollView.addSubview(billingview)
         billingview.addSubview(billinglabel)
         billingview.addSubview(billingimg)
         billingview.addSubview(billingdefaultview1)
-        addSubview(addressview)
+         scrollView.addSubview(addressview)
         addressview.addSubview(addressName)
         addressview.addSubview(addressDescription)
         addressview.addSubview(defaultview2)
-        addSubview(detailsorderView)
+         scrollView.addSubview(detailsorderView)
         detailsorderView.addSubview(Orderdetailslabel)
          detailsorderView.addSubview(subtotal)
          detailsorderView.addSubview(shippingFee)
          detailsorderView.addSubview(billingFee)
         detailsorderView.addSubview(totalView)
-        addSubview(confirmBtn)
+         scrollView.addSubview(confirmBtn)
         
         
         
@@ -264,7 +264,7 @@ class CheckoutView : UIView {
         totalView.anchor(top: billingFee.bottomAnchor, left: detailsorderView.leftAnchor, bottom: nil, right: detailsorderView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
         
         
-        confirmBtn.anchor(top: detailsorderView.bottomAnchor, left: scrollView.leftAnchor, bottom: nil, right: scrollView.rightAnchor, centerX: scrollView.centerXAnchor, centerY: nil, paddingTop: 20, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height:50, paddingCenterX: 0, paddingCenterY: 0)
+        confirmBtn.anchor(top: detailsorderView.bottomAnchor, left: scrollView.leftAnchor, bottom: scrollView.bottomAnchor, right: scrollView.rightAnchor, centerX: scrollView.centerXAnchor, centerY: nil, paddingTop: 20, paddingLeft: 8, paddingBottom: 20, paddingRight: 8, width: 0, height:50, paddingCenterX: 0, paddingCenterY: 0)
         
         confirmBtn.addTarget(self.actionDelegete, action: #selector(ButtonActionDelegate.saveButtonTapped), for: .touchUpInside)
         
