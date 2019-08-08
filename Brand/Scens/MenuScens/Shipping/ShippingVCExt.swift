@@ -59,6 +59,7 @@ extension ShippingVC  :  UICollectionViewDelegateFlowLayout  , UICollectionViewD
             }else{
               mainView.HeightConstrain?.constant = CGFloat(Int (((shippingMethodarr.count) / 3 ) * 100)) + 10
             }
+            
            // mainView.HeightConstrain?.constant = CGFloat(Int (((shippingMethodarr.count  ) / 3 ) * 100))
         }else {
              mainView.HeightConstrain?.constant = 0
