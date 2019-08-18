@@ -44,7 +44,7 @@ extension WishListController: UICollectionViewDelegate,UICollectionViewDataSourc
                             layout collectionViewLayout: UICollectionViewLayout,
                             sizeForItemAt indexPath: IndexPath) -> CGSize {
             if collectionView == mainView.wishCollection {
-                return CGSize(width: collectionView.bounds.width / 2 - 16, height: 220)
+                return CGSize(width: (collectionView.bounds.width / 2) - 16, height: 210)
             }else{
                 return collectionView.bounds.size
             }

@@ -123,21 +123,21 @@ class LoginViewController: UIViewController,ButtonActionDelegate {
         
         presentViewController(controller: SignUpViewController(), transitionModal: .crossDissolve, presentationStyle: nil)
     }
-    func twitterLogin() {
-        TWTRTwitter.sharedInstance().logIn{(session, error) in
-            if let UnSession = session{
-                let client = TWTRAPIClient()
-                client.loadUser(withID: (UnSession.userID), completion: { (user, error) in
-                    print("signed in as \(String(describing: user?.name))");
-                    print("signed in as \(String(describing: user?.userID))");
-                    print("signed in as \(String(describing: session?.authToken))");
-                    
-                })
-            }else{
-                print("error")
-            }
-        }
-    }
+//    func twitterLogin() {
+//        TWTRTwitter.sharedInstance().logIn{(session, error) in
+//            if let UnSession = session{
+//                let client = TWTRAPIClient()
+//                client.loadUser(withID: (UnSession.userID), completion: { (user, error) in
+//                    print("signed in as \(String(describing: user?.name))");
+//                    print("signed in as \(String(describing: user?.userID))");
+//                    print("signed in as \(String(describing: session?.authToken))");
+//                    
+//                })
+//            }else{
+//                print("error")
+//            }
+//        }
+//    }
     func faceBookLogin() {
             let modalController = SocialSignUPVC()
         let fbLoginManager : LoginManager = LoginManager()

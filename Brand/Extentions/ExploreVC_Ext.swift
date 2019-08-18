@@ -73,7 +73,7 @@ extension ExploreVC:UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         if collectionView == mainView.bannerCollectionView{
             return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
         }else{
-            return CGSize(width: mainView.frame.width, height: 300)
+            return CGSize(width: mainView.frame.width, height: 250)
         }
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
