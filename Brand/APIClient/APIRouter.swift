@@ -10,8 +10,8 @@ import Foundation
 import Alamofire
 import MOLH
 enum APIRouter : URLRequestConvertible {
-    case signUp(firstName: String,lastName: String,email: String,phone: String,password: String)
-    case login(userName: String,password: String)
+    case signUp(firstName: String,lastName: String,email: String,phone: String,password: String , FCMToken : String )
+    case login(userName: String,password: String , FCMToken : String )
     case forgetPassword(email: String)
     case userInfo
     case changePassword(oldPassword: String,newPassword: String)
@@ -34,6 +34,9 @@ enum APIRouter : URLRequestConvertible {
      case getProductFilter
     
     case addToCart (config_id : Int , qty : Int , option_ids : [Int]? , product_option_value_ids : [Int]? )
+    
+    case updateCart (cartID : Int , config_id : Int , qty : Int , option_ids : [Int]? , product_option_value_ids : [Int]? )
+    
     private var Methods : HTTPMethod {
         switch self {
         case .signUp:
@@ -82,6 +85,8 @@ enum APIRouter : URLRequestConvertible {
              return .get
         case .addToCart :
             return .post
+        case .updateCart :
+            return .post
         }
     }
     private var Paths : String {
@@ -89,7 +94,7 @@ enum APIRouter : URLRequestConvertible {
         case .signUp:
             return "/api/signup"
         case .login:
-            return "/oauth/token"
+            return "/api/login"
         case .forgetPassword:
             return "/api/forgot"
         case .userInfo:
@@ -138,6 +143,8 @@ enum APIRouter : URLRequestConvertible {
             return "/api/product-filters"
         case .addToCart :
             return "/api/cart-items"
+        case .updateCart(let cartID ) :
+            return "/api/cart-items/\(cartID.cartID)"
         }
     }
     private var headers : HTTPHeaders {
@@ -287,11 +294,20 @@ enum APIRouter : URLRequestConvertible {
                 HTTPHeaderField.contentType.rawValue  : ContentType.json.rawValue ,
                 HTTPHeaderField.locale.rawValue : MOLHLanguage.currentAppleLanguage()
             ]
+        case .updateCart :
+            return [
+                HTTPHeaderField.authentication.rawValue :" \(ContentType.token.rawValue)  \(UserDefaults.standard.string(forKey: Constants.Defaults.authToken) ?? "")",
+                HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue ,
+                HTTPHeaderField.contentType.rawValue  : ContentType.json.rawValue ,
+                HTTPHeaderField.locale.rawValue : MOLHLanguage.currentAppleLanguage()
+            ]
+            
         }
+        
     }
     private var parameters :Parameters?{
         switch self {
-        case .signUp(let firstName,let lastName,let email,let phone,let password):
+        case .signUp(let firstName,let lastName,let email,let phone,let password, let FCMToken ):
             return [
                 Constants.APIParameterKey.firstName : firstName,
                 Constants.APIParameterKey.lastName : lastName,
@@ -299,16 +315,18 @@ enum APIRouter : URLRequestConvertible {
                 Constants.APIParameterKey.email:email,
                 
                 Constants.APIParameterKey.password:password,
-                Constants.APIParameterKey.phone:phone
+                Constants.APIParameterKey.phone:phone ,
+                Constants.APIParameterKey.fb_ios_token : FCMToken
             ]
             
-        case .login(let userName,let password):
+        case .login(let userName,let password , let FCMToken ):
             return [
-                Constants.APIParameterKey.grantType: "password",
-                Constants.APIParameterKey.clientID: 2,
-                Constants.APIParameterKey.clientSecret:"KNGPHksrLvqRR962gk7qCNmOY960GLQRFEzrRXRv",
+//                Constants.APIParameterKey.grantType: "password",
+//                Constants.APIParameterKey.clientID: 2,
+//                Constants.APIParameterKey.clientSecret:"KNGPHksrLvqRR962gk7qCNmOY960GLQRFEzrRXRv",
                 Constants.APIParameterKey.userName: userName,
-                Constants.APIParameterKey.password: password
+                Constants.APIParameterKey.password: password ,
+                Constants.APIParameterKey.fb_ios_token : FCMToken
             ]
         case .socialLogin(let usersocialid) :
             return [
@@ -319,7 +337,7 @@ enum APIRouter : URLRequestConvertible {
         case .userInfo: return [:]
         case .changePassword(let oldPassword,let newPassword):
             return [
-                Constants.APIParameterKey.method: "PUT",
+                Constants.APIParameterKey.method: RequestMethods.put.rawValue ,
                 Constants.APIParameterKey.oldPassword: oldPassword,
                 Constants.APIParameterKey.newPassword: newPassword,
                 Constants.APIParameterKey.local:Constants.Defaults.local
@@ -444,6 +462,39 @@ enum APIRouter : URLRequestConvertible {
                 Constants.APIParameterKey.configID : config_id ,
                 Constants.APIParameterKey.qty : qty
             ]
+            
+            
+            
+        case .updateCart( _ , let config_id , let qty , let option_ids? , let  product_option_value_ids?) :
+            return [
+                Constants.APIParameterKey.method: RequestMethods.put.rawValue ,
+                Constants.APIParameterKey.configID : config_id ,
+                Constants.APIParameterKey.qty : qty,
+                Constants.APIParameterKey.optionIds : option_ids  ,
+                Constants.APIParameterKey.productOptionValueIds : product_option_value_ids
+            ]
+            
+        case .updateCart( _ ,let config_id, let qty, .none, let product_option_value_ids?):
+            return [
+                Constants.APIParameterKey.method: RequestMethods.put.rawValue ,
+                Constants.APIParameterKey.configID : config_id ,
+                Constants.APIParameterKey.qty : qty,
+                Constants.APIParameterKey.productOptionValueIds : product_option_value_ids
+            ]
+        case .updateCart( _ ,let config_id, let qty, let option_ids?, .none):
+            return [
+                Constants.APIParameterKey.method: RequestMethods.put.rawValue ,
+                Constants.APIParameterKey.configID : config_id ,
+                Constants.APIParameterKey.qty : qty,
+                Constants.APIParameterKey.optionIds : option_ids
+            ]
+        case .updateCart( _ ,let config_id, let qty , option_ids: .none, product_option_value_ids: .none):
+            return [
+                Constants.APIParameterKey.method: RequestMethods.put.rawValue ,
+                Constants.APIParameterKey.configID : config_id ,
+                Constants.APIParameterKey.qty : qty
+            ]
+
         }
         
     }

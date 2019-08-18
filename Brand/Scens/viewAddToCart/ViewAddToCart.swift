@@ -12,18 +12,7 @@ import AKPickerView
 
 class ViewAddToCart : UIView {
     
-    var presenter : ProAddToCartPresenter? {
-        didSet {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1 ) {
-                if self.presenter?.isEdit == false {
-                    self.calculateTotalPrice()
-                }else {
-                    self.tableView.reloadData()
-                }
-                
-            }
-        }
-    }
+    var presenter : ProAddToCartPresenter?
     
     lazy var scrollView : UIScrollView = {
        let s = UIScrollView()
@@ -105,7 +94,7 @@ class ViewAddToCart : UIView {
     
     lazy var buttonAddToCart : UIButton = {
         let b = UIButton()
-        b.setTitle(YString.addToCart , for: .normal )
+       // b.setTitle(YString.addToCart , for: .normal )
         b.addTarget(self , action: #selector( addToCartAction ), for: .touchUpInside )
         b.backgroundColor = .pink
         return b
@@ -141,8 +130,24 @@ class ViewAddToCart : UIView {
         addConstraint()
         configrationViews()
         
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1 ) {
+            if self.presenter?.isEdit == false {
+                self.buttonAddToCart.setTitle(YString.addToCart , for: .normal )
+                self.calculateTotalPrice()
+            }else {
+                self.presenter?.selectedProductOption = []
+                self.presenter?.selectedValues = []
+                self.tableView.reloadData()
+              //  print("selected quantity : \( self.presenter?.getIndexSelectedQuantity() ?? 0 )")
+                self.pickerView.selectItem( UInt(self.presenter?.getIndexSelectedQuantity() ?? 0)  , animated: true )
+                self.calculateTotalPriceToEdit()
+                self.buttonAddToCart.setTitle(YString.updateProduct , for: .normal )
+            }
+        }
         
     }
+    
+    
     
     
     
@@ -256,8 +261,12 @@ class ViewAddToCart : UIView {
     
     
     @objc private func addToCartAction () {
-        
-        presenter?.addProductToCart()
+        if presenter?.isEdit ?? false {
+            presenter?.updateProductInCart()
+        }else {
+           presenter?.addProductToCart()
+        }
+       
         
     }
     
@@ -284,7 +293,19 @@ class ViewAddToCart : UIView {
         labelTotalPrice.text = YString.totalPrice + "\n" + "\(totalPriceProduct)"
     }
     
-    
+    func calculateTotalPriceToEdit () {
+        let totalOptions = presenter?.selectedOptionsToEdit.map({$0.addsPrice})
+        let totalValues = presenter?.selectedValues.map({$0.value.addsPrice})
+        var totalPriceProduct : Double = presenter?.priceProduct ?? 0.0
+        totalOptions?.forEach({ (int) in
+            totalPriceProduct = totalPriceProduct + Double(int)
+        })
+        totalValues?.forEach({ (int) in
+            totalPriceProduct = totalPriceProduct + Double(int)
+        })
+        totalPriceProduct = totalPriceProduct * Double( (presenter?.selectedQuantity == 0) ? ( presenter?.minQuantity ?? 0 ) : ( presenter?.selectedQuantity ?? 0 ) )
+        labelTotalPrice.text = YString.totalPrice + "\n" + "\(totalPriceProduct)"
+    }
     
     
     
@@ -333,12 +354,12 @@ extension ViewAddToCart : UITableViewDataSource, UITableViewDelegate {
         }else {
             let cell = tableView.dequeueReusableCell(withIdentifier: CellAddToCartButtonView.getIdentifier() , for: indexPath ) as! CellAddToCartButtonView
             cell.setTextLabel(name: singleObjc?.name ?? ""  , price: singleObjc?.addsPrice ?? 0 , selected: false )
-          //  if singleObjc?.selected ?? false {
+            if singleObjc?.selected ?? false {
                 self.presenter?.selectedProductOption.append( singleObjc! )
                 cell.isCellSelected = true
-//            }else {
-//                cell.isCellSelected = false
-//            }
+            }else {
+                cell.isCellSelected = false
+            }
             return cell
         }
 
@@ -386,13 +407,24 @@ extension ViewAddToCart : AKPickerViewDelegate , AKPickerViewDataSource {
     func pickerView(_ pickerView: AKPickerView!, didSelectItem item: Int) {
         let count = item + (presenter?.minQuantity ?? 0 )
         print("\( count )")
+        if count > presenter?.quantityProduct ?? 0 {
+            actionMinusCount()
+            print("out of stock")
+            return
+        }
         presenter?.selectedQuantity = count
-        calculateTotalPrice()
+        self.calculateTotalPrice()
+       
     }
     
 }
 
 extension ViewAddToCart : ProAddToCartView {
+    
+    func productUpdatedInCart(model: ModelAddedCartData) {
+        print("message : \(model.message ?? "" )")
+        self.dismiss()
+    }
     
     func productAddedToCart(model: ModelAddedCartData) {
         print("message : \(model.message ?? "" )")

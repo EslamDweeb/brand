@@ -84,7 +84,7 @@ class LoginViewController: UIViewController,ButtonActionDelegate {
                 self.loginView.activityStopAnimating()
                 createAlert(title: nil, erroMessage: NSLocalizedString( "password_validation", comment: ""))
             }else{
-                APIClient.Login(userName: loginView.email.text ?? "", password: loginView.password.text ?? "") { (result) in
+                APIClient.Login(userName: loginView.email.text ?? "", password: loginView.password.text ?? "", FCMToken: FCMToken ) { (result) in
                     switch result {
                     case .success(let data) :
                         self.loginView.activityStopAnimating()
@@ -131,6 +131,7 @@ class LoginViewController: UIViewController,ButtonActionDelegate {
                     print("signed in as \(String(describing: user?.name))");
                     print("signed in as \(String(describing: user?.userID))");
                     print("signed in as \(String(describing: session?.authToken))");
+                    
                     
                 })
             }else{

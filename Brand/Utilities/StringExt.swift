@@ -29,6 +29,7 @@ class YString {
     static var notification:String {return getText(key: "notification")}
     static var delete : String { return getText(key: "delete") }
     static var edit : String { return getText(key: "edit") }
+    static var updateProduct : String { return getText(key: "updateProduct") }
     
     
     static func getText (key : String) -> String {
@@ -223,7 +224,8 @@ class YString {
         "totalPrice" : "السعر الكلي" ,
         "addToCart" : "اضف الي العربة",
         "selectOption" : "اختر" ,
-        "done" : "تم"
+        "done" : "تم",
+        "updateProduct" : "تحديث المنتج"
 
     ]
     
@@ -410,7 +412,8 @@ class YString {
         "totalPrice" : "Total price" ,
         "addToCart" : "Add to cart",
         "selectOption" : "Select option",
-        "done" : "Done"        
+        "done" : "Done",
+        "updateProduct" : "Update product"
     ]
     
     

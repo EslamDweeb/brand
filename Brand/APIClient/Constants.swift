@@ -28,6 +28,7 @@ struct Constants {
     struct APIParameterKey {
         static let firstName = "firstname"
         static let lastName = "lastname"
+        static let fb_ios_token = "fb_ios_token"
         static let email = "email"
         static let phone = "phone"
         static let gender = "gender"
@@ -88,3 +89,18 @@ enum ContentType: String {
     case token = "Bearer"
     case  form = "application/x-www-form-urlencoded"
 }
+
+import Firebase
+
+var FCMToken = ""
+func getFCMToken () {
+    InstanceID.instanceID().instanceID { (result, error) in
+        if let error = error {
+            print("Error fetching remote instance ID: \(error)")
+        } else if let result = result {
+            print("Remote instance ID token: \(result.token)")
+            FCMToken  = result.token
+        }
+    }
+}
+
