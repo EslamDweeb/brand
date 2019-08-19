@@ -15,6 +15,10 @@ class OrderViewController: UIViewController,ButtonActionDelegate {
         v.backgroundColor = UIColor.backgroundColl
         return v
     }()
+    var shouldShowLoadingCell = false
+    var currentPage:Int = 1
+    var lastPage:Int?
+    let reachability =  Reachability()
     let cellID = "cellID"
     var orders: [SimpleOrder] = []
     var ordersPending: [SimpleOrder] = []
@@ -36,30 +40,31 @@ class OrderViewController: UIViewController,ButtonActionDelegate {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        handelReachability(reachability: reachability)
         getOrders()
     }
     func getPendingTapped() {
-      if MOLHLanguage.currentAppleLanguage() == "en" {
-        self.mainView.line1.isHidden = false
-         self.mainView.line2.isHidden = true
-        self.mainView.line3.isHidden = true
-      }
-      else{
-        self.mainView.line1.isHidden = true
-        self.mainView.line2.isHidden = true
-        self.mainView.line3.isHidden = false
-        
+        if MOLHLanguage.currentAppleLanguage() == "en" {
+            self.mainView.line1.isHidden = false
+            self.mainView.line2.isHidden = true
+            self.mainView.line3.isHidden = true
+        }
+        else{
+            self.mainView.line1.isHidden = true
+            self.mainView.line2.isHidden = true
+            self.mainView.line3.isHidden = false
+            
         }
         self.mainView.orderCollection.reloadData()
         
     }
     func getOtherTapped() {
-         if MOLHLanguage.currentAppleLanguage() == "en" {
-        self.mainView.line1.isHidden = true
-        self.mainView.line2.isHidden = true
-        self.mainView.line3.isHidden = false
+        if MOLHLanguage.currentAppleLanguage() == "en" {
+            self.mainView.line1.isHidden = true
+            self.mainView.line2.isHidden = true
+            self.mainView.line3.isHidden = false
             
-         }else{
+        }else{
             self.mainView.line1.isHidden = false
             self.mainView.line2.isHidden = true
             self.mainView.line3.isHidden = true
@@ -72,27 +77,40 @@ class OrderViewController: UIViewController,ButtonActionDelegate {
         self.mainView.line3.isHidden = true
         self.mainView.orderCollection.reloadData()
     }
-    private func getOrders(){
+    private func getOrders(_ refresh:Bool = false){
         mainView.activityStartAnimating(activityColor: #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1), backgroundColor: .clear)
-        APIClient.getOrders { (result) in
+        APIClient.getOrders(page: currentPage) { (result) in
             switch result {
             case.success(let data):
-                self.orders = data.orders
+                if refresh {
+                    self.orders = data.orders
+                } else {
+                    for conf in data.orders {
+                        self.orders.append(conf)
+                    }
+                }
                 for i in self.orders {
                     if i.status.id == 1 ||  i.status.id == 2 || i.status.id == 3 {
-                       self.ordersPending.append(i)
+                        self.ordersPending.append(i)
                     }else if i.status.id == 4 {
                         self.ordersDelivered.append(i)
                     }else {
                         self.ordersOthers.append(i)
                     }
                 }
-                self.mainView.orderCollection.reloadData()
-                self.mainView.activityStopAnimating()
-            case.failure(let error):
+                DispatchQueue.main.async {
+                    self.mainView.activityStopAnimating()
+                    self.shouldShowLoadingCell = ( data.meta.currentPage ?? 0) < (data.meta.lastPage ?? 0)
+                    self.mainView.orderCollection.reloadData()
+                }
+            case .failure(let error):
                 self.mainView.activityStopAnimating()
                 print(error)
             }
         }
+    }//MARK:- Paging Functions
+    func fetchNextPage() {
+        currentPage += 1
+        getOrders()
     }
 }

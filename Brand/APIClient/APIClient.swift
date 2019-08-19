@@ -125,8 +125,8 @@ class APIClient {
             complition(response.result)
         }
     }
-    static func getReviews(complition : @escaping (Result<ReviewData,Error>) -> Void) {
-        AF.request(ProductRouter.allReviews  ).responseDecodable{(response:DataResponse<ReviewData>) in
+    static func getReviews(page:Int,complition : @escaping (Result<ReviewData,Error>) -> Void) {
+        AF.request(ProductRouter.allReviews(pageNumber: page)).responseDecodable{(response:DataResponse<ReviewData>) in
             complition(response.result)
         }
     }
@@ -140,8 +140,8 @@ class APIClient {
             complition(response.result)
         }
     }
-    static func getOrders(complition : @escaping (Result<SimpleOrderData,Error>) -> Void) {
-        AF.request(ProductRouter.getOrders  ).responseDecodable{(response:DataResponse<SimpleOrderData>) in
+    static func getOrders(page:Int,complition : @escaping (Result<SimpleOrderData,Error>) -> Void) {
+        AF.request(ProductRouter.getOrders(pageNumber: page)).responseDecodable{(response:DataResponse<SimpleOrderData>) in
             complition(response.result)
         }
     }
@@ -180,8 +180,8 @@ class APIClient {
             complition(response.result)
         }
     }
-    static func getAllProductConfigs(slug:String,complition : @escaping (Result<ProductConfigs,Error>) -> Void) {
-        AF.request(ProductRouter.getAllProductConfigs(slug: slug)).responseDecodable{(response:DataResponse<ProductConfigs>) in
+    static func getAllProductConfigs(slug:String,pageNumber:Int,complition : @escaping (Result<ProductConfigs,Error>) -> Void) {
+        AF.request(ProductRouter.getAllProductConfigs(slug: slug,pageNumber:pageNumber)).responseDecodable{(response:DataResponse<ProductConfigs>) in
             complition(response.result)
         }
     }
@@ -245,5 +245,9 @@ class APIClient {
             complition(response.result)
         }
     }
-
+    static func getSeeAllProduct(key:String,pageNumber:Int? = 1,complition : @escaping (Result<SeeAllData,Error>) -> Void) {
+        AF.request(ProductRouter.getSeeAllProduct(key: key,pageNumber: pageNumber!)).responseDecodable{(response:DataResponse<SeeAllData>) in
+            complition(response.result)
+        }
+    }
 }

@@ -8,6 +8,7 @@
 
 import UIKit
 extension FlashSaleController: UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
+  
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return flashes.count
     }

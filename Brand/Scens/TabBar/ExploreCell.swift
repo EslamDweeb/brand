@@ -11,7 +11,7 @@ import MOLH
 class ExploreCell:UICollectionViewCell {
     let cellID = "CellID"
     var configArray = [Config]()
-    
+    var handelSeeAll: (() ->())?
     lazy var titleLabel:UILabel = {
         let label = UILabel()
         label.textColor = .black
@@ -20,11 +20,15 @@ class ExploreCell:UICollectionViewCell {
         return label
     }()
     lazy var seeall:UIButton = {
-        let lbl = UIButton()
-        lbl.setTitle(NSLocalizedString("seeAll", comment: ""), for: .normal)
-        lbl.setTitleColor(.pink, for: .normal)
-        return lbl
+        let btn = UIButton()
+        btn.setTitle(NSLocalizedString("seeAll", comment: ""), for: .normal)
+        btn.setTitleColor(.pink, for: .normal)
+        btn.addTarget(self, action: #selector(handelSeeAllBtnTapped), for: .touchUpInside)
+        return btn
     }()
+    @objc func handelSeeAllBtnTapped(){
+        self.handelSeeAll?()
+    }
     lazy var productCollectionView:UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
