@@ -24,8 +24,8 @@ enum APIRouter : URLRequestConvertible {
     case editeInfo(firstName: String?,lastName: String?,email: String?,phone: String?,birthDate: String? ,gender : Int?)
     case uploadImage(imageData: Data,filename : String)
     case deleteImage(id:Int)
-    case socialLogin(userSocialId : String)
-    case socialSignUp(uerSocialId : String , socialProviderid :Int,firstName: String,lastName: String,email: String,phone: String,password:String)
+    case socialLogin(userSocialId : String, FCMToken : String )
+    case socialSignUp(uerSocialId : String , socialProviderid :Int,firstName: String,lastName: String,email: String,phone: String,password:String , FCMToken : String )
     case getshippingMethod
       case getbillingMethod
     case checkout(flag: Bool , shippingId : Int , billingId : Int , addressId : Int , coupon : String)
@@ -328,9 +328,10 @@ enum APIRouter : URLRequestConvertible {
                 Constants.APIParameterKey.password: password ,
                 Constants.APIParameterKey.fb_ios_token : FCMToken
             ]
-        case .socialLogin(let usersocialid) :
+        case .socialLogin(let usersocialid , let FCMToken) :
             return [
-                Constants.APIParameterKey.userSocialId : usersocialid
+                Constants.APIParameterKey.userSocialId : usersocialid,
+                Constants.APIParameterKey.fb_ios_token : FCMToken
             ]
         case .forgetPassword(let email):
             return [Constants.APIParameterKey.email: email]
@@ -395,7 +396,7 @@ enum APIRouter : URLRequestConvertible {
                 Constants.APIParameterKey.gender:gender ?? 0,
                 Constants.APIParameterKey.local : Constants.Defaults.local
             ]
-        case .socialSignUp(let usersocialid , let socialproviderid ,let firstName,let lastName,let email,let phone ,let password ) :
+        case .socialSignUp(let usersocialid , let socialproviderid ,let firstName,let lastName,let email,let phone ,let password , let FCMToken ) :
             return [
                 Constants.APIParameterKey.userSocialId : usersocialid ,
                 Constants.APIParameterKey.socialProviderId : socialproviderid,
@@ -403,7 +404,8 @@ enum APIRouter : URLRequestConvertible {
                 Constants.APIParameterKey.lastName : lastName,
                 Constants.APIParameterKey.email:email,
                 Constants.APIParameterKey.phone:phone,
-                Constants.APIParameterKey.password : password
+                Constants.APIParameterKey.password : password,
+                Constants.APIParameterKey.fb_ios_token: FCMToken
             ]
         case .getshippingMethod:
             return [:]

@@ -37,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,MOLHResetable {
         window?.makeKeyAndVisible()
         window?.rootViewController = SplashViewController()
 
-        TWTRTwitter.sharedInstance().start(withConsumerKey: "KUkghIKbyb7SsRULpDfjCmK30", consumerSecret: "mgpVgM29xQLZhg37Z7cKkhQ6FLaYhWOdJdp5MKVQEtfUpN9HgK")
+       TWTRTwitter.sharedInstance().start(withConsumerKey: "faRxwM7NP91AEkuNnvvATyC4R", consumerSecret: "J9v4Q1X2elDZeVyTNMxrIP6CnpMvLbomWAHLUGcxwnSuavIygu")
         ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
 
         GMSServices.provideAPIKey(Constants.Defaults.googleApiKey)
@@ -89,6 +89,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate,MOLHResetable {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        return TWTRTwitter.sharedInstance().application(app, open: url, options: options)
+    }
     
    
 

@@ -9,6 +9,9 @@
 import Foundation
 struct Constants {
     
+    static let providerFacebook = 1
+    static let providerTwitter = 2
+    
     struct ProductionServer {
         static let baseURL = "https://brands.solutionplus.net"
     }
@@ -67,6 +70,7 @@ struct Constants {
         static let qty = "qty"
         static let optionIds = "option_ids"
         static let productOptionValueIds = "product_option_value_ids"
+        
         
     }
 }

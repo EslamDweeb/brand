@@ -3,9 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>100376626223-2d0ep1bsvp8is305ukgcj7s3ojurkp8v.apps.googleusercontent.com</string>
+	<string>100376626223-1hvah6u5lq6f32qag33gtb179ao0a2cr.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.100376626223-2d0ep1bsvp8is305ukgcj7s3ojurkp8v</string>
+	<string>com.googleusercontent.apps.100376626223-1hvah6u5lq6f32qag33gtb179ao0a2cr</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>100376626223-le6549np99hjhuej5arcjd5aten5ats4.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
 	<string>AIzaSyC_kLr6ZXOFvUMnxCBC4v-v_iasD92XVCg</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +15,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>sa.brands.brandsapp</string>
+	<string>sa.brands</string>
 	<key>PROJECT_ID</key>
 	<string>brands-sa-ebc18</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,7 +31,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:100376626223:ios:8a2939ce60fcd17f</string>
+	<string>1:100376626223:ios:66922aef8c12391d</string>
 	<key>DATABASE_URL</key>
 	<string>https://brands-sa-ebc18.firebaseio.com</string>
 </dict>
