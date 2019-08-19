@@ -24,18 +24,22 @@ class NotificationCell:UITableViewCell {
     }()
     lazy var messageLable:UILabel = {
         let lable = UILabel()
-        let attributedString = NSMutableAttributedString(string: string ?? "Pink sale for 2 days. Hurry up and get up to 40% off", attributes: [
-            .font: UIFont(name: "Avenir-Medium", size: 14.0)!,
-            .foregroundColor: UIColor(white: 0.0, alpha: 1.0)
-            ])
-        attributedString.addAttribute(.foregroundColor, value: UIColor(red: 250.0 / 255.0, green: 113.0 / 255.0, blue: 205.0 / 255.0, alpha: 1.0), range: NSRange(location: 0, length: 9))
-        attributedString.addAttribute(.foregroundColor, value: UIColor(red: 250.0 / 255.0, green: 113.0 / 255.0, blue: 205.0 / 255.0, alpha: 1.0), range: NSRange(location: 45, length: 7))
-        lable.attributedText = attributedString
+        lable.font = UIFont(name: "Avenir-Medium", size: 12.0)
+        lable.numberOfLines = 0
+        lable.lineBreakMode = NSLineBreakMode.byWordWrapping
+        lable.sizeToFit()
+//        let attributedString = NSMutableAttributedString(string: string ?? "Pink sale for 2 days. Hurry up and get up to 40% off", attributes: [
+//            .font: UIFont(name: "Avenir-Medium", size: 12.0)!,
+//            .foregroundColor: UIColor(white: 0.0, alpha: 1.0)
+//            ])
+//        attributedString.addAttribute(.foregroundColor, value: UIColor(red: 250.0 / 255.0, green: 113.0 / 255.0, blue: 205.0 / 255.0, alpha: 1.0), range: NSRange(location: 0, length: 9))
+//        attributedString.addAttribute(.foregroundColor, value: UIColor(red: 250.0 / 255.0, green: 113.0 / 255.0, blue: 205.0 / 255.0, alpha: 1.0), range: NSRange(location: 45, length: 7))
+//        lable.attributedText = attributedString
         return lable
     }()
     lazy var dateLable:UILabel = {
         let date = UILabel()
-        date.text = "Today, 4:47 PM"
+       // date.text = "Today, 4:47 PM"
         date.textColor = .lightgray2
         date.font = UIFont(name: "Avenir-Medium", size: 10)
         return date
@@ -74,9 +78,10 @@ class NotificationCell:UITableViewCell {
     private  func addConstrainsToUI() {
         containerView.anchor(top: contentView.topAnchor, left: contentView.leftAnchor, bottom: contentView.bottomAnchor, right: contentView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         vLineView.anchor(top: containerView.topAnchor, left: containerView.leftAnchor, bottom: hLineView.topAnchor, right: nil, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 2, height: 0, paddingCenterX: 0, paddingCenterY: 0)
-        logoImage.anchor(top: nil, left: vLineView.rightAnchor, bottom: nil, right: nil, centerX: nil, centerY: containerView.centerYAnchor, paddingTop: 0, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 40, height: 40, paddingCenterX: 0, paddingCenterY: 0)
-        messageLable.anchor(top: logoImage.topAnchor, left: logoImage.rightAnchor, bottom: nil, right: containerView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 16, paddingCenterX: 0, paddingCenterY: 0)
-        dateLable.anchor(top: messageLable.bottomAnchor, left: logoImage.rightAnchor, bottom: nil, right: containerView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 15, paddingCenterX: 0, paddingCenterY: 0)
+        logoImage.anchor(top: nil, left: vLineView.rightAnchor, bottom: nil, right: nil, centerX: nil, centerY: containerView.centerYAnchor, paddingTop: 8 , paddingLeft: 8, paddingBottom: 8, paddingRight: 0, width: 40, height: 40, paddingCenterX: 0, paddingCenterY: 0)
+        messageLable.anchor(top: containerView.topAnchor, left: logoImage.rightAnchor, bottom: dateLable.topAnchor, right: containerView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 8 , paddingRight: 8, width: 0, height: 16, paddingCenterX: 0, paddingCenterY: 0)
+        
+        dateLable.anchor(top: nil , left: logoImage.rightAnchor, bottom: containerView.bottomAnchor , right: containerView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 8 , paddingRight: 8, width: 0, height: 15, paddingCenterX: 0, paddingCenterY: 0)
         hLineView.anchor(top: nil, left: vLineView.rightAnchor, bottom: containerView.bottomAnchor, right: containerView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 1, paddingCenterX: 0, paddingCenterY: 0)
         
     }

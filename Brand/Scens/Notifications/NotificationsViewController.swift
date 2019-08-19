@@ -10,6 +10,8 @@ import UIKit
 
 class NotificationsViewController:UIViewController {
     
+    var presenter : ProNotificationPresenter?
+    
     let cellID = "cellID"
     lazy var mainView:NotificationView = {
         let v = NotificationView(delegate: self, dataSource: self)
@@ -22,8 +24,16 @@ class NotificationsViewController:UIViewController {
     override func loadView() {
         super.loadView()
         view = mainView
+        presenter = NotificationPresenter(notificationView: self ) // implement protocol  ProNotificationView
+        
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        presenter?.resetData()
+        presenter?.getNotifications()
     }
 }

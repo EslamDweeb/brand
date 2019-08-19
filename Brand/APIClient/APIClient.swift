@@ -252,5 +252,10 @@ class APIClient {
         }
     }
     
+    static func getNotifications (page : Int , completion : @escaping (Result<ModelNotifications,Error>) -> Void) {
+        AF.request(APIRouter.getNotifications(page: page)).responseDecodable { (response : DataResponse<ModelNotifications> ) in
+            completion(response.result)
+        }
+    }
     
 }

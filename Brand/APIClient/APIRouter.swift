@@ -36,6 +36,7 @@ enum APIRouter : URLRequestConvertible {
     case addToCart (config_id : Int , qty : Int , option_ids : [Int]? , product_option_value_ids : [Int]? )
     
     case updateCart (cartID : Int , config_id : Int , qty : Int , option_ids : [Int]? , product_option_value_ids : [Int]? )
+    case getNotifications ( page : Int )
     
     private var Methods : HTTPMethod {
         switch self {
@@ -87,6 +88,8 @@ enum APIRouter : URLRequestConvertible {
             return .post
         case .updateCart :
             return .post
+        case .getNotifications :
+            return .get
         }
     }
     private var Paths : String {
@@ -145,6 +148,8 @@ enum APIRouter : URLRequestConvertible {
             return "/api/cart-items"
         case .updateCart(let cartID ) :
             return "/api/cart-items/\(cartID.cartID)"
+        case .getNotifications(let page) :
+            return "/api/notifications?page=\(page)"
         }
     }
     private var headers : HTTPHeaders {
@@ -295,6 +300,13 @@ enum APIRouter : URLRequestConvertible {
                 HTTPHeaderField.locale.rawValue : MOLHLanguage.currentAppleLanguage()
             ]
         case .updateCart :
+            return [
+                HTTPHeaderField.authentication.rawValue :" \(ContentType.token.rawValue)  \(UserDefaults.standard.string(forKey: Constants.Defaults.authToken) ?? "")",
+                HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue ,
+                HTTPHeaderField.contentType.rawValue  : ContentType.json.rawValue ,
+                HTTPHeaderField.locale.rawValue : MOLHLanguage.currentAppleLanguage()
+            ]
+        case .getNotifications :
             return [
                 HTTPHeaderField.authentication.rawValue :" \(ContentType.token.rawValue)  \(UserDefaults.standard.string(forKey: Constants.Defaults.authToken) ?? "")",
                 HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue ,
@@ -496,7 +508,8 @@ enum APIRouter : URLRequestConvertible {
                 Constants.APIParameterKey.configID : config_id ,
                 Constants.APIParameterKey.qty : qty
             ]
-
+        case .getNotifications :
+            return [:]
         }
         
     }
@@ -504,7 +517,7 @@ enum APIRouter : URLRequestConvertible {
 
     func asURLRequest() throws -> URLRequest {
         switch self {
-        case .searshItem:
+        case .searshItem, .getNotifications :
             let url = "\(Constants.ProductionServer.baseURL)\(Paths)"
             let safeUrl = url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
             var urlRequest = URLRequest(url: URL(string: safeUrl!)!)
