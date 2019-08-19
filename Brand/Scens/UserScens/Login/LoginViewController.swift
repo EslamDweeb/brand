@@ -83,7 +83,7 @@ class LoginViewController: UIViewController,ButtonActionDelegate {
                 self.loginView.activityStopAnimating()
                 createAlert(title: nil, erroMessage: NSLocalizedString( "password_validation", comment: ""))
             }else{
-                APIClient.Login(userName: loginView.email.text ?? "", password: loginView.password.text ?? "") { (result) in
+                APIClient.Login(userName: loginView.email.text ?? "", password: loginView.password.text ?? "", FCMToken: FCMToken ) { (result) in
                     switch result {
                     case .success(let data) :
                         self.loginView.activityStopAnimating()
@@ -122,23 +122,57 @@ class LoginViewController: UIViewController,ButtonActionDelegate {
         
         presentViewController(controller: SignUpViewController(), transitionModal: .crossDissolve, presentationStyle: nil)
     }
-//    func twitterLogin() {
-//        TWTRTwitter.sharedInstance().logIn{(session, error) in
-//            if let UnSession = session{
-//                let client = TWTRAPIClient()
-//                client.loadUser(withID: (UnSession.userID), completion: { (user, error) in
-//                    print("signed in as \(String(describing: user?.name))");
-//                    print("signed in as \(String(describing: user?.userID))");
-//                    print("signed in as \(String(describing: session?.authToken))");
-//                    
-//                })
-//            }else{
-//                print("error")
-//            }
-//        }
-//    }
+    func twitterLogin() {
+        TWTRTwitter.sharedInstance().logIn{(session, error) in
+            if let UnSession = session{
+                let client = TWTRAPIClient()
+                client.loadUser(withID: (UnSession.userID), completion: { (user, error) in
+                    print("signed in as \(String(describing: user?.name))");
+                    print("signed in as \(String(describing: user?.userID))");
+                    print("signed in as \(String(describing: session?.authToken))");
+                    if let user = user {
+                        self.requestEmail(user: user )
+                    }
+                   
+                    
+                })
+            }else{
+                print("error")
+            }
+        }
+    }
+    
+    
+    private func requestEmail (user : TWTRUser) {
+        
+        let client = TWTRAPIClient.withCurrentUser()
+        print("ID \(String(describing: client.userID))")
+        client.requestEmail { email, error in
+            if (email != nil) {
+                print("signed in as email :  \(String(describing: email))");
+              
+                let arr = user.name.split() {$0 == " "}
+                var fName = ""
+                var lName = ""
+                if arr.count > 1 {
+                    fName = String(arr[0])
+                    lName = String(arr[1])
+                }else if arr.count > 0 {
+                    fName = String(arr[0])
+                }
+                
+                  self.loginSocial(socailID: user.userID , email: email ?? ""  , firstName: fName , lastName: lName , provider: Constants.providerTwitter )
+                
+             //    self.loginSocial(socailID: "6764835234" , email: "yusefTWT1@email.com"  , firstName: "yusef" , lastName: "naser" , provider: Constants.providerTwitter )
+                
+            } else {
+                print("error request email : \(String(describing: error?.localizedDescription))");
+            }
+        }
+    }
+    
     func faceBookLogin() {
-            let modalController = SocialSignUPVC()
+        
         let fbLoginManager : LoginManager = LoginManager()
         fbLoginManager.logIn(permissions: ["public_profile", "email"], from: self) { (result, error) -> Void in
                 if (error == nil){
@@ -153,47 +187,56 @@ class LoginViewController: UIViewController,ButtonActionDelegate {
                         self.userid = String(describing: result?.token?.userID)
                         print("user_id: \(self.userid!)")
                         
-                        modalController.userid = String(describing: result?.token?.userID)
+                      //  modalController.userid = String(describing: result?.token?.userID)
                         let req2 = GraphRequest(graphPath: "me", parameters: ["fields":"email,first_name,last_name"], tokenString: AccessToken.current?.tokenString, version: nil, httpMethod: HTTPMethod(rawValue: "GET"))
                         
                         req2.start(completionHandler: { (connection, result, error : Error!) -> Void in
                             if(error == nil) {
                                 print("result \(String(describing: result))")
                                 guard let Info = result as? [String: Any] else { return }
-                                modalController.firstname = Info["first_name"] as? String
-                                modalController.lastname = Info["last_name"] as? String
-                                modalController.email = Info["email"] as? String
+                              //  let Info : [String : Any] = ["first_name" : "yusef" , "last_name" : "naser" ,
+                               // "email" : "yusef2@email.com" , "id" : "264578276565" ]
+//                                modalController.firstname = Info["first_name"] as? String
+//                                modalController.lastname = Info["last_name"] as? String
+//                                modalController.email = Info["email"] as? String
+                                
                                 print(self.userid!)
-                                APIClient.SocialLogin(usersocialid: Info["id"] as? String ?? "" , complition: { (result) in
-                                    switch result {
-                                    case .success(let user) :
-                                        print("Logged in BEFORE ")
-                                        print(user)
-                                        UserDefaults.standard.set(user.accessToken, forKey: Constants.Defaults.authToken)
-                                        UserDefaults.standard.set(true, forKey: Constants.Defaults.isLogin)
-                                        let dest = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "mainTabVC")
-                                        self.present(dest, animated: true, completion: nil)
-                                        
-                                    case .failure(let error) :
-                                        print(error)
-                                        modalController.provid = 1
-                                        modalController.userid = Info["id"] as? String
-                                        modalController.email = Info["email"] as? String
-                                        modalController.firstname = Info["first_name"] as? String
-                                        modalController.lastname = Info["last_name"] as? String
-                                        print("dhfvwdhjbfhdjsbfhjdsbfjhdhbfjkd")
-                                        self.present(modalController, animated: true, completion: nil)
-                                    }
-                                })
+                                self.loginSocial(socailID: Info["id"] as? String ?? "" , email: Info["email"] as? String ?? "" , firstName: Info["first_name"] as? String ?? "" , lastName: Info["last_name"] as? String ?? "" , provider: Constants.providerFacebook )
                             } else {
                                 print("error \(String(describing: error))")
                             }
                         })
                     }else{
-                    self.createAlert(erroMessage: "gjhvgjv")
+                    self.createAlert(erroMessage: "error")
                 }
             }
         }
     }
+    
+    private func loginSocial (socailID : String , email : String , firstName : String , lastName : String , provider : Int  ) {
+        APIClient.SocialLogin(usersocialid: socailID, FCMToken: FCMToken  , complition: { (result) in
+            switch result {
+            case .success(let user) :
+                print("Logged in BEFORE ")
+                print(user)
+                UserDefaults.standard.set(user.accessToken, forKey: Constants.Defaults.authToken)
+                UserDefaults.standard.set(true, forKey: Constants.Defaults.isLogin)
+                let dest = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "mainTabVC")
+                self.present(dest, animated: true, completion: nil)
+                
+            case .failure(let error) :
+                print(error)
+                let modalController = SocialSignUPVC()
+                modalController.provid = provider
+                modalController.userid = socailID
+                modalController.email = email
+                modalController.firstname = firstName
+                modalController.lastname = lastName
+                //print("dhfvwdhjbfhdjsbfhjdsbfjhdhbfjkd")
+                self.present(modalController, animated: true, completion: nil)
+            }
+        })
+    }
+    
 }
 

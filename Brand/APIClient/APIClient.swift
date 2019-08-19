@@ -11,23 +11,23 @@ import Alamofire
 
 class APIClient {
     
-    static func SignUp(firstName: String,lastName: String,email: String,phone: String,password: String, complition : @escaping (Result<UserData,Error>) -> Void) {
-        AF.request(APIRouter.signUp(firstName: firstName, lastName: lastName, email: email, phone: phone, password: password)).responseDecodable {  (response : DataResponse<UserData>) in
+    static func SignUp(firstName: String,lastName: String,email: String,phone: String,password: String, FCMToken : String ,  complition : @escaping (Result<UserData,Error>) -> Void) {
+        AF.request(APIRouter.signUp(firstName: firstName, lastName: lastName, email: email, phone: phone, password: password, FCMToken: FCMToken )).responseDecodable {  (response : DataResponse<UserData>) in
             complition(response.result)
         }
     }
-    static func SocialSignUp(usersocialid : String , socialproviderid :Int ,firstName: String,lastName: String,email: String,phone: String,password : String ,complition : @escaping (Result<UserData,Error>) -> Void) {
-        AF.request(APIRouter.socialSignUp(uerSocialId: usersocialid, socialProviderid: socialproviderid, firstName: firstName, lastName: lastName, email: email, phone: phone, password : password)).responseDecodable {  (response : DataResponse<UserData>) in
+    static func SocialSignUp(usersocialid : String , socialproviderid :Int ,firstName: String,lastName: String,email: String,phone: String,password : String , FCMToken : String ,complition : @escaping (Result<UserData,Error>) -> Void) {
+        AF.request(APIRouter.socialSignUp(uerSocialId: usersocialid, socialProviderid: socialproviderid, firstName: firstName, lastName: lastName, email: email, phone: phone, password : password, FCMToken: FCMToken )).responseDecodable {  (response : DataResponse<UserData>) in
             complition(response.result)
         }
     }
-    static func Login(userName: String,password:String,complition: @escaping (Result<LoginData,Error>) -> Void) {
-        AF.request(APIRouter.login(userName: userName, password: password)).responseDecodable { (response : DataResponse<LoginData>) in
+    static func Login(userName: String,password:String , FCMToken : String ,complition: @escaping (Result<LoginData,Error>) -> Void) {
+        AF.request(APIRouter.login(userName: userName, password: password, FCMToken: FCMToken )).responseDecodable { (response : DataResponse<LoginData>) in
             complition(response.result)
         }
     }
-    static func SocialLogin(usersocialid : String ,complition : @escaping (Result<UserData,Error>) -> Void) {
-        AF.request(APIRouter.socialLogin(userSocialId: usersocialid)).validate(statusCode: 200 ..< 422).responseDecodable {  (response : DataResponse<UserData>) in
+    static func SocialLogin(usersocialid : String , FCMToken : String , complition : @escaping (Result<UserData,Error>) -> Void) {
+        AF.request(APIRouter.socialLogin(userSocialId: usersocialid , FCMToken : FCMToken )).validate(statusCode: 200 ..< 422).responseDecodable {  (response : DataResponse<UserData>) in
             complition(response.result)
         }
     }
@@ -250,4 +250,12 @@ class APIClient {
             complition(response.result)
         }
     }
+
+    static func updateProductInCart (cartID : Int , config_id: Int , qty: Int , option_ids: [Int]?, product_option_value_ids: [Int]? ,complition : @escaping (Result<ModelAddedCartData,Error>) -> Void) {
+        AF.request(APIRouter.updateCart(cartID: cartID , config_id: config_id , qty: qty , option_ids: option_ids , product_option_value_ids: product_option_value_ids )).responseDecodable {(response : DataResponse<ModelAddedCartData>) in
+            complition(response.result)
+        }
+    }
+    
+    
 }

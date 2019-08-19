@@ -65,49 +65,57 @@ class SocialSignUPVC: UIViewController , ButtonActionDelegate {
         switch response {
         case .success:
             
-            if self.mainView.EmailTextFeild.isValidEmail(self.mainView.EmailTextFeild.text) && self.mainView.PassworfTextFeild.isValidPassword(self.mainView.PassworfTextFeild.text) {
-                APIClient.SocialSignUp(usersocialid: self.userid, socialproviderid: self.provid, firstName: self.mainView.FirstTextFeild.text ?? "", lastName: self.mainView.LastTextFeild.text ?? "", email: self.mainView.EmailTextFeild.text ?? "", phone: self.mainView.phoneTextFeild.text ?? "",password: self.mainView.PassworfTextFeild.text ?? "") { ( result) in
-                    switch result {
-                    case .success(let user) :
-                        print(user)
-                        if(user.user == nil )
+            if !self.mainView.EmailTextFeild.isValidEmail(self.mainView.EmailTextFeild.text) {
+                self.createAlert(erroMessage: YString.pleaseEnterValidEmail )
+                return
+            }
+            
+            if !self.mainView.PassworfTextFeild.isValidPassword(self.mainView.PassworfTextFeild.text) {
+                self.createAlert(erroMessage: YString.passwordMustBeGreaterThan5Char )
+                return
+            }
+            
+            self.mainView.activityStartAnimating(activityColor: #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1), backgroundColor: .clear)
+            APIClient.SocialSignUp(usersocialid: self.userid, socialproviderid: self.provid, firstName: self.mainView.FirstTextFeild.text ?? "", lastName: self.mainView.LastTextFeild.text ?? "", email: self.mainView.EmailTextFeild.text ?? "", phone: self.mainView.phoneTextFeild.text ?? "",password: self.mainView.PassworfTextFeild.text ?? "" , FCMToken : FCMToken ) { ( result) in
+                self.mainView.activityStopAnimating()
+                switch result {
+                case .success(let user) :
+                    print(user)
+                    if(user.accessToken == nil )
+                    {
+                        if let phone = user.errors?["phone"] , phone.count > 0
                         {
-                            if(user.errors?["phone"]! != nil)
-                            {
-                                self.createAlert(title: nil, erroMessage: "\(user.errors!["phone"]!)")
-                            }
-                            else if (user.errors?["email"]! != nil)
-                            {
-                                self.createAlert(title: nil, erroMessage: "\(user.errors!["email"]!)")
-                            }
-                            else if (user.errors?["firstname"]! != nil)
-                            {
-                                self.createAlert(title: nil, erroMessage: "\(user.errors!["firstname"]!)")
-                            }
-                            else if (user.errors?["lastname"]! != nil)
-                            {
-                                self.createAlert(title: nil, erroMessage: "\(user.errors!["lastname"]!)")
-                            }
-                            else if (user.errors?["password"]! != nil)
-                            {
-                                self.createAlert(title: nil, erroMessage: "\(user.errors!["password"]!)")
-                            }
+                            self.createAlert(title: nil, erroMessage: "\(phone[0])")
                         }
-                        else
+                        else if let email = user.errors?["email"] , email.count > 0
                         {
-                            UserDefaults.standard.set(user.accessToken, forKey: Constants.Defaults.authToken)
-                            UserDefaults.standard.set(true, forKey: Constants.Defaults.isLogin)
-                            let dest = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "mainTabVC")
-                            self.present(dest, animated: true, completion: nil)
+                            self.createAlert(title: nil, erroMessage: "\(email[0])")
                         }
-                        
-                    case .failure(let error) :
-                        self.createAlert(erroMessage: "Server Not Respond")
-                        print(error)
+                        else if let firstname = user.errors?["firstname"] , firstname.count > 0
+                        {
+                            self.createAlert(title: nil, erroMessage: "\(firstname[0])")
+                        }
+                        else if let lastname = user.errors?["lastname"] , lastname.count > 0
+                        {
+                            self.createAlert(title: nil, erroMessage: "\(lastname[0])")
+                        }
+                        else if let password = user.errors?["password"] , password.count > 0
+                        {
+                            self.createAlert(title: nil, erroMessage: "\(password[0])")
+                        }
                     }
+                    else
+                    {
+                        UserDefaults.standard.set(user.accessToken, forKey: Constants.Defaults.authToken)
+                        UserDefaults.standard.set(true, forKey: Constants.Defaults.isLogin)
+                        let dest = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "mainTabVC")
+                        self.present(dest, animated: true, completion: nil)
+                    }
+                    
+                case .failure(let error) :
+                    self.createAlert(erroMessage: "Server Not Respond")
+                    print(error)
                 }
-            }else{
-                self.createAlert(erroMessage: "Please enter valid mail or password")
             }
             
         case .failure(_, let message):

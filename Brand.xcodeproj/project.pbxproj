@@ -210,6 +210,7 @@
 		2D9AAAB922DB6880000CF118 /* FlashesData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9AAAB822DB6880000CF118 /* FlashesData.swift */; };
 		2DA196C622F9967E00755C37 /* ConfigOptionTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA196C522F9967E00755C37 /* ConfigOptionTableCell.swift */; };
 		2FA56D61711283F86E7199C9 /* Pods_Brand.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E17F424A357E4DE1EABD0724 /* Pods_Brand.framework */; };
+		8106AD55230AC34E0029A852 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8106AD54230AC34E0029A852 /* GoogleService-Info.plist */; };
 		811637A422F6DD1D00402ADD /* ViewAddToCart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811637A322F6DD1D00402ADD /* ViewAddToCart.swift */; };
 		811637A722F725F800402ADD /* CellAddToCartDropDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811637A622F725F800402ADD /* CellAddToCartDropDown.swift */; };
 		811637A922F7260C00402ADD /* CellAddToCartButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811637A822F7260C00402ADD /* CellAddToCartButtonView.swift */; };
@@ -429,9 +430,11 @@
 		2D91BB0222E45CBA002F5424 /* FirstCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstCell.swift; sourceTree = "<group>"; };
 		2D9AAAB822DB6880000CF118 /* FlashesData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashesData.swift; sourceTree = "<group>"; };
 		2DA196C522F9967E00755C37 /* ConfigOptionTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigOptionTableCell.swift; sourceTree = "<group>"; };
+		8106AD54230AC34E0029A852 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		811637A322F6DD1D00402ADD /* ViewAddToCart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewAddToCart.swift; sourceTree = "<group>"; };
 		811637A622F725F800402ADD /* CellAddToCartDropDown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellAddToCartDropDown.swift; sourceTree = "<group>"; };
 		811637A822F7260C00402ADD /* CellAddToCartButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellAddToCartButtonView.swift; sourceTree = "<group>"; };
+		811C973822FC69B90028AE2E /* Brand.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Brand.entitlements; sourceTree = "<group>"; };
 		8183D1D222F8302600E64539 /* ViewAddToCartPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewAddToCartPresenter.swift; sourceTree = "<group>"; };
 		81A1DA1922F9AC3700051319 /* ModelAddedCartData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelAddedCartData.swift; sourceTree = "<group>"; };
 		E17F424A357E4DE1EABD0724 /* Pods_Brand.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Brand.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -606,6 +609,7 @@
 		2D32B82B22C0EE8100513DD4 /* Brand */ = {
 			isa = PBXGroup;
 			children = (
+				811C973822FC69B90028AE2E /* Brand.entitlements */,
 				2D32B84022C0F1D000513DD4 /* Utilities */,
 				2D32B8F622C0F20600513DD4 /* APIClient */,
 				2D32B86E22C0F1E800513DD4 /* Extentions */,
@@ -619,6 +623,7 @@
 				2D32B83522C0EE9400513DD4 /* LaunchScreen.storyboard */,
 				2D32B83E22C0F1AC00513DD4 /* Assets.xcassets */,
 				2D32B96B22C0F24D00513DD4 /* Info.plist */,
+				8106AD54230AC34E0029A852 /* GoogleService-Info.plist */,
 			);
 			path = Brand;
 			sourceTree = "<group>";
@@ -1130,6 +1135,7 @@
 				2D32B82722C0EE8100513DD4 /* Resources */,
 				281F337A5DD87CB7C308E7BF /* [CP] Embed Pods Frameworks */,
 				7F342D37A4BAA1C265EEF214 /* [CP] Copy Pods Resources */,
+				817748E423095A9B0068A595 /* Run Fabric Script */,
 			);
 			buildRules = (
 			);
@@ -1152,6 +1158,14 @@
 				TargetAttributes = {
 					2D32B82822C0EE8100513DD4 = {
 						CreatedOnToolsVersion = 10.2.1;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -1181,6 +1195,7 @@
 			files = (
 				2D32B83722C0EE9400513DD4 /* LaunchScreen.storyboard in Resources */,
 				01C98D6522F055F100E23819 /* Localizable.strings in Resources */,
+				8106AD55230AC34E0029A852 /* GoogleService-Info.plist in Resources */,
 				2D32B83F22C0F1AC00513DD4 /* Assets.xcassets in Resources */,
 				2D32B83222C0EE8100513DD4 /* Main.storyboard in Resources */,
 			);
@@ -1244,6 +1259,25 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Brand/Pods-Brand-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		817748E423095A9B0068A595 /* Run Fabric Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			name = "Run Fabric Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1616,15 +1650,18 @@
 			baseConfigurationReference = 1D733062CB38AA870F7CE805 /* Pods-Brand.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Brand/Brand.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = ZLT333H937;
+				DEVELOPMENT_TEAM = D4SZAZD4WL;
 				INFOPLIST_FILE = Brand/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = brands.sa;
+				PRODUCT_BUNDLE_IDENTIFIER = sa.brands;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1635,15 +1672,18 @@
 			baseConfigurationReference = EC765D8AD81D240700CFD342 /* Pods-Brand.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Brand/Brand.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = ZLT333H937;
+				DEVELOPMENT_TEAM = D4SZAZD4WL;
 				INFOPLIST_FILE = Brand/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = brands.sa;
+				PRODUCT_BUNDLE_IDENTIFIER = sa.brands;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

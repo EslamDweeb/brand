@@ -103,7 +103,7 @@ class SignUpViewController: UIViewController , ButtonActionDelegate{
                 self.signupView.activityStopAnimating()
                 createAlert(title: nil, erroMessage: NSLocalizedString( "password_validation", comment: ""))
             }else{
-                APIClient.SignUp(firstName: signupView.FirstTextFeild.text ?? "", lastName: signupView.LastTextFeild.text ?? "", email: signupView.EmailTextFeild.text ?? "", phone: signupView.phoneTextFeild.text ?? "", password: signupView.PasswordTextFeild.text ?? "") { ( result) in
+                APIClient.SignUp(firstName: signupView.FirstTextFeild.text ?? "", lastName: signupView.LastTextFeild.text ?? "", email: signupView.EmailTextFeild.text ?? "", phone: signupView.phoneTextFeild.text ?? "", password: signupView.PasswordTextFeild.text ?? "", FCMToken: FCMToken ) { ( result) in
                     switch result {
                     case .success(let user) :
                         self.signupView.activityStopAnimating()

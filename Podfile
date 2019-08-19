@@ -19,6 +19,9 @@ pod 'MOLH'
 pod 'FlexibleSteppedProgressBar'
 pod 'EasyTipView', '~> 2.0.4'
 pod "AKPickerView"
-
+pod 'Firebase/Analytics'
+pod 'Firebase/Messaging'
+pod 'Fabric'
+pod 'Crashlytics'
 
 end

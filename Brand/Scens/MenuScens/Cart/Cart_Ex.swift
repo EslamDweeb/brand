@@ -67,7 +67,7 @@ extension CartController: UITableViewDelegate , UITableViewDataSource {
     }
     func editAction(action: UITableViewRowAction, indexPath: IndexPath){
         
-        self.addViewAddToCart(cartItem: self.cartpro[indexPath.row] )
+        self.parent?.addViewAddToCart(cartItem: self.cartpro[indexPath.row] )
         
     }
     
