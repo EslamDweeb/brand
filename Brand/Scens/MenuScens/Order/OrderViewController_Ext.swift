@@ -9,37 +9,48 @@
 import UIKit
 
 extension OrderViewController: UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
+    private func isLoadingIndexPath(_ indexPath: IndexPath) -> Bool {
+        guard shouldShowLoadingCell else { return false }
+        return indexPath.row == self.orders.count
+    }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        if orders.count == 0 {
-//
-//            mainView.heightConstraint?.constant = 0
-//            mainView.topConstraint?.constant = 0
-//            UIView.animate(withDuration: 0.2) {
-//                self.mainView.layoutIfNeeded()
-//            }
-//            collectionView.backgroundView = OrderBackgroundView()
-//        }else{
-//            mainView.heightConstraint?.constant = 25
-//            mainView.topConstraint?.constant = 16
-//            collectionView.backgroundView = nil
-//        }
+        //        if orders.count == 0 {
+        //
+        //            mainView.heightConstraint?.constant = 0
+        //            mainView.topConstraint?.constant = 0
+        //            UIView.animate(withDuration: 0.2) {
+        //                self.mainView.layoutIfNeeded()
+        //            }
+        //            collectionView.backgroundView = OrderBackgroundView()
+        //        }else{
+        //            mainView.heightConstraint?.constant = 25
+        //            mainView.topConstraint?.constant = 16
+        //            collectionView.backgroundView = nil
+        //        }
         if mainView.line1.isHidden == false {
-            return self.ordersPending.count
+            let count = ordersPending.count
+            return shouldShowLoadingCell ? count + 1 : count
         }else if mainView.line2.isHidden == false {
-             return self.ordersDelivered.count
+            let count = ordersDelivered.count
+            return shouldShowLoadingCell ? count + 1 : count
         }else{
-             return self.ordersOthers.count
+            let count = ordersOthers.count
+            return shouldShowLoadingCell ? count + 1 : count
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as? OrderCell else{ return UICollectionViewCell() }
-        if mainView.line1.isHidden == false {
-           cell.order = ordersPending[indexPath.item]
-        }else if mainView.line2.isHidden == false {
-            cell.order = ordersDelivered[indexPath.item]
-        }else{
-           cell.order = ordersOthers[indexPath.item]
+        if isLoadingIndexPath(indexPath) {
+            return cell
+        } else {
+            if mainView.line1.isHidden == false {
+                cell.order = ordersPending[indexPath.item]
+            }else if mainView.line2.isHidden == false {
+                cell.order = ordersDelivered[indexPath.item]
+            }else{
+                cell.order = ordersOthers[indexPath.item]
+            }
         }
         return cell
     }
@@ -64,4 +75,7 @@ extension OrderViewController: UICollectionViewDelegate,UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 8
     }
-}
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        guard isLoadingIndexPath(indexPath) else { return }
+        fetchNextPage()
+    }}

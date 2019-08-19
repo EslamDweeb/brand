@@ -9,6 +9,12 @@
 import UIKit
 
 extension ReviewController: UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
+    
+    private func isLoadingIndexPath(_ indexPath: IndexPath) -> Bool {
+        guard shouldShowLoadingCell else { return false }
+        return indexPath.row == self.reviews.count
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if reviews.count == 0 {
             mainView.heightConstraint?.constant = 0
@@ -22,35 +28,40 @@ extension ReviewController: UICollectionViewDelegate,UICollectionViewDataSource,
             mainView.topConstraint?.constant = 16
             collectionView.backgroundView = nil
         }
-        return reviews.count
+        let count = reviews.count
+        return shouldShowLoadingCell ? count + 1 : count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as? ReviewCell else{ return UICollectionViewCell() }
-        cell.review = reviews[indexPath.item]
-        cell.editeBtnTapped = { [weak self]  (review,flag) in
-            guard let self = self else{return}
-            let dest = AddReviewController()
-            dest.mainView.review = review
-            dest.editeFlag = flag
-            dest.mainView.headerView.rateView.settings.updateOnTouch = true
-            self.dismissPressentededControllers()
-            self.presentViewController(controller: dest, transitionModal: UIModalTransitionStyle.crossDissolve, presentationStyle: nil)
+        if isLoadingIndexPath(indexPath) {
+            return cell
+        } else {
+            cell.review = reviews[indexPath.item]
+            cell.editeBtnTapped = { [weak self]  (review,flag) in
+                guard let self = self else{return}
+                let dest = AddReviewController()
+                dest.mainView.review = review
+                dest.editeFlag = flag
+                dest.mainView.headerView.rateView.settings.updateOnTouch = true
+                self.dismissPressentededControllers()
+                self.presentViewController(controller: dest, transitionModal: UIModalTransitionStyle.crossDissolve, presentationStyle: nil)
+            }
         }
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        guard let cell = collectionView.cellForItem(at: indexPath) as? ReviewCell else{return}
-//        let dest = AddReviewController()
-//        dest.mainView.review = cell.review
-//
-//        dest.mainView.reviewView.textView.isUserInteractionEnabled = false
-//        dest.mainView.prosView.textView.isUserInteractionEnabled = false
-//        dest.mainView.consView.textView.isUserInteractionEnabled = false
-//        self.presentViewController(controller: dest, transitionModal: UIModalTransitionStyle.coverVertical, presentationStyle: nil)
+        //        guard let cell = collectionView.cellForItem(at: indexPath) as? ReviewCell else{return}
+        //        let dest = AddReviewController()
+        //        dest.mainView.review = cell.review
+        //
+        //        dest.mainView.reviewView.textView.isUserInteractionEnabled = false
+        //        dest.mainView.prosView.textView.isUserInteractionEnabled = false
+        //        dest.mainView.consView.textView.isUserInteractionEnabled = false
+        //        self.presentViewController(controller: dest, transitionModal: UIModalTransitionStyle.coverVertical, presentationStyle: nil)
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-      
+        
         return CGSize(width: collectionView.frame.width, height:150)
     }
     
@@ -63,5 +74,9 @@ extension ReviewController: UICollectionViewDelegate,UICollectionViewDataSource,
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 8
+    }
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        guard isLoadingIndexPath(indexPath) else { return }
+        fetchNextPage()
     }
 }

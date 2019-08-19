@@ -28,40 +28,39 @@ class LoginViewController: UIViewController,ButtonActionDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.loginView.actionDelegate = self
-        let rightswipe = UISwipeGestureRecognizer(target: self, action: #selector(self.handleswipe(sender:)))
-        rightswipe.direction = .right
-        view.addGestureRecognizer(rightswipe)
-        let leftswipe = UISwipeGestureRecognizer(target: self, action: #selector(self.handleswipe(sender:)))
-        leftswipe.direction = .left
-        view.addGestureRecognizer(leftswipe)
+//        let rightswipe = UISwipeGestureRecognizer(target: self, action: #selector(self.handleswipe(sender:)))
+//        rightswipe.direction = .right
+//        view.addGestureRecognizer(rightswipe)
+//        let leftswipe = UISwipeGestureRecognizer(target: self, action: #selector(self.handleswipe(sender:)))
+//        leftswipe.direction = .left
+//        view.addGestureRecognizer(leftswipe)
         
         //           TWTRTwitter.sharedInstance().start(withConsumerKey: "KUkghIKbyb7SsRULpDfjCmK30", consumerSecret: "mgpVgM29xQLZhg37Z7cKkhQ6FLaYhWOdJdp5MKVQEtfUpN9HgK")
     }
-    @objc func handleswipe(sender : UISwipeGestureRecognizer){
-        if sender.state == .ended {
-            switch sender.direction {
-            case .right :
-                
-                let transition: CATransition = CATransition()
-                transition.duration = 0.5
-                transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
-                transition.type = CATransitionType.reveal
-                transition.subtype = CATransitionSubtype.fromLeft
-                self.view.window!.layer.add(transition, forKey: nil)
-                self.dismiss(animated: false, completion: nil)
-            case .left :
-                let transition: CATransition = CATransition()
-                transition.duration = 0.5
-                transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
-                transition.type = CATransitionType.reveal
-                transition.subtype = CATransitionSubtype.fromRight
-                self.view.window!.layer.add(transition, forKey: nil)
-                self.dismiss(animated: false, completion: nil)
-            default : break
-            }
-        }
-        
-    }
+//    @objc func handleswipe(sender : UISwipeGestureRecognizer){
+//        if sender.state == .ended {
+//            switch sender.direction {
+//            case .right :
+//
+//                let transition: CATransition = CATransition()
+//                transition.duration = 0.5
+//                transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+//                transition.type = CATransitionType.reveal
+//                transition.subtype = CATransitionSubtype.fromLeft
+//                self.view.window!.layer.add(transition, forKey: nil)
+//                self.dismiss(animated: false, completion: nil)
+//            case .left :
+//                let transition: CATransition = CATransition()
+//                transition.duration = 0.5
+//                transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+//                transition.type = CATransitionType.reveal
+//                transition.subtype = CATransitionSubtype.fromRight
+//                self.view.window!.layer.add(transition, forKey: nil)
+//                self.dismiss(animated: false, completion: nil)
+//            default : break
+//            }
+//        }
+//    }
     func dissmisController() {
           self.dismiss(animated: false, completion: nil)
     }

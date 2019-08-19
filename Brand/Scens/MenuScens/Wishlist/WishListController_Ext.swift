@@ -9,7 +9,10 @@
 import UIKit
 
 extension WishListController: UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
-    
+    private func isLoadingIndexPath(_ indexPath: IndexPath) -> Bool {
+        guard shouldShowLoadingCell else { return false }
+        return indexPath.row == self.wishes.count
+    }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if wishes.count == 0 {
             switch vcType{
@@ -20,31 +23,42 @@ extension WishListController: UICollectionViewDelegate,UICollectionViewDataSourc
                 view.lable.text = "New Products"
                 view.button.isHidden = true
                 collectionView.backgroundView = view
+            case .seeAll:
+                 collectionView.backgroundView = nil
             }
         }else{
             collectionView.backgroundView = nil
         }
-        return wishes.count
+        let count = wishes.count
+        return shouldShowLoadingCell ? count + 1 : count
+       // return count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID , for: indexPath) as? WishCell else{return UICollectionViewCell () }
-        cell.config = wishes[indexPath.row]
-        switch vcType{
-        case .wishList:
-            let image = UIImage(named: "invalidName")
-            cell.favBtn.setImage(image, for: .normal)
-        case .allProduct:
-            let image = UIImage(named: "wish")
-            cell.favBtn.setImage(image, for: .normal)
+         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID , for: indexPath) as? WishCell else{return UICollectionViewCell () }
+        if isLoadingIndexPath(indexPath) {
+            return cell
+        } else {
+           
+            cell.config = wishes[indexPath.row]
+            switch vcType{
+            case .wishList:
+                let image = UIImage(named: "invalidName")
+                cell.favBtn.setImage(image, for: .normal)
+            case .allProduct:
+                let image = UIImage(named: "wish")
+                cell.favBtn.setImage(image, for: .normal)
+            case .seeAll:
+                break
+            }
+            return cell
         }
-        return cell
     }
     func collectionView(_ collectionView: UICollectionView,
                             layout collectionViewLayout: UICollectionViewLayout,
                             sizeForItemAt indexPath: IndexPath) -> CGSize {
             if collectionView == mainView.wishCollection {
-                return CGSize(width: collectionView.bounds.width / 2 - 16, height: 220)
+                return CGSize(width: (collectionView.bounds.width / 2) - 16, height: 210)
             }else{
                 return collectionView.bounds.size
             }
@@ -76,9 +90,8 @@ extension WishListController: UICollectionViewDelegate,UICollectionViewDataSourc
             }
         }
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-//        if (wishes.count - 1 ) >= indexPath.row {
-//            self.infinitePaging()
-//        }else{return}
+         guard isLoadingIndexPath(indexPath) else { return }
+         fetchNextPage()
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

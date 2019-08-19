@@ -13,6 +13,8 @@ struct ReviewData: Codable {
     let ratingables: [Ratingable]
     let message:String?
     let errors:String?
+    let links:Links
+    let meta:Meta
 }
 struct ReviewDataUpdated: Codable {
     let userRating: Ratingable?

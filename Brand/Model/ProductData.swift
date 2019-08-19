@@ -77,4 +77,6 @@ struct Config: Codable {
 
 struct ProductConfigs:Codable {
     let configs:[Config]
+    let links:Links
+    let meta:Meta
 }

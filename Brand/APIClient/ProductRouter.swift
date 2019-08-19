@@ -5,7 +5,6 @@
 //  Created by Eslam Dweeb on 3/11/19.
 //  Copyright © 2019 Eslam Dweeb. All rights reserved.
 
-
 import Foundation
 import Alamofire
 
@@ -14,10 +13,10 @@ enum ProductRouter:URLRequestConvertible {
     case banners
     case categories
     case lastUpdate
-    case allReviews
+    case allReviews(pageNumber:Int)
     case addReview(id:Int,value:Int,review:String,pros:String,cons:String)
     case updateReview(value:Int,review:String,pros:String,cons:String,objectId:Int,ratingId:Int)
-    case getOrders
+    case getOrders(pageNumber:Int)
     case getOrderDetails(orderSerial:String)
     case getCategoryInfo(slug:String)
     case getCategoryProduct(slug:String)
@@ -25,14 +24,15 @@ enum ProductRouter:URLRequestConvertible {
     case getCartData
     case getExploreData
     case getFlashData
-    case getAllProductConfigs(slug:String)
+    case getAllProductConfigs(slug:String,pageNumber:Int)
     case toggleFav(id:Int)
     case getitemDetail(slug:String)
     case getConfigReview(id:Int)
     case getConfigRating(id:Int)
+    case getSeeAllProduct(key:String,pageNumber:Int)
     private var Methods : HTTPMethod {
         switch self {
-        case .brands,.banners,.categories,.lastUpdate,.allReviews,.getOrders,.getOrderDetails,.getCategoryInfo,.getCategoryProduct,.getWishlist,.getCartData,.getExploreData,.getFlashData,.getAllProductConfigs,.getitemDetail,.getConfigReview,.getConfigRating:
+        case .brands,.banners,.categories,.lastUpdate,.allReviews,.getOrders,.getOrderDetails,.getCategoryInfo,.getCategoryProduct,.getWishlist,.getCartData,.getExploreData,.getFlashData,.getAllProductConfigs,.getitemDetail,.getConfigReview,.getConfigRating,.getSeeAllProduct:
             return .get
         case .updateReview,.toggleFav,.addReview:
             return .post
@@ -48,14 +48,14 @@ enum ProductRouter:URLRequestConvertible {
             return "/api/categories?markets"
         case .lastUpdate:
             return "/api/last_updates"
-        case .allReviews:
-            return "/api/ratingables?profile"
+        case .allReviews(let pageNumber):
+            return "/api/ratingables?profile&page=\(pageNumber)"
         case .addReview(let id,_,_,_,_):
             return "/api/ratingables/catalog/\(id)"
         case .updateReview(_,_,_,_,let objectId,let ratingId):
             return "/api/ratingables/catalog/\(objectId)/\(ratingId)"
-        case .getOrders:
-            return "/api/orders"
+        case .getOrders(let pageNumber):
+            return "/api/orders&page=\(pageNumber)"
         case .getOrderDetails(let orderSerial):
             return "/api/orders/\(orderSerial)"
         case .getCategoryInfo(let slug):
@@ -70,8 +70,8 @@ enum ProductRouter:URLRequestConvertible {
             return "/api/explore"
         case .getFlashData:
             return "/api/flash"
-        case .getAllProductConfigs(let slug):
-            return "/api/configs?brands=\(slug)"
+        case .getAllProductConfigs(let slug,let pageNumber):
+            return "/api/configs?brands=\(slug)&page=\(pageNumber)"
         case .toggleFav(let id):
             return "/api/favorite/configs/\(id)"
         case .getitemDetail(let slug):
@@ -80,6 +80,8 @@ enum ProductRouter:URLRequestConvertible {
             return "/api/ratingables?type=catalog&id=\(id)"
         case .getConfigRating(let id):
             return "/api/model-ratings/\(id)"
+        case .getSeeAllProduct(let key,let pageNumber):
+            return "/api/configs?show=\(key)&page=\(pageNumber)"
         }
     }
     private var headers : HTTPHeaders {
@@ -89,7 +91,7 @@ enum ProductRouter:URLRequestConvertible {
                     HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue,
                     HTTPHeaderField.contentType.rawValue : ContentType.json.rawValue
                 ]
-         case .allReviews,.updateReview,.getOrders,.getOrderDetails,.getWishlist,.getCartData,.toggleFav,.getExploreData,.getitemDetail,.getConfigReview,.getConfigRating,.addReview:
+         case .allReviews,.updateReview,.getOrders,.getOrderDetails,.getWishlist,.getCartData,.toggleFav,.getExploreData,.getitemDetail,.getConfigReview,.getConfigRating,.addReview,.getSeeAllProduct:
             return [
                 HTTPHeaderField.authentication.rawValue : " \(ContentType.token.rawValue) \(UserDefaults.standard.string(forKey: Constants.Defaults.authToken) ?? "")" ,
                 HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue,
@@ -99,7 +101,7 @@ enum ProductRouter:URLRequestConvertible {
     }
     private var parameters :Parameters?{
         switch self {
-        case .brands,.banners,.categories,.lastUpdate,.allReviews,.getOrders,.getOrderDetails,.getCategoryInfo,.getCategoryProduct,.getWishlist,.getCartData,.getExploreData,.getFlashData,.getAllProductConfigs,.getitemDetail,.getConfigReview,.getConfigRating:
+        case .brands,.banners,.categories,.lastUpdate,.allReviews,.getOrders,.getOrderDetails,.getCategoryInfo,.getCategoryProduct,.getWishlist,.getCartData,.getExploreData,.getFlashData,.getAllProductConfigs,.getitemDetail,.getConfigReview,.getConfigRating,.getSeeAllProduct:
             return [:]
         case .updateReview(let value, let review, let pros, let cons,_,_):
             return [
@@ -123,7 +125,8 @@ enum ProductRouter:URLRequestConvertible {
     
     func asURLRequest() throws -> URLRequest {
         switch self {
-        case .banners,.categories,.allReviews,.getCategoryProduct,.getWishlist,.getAllProductConfigs,.getConfigReview:
+        case .banners,.categories,.allReviews,.getCategoryProduct,.getWishlist,.getAllProductConfigs,.getConfigReview
+            ,.getSeeAllProduct:
             let url = "\(Constants.ProductionServer.baseURL)\(Paths)"
             let safeUrl = url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
             var urlRequest = URLRequest(url: URL(string: safeUrl!)!)

@@ -13,3 +13,8 @@ struct ExploreData:Codable {
     let latest:[Config]?
     let popular:[Config]?
 }
+struct SeeAllData:Codable{
+    let configs:[Config]
+    let links:Links
+    let meta:Meta
+}
