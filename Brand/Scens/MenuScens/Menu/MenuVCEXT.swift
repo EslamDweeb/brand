@@ -73,7 +73,9 @@ extension MenuViewController : UITableViewDataSource , UITableViewDelegate {
                 cell.backgroundColor = .clear
             }
         case "login".localized:
-            self.present(LoginViewController(), animated: true) {
+            let dest = LoginViewController()
+            dest.loginView.closeImg.isHidden = false
+            self.present(dest, animated: true) {
                 cell.backgroundColor = .clear
             }
             

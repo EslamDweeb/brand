@@ -21,6 +21,7 @@ class MainCollCell:UICollectionViewCell,UICollectionViewDelegate,UICollectionVie
     var handelCellSwipe:((_ row:Int) -> ())?
     var handelThirdCellAddReview:(() -> ())?
     var handelFooterViewClouserAction:((_ slug:String)->())?
+    var handelThirdCellPaging:(() -> ())?
     lazy var pageCollectionView:UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -76,6 +77,10 @@ class MainCollCell:UICollectionViewCell,UICollectionViewDelegate,UICollectionVie
             cell.handelAddReviewButtonTapped = { [weak self] in
                 guard let self = self else{return}
                 self.handelThirdCellAddReview?()
+            }
+            cell.handelPaging = { [weak self] in
+                guard let self = self else{return}
+                self.handelThirdCellPaging?()
             }
             return cell
         default:

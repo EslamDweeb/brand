@@ -19,6 +19,7 @@ class LoginView: UIView, UITextFieldDelegate {
     lazy var closeImg : BtnImage = {
         let btn  = BtnImage()
          btn.setImage(#imageLiteral(resourceName: "crossAnticon"), for: .normal)
+        btn.isHidden = true
         return btn
     }()
      lazy var headerText: HeaderLabel = {
@@ -164,7 +165,7 @@ class LoginView: UIView, UITextFieldDelegate {
     password.rightView = eyeBtn
     password.rightViewMode = .always
         // Add constrains
-
+     closeImg.isHidden = true
         scrollView.anchor(top: self.topAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
     if MOLHLanguage.currentAppleLanguage() == "en"{
         closeImg.anchor(top: self.topAnchor, left: self.leftAnchor, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 20, paddingLeft: 10, paddingBottom: 0, paddingRight: 0, width: 50, height: 50, paddingCenterX: 0, paddingCenterY: 0)
