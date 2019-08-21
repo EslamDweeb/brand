@@ -27,7 +27,7 @@ class BannerCell:UICollectionViewCell {
     lazy var bannerImage: UIImageView = {
         let imageView = UIImageView()
         imageView.image = #imageLiteral(resourceName: "ads")
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleToFill
         return imageView
     }()
     override init(frame: CGRect) {

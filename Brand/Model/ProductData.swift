@@ -40,7 +40,7 @@ struct Config: Codable {
     let name: String?
     let gender: Int
     let sale: Double
-    let price, qty: Int
+    let price, qty: String
     let brand: Brand?
     let isFlashOffer: Bool
     let mainPhoto: Media?

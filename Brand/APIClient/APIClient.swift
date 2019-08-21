@@ -262,5 +262,9 @@ class APIClient {
             completion(response.result)
         }
     }
-    
+    static func getFlashOfferHeader (completion : @escaping (Result<FlashOfferHeader,Error>) -> Void) {
+        AF.request(ProductRouter.getFlashHeader).responseDecodable { (response : DataResponse<FlashOfferHeader> ) in
+            completion(response.result)
+        }
+    }
 }

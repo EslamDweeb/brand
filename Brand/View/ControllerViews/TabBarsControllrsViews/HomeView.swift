@@ -7,8 +7,15 @@
 //
 
 import UIKit
-
+import Kingfisher
 class HomeView: UIView{
+    var setting:Settings?{
+        didSet{
+            guard let set = setting else{return}
+            let url = URL(string: set.photo.path)
+            flashSaleImage.kf.setImage(with: url)
+        }
+    }
     let cellID = "CellID"
     lazy var  navView:GradNavView = {
         let navView = GradNavView()
@@ -39,7 +46,7 @@ class HomeView: UIView{
     lazy var flashSaleImage: UIImageView = {
        let imageView = UIImageView()
         imageView.image = #imageLiteral(resourceName: "adsCopy4")
-        imageView.contentMode = .scaleAspectFill
+        imageView.contentMode = .scaleToFill
         imageView.isUserInteractionEnabled = true
         imageView.addGestureRecognizer(tap)
         return imageView
