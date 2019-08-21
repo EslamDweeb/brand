@@ -13,12 +13,26 @@ enum VCType{
     case allProduct
     case seeAll
 }
-class WishListController: UIViewController,ButtonActionDelegate {
+class WishListController: UIViewController,ButtonActionDelegate , isAbleToReceiveData{
+    func pass(data: [Config],brand : String ,price : String ,made : String ,Rate : String) {
+        print(data)
+        currentPage = 1
+        self.brand = brand
+        self.price = price
+        self.rate = Rate
+        self.made = made
+        shouldShowLoadingCell = false
+        Beforefilter = false
+        wishes = data
+        self.mainView.wishCollection.reloadData()
+    }
+    
     lazy var mainView: WishListView = {
         let v = WishListView(delegate: self, dataSource: self,actionDelegate:self)
         v.backgroundColor = .white
         return v
     }()
+    var Beforefilter = true
     var shouldShowLoadingCell = false
     var currentPage:Int = 1
     var lastPage:Int?
@@ -28,6 +42,10 @@ class WishListController: UIViewController,ButtonActionDelegate {
     let reachability =  Reachability()
     let cellID = "cellID"
     var wishes: [Config] = []
+    var brand  = ""
+    var made = ""
+    var price  = ""
+    var rate = ""
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -57,10 +75,14 @@ class WishListController: UIViewController,ButtonActionDelegate {
     func dissmisController() {
         self.dismiss(animated: true, completion: nil)
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         handelReachability(reachability: reachability)
-        switchBetweenServices(vcType: self.vcType,refresh: true)
+        if Beforefilter {
+             switchBetweenServices(vcType: self.vcType,refresh: true)
+        }
+       
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -76,14 +98,22 @@ class WishListController: UIViewController,ButtonActionDelegate {
             getSeeAllProducts(self.key,refresh)
         }
     }
-    
+    func filterBtnTapped() {
+        let CV = FilterViewController()
+        CV.delegate = self
+        CV.showfilter = self.key!
+         self.presentViewController(controller: CV, transitionModal: .crossDissolve, presentationStyle: .overCurrentContext)
+    }
     func applyBtnTapped() {
         self.present(searchVC(), animated: true, completion: nil)
     }
     //MARK:- Paging Functions
     func fetchNextPage() {
         currentPage += 1
-        switchBetweenServices(vcType: self.vcType)
+      //  if Beforefilter {
+              switchBetweenServices(vcType: self.vcType)
+      //  }
+      
     }
    
     //MARK:- API-Service Functions
@@ -139,6 +169,7 @@ class WishListController: UIViewController,ButtonActionDelegate {
         }
     }
     private func getSeeAllProducts(_ key:String? = "",_ refresh:Bool = false){
+        if Beforefilter {
         DispatchQueue.main.async {
             self.mainView.activityStartAnimating(activityColor: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.6952322346), backgroundColor: .clear)
             APIClient.getSeeAllProduct(key: key!,pageNumber: self.currentPage, complition: { (result) in
@@ -162,5 +193,34 @@ class WishListController: UIViewController,ButtonActionDelegate {
                 }
             })
         }
+        }else {
+            DispatchQueue.main.async {
+                self.mainView.activityStartAnimating(activityColor: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.6952322346), backgroundColor: .clear)
+                APIClient.getsearchitems(name: "" , brand: self.brand, origin: self.made, price: self.price, rate: self.rate, show: self.key!, page: self.currentPage, complition: { (result) in
+                switch result{
+                case .success(let data):
+                    if data.configs?.count != 0 {
+                    if refresh {
+                        self.wishes = data.configs!
+                    } else {
+                        for conf in data.configs! {
+                            self.wishes.append(conf)
+                        }
+                    }
+                    
+                    DispatchQueue.main.async {
+                        self.mainView.activityStopAnimating()
+                        self.shouldShowLoadingCell = ( data.meta?.currentPage ?? 0) < (data.meta?.lastPage ?? 0)
+                        self.mainView.wishCollection.reloadData()
+                    }
+                    }
+                case.failure(let error):
+                    self.mainView.activityStopAnimating()
+                    print(error)
+                }
+            })
+            
+        }
+    }
     }
 }
