@@ -19,6 +19,7 @@ class ExploreVC:UIViewController,ButtonActionDelegate{
     var newBanners = [Banner]()
     var arrangedBanners:[Banner]?
     var exploreData:ExploreData?
+    var settings = [Settings]()
     let reachability =  Reachability()
     let titleArray  = [NSLocalizedString("recommendedProduct", comment: ""),
                        NSLocalizedString("latestProduct", comment: ""),
@@ -58,11 +59,19 @@ class ExploreVC:UIViewController,ButtonActionDelegate{
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        getDataFromLocalStorage()
         getExploreData()
         handelReachability(reachability: reachability)
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+    }
+    private func getDataFromLocalStorage(){
+        getBannersFromLocalDataStorage()
+        getFlashOfferHeaderFromLocalDataStorage()
+    }
+    private func getBannersFromLocalDataStorage(){
         guard let data = UserDefaults.standard.data(forKey: Constants.Defaults.banners) else {return}
         do {
             newBanners = try JSONDecoder().decode([Banner].self, from: data)
@@ -74,6 +83,15 @@ class ExploreVC:UIViewController,ButtonActionDelegate{
             print(newBanners)
             
         } catch {
+            print(error)
+        }
+    }
+    private func getFlashOfferHeaderFromLocalDataStorage(){
+        guard let data = UserDefaults.standard.data(forKey: Constants.Defaults.flashSale) else {return}
+        do{
+            settings = try JSONDecoder().decode([Settings].self, from: data)
+            self.mainView.setting = self.settings[0]
+        }catch(let error) {
             print(error)
         }
     }

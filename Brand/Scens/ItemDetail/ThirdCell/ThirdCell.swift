@@ -11,9 +11,12 @@ import UIKit
 class ThirdCell:UICollectionViewCell,ButtonActionDelegate{
     let cellID = "cellID"
     var handelAddReviewButtonTapped:(() -> ())?
+    var handelPaging:(()->())?
     lazy var header = ThirdCellHeadView(buttonActionDelegate: self)
     lazy var reviews = [Ratingable]()
-    
+//    var shouldShowLoadingCell = false
+//    var currentPage:Int = 1
+//    var lastPage:Int?
     lazy var reviewCollectionView:UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -64,7 +67,11 @@ extension ThirdCell:UICollectionViewDelegate,UICollectionViewDataSource,UICollec
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 8
     }
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        self.handelPaging?()
+    }
     func addBtn() {
         self.handelAddReviewButtonTapped?()
     }
+    
 }

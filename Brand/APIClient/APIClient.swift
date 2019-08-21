@@ -165,8 +165,8 @@ class APIClient {
             complition(response.result)
         }
     }
-    static func getCartData(complition : @escaping (Result<CartData,Error>) -> Void) {
-        AF.request(ProductRouter.getCartData).responseDecodable{(response:DataResponse<CartData>) in
+    static func getCartData(page:Int,complition : @escaping (Result<CartData,Error>) -> Void) {
+        AF.request(ProductRouter.getCartData(pageNumber: page)).responseDecodable{(response:DataResponse<CartData>) in
             complition(response.result)
         }
     }
@@ -212,8 +212,8 @@ class APIClient {
             complition(response.result)
         }
     }
-    static func getConfigReviews(id:Int,complition : @escaping (Result<ReviewData,Error>) -> Void) {
-        AF.request(ProductRouter.getConfigReview(id: id)).responseDecodable{(response:DataResponse<ReviewData>) in
+    static func getConfigReviews(id:Int,page:Int,complition : @escaping (Result<ReviewData,Error>) -> Void) {
+        AF.request(ProductRouter.getConfigReview(id: id,pageNumber: page)).responseDecodable{(response:DataResponse<ReviewData>) in
             complition(response.result)
         }
     }
@@ -262,5 +262,9 @@ class APIClient {
             completion(response.result)
         }
     }
-    
+    static func getFlashOfferHeader (completion : @escaping (Result<FlashOfferHeader,Error>) -> Void) {
+        AF.request(ProductRouter.getFlashHeader).responseDecodable { (response : DataResponse<FlashOfferHeader> ) in
+            completion(response.result)
+        }
+    }
 }

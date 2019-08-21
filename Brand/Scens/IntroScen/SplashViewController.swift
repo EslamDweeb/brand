@@ -71,6 +71,8 @@ class SplashViewController: UIViewController {
         //thirdCall
         group.enter()
         getBanners()
+        group.enter()
+        getFlashOfferHeader()
         //Thread finished
         group.notify(queue: .main){
             compleation(true)
@@ -100,6 +102,23 @@ class SplashViewController: UIViewController {
             case .failure(let error):
                 print(error)
                 self?.createAlert(erroMessage: "Error: Server Error please try again")
+            }
+        }
+    }
+    private func getFlashOfferHeader(){
+        APIClient.getFlashOfferHeader{[weak self](result)in
+            guard let self = self else{return}
+            switch result{
+            case.success(let data):
+                if self.lastUpdate != nil {
+                    self.setEncodedData(data: data.settings, Constants.Defaults.flashSale)
+                }else{
+                    self.setEncodedData(data: data.settings, Constants.Defaults.flashSale)
+                    self.group.leave()
+                }
+            case .failure(let error):
+                print(error)
+                self.createAlert(erroMessage: "Error: Server Error please try again")
             }
         }
     }

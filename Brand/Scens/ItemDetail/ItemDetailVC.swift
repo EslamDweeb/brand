@@ -15,7 +15,9 @@ class ItemDetailVC: UIViewController,ButtonActionDelegate {
     var reviews = [Ratingable]()
     var rateData:OverallRating?
     var globalHeader : ItemDetailCollHeader!
-    
+    var shouldShowLoadingCell = false
+    var currentPage:Int = 1
+    var lastPage:Int?
     var slug:String?
     
     static func create (slug : String) -> ItemDetailVC {
@@ -46,27 +48,22 @@ class ItemDetailVC: UIViewController,ButtonActionDelegate {
         getItemDetailInfo()
     }
     private func getItemDetailInfo(){
-        //hani-laptop-751586
-        //noura-456735
         DispatchQueue.main.async {
             self.mainView.activityStartAnimating(activityColor: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.6952322346), backgroundColor: .clear)
         }
         getRatingAndReviewInfo()
     }
     fileprivate func getRatingAndReviewInfo(){
-       
         getItemData()
-        
-
     }
     fileprivate func getItemData(){
         APIClient.getItemDetail(slug: self.slug ?? "noura-456735") { (result) in
             switch result{
             case .success(let data):
-                    self.itemDetails = data
-                    self.getRatingData(id:Int(self.itemDetails?.config.modelRatingID ?? 0))
-                    self.getReviewData(id:Int(self.itemDetails?.config.catalogID ?? 0))
-                    print(data)
+                self.itemDetails = data
+                self.getRatingData(id:Int(self.itemDetails?.config.modelRatingID ?? 0))
+                self.getReviewData(id:Int(self.itemDetails?.config.catalogID ?? 0),refresh:true)
+                print(data)
             case .failure(let error):
                 self.mainView.activityStopAnimating()
                 print(error)
@@ -80,27 +77,36 @@ class ItemDetailVC: UIViewController,ButtonActionDelegate {
                 print(data)
                 self.rateData = data.overallRating
             case.failure(let error):
-                  self.mainView.activityStopAnimating()
+                self.mainView.activityStopAnimating()
                 print(error)
             }
         }
     }
-    fileprivate func getReviewData(id:Int){
-        APIClient.getConfigReviews(id: id) { (result) in
+    fileprivate func getReviewData(id:Int,refresh:Bool = false){
+        APIClient.getConfigReviews(id: id,page: currentPage) { (result) in
             switch result{
             case.success(let data):
-                self.reviews = data.ratingables
-                 self.mainView.mainCollectionView.reloadData()
-                  self.mainView.activityStopAnimating()
+                if refresh {
+                    self.reviews = data.ratingables
+                } else {
+                    for conf in data.ratingables {
+                        self.reviews.append(conf)
+                    }
+                }
+                self.shouldShowLoadingCell = (data.meta.currentPage ?? 0) < (data.meta.lastPage ?? 0)
+                self.mainView.mainCollectionView.reloadData()
+                self.mainView.activityStopAnimating()
                 print(data)
             case.failure(let error):
                 print(error)
-                  self.mainView.activityStopAnimating()
+                self.mainView.activityStopAnimating()
             }
         }
     }
-    
-    
+    func fetchNextPage() {
+        currentPage += 1
+        self.getReviewData(id: Int(self.itemDetails?.config.catalogID ?? 0))
+    }
 }
 extension ItemDetailVC:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
     
@@ -113,7 +119,7 @@ extension ItemDetailVC:UICollectionViewDelegate,UICollectionViewDataSource,UICol
         }
         header.photos = itemDetails?.config.photos ?? []
         header.setData(rating: Double(itemDetails?.config.overallRating ?? 0), numberOfuserRating: Double(itemDetails?.config.overallRatingCount ?? 0), price: Double(itemDetails?.config.price ?? 0), sale: Double(itemDetails?.config.sale ?? 0), name: itemDetails?.config.name ?? "", numberOfPages: itemDetails?.config.photos?.count ?? 0)
-           header.header.imageCollectionView.reloadData()
+        header.header.imageCollectionView.reloadData()
         header.handelTabBarTapped = {(sender) in
             self.handelCustomTabBarTappedWork(collectionView, indexPath, header,sender)
         }
@@ -133,7 +139,7 @@ extension ItemDetailVC:UICollectionViewDelegate,UICollectionViewDataSource,UICol
                 
             }
         }
-       
+        
         return header
     }
     
@@ -142,7 +148,7 @@ extension ItemDetailVC:UICollectionViewDelegate,UICollectionViewDataSource,UICol
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-       guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as? MainCollCell else{return UICollectionViewCell()}
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as? MainCollCell else{return UICollectionViewCell()}
         cell.itemDetails = self.itemDetails
         cell.reviews = self.reviews
         cell.rateData = self.rateData
@@ -156,24 +162,28 @@ extension ItemDetailVC:UICollectionViewDelegate,UICollectionViewDataSource,UICol
                 self.changeCustomTabBarBtnColor(name: self.globalHeader.header.customtabBar.reviewBtn.tapGesture.name ?? "",headerView:self.globalHeader)
             }
         }
-         handelAddReviewTapped(cell:cell)
+        handelAddReviewTapped(cell:cell)
         cell.pageCollectionView.reloadData()
         cell.handelFooterViewClouserAction = {[weak self] (slug) in
             guard let self = self else{return}
             self.reloadController(slug: slug)
+        }
+        cell.handelThirdCellPaging = {[weak self] in
+            guard let self = self else{return}
+            self.fetchNextPage()
         }
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         switch indexPath.row {
         case 0:
-           return CGSize(width: collectionView.frame.width, height: 750)
+            return CGSize(width: collectionView.frame.width, height: 750)
         case 1:
             return CGSize(width: collectionView.frame.width, height:  collectionView.frame.height)
         case 2:
             return CGSize(width: collectionView.frame.width, height: 770)
         default:
-             return CGSize(width: collectionView.frame.width, height: 800)
+            return CGSize(width: collectionView.frame.width, height: 800)
         }
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
@@ -181,16 +191,16 @@ extension ItemDetailVC:UICollectionViewDelegate,UICollectionViewDataSource,UICol
     }
     func handelCustomTabBarTappedWork(_ collection:UICollectionView,_ indexPath:IndexPath,_ headerView:ItemDetailCollHeader,_ tap:UITapGestureRecognizer){
         guard let cell = collection.cellForItem(at: indexPath)as?MainCollCell else{return}
-            if tap.name == "details"{
-                changeCustomTabBarBtnColor(name: tap.name ?? "", headerView: headerView)
-                cell.pageCollectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .centeredHorizontally, animated: true)
-            }else if tap.name == "specs"{
-                changeCustomTabBarBtnColor(name: tap.name ?? "", headerView: headerView)
-                 cell.pageCollectionView.scrollToItem(at: IndexPath(row: 1, section: 0), at: .centeredHorizontally, animated: true)
-            }else if tap.name == "review"{
-                changeCustomTabBarBtnColor(name: tap.name ?? "", headerView: headerView)
-                cell.pageCollectionView.scrollToItem(at: IndexPath(row: 2, section: 0), at: .centeredHorizontally, animated: true)
-            }
+        if tap.name == "details"{
+            changeCustomTabBarBtnColor(name: tap.name ?? "", headerView: headerView)
+            cell.pageCollectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .centeredHorizontally, animated: true)
+        }else if tap.name == "specs"{
+            changeCustomTabBarBtnColor(name: tap.name ?? "", headerView: headerView)
+            cell.pageCollectionView.scrollToItem(at: IndexPath(row: 1, section: 0), at: .centeredHorizontally, animated: true)
+        }else if tap.name == "review"{
+            changeCustomTabBarBtnColor(name: tap.name ?? "", headerView: headerView)
+            cell.pageCollectionView.scrollToItem(at: IndexPath(row: 2, section: 0), at: .centeredHorizontally, animated: true)
+        }
     }
     fileprivate func changeCustomTabBarBtnColor(name:String,headerView:ItemDetailCollHeader){
         if name == "details"{

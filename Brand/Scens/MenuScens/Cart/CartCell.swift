@@ -43,7 +43,7 @@ class  CartCell: UITableViewCell {
 //            }else if cart.qty < Int(QTY.text ?? "0") ?? 0{
 //                Out.text = "exceeded".localized
 //            }
-            if cart.config.qty < cart.qty {
+            if Int(cart.config.qty )! < cart.qty {
                  Out.isHidden = false
                  Out.text = "exceeded".localized
             }else {

@@ -704,7 +704,6 @@
 		2D32B91322C0F20D00513DD4 /* Splash&Intro */ = {
 			isa = PBXGroup;
 			children = (
-				2D32B91422C0F20D00513DD4 /* SplashViewController.swift */,
 				2D32B91522C0F20D00513DD4 /* ContainerViewController.swift */,
 			);
 			path = "Splash&Intro";
@@ -772,6 +771,8 @@
 		2D32B93822C0F22C00513DD4 /* IntroScen */ = {
 			isa = PBXGroup;
 			children = (
+				2D32B91422C0F20D00513DD4 /* SplashViewController.swift */,
+				2D7A62EB22C0FA8B00AF4E78 /* SplashView.swift */,
 				2D32B8FB22C0F20600513DD4 /* IntroPageCell.swift */,
 				2D32B93922C0F22C00513DD4 /* IntroViewController.swift */,
 			);
@@ -1010,7 +1011,6 @@
 		2D7A62EA22C0FA8B00AF4E78 /* Splash&IntroView */ = {
 			isa = PBXGroup;
 			children = (
-				2D7A62EB22C0FA8B00AF4E78 /* SplashView.swift */,
 			);
 			path = "Splash&IntroView";
 			sourceTree = "<group>";

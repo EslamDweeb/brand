@@ -21,18 +21,19 @@ enum ProductRouter:URLRequestConvertible {
     case getCategoryInfo(slug:String)
     case getCategoryProduct(slug:String)
     case getWishlist(pageNumber:Int)
-    case getCartData
+    case getCartData(pageNumber:Int)
     case getExploreData
     case getFlashData
+    case getFlashHeader
     case getAllProductConfigs(slug:String,pageNumber:Int)
     case toggleFav(id:Int)
     case getitemDetail(slug:String)
-    case getConfigReview(id:Int)
+    case getConfigReview(id:Int,pageNumber:Int)
     case getConfigRating(id:Int)
     case getSeeAllProduct(key:String,pageNumber:Int)
     private var Methods : HTTPMethod {
         switch self {
-        case .brands,.banners,.categories,.lastUpdate,.allReviews,.getOrders,.getOrderDetails,.getCategoryInfo,.getCategoryProduct,.getWishlist,.getCartData,.getExploreData,.getFlashData,.getAllProductConfigs,.getitemDetail,.getConfigReview,.getConfigRating,.getSeeAllProduct:
+        case .brands,.banners,.categories,.lastUpdate,.allReviews,.getOrders,.getOrderDetails,.getCategoryInfo,.getCategoryProduct,.getWishlist,.getCartData,.getExploreData,.getFlashData,.getAllProductConfigs,.getitemDetail,.getConfigReview,.getConfigRating,.getSeeAllProduct,.getFlashHeader:
             return .get
         case .updateReview,.toggleFav,.addReview:
             return .post
@@ -64,8 +65,8 @@ enum ProductRouter:URLRequestConvertible {
             return "/api/products?category=\(slug)"
         case .getWishlist(let pageNumber):
             return "/api/favorite?type=config&page=\(pageNumber)"
-        case .getCartData:
-            return "/api/cart-items"
+        case .getCartData(let pageNumber):
+            return "/api/cart-items&page=\(pageNumber)"
         case .getExploreData:
             return "/api/explore"
         case .getFlashData:
@@ -76,17 +77,19 @@ enum ProductRouter:URLRequestConvertible {
             return "/api/favorite/configs/\(id)"
         case .getitemDetail(let slug):
             return "/api/configs/\(slug)"
-        case .getConfigReview(let id):
-            return "/api/ratingables?type=catalog&id=\(id)"
+        case .getConfigReview(let id,let pageNumber):
+            return "/api/ratingables?type=catalog&id=\(id)&page=\(pageNumber)"
         case .getConfigRating(let id):
             return "/api/model-ratings/\(id)"
         case .getSeeAllProduct(let key,let pageNumber):
             return "/api/configs?show=\(key)&page=\(pageNumber)"
+        case .getFlashHeader:
+            return "/api/settings?type=flash_offer_header"
         }
     }
     private var headers : HTTPHeaders {
         switch self {
-        case.brands,.banners,.categories,.lastUpdate,.getCategoryInfo,.getCategoryProduct,.getFlashData,.getAllProductConfigs:
+        case.brands,.banners,.categories,.lastUpdate,.getCategoryInfo,.getCategoryProduct,.getFlashData,.getAllProductConfigs,.getFlashHeader:
             return [
                     HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue,
                     HTTPHeaderField.contentType.rawValue : ContentType.json.rawValue
@@ -101,7 +104,7 @@ enum ProductRouter:URLRequestConvertible {
     }
     private var parameters :Parameters?{
         switch self {
-        case .brands,.banners,.categories,.lastUpdate,.allReviews,.getOrders,.getOrderDetails,.getCategoryInfo,.getCategoryProduct,.getWishlist,.getCartData,.getExploreData,.getFlashData,.getAllProductConfigs,.getitemDetail,.getConfigReview,.getConfigRating,.getSeeAllProduct:
+        case .brands,.banners,.categories,.lastUpdate,.allReviews,.getOrders,.getOrderDetails,.getCategoryInfo,.getCategoryProduct,.getWishlist,.getCartData,.getExploreData,.getFlashData,.getAllProductConfigs,.getitemDetail,.getConfigReview,.getConfigRating,.getSeeAllProduct,.getFlashHeader:
             return [:]
         case .updateReview(let value, let review, let pros, let cons,_,_):
             return [
@@ -126,7 +129,7 @@ enum ProductRouter:URLRequestConvertible {
     func asURLRequest() throws -> URLRequest {
         switch self {
         case .banners,.categories,.allReviews,.getCategoryProduct,.getWishlist,.getAllProductConfigs,.getConfigReview
-            ,.getSeeAllProduct:
+            ,.getSeeAllProduct,.getCartData,.getFlashHeader:
             let url = "\(Constants.ProductionServer.baseURL)\(Paths)"
             let safeUrl = url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
             var urlRequest = URLRequest(url: URL(string: safeUrl!)!)

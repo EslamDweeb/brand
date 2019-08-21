@@ -33,3 +33,12 @@ struct Flash:Codable {
         case soldOut = "sold_out"
     }
 }
+struct FlashOfferHeader:Codable{
+    let settings:[Settings]
+}
+struct Settings:Codable {
+    let id: Int
+    let type: String
+    let value: NewDate
+    let photo:Media
+}

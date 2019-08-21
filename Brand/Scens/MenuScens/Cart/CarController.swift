@@ -11,6 +11,9 @@ import EasyTipView
 
 class CartController : UIViewController ,ButtonActionDelegate{
     //MARK:- Var&Con
+    var shouldShowLoadingCell = false
+    var currentPage:Int = 1
+    var lastPage:Int?
     var mainView = CartView()
     var cartpro: [CartItem] = []
     let reachability =  Reachability()
@@ -21,7 +24,7 @@ class CartController : UIViewController ,ButtonActionDelegate{
         return .lightContent
     }
     //MARK:- Controller Life cycle
-
+    
     override func loadView() {
         super.loadView()
         view = mainView
@@ -32,12 +35,12 @@ class CartController : UIViewController ,ButtonActionDelegate{
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-            preferences.drawing.font = UIFont(name: .fontM, size: 13)!
-            preferences.drawing.foregroundColor = UIColor.white
-            preferences.drawing.backgroundColor = .gray
-            //preferences.positioning.maxWidth = self.view.frame.size.width - 50
-      //  preferences.drawing.arrowPosition = .top
-            EasyTipView.globalPreferences = preferences
+        preferences.drawing.font = UIFont(name: .fontM, size: 13)!
+        preferences.drawing.foregroundColor = UIColor.white
+        preferences.drawing.backgroundColor = .gray
+        //preferences.positioning.maxWidth = self.view.frame.size.width - 50
+        //  preferences.drawing.arrowPosition = .top
+        EasyTipView.globalPreferences = preferences
         mainView.actionDelegate = self
         mainView.tableView.delegate = self
         mainView.tableView.dataSource = self
@@ -47,43 +50,50 @@ class CartController : UIViewController ,ButtonActionDelegate{
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         handelReachability(reachability: reachability)
-        getCartData()
+        getCartData(true)
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-         getCartData()
+        getCartData(true)
         stopNotifier(reachability: reachability)
     }
     //MARK:- Helper Functions
-
+    
     func saveButtonTapped() {
         self.presentViewController(controller: ShippingVC(), transitionModal: nil, presentationStyle: nil)
     }
     func infoTapped(_ sender: UIButton) {
-       
+        
         let tipView = EasyTipView(text: cartpro[sender.tag].sellerNotes ?? "" , preferences: preferences)
         guard let  cell = mainView.tableView.cellForRow(at: [0,sender.tag]) as? CartCell else {
             return
         }
-      
-            tipView.show(forView: cell.infoBtn , withinSuperview: self.mainView)
-//        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
-// tipView.dismiss()
-//        }
+        
+        tipView.show(forView: cell.infoBtn , withinSuperview: self.mainView)
+        //        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
+        // tipView.dismiss()
+        //        }
     }
     func dissmisController() {
         self.dismiss(animated: true, completion: nil)
     }
-    private func getCartData(){
+    private func getCartData(_ refresh:Bool = false){
         DispatchQueue.main.async {
             self.mainView.activityStartAnimating(activityColor: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.6952322346), backgroundColor: .clear)
-            APIClient.getCartData { (result) in
+            APIClient.getCartData(page: self.currentPage) { (result) in
                 switch result{
                 case.success(let data):
-                    DispatchQueue.main.async {
+                    if refresh {
                         self.cartpro = data.cartItems
-                        self.mainView.tableView.reloadData()
+                    } else {
+                        for conf in data.cartItems {
+                            self.cartpro.append(conf)
+                        }
+                    }
+                    DispatchQueue.main.async {
                         self.mainView.activityStopAnimating()
+                        self.shouldShowLoadingCell = ( data.meta?.currentPage ?? 0) < (data.meta?.lastPage ?? 0)
+                        self.mainView.tableView.reloadData()
                     }
                     print (data)
                 case .failure(let error):
@@ -93,15 +103,19 @@ class CartController : UIViewController ,ButtonActionDelegate{
             }
         }
     }
+    func fetchNextPage() {
+        currentPage += 1
+        getCartData()
+    }
     func getTotalCartItemsPrice() -> String {
         totalPrice = 0.0
         for item in cartpro {
             totalPrice += item.config.ReturnTotalPriceAfterSale(price: Double(item.itemOverallPrice), QTY: Double(item.qty))
         }
-     
+        
         return "\(totalPrice)"
     }
-  
-    }
+    
+}
 
 

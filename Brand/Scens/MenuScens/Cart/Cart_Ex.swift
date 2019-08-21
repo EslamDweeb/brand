@@ -9,7 +9,10 @@
 import UIKit
 
 extension CartController: UITableViewDelegate , UITableViewDataSource {
-    
+    private func isLoadingIndexPath(_ indexPath: IndexPath) -> Bool {
+        guard shouldShowLoadingCell else { return false }
+        return indexPath.row == self.cartpro.count
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if cartpro.count == 0 {
 //            mainView.bottomConstrain?.constant = view.frame.height - 140 -  view.frame.height * 0.12
@@ -31,8 +34,8 @@ extension CartController: UITableViewDelegate , UITableViewDataSource {
             mainView.save.isHidden = false
             tableView.backgroundView = nil
         }
-       
-        return cartpro.count
+        let count = cartpro.count
+        return shouldShowLoadingCell ? count + 1 : count
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 160
@@ -73,6 +76,9 @@ extension CartController: UITableViewDelegate , UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! CartCell
+        if isLoadingIndexPath(indexPath) {
+            return cell
+        } else {
         let cart = cartpro[indexPath.row]
         cell.cart = cart
         if cart.sellerNotes == nil {
@@ -82,7 +88,7 @@ extension CartController: UITableViewDelegate , UITableViewDataSource {
         cell.infoBtn.tag = indexPath.row
         cell.infoBtn.addTarget(self, action: #selector(ButtonActionDelegate.infoTapped(_:)), for: .touchUpInside)
 
-        
+        }
 //        mainView.ItemsNum.text = "\("Items".localized )\(cartpro.count)"
 //        mainView.Totalsar.text = "\("TotalAmount".localized) \(self.getTotalCartItemsPrice())"
         return cell
@@ -92,5 +98,8 @@ extension CartController: UITableViewDelegate , UITableViewDataSource {
 //        self.mainView.tableView.heightAnchor.constraint(equalToConstant: self.mainView.tableView.contentSize.height + 50 ).isActive = true
 //        super.updateViewConstraints()
 //    }
-    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard isLoadingIndexPath(indexPath) else { return }
+        fetchNextPage()
+    }
 }
