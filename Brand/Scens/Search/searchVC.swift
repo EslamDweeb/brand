@@ -9,12 +9,11 @@
 
 import UIKit
 protocol isAbleToReceiveData {
-    func pass(data: [Config])  //data: string is an example parameter
+    func pass(data: [Config],brand : String ,price : String ,made : String ,Rate : String)  //data: string is an example parameter
 }
 
 class searchVC: UIViewController,ButtonActionDelegate , isAbleToReceiveData{
-    func pass(data: [Config]) {
-        
+    func pass(data: [Config],brand : String ,price : String ,made : String ,Rate : String) {
         print(data)
         searchitems = data
          self.mainView.searchCollection.reloadData()
@@ -65,7 +64,7 @@ class searchVC: UIViewController,ButtonActionDelegate , isAbleToReceiveData{
         searchitems.removeAll()
         DispatchQueue.main.async {
             self.mainView.activityStartAnimating(activityColor: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.6952322346), backgroundColor: .clear)
-            APIClient.getsearchitems(name: text, brand: "", origin: "", price: "", rate: "", complition: { (result) in
+            APIClient.getsearchitems(name: text, brand: "", origin: "", price: "", rate: "", show: "", page: 1, complition: { (result) in
                 switch result{
                 case .success(let data):
                     self.searchitems = data.configs!

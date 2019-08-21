@@ -30,7 +30,7 @@ enum APIRouter : URLRequestConvertible {
       case getbillingMethod
     case checkout(flag: Bool , shippingId : Int , billingId : Int , addressId : Int , coupon : String)
      case deleteCartItem(id:Int)
-    case searshItem(name:String,brand : String , origin :String,  price : String ,rate : String)
+    case searshItem(name:String,brand : String , origin :String,  price : String ,rate : String ,show : String , page : Int)
      case getProductFilter
     
     case addToCart (config_id : Int , qty : Int , option_ids : [Int]? , product_option_value_ids : [Int]? )
@@ -140,8 +140,9 @@ enum APIRouter : URLRequestConvertible {
            
         case .deleteCartItem(let id):
             return "/api/cart-items/\(id)"
-        case .searshItem(let name,let brand ,let origin , let price , let rate):
-             return "/api/configs?brands=\(brand)&origin=\(origin)&price_between=\(price)&rate=\(rate)&name=\(name)"
+        case .searshItem(let name,let brand ,let origin , let price , let rate ,let show, let page ):
+            
+             return "/api/configs?show=\(show)&brand=\(brand)&origin=\(origin)&price_between=\(price)&rate=\(rate)&name=\(name) &page=\(page)"
         case .getProductFilter:
             return "/api/product-filters"
         case .addToCart :
@@ -286,11 +287,20 @@ enum APIRouter : URLRequestConvertible {
            
           
             case .getProductFilter:
-                return [
-                    HTTPHeaderField.authentication.rawValue : " \(ContentType.token.rawValue) \(UserDefaults.standard.string(forKey: Constants.Defaults.authToken)!)",
-                    HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue,
-                    HTTPHeaderField.contentType.rawValue : ContentType.json.rawValue
-            ]
+                if UserDefaults.standard.string(forKey: Constants.Defaults.authToken) != nil {
+                    return [
+                        HTTPHeaderField.authentication.rawValue : " \(ContentType.token.rawValue) \(UserDefaults.standard.string(forKey: Constants.Defaults.authToken)!)",
+                        HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue,
+                        HTTPHeaderField.contentType.rawValue : ContentType.json.rawValue
+                    ]
+                }else {
+                    return [
+                        
+                        HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue,
+                        HTTPHeaderField.contentType.rawValue : ContentType.json.rawValue
+                    ]
+                }
+            
           
         case .addToCart :
             return [

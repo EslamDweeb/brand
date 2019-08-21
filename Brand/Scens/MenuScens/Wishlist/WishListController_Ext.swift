@@ -24,7 +24,12 @@ extension WishListController: UICollectionViewDelegate,UICollectionViewDataSourc
                 view.button.isHidden = true
                 collectionView.backgroundView = view
             case .seeAll:
-                 collectionView.backgroundView = nil
+               //  collectionView.backgroundView = nil
+                    let view = ReviewBGView()
+                    view.image.image = #imageLiteral(resourceName: "No product")
+                    view.lable.text = "NO Result"
+                    view.backgroundColor = .clear
+                    collectionView.backgroundView = view
             }
         }else{
             collectionView.backgroundView = nil

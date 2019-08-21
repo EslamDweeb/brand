@@ -1,49 +1,57 @@
 PODS:
   - AKPickerView (0.2.7)
-  - Alamofire (5.0.0-beta.6)
+  - Alamofire (5.0.0-beta.7)
   - Cosmos (18.0.1)
   - Crashlytics (3.13.4):
     - Fabric (~> 1.10.2)
   - EasyTipView (2.0.4)
   - Fabric (1.10.2)
-  - FBSDKCoreKit (5.0.2):
-    - FBSDKCoreKit/Basics (= 5.0.2)
-    - FBSDKCoreKit/Core (= 5.0.2)
-  - FBSDKCoreKit/Basics (5.0.2)
-  - FBSDKCoreKit/Core (5.0.2):
+  - FBSDKCoreKit (5.4.0):
+    - FBSDKCoreKit/Basics (= 5.4.0)
+    - FBSDKCoreKit/Core (= 5.4.0)
+  - FBSDKCoreKit/Basics (5.4.0)
+  - FBSDKCoreKit/Core (5.4.0):
     - FBSDKCoreKit/Basics
-  - FBSDKLoginKit (5.0.2):
+  - FBSDKLoginKit (5.4.0):
     - FBSDKCoreKit (~> 5.0)
-  - Firebase/Analytics (6.5.0):
+  - Firebase/Analytics (6.6.0):
     - Firebase/Core
-  - Firebase/Core (6.5.0):
+  - Firebase/Core (6.6.0):
     - Firebase/CoreOnly
-    - FirebaseAnalytics (= 6.0.4)
-  - Firebase/CoreOnly (6.5.0):
-    - FirebaseCore (= 6.1.0)
-  - Firebase/Messaging (6.5.0):
+    - FirebaseAnalytics (= 6.1.0)
+  - Firebase/CoreOnly (6.6.0):
+    - FirebaseCore (= 6.2.0)
+  - Firebase/Messaging (6.6.0):
     - Firebase/CoreOnly
-    - FirebaseMessaging (~> 4.1.1)
-  - FirebaseAnalytics (6.0.4):
-    - FirebaseCore (~> 6.1)
+    - FirebaseMessaging (~> 4.1.2)
+  - FirebaseAnalytics (6.1.0):
+    - FirebaseCore (~> 6.2)
     - FirebaseInstanceID (~> 4.2)
-    - GoogleAppMeasurement (= 6.0.4)
+    - GoogleAppMeasurement (= 6.1.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
     - GoogleUtilities/MethodSwizzler (~> 6.0)
     - GoogleUtilities/Network (~> 6.0)
     - "GoogleUtilities/NSData+zlib (~> 6.0)"
     - nanopb (~> 0.3)
-  - FirebaseAnalyticsInterop (1.2.0)
-  - FirebaseCore (6.1.0):
-    - GoogleUtilities/Environment (~> 6.0)
-    - GoogleUtilities/Logger (~> 6.0)
-  - FirebaseInstanceID (4.2.2):
+  - FirebaseAnalyticsInterop (1.3.0)
+  - FirebaseCore (6.2.0):
+    - FirebaseCoreDiagnostics (~> 1.0)
+    - FirebaseCoreDiagnosticsInterop (~> 1.0)
+    - GoogleUtilities/Environment (~> 6.2)
+    - GoogleUtilities/Logger (~> 6.2)
+  - FirebaseCoreDiagnostics (1.0.1):
+    - FirebaseCoreDiagnosticsInterop (~> 1.0)
+    - GoogleDataTransportCCTSupport (~> 1.0)
+    - GoogleUtilities/Environment (~> 6.2)
+    - GoogleUtilities/Logger (~> 6.2)
+  - FirebaseCoreDiagnosticsInterop (1.0.0)
+  - FirebaseInstanceID (4.2.3):
     - FirebaseCore (~> 6.0)
     - GoogleUtilities/Environment (~> 6.0)
     - GoogleUtilities/UserDefaults (~> 6.0)
-  - FirebaseMessaging (4.1.1):
-    - FirebaseAnalyticsInterop (~> 1.1)
-    - FirebaseCore (~> 6.0)
+  - FirebaseMessaging (4.1.2):
+    - FirebaseAnalyticsInterop (~> 1.3)
+    - FirebaseCore (~> 6.2)
     - FirebaseInstanceID (~> 4.1)
     - GoogleUtilities/AppDelegateSwizzler (~> 6.2)
     - GoogleUtilities/Environment (~> 6.2)
@@ -51,12 +59,16 @@ PODS:
     - GoogleUtilities/UserDefaults (~> 6.2)
     - Protobuf (~> 3.1)
   - FlexibleSteppedProgressBar (0.6.1)
-  - GoogleAppMeasurement (6.0.4):
+  - GoogleAppMeasurement (6.1.0):
     - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
     - GoogleUtilities/MethodSwizzler (~> 6.0)
     - GoogleUtilities/Network (~> 6.0)
     - "GoogleUtilities/NSData+zlib (~> 6.0)"
     - nanopb (~> 0.3)
+  - GoogleDataTransport (1.1.1)
+  - GoogleDataTransportCCTSupport (1.0.1):
+    - GoogleDataTransport (~> 1.1)
+    - nanopb
   - GoogleMaps (3.1.0):
     - GoogleMaps/Maps (= 3.1.0)
   - GoogleMaps/Base (3.1.0)
@@ -67,25 +79,25 @@ PODS:
     - GooglePlaces (= 3.1.0)
   - GooglePlaces (3.1.0):
     - GoogleMaps/Base (= 3.1.0)
-  - GoogleUtilities/AppDelegateSwizzler (6.2.3):
+  - GoogleUtilities/AppDelegateSwizzler (6.2.5):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
     - GoogleUtilities/Network
-  - GoogleUtilities/Environment (6.2.3)
-  - GoogleUtilities/Logger (6.2.3):
+  - GoogleUtilities/Environment (6.2.5)
+  - GoogleUtilities/Logger (6.2.5):
     - GoogleUtilities/Environment
-  - GoogleUtilities/MethodSwizzler (6.2.3):
+  - GoogleUtilities/MethodSwizzler (6.2.5):
     - GoogleUtilities/Logger
-  - GoogleUtilities/Network (6.2.3):
+  - GoogleUtilities/Network (6.2.5):
     - GoogleUtilities/Logger
     - "GoogleUtilities/NSData+zlib"
     - GoogleUtilities/Reachability
-  - "GoogleUtilities/NSData+zlib (6.2.3)"
-  - GoogleUtilities/Reachability (6.2.3):
+  - "GoogleUtilities/NSData+zlib (6.2.5)"
+  - GoogleUtilities/Reachability (6.2.5):
     - GoogleUtilities/Logger
-  - GoogleUtilities/UserDefaults (6.2.3):
+  - GoogleUtilities/UserDefaults (6.2.5):
     - GoogleUtilities/Logger
-  - Kingfisher (5.6.0)
+  - Kingfisher (5.7.1)
   - MOLH (1.0)
   - nanopb (0.3.901):
     - nanopb/decode (= 0.3.901)
@@ -130,10 +142,14 @@ SPEC REPOS:
     - FirebaseAnalytics
     - FirebaseAnalyticsInterop
     - FirebaseCore
+    - FirebaseCoreDiagnostics
+    - FirebaseCoreDiagnosticsInterop
     - FirebaseInstanceID
     - FirebaseMessaging
     - FlexibleSteppedProgressBar
     - GoogleAppMeasurement
+    - GoogleDataTransport
+    - GoogleDataTransportCCTSupport
     - GoogleMaps
     - GooglePlacePicker
     - GooglePlaces
@@ -147,26 +163,30 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   AKPickerView: 125372e36fcc372216127600a541f14dcdbb7993
-  Alamofire: cd08a4402bd12cacd0c66f23fb12fec8d6b965e4
+  Alamofire: bd07938ceecad59d2492aeecb1f785a8f2721160
   Cosmos: 7dfaa3f52584ca5f94ab74b5c2e264019cc9f7f5
   Crashlytics: 2dfd686bcb918dc10ee0e76f7f853fe42c7bd552
   EasyTipView: 4f8beae0a82db2ca4a9b5fd658785fc5f61d296b
   Fabric: 706c8b8098fff96c33c0db69cbf81f9c551d0d74
-  FBSDKCoreKit: 3e41c402eb64ea7799c71833ff9e5690f27b9c42
-  FBSDKLoginKit: a88f36da648e4c5d60eb261c63eac067abb97130
-  Firebase: dedc9e48ea3f3649ad5f6b982f8a0c73508a14b5
-  FirebaseAnalytics: 3fb375bc9d13779add4039716f868d233a473fad
-  FirebaseAnalyticsInterop: efbe45c8385ec626e29f9525e5ebd38520dfb6c1
-  FirebaseCore: aecf02fb2274ec361b9bebeac112f5daa18273bd
-  FirebaseInstanceID: 662b8108a09fe9ed01aafdedba100fde8536b0f6
-  FirebaseMessaging: 6bb0bdaf64c55fef7a219b7bb1e94e94a0855ced
+  FBSDKCoreKit: 026e56cf2c2cebc656cf2aec5c6898b8c4f33930
+  FBSDKLoginKit: f5064bb8f20c065ee1ea5987cbe0475b713edf9b
+  Firebase: a2b5951f30ff38fd3b3bdae9c7d340f940fd3c51
+  FirebaseAnalytics: 48414ae5cbf6976d8a2f7177e0466540e5ab33ce
+  FirebaseAnalyticsInterop: 0f250d71e8741352407a8db351e6de78c5c56d35
+  FirebaseCore: 8c9e08bce0c72a3affd83927d8184cf244918bc8
+  FirebaseCoreDiagnostics: 4c04ae09d0ab027c30179828c6bb47764df1bd13
+  FirebaseCoreDiagnosticsInterop: 6829da2b8d1fc795ff1bd99df751d3788035d2cb
+  FirebaseInstanceID: 8b42755db950682e7de0d167bc6fb26a57b244af
+  FirebaseMessaging: ddd74d13644ef24cc4e2d95cabd1cf408e99b7b0
   FlexibleSteppedProgressBar: 402203e2981409ce3785a5dbd3df0234093fbd58
-  GoogleAppMeasurement: 183bd916af7f80deb67c01888368f1108d641832
+  GoogleAppMeasurement: 47285fa897e5a125df56b9ef8750a1d81e4598a8
+  GoogleDataTransport: ffbadce4ab93c88fb9dd8e6366c47bfcb4a32193
+  GoogleDataTransportCCTSupport: 3451e7d8ba19093e533362a6d78d6d9014c6a037
   GoogleMaps: 5c13302e6fe6bb6e686b267196586b91cd594225
   GooglePlacePicker: 1c60c2a26e9d1e73bcb0c6f89609db8d777d13c1
   GooglePlaces: e874db179f2675c4f3eeda0b686b540273a578b0
-  GoogleUtilities: d2b0e277a95962e09bb27f5cd42f5f0b6a506c7d
-  Kingfisher: 1a50df6880a60bae26f3e21a0df3d17b892f5e0b
+  GoogleUtilities: e7dc37039b19df7fe543479d3e4a02ac8d11bb69
+  Kingfisher: 176d377ad339113c99ad4980cbae687f807e20fe
   MOLH: 2492e7f8fe3400580832312dc0fb9e05d7e92726
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   Protobuf: 1097ca58584c8d9be81bfbf2c5ff5975648dd87a

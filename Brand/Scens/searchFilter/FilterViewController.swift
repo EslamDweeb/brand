@@ -15,6 +15,7 @@ class FilterViewController:UIViewController,ButtonActionDelegate {
      var MadeIns : [String] = []
      var searchitems: [Config] = []
     var name = ""
+    var showfilter = ""
     lazy var mainView:SearchFilterView = {
         let v = SearchFilterView(delegate: self)
         return v
@@ -68,13 +69,13 @@ class FilterViewController:UIViewController,ButtonActionDelegate {
              PriceBetween = "\(self.mainView.fromTextFeild.text!),\(self.mainView.toTextFeild.text!)"
             }
             self.mainView.activityStartAnimating(activityColor: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.6952322346), backgroundColor: .clear)
-            APIClient.getsearchitems(name: self.name , brand: self.mainView.bradDropDown.titleLabel?.text ?? "", origin: self.mainView.madeInDropDown.titleLabel?.text ?? "", price: PriceBetween, rate: "\(self.mainView.rateView.rating)", complition: { (result) in
+            APIClient.getsearchitems(name: self.name , brand: self.mainView.bradDropDown.titleLabel?.text ?? "", origin: self.mainView.madeInDropDown.titleLabel?.text ?? "", price: PriceBetween, rate: "\(self.mainView.rateView.rating)", show: self.showfilter, page: 1, complition: { (result) in
                 switch result{
                 case .success(let data):
                     self.searchitems = data.configs!
                     DispatchQueue.main.async {
                         print(self.searchitems.count)
-                        self.delegate?.pass(data: data.configs!)
+                        self.delegate?.pass(data: data.configs!, brand: self.mainView.bradDropDown.titleLabel?.text ?? "", price: PriceBetween, made: self.mainView.madeInDropDown.titleLabel?.text ?? "", Rate: "\(self.mainView.rateView.rating)")
                         self.mainView.activityStopAnimating()
                     }
                 case .failure(let error):
