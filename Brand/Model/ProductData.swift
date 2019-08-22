@@ -39,9 +39,9 @@ struct Config: Codable {
     let slug: String
     let name: String?
     let gender, qty: Int
-    let sale: String
-    let price: String
-    let oldPrice: String?
+    let sale: Double
+    let price: Double
+    let oldPrice: Double?
     let brand: Brand?
     let isFlashOffer: Bool
     let mainPhoto: Media?

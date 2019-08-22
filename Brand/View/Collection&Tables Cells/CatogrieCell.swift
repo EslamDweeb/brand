@@ -26,11 +26,11 @@ class CatogrieCell:UICollectionViewCell {
                 let index = brand.logoImage.path.firstIndex(of: " ")
                 let path = String(brand.logoImage.path.prefix(upTo: index!))
                 let url = URL(string:path)
-                print(url)
+               // print(url)
                 Image.kf.setImage(with: url)
             }else{
                 let url = URL(string: brand.logoImage.path)
-                print(url)
+                //print(url)
                 Image.kf.setImage(with: url)
             }
             brandName.text = brand.name

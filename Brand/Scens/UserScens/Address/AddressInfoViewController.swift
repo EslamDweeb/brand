@@ -92,7 +92,7 @@ class AddressInfoViewController: UIViewController, ButtonActionDelegate , Displa
                         case .success(let data) :
                             self.addressView.activityStopAnimating()
                             self.createAlert(title: NSLocalizedString( "Success", comment: ""), erroMessage: data.message ?? "")
-                            print(data.errors)
+                            print(data.errors ?? [])
                             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)){
                                 self.dismissPressentededControllers()
                                 self.dismiss(animated: true, completion: nil)
@@ -167,7 +167,7 @@ class AddressInfoViewController: UIViewController, ButtonActionDelegate , Displa
             } catch {
                 print(error)
             }
-            print(self.countries)
+            //print(self.countries)
             DispatchQueue.main.async {
                 self.addressView.addressName.text = self.addressedit?.addressName
                 self.addressView.cant = self.countries
@@ -176,7 +176,7 @@ class AddressInfoViewController: UIViewController, ButtonActionDelegate , Displa
                     self.addressView.state.setTitle(self.addressedit?.state.name, for: .normal)
                     self.addressView.stateList = self.countries?[self.x].states
                     self.addressView.state.dropView.tableView.reloadData()
-                    print(self.addressView.stateList)
+                   // print(self.addressView.stateList)
                     //self.addressView.stateList = self.addressedit?.country.states
                     self.addressView.country.setTitleColor(.black, for: .normal)
                     self.addressView.state.setTitleColor(.black, for: .normal)

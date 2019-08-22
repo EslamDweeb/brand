@@ -108,7 +108,7 @@ class SignUpViewController: UIViewController , ButtonActionDelegate{
                     case .success(let user) :
                         self.signupView.activityStopAnimating()
                         UserDefaults.standard.set(user.accessToken, forKey: Constants.Defaults.authToken)
-                        print(UserDefaults.standard.string(forKey: Constants.Defaults.authToken))
+                        print(UserDefaults.standard.string(forKey: Constants.Defaults.authToken) ?? "")
                         UserDefaults.standard.set(true, forKey: Constants.Defaults.isLogin)
                         self.presentViewControllerFromStoryBoard(identifier: self.indetifier)
                     case .failure(let error) :

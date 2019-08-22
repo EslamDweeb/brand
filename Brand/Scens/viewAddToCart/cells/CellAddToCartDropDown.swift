@@ -149,7 +149,7 @@ extension CellAddToCartDropDown : UIPickerViewDelegate , UIPickerViewDataSource 
         selectedValue = values[row]
         textField.text = (values[row].value ?? "" ) + " ( +\(values[row].addsPrice) SAR ) "
         completion?(selectedValue! , parentID )
-        print ("value : \(values[row].value )")
+        print ("value : \(values[row].value ?? "")")
     }
     
 }
