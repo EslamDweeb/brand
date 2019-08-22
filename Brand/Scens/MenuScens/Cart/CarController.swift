@@ -54,7 +54,7 @@ class CartController : UIViewController ,ButtonActionDelegate{
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-       // getCartData(true)
+        getCartData(true)
         stopNotifier(reachability: reachability)
     }
     //MARK:- Helper Functions
