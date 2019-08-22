@@ -20,8 +20,8 @@ struct DetailedConfig:Codable {
     let name,madeIn: String
     let configDescription,sku,sellerNotes:String?
     let gender: Int
-    let sale: Double
-    let price: Int
+    let sale: String
+    let price: String
     let isFlashOffer: Bool
     let qty, minQty, maxQty: Int
     let vendor: Vendor
@@ -115,7 +115,7 @@ struct ProductOptions: Codable {
     let id, optionID: Int
     let name, inputType: String
     let values: [ProductOptionValues]?
-    let addsPrice: Int
+    let addsPrice: String
     let isRequired, selected: Bool?
 //    let selected: String
     
