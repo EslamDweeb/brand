@@ -34,6 +34,10 @@ class YString {
     static var sign_up : String { return getText(key: "sign_up") }
     static var pleaseEnterValidEmail : String { return getText(key: "pleaseEnterValidEmail") }
     static var passwordMustBeGreaterThan5Char : String { return getText(key: "passwordMustBeGreaterThan5Char") }
+    static var menu : String { return getText(key: "menu") }
+    static var startShopping : String { return getText(key: "startShopping") }
+    static var yourCartIsEmpty : String { return getText(key: "yourCartIsEmpty") }
+    
     
     
     static func getText (key : String) -> String {
@@ -233,7 +237,12 @@ class YString {
         "socialSignUp" : "تسجيل الدخول",
         "sign_up" : "تسجيل الدخول",
         "pleaseEnterValidEmail" : "من فضلك اضف ايميل صحيح",
-        "passwordMustBeGreaterThan5Char" : "كلمة المرور لابد ان تكون اتكبر من ٥ حروف"
+        "passwordMustBeGreaterThan5Char" : "كلمة المرور لابد ان تكون اتكبر من ٥ حروف",
+        "menu" : "القائمة",
+        "startShopping" : "Start shopping",
+        "yourCartIsEmpty" : "opps! Your cart is empty"
+        
+        
     ]
     
     static private let enString : [String : String] = [
@@ -424,7 +433,10 @@ class YString {
         "socialSignUp" : "Social signup" ,
         "sign_up" : "sign up",
         "pleaseEnterValidEmail" : "Please enter valid email",
-        "passwordMustBeGreaterThan5Char" : "Password must be greater than 5 char"
+        "passwordMustBeGreaterThan5Char" : "Password must be greater than 5 char",
+        "menu" : "Menu",
+        "startShopping" : "Start shopping",
+        "yourCartIsEmpty" : "opps! Your cart is empty"
     ]
     
     

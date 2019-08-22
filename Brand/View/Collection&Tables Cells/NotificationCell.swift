@@ -16,12 +16,12 @@ class NotificationCell:UITableViewCell {
         view.backgroundColor = .white
         return view
     }()
-    lazy var logoImage:UIImageView = {
-        let image = UIImageView()
-        image.image = #imageLiteral(resourceName: "XSMax")
-        image.contentMode = .scaleAspectFill
-        return image
-    }()
+//    lazy var logoImage:UIImageView = {
+//        let image = UIImageView()
+//        image.image = #imageLiteral(resourceName: "XSMax")
+//        image.contentMode = .scaleAspectFill
+//        return image
+//    }()
     lazy var messageLable:UILabel = {
         let lable = UILabel()
         lable.font = UIFont(name: "Avenir-Medium", size: 12.0)
@@ -69,7 +69,7 @@ class NotificationCell:UITableViewCell {
     }
     private func addSubViews() {
         contentView.addSubview(containerView)
-        containerView.addSubview(logoImage)
+   //     containerView.addSubview(logoImage)
         containerView.addSubview(dateLable)
         containerView.addSubview(messageLable)
         containerView.addSubview(vLineView)
@@ -78,10 +78,10 @@ class NotificationCell:UITableViewCell {
     private  func addConstrainsToUI() {
         containerView.anchor(top: contentView.topAnchor, left: contentView.leftAnchor, bottom: contentView.bottomAnchor, right: contentView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         vLineView.anchor(top: containerView.topAnchor, left: containerView.leftAnchor, bottom: hLineView.topAnchor, right: nil, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 2, height: 0, paddingCenterX: 0, paddingCenterY: 0)
-        logoImage.anchor(top: nil, left: vLineView.rightAnchor, bottom: nil, right: nil, centerX: nil, centerY: containerView.centerYAnchor, paddingTop: 8 , paddingLeft: 8, paddingBottom: 8, paddingRight: 0, width: 40, height: 40, paddingCenterX: 0, paddingCenterY: 0)
-        messageLable.anchor(top: containerView.topAnchor, left: logoImage.rightAnchor, bottom: dateLable.topAnchor, right: containerView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 8 , paddingRight: 8, width: 0, height: 16, paddingCenterX: 0, paddingCenterY: 0)
+   //     logoImage.anchor(top: nil, left: vLineView.rightAnchor, bottom: nil, right: nil, centerX: nil, centerY: containerView.centerYAnchor, paddingTop: 8 , paddingLeft: 8, paddingBottom: 8, paddingRight: 0, width: 40, height: 40, paddingCenterX: 0, paddingCenterY: 0)
+        messageLable.anchor(top: containerView.topAnchor, left: containerView.leftAnchor, bottom: dateLable.topAnchor, right: containerView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 8 , paddingRight: 8, width: 0, height: 16, paddingCenterX: 0, paddingCenterY: 0)
         
-        dateLable.anchor(top: nil , left: logoImage.rightAnchor, bottom: containerView.bottomAnchor , right: containerView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 8 , paddingRight: 8, width: 0, height: 15, paddingCenterX: 0, paddingCenterY: 0)
+        dateLable.anchor(top: nil , left: containerView.leftAnchor, bottom: containerView.bottomAnchor , right: containerView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 8 , paddingRight: 8, width: 0, height: 15, paddingCenterX: 0, paddingCenterY: 0)
         hLineView.anchor(top: nil, left: vLineView.rightAnchor, bottom: containerView.bottomAnchor, right: containerView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 1, paddingCenterX: 0, paddingCenterY: 0)
         
     }

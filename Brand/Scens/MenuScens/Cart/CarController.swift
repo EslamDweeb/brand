@@ -54,7 +54,7 @@ class CartController : UIViewController ,ButtonActionDelegate{
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        getCartData(true)
+       // getCartData(true)
         stopNotifier(reachability: reachability)
     }
     //MARK:- Helper Functions
@@ -116,6 +116,10 @@ class CartController : UIViewController ,ButtonActionDelegate{
         return "\(totalPrice)"
     }
     
+    
+    func startShppingEmptyCart(_ sender: UIButton) {
+        print("click on start shopping ")
+    }
 }
 
 

@@ -23,6 +23,9 @@ extension NotificationsViewController: UITableViewDataSource,UITableViewDelegate
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! NotificationCell
+        if presenter?.listNotifications.count ?? 0 <= indexPath.row {
+            return cell
+        }
         let obj = presenter?.listNotifications[indexPath.row]
         if !(obj?.isRead ?? true)  {
             cell.containerView.backgroundColor = .backgroundCell2

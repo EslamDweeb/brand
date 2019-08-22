@@ -39,6 +39,7 @@ import UIKit
     @objc optional func  customTabBarTapped(_ sender:UITapGestureRecognizer)
     @objc optional func  flowButtonTapped(_ sender:UIButton)
   @objc optional func infoTapped(_ sender: UIButton)
+    @objc optional func startShppingEmptyCart(_ sender : UIButton )
 }
 @objc protocol DisplayViewControllerDelegate {
     @objc  func doSomethingWith(lat : Double , len : Double)

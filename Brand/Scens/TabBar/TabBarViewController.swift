@@ -26,17 +26,28 @@ class TabBarViewController: UITabBarController {
         tabBar.tintColor = .pink
         AddVC()
         self.view.addSubview(homebtn)
-       homebtn.translatesAutoresizingMaskIntoConstraints = false
-       homebtn.anchor(top: nil, left: nil, bottom: view.bottomAnchor, right: nil, centerX: view.centerXAnchor, centerY: nil, paddingTop: 0 , paddingLeft: 0, paddingBottom: 25, paddingRight: 0, width: 100, height: 100, paddingCenterX: 0 , paddingCenterY: 0)
-        homebtn.addTarget(self, action: #selector(homeBtnTapped), for: .touchUpInside)
         
     }
+    
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        let height =  ( self.tabBar.frame.size.height / 2 )
+        let bottomPadding : CGFloat = self.view.safeAreaInsets.bottom / 2
+        
+        //print("height tab : \(height)")
+        //print("height safe area : \(bottomPadding)")
+        homebtn.translatesAutoresizingMaskIntoConstraints = false
+        homebtn.anchor(top: nil, left: nil, bottom: view.bottomAnchor, right: nil, centerX: view.centerXAnchor, centerY: nil, paddingTop: 0 , paddingLeft: 0, paddingBottom: height + bottomPadding  , paddingRight: 0, width: 50 , height: 50 , paddingCenterX: 0 , paddingCenterY: 0)
+        homebtn.addTarget(self, action: #selector(homeBtnTapped), for: .touchUpInside)
+    }
+    
     @objc func homeBtnTapped(){
         self.selectedIndex = 2
     }
     func AddVC(){
         //        self.navigationController?.navigationBar.isHidden = true
-        MenuViewControllers.tabBarItem = UITabBarItem(title: "settings".localized, image: #imageLiteral(resourceName: "Setting"), tag: 0)
+        MenuViewControllers.tabBarItem = UITabBarItem(title: YString.menu , image: #imageLiteral(resourceName: "Setting"), tag: 0)
         MenuViewControllers.tabBarItem.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -4.0);
 //        ExploreViewControllers.tabBarItem = UITabBarItem(title:
 //            NSLocalizedString("explore", comment: ""), image:#imageLiteral(resourceName: "compassAnticon"), tag: 1)
