@@ -353,7 +353,7 @@ extension ViewAddToCart : UITableViewDataSource, UITableViewDelegate {
             return  cell
         }else {
             let cell = tableView.dequeueReusableCell(withIdentifier: CellAddToCartButtonView.getIdentifier() , for: indexPath ) as! CellAddToCartButtonView
-            cell.setTextLabel(name: singleObjc?.name ?? ""  , price: Int( singleObjc?.addsPrice ?? "0") ?? 0, selected: false )
+            cell.setTextLabel(name: singleObjc?.name ?? "", price: Int( singleObjc?.addsPrice ?? 0) , selected: false )
             if singleObjc?.selected ?? false {
                 self.presenter?.selectedProductOption.append( singleObjc! )
                 cell.isCellSelected = true

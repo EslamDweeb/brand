@@ -118,7 +118,7 @@ extension ItemDetailVC:UICollectionViewDelegate,UICollectionViewDataSource,UICol
             self.dismiss(animated: true, completion: nil)
         }
         header.photos = itemDetails?.config.photos ?? []
-        header.setData(rating: Double(itemDetails?.config.overallRating ?? 0), numberOfuserRating: Double(itemDetails?.config.overallRatingCount ?? 0), price: Double(itemDetails?.config.price ?? "0.0") ?? 0.0, sale: itemDetails?.config.sale ?? "0", name: itemDetails?.config.name ?? "", numberOfPages: itemDetails?.config.photos?.count ?? 0)
+        header.setData(rating: Double(itemDetails?.config.overallRating ?? 0), numberOfuserRating: Double(itemDetails?.config.overallRatingCount ?? 0), price: Float(itemDetails?.config.price ?? 0), sale: Float(itemDetails?.config.sale ?? 0), name: itemDetails?.config.name ?? "", numberOfPages: itemDetails?.config.photos?.count ?? 0)
         header.header.imageCollectionView.reloadData()
         header.handelTabBarTapped = {(sender) in
             self.handelCustomTabBarTappedWork(collectionView, indexPath, header,sender)
