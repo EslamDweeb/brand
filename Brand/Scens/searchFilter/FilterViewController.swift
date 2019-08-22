@@ -11,7 +11,7 @@ import UIKit
 class FilterViewController:UIViewController,ButtonActionDelegate {
     
     var delegate : isAbleToReceiveData?
-    var Brands : [String] = []
+    var Brands : [Brandfilter]?
      var MadeIns : [String] = []
      var searchitems: [Config] = []
     var name = ""
@@ -34,10 +34,9 @@ class FilterViewController:UIViewController,ButtonActionDelegate {
         APIClient.getproductFilters { (result) in
             switch result {
             case .success(let data) :
-                for i in data.brands ?? []
-                {
-                    self.Brands.append(i.name)
-                }
+                
+                self.Brands = data.brands!
+              
                 for i in data.origin ?? []
                 {
                     if i.madeIn != nil {
@@ -69,7 +68,7 @@ class FilterViewController:UIViewController,ButtonActionDelegate {
              PriceBetween = "\(self.mainView.fromTextFeild.text!),\(self.mainView.toTextFeild.text!)"
             }
             self.mainView.activityStartAnimating(activityColor: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.6952322346), backgroundColor: .clear)
-            APIClient.getsearchitems(name: self.name , brand: self.mainView.bradDropDown.titleLabel?.text ?? "", origin: self.mainView.madeInDropDown.titleLabel?.text ?? "", price: PriceBetween, rate: "\(self.mainView.rateView.rating)", show: self.showfilter, page: 1, complition: { (result) in
+            APIClient.getsearchitems(name: self.name ,brand: self.mainView.bradDropDown.dropView.dropDownOptions[(self.mainView.bradDropDown.dropView.indexPath?.row)!]["slug"] as! String , origin: self.mainView.madeInDropDown.titleLabel?.text ?? "" , price: PriceBetween, rate: "\(self.mainView.rateView.rating)", show: self.showfilter, page: 1, complition: { (result) in
                 switch result{
                 case .success(let data):
                     self.searchitems = data.configs!

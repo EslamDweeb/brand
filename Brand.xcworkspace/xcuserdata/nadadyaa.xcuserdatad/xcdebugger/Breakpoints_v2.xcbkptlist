@@ -67,5 +67,68 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Brand/Scens/searchFilter/FilterViewController.swift"
+            timestampString = "588171881.440002"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
+            landmarkName = "continuePressed()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in Brand.FilterViewController.continuePressed() -&gt; ()"
+                  moduleName = "Brand"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nadadyaa/Desktop/brands_ios_updatedme/Brand/Scens/searchFilter/FilterViewController.swift"
+                  timestampString = "588171890.61748"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "71"
+                  endingLineNumber = "71"
+                  offsetFromSymbolStart = "3146">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in Brand.FilterViewController.continuePressed() -&gt; ()"
+                  moduleName = "Brand"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nadadyaa/Desktop/brands_ios_updatedme/Brand/Scens/searchFilter/FilterViewController.swift"
+                  timestampString = "588171890.6190031"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "71"
+                  endingLineNumber = "71"
+                  offsetFromSymbolStart = "5985">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;Brand.searchModel, Swift.Error&gt;) -&gt; () in closure #1 () -&gt; () in Brand.FilterViewController.continuePressed() -&gt; ()"
+                  moduleName = "Brand"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nadadyaa/Desktop/brands_ios_updatedme/Brand/Scens/searchFilter/FilterViewController.swift"
+                  timestampString = "588171890.62071"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "66"
+                  endingLineNumber = "66"
+                  offsetFromSymbolStart = "213">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

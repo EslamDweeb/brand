@@ -12,11 +12,11 @@ import MOLH
 class SearchFilterView: UIView , UITextFieldDelegate{
     
  
-    var brands : [String]? {
+    var brands : [Brandfilter]? {
         didSet {
             guard let brand = brands else {return}
             for i in brand {
-                 self.bradDropDown.dropView.dropDownOptions.append(["name" : i])
+                self.bradDropDown.dropView.dropDownOptions.append(["name" : i.name,"slug" : i.slug])
             }
             self.bradDropDown.dropView.tableView.reloadData()
         }
