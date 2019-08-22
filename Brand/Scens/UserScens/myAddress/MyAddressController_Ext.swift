@@ -48,7 +48,7 @@ extension MyAddressViewController: UITableViewDelegate,UITableViewDataSource {
             { (result) in
                 switch result {
                 case .success(let data):
-                   print(data.errors)
+                    print(data.errors ?? [])
                     print(data)
                 case .failure(let error):
                     print(error)

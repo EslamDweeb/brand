@@ -27,9 +27,9 @@ class WishCell: UICollectionViewCell {
                 
             }
             isFav =  config?.isFavorite ?? false
-            if Double(con.sale)! != 0  {
+            if Double(con.sale) != 0  {
                 priceLbl.setAttributeStringWithStrike("\(con.price)")
-                discountLbl.text = "\(con.ReturnPricepersent(sale: Double(con.sale)!.roundToDecimal(3)))"
+                discountLbl.text = "\(con.ReturnPricepersent(sale: Double(con.sale).roundToDecimal(3)))"
                 discountPrice.text = "\(con.ReturnPriceAfterSale(price: (Double(priceLbl.text ?? "0") ?? 0), sale: Double(discountLbl.text ?? "0") ?? 0))"
             }else{
                  priceLbl.text = "\(con.price)"

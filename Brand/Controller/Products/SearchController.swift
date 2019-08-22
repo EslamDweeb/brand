@@ -41,15 +41,15 @@ class SearchController: UIViewController,ButtonActionDelegate ,UISearchBarDelega
       self.mainView.searchBar.layer.borderColor = UIColor.lightgray.cgColor
     }
     
-    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
        
     }
     
-    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         
     }
     
-    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         print("sssss")
     }
     

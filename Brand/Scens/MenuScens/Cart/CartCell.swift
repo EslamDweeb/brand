@@ -28,8 +28,8 @@ class  CartCell: UITableViewCell {
             Image.kf.setImage(with: url)
             brandName.text = cart.config.brand?.name ??  ""
             productName.text = cart.config.name
-            if Double(cart.config.sale)! != 0 {
-                discountLbl.text = cart.config.ReturnPricepersent(sale: Double(cart.config.sale)!)
+            if Double(cart.config.sale) != 0 {
+                discountLbl.text = cart.config.ReturnPricepersent(sale: Double(cart.config.sale))
                 discountPrice.text = "\(cart.config.ReturnTotalPriceAfterSale(price: Double(cart.itemOverallPrice), QTY: Double(cart.qty))) \("sar".localized)"
                 priceLbl.setAttributeStringWithStrike("\(cart.config.price) \("sar".localized)")
             }else{
