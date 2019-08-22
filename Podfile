@@ -18,7 +18,7 @@ pod 'Kingfisher', '~> 5.0'
 pod 'MOLH'
 pod 'FlexibleSteppedProgressBar'
 pod 'EasyTipView', '~> 2.0.4'
-pod "AKPickerView"
+pod 'AKPickerView'
 pod 'Firebase/Analytics'
 pod 'Firebase/Messaging'
 pod 'Fabric'

@@ -280,11 +280,11 @@ class ViewAddToCart : UIView {
     
     func calculateTotalPrice () {
         
-        let totalOptions = presenter?.selectedProductOption.map({$0.addsPrice})
-        let totalValues = presenter?.selectedValues.map({$0.value.addsPrice})
-        var totalPriceProduct : Double = presenter?.priceProduct ?? 0.0
-        totalOptions?.forEach({ (int) in
-            totalPriceProduct = totalPriceProduct + Double(int)
+        let totalOptions = presenter?.selectedProductOption.map({Double($0.addsPrice)})
+        let totalValues = presenter?.selectedValues.map({Double($0.value.addsPrice)})
+        var totalPriceProduct : Double =  presenter?.priceProduct ?? 0.0
+        totalOptions?.forEach({ (item) in
+            totalPriceProduct =  totalPriceProduct + Double(item ?? 0)
         })
         totalValues?.forEach({ (int) in
             totalPriceProduct = totalPriceProduct + Double(int)
@@ -353,7 +353,7 @@ extension ViewAddToCart : UITableViewDataSource, UITableViewDelegate {
             return  cell
         }else {
             let cell = tableView.dequeueReusableCell(withIdentifier: CellAddToCartButtonView.getIdentifier() , for: indexPath ) as! CellAddToCartButtonView
-            cell.setTextLabel(name: singleObjc?.name ?? ""  , price: singleObjc?.addsPrice ?? 0 , selected: false )
+            cell.setTextLabel(name: singleObjc?.name ?? "", price: Int( singleObjc?.addsPrice ?? 0) , selected: false )
             if singleObjc?.selected ?? false {
                 self.presenter?.selectedProductOption.append( singleObjc! )
                 cell.isCellSelected = true

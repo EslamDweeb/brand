@@ -129,7 +129,11 @@ DEPENDENCIES:
   - TwitterKit
 
 SPEC REPOS:
+<<<<<<< HEAD
   https://github.com/CocoaPods/Specs.git:
+=======
+  https://github.com/cocoapods/specs.git:
+>>>>>>> 87213bc9a25697933006d8bdba76279b434dc89f
     - AKPickerView
     - Alamofire
     - Cosmos
@@ -198,6 +202,6 @@ SPEC CHECKSUMS:
   TwitterCore: 8cbc9ad34d91c63a0035ea05bfbfc0d7ca72a28c
   TwitterKit: 5e4f41d70b9abdb41df5467f52d7aa2c0fd26ebb
 
-PODFILE CHECKSUM: c8edb402800b8daf6fe85262307447dd2b4e344d
+PODFILE CHECKSUM: 93728a30a24621d0803bd4368949807eddd16669
 
-COCOAPODS: 1.8.0.beta.1
+COCOAPODS: 1.7.5

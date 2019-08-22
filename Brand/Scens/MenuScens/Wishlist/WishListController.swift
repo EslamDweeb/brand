@@ -21,9 +21,10 @@ class WishListController: UIViewController,ButtonActionDelegate , isAbleToReceiv
         self.price = price
         self.rate = Rate
         self.made = made
-        shouldShowLoadingCell = false
         Beforefilter = false
-        wishes = data
+        // wishes.removeAll()
+      //  switchBetweenServices(vcType: self.vcType,refresh: true)
+       wishes = data
         self.mainView.wishCollection.reloadData()
     }
     
@@ -196,23 +197,25 @@ class WishListController: UIViewController,ButtonActionDelegate , isAbleToReceiv
         }else {
             DispatchQueue.main.async {
                 self.mainView.activityStartAnimating(activityColor: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.6952322346), backgroundColor: .clear)
-                APIClient.getsearchitems(name: "" , brand: self.brand, origin: self.made, price: self.price, rate: self.rate, show: self.key!, page: self.currentPage, complition: { (result) in
+                
+                APIClient.getsearchitems(name:"" , brand: self.brand, origin: self.made, price: self.price, rate: self.rate, show: self.key!, page: self.currentPage, complition: { (result) in
                 switch result{
                 case .success(let data):
                     if data.configs?.count != 0 {
                     if refresh {
                         self.wishes = data.configs!
                     } else {
+                    
                         for conf in data.configs! {
                             self.wishes.append(conf)
                         }
                     }
                     
+                    }
+                     self.shouldShowLoadingCell = ( data.meta?.currentPage ?? 0) < (data.meta?.lastPage ?? 0)
                     DispatchQueue.main.async {
                         self.mainView.activityStopAnimating()
-                        self.shouldShowLoadingCell = ( data.meta?.currentPage ?? 0) < (data.meta?.lastPage ?? 0)
                         self.mainView.wishCollection.reloadData()
-                    }
                     }
                 case.failure(let error):
                     self.mainView.activityStopAnimating()

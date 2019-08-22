@@ -171,13 +171,13 @@ class ItemDetailCollHeader:UICollectionReusableView,UICollectionViewDelegate,UIC
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    func setData(rating:Double,numberOfuserRating:Double,price:Double,sale:Double?,name:String,numberOfPages:Int){
+    func setData(rating:Double,numberOfuserRating:Double,price:Float,sale:Float,name:String,numberOfPages:Int){
         header.rateView.rating = rating
         header.titlelable.text = name
         header.priceLable.setAttributeStringWithStrike("\(price)")
-        header.discountLbl.text = ReturnPricepersent(sale: sale ?? 0)
+        header.discountLbl.text = ReturnPricepersent(sale: Double(sale) ?? 0.0)
         header.numberOFReviewerLable.text = "(\(numberOfuserRating) user)"
-        header.finalPriceLable.text = "\(getFinalPrice(price: price, sale: sale))"
+        header.finalPriceLable.text = "\(getFinalPrice(price:Double(price), sale: Double(sale)))"
         header.pageControl.numberOfPages = numberOfPages
     }
     private func getFinalPrice(price:Double,sale:Double?) -> Double{
