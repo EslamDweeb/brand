@@ -37,7 +37,12 @@ class YString {
     static var menu : String { return getText(key: "menu") }
     static var startShopping : String { return getText(key: "startShopping") }
     static var yourCartIsEmpty : String { return getText(key: "yourCartIsEmpty") }
-    
+    static var about:String{return getText(key: "about")}
+    static var termsAndPrivacy:String{return getText(key: "terms&privacy")}
+    static var customerService:String{return getText(key: "customerService")}
+    static var returnPolicy:String{return getText(key: "returnPolicy")}
+    static var saleOnBrand:String{return getText(key: "saleInBrand")}
+    static var buyFromBrand:String{return getText(key: "buyFromBrand")}
     
     
     static func getText (key : String) -> String {

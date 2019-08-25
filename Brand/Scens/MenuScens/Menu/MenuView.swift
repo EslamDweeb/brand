@@ -29,6 +29,7 @@ class MenuView: UIView {
         table.separatorStyle = .none
         return table
     }()
+    var tableHeightConstraints:NSLayoutConstraint?
 //    lazy var lable:HeaderLabel = {
 //      let lbl = HeaderLabel()
 //        lbl.text = "followus".localized
@@ -99,6 +100,8 @@ class MenuView: UIView {
 //        scrollView.anchor(top: navView.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         
         newTable.anchor(top: navView.bottomAnchor, left: self.leftAnchor, bottom: self.bottomAnchor , right: self.rightAnchor, centerX:nil , centerY: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 50 , paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
+//         tableHeightConstraints = newTable.heightAnchor.constraint(equalToConstant: 0)
+//        tableHeightConstraints?.isActive = true
 //        lable.anchor(top: newTable.bottomAnchor, left: nil, bottom: nil, right: nil, centerX: navView.centerXAnchor, centerY: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 100, height: 30, paddingCenterX: 0, paddingCenterY: 0)
 //        socialStackView.anchor(top: lable.bottomAnchor, left: nil, bottom: nil, right: nil, centerX: scrollView.centerXAnchor, centerY: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         
@@ -106,14 +109,6 @@ class MenuView: UIView {
          //  FBButton.anchor(top: nil, left: nil, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 40, height: 40, paddingCenterX: 0, paddingCenterY: 0)
     //    FBButton.addTarget(self.actionDelegate, action: #selector(ButtonActionDelegate.faceBookLogin), for: .touchUpInside)
    //     TWButton.addTarget(self.actionDelegate, action: #selector(ButtonActionDelegate.twitterLogin), for: .touchUpInside)
-        if(isLogin == true)
-        {
-            newTable.heightAnchor.constraint(equalToConstant: 700).isActive = true
-        }
-        else
-        {
-            newTable.heightAnchor.constraint(equalToConstant: 400).isActive = true
-        }
         
     }
     
