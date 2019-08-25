@@ -83,9 +83,9 @@ class CartController : UIViewController ,ButtonActionDelegate{
                 switch result{
                 case.success(let data):
                     if refresh {
-                        self.cartpro = data.cartItems
+                        self.cartpro = data.cartItems ?? []
                     } else {
-                        for conf in data.cartItems {
+                        for conf in data.cartItems ?? [] {
                             self.cartpro.append(conf)
                         }
                     }

@@ -21,7 +21,7 @@ class ExploreCell:UICollectionViewCell {
     }()
     lazy var seeall:UIButton = {
         let btn = UIButton()
-        btn.setTitle(NSLocalizedString("seeAll", comment: ""), for: .normal)
+        btn.setTitle("seeAll".localized, for: .normal)
         btn.setTitleColor(.pink, for: .normal)
         btn.addTarget(self, action: #selector(handelSeeAllBtnTapped), for: .touchUpInside)
         return btn
@@ -55,12 +55,15 @@ class ExploreCell:UICollectionViewCell {
         addSubview(seeall)
         if MOLHLanguage.currentAppleLanguage() == "en"{
             titleLabel.textAlignment = .left
+            titleLabel.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 4, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
+            seeall.anchor(top: topAnchor, left: nil, bottom: nil, right:rightAnchor, centerX: nil, centerY: nil, paddingTop: 4, paddingLeft: 0, paddingBottom: 0, paddingRight: 8, width: 60, height: 20, paddingCenterX: 0, paddingCenterY: 0)
           
         }else{
             titleLabel.textAlignment = .right
+            titleLabel.anchor(top: topAnchor, left: nil, bottom: nil, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 4, paddingLeft: 0, paddingBottom: 0, paddingRight: 8, width: 0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
+            seeall.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right:nil, centerX: nil, centerY: nil, paddingTop: 4, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 60, height: 20, paddingCenterX: 0, paddingCenterY: 0)
         }
-          titleLabel.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 4, paddingLeft: 8, paddingBottom: 0, paddingRight: 80, width: 0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
-           seeall.anchor(top: topAnchor, left: nil, bottom: nil, right:rightAnchor, centerX: nil, centerY: nil, paddingTop: 4, paddingLeft: 0, paddingBottom: 0, paddingRight: 8, width: 60, height: 20, paddingCenterX: 0, paddingCenterY: 0)
+        
         productCollectionView.anchor(top: titleLabel.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
     }
 }

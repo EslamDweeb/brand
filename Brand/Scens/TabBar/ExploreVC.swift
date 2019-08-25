@@ -21,9 +21,9 @@ class ExploreVC:UIViewController,ButtonActionDelegate{
     var exploreData:ExploreData?
     var settings = [Settings]()
     let reachability =  Reachability()
-    let titleArray  = [NSLocalizedString("recommendedProduct", comment: ""),
-                       NSLocalizedString("latestProduct", comment: ""),
-                       NSLocalizedString("popularProduct", comment: "")
+    let titleArray  = ["recommendedProduct".localized,
+                       "latestProduct".localized,
+                       "popularProduct".localized
     ]
     lazy var mainView: HomeView = {
         let v = HomeView(delegate: self, dataSource: self,buttonDelegate: self)

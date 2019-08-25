@@ -19,7 +19,7 @@ class ShippingView :UIView {
     
     lazy var  navView:GradNavView = {
         let navView = GradNavView()
-        navView.titlelabel.text =  "Shipping".localized
+        navView.titlelabel.text = "Shipping".localized
         navView.backBtn.addTarget(actionDelegete, action:#selector(ButtonActionDelegate.dissmisController), for: .touchUpInside)
         return navView
     }()
