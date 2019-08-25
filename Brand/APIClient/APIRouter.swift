@@ -552,7 +552,7 @@ enum APIRouter : URLRequestConvertible {
             var urlRequest = URLRequest(url: url.appendingPathComponent(Paths))
             urlRequest.httpMethod = Methods.rawValue
             urlRequest.headers = headers
-            
+           
             if Methods.rawValue != "GET"{
                 if let parameters = parameters {
                     do {

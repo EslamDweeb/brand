@@ -32,7 +32,7 @@ class ExploreView:UIView{
     }()
     lazy var seeAllBtn: UIButton = {
         let button = UIButton()
-        button.setTitle("See all", for: .normal)
+        button.setTitle("seeAll".localized, for: .normal)
         button.setTitleColor(.pink, for: .normal)
         button.titleLabel?.font = UIFont(name:.fontH, size: 14)
         button.addTarget(actionDelegate, action: #selector(ButtonActionDelegate.handelSeeAllBtn), for: .touchUpInside)

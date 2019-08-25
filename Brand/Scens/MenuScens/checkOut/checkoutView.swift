@@ -33,7 +33,6 @@ class CheckoutView : UIView {
         let navView = GradNavView()
         navView.titlelabel.text = "Checkout".localized
         navView.backBtn.addTarget(self.actionDelegete, action: #selector(ButtonActionDelegate.dissmisController), for: .touchUpInside)
-        
         return navView
     }()
     

@@ -48,8 +48,9 @@ extension WishListController: UICollectionViewDelegate,UICollectionViewDataSourc
             cell.config = wishes[indexPath.row]
             switch vcType{
             case .wishList:
-                let image = UIImage(named: "invalidName")
-                cell.favBtn.setImage(image, for: .normal)
+                break
+               // let image = UIImage(named: "invalidName")
+               // cell.favBtn.setImage(image, for: .normal)
             case .allProduct:
                 let image = UIImage(named: "wish")
                 cell.favBtn.setImage(image, for: .normal)
