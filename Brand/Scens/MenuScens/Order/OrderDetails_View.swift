@@ -30,7 +30,7 @@ class DetailorderView : UIView , UITextFieldDelegate ,FlexibleSteppedProgressBar
              self.shippingFee.Pricelabel.text = "\(order.shippingMethod?.fees ?? 0)"
              self.billingMethod.Pricelabel.text = order.billingMethod?.name
             self.billingFee.Pricelabel.text = "\(order.billingMethod?.fees ?? 0)"
-           
+        
             
         
            

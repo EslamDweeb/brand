@@ -11,7 +11,15 @@ import UIKit
 extension OrderViewController: UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     private func isLoadingIndexPath(_ indexPath: IndexPath) -> Bool {
         guard shouldShowLoadingCell else { return false }
-        return indexPath.row == self.orders.count
+         if mainView.line1.isHidden == false {
+             return indexPath.row == self.ordersPending.count - 1
+         }else if mainView.line1.isHidden == false {
+            return indexPath.row == self.ordersDelivered.count - 1
+         }
+         else {
+            return indexPath.row == self.ordersOthers.count - 1
+        }
+       // return indexPath.row == self.orders.count
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         //        if orders.count == 0 {
@@ -28,14 +36,38 @@ extension OrderViewController: UICollectionViewDelegate,UICollectionViewDataSour
         //            collectionView.backgroundView = nil
         //        }
         if mainView.line1.isHidden == false {
+            if ordersPending.count == 0 {
+                let view = OrderBackgroundView()
+                view.image.image = #imageLiteral(resourceName: "Asset 32")
+                view.lable.text  = "There is no pending orders"
+                collectionView.backgroundView = view
+            }else {
+                collectionView.backgroundView  = nil
+            }
             let count = ordersPending.count
-            return shouldShowLoadingCell ? count + 1 : count
+            return shouldShowLoadingCell ? count   : count
         }else if mainView.line2.isHidden == false {
             let count = ordersDelivered.count
-            return shouldShowLoadingCell ? count + 1 : count
+            if ordersDelivered.count == 0 {
+                let view = OrderBackgroundView()
+                view.image.image = #imageLiteral(resourceName: "Asset 35")
+                view.lable.text  = "There is no delivered orders"
+               collectionView.backgroundView = view
+            }else {
+                collectionView.backgroundView  = nil
+            }
+            return shouldShowLoadingCell ? count : count
         }else{
+            if ordersOthers.count == 0 {
+                let view = OrderBackgroundView()
+                view.image.image = #imageLiteral(resourceName: "Asset 34")
+                view.lable.text  = "There is no canceled or returned orders"
+                collectionView.backgroundView = view
+            }else {
+                collectionView.backgroundView  = nil
+            }
             let count = ordersOthers.count
-            return shouldShowLoadingCell ? count + 1 : count
+            return shouldShowLoadingCell ? count  : count
         }
     }
     
@@ -45,7 +77,7 @@ extension OrderViewController: UICollectionViewDelegate,UICollectionViewDataSour
             return cell
         } else {
             if mainView.line1.isHidden == false {
-                cell.order = ordersPending[indexPath.item]
+                cell.order = ordersPending[indexPath.row]
             }else if mainView.line2.isHidden == false {
                 cell.order = ordersDelivered[indexPath.item]
             }else{
@@ -77,5 +109,5 @@ extension OrderViewController: UICollectionViewDelegate,UICollectionViewDataSour
     }
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         guard isLoadingIndexPath(indexPath) else { return }
-        fetchNextPage()
+        fetchNextPage()  
     }}

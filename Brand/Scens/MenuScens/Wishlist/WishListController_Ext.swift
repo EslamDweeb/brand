@@ -44,7 +44,6 @@ extension WishListController: UICollectionViewDelegate,UICollectionViewDataSourc
         if isLoadingIndexPath(indexPath) {
             return cell
         } else {
-           
             cell.config = wishes[indexPath.row]
             switch vcType{
             case .wishList:

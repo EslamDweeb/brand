@@ -129,12 +129,13 @@ enum ProductRouter:URLRequestConvertible {
     func asURLRequest() throws -> URLRequest {
         switch self {
         case .banners,.categories,.allReviews,.getCategoryProduct,.getWishlist,.getAllProductConfigs,.getConfigReview
-            ,.getSeeAllProduct,.getCartData,.getFlashHeader:
+            ,.getSeeAllProduct,.getCartData,.getFlashHeader,.getOrders:
             let url = "\(Constants.ProductionServer.baseURL)\(Paths)"
             let safeUrl = url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
             var urlRequest = URLRequest(url: URL(string: safeUrl!)!)
             urlRequest.httpMethod = Methods.rawValue
             urlRequest.headers = headers
+            print(urlRequest)
             if Methods.rawValue == "POST"{
                 if let parameters = parameters {
                     do {

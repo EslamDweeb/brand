@@ -83,4 +83,7 @@ class HomeVC:UIViewController,ButtonActionDelegate {
     func handelSeeAllBtn() {
         toggelArrays()
     }
+    func searchTapped() {
+        self.presentViewController(controller: searchVC())
+    }
 }

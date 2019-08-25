@@ -105,5 +105,6 @@ class ExploreView:UIView{
         lineView1.anchor(top: categoriesCollection.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 1, paddingCenterX: 0, paddingCenterY: 0)
       
         brandCollection.anchor(top: brandLable.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
+        navView.searchBtn.addTarget(self.actionDelegate, action: #selector(ButtonActionDelegate.searchTapped), for: .touchUpInside)
     }
 }

@@ -41,7 +41,7 @@ class OrderViewController: UIViewController,ButtonActionDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         handelReachability(reachability: reachability)
-        getOrders()
+        getOrders(true)
     }
     func getPendingTapped() {
         if MOLHLanguage.currentAppleLanguage() == "en" {
@@ -78,6 +78,7 @@ class OrderViewController: UIViewController,ButtonActionDelegate {
         self.mainView.orderCollection.reloadData()
     }
     private func getOrders(_ refresh:Bool = false){
+       
         mainView.activityStartAnimating(activityColor: #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1), backgroundColor: .clear)
         APIClient.getOrders(page: currentPage) { (result) in
             switch result {
@@ -89,7 +90,7 @@ class OrderViewController: UIViewController,ButtonActionDelegate {
                         self.orders.append(conf)
                     }
                 }
-                for i in self.orders {
+                for i in data.orders ?? [] {
                     if i.status.id == 1 ||  i.status.id == 2 || i.status.id == 3 {
                         self.ordersPending.append(i)
                     }else if i.status.id == 4 {
@@ -100,7 +101,7 @@ class OrderViewController: UIViewController,ButtonActionDelegate {
                 }
                 DispatchQueue.main.async {
                     self.mainView.activityStopAnimating()
-                    self.shouldShowLoadingCell = ( data.meta.currentPage ?? 0) < (data.meta.lastPage ?? 0)
+                    self.shouldShowLoadingCell = (data.meta!.currentPage ?? 0) < (data.meta!.lastPage ?? 0)
                     self.mainView.orderCollection.reloadData()
                 }
             case .failure(let error):

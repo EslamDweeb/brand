@@ -11,7 +11,7 @@ import Foundation
 struct SimpleOrderData: Codable {
     let orders: [SimpleOrder]?
     let links: Links?
-    let meta: Meta
+    let meta: Meta?
 }
 struct SimpleOrder: Codable {
     let id: Int

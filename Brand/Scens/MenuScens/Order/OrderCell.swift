@@ -36,12 +36,13 @@ class OrderCell:UICollectionViewCell {
     }()
     lazy var totla: OrderKeyLable = {
         let lbl = OrderKeyLable()
-        lbl.text = NSLocalizedString("totalAmount", comment: "")
+        lbl.text =
+        "totalAmount".localized
         return lbl
     }()
     lazy var status: OrderKeyLable = {
         let lbl = OrderKeyLable()
-        lbl.text = NSLocalizedString("orderStatus", comment: "")
+        lbl.text = "orderStatus".localized
         return lbl
     }()
     lazy var orderNumberVal: OrderValueLable = {
