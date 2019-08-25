@@ -39,6 +39,6 @@ struct FlashOfferHeader:Codable{
 struct Settings:Codable {
     let id: Int
     let type: String
-    let value: NewDate
+    let value: NewDate?
     let photo:Media
 }

@@ -44,6 +44,7 @@ class ExploreView:UIView{
     }()
     lazy var categoriesCollection: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
+        layout.itemSize = CGSize(width: 50 , height: 80 )
         layout.scrollDirection = .horizontal
         let coll = UICollectionView(frame: .zero,collectionViewLayout: layout)
             coll.register(CatogrieCell.self, forCellWithReuseIdentifier: cellID)

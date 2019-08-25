@@ -36,6 +36,8 @@ class SearchFilterView: UIView , UITextFieldDelegate{
     
     
     weak var delegate:ButtonActionDelegate?
+    var bottomHeightContainerView : NSLayoutConstraint?
+    var centerYContainerView : NSLayoutConstraint?
     
     lazy var containerView: ShadowView = {
         let view = ShadowView()
@@ -87,12 +89,22 @@ class SearchFilterView: UIView , UITextFieldDelegate{
         from.clearButtonMode = .whileEditing
         from.SetAttributePlaceHeader(Title: "from".localized)
         from.keyboardType = .numberPad
+        let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50 ))
+        toolBar.barStyle = UIBarStyle.default
+        toolBar.items = [ UIBarButtonItem(title: YString.done , style: .done , target: self , action: #selector(doneButtonFromTextField)) ]
+        toolBar.sizeToFit()
+        from.inputAccessoryView = toolBar
         return from
     }()
     lazy var  toTextFeild : DefaultTextField = {
         let to = DefaultTextField()
         to.SetAttributePlaceHeader(Title: "to".localized)
         to.keyboardType = .numberPad
+        let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50 ))
+        toolBar.barStyle = UIBarStyle.default
+        toolBar.items = [ UIBarButtonItem(title: YString.done , style: .done , target: self , action: #selector(doneButtonToTextField)) ]
+        toolBar.sizeToFit()
+        to.inputAccessoryView = toolBar
         return to
     }()
     lazy var madeInLable:HeaderLabel = {
@@ -179,13 +191,57 @@ class SearchFilterView: UIView , UITextFieldDelegate{
         
     }
 
+    @objc private func doneButtonFromTextField () {
+        self.endEditing( true )
+    }
+    
+    @objc private func doneButtonToTextField () {
+        self.endEditing( true )
+    }
+    
     private func setup(){
         self.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.5)
         addSubViews()
         addConstrainsToUI()
         fromTextFeild.setPadding(left: 16, right: nil)
         toTextFeild.setPadding( left: 16, right: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardDidShowNotification, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardDidHideNotification, object: nil)
+
     }
+    
+    @objc private func keyboardWillShow (notification : NSNotification){
+        print("keyboard will show")
+        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardRectangle = keyboardFrame.cgRectValue
+            let keyboardHeight = keyboardRectangle.height
+            print("height keyboard : \(keyboardHeight) ")
+            if bottomHeightContainerView?.constant == 0 {
+                bottomHeightContainerView?.constant = -( keyboardHeight + 10 )
+                UIView.animate(withDuration: 0.3) {
+                    self.centerYContainerView?.isActive = false
+                    self.bottomHeightContainerView?.isActive = true
+                    self.layoutIfNeeded()
+                }
+            }
+            
+        }
+        
+    }
+    
+    @objc private func keyboardWillHide (notification : NSNotification){
+        print("keyboard will hide")
+        UIView.animate(withDuration: 0.3) {
+            self.centerYContainerView?.isActive = true
+            self.bottomHeightContainerView?.isActive = false
+            self.layoutIfNeeded()
+        }
+        bottomHeightContainerView?.constant = 0
+    }
+    
+    
     private func addSubViews(){
         self.addSubview(containerView)
       
@@ -213,7 +269,18 @@ class SearchFilterView: UIView , UITextFieldDelegate{
         fromTextFeild.delegate = self
     }
     private func addConstrainsToUI() {
-        containerView.anchor(top: nil, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, centerX: self.centerXAnchor, centerY: self.centerYAnchor, paddingTop: 0, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 340, paddingCenterX: 0, paddingCenterY: 0)
+     //   containerView.anchor(top: nil, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, centerX: self.centerXAnchor, centerY: self.centerYAnchor , paddingTop: 0, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 340, paddingCenterX: 0, paddingCenterY: 0)
+        containerView.translatesAutoresizingMaskIntoConstraints = false
+        containerView.heightAnchor.constraint(equalToConstant: 340).isActive = true
+        containerView.leftAnchor.constraint(equalTo: self.leftAnchor , constant: 8).isActive = true
+        containerView.rightAnchor.constraint(equalTo: self.rightAnchor , constant: -8 ).isActive = true
+        containerView.centerXAnchor.constraint(equalTo: self.centerXAnchor , constant: 0).isActive = true
+        centerYContainerView = containerView.centerYAnchor.constraint(equalTo: self.centerYAnchor , constant: 0)
+        centerYContainerView?.isActive = true
+        bottomHeightContainerView  = containerView.bottomAnchor.constraint(equalTo: self.bottomAnchor , constant: 0 )
+        bottomHeightContainerView?.isActive = false
+       
+        
         addConstraintToHeaderView()
         if MOLHLanguage.currentAppleLanguage()  == "en" {
           
