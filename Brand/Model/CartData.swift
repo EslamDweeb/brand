@@ -10,8 +10,8 @@ import UIKit
 
 // MARK: - CartData
 struct CartData: Codable {
-    let cartItems: [CartItem]
-    let links: Links
+    let cartItems: [CartItem]?
+    let links: Links?
     let meta: Meta?
     
     enum CodingKeys: String, CodingKey {

@@ -68,7 +68,7 @@ class CatogrieCell:UICollectionViewCell {
         addConstraints()
     }
     func addConstraints() {
-        Image.anchor(top: contentView.topAnchor, left: contentView.leftAnchor , bottom: nil, right: contentView.rightAnchor , centerX: nil , centerY: nil, paddingTop: 0, paddingLeft: 4 , paddingBottom: 0, paddingRight: 4 , width: 0 , height: 20  , paddingCenterX: 0, paddingCenterY: 0)
-          brandName.anchor(top: Image.bottomAnchor, left: nil, bottom: contentView.bottomAnchor , right: nil, centerX: contentView.centerXAnchor, centerY: nil, paddingTop: 4, paddingLeft: 0, paddingBottom:  4 , paddingRight: 0, width: 45, height: 0 , paddingCenterX: 0, paddingCenterY: 0)
+        Image.anchor(top: contentView.topAnchor, left: nil, bottom: nil, right: nil, centerX: contentView.centerXAnchor, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 40, height: 40, paddingCenterX: 0, paddingCenterY: 0)
+        brandName.anchor(top: Image.bottomAnchor, left: nil, bottom: contentView.bottomAnchor , right: nil, centerX: contentView.centerXAnchor, centerY: nil, paddingTop: 4, paddingLeft: 0, paddingBottom:  4 , paddingRight: 0, width: 45, height: 16, paddingCenterX: 0, paddingCenterY: 0)
     }
 }

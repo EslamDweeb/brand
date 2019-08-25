@@ -50,7 +50,7 @@ class WishListController: UIViewController,ButtonActionDelegate , isAbleToReceiv
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
-    init(_ navTitle:String? = nil,_ key:String? = nil,_ vcType: VCType? = .wishList){
+    init(_ navTitle:String? = "wishlist".localized,_ key:String? = nil,_ vcType: VCType? = .wishList){
         super.init(nibName: nil, bundle: nil)
         self.key = key
         self.mainView.navView.titlelabel.text = navTitle
@@ -92,6 +92,7 @@ class WishListController: UIViewController,ButtonActionDelegate , isAbleToReceiv
     private func switchBetweenServices(vcType:VCType,refresh:Bool = false){
         switch vcType {
         case .wishList:
+            mainView.FilterBtn.isHidden = true
             getWishlist(currentPage,refresh)
         case .allProduct:
             getAllProducts()
@@ -102,7 +103,7 @@ class WishListController: UIViewController,ButtonActionDelegate , isAbleToReceiv
     func filterBtnTapped() {
         let CV = FilterViewController()
         CV.delegate = self
-        CV.showfilter = self.key!
+        CV.showfilter = self.key ?? ""
          self.presentViewController(controller: CV, transitionModal: .crossDissolve, presentationStyle: .overCurrentContext)
     }
     func applyBtnTapped() {

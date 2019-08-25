@@ -83,9 +83,9 @@ class OrderViewController: UIViewController,ButtonActionDelegate {
             switch result {
             case.success(let data):
                 if refresh {
-                    self.orders = data.orders
+                    self.orders = data.orders ?? []
                 } else {
-                    for conf in data.orders {
+                    for conf in data.orders  ?? []{
                         self.orders.append(conf)
                     }
                 }

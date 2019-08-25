@@ -28,14 +28,13 @@ class WishCell: UICollectionViewCell {
             }
             isFav =  config?.isFavorite ?? false
             if Double(con.sale) != 0  {
-                priceLbl.setAttributeStringWithStrike("\(con.price)")
+                priceLbl.setAttributeStringWithStrike("\(con.price) \("sar".localized)")
                 discountLbl.text = "\(con.ReturnPricepersent(sale: Double(con.sale).roundToDecimal(3)))"
-                discountPrice.text = "\(con.ReturnPriceAfterSale(price: (Double(priceLbl.text ?? "0") ?? 0), sale: Double(discountLbl.text ?? "0") ?? 0))"
+                discountPrice.text = "\(con.ReturnPriceAfterSale(price: con.price , sale: Double(con.sale).roundToDecimal(3))) \("sar".localized)"
             }else{
-                 priceLbl.text = "\(con.price)"
-                 priceLbl.textColor = .black
+                 priceLbl.isHidden = true
                  discountLbl.isHidden = true
-                 discountPrice.isHidden = true
+                 discountPrice.text = "\(con.price)\("sar".localized)"
             }
         }
     }
@@ -61,6 +60,7 @@ class WishCell: UICollectionViewCell {
     }()
     lazy var priceLbl: DescriptionLabel = {
         let lbl = DescriptionLabel()
+        lbl.textAlignment = .center
         lbl.textColor = .lightDarkGray
         return lbl
     }()
@@ -150,11 +150,11 @@ class WishCell: UICollectionViewCell {
         brandName.widthAnchor.constraint(greaterThanOrEqualToConstant: 40).isActive = true
         productName.anchor(top: brandName.bottomAnchor, left: containerView.leftAnchor, bottom: nil, right: containerView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 16, width: 0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
 
-        priceLbl.anchor(top: productName.bottomAnchor, left: containerView.leftAnchor, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 60, height: 20, paddingCenterX: 0, paddingCenterY: 0)
+        priceLbl.anchor(top: productName.bottomAnchor, left: containerView.leftAnchor, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 65, height: 20, paddingCenterX: 0, paddingCenterY: 0)
         
         discountLbl.anchor(top: containerView.topAnchor, left: containerView.leftAnchor, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 40, height: 20, paddingCenterX: 0, paddingCenterY: 0)
         
-        discountPrice.anchor(top: productName.bottomAnchor, left: priceLbl.rightAnchor, bottom: nil, right: containerView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width:0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
+        discountPrice.anchor(top: productName.bottomAnchor, left: priceLbl.rightAnchor, bottom: nil, right: containerView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 4, paddingBottom: 0, paddingRight: 8, width:0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
         
         cartBtn.anchor(top: nil, left: nil, bottom: image.bottomAnchor, right: containerView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: -20, paddingRight: 0, width: 50, height: 50, paddingCenterX: 0, paddingCenterY: 0)
     }

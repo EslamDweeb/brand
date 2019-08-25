@@ -17,13 +17,13 @@ class CartView : UIView  {
         navView.titlelabel.text = "cart".localized
         return navView
     }()
-    lazy var Totalsar:HeaderLabel = {
-        let label = HeaderLabel()
+    lazy var Totalsar:HeaderLabelAlign = {
+        let label = HeaderLabelAlign()
         return label
     }()
     
-    lazy var ItemsNum:HeaderLabel = {
-        let label = HeaderLabel()
+    lazy var ItemsNum:HeaderLabelAlign = {
+        let label = HeaderLabelAlign()
         return label
     }()
     lazy var save: GradBtn = {
