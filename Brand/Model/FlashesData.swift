@@ -21,14 +21,13 @@ struct Flash:Codable {
     let soldOut:Bool
     
     enum CodingKeys: String, CodingKey {
-        case id
+        case id,product
         case offerName = "offer_name"
         case startDate = "start_date"
         case endDate = "end_date"
         case salePct = "sale_pct"
         case appVisibility = "app_visibility"
         case siteVisibility = "site_visibility"
-        case product
         case offerImage = "offer_image"
         case soldOut = "sold_out"
     }
@@ -39,6 +38,6 @@ struct FlashOfferHeader:Codable{
 struct Settings:Codable {
     let id: Int
     let type: String
-    let value: NewDate
+    let value: NewDate?
     let photo:Media
 }

@@ -350,6 +350,38 @@
             endingLineNumber = "60"
             landmarkName = "viewWillAppear(_:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Brand.WishListController.__allocating_init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;Brand.WishListController&gt;"
+                  moduleName = "Brand"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/eslamdweeb/Desktop/brands_ios_updated/Brand/Scens/MenuScens/Wishlist/WishListController.swift"
+                  timestampString = "588413581.14631"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Brand.WishListController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;Brand.WishListController&gt;"
+                  moduleName = "Brand"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/eslamdweeb/Desktop/brands_ios_updated/Brand/Scens/MenuScens/Wishlist/WishListController.swift"
+                  timestampString = "588413581.148591"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "31"
+                  endingLineNumber = "31"
+                  offsetFromSymbolStart = "127">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -382,38 +414,6 @@
             endingLineNumber = "69"
             landmarkName = "switchBetweenServices(vcType:refresh:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "default argument 1 of Brand.WishListController.(switchBetweenServices in _4049EF8D9DAD551432A7E65B6B116B9E)(vcType: Brand.VCType, refresh: Swift.Bool) -&gt; ()"
-                  moduleName = "Brand"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/eslamdweeb/Desktop/Brand/Brand/Scens/MenuScens/Wishlist/WishListController.swift"
-                  timestampString = "588080820.468063"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "69"
-                  endingLineNumber = "69"
-                  offsetFromSymbolStart = "8">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Brand.WishListController.(switchBetweenServices in _4049EF8D9DAD551432A7E65B6B116B9E)(vcType: Brand.VCType, refresh: Swift.Bool) -&gt; ()"
-                  moduleName = "Brand"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/eslamdweeb/Desktop/Brand/Brand/Scens/MenuScens/Wishlist/WishListController.swift"
-                  timestampString = "588080820.469525"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "71"
-                  endingLineNumber = "71"
-                  offsetFromSymbolStart = "47">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -471,7 +471,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Brand/Scens/IntroScen/SplashViewController.swift"
-            timestampString = "588081214.958511"
+            timestampString = "588430421.718828"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "67"
@@ -487,7 +487,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Brand/Scens/IntroScen/SplashViewController.swift"
-            timestampString = "588081214.958568"
+            timestampString = "588430421.7188849"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "108"
@@ -503,7 +503,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Brand/Scens/IntroScen/SplashViewController.swift"
-            timestampString = "588081214.958608"
+            timestampString = "588430421.718937"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "107"
@@ -519,7 +519,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Brand/Scens/IntroScen/SplashViewController.swift"
-            timestampString = "588081214.9586461"
+            timestampString = "588430421.718972"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "109"
@@ -534,8 +534,8 @@
                   symbolName = "Brand.SplashViewController.(getFlashOfferHeader in _F1FD3B5CA761BC92AD81DD2E98D6C129)() -&gt; ()"
                   moduleName = "Brand"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/eslamdweeb/Desktop/Brand/Brand/Scens/IntroScen/SplashViewController.swift"
-                  timestampString = "588080820.4848911"
+                  urlString = "file:///Users/eslamdweeb/Desktop/brands_ios_updated/Brand/Scens/IntroScen/SplashViewController.swift"
+                  timestampString = "588413581.171325"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "109"
@@ -549,8 +549,8 @@
                   symbolName = "closure #1 (Swift.Result&lt;Brand.FlashOfferHeader, Swift.Error&gt;) -&gt; () in Brand.SplashViewController.(getFlashOfferHeader in _F1FD3B5CA761BC92AD81DD2E98D6C129)() -&gt; ()"
                   moduleName = "Brand"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/eslamdweeb/Desktop/Brand/Brand/Scens/IntroScen/SplashViewController.swift"
-                  timestampString = "588080820.486241"
+                  urlString = "file:///Users/eslamdweeb/Desktop/brands_ios_updated/Brand/Scens/IntroScen/SplashViewController.swift"
+                  timestampString = "588413581.17313"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "109"
@@ -567,7 +567,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Brand/Scens/IntroScen/SplashViewController.swift"
-            timestampString = "588081214.958681"
+            timestampString = "588430421.719009"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "110"
@@ -583,7 +583,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Brand/Scens/IntroScen/SplashViewController.swift"
-            timestampString = "588081214.9587179"
+            timestampString = "588430421.719043"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "43"
@@ -598,8 +598,8 @@
                   symbolName = "Brand.SplashViewController.viewDidLoad() -&gt; ()"
                   moduleName = "Brand"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/eslamdweeb/Desktop/Brand/Brand/Scens/IntroScen/SplashViewController.swift"
-                  timestampString = "588080820.492732"
+                  urlString = "file:///Users/eslamdweeb/Desktop/brands_ios_updated/Brand/Scens/IntroScen/SplashViewController.swift"
+                  timestampString = "588413581.179697"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "43"
@@ -613,8 +613,8 @@
                   symbolName = "closure #2 (Swift.Bool) -&gt; () in Brand.SplashViewController.viewDidLoad() -&gt; ()"
                   moduleName = "Brand"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/eslamdweeb/Desktop/Brand/Brand/Scens/IntroScen/SplashViewController.swift"
-                  timestampString = "588080820.494323"
+                  urlString = "file:///Users/eslamdweeb/Desktop/brands_ios_updated/Brand/Scens/IntroScen/SplashViewController.swift"
+                  timestampString = "588413581.181071"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "43"
@@ -646,8 +646,8 @@
                   symbolName = "closure #1 (Swift.Result&lt;Brand.ExploreData, Swift.Error&gt;) -&gt; () in closure #1 () -&gt; () in Brand.ExploreVC.(getExploreData in _5C531DA28285DC8EB38C1A49202BA383)() -&gt; ()"
                   moduleName = "Brand"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/eslamdweeb/Desktop/Brand/Brand/Scens/TabBar/ExploreVC.swift"
-                  timestampString = "588080820.497893"
+                  urlString = "file:///Users/eslamdweeb/Desktop/brands_ios_updated/Brand/Scens/TabBar/ExploreVC.swift"
+                  timestampString = "588413581.184546"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "109"
@@ -661,8 +661,8 @@
                   symbolName = "closure #1 (Swift.Result&lt;Brand.ExploreData, Swift.Error&gt;) -&gt; () in closure #1 () -&gt; () in Brand.ExploreVC.(getExploreData in _5C531DA28285DC8EB38C1A49202BA383)() -&gt; ()"
                   moduleName = "Brand"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/eslamdweeb/Desktop/Brand/Brand/Scens/TabBar/ExploreVC.swift"
-                  timestampString = "588080820.499298"
+                  urlString = "file:///Users/eslamdweeb/Desktop/brands_ios_updated/Brand/Scens/TabBar/ExploreVC.swift"
+                  timestampString = "588413581.186162"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "109"
@@ -694,8 +694,8 @@
                   symbolName = "Brand.ExploreVC.(getExploreData in _5C531DA28285DC8EB38C1A49202BA383)() -&gt; ()"
                   moduleName = "Brand"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/eslamdweeb/Desktop/Brand/Brand/Scens/TabBar/ExploreVC.swift"
-                  timestampString = "588080820.502889"
+                  urlString = "file:///Users/eslamdweeb/Desktop/brands_ios_updated/Brand/Scens/TabBar/ExploreVC.swift"
+                  timestampString = "588413581.1897089"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "105"
@@ -709,8 +709,8 @@
                   symbolName = "closure #1 () -&gt; () in Brand.ExploreVC.(getExploreData in _5C531DA28285DC8EB38C1A49202BA383)() -&gt; ()"
                   moduleName = "Brand"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/eslamdweeb/Desktop/Brand/Brand/Scens/TabBar/ExploreVC.swift"
-                  timestampString = "588080820.504282"
+                  urlString = "file:///Users/eslamdweeb/Desktop/brands_ios_updated/Brand/Scens/TabBar/ExploreVC.swift"
+                  timestampString = "588413581.19109"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "106"
@@ -734,6 +734,118 @@
             endingLineNumber = "63"
             landmarkName = "viewWillAppear(_:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Brand/Scens/IntroScen/SplashViewController.swift"
+            timestampString = "588430421.719111"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
+            landmarkName = "getBanners()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Brand/Scens/IntroScen/SplashViewController.swift"
+            timestampString = "588430421.719174"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
+            landmarkName = "getBanners()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Brand.SplashViewController.(getBanners in _F1FD3B5CA761BC92AD81DD2E98D6C129)() -&gt; ()"
+                  moduleName = "Brand"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/eslamdweeb/Desktop/brands_ios_updated/Brand/Scens/IntroScen/SplashViewController.swift"
+                  timestampString = "588413581.200803"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "93"
+                  endingLineNumber = "93"
+                  offsetFromSymbolStart = "26">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;Brand.BannersData, Swift.Error&gt;) -&gt; () in Brand.SplashViewController.(getBanners in _F1FD3B5CA761BC92AD81DD2E98D6C129)() -&gt; ()"
+                  moduleName = "Brand"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/eslamdweeb/Desktop/brands_ios_updated/Brand/Scens/IntroScen/SplashViewController.swift"
+                  timestampString = "588413581.20223"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "93"
+                  endingLineNumber = "93"
+                  offsetFromSymbolStart = "179">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Brand/Scens/IntroScen/SplashViewController.swift"
+            timestampString = "588430421.71921"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
+            landmarkName = "getBanners()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;Brand.BannersData, Swift.Error&gt;) -&gt; () in Brand.SplashViewController.(getBanners in _F1FD3B5CA761BC92AD81DD2E98D6C129)() -&gt; ()"
+                  moduleName = "Brand"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/eslamdweeb/Desktop/brands_ios_updated/Brand/Scens/IntroScen/SplashViewController.swift"
+                  timestampString = "588413581.205792"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "95"
+                  endingLineNumber = "95"
+                  offsetFromSymbolStart = "211">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;Brand.BannersData, Swift.Error&gt;) -&gt; () in Brand.SplashViewController.(getBanners in _F1FD3B5CA761BC92AD81DD2E98D6C129)() -&gt; ()"
+                  moduleName = "Brand"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/eslamdweeb/Desktop/brands_ios_updated/Brand/Scens/IntroScen/SplashViewController.swift"
+                  timestampString = "588413581.207184"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "95"
+                  endingLineNumber = "95"
+                  offsetFromSymbolStart = "218">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

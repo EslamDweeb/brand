@@ -56,7 +56,7 @@ enum ProductRouter:URLRequestConvertible {
         case .updateReview(_,_,_,_,let objectId,let ratingId):
             return "/api/ratingables/catalog/\(objectId)/\(ratingId)"
         case .getOrders(let pageNumber):
-            return "/api/orders&page=\(pageNumber)"
+            return "/api/orders?page=\(pageNumber)"
         case .getOrderDetails(let orderSerial):
             return "/api/orders/\(orderSerial)"
         case .getCategoryInfo(let slug):
@@ -66,7 +66,7 @@ enum ProductRouter:URLRequestConvertible {
         case .getWishlist(let pageNumber):
             return "/api/favorite?type=config&page=\(pageNumber)"
         case .getCartData(let pageNumber):
-            return "/api/cart-items&page=\(pageNumber)"
+            return "/api/cart-items?page=\(pageNumber)"
         case .getExploreData:
             return "/api/explore"
         case .getFlashData:

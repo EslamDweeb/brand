@@ -32,7 +32,7 @@ class TabBarViewController: UITabBarController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        let height =  ( self.tabBar.frame.size.height / 2 )
+        let height =  ( self.tabBar.frame.size.height / 2 ) - 5
         let bottomPadding : CGFloat = self.view.safeAreaInsets.bottom / 2
         
         //print("height tab : \(height)")

@@ -25,7 +25,7 @@ struct CartItem: Codable {
     let config: Config
     let sellerNotes: String?
     let qty: Int
-    let selectedOptions: [SelectedOption]
+    let selectedOptions: [SelectedOption]?
     let itemOverallPrice, totalCartItemsPrice: Double
     let productOptions: [ProductOptions]
    
