@@ -8,6 +8,16 @@
 
 import UIKit
 import MOLH
+import SafariServices
+
+enum WebControllType{
+    case about
+    case terms
+    case customerService
+    case returnPolicy
+    case saleOnBrand
+    case buyOnbrand
+}
 
 extension MenuViewController : UITableViewDataSource , UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -102,30 +112,18 @@ extension MenuViewController : UITableViewDataSource , UITableViewDelegate {
             self.present(WishListController(), animated: true) {
                 cell.backgroundColor = .clear
             }
-        case "about".localized:
-            self.present(LoginViewController(), animated: true) {
-                cell.backgroundColor = .clear
-            }
-        case "terms&privacy".localized:
-            self.present(LoginViewController(), animated: true) {
-                cell.backgroundColor = .clear
-            }
-        case "customerService".localized:
-            self.present(LoginViewController(), animated: true) {
-                cell.backgroundColor = .clear
-            }
-        case "returnPolicy".localized:
-            self.present(LoginViewController(), animated: true) {
-                cell.backgroundColor = .clear
-            }
-        case "saleInBrand".localized:
-            self.present(LoginViewController(), animated: true) {
-                cell.backgroundColor = .clear
-            }
-        case "buyFromBrand".localized:
-            self.present(LoginViewController(), animated: true) {
-                cell.backgroundColor = .clear
-            }
+        case YString.about:
+            setControllerTitleAndLoad(type:.about, cell: cell)
+        case YString.termsAndPrivacy:
+            setControllerTitleAndLoad(type:.terms, cell: cell)
+        case YString.customerService:
+          setControllerTitleAndLoad(type:.customerService, cell: cell)
+        case YString.returnPolicy:
+           setControllerTitleAndLoad(type:.returnPolicy, cell: cell)
+        case YString.saleOnBrand:
+            setControllerTitleAndLoad(type:.saleOnBrand, cell: cell)
+        case YString.buyFromBrand:
+           setControllerTitleAndLoad(type:.buyOnbrand, cell: cell)
         default:
             break
         }
@@ -136,5 +134,31 @@ extension MenuViewController : UITableViewDataSource , UITableViewDelegate {
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         guard let cell = tableView.cellForRow(at: indexPath) as? MenuCell else{return}
         cell.backgroundColor = .clear
+    }
+}
+
+extension MenuViewController{
+    func setControllerTitleAndLoad(type:WebControllType,cell:MenuCell?){
+        switch type {
+        case .about:
+            self.loadWebView(path:"about", cell: cell)
+        case .terms:
+            self.loadWebView(path:"terms", cell: cell)
+        case .customerService:
+            self.loadWebView(path:"customer-service", cell: cell)
+        case .returnPolicy:
+            self.loadWebView(path:"return-policy", cell: cell)
+        case .saleOnBrand:
+            self.loadWebView(path:"sale-on-brands", cell: cell)
+        case .buyOnbrand:
+            self.loadWebView(path:"buy-from-brands", cell: cell)
+        }
+    }
+    func loadWebView(path:String,cell:MenuCell?){
+        let url = URL(string: "https://brands.sa/\(path)")!
+        let dest = SFSafariViewController(url: url)
+        self.present(dest, animated: true) {
+            cell!.backgroundColor = .clear
+        }
     }
 }

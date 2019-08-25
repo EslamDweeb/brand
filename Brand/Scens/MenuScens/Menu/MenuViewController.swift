@@ -51,6 +51,7 @@ class MenuViewController: UIViewController,ButtonActionDelegate {
         let v = MenuView(delegate: self, dataSource: self,actionDelegate:self)
         return v
     }()
+    var isLogin = UserDefaults.standard.bool(forKey: Constants.Defaults.isLogin)
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
