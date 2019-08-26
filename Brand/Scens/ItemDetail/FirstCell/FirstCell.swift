@@ -10,7 +10,21 @@ import UIKit
 
 class FirstCell:UICollectionViewCell{
     let cellID = "cellID"
-    var configOptionArray:[ConfigOption]?
+    var selectedDec = [String:Int]()
+    var selectedIndex = [Int]()
+
+    var configOptionArray:[ConfigOption]? {
+        didSet{
+            guard let optionsArray = configOptionArray else{return}
+            for options in optionsArray{
+                for option in options.values{
+                    if option.selected! {
+                        selectedDec.updateValue(option.id, forKey: options.name)
+                    }
+                }
+            }
+        }
+    }
     let detailView = DetailView()
     let descriptionView = DescriptionView()
     let footerView = FooterView()
@@ -105,6 +119,7 @@ extension FirstCell:UITableViewDataSource,UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath)as? ConfigOptionTableCell else {return UITableViewCell()}
+        cell.ConnectDelegate = self
         cell.configOption = configOptionArray?[indexPath.row]
         cell.configValueCollection.reloadData()
         return cell
@@ -121,5 +136,26 @@ extension FirstCell:UITableViewDataSource,UITableViewDelegate {
                 self.layoutIfNeeded()
             }
         }
+    }
+}
+extension FirstCell:ConnectConfigTabelCellToFirstCellDelegate{
+    func getSelectedOption(dice:[String:Int]) {
+        for (key,value) in dice{
+            self.selectedDec.updateValue(value, forKey: key)
+        }
+        for val in selectedDec.values {
+            selectedIndex.append(val)
+        }
+        print(dice)
+        print(self.selectedDec)
+        print(self.selectedIndex)
+    }
+}
+protocol ConnectConfigTabelCellToFirstCellDelegate:class{
+    func getSelectedOption(dice:[String:Int])
+}
+extension ConnectConfigTabelCellToFirstCellDelegate{
+    func getSelectedOption(dice:[String:Int]) {
+        
     }
 }

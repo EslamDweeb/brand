@@ -97,7 +97,7 @@ struct ConfigOptionValue: Codable {
     let id: Int
     let value: String
     let available: Bool
-//     let selected, available: Bool
+    let selected: Bool?
 }
 
 // MARK: - Discount
