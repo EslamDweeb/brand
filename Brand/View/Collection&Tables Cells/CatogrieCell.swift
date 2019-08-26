@@ -50,6 +50,7 @@ class CatogrieCell:UICollectionViewCell {
         lbl.text = "Apple"
         lbl.textColor = .black
         lbl.textAlignment = .center
+        lbl.numberOfLines = 0
         return lbl
     }()
     
@@ -68,7 +69,7 @@ class CatogrieCell:UICollectionViewCell {
         addConstraints()
     }
     func addConstraints() {
-        Image.anchor(top: topAnchor, left: nil, bottom: nil, right: nil, centerX: centerXAnchor, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 20, height: 20, paddingCenterX: 0, paddingCenterY: 0)
-        brandName.anchor(top: Image.bottomAnchor, left: nil, bottom: contentView.bottomAnchor , right: nil, centerX: contentView.centerXAnchor, centerY: nil, paddingTop: 4, paddingLeft: 0, paddingBottom:  4 , paddingRight: 0, width: 45, height: 16, paddingCenterX: 0, paddingCenterY: 0)
+        Image.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 55, paddingCenterX: 0, paddingCenterY: 0)
+        brandName.anchor(top: Image.bottomAnchor, left: leftAnchor, bottom: nil , right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 4, paddingLeft: 0, paddingBottom:  0 , paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
     }
 }

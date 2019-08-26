@@ -48,7 +48,7 @@ class ExploreView:UIView{
         let coll = UICollectionView(frame: .zero,collectionViewLayout: layout)
             coll.register(CatogrieCell.self, forCellWithReuseIdentifier: cellID)
             coll.backgroundColor = .backgroundColl
-            coll.isScrollEnabled = false
+       //     coll.isScrollEnabled = false
         return coll
     }()
     lazy var brandCollection: UICollectionView = {
@@ -101,7 +101,7 @@ class ExploreView:UIView{
         }
         
         
-        categoriesCollection.anchor(top: categoriesLable.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 85, paddingCenterX: 0, paddingCenterY: 0)
+        categoriesCollection.anchor(top: categoriesLable.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 90, paddingCenterX: 0, paddingCenterY: 0)
         lineView1.anchor(top: categoriesCollection.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 1, paddingCenterX: 0, paddingCenterY: 0)
       
         brandCollection.anchor(top: brandLable.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)

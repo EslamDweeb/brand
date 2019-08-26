@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import EasyTipView
 class ItemDetailVC: UIViewController,ButtonActionDelegate {
     let headerID = "headerID"
     let cellID = "cellID"
@@ -19,7 +19,7 @@ class ItemDetailVC: UIViewController,ButtonActionDelegate {
     var currentPage:Int = 1
     var lastPage:Int?
     var slug:String?
-    
+    var preferences = EasyTipView.Preferences()
     static func create (slug : String) -> ItemDetailVC {
         let vc = ItemDetailVC()
         vc.slug = slug
@@ -41,11 +41,29 @@ class ItemDetailVC: UIViewController,ButtonActionDelegate {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        preferences.drawing.font = UIFont(name: .fontM, size: 13)!
+        preferences.drawing.foregroundColor = UIColor.white
+        preferences.drawing.backgroundColor = .gray
+        EasyTipView.globalPreferences = preferences
         print("hi!!!!!!!!!!!!!!!!")
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         getItemDetailInfo()
+    }
+    func infoTapped(_ sender: UIButton) {
+        guard let text = self.itemDetails?.config.sellerNotes else{
+            return
+        }
+        let tipView = EasyTipView(text: text , preferences: preferences)
+        guard let  cell = mainView.mainCollectionView.cellForItem(at: [0,0]) as? MainCollCell else {
+            return
+        }
+        guard let cell2 = cell.pageCollectionView.cellForItem(at: [0,0]) as? FirstCell else {
+            return
+        }
+        tipView.show(forView: cell2.detailView.infoBtn , withinSuperview: self.mainView)
+        
     }
     private func getItemDetailInfo(){
         DispatchQueue.main.async {
@@ -150,6 +168,9 @@ extension ItemDetailVC:UICollectionViewDelegate,UICollectionViewDataSource,UICol
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as? MainCollCell else{return UICollectionViewCell()}
         cell.itemDetails = self.itemDetails
+       let cell2 = cell.pageCollectionView.cellForItem(at: [0,0]) as? FirstCell
+        cell2?.detailView.infoBtn.addTarget(self, action: #selector(ButtonActionDelegate.infoTapped(_:)), for: .touchUpInside)
+
         cell.reviews = self.reviews
         cell.rateData = self.rateData
         cell.handelCellSwipe = { [weak self](row) in

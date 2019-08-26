@@ -13,8 +13,8 @@ struct Constants {
     static let providerTwitter = 2
     
     struct ProductionServer {
-       // static let baseURL = "https://brands.solutionplus.net"
         static let baseURL = "https://brands.solutionplus.net"
+        //static let baseURL = "https://api.brands.solutionplus.net"
     }
     
     struct Defaults {

@@ -17,6 +17,7 @@ class SubCategoryVC:UIViewController,ButtonActionDelegate{
         return v
     }()
     var slug:String?
+    var img = ""
     var subCategories = [Category]()
     var configs = [Config]()
     let cellID = "cellID"
@@ -58,6 +59,7 @@ class SubCategoryVC:UIViewController,ButtonActionDelegate{
     }
     func getVCData(slug:String){
         dispatchGroup.enter()
+        self.slug = slug
         getCategoryProducts()
         dispatchGroup.enter()
         getSubCategory(slug: slug)
@@ -73,6 +75,11 @@ class SubCategoryVC:UIViewController,ButtonActionDelegate{
             case .success(let data):
                 DispatchQueue.main.async {
                     self.subCategories = data.category?.childs ?? []
+                    if self.img == "" {
+                    self.mainView.imagepath = data.category?.photo?.path
+                    }else {
+                        self.mainView.imagepath = self.img
+                    }
                     self.mainView.categoriesCollection.reloadData()
                 }
                 self.dispatchGroup.leave()
@@ -87,21 +94,13 @@ class SubCategoryVC:UIViewController,ButtonActionDelegate{
             var configss = [Config]()
             switch result{
             case .success(let data):
-
-                 DispatchQueue.main.async {
-                    for product in data.products {
-                    for config in product.configs ?? [] {
-                          configss.append(config)
-                         }
-                    }
-                 }
-
                 DispatchQueue.main.async {
-                    for product in data.products {
-                        for config in product.configs ?? [] {
+                  //  for product in data.products {
+                        for config in data.configs ?? [] {
                             configss.append(config)
                         }
-                    }
+                 //   }
+                    
                     self.configs = configss
                     self.mainView.configCollection.reloadData()
                     print("dtatadtdattdat!@#$#@!@#$#@!@#$#@!",self.configs)
@@ -112,6 +111,9 @@ class SubCategoryVC:UIViewController,ButtonActionDelegate{
                 self.dispatchGroup.leave()
             }
         }
+    }
+    func searchTapped() {
+        self.presentViewController(controller: searchVC())
     }
             
 }

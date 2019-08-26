@@ -38,9 +38,9 @@ class CartController : UIViewController ,ButtonActionDelegate{
         preferences.drawing.font = UIFont(name: .fontM, size: 13)!
         preferences.drawing.foregroundColor = UIColor.white
         preferences.drawing.backgroundColor = .gray
+        EasyTipView.globalPreferences = preferences
         //preferences.positioning.maxWidth = self.view.frame.size.width - 50
         //  preferences.drawing.arrowPosition = .top
-        EasyTipView.globalPreferences = preferences
         mainView.actionDelegate = self
         mainView.tableView.delegate = self
         mainView.tableView.dataSource = self
