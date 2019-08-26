@@ -9,8 +9,16 @@
 import UIKit
 
 class SubCtegoryView:UIView{
+    var heightforSubCat : NSLayoutConstraint?
+    var heightforlable : NSLayoutConstraint?
     weak var actionDelegate:ButtonActionDelegate?
-    
+    var imagepath:String?{
+        didSet{
+            guard let img = imagepath else{return}
+            let url = URL(string: img)
+            categoryLogoImage.kf.setImage(with: url)
+        }
+    }
     let cellID = "cellID"
     let cellID2 = "cellID2"
     lazy var  navView:GradNavView = {
@@ -18,12 +26,13 @@ class SubCtegoryView:UIView{
         navView.titlelabel.text = NSLocalizedString("subCategorie", comment: "")
         navView.searchBtn.isHidden = false
         navView.backBtn.addTarget(actionDelegate, action: #selector(ButtonActionDelegate.dissmisController), for: .touchUpInside)
+        navView.searchBtn.addTarget(actionDelegate, action: #selector(ButtonActionDelegate.searchTapped), for: .touchUpInside)
         return navView
     }()
     
     lazy var categoriesLable:UILabel = {
         let label = UILabel()
-        label.text = NSLocalizedString("browesBy", comment: "")
+        label.text = "browesBy".localized
         label.textColor = .black
         label.textAlignment = .left
         label.font = UIFont(name: "Avenir-Heavy", size: 14)
@@ -31,10 +40,11 @@ class SubCtegoryView:UIView{
     }()
     lazy var seeAllBtn: UIButton = {
         let button = UIButton()
-        button.setTitle("See all", for: .normal)
+        button.setTitle("seeAll".localized, for: .normal)
         button.setTitleColor(.pink, for: .normal)
         button.titleLabel?.font = UIFont(name: "Avenir-Heavy", size: 14)
         button.addTarget(actionDelegate, action: #selector(ButtonActionDelegate.handelSeeAllBtn), for: .touchUpInside)
+        button.isHidden = true
         return button
     }()
     lazy var categoriesCollection: UICollectionView = {
@@ -43,7 +53,7 @@ class SubCtegoryView:UIView{
         let coll = UICollectionView(frame: .zero,collectionViewLayout: layout)
         coll.register(CatogrieCell.self, forCellWithReuseIdentifier: cellID)
         coll.backgroundColor = .backgroundColl
-        coll.isScrollEnabled = false
+      //  coll.isScrollEnabled = false
         return coll
     }()
     lazy var configCollection: UICollectionView = {
@@ -55,8 +65,8 @@ class SubCtegoryView:UIView{
     }()
     lazy var categoryLogoImage:UIImageView = {
         let logo = UIImageView()
-        logo.image = #imageLiteral(resourceName: "ads")
-        logo.contentMode = .scaleAspectFill
+       // logo.image = #imageLiteral(resourceName: "ads")
+        logo.contentMode = .scaleToFill
         return logo
     }()
     
@@ -114,13 +124,18 @@ class SubCtegoryView:UIView{
         parentViewScrollView.widthAnchor.constraint(equalTo: scrollView.widthAnchor , multiplier: 1.0).isActive = true
         parentViewScrollView.heightAnchor.constraint(equalTo: scrollView.heightAnchor, multiplier: 1.0 ).isActive = true
         
-        categoriesLable.anchor(top: parentViewScrollView.topAnchor, left: scrollView.leftAnchor, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
-        categoriesLable.widthAnchor.constraint(greaterThanOrEqualToConstant: 100).isActive = true
-        
-        seeAllBtn.anchor(top: parentViewScrollView.topAnchor, left: nil, bottom: nil, right: scrollView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 8, width: 45, height: 20, paddingCenterX: 0, paddingCenterY: 0)
-        categoriesCollection.anchor(top: categoriesLable.bottomAnchor, left: parentViewScrollView.leftAnchor, bottom: nil, right: parentViewScrollView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 85, paddingCenterX: 0, paddingCenterY: 0)
-        categoryLogoImage.anchor(top: categoriesCollection.bottomAnchor, left: parentViewScrollView.leftAnchor, bottom: nil, right: parentViewScrollView.rightAnchor, centerX: parentViewScrollView.centerXAnchor, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 100, paddingCenterX: 0, paddingCenterY: 0)
-        configCollection.anchor(top: categoryLogoImage.bottomAnchor, left: parentViewScrollView.leftAnchor, bottom: parentViewScrollView.bottomAnchor, right: parentViewScrollView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
+//        categoriesLable.anchor(top: parentViewScrollView.topAnchor, left: scrollView.leftAnchor, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
+//        categoriesLable.widthAnchor.constraint(greaterThanOrEqualToConstant: 100).isActive = true
+          categoryLogoImage.anchor(top: parentViewScrollView.topAnchor, left: parentViewScrollView.leftAnchor, bottom: nil, right: parentViewScrollView.rightAnchor, centerX: parentViewScrollView.centerXAnchor, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 150, paddingCenterX: 0, paddingCenterY: 0)
+        categoriesLable.anchor(top: categoryLogoImage.bottomAnchor, left: scrollView.leftAnchor, bottom: nil, right: scrollView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
+       // categoriesLable.widthAnchor.constraint(greaterThanOrEqualToConstant: 100).isActive = true
+        heightforlable = categoriesLable.heightAnchor.constraint(equalToConstant: 30)
+        heightforlable?.isActive = true
+   //     seeAllBtn.anchor(top: parentViewScrollView.topAnchor, left: nil, bottom: nil, right: scrollView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 8, width: 45, height: 20, paddingCenterX: 0, paddingCenterY: 0)
+        categoriesCollection.anchor(top: categoriesLable.bottomAnchor, left: parentViewScrollView.leftAnchor, bottom: nil, right: parentViewScrollView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
+        heightforSubCat = categoriesCollection.heightAnchor.constraint(equalToConstant: 0)
+        heightforSubCat?.isActive = true
+        configCollection.anchor(top: categoriesCollection.bottomAnchor, left: parentViewScrollView.leftAnchor, bottom: parentViewScrollView.bottomAnchor, right: parentViewScrollView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         heightCollectionConfig = configCollection.heightAnchor.constraint(equalToConstant: 200)
     //    heightCollectionConfig?.isActive = true
     }

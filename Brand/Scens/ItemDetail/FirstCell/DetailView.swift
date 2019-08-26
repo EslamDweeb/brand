@@ -25,6 +25,7 @@ class DetailView: UIView {
         let btn = UIButton()
         let image = UIImage(named: "info6")
         btn.setImage(image, for: .normal)
+    //    btn.addTarget(self, action: #selector(ButtonActionDelegate.infoTapped(_:)), for: .touchUpInside)
         //btn.imageEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         return btn
     }()
@@ -80,6 +81,7 @@ class DetailView: UIView {
         TagsCollHeight = tagsCollection.heightAnchor.constraint(equalToConstant: 0)
         TagsCollHeight?.isActive = true
         lineView.anchor(top: nil, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 1, paddingCenterX: 0, paddingCenterY: 0)
+        
     }
     func setLableTitles(){
         let BrandattributedString = NSMutableAttributedString(string: "Brand : \(branTitle ?? "Apple")", attributes: [

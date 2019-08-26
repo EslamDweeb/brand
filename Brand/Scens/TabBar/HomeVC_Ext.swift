@@ -47,13 +47,43 @@ extension HomeVC:UICollectionViewDelegate,UICollectionViewDataSource,UICollectio
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == mainView.categoriesCollection{
-            let cell = collectionView.cellForItem(at: indexPath) as? CatogrieCell
-            let dest = SubCategoryVC()
-            dest.mainView.navView.titlelabel.text = cell?.category?.name
-            dest.slug = cell?.category?.slug
-            self.present(dest, animated: true, completion: nil)
-        }else{
-            print("Brand!!!!!!!!!!!!!!!!!!!!!!!")
+            if toggel == false {
+                let cell = collectionView.cellForItem(at: indexPath) as? CatogrieCell
+                let dest = SubCategoryVC()
+                dest.mainView.navView.titlelabel.text = cell?.category?.name
+                dest.slug = cell?.category?.slug
+                dest.img = ""
+                self.present(dest, animated: true, completion: nil)
+            }else{
+                let cell = collectionView.cellForItem(at: indexPath) as? CatogrieCell
+                let dest = SubCategoryVC()
+                dest.mainView.navView.titlelabel.text = cell?.brand?.name
+                dest.slug = cell?.brand?.slug
+                        dest.img = (cell?.brand?.logoImage.path) ?? ""
+                self.present(dest, animated: true, completion: nil)
+               
+            }
+//            let cell = collectionView.cellForItem(at: indexPath) as? CatogrieCell
+//            let dest = SubCategoryVC()
+//            dest.mainView.navView.titlelabel.text = cell?.category?.name
+//            dest.slug = cell?.category?.slug
+//            self.present(dest, animated: true, completion: nil)
+        }else if collectionView == mainView.brandCollection{
+            if toggel == false {
+                let cell = collectionView.cellForItem(at: indexPath) as? BrandCell
+                let dest = SubCategoryVC()
+                dest.mainView.navView.titlelabel.text = cell?.brand?.name
+                dest.slug = cell?.brand?.slug
+                dest.img = (cell?.brand?.logoImage.path) ?? ""
+                self.present(dest, animated: true, completion: nil)
+            }else{
+                let cell = collectionView.cellForItem(at: indexPath) as? BrandCell
+                let dest = SubCategoryVC()
+                dest.mainView.navView.titlelabel.text = cell?.category?.name
+                dest.slug = cell?.category?.slug
+                 dest.img = ""
+                self.present(dest, animated: true, completion: nil)
+            }
         }
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -63,7 +93,7 @@ extension HomeVC:UICollectionViewDelegate,UICollectionViewDataSource,UICollectio
             let itemWidth = width / 3
         return CGSize(width: itemWidth, height: itemWidth + 4)
         }else{
-            return CGSize(width: collectionView.bounds.width / 6 - 16, height:  220)
+            return CGSize(width: collectionView.bounds.width / 6 - 16, height:  90)
         }
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {

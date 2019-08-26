@@ -43,7 +43,7 @@ class BrandCell:UICollectionViewCell {
     lazy var Image: UIImageView = {
         let img = UIImageView()
         img.image = #imageLiteral(resourceName: "XSMax")
-        img.contentMode = .scaleAspectFill
+        img.contentMode = .scaleToFill
         img.layer.cornerRadius = 5
         img.clipsToBounds = true
         return img
@@ -74,6 +74,6 @@ class BrandCell:UICollectionViewCell {
     func addConstraints() {
         imageContainer.anchor(top: contentView.topAnchor, left: nil, bottom: nil, right: nil, centerX: contentView.centerXAnchor, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 110, height: 110, paddingCenterX: 0, paddingCenterY: 0)
         Image.anchor(top: imageContainer.topAnchor, left: imageContainer.leftAnchor, bottom: imageContainer.bottomAnchor, right: imageContainer.rightAnchor, centerX: nil, centerY: nil, paddingTop: 5, paddingLeft: 5, paddingBottom: 5, paddingRight: 5, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
-        brandName.anchor(top: imageContainer.bottomAnchor, left: nil, bottom: nil, right: nil, centerX: contentView.centerXAnchor, centerY: nil, paddingTop: 4, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 45, height: 16, paddingCenterX: 0, paddingCenterY: 0)
+        brandName.anchor(top: imageContainer.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, centerX: contentView.centerXAnchor, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 16, paddingCenterX: 0, paddingCenterY: 0)
     }
 }

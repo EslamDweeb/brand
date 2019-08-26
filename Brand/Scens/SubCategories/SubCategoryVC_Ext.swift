@@ -11,8 +11,33 @@ import UIKit
 extension SubCategoryVC:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == mainView.categoriesCollection{
+            if subCategories.count != 0 {
+                self.mainView.heightforlable?.constant = 30
+                self.mainView.heightforSubCat?.constant = 90
+//                UIView.animate(withDuration: 0.2, delay: 0, options: .curveLinear, animations: {
+//                    self.mainView.layoutIfNeeded()
+//                }, completion: nil)
+                
+            }else{
+                self.mainView.heightforlable?.constant = 0
+                self.mainView.heightforSubCat?.constant = 0
+                UIView.animate(withDuration: 0.2, delay: 0, options: .curveLinear, animations: {
+                    self.mainView.layoutIfNeeded()
+                }, completion: nil)
+            }
+          
             return subCategories.count
         }else{
+            if configs.count == 0 {
+                let view = ReviewBGView()
+                view.image.image = #imageLiteral(resourceName: "No product")
+                view.lable.text = "NO Product yet"
+                view.backgroundColor = .clear
+                collectionView.backgroundView = view
+                
+            }else{
+                collectionView.backgroundView  = nil
+            }
             return configs.count
         }
     }
@@ -38,15 +63,16 @@ extension SubCategoryVC:UICollectionViewDelegate,UICollectionViewDataSource,UICo
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == mainView.configCollection {
-            let  padding:CGFloat = 8 * 4
-            let width = collectionView.frame.width - padding
-            let itemWidth = width / 3
-            return CGSize(width: itemWidth, height: itemWidth + 4)
+//            let  padding:CGFloat = 8 * 4
+//            let width = collectionView.frame.width - padding
+//            let itemWidth = width / 3
+//            return CGSize(width: itemWidth, height: itemWidth + 4)
+            return CGSize(width: collectionView.frame.width / 2 - 16 , height: 215 )
         }else{
             let  padding:CGFloat = 8 * 7
             let width = collectionView.frame.width - padding
             let itemWidth = width / 6
-            return CGSize(width: itemWidth, height:  itemWidth)
+            return CGSize(width: itemWidth, height:  90)
         }
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
@@ -56,7 +82,12 @@ extension SubCategoryVC:UICollectionViewDelegate,UICollectionViewDataSource,UICo
     //        return 4
     //    }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 8
+//         if collectionView == mainView.configCollection {
+//            return 4 }
+//         else {
+            return 8
+//        }
+        
     }
     
 //    fileprivate var sectionInsets: UIEdgeInsets {

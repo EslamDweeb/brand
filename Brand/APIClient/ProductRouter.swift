@@ -62,7 +62,7 @@ enum ProductRouter:URLRequestConvertible {
         case .getCategoryInfo(let slug):
             return "/api/categories/\(slug)"
         case .getCategoryProduct(let slug):
-            return "/api/products?category=\(slug)"
+            return "/api/configs?category=\(slug)"
         case .getWishlist(let pageNumber):
             return "/api/favorite?type=config&page=\(pageNumber)"
         case .getCartData(let pageNumber):
