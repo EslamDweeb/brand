@@ -34,9 +34,12 @@ extension UIViewController {
     // func to create AlertController
     func createAlert(title: String? = nil,erroMessage: String,createButton:Bool? = false) {
         let alert = UIAlertController(title: title ?? "", message: erroMessage, preferredStyle: UIAlertController.Style.alert)
-        
+        alert.setBackgroundColor(color: .pink)
+        alert.setMessage(font: nil, color: .white)
+        if createButton == true{
         let okButton = UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel, handler: nil)
         alert.addAction(okButton)
+        }
         self.present(alert, animated: true, completion: nil)
         
     }

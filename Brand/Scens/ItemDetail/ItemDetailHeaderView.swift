@@ -41,7 +41,7 @@ class ItemDetailHeaderView: UIView {
     lazy var titlelable:UILabel = {
         let lable = UILabel()
         lable.font = UIFont(name: "Avenir-Heavy", size: 16)
-        lable.textColor = .white
+        lable.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.6999411387)
         lable.textAlignment = .center
         lable.text = "fdslhinflkdsnlk"
         return lable
@@ -49,7 +49,7 @@ class ItemDetailHeaderView: UIView {
     lazy var finalPriceLable:UILabel = {
         let lable = UILabel()
         lable.font = UIFont(name: "Avenir-Heavy", size: 20)
-        lable.textColor = .white
+        lable.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.6999411387)
         lable.textAlignment = .center
         lable.text = "fdslhinflkdsnlk"
         return lable
@@ -57,7 +57,7 @@ class ItemDetailHeaderView: UIView {
     lazy var priceLable:UILabel = {
         let lable = UILabel()
         lable.font = UIFont(name: "Avenir-Medium", size: 14)
-        lable.textColor = .white
+        lable.textColor = UIColor.lightDarkGray
         lable.text = "fdslhinflkdsnlk"
         return lable
     }()
@@ -81,7 +81,7 @@ class ItemDetailHeaderView: UIView {
     lazy var numberOFReviewerLable:UILabel = {
         let lable = UILabel()
         lable.font = UIFont(name: "Avenir-Medium", size: 11)
-        lable.textColor = .white
+        lable.textColor = UIColor.lightDarkGray
         lable.text = "200"
         return lable
     }()
@@ -159,7 +159,7 @@ class ItemDetailCollHeader:UICollectionReusableView,UICollectionViewDelegate,UIC
     //weak var actionDelegate:ButtonActionDelegate?
     lazy var header:ItemDetailHeaderView = {
         let header = ItemDetailHeaderView(self, self, self)
-        header.backgroundColor = .black
+        header.backgroundColor = .white
         return header
     }()
     var senderTag:String?

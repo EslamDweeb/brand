@@ -43,7 +43,7 @@ class YString {
     static var returnPolicy:String{return getText(key: "returnPolicy")}
     static var saleOnBrand:String{return getText(key: "saleInBrand")}
     static var buyFromBrand:String{return getText(key: "buyFromBrand")}
-    
+    static var savedItem:String{return getText(key: "savedItem")}
     
     static func getText (key : String) -> String {
         
@@ -245,7 +245,8 @@ class YString {
         "passwordMustBeGreaterThan5Char" : "كلمة المرور لابد ان تكون اتكبر من ٥ حروف",
         "menu" : "القائمة",
         "startShopping" : "Start shopping",
-        "yourCartIsEmpty" : "opps! Your cart is empty"
+        "yourCartIsEmpty" : "opps! Your cart is empty",
+        "savedItem":"Saved items"
         
         
     ]
@@ -441,7 +442,8 @@ class YString {
         "passwordMustBeGreaterThan5Char" : "Password must be greater than 5 char",
         "menu" : "Menu",
         "startShopping" : "Start shopping",
-        "yourCartIsEmpty" : "opps! Your cart is empty"
+        "yourCartIsEmpty" : "opps! Your cart is empty",
+        "savedItem":"Saved items"
     ]
     
     

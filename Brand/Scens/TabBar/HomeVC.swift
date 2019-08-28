@@ -63,7 +63,7 @@ class HomeVC:UIViewController,ButtonActionDelegate {
     }
     
     fileprivate func toggelArrays(){
-        if toggel {
+        if toggel == false {
             UIView.animate(withDuration: 0.5) {
                 self.mainView.brandLable.text = "Explore All brand"
                 self.mainView.categoriesLable.text = "Explore by Categories"

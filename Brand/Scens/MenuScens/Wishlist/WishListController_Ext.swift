@@ -56,6 +56,18 @@ extension WishListController: UICollectionViewDelegate,UICollectionViewDataSourc
             case .seeAll:
                 break
             }
+            cell.handelFavBtnTapped = { [weak self] (id) in
+                guard let self = self else{return}
+                APIClient.toggleFav(id: id) { (result) in
+                    switch result {
+                    case.success(let data):
+                        self.createAlert(title: nil, erroMessage: data.message ?? "", createButton: nil)
+                        print(data)
+                    case .failure(_):
+                        break
+                    }
+                }
+            }
             return cell
         }
     }

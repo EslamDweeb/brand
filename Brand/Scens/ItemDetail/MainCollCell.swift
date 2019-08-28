@@ -22,6 +22,7 @@ class MainCollCell:UICollectionViewCell,UICollectionViewDelegate,UICollectionVie
     var handelThirdCellAddReview:(() -> ())?
     var handelFooterViewClouserAction:((_ slug:String)->())?
     var handelThirdCellPaging:(() -> ())?
+    var handelFirstCellSelectedConfigOption:((_ selectedArray:[Int],_ SelectedId:Int) -> ())?
     lazy var pageCollectionView:UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -62,6 +63,10 @@ class MainCollCell:UICollectionViewCell,UICollectionViewDelegate,UICollectionVie
             cell.footerView.HandelSelectedCellAction = {[weak self] (slug) in
                 guard let self = self else{return}
                 self.handelFooterViewClouserAction?(slug)
+                cell.handelSelectedConfigOption = {[weak self] (array,id) in
+                    guard let self = self else{return}
+                    self.handelFirstCellSelectedConfigOption?(array,id)  
+                }
             }
             return cell
         case 1:

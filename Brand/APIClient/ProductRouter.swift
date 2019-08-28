@@ -31,6 +31,7 @@ enum ProductRouter:URLRequestConvertible {
     case getConfigReview(id:Int,pageNumber:Int)
     case getConfigRating(id:Int)
     case getSeeAllProduct(key:String,pageNumber:Int)
+  //  case getSelctedConfigSlug
     private var Methods : HTTPMethod {
         switch self {
         case .brands,.banners,.categories,.lastUpdate,.allReviews,.getOrders,.getOrderDetails,.getCategoryInfo,.getCategoryProduct,.getWishlist,.getCartData,.getExploreData,.getFlashData,.getAllProductConfigs,.getitemDetail,.getConfigReview,.getConfigRating,.getSeeAllProduct,.getFlashHeader:

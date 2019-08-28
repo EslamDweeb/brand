@@ -12,7 +12,7 @@ class RoundedImageView: UIImageView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-     setup()
+        setup()
     }
     override init(frame: CGRect) {
         super.init(frame: frame)

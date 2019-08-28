@@ -88,6 +88,11 @@ class ItemDetailVC: UIViewController,ButtonActionDelegate {
             }
         }
     }
+    fileprivate func removeAlertController(){
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
+            self.dismissPressentededControllers()
+        }
+    }
     fileprivate func getRatingData(id:Int){
         APIClient.getConfigRating(id: id) { (result) in
             switch result{
@@ -147,6 +152,8 @@ extension ItemDetailVC:UICollectionViewDelegate,UICollectionViewDataSource,UICol
                 APIClient.toggleFav(id: self.itemDetails?.config.id ?? 0) { (result) in
                     switch result {
                     case.success(let data):
+                        self.createAlert(title: nil, erroMessage: data.message ?? "", createButton: nil)
+                        self.removeAlertController()
                         print(data)
                     case .failure(_):
                         break
@@ -196,16 +203,7 @@ extension ItemDetailVC:UICollectionViewDelegate,UICollectionViewDataSource,UICol
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        switch indexPath.row {
-        case 0:
-            return CGSize(width: collectionView.frame.width, height: 750)
-        case 1:
-            return CGSize(width: collectionView.frame.width, height:  collectionView.frame.height)
-        case 2:
-            return CGSize(width: collectionView.frame.width, height: 770)
-        default:
-            return CGSize(width: collectionView.frame.width, height: 800)
-        }
+            return collectionView.bounds.size
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return CGSize(width: collectionView.frame.width, height: 350) //add your height here

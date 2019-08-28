@@ -75,6 +75,7 @@ class WishCell: UICollectionViewCell {
         lbl.font = setFont(name: .fontH, size: 14)
         return lbl
     }()
+    var handelFavBtnTapped:((_ id:Int)->Void)?
     lazy var favBtn: UIButton = {
         let btn = UIButton()
         let image = UIImage(named: "emptyHeart")
@@ -93,16 +94,8 @@ class WishCell: UICollectionViewCell {
             let image = UIImage(named: "filledHeart")
             favBtn.setImage(image, for: .normal)
         }
-        APIClient.toggleFav(id: config?.id ?? 0) { (result) in
-            switch result {
-            case.success(let data):
-                print(data)
-                self.isFav = !self.isFav
-            case .failure(_):
-                break
-            }
-            }
-            
+            self.handelFavBtnTapped?(config?.id ?? 0)
+            self.isFav = !self.isFav
          }
         
     }

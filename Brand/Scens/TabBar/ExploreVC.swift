@@ -55,12 +55,11 @@ class ExploreVC:UIViewController,ButtonActionDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        getDataFromLocalStorage()
+        getExploreData()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        getDataFromLocalStorage()
-        getExploreData()
         handelReachability(reachability: reachability)
     }
     override func viewDidAppear(_ animated: Bool) {
