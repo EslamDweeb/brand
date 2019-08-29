@@ -41,7 +41,7 @@ class searchVC: UIViewController,ButtonActionDelegate , isAbleToReceiveData{
     }
     
     func changeBtn() {
-        if mainView.searchtextFeild.text!.count >= 3 {
+        if mainView.searchtextFeild.text!.count >= 1 {
             getItems( text: mainView.searchtextFeild.text!)
         }else{
             searchitems = []

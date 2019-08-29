@@ -63,11 +63,7 @@ extension HomeVC:UICollectionViewDelegate,UICollectionViewDataSource,UICollectio
                 self.present(dest, animated: true, completion: nil)
                
             }
-//            let cell = collectionView.cellForItem(at: indexPath) as? CatogrieCell
-//            let dest = SubCategoryVC()
-//            dest.mainView.navView.titlelabel.text = cell?.category?.name
-//            dest.slug = cell?.category?.slug
-//            self.present(dest, animated: true, completion: nil)
+
         }else if collectionView == mainView.brandCollection{
             if toggel == false {
                 let cell = collectionView.cellForItem(at: indexPath) as? BrandCell
