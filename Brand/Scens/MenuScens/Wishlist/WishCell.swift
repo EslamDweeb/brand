@@ -10,7 +10,7 @@ import UIKit
 import Kingfisher
 class WishCell: UICollectionViewCell {
     
-    var config:Config? {
+    var config:DetailedConfig? {
         didSet{
             guard let con = config else{return}
             let url = URL(string:con.mainPhoto?.path ?? "")
@@ -27,14 +27,14 @@ class WishCell: UICollectionViewCell {
                 
             }
             isFav =  config?.isFavorite ?? false
-            if Double(con.sale) != 0  {
-                priceLbl.setAttributeStringWithStrike("\(con.price) \("sar".localized)")
-                discountLbl.text = "\(con.ReturnPricepersent(sale: Double(con.sale).roundToDecimal(3)))"
-                discountPrice.text = "\(con.ReturnPriceAfterSale(price: con.price , sale: Double(con.sale).roundToDecimal(3))) \("sar".localized)"
+            if Double(con.sale ?? 0) != 0  {
+                priceLbl.setAttributeStringWithStrike("\((Double(con.price ?? 0).roundToDecimal(1))) \("sar".localized)")
+                discountLbl.text = "\((con.ReturnPricepersent(sale: Double(con.sale ?? 0))))"
+                discountPrice.text = "\(con.ReturnPriceAfterSale(price: Double(con.price ?? 0) , sale: Double(con.sale ?? 0))) \("sar".localized)"
             }else{
                  priceLbl.isHidden = true
                  discountLbl.isHidden = true
-                 discountPrice.text = "\(con.price)\("sar".localized)"
+                discountPrice.text = "\(con.price ?? 0)\("sar".localized)"
             }
         }
     }
@@ -99,11 +99,17 @@ class WishCell: UICollectionViewCell {
          }
         
     }
+    var handelCartBtnTappedClouser:((_ config:DetailedConfig)->Void)?
     lazy var cartBtn: UIButton = {
         let btn = UIButton()
         btn.setImage(#imageLiteral(resourceName: "add-to-the-cart"), for: .normal)
+        btn.addTarget(self, action: #selector(handelCartBtnTapped), for: .touchUpInside)
         return btn
     }()
+    @objc func handelCartBtnTapped(){
+        print(config!)
+        self.handelCartBtnTappedClouser?(config!)
+    }
     override func layoutSubviews() {
         super.layoutSubviews()
         addConstrainsToUI()

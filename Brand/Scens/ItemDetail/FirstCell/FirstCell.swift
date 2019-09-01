@@ -95,10 +95,10 @@ class FirstCell:UICollectionViewCell{
     func getDescriptionViewData(description:String){
         descriptionView.descripLbl.text = description
     }
-    func getFooterViewData(configs:[Config]){
+    func getFooterViewData(configs:[DetailedConfig]?,simpleConfig:[Config]){
         footerView.configs = configs
         footerView.productCollectionView.reloadData()
-        if configs.count != 0{
+        if configs?.count != 0{
             footerView.titleLbl.isHidden = false
             footerViewHeightConstraint?.constant = 220
             UIView.animate(withDuration: 0.1) {

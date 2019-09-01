@@ -9,11 +9,11 @@
 
 import UIKit
 protocol isAbleToReceiveData {
-    func pass(data: [Config],brand : String ,price : String ,made : String ,Rate : String)  //data: string is an example parameter
+    func pass(data: [DetailedConfig],brand : String ,price : String ,made : String ,Rate : String)  //data: string is an example parameter
 }
 
 class searchVC: UIViewController,ButtonActionDelegate , isAbleToReceiveData{
-    func pass(data: [Config],brand : String ,price : String ,made : String ,Rate : String) {
+    func pass(data: [DetailedConfig],brand : String ,price : String ,made : String ,Rate : String) {
         print(data)
         searchitems = data
          self.mainView.searchCollection.reloadData()
@@ -24,7 +24,7 @@ class searchVC: UIViewController,ButtonActionDelegate , isAbleToReceiveData{
         return v
     }()
    let reachability =  Reachability()
-    var searchitems: [Config] = []
+    var searchitems: [DetailedConfig] = []
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }

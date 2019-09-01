@@ -14,4 +14,5 @@ protocol dropDwonProtocol {
 }
 protocol ExploreCellDelegate:class{
     func presentController(slug:String)
+    func handelCartBtnTapped(config:DetailedConfig)
 }

@@ -102,4 +102,9 @@ extension CartController: UITableViewDelegate , UITableViewDataSource {
         guard isLoadingIndexPath(indexPath) else { return }
         fetchNextPage()
     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let dest = ItemDetailVC()
+        dest.slug = cartpro[indexPath.row].config.slug
+        self.present(dest, animated: true, completion: nil )
+    }
 }

@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 struct searchModel:Codable {
-    let configs : [Config]?
+    let configs : [DetailedConfig]?
     let links:Links?
     let meta:Meta?
 }

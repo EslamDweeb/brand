@@ -175,16 +175,19 @@ class ItemDetailCollHeader:UICollectionReusableView,UICollectionViewDelegate,UIC
         header.rateView.rating = rating
         header.titlelable.text = name
         header.priceLable.setAttributeStringWithStrike("\(price)")
-        header.discountLbl.text = ReturnPricepersent(sale: Double(sale) ?? 0.0)
+        header.discountLbl.text = ReturnPricepersent(sale: Double(sale))
         header.numberOFReviewerLable.text = "(\(numberOfuserRating) user)"
         header.finalPriceLable.text = "\(getFinalPrice(price:Double(price), sale: Double(sale)))"
         header.pageControl.numberOfPages = numberOfPages
     }
-    private func getFinalPrice(price:Double,sale:Double?) -> Double{
-        return price - (price * (sale ?? 1))
+    private func getFinalPrice(price:Double,sale:Double) -> Double{
+//        "\(con.ReturnPriceAfterSale(price: con.price , sale: Double(con.sale).roundToDecimal(3))) \("sar".localized)"
+        
+       return (price - (price * sale).roundToDecimal(1))
+       // return price - (price * (sale ?? 1))
     }
      func ReturnPricepersent(sale:Double) -> String{
-        return "\( Double(round(sale * 100) / 100) * 100) %"
+        return "\( Int(Double(round(sale * 100) / 100).roundToDecimal(1) * 100)) %"
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return photos.count
@@ -192,6 +195,7 @@ class ItemDetailCollHeader:UICollectionReusableView,UICollectionViewDelegate,UIC
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as? BannerCell else{return UICollectionViewCell()}
+        cell.bannerImage.contentMode = .scaleAspectFit
         cell.photo = photos[indexPath.row]
         return cell
     }

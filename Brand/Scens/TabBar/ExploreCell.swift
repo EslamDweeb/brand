@@ -10,8 +10,10 @@ import UIKit
 import MOLH
 class ExploreCell:UICollectionViewCell {
     let cellID = "CellID"
-    var configArray = [Config]()
+    var configArray = [DetailedConfig]()
     var handelSeeAll: (() ->())?
+    var handelFavTapped:((_ id:Int)->Void)?
+    var handelCartTapped:((_ config:DetailedConfig)->Void)?
     lazy var titleLabel:UILabel = {
         let label = UILabel()
         label.textColor = .black
@@ -76,6 +78,16 @@ extension ExploreCell:UICollectionViewDelegate,UICollectionViewDataSource,UIColl
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as? WishCell else{return UICollectionViewCell()}
         cell.config = configArray[indexPath.item]
+        cell.handelFavBtnTapped = {[weak self] (id) in
+            guard let self = self else{return}
+            self .handelFavTapped?(id)
+        }
+        cell.handelCartBtnTappedClouser = {[weak self] (config) in
+            guard let self = self else{return}
+          //  print("config is not nil : \(config)")
+            self.delegate?.handelCartBtnTapped(config: config)
+        }
+        
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

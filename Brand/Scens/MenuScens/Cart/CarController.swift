@@ -20,6 +20,8 @@ class CartController : UIViewController ,ButtonActionDelegate{
     var totalPrice = 0.0
     var preferences = EasyTipView.Preferences()
     var show = true
+    var tipView:EasyTipView?
+    var isShowTip = false
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -61,17 +63,17 @@ class CartController : UIViewController ,ButtonActionDelegate{
     func saveButtonTapped() {
         self.presentViewController(controller: ShippingVC(), transitionModal: nil, presentationStyle: nil)
     }
+   
     func infoTapped(_ sender: UIButton) {
-        
-        let tipView = EasyTipView(text: cartpro[sender.tag].sellerNotes ?? "" , preferences: preferences)
-        guard let  cell = mainView.tableView.cellForRow(at: [0,sender.tag]) as? CartCell else {
-            return
+        if isShowTip == false{
+            tipView = EasyTipView(text: cartpro[sender.tag].sellerNotes ?? "" , preferences: preferences)
+            guard let cell = mainView.tableView.cellForRow(at: [0,sender.tag]) as? CartCell else {return}
+            tipView?.show(forView: cell.infoBtn , withinSuperview: self.mainView)
+            self.isShowTip = !self.isShowTip
+        }else{
+            tipView?.dismiss(withCompletion: nil)
+            self.isShowTip = !self.isShowTip
         }
-        
-        tipView.show(forView: cell.infoBtn , withinSuperview: self.mainView)
-        //        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
-        // tipView.dismiss()
-        //        }
     }
     func dissmisController() {
         self.dismiss(animated: true, completion: nil)

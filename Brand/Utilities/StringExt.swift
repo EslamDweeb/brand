@@ -44,7 +44,8 @@ class YString {
     static var saleOnBrand:String{return getText(key: "saleInBrand")}
     static var buyFromBrand:String{return getText(key: "buyFromBrand")}
     static var savedItem:String{return getText(key: "savedItem")}
-    
+    static var searchPlaceHolder:String{return getText(key: "searchPlaceHolder")}
+     static var checkoutNow:String{return getText(key: "checkoutNow")}
     static func getText (key : String) -> String {
         
         if MOLHLanguage.currentAppleLanguage().contains("en") {
@@ -230,7 +231,7 @@ class YString {
         "subCategorie" : "subCategorie",
         "browesBy" : "Browse by sub category",
         "stars" : "****************",
-        "Checkout_New" : "Checkout New",
+        "checkoutNow" : "Checkout Now",
         "productOptions" : "خيارات المنتج",
         "itemPrice" : "سعر المنتج",
         "quantity" : "الكمية",
@@ -246,8 +247,8 @@ class YString {
         "menu" : "القائمة",
         "startShopping" : "Start shopping",
         "yourCartIsEmpty" : "opps! Your cart is empty",
-        "savedItem":"Saved items"
-        
+        "savedItem":"Saved items",
+        "searchPlaceHolder":"What are you looking for?"
         
     ]
     
@@ -273,7 +274,7 @@ class YString {
         "Shippingـmethod" : "Shipping method" ,
         "Shipping_Addresses" : "Shipping Addresses" ,
         "Pilling_method" : "Pilling method" ,
-        "Checkout_New" : "Checkout New" ,
+        "checkoutNow" : "Checkout Now" ,
         "size" : "Size" ,
         "color" : "Color" ,
         "seeAll" : "See all" ,
@@ -443,7 +444,8 @@ class YString {
         "menu" : "Menu",
         "startShopping" : "Start shopping",
         "yourCartIsEmpty" : "opps! Your cart is empty",
-        "savedItem":"Saved items"
+        "savedItem":"Saved items",
+         "searchPlaceHolder":"What are you looking for?"
     ]
     
     

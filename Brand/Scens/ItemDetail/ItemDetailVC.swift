@@ -26,7 +26,8 @@ class ItemDetailVC: UIViewController,ButtonActionDelegate {
         return vc
     }
     
-    
+    var isShowTip = false
+    var tipView:EasyTipView?
     lazy var mainView:ItemDetailVCView = {
         let v = ItemDetailVCView(collectionDelegate: self, CollectionDataSource: self)
         v.backgroundColor = .white
@@ -52,18 +53,24 @@ class ItemDetailVC: UIViewController,ButtonActionDelegate {
         getItemDetailInfo()
     }
     func infoTapped(_ sender: UIButton) {
+        
+        if isShowTip == false{
         guard let text = self.itemDetails?.config.sellerNotes else{
             return
         }
-        let tipView = EasyTipView(text: text , preferences: preferences)
+            tipView = EasyTipView(text: text , preferences: preferences)
         guard let  cell = mainView.mainCollectionView.cellForItem(at: [0,0]) as? MainCollCell else {
             return
         }
         guard let cell2 = cell.pageCollectionView.cellForItem(at: [0,0]) as? FirstCell else {
             return
         }
-        tipView.show(forView: cell2.detailView.infoBtn , withinSuperview: self.mainView)
-        
+            tipView?.show(forView: cell2.detailView.infoBtn , withinSuperview: self.mainView)
+            self.isShowTip = !self.isShowTip
+        }else{
+            tipView?.dismiss()
+            self.isShowTip = !self.isShowTip
+        }
     }
     private func getItemDetailInfo(){
         DispatchQueue.main.async {
@@ -130,6 +137,8 @@ class ItemDetailVC: UIViewController,ButtonActionDelegate {
         currentPage += 1
         self.getReviewData(id: Int(self.itemDetails?.config.catalogID ?? 0))
     }
+    
+    
 }
 extension ItemDetailVC:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
     

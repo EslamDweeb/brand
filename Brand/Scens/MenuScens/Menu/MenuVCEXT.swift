@@ -108,7 +108,7 @@ extension MenuViewController : UITableViewDataSource , UITableViewDelegate {
             self.present(dest, animated: true) {
                 cell.backgroundColor = .clear
             }
-        case "wishlist".localized:
+        case YString.savedItem:
             self.present(WishListController(), animated: true) {
                 cell.backgroundColor = .clear
             }

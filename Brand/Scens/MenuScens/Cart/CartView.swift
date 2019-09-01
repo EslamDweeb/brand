@@ -28,7 +28,7 @@ class CartView : UIView  {
     }()
     lazy var save: GradBtn = {
         let button = GradBtn()
-        button.setTitle( "Checkout_New".localized , for: .normal)
+        button.setTitle( YString.checkoutNow , for: .normal)
         return button
     }()
     lazy var tableView:UITableView = {

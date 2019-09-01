@@ -9,6 +9,11 @@
 import UIKit
 
 extension ExploreVC:UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
+    fileprivate func removeAlertController(){
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
+            self.dismissPressentededControllers()
+        }
+    }
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         if collectionView == mainView.mainCollection {
             return 3
@@ -45,6 +50,19 @@ extension ExploreVC:UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         }else{
              guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as? ExploreCell else{return UICollectionViewCell()}
             cell.delegate = self
+            cell.handelFavTapped = { [weak self] (id) in
+                guard let self = self else{return}
+                APIClient.toggleFav(id: id) { (result) in
+                    switch result {
+                    case.success(let data):
+                        self.createAlert(title: nil, erroMessage: data.message ?? "", createButton: nil)
+                        self.removeAlertController()
+                        print(data)
+                    case .failure(_):
+                        break
+                    }
+                }
+            }
             if indexPath == IndexPath(row: 0, section: 0){
                 cell.titleLabel.text = titleArray[indexPath.section]
                 cell.configArray = exploreData?.recommended ?? []
@@ -119,5 +137,8 @@ extension ExploreVC:ExploreCellDelegate{
         let dest = ItemDetailVC()
         dest.slug = slug
         self.present(dest, animated: true, completion: nil)
+    }
+    func handelCartBtnTapped(config: DetailedConfig) {
+        self.addViewAddToCart(config: config)
     }
 }
