@@ -23,5 +23,7 @@ pod 'Firebase/Analytics'
 pod 'Firebase/Messaging'
 pod 'Fabric'
 pod 'Crashlytics'
+pod "TTGSnackbar"
+
 
 end

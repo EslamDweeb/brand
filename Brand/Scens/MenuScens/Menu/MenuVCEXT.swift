@@ -55,6 +55,8 @@ extension MenuViewController : UITableViewDataSource , UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        print("did select row")
+        
         guard let cell = tableView.cellForRow(at: indexPath) as? MenuCell else{return}
         var labelname : String!
         if(mainView.isLogin == true)
