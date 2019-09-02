@@ -63,7 +63,6 @@ extension NotificationsViewController : ProNotificationView {
 extension NotificationsViewController:ButtonActionDelegate{
     func loginBtnTapped() {
         let dest = LoginViewController()
-        dest.loginView.closeImg.isHidden = false
         self.present(dest, animated: true, completion: nil)
     }
 }

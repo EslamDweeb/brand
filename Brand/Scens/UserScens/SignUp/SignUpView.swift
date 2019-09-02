@@ -17,7 +17,6 @@ class SignUpView : UIView , UITextFieldDelegate {
     lazy var closeImg : BtnImage = {
         let btn  = BtnImage()
         btn.setImage(#imageLiteral(resourceName: "crossAnticon"), for: .normal)
-        btn.isHidden = true
         return btn
     }()
     lazy var logoImage: UIImageView = {
