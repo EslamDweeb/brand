@@ -155,9 +155,9 @@ class SignUpView : UIView , UITextFieldDelegate {
                 logotopConstrain = logoImage.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 0)
                 logotopConstrain?.isActive = true
         if MOLHLanguage.currentAppleLanguage() == "en"{
-            closeImg.anchor(top: self.topAnchor, left: self.leftAnchor, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 20, paddingLeft: 10, paddingBottom: 0, paddingRight: 0, width: 50, height: 50, paddingCenterX: 0, paddingCenterY: 0)
+            closeImg.anchor(top: self.safeAreaLayoutGuide.topAnchor, left: self.leftAnchor, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 10, paddingBottom: 0, paddingRight: 0, width: 50, height: 50, paddingCenterX: 0, paddingCenterY: 0)
         }else{
-            closeImg.anchor(top: self.topAnchor, left: nil, bottom: nil, right: self.rightAnchor, centerX: nil, centerY: nil, paddingTop: 20, paddingLeft: 0, paddingBottom: 0, paddingRight: 10, width: 50, height: 50, paddingCenterX: 0, paddingCenterY: 0)
+            closeImg.anchor(top: self.safeAreaLayoutGuide.topAnchor, left: nil, bottom: nil, right: self.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 10, width: 50, height: 50, paddingCenterX: 0, paddingCenterY: 0)
         }
        
         createlabel.anchor(top: logoImage.bottomAnchor, left: nil, bottom: nil, right: nil, centerX: scrollView.centerXAnchor, centerY: nil, paddingTop: 50, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 170, height: 40, paddingCenterX: 0, paddingCenterY: 0)
