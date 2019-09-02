@@ -13,6 +13,8 @@ import AKPickerView
 class ViewAddToCart : UIView {
     
     var presenter : ProAddToCartPresenter?
+    var bottomHeightContainerView : NSLayoutConstraint?
+    var centerYContainerView : NSLayoutConstraint?
     
     lazy var scrollView : UIScrollView = {
        let s = UIScrollView()
@@ -126,6 +128,11 @@ class ViewAddToCart : UIView {
         rotationAngel = 90*(.pi/180)
 //        self.addGestureRecognizer(UITapGestureRecognizer(target: self , action: #selector(dismiss)))
         
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardDidShowNotification, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardDidHideNotification, object: nil)
+        
         addView()
         addConstraint()
         configrationViews()
@@ -139,6 +146,9 @@ class ViewAddToCart : UIView {
                 self.buttonAddToCart.setTitle(YString.addToCart , for: .normal )
                 self.pickerView.selectItem( 0 , animated: true )
                 self.calculateTotalPrice()
+                if self.presenter?.productOptions.count ?? 0 == 0 {
+                    self.labelProductOption.isHidden = true
+                }
             }else {
                 self.presenter?.selectedProductOption = []
                 self.presenter?.selectedValues = []
@@ -147,11 +157,45 @@ class ViewAddToCart : UIView {
                 self.pickerView.selectItem( UInt(self.presenter?.getIndexSelectedQuantity() ?? 0)  , animated: true )
                 self.calculateTotalPriceToEdit()
                 self.buttonAddToCart.setTitle(YString.updateProduct , for: .normal )
+                
+                if self.presenter?.productOptions.count ?? 0 == 0 {
+                    self.labelProductOption.isHidden = true
+                }
             }
         }
         
     }
     
+    @objc private func keyboardWillShow (notification : NSNotification){
+        print("keyboard will show")
+        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardRectangle = keyboardFrame.cgRectValue
+            let keyboardHeight = keyboardRectangle.height
+            print("height keyboard : \(keyboardHeight) ")
+            if bottomHeightContainerView?.constant == -16 {
+                bottomHeightContainerView?.constant = -( keyboardHeight )
+                UIView.animate(withDuration: 0.3) {
+                    self.centerYContainerView?.isActive = false
+                    self.bottomHeightContainerView?.isActive = true
+                    self.layoutIfNeeded()
+                }
+            }
+            
+            print("bottomHeightContainerView : \(bottomHeightContainerView?.constant ?? 0 )")
+
+        }
+
+    }
+    
+    @objc private func keyboardWillHide (notification : NSNotification){
+        print("keyboard will hide")
+        UIView.animate(withDuration: 0.3) {
+            self.centerYContainerView?.isActive = true
+            self.bottomHeightContainerView?.isActive = false
+            self.layoutIfNeeded()
+        }
+        bottomHeightContainerView?.constant = -16
+    }
     
     
     
@@ -198,10 +242,14 @@ class ViewAddToCart : UIView {
         
     }
     private func addConstraint () {
-        viewContainer.anchor(top: nil  , left: self.leftAnchor , bottom: nil , right: self.rightAnchor , centerX: self.centerXAnchor , centerY: self.centerYAnchor , paddingTop: 16, paddingLeft: 16, paddingBottom: 16 , paddingRight: 16 , width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
+        viewContainer.anchor(top: nil  , left: self.leftAnchor , bottom: nil , right: self.rightAnchor , centerX: self.centerXAnchor , centerY: nil , paddingTop: 16, paddingLeft: 16, paddingBottom: 16 , paddingRight: 16 , width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         
+        
+        centerYContainerView = viewContainer.centerYAnchor.constraint(equalTo: self.centerYAnchor , constant: 0)
+        centerYContainerView?.isActive = true
         viewContainer.topAnchor.constraint(greaterThanOrEqualTo: self.safeAreaLayoutGuide.topAnchor , constant: 16 ).isActive = true
-        viewContainer.bottomAnchor.constraint(lessThanOrEqualTo: self.safeAreaLayoutGuide.bottomAnchor , constant: -16 ).isActive = true
+      bottomHeightContainerView =  viewContainer.bottomAnchor.constraint(lessThanOrEqualTo: self.safeAreaLayoutGuide.bottomAnchor , constant: -16 )
+        bottomHeightContainerView?.isActive = true
         
 //        viewContainer.translatesAutoresizingMaskIntoConstraints = false
 //        viewContainer.topAnchor.constraint(greaterThanOrEqualTo : self.safeAreaLayoutGuide.topAnchor , constant: 16) .isActive = true
@@ -229,7 +277,7 @@ class ViewAddToCart : UIView {
         tableView.topAnchor.constraint(equalTo: self.viewParentScroll.topAnchor , constant: 16 ).isActive = true
         tableView.leftAnchor.constraint(equalTo: self.viewParentScroll.leftAnchor , constant: 16 ).isActive = true
         tableView.rightAnchor.constraint(equalTo: self.viewParentScroll.rightAnchor , constant: -16 ).isActive = true
-        heightTableView = tableView.heightAnchor.constraint(equalToConstant: 50 )
+        heightTableView = tableView.heightAnchor.constraint(equalToConstant: 5 )
         heightTableView?.isActive = true
         
         labelItemPrice.anchor(top: self.tableView.bottomAnchor , left: self.viewParentScroll.leftAnchor , bottom: nil , right: self.viewParentScroll.rightAnchor , centerX: self.viewParentScroll.centerXAnchor , centerY: nil , paddingTop: 0, paddingLeft: 0, paddingBottom: 16 , paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
@@ -455,7 +503,9 @@ extension ViewAddToCart : ProAddToCartView {
         self.pickerView.selectItem( 0 , animated: true )
         self.setPrice()
         self.calculateTotalPrice()
-        
+        if presenter?.productOptions.count ?? 0 == 0 {
+            self.labelProductOption.isHidden = true
+        }
     }
 }
 
