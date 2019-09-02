@@ -18,6 +18,18 @@ extension NotificationsViewController: UITableViewDataSource,UITableViewDelegate
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if UserDefaults.standard.string(forKey: Constants.Defaults.authToken) == "" && presenter?.listNotifications.count == 0{
+            let view = NotificationBG(delegate: self)
+            view.startbtn.isHidden = false
+            view.lable.text = YString.pleseLoginFirst
+            tableView.backgroundView = view
+        }else if UserDefaults.standard.string(forKey: Constants.Defaults.authToken) != "" && presenter?.listNotifications.count == 0{
+            let view = NotificationBG(delegate: self)
+            view.lable.text = YString.notificationEmpty
+            tableView.backgroundView = view
+        }else{
+            tableView.backgroundView = nil
+        }
         return presenter?.listNotifications.count ?? 0
     }
     
@@ -47,5 +59,11 @@ extension NotificationsViewController : ProNotificationView {
     func getNotifications() {
         mainView.tableView.reloadData()
     }
-    
+}
+extension NotificationsViewController:ButtonActionDelegate{
+    func loginBtnTapped() {
+        let dest = LoginViewController()
+        dest.loginView.closeImg.isHidden = false
+        self.present(dest, animated: true, completion: nil)
+    }
 }

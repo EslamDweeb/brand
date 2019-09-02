@@ -45,7 +45,12 @@ class YString {
     static var buyFromBrand:String{return getText(key: "buyFromBrand")}
     static var savedItem:String{return getText(key: "savedItem")}
     static var searchPlaceHolder:String{return getText(key: "searchPlaceHolder")}
-     static var checkoutNow:String{return getText(key: "checkoutNow")}
+    static var checkoutNow:String{return getText(key: "checkoutNow")}
+    static var notificationEmpty:String{return getText(key: "notificationEmpty")}
+    static var pleseLoginFirst:String{return getText(key: "pleaseLoginFirst")}
+    static var login:String{return getText(key: "login")}
+    
+    
     static func getText (key : String) -> String {
         
         if MOLHLanguage.currentAppleLanguage().contains("en") {
@@ -56,7 +61,7 @@ class YString {
         
     }
     static private let arString : [String : String] = [
-       "apply" : "تنفيذ" ,
+        "apply" : "تنفيذ" ,
         "Search" :  "بحث",
         "Search filter" : "بحث متقدم",
         "price" : "السعر",
@@ -248,13 +253,14 @@ class YString {
         "startShopping" : "Start shopping",
         "yourCartIsEmpty" : "opps! Your cart is empty",
         "savedItem":"Saved items",
-        "searchPlaceHolder":"What are you looking for?"
-        
+        "searchPlaceHolder":"What are you looking for?",
+        "notificationEmpty":"No notification yet",
+        "pleaseLoginFirst":"Please login first"
     ]
     
     static private let enString : [String : String] = [
-       
-         "Search" : "Search" ,
+        
+        "Search" : "Search" ,
         "apply" : "Apply" ,
         "Search filter" :  "Search filter" ,
         "rate"  :  "rate",
@@ -445,9 +451,11 @@ class YString {
         "startShopping" : "Start shopping",
         "yourCartIsEmpty" : "opps! Your cart is empty",
         "savedItem":"Saved items",
-         "searchPlaceHolder":"What are you looking for?"
+        "searchPlaceHolder":"What are you looking for?",
+        "notificationEmpty":"No notification yet",
+        "pleaseLoginFirst":"Please login first"
     ]
-    
+     
     
     
 }
