@@ -33,7 +33,7 @@ extension UIViewController {
     }
     
     // func to create AlertController
-
+<<<<<<< HEAD
     func createAlert(title: String? = nil,erroMessage: String,createButton:Bool? = false) {
 //        let alert = UIAlertController(title: title ?? "", message: erroMessage, preferredStyle: UIAlertController.Style.alert)
 //        alert.setBackgroundColor(color: .pink)
@@ -45,8 +45,22 @@ extension UIViewController {
 //        self.present(alert, animated: true, completion: nil)
         
         SnackBar.instance.setMessage(erroMessage )
+=======
+    func createAlert(title: String? = nil,erroMessage: String,createButton:Bool? = true) {
+        let alert = UIAlertController(title: title ?? "", message: erroMessage, preferredStyle: UIAlertController.Style.alert)
+        alert.setBackgroundColor(color: .lightGray)
+        alert.setMessage(font: nil, color: .white)
+        if createButton == true{
+        let okButton = UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel, handler: nil)
+        alert.addAction(okButton)
+        }
+        self.present(alert, animated: true, completion: nil)
+>>>>>>> 20071217b3c54f600d814a53d610c8b66e01678f
         
     }
+    
+    
+    
     
     
     
