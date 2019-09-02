@@ -17,7 +17,7 @@ struct Product: Codable {
     let id: Int
     let slug: String
     let sellerNotes: String?
-    let configs: [Config]?
+    let configs: [DetailedConfig]?
     let tags: [Tag]?
     let appVisibility, siteVisibility, flashOffer, eligibleForFreeShipping: Bool
     let configurable: Bool
@@ -66,7 +66,7 @@ struct Config: Codable {
         case in_cart = "in_cart"
     }
     func ReturnPriceAfterSale(price:Double,sale:Double) ->Double{
-        return price - (price * sale)
+        return (price - (price * sale)).roundToDecimal(1)
     }
     func ReturnTotalPriceAfterSale(price:Double,QTY:Double) ->Double{
         return price * QTY
@@ -77,7 +77,7 @@ struct Config: Codable {
 }
 
 struct ProductConfigs:Codable {
-    let configs:[Config]
+    let configs:[DetailedConfig]
     let links:Links
     let meta:Meta
 }

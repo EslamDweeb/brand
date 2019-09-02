@@ -10,7 +10,7 @@ import UIKit
 
 class FooterView:UIView{
     let cellID = "cellID"
-    var configs:[Config]?
+    var configs:[DetailedConfig]?
     var HandelSelectedCellAction:((_ slug:String)->())?
     lazy var titleLbl:UILabel = {
         let lbl = UILabel()

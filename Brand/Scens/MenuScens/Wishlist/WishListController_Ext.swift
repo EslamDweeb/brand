@@ -9,6 +9,7 @@
 import UIKit
 
 extension WishListController: UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
+   
     private func isLoadingIndexPath(_ indexPath: IndexPath) -> Bool {
         guard shouldShowLoadingCell else { return false }
         return indexPath.row == self.wishes.count
@@ -62,6 +63,9 @@ extension WishListController: UICollectionViewDelegate,UICollectionViewDataSourc
                     switch result {
                     case.success(let data):
                         self.createAlert(title: nil, erroMessage: data.message ?? "", createButton: nil)
+                        self.wishes.remove(at: indexPath.row)
+                        collectionView.reloadData()
+                        self.removeAlertController()
                         print(data)
                     case .failure(_):
                         break

@@ -18,7 +18,7 @@ class searchView : UIView  , UITextFieldDelegate {
     }()
     lazy var searchtextFeild : DefaultTextField = {
         let text = DefaultTextField()
-        let title = "iphone".localized
+        let title = YString.searchPlaceHolder
         text.SetAttributePlaceHeader(Title: title)
         return text
     }()

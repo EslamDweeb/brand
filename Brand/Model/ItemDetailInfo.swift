@@ -12,34 +12,34 @@ struct ItemDetailInfo:Codable {
     let config:DetailedConfig
 }
 struct DetailedConfig:Codable {
-    let id, productID: Int
-    let productSlug, slug: String
-    let catalogID: Int
-    let catalogName: String
-    let catalogPhoto: Media
-    let name,madeIn: String
+    let id, productID: Int?
+    let productSlug, slug: String?
+    let catalogID: Int?
+    let catalogName: String?
+    let catalogPhoto: Media?
+    let name,madeIn: String?
     let configDescription,sku,sellerNotes:String?
-    let gender: Int
-    let sale: Float
-    let price: Float
-    let isFlashOffer: Bool
-    let qty, minQty, maxQty: Int
-    let vendor: Vendor
+    let gender: Int?
+    let sale: Float?
+    let price: Float?
+    let isFlashOffer: Bool?
+    let qty, minQty, maxQty: Int?
+    let vendor: Vendor?
     let brand: Brand?
     let overallRating, overallRatingCount, modelRatingID: Double?
-    let productOptions: [ProductOptions]
+    let productOptions: [ProductOptions]?
     let discounts: [Discount]?
     let mainPhoto: Media?
     let photos: [Media]?
     let video, file: Media?
-    let sellTimes: Int
-    let isFavorite: Bool
+    let sellTimes: Int?
+    let isFavorite: Bool?
     let tags: [Tag]?
-    let configOptions: [ConfigOption]
+    let configOptions: [ConfigOption]?
     let specs: [Spec]?
-    let isEligibleForFreeShipping: Bool
+    let isEligibleForFreeShipping: Bool?
     let relatedProducts: [Config]?
-    let inCart, canRate: Bool
+    let inCart, canRate: Bool?
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -77,7 +77,10 @@ struct DetailedConfig:Codable {
         case canRate = "can_rate"
     }
     func ReturnPricepersent(sale:Double) -> String{
-        return "\( Double(round(sale * 100) / 100) * 100) %"
+        return "\( Double(round(sale * 100) / 100).roundToDecimal(1) * 100) %"
+    }
+    func ReturnPriceAfterSale(price:Double,sale:Double) ->Double{
+        return (price - (price * sale)).roundToDecimal(1)
     }
 }
 // MARK: - ConfigOption

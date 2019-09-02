@@ -65,7 +65,7 @@ class  CartCell: UITableViewCell {
     lazy var Image: UIImageView = {
         let img = UIImageView()
         img.image = #imageLiteral(resourceName: "XSMax")
-        img.contentMode = .scaleToFill
+        img.contentMode = .scaleAspectFit
         return img
     }()
     lazy var brandName: DescriptionLabel = {

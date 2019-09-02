@@ -25,6 +25,7 @@ class DetailView: UIView {
         let btn = UIButton()
         let image = UIImage(named: "info6")
         btn.setImage(image, for: .normal)
+        btn.imageEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     //    btn.addTarget(self, action: #selector(ButtonActionDelegate.infoTapped(_:)), for: .touchUpInside)
         //btn.imageEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         return btn
@@ -73,7 +74,7 @@ class DetailView: UIView {
         brandLable.widthAnchor.constraint(greaterThanOrEqualToConstant: 30).isActive = true
         brandNameHeight = brandLable.heightAnchor.constraint(equalToConstant: 0)
         brandNameHeight?.isActive = true
-        infoBtn.anchor(top: nil, left: nil, bottom: nil, right: rightAnchor, centerX: nil, centerY: madeInLable.centerYAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 16, width: 30, height: 30, paddingCenterX: 0, paddingCenterY: 0)
+        infoBtn.anchor(top: nil, left: nil, bottom: nil, right: rightAnchor, centerX: nil, centerY: madeInLable.centerYAnchor, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 16, width: 45, height: 45, paddingCenterX: 0, paddingCenterY: 0)
         madeInLable.anchor(top: topAnchor, left: nil ,bottom: nil, right: infoBtn.leftAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 16, width: 0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
         madeInLable.widthAnchor.constraint(greaterThanOrEqualToConstant: 30).isActive = true
 

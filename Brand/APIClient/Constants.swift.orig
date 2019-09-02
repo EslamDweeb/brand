@@ -14,8 +14,12 @@ struct Constants {
     
     struct ProductionServer {
         //Test URl
-     static let baseURL = "https://brands.solutionplus.net"
-   //    static let baseURL = "https://api.brands.solutionplus.net"
+<<<<<<< HEAD
+   //  static let baseURL = "https://brands.solutionplus.net"
+=======
+     //static let baseURL = "https://brands.solutionplus.net"
+>>>>>>> 2e061953787ee2e088f42bbedf1388e9d75fce1e
+       static let baseURL = "https://api.brands.solutionplus.net"
     }
     
     struct Defaults {

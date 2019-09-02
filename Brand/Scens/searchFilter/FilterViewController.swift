@@ -14,7 +14,7 @@ class FilterViewController:UIViewController,ButtonActionDelegate {
     var Brands : [Brandfilter]?
     var BrandName = ""
      var MadeIns : [String] = []
-     var searchitems: [Config] = []
+     var searchitems: [DetailedConfig] = []
     var name = ""
     var showfilter = ""
     lazy var mainView:SearchFilterView = {

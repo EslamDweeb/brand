@@ -57,7 +57,7 @@ class MainCollCell:UICollectionViewCell,UICollectionViewDelegate,UICollectionVie
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: firstCell, for: indexPath)as? FirstCell else{return UICollectionViewCell()}
             cell.getDetailViewData(brandName:itemDetails?.config.brand?.name ?? "",madeIN: itemDetails?.config.madeIn ?? "",tags:itemDetails?.config.tags ?? [])
             cell.getDescriptionViewData(description:itemDetails?.config.configDescription ?? "")
-            cell.getFooterViewData(configs: itemDetails?.config.relatedProducts ?? [])
+            cell.getFooterViewData(configs: nil, simpleConfig: itemDetails?.config.relatedProducts ?? [])
             cell.configOptionArray = itemDetails?.config.configOptions
             cell.configOptionTableView.reloadData()
             cell.footerView.HandelSelectedCellAction = {[weak self] (slug) in
