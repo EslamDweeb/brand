@@ -131,8 +131,13 @@ class ViewAddToCart : UIView {
         configrationViews()
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1 ) {
+            if self.presenter?.slug != nil  {
+                self.presenter?.getConfigDetailsWithSlug()
+                return
+            }
             if self.presenter?.isEdit == false {
                 self.buttonAddToCart.setTitle(YString.addToCart , for: .normal )
+                self.pickerView.selectItem( 0 , animated: true )
                 self.calculateTotalPrice()
             }else {
                 self.presenter?.selectedProductOption = []
@@ -193,7 +198,10 @@ class ViewAddToCart : UIView {
         
     }
     private func addConstraint () {
-        viewContainer.anchor(top: self.safeAreaLayoutGuide.topAnchor , left: self.leftAnchor , bottom: self.safeAreaLayoutGuide.bottomAnchor , right: self.rightAnchor , centerX: nil , centerY: nil , paddingTop: 16, paddingLeft: 16, paddingBottom: 16 , paddingRight: 16 , width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
+        viewContainer.anchor(top: nil  , left: self.leftAnchor , bottom: nil , right: self.rightAnchor , centerX: self.centerXAnchor , centerY: self.centerYAnchor , paddingTop: 16, paddingLeft: 16, paddingBottom: 16 , paddingRight: 16 , width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
+        
+        viewContainer.topAnchor.constraint(greaterThanOrEqualTo: self.safeAreaLayoutGuide.topAnchor , constant: 16 ).isActive = true
+        viewContainer.bottomAnchor.constraint(lessThanOrEqualTo: self.safeAreaLayoutGuide.bottomAnchor , constant: -16 ).isActive = true
         
 //        viewContainer.translatesAutoresizingMaskIntoConstraints = false
 //        viewContainer.topAnchor.constraint(greaterThanOrEqualTo : self.safeAreaLayoutGuide.topAnchor , constant: 16) .isActive = true
@@ -212,6 +220,10 @@ class ViewAddToCart : UIView {
         viewParentScroll.anchor(top: scrollView.topAnchor , left: scrollView.leftAnchor , bottom: scrollView.bottomAnchor , right: scrollView.rightAnchor , centerX: nil, centerY: nil , paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         
         viewParentScroll.widthAnchor.constraint(equalTo: scrollView.widthAnchor , multiplier: 1 ).isActive = true
+        let s = viewParentScroll.heightAnchor.constraint(equalTo: scrollView.heightAnchor , multiplier: 1)
+        s.priority = .defaultLow
+        s.isActive = true
+        
 
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.topAnchor.constraint(equalTo: self.viewParentScroll.topAnchor , constant: 16 ).isActive = true
@@ -435,4 +447,15 @@ extension ViewAddToCart : ProAddToCartView {
         print("error message : \( errors )")
         self.dismiss()
     }
+    
+    func getConfigDetailsWithSlug() {
+        self.buttonAddToCart.setTitle(YString.addToCart , for: .normal )
+        self.tableView.reloadData()
+        self.pickerView.reloadData()
+        self.pickerView.selectItem( 0 , animated: true )
+        self.setPrice()
+        self.calculateTotalPrice()
+        
+    }
 }
+

@@ -132,13 +132,15 @@ extension ExploreVC:UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     
 }
 
-extension ExploreVC:ExploreCellDelegate{
+extension ExploreVC:ExploreCellDelegate {
+    
     func presentController(slug: String) {
         let dest = ItemDetailVC()
         dest.slug = slug
         self.present(dest, animated: true, completion: nil)
     }
     func handelCartBtnTapped(config: DetailedConfig) {
-        self.addViewAddToCart(config: config)
+        self.parent?.addViewAddToCart( slug: config.slug ?? "" )
     }
+    
 }
