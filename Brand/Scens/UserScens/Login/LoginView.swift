@@ -19,7 +19,7 @@ class LoginView: UIView, UITextFieldDelegate {
     lazy var closeImg : BtnImage = {
         let btn  = BtnImage()
          btn.setImage(#imageLiteral(resourceName: "crossAnticon"), for: .normal)
-        btn.isHidden = true
+        btn.isHidden = false
         return btn
     }()
      lazy var headerText: HeaderLabel = {
