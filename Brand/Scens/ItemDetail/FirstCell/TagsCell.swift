@@ -21,7 +21,10 @@ class TagsCell:UICollectionViewCell {
         didSet{
             guard let optionValue = configOptionValue else{return}
             tagLable.text = optionValue.value
-            selectCell = optionValue.selected 
+            selectCell = optionValue.selected
+            if selectCell ?? false {
+               cardView.backgroundColor = .pink
+            }
         }
     }
     lazy var cardView:UIView = {
