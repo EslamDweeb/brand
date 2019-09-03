@@ -10,6 +10,7 @@ protocol ProAddToCartView {
     func productAddedToCart (model : ModelAddedCartData)
     func productUpdatedInCart (model : ModelAddedCartData)
     func errorAddProductToCart(errors : String)
+    func getConfigDetailsWithSlug ()
 }
 
 protocol ProAddToCartPresenter {
@@ -30,12 +31,17 @@ protocol ProAddToCartPresenter {
     var selectedOptionsToEdit : [SelectedOption] {get}
     var selectedQuantityToEdit : Int { get }
     var isEdit : Bool {get}
+    var slug : String? {get}
     
     func getIndexSelectedQuantity () -> Int
     func getNumberOfItemsInPicker() -> Int
     
     func addProductToCart ()
     func updateProductInCart ()
+    
+    
+    func getConfigDetailsWithSlug (  )
+    
     
 }
 
@@ -45,6 +51,7 @@ class AddToCartPresenter : ProAddToCartPresenter {
 
     var addToCartView: ProAddToCartView!
 
+    var slug : String? = nil 
     var configID: Int = 0
     var saleProduct: Double = 0.0
     var priceProduct: Double = 0.0
@@ -64,8 +71,22 @@ class AddToCartPresenter : ProAddToCartPresenter {
     init(addToCartView: ProAddToCartView , configID : Int , saleProduct: Double, priceProduct: Double, quantityProduct: Int, maxQuantity: Int, minQuantity: Int, productOptions: [ProductOptions] ,
          cartID : Int = 0 ,
          selectedOptionsToEdit : [SelectedOption] = [] , selectedQuantityToEdit : Int = 0 , isEdit : Bool = false  ) {
-        self.configID = configID
+        
         self.addToCartView = addToCartView
+        setDataConfig(configID: configID , saleProduct: saleProduct , priceProduct: priceProduct , quantityProduct: quantityProduct , maxQuantity: maxQuantity , minQuantity: minQuantity , productOptions: productOptions , cartID: cartID , selectedOptionsToEdit: selectedOptionsToEdit , selectedQuantityToEdit: selectedQuantityToEdit , isEdit: isEdit )
+        
+    }
+    
+    init(addToCartView: ProAddToCartView , slug : String ) {
+        self.addToCartView = addToCartView
+        self.slug = slug
+    }
+    
+    private func setDataConfig (configID : Int , saleProduct: Double, priceProduct: Double, quantityProduct: Int, maxQuantity: Int, minQuantity: Int, productOptions: [ProductOptions] ,
+                                  cartID : Int = 0 ,
+                                  selectedOptionsToEdit : [SelectedOption] = [] , selectedQuantityToEdit : Int = 0 , isEdit : Bool = false  ) {
+        
+        self.configID = configID
         self.saleProduct = saleProduct
         self.priceProduct = priceProduct
         self.quantityProduct = quantityProduct
@@ -78,6 +99,9 @@ class AddToCartPresenter : ProAddToCartPresenter {
         self.isEdit = isEdit
         
     }
+    
+    
+    
     
     func getNumberOfItemsInPicker() -> Int {
         if maxQuantity < minQuantity {
@@ -137,6 +161,27 @@ class AddToCartPresenter : ProAddToCartPresenter {
         }
         
     }
+    
+    func getConfigDetailsWithSlug ( ) {
+        
+        APIClient.getItemDetail(slug: self.slug ?? "" ) { (result) in
+            switch result{
+            case .success(let data):
+
+                let config = data.config
+                self.setDataConfig(configID: config.id ?? 0 , saleProduct: Double( config.sale ?? 0.0 ) , priceProduct: Double(config.price ?? 0.0) , quantityProduct : config.qty ?? 0 , maxQuantity: config.maxQty ?? 0 , minQuantity: config.minQty ?? 0 , productOptions: config.productOptions ?? [] )
+                self.addToCartView.getConfigDetailsWithSlug()
+                return
+            case .failure(let error):
+                print("error get item datails : \(error.localizedDescription)")
+                return
+            }
+        }
+        
+        
+    }
+    
+    
     
 }
 

@@ -22,6 +22,7 @@ class MainCollCell:UICollectionViewCell,UICollectionViewDelegate,UICollectionVie
     var handelThirdCellAddReview:(() -> ())?
     var handelFooterViewClouserAction:((_ slug:String)->())?
     var handelThirdCellPaging:(() -> ())?
+    var handelFirstCellSelectedConfigOption:((_ selectedArray:[Int],_ SelectedId:Int) -> ())?
     lazy var pageCollectionView:UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -56,12 +57,16 @@ class MainCollCell:UICollectionViewCell,UICollectionViewDelegate,UICollectionVie
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: firstCell, for: indexPath)as? FirstCell else{return UICollectionViewCell()}
             cell.getDetailViewData(brandName:itemDetails?.config.brand?.name ?? "",madeIN: itemDetails?.config.madeIn ?? "",tags:itemDetails?.config.tags ?? [])
             cell.getDescriptionViewData(description:itemDetails?.config.configDescription ?? "")
-            cell.getFooterViewData(configs: itemDetails?.config.relatedProducts ?? [])
+            cell.getFooterViewData(configs: nil, simpleConfig: itemDetails?.config.relatedProducts ?? [])
             cell.configOptionArray = itemDetails?.config.configOptions
             cell.configOptionTableView.reloadData()
             cell.footerView.HandelSelectedCellAction = {[weak self] (slug) in
                 guard let self = self else{return}
                 self.handelFooterViewClouserAction?(slug)
+                cell.handelSelectedConfigOption = {[weak self] (array,id) in
+                    guard let self = self else{return}
+                    self.handelFirstCellSelectedConfigOption?(array,id)  
+                }
             }
             return cell
         case 1:

@@ -10,7 +10,22 @@ import UIKit
 
 class FirstCell:UICollectionViewCell{
     let cellID = "cellID"
-    var configOptionArray:[ConfigOption]?
+    var selectedDec = [String:Int]()
+    var selectedID = 0
+    var selectedIndex = [Int]()
+    var handelSelectedConfigOption:((_ selectedArray:[Int],_ selectedID:Int)->Void)?
+    var configOptionArray:[ConfigOption]? {
+        didSet{
+            guard let optionsArray = configOptionArray else{return}
+            for options in optionsArray{
+                for option in options.values{
+                    if option.selected! {
+                        selectedDec.updateValue(option.id, forKey: options.name)
+                    }
+                }
+            }
+        }
+    }
     let detailView = DetailView()
     let descriptionView = DescriptionView()
     let footerView = FooterView()
@@ -80,10 +95,10 @@ class FirstCell:UICollectionViewCell{
     func getDescriptionViewData(description:String){
         descriptionView.descripLbl.text = description
     }
-    func getFooterViewData(configs:[Config]){
+    func getFooterViewData(configs:[DetailedConfig]?,simpleConfig:[Config]){
         footerView.configs = configs
         footerView.productCollectionView.reloadData()
-        if configs.count != 0{
+        if configs?.count != 0{
             footerView.titleLbl.isHidden = false
             footerViewHeightConstraint?.constant = 220
             UIView.animate(withDuration: 0.1) {
@@ -105,6 +120,8 @@ extension FirstCell:UITableViewDataSource,UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath)as? ConfigOptionTableCell else {return UITableViewCell()}
+        cell.ConnectDelegate = self
+        cell.selectionStyle = .none
         cell.configOption = configOptionArray?[indexPath.row]
         cell.configValueCollection.reloadData()
         return cell
@@ -121,5 +138,32 @@ extension FirstCell:UITableViewDataSource,UITableViewDelegate {
                 self.layoutIfNeeded()
             }
         }
+    }
+}
+extension FirstCell:ConnectConfigTabelCellToFirstCellDelegate{
+    func getSelectedOption(dice:[String:Int]) {
+       getSelectedIndexArray(dic:dice)
+//        print(dice)
+//        print(self.selectedDec)
+//        print(self.selectedIndex)
+//        print(selectedID)
+        self.handelSelectedConfigOption?(selectedIndex,selectedID)
+    }
+    private func getSelectedIndexArray(dic:[String:Int]){
+        for (key,value) in dic{
+            self.selectedDec.updateValue(value, forKey: key)
+            selectedID = dic[key] ?? 0
+        }
+        for val in selectedDec.values {
+            selectedIndex.append(val)
+        }
+    }
+}
+protocol ConnectConfigTabelCellToFirstCellDelegate:class{
+    func getSelectedOption(dice:[String:Int])
+}
+extension ConnectConfigTabelCellToFirstCellDelegate{
+    func getSelectedOption(dice:[String:Int]) {
+        
     }
 }

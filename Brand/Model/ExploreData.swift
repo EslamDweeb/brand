@@ -9,12 +9,12 @@
 import Foundation
 
 struct ExploreData:Codable {
-    let recommended:[Config]?
-    let latest:[Config]?
-    let popular:[Config]?
+    let recommended:[DetailedConfig]?
+    let latest:[DetailedConfig]?
+    let popular:[DetailedConfig]?
 }
 struct SeeAllData:Codable{
-    let configs:[Config]
+    let configs:[DetailedConfig]
     let links:Links
     let meta:Meta
 }

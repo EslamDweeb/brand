@@ -9,7 +9,7 @@
 import UIKit
 
 struct Wishes:Codable {
-    let favorites : [Config]
+    let favorites : [DetailedConfig]
     let links:Links
     let meta:Meta
 }

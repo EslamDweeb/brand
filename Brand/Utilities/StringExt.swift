@@ -43,6 +43,12 @@ class YString {
     static var returnPolicy:String{return getText(key: "returnPolicy")}
     static var saleOnBrand:String{return getText(key: "saleInBrand")}
     static var buyFromBrand:String{return getText(key: "buyFromBrand")}
+    static var savedItem:String{return getText(key: "savedItem")}
+    static var searchPlaceHolder:String{return getText(key: "searchPlaceHolder")}
+    static var checkoutNow:String{return getText(key: "checkoutNow")}
+    static var notificationEmpty:String{return getText(key: "notificationEmpty")}
+    static var pleseLoginFirst:String{return getText(key: "pleaseLoginFirst")}
+    static var login:String{return getText(key: "login")}
     
     
     static func getText (key : String) -> String {
@@ -55,7 +61,7 @@ class YString {
         
     }
     static private let arString : [String : String] = [
-       "apply" : "تنفيذ" ,
+        "apply" : "تنفيذ" ,
         "Search" :  "بحث",
         "Search filter" : "بحث متقدم",
         "price" : "السعر",
@@ -230,7 +236,7 @@ class YString {
         "subCategorie" : "subCategorie",
         "browesBy" : "Browse by sub category",
         "stars" : "****************",
-        "Checkout_New" : "Checkout New",
+        "checkoutNow" : "Checkout Now",
         "productOptions" : "خيارات المنتج",
         "itemPrice" : "سعر المنتج",
         "quantity" : "الكمية",
@@ -245,14 +251,16 @@ class YString {
         "passwordMustBeGreaterThan5Char" : "كلمة المرور لابد ان تكون اتكبر من ٥ حروف",
         "menu" : "القائمة",
         "startShopping" : "Start shopping",
-        "yourCartIsEmpty" : "opps! Your cart is empty"
-        
-        
+        "yourCartIsEmpty" : "opps! Your cart is empty",
+        "savedItem":"Saved items",
+        "searchPlaceHolder":"What are you looking for?",
+        "notificationEmpty":"No notification yet",
+        "pleaseLoginFirst":"Please login first"
     ]
     
     static private let enString : [String : String] = [
-       
-         "Search" : "Search" ,
+        
+        "Search" : "Search" ,
         "apply" : "Apply" ,
         "Search filter" :  "Search filter" ,
         "rate"  :  "rate",
@@ -272,7 +280,7 @@ class YString {
         "Shippingـmethod" : "Shipping method" ,
         "Shipping_Addresses" : "Shipping Addresses" ,
         "Pilling_method" : "Pilling method" ,
-        "Checkout_New" : "Checkout New" ,
+        "checkoutNow" : "Checkout Now" ,
         "size" : "Size" ,
         "color" : "Color" ,
         "seeAll" : "See all" ,
@@ -441,9 +449,13 @@ class YString {
         "passwordMustBeGreaterThan5Char" : "Password must be greater than 5 char",
         "menu" : "Menu",
         "startShopping" : "Start shopping",
-        "yourCartIsEmpty" : "opps! Your cart is empty"
+        "yourCartIsEmpty" : "opps! Your cart is empty",
+        "savedItem":"Saved items",
+        "searchPlaceHolder":"What are you looking for?",
+        "notificationEmpty":"No notification yet",
+        "pleaseLoginFirst":"Please login first"
     ]
-    
+     
     
     
 }

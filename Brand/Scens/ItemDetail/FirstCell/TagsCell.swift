@@ -9,6 +9,7 @@
 import UIKit
 
 class TagsCell:UICollectionViewCell {
+    var selectCell:Bool?
     var tags: Tag? {
         didSet {
             guard let tag = tags else{return}
@@ -20,6 +21,7 @@ class TagsCell:UICollectionViewCell {
         didSet{
             guard let optionValue = configOptionValue else{return}
             tagLable.text = optionValue.value
+            selectCell = optionValue.selected 
         }
     }
     lazy var cardView:UIView = {

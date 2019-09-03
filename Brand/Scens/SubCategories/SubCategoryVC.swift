@@ -19,7 +19,7 @@ class SubCategoryVC:UIViewController,ButtonActionDelegate{
     var slug:String?
     var img = ""
     var subCategories = [Category]()
-    var configs = [Config]()
+    var configs = [DetailedConfig]()
     let cellID = "cellID"
     let cellID2 = "cellID2"
     let dispatchGroup = DispatchGroup()
@@ -91,12 +91,12 @@ class SubCategoryVC:UIViewController,ButtonActionDelegate{
     }
     private func getCategoryProducts(){
         APIClient.getCategoryProducts(slug: slug ?? "") { (result) in
-            var configss = [Config]()
+            var configss = [DetailedConfig]()
             switch result{
             case .success(let data):
                 DispatchQueue.main.async {
                   //  for product in data.products {
-                        for config in data.configs ?? [] {
+                    for config in data.configs {
                             configss.append(config)
                         }
                  //   }

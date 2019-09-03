@@ -17,7 +17,7 @@ class MenuViewController: UIViewController,ButtonActionDelegate {
         "personal_information".localized,
         "myAddresses".localized,
         "cart".localized,
-        "wishlist".localized,
+        YString.savedItem,
         "myOrders".localized,
         "myReview".localized,
         "language".localized,

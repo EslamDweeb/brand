@@ -10,6 +10,7 @@ import UIKit
 
 class ConfigOptionTableCell:UITableViewCell {
     let cellID = "cellID"
+    weak var ConnectDelegate:ConnectConfigTabelCellToFirstCellDelegate?
     var configOption:ConfigOption?{
         didSet{
             guard let option = configOption else{return}
@@ -71,6 +72,9 @@ extension ConfigOptionTableCell:UICollectionViewDelegate,UICollectionViewDataSou
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath)as?TagsCell else{return UICollectionViewCell()}
         cell.configOptionValue = configOption?.values[indexPath.row]
+        if cell.selectCell ?? false {
+            cell.cardView.backgroundColor = .pink
+        }
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -85,5 +89,13 @@ extension ConfigOptionTableCell:UICollectionViewDelegate,UICollectionViewDataSou
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 8
     }
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        guard let cell = collectionView.cellForItem(at: indexPath)as?TagsCell else{return}
+//        if cell.cardView.backgroundColor == .pink {
+//            cell.cardView.backgroundColor = .lightgray3
+//        }else{
+//            cell.cardView.backgroundColor = .pink
+//        }
+        ConnectDelegate?.getSelectedOption(dice: [configOption?.name ?? "":configOption?.values[indexPath.row].id ?? 0])
+    }
 }

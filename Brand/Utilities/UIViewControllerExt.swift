@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 extension UIViewController {
     func handelReachability(reachability: Reachability?) {
         reachability!.whenUnreachable = { _ in
@@ -32,14 +33,23 @@ extension UIViewController {
     }
     
     // func to create AlertController
+
     func createAlert(title: String? = nil,erroMessage: String,createButton:Bool? = false) {
-        let alert = UIAlertController(title: title ?? "", message: erroMessage, preferredStyle: UIAlertController.Style.alert)
+//        let alert = UIAlertController(title: title ?? "", message: erroMessage, preferredStyle: UIAlertController.Style.alert)
+//        alert.setBackgroundColor(color: .pink)
+//        alert.setMessage(font: nil, color: .white)
+//        if createButton == true{
+//        let okButton = UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel, handler: nil)
+//        alert.addAction(okButton)
+//        }
+//        self.present(alert, animated: true, completion: nil)
         
-        let okButton = UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel, handler: nil)
-        alert.addAction(okButton)
-        self.present(alert, animated: true, completion: nil)
+        SnackBar.instance.setMessage(erroMessage )
         
     }
+    
+    
+    
     func stopNotifier(reachability: Reachability?) {
         var reachability = reachability
         reachability?.stopNotifier()
@@ -161,17 +171,18 @@ extension UIViewController {
     }
     
     
-    func addViewAddToCart (config : DetailedConfig? = nil  , cartItem : CartItem? = nil  ) {
+    func addViewAddToCart (config : DetailedConfig? = nil  , cartItem : CartItem? = nil , slug : String? = nil  ) {
         
         let viewAddToCart = ViewAddToCart()
         var viewPresenter : ProAddToCartPresenter?
         
         if config == nil && cartItem != nil {
             let configInCart = cartItem?.config
-            
             viewPresenter = AddToCartPresenter(addToCartView: viewAddToCart, configID: configInCart?.id ?? 0 , saleProduct: Double(configInCart?.sale ?? 0.0) , priceProduct:Double(configInCart?.price ?? 0.0), quantityProduct : configInCart?.qty ?? 0 , maxQuantity: configInCart?.max_qty ?? 0 , minQuantity: configInCart?.min_qty ?? 0 , productOptions: cartItem?.productOptions ?? [], cartID: cartItem?.id ?? 0 , selectedOptionsToEdit : cartItem?.selectedOptions ?? [] , selectedQuantityToEdit : cartItem?.qty ?? 0 , isEdit: true )
         }else if cartItem == nil , config != nil {
         viewPresenter = AddToCartPresenter(addToCartView: viewAddToCart, configID: config?.id ?? 0 , saleProduct: Double( config?.sale ?? 0.0 ) , priceProduct: Double(config?.price ?? 0.0) , quantityProduct : config?.qty ?? 0 , maxQuantity: config?.maxQty ?? 0 , minQuantity: config?.minQty ?? 0 , productOptions: config?.productOptions ?? [] )
+        }else if slug != nil {
+            viewPresenter = AddToCartPresenter(addToCartView: viewAddToCart , slug: slug ?? "" )
         }else {
             return
         }

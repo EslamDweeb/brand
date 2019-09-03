@@ -48,7 +48,11 @@ class HomeVC:UIViewController,ButtonActionDelegate {
         APIClient.getCategory { (result) in
             switch result{
             case .success(let cat):
-                self.categories = cat.categories ?? []
+                for category in cat.categories ?? [] {
+                    if category.visible == true {
+                        self.categories.append(category)
+                    }
+                }
                 self.group.leave()
             case .failure(let err):
                 print(err)
@@ -63,7 +67,7 @@ class HomeVC:UIViewController,ButtonActionDelegate {
     }
     
     fileprivate func toggelArrays(){
-        if toggel {
+        if toggel == false {
             UIView.animate(withDuration: 0.5) {
                 self.mainView.brandLable.text = "Explore All brand"
                 self.mainView.categoriesLable.text = "Explore by Categories"

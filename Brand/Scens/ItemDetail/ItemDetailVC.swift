@@ -26,7 +26,8 @@ class ItemDetailVC: UIViewController,ButtonActionDelegate {
         return vc
     }
     
-    
+    var isShowTip = false
+    var tipView:EasyTipView?
     lazy var mainView:ItemDetailVCView = {
         let v = ItemDetailVCView(collectionDelegate: self, CollectionDataSource: self)
         v.backgroundColor = .white
@@ -52,18 +53,24 @@ class ItemDetailVC: UIViewController,ButtonActionDelegate {
         getItemDetailInfo()
     }
     func infoTapped(_ sender: UIButton) {
+        
+        if isShowTip == false{
         guard let text = self.itemDetails?.config.sellerNotes else{
             return
         }
-        let tipView = EasyTipView(text: text , preferences: preferences)
+            tipView = EasyTipView(text: text , preferences: preferences)
         guard let  cell = mainView.mainCollectionView.cellForItem(at: [0,0]) as? MainCollCell else {
             return
         }
         guard let cell2 = cell.pageCollectionView.cellForItem(at: [0,0]) as? FirstCell else {
             return
         }
-        tipView.show(forView: cell2.detailView.infoBtn , withinSuperview: self.mainView)
-        
+            tipView?.show(forView: cell2.detailView.infoBtn , withinSuperview: self.mainView)
+            self.isShowTip = !self.isShowTip
+        }else{
+            tipView?.dismiss()
+            self.isShowTip = !self.isShowTip
+        }
     }
     private func getItemDetailInfo(){
         DispatchQueue.main.async {
@@ -86,6 +93,11 @@ class ItemDetailVC: UIViewController,ButtonActionDelegate {
                 self.mainView.activityStopAnimating()
                 print(error)
             }
+        }
+    }
+    fileprivate func removeAlertController(){
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
+            self.dismissPressentededControllers()
         }
     }
     fileprivate func getRatingData(id:Int){
@@ -125,6 +137,8 @@ class ItemDetailVC: UIViewController,ButtonActionDelegate {
         currentPage += 1
         self.getReviewData(id: Int(self.itemDetails?.config.catalogID ?? 0))
     }
+    
+    
 }
 extension ItemDetailVC:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
     
@@ -147,6 +161,8 @@ extension ItemDetailVC:UICollectionViewDelegate,UICollectionViewDataSource,UICol
                 APIClient.toggleFav(id: self.itemDetails?.config.id ?? 0) { (result) in
                     switch result {
                     case.success(let data):
+                        self.createAlert(title: nil, erroMessage: data.message ?? "", createButton: nil)
+                        self.removeAlertController()
                         print(data)
                     case .failure(_):
                         break
@@ -196,16 +212,7 @@ extension ItemDetailVC:UICollectionViewDelegate,UICollectionViewDataSource,UICol
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        switch indexPath.row {
-        case 0:
-            return CGSize(width: collectionView.frame.width, height: 750)
-        case 1:
-            return CGSize(width: collectionView.frame.width, height:  collectionView.frame.height)
-        case 2:
-            return CGSize(width: collectionView.frame.width, height: 770)
-        default:
-            return CGSize(width: collectionView.frame.width, height: 800)
-        }
+            return collectionView.bounds.size
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return CGSize(width: collectionView.frame.width, height: 350) //add your height here

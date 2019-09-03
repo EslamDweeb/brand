@@ -29,7 +29,7 @@ class IntroViewController: UICollectionViewController, UICollectionViewDelegateF
     }()
     
     @objc private func handleSkip() {
-        presentViewController(controller: SignUpViewController(), transitionModal: .crossDissolve, presentationStyle: nil)
+        presentViewController(controller: TabBarViewController(), transitionModal: .crossDissolve, presentationStyle: nil)
     }
     lazy var nextButton: BtnImage = {
         let button = BtnImage()

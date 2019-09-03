@@ -55,6 +55,8 @@ extension MenuViewController : UITableViewDataSource , UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        print("did select row")
+        
         guard let cell = tableView.cellForRow(at: indexPath) as? MenuCell else{return}
         var labelname : String!
         if(mainView.isLogin == true)
@@ -84,7 +86,6 @@ extension MenuViewController : UITableViewDataSource , UITableViewDelegate {
             }
         case "login".localized:
             let dest = LoginViewController()
-            dest.loginView.closeImg.isHidden = false
             self.present(dest, animated: true) {
                 cell.backgroundColor = .clear
             }
@@ -108,7 +109,7 @@ extension MenuViewController : UITableViewDataSource , UITableViewDelegate {
             self.present(dest, animated: true) {
                 cell.backgroundColor = .clear
             }
-        case "wishlist".localized:
+        case YString.savedItem:
             self.present(WishListController(), animated: true) {
                 cell.backgroundColor = .clear
             }
@@ -138,23 +139,31 @@ extension MenuViewController : UITableViewDataSource , UITableViewDelegate {
 }
 
 extension MenuViewController{
+    enum UrlPath:String{
+        case about = "about"
+        case terms = "terms"
+        case customerService = "customer-service"
+        case returnPolicy = "return-policy"
+        case saleOnBrand = "sale-on-brands"
+        case buyFromBrand = "buy-from-brands"
+    }
     func setControllerTitleAndLoad(type:WebControllType,cell:MenuCell?){
         switch type {
         case .about:
-            self.loadWebView(path:"about", cell: cell)
+            self.loadWebView(path:.about, cell: cell)
         case .terms:
-            self.loadWebView(path:"terms", cell: cell)
+            self.loadWebView(path:.terms, cell: cell)
         case .customerService:
-            self.loadWebView(path:"customer-service", cell: cell)
+            self.loadWebView(path:.customerService, cell: cell)
         case .returnPolicy:
-            self.loadWebView(path:"return-policy", cell: cell)
+            self.loadWebView(path:.returnPolicy, cell: cell)
         case .saleOnBrand:
-            self.loadWebView(path:"sale-on-brands", cell: cell)
+            self.loadWebView(path:.saleOnBrand, cell: cell)
         case .buyOnbrand:
-            self.loadWebView(path:"buy-from-brands", cell: cell)
+            self.loadWebView(path:.buyFromBrand, cell: cell)
         }
     }
-    func loadWebView(path:String,cell:MenuCell?){
+    func loadWebView(path:UrlPath,cell:MenuCell?){
         let url = URL(string: "https://brands.sa/\(path)")!
         let dest = SFSafariViewController(url: url)
         self.present(dest, animated: true) {

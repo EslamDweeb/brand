@@ -11,13 +11,13 @@ import UIKit
 extension HomeVC:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == mainView.categoriesCollection {
-            if toggel == false {
+            if toggel == true {
                 return categories.count
             }else{
                 return brands.count
             }
         }else{
-            if toggel == false {
+            if toggel == true {
                 return brands.count
             }else{
                 return categories.count
@@ -28,7 +28,7 @@ extension HomeVC:UICollectionViewDelegate,UICollectionViewDataSource,UICollectio
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == mainView.categoriesCollection {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as? CatogrieCell else{return UICollectionViewCell()}
-            if toggel == false {
+            if toggel == true {
                 cell.category = categories[indexPath.item]
             }else{
                 cell.brand = brands[indexPath.item]
@@ -37,7 +37,7 @@ extension HomeVC:UICollectionViewDelegate,UICollectionViewDataSource,UICollectio
         return cell
         }else{
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as? BrandCell else {return UICollectionViewCell()}
-            if toggel == false {
+            if toggel == true {
                  cell.brand = brands[indexPath.item]
             }else{
                 cell.category = categories[indexPath.item]
@@ -47,7 +47,7 @@ extension HomeVC:UICollectionViewDelegate,UICollectionViewDataSource,UICollectio
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == mainView.categoriesCollection{
-            if toggel == false {
+            if toggel == true {
                 let cell = collectionView.cellForItem(at: indexPath) as? CatogrieCell
                 let dest = SubCategoryVC()
                 dest.mainView.navView.titlelabel.text = cell?.category?.name
@@ -65,7 +65,7 @@ extension HomeVC:UICollectionViewDelegate,UICollectionViewDataSource,UICollectio
             }
 
         }else if collectionView == mainView.brandCollection{
-            if toggel == false {
+            if toggel == true {
                 let cell = collectionView.cellForItem(at: indexPath) as? BrandCell
                 let dest = SubCategoryVC()
                 dest.mainView.navView.titlelabel.text = cell?.brand?.name

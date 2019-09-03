@@ -47,16 +47,16 @@ class TabBarViewController: UITabBarController {
     }
     func AddVC(){
         //        self.navigationController?.navigationBar.isHidden = true
-        MenuViewControllers.tabBarItem = UITabBarItem(title: YString.menu , image: #imageLiteral(resourceName: "Setting"), tag: 0)
+        MenuViewControllers.tabBarItem = UITabBarItem(title: YString.menu , image: #imageLiteral(resourceName: "menu"), tag: 0)
         MenuViewControllers.tabBarItem.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -4.0);
 //        ExploreViewControllers.tabBarItem = UITabBarItem(title:
 //            NSLocalizedString("explore", comment: ""), image:#imageLiteral(resourceName: "compassAnticon"), tag: 1)
 //        ExploreViewControllers.tabBarItem.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -4.0);
-        HomeViewControllers.tabBarItem = UITabBarItem(title:"explore".localized, image:#imageLiteral(resourceName: "compassAnticon") , tag: 1)
+        HomeViewControllers.tabBarItem = UITabBarItem(title:"explore".localized, image:#imageLiteral(resourceName: "explore") , tag: 1)
         HomeViewControllers.tabBarItem.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -4.0);
         NotificationViewControllers.tabBarItem = UITabBarItem(title:"notification".localized, image: #imageLiteral(resourceName: "notificationAnticon"), tag: 3)
         NotificationViewControllers.tabBarItem.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -4.0);
-        CartViewControllers.tabBarItem = UITabBarItem(title:"cart".localized, image: #imageLiteral(resourceName: "shoppingCartAnticon"), tag: 4)
+        CartViewControllers.tabBarItem = UITabBarItem(title:"cart".localized, image: #imageLiteral(resourceName: "cart-4"), tag: 4)
         CartViewControllers.tabBarItem.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -4.0);
         let viewControllerList = [ HomeViewControllers,NotificationViewControllers,ExploreViewControllers,CartViewControllers,MenuViewControllers]
         viewControllers = viewControllerList

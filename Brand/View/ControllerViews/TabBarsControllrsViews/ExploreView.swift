@@ -20,13 +20,13 @@ class ExploreView:UIView{
 
     lazy var categoriesLable:HeaderLabelAlign = {
         let label = HeaderLabelAlign()
-        label.text = "Explore by categories"
+        label.text = "Explore All brands" 
         label.font = UIFont(name: .fontH, size: 14)
         return label
     }()
     lazy var brandLable:HeaderLabelAlign = {
         let label = HeaderLabelAlign()
-        label.text = "Explore All brands"
+        label.text = "Explore by categories"
         label.font = UIFont(name: .fontH, size: 14)
         return label
     }()
