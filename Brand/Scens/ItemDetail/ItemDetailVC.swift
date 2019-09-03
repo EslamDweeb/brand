@@ -46,25 +46,25 @@ class ItemDetailVC: UIViewController,ButtonActionDelegate {
         preferences.drawing.foregroundColor = UIColor.white
         preferences.drawing.backgroundColor = .gray
         EasyTipView.globalPreferences = preferences
+        getItemDetailInfo()
         print("hi!!!!!!!!!!!!!!!!")
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        getItemDetailInfo()
     }
     func infoTapped(_ sender: UIButton) {
         
         if isShowTip == false{
-        guard let text = self.itemDetails?.config.sellerNotes else{
-            return
-        }
+            guard let text = self.itemDetails?.config.sellerNotes else{
+                return
+            }
             tipView = EasyTipView(text: text , preferences: preferences)
-        guard let  cell = mainView.mainCollectionView.cellForItem(at: [0,0]) as? MainCollCell else {
-            return
-        }
-        guard let cell2 = cell.pageCollectionView.cellForItem(at: [0,0]) as? FirstCell else {
-            return
-        }
+            guard let  cell = mainView.mainCollectionView.cellForItem(at: [0,0]) as? MainCollCell else {
+                return
+            }
+            guard let cell2 = cell.pageCollectionView.cellForItem(at: [0,0]) as? FirstCell else {
+                return
+            }
             tipView?.show(forView: cell2.detailView.infoBtn , withinSuperview: self.mainView)
             self.isShowTip = !self.isShowTip
         }else{
@@ -157,20 +157,24 @@ extension ItemDetailVC:UICollectionViewDelegate,UICollectionViewDataSource,UICol
         }
         header.handelFlowBtnTapped = { [weak self](sender) in
             guard let self = self else {return}
-            if sender == header.header.favBtn{
-                APIClient.toggleFav(id: self.itemDetails?.config.id ?? 0) { (result) in
-                    switch result {
-                    case.success(let data):
-                        self.createAlert(title: nil, erroMessage: data.message ?? "", createButton: nil)
-                        self.removeAlertController()
-                        print(data)
-                    case .failure(_):
-                        break
+            if UserDefaults.standard.string(forKey: Constants.Defaults.authToken) != "" {
+                if sender == header.header.favBtn{
+                    APIClient.toggleFav(id: self.itemDetails?.config.id ?? 0) { (result) in
+                        switch result {
+                        case.success(let data):
+                            self.createAlert(title: nil, erroMessage: data.message ?? "", createButton: nil)
+                            self.removeAlertController()
+                            print(data)
+                        case .failure(_):
+                            break
+                        }
                     }
+                }else if sender == header.header.cartBtn {
+                    self.addViewAddToCart(config: self.itemDetails?.config )
+                    
                 }
-            }else if sender == header.header.cartBtn {
-                self.addViewAddToCart(config: self.itemDetails?.config )
-                
+            }else{
+                self.presentLoginViewController(loginDismiss: true)
             }
         }
         
@@ -184,9 +188,9 @@ extension ItemDetailVC:UICollectionViewDelegate,UICollectionViewDataSource,UICol
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as? MainCollCell else{return UICollectionViewCell()}
         cell.itemDetails = self.itemDetails
-       let cell2 = cell.pageCollectionView.cellForItem(at: [0,0]) as? FirstCell
+        let cell2 = cell.pageCollectionView.cellForItem(at: [0,0]) as? FirstCell
         cell2?.detailView.infoBtn.addTarget(self, action: #selector(ButtonActionDelegate.infoTapped(_:)), for: .touchUpInside)
-
+        
         cell.reviews = self.reviews
         cell.rateData = self.rateData
         cell.handelCellSwipe = { [weak self](row) in
@@ -212,7 +216,7 @@ extension ItemDetailVC:UICollectionViewDelegate,UICollectionViewDataSource,UICol
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-            return collectionView.bounds.size
+        return collectionView.bounds.size
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return CGSize(width: collectionView.frame.width, height: 350) //add your height here
@@ -256,12 +260,16 @@ extension ItemDetailVC:UICollectionViewDelegate,UICollectionViewDataSource,UICol
     }
     private func handelAddReviewTapped(cell:MainCollCell){
         cell.handelThirdCellAddReview = {[weak self] in
-            guard let self = self else {return}
-            let dest = AddReviewController()
-            dest.catlogId = self.itemDetails?.config.catalogID
-            dest.editeFlag = false
-            dest.mainView.setHeaderViewData(self.itemDetails?.config.brand?.name ?? "", self.itemDetails?.config.name ?? "",5, self.itemDetails?.config.mainPhoto?.path)
-            self.present(dest, animated: true, completion: nil)
+            if UserDefaults.standard.string(forKey: Constants.Defaults.authToken) != "" {
+                guard let self = self else {return}
+                let dest = AddReviewController()
+                dest.catlogId = self.itemDetails?.config.catalogID
+                dest.editeFlag = false
+                dest.mainView.setHeaderViewData(self.itemDetails?.config.brand?.name ?? "", self.itemDetails?.config.name ?? "",5, self.itemDetails?.config.mainPhoto?.path)
+                self.present(dest, animated: true, completion: nil)
+            }else{
+                self?.presentLoginViewController(loginDismiss: true)
+            }
         }
     }
     private func reloadController(slug: String){

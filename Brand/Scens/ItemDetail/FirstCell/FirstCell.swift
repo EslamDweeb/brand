@@ -24,6 +24,7 @@ class FirstCell:UICollectionViewCell{
                     }
                 }
             }
+            configOptionTableView.reloadData()
         }
     }
     let detailView = DetailView()

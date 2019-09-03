@@ -121,6 +121,9 @@ class CartController : UIViewController ,ButtonActionDelegate{
     func startShppingEmptyCart(_ sender: UIButton) {
         print("click on start shopping ")
     }
+    func loginBtnTapped() {
+        self.presentLoginViewController(loginDismiss: true)
+    }
 }
 
 

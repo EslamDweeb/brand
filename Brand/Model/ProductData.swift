@@ -46,7 +46,7 @@ struct Config: Codable {
     let isFlashOffer: Bool
     let mainPhoto: Media?
     let isFavorite: Bool
-    let newPrice: Int?
+    let newPrice: Double?
     let min_qty : Int?
     let max_qty : Int?
     let in_cart : Bool?
