@@ -72,9 +72,7 @@ extension ConfigOptionTableCell:UICollectionViewDelegate,UICollectionViewDataSou
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath)as?TagsCell else{return UICollectionViewCell()}
         cell.configOptionValue = configOption?.values[indexPath.row]
-        if cell.selectCell ?? false {
-            cell.cardView.backgroundColor = .pink
-        }
+       
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
