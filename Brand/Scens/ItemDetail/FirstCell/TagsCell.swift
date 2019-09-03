@@ -24,6 +24,8 @@ class TagsCell:UICollectionViewCell {
             selectCell = optionValue.selected
             if selectCell ?? false {
                cardView.backgroundColor = .pink
+            }else{
+               cardView.backgroundColor = .lightgray3
             }
         }
     }
