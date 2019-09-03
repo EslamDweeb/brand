@@ -59,7 +59,7 @@ class MainCollCell:UICollectionViewCell,UICollectionViewDelegate,UICollectionVie
             cell.getDescriptionViewData(description:itemDetails?.config.configDescription ?? "")
             cell.getFooterViewData(configs: nil, simpleConfig: itemDetails?.config.relatedProducts ?? [])
             cell.configOptionArray = itemDetails?.config.configOptions
-            cell.configOptionTableView.reloadData()
+           // cell.configOptionTableView.reloadData()
             cell.footerView.HandelSelectedCellAction = {[weak self] (slug) in
                 guard let self = self else{return}
                 self.handelFooterViewClouserAction?(slug)
@@ -102,6 +102,8 @@ class MainCollCell:UICollectionViewCell,UICollectionViewDelegate,UICollectionVie
         return 0
     }
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+         guard let cell = collectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as? FirstCell else{return}
+         cell.configOptionTableView.reloadData()
         ////        guard let thirdCell = collectionView.cellForItem(at: IndexPath(row: 2, section: 0)) as? ThirdCell else{return}
         //        if indexPath.row == 1{
         //            getRatingAndReviewInfo(catlogID: itemDetails?.config.catalogID ?? 0,modalID: Int(itemDetails?.config.modelRatingID ?? 0))

@@ -14,24 +14,35 @@ extension CartController: UITableViewDelegate , UITableViewDataSource {
         return indexPath.row == self.cartpro.count
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if cartpro.count == 0 {
-//            mainView.bottomConstrain?.constant = view.frame.height - 140 -  view.frame.height * 0.12
+        
+        if UserDefaults.standard.string(forKey: Constants.Defaults.authToken) == "" && cartpro.count == 0{
             mainView.heightConstrain?.constant = 0
             mainView.Totalsar.isHidden = true
             mainView.ItemsNum.isHidden = true
             mainView.save.isHidden = true
             tableView.separatorStyle = .none
-            tableView.backgroundView = CartTableBG(delegate: self )
-        }
-        else{
-            
+            let view = CartTableBG(delegate: self)
+            view.startbtn.isHidden = false
+            view.lable.text = YString.pleseLoginFirst
+            tableView.backgroundView = view
+        }else if UserDefaults.standard.string(forKey: Constants.Defaults.authToken) != "" && cartpro.count == 0{
+            mainView.heightConstrain?.constant = 0
+            mainView.Totalsar.isHidden = true
+            mainView.ItemsNum.isHidden = true
+            mainView.save.isHidden = true
+            tableView.separatorStyle = .none
+            let view = CartTableBG(delegate: self)
+            view.lable.text = YString.yourCartIsEmpty
+            tableView.backgroundView = view
+        }else{
             self.mainView.ItemsNum.text = "\("Items".localized )\(self.cartpro.count)"
             self.mainView.Totalsar.text = "\("totalPrice".localized) \(self.getTotalCartItemsPrice()) \("sar".localized)"
-//            mainView.bottomConstrain?.constant = CGFloat(165 * cartpro.count)
+            //            mainView.bottomConstrain?.constant = CGFloat(165 * cartpro.count)
             mainView.heightConstrain?.constant = 20
             mainView.Totalsar.isHidden = false
             mainView.ItemsNum.isHidden = false
             mainView.save.isHidden = false
+            tableView.backgroundView = nil
             tableView.backgroundView = nil
         }
         let count = cartpro.count
