@@ -11,6 +11,7 @@ import TwitterKit
 import FBSDKLoginKit
 
 class LoginViewController: UIViewController,ButtonActionDelegate {
+    var loginDismiss:Bool?
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .default
     }
@@ -58,7 +59,12 @@ class LoginViewController: UIViewController,ButtonActionDelegate {
                         self.loginView.activityStopAnimating()
                         UserDefaults.standard.set(data.accessToken, forKey: Constants.Defaults.authToken)
                         UserDefaults.standard.set(true, forKey: Constants.Defaults.isLogin)
-                        self.presentViewControllerFromStoryBoard(identifier: self.indetifier)
+                        if self.loginDismiss !=  true{
+                            self.presentViewControllerFromStoryBoard(identifier: self.indetifier)
+                        }else{
+                            self.dismiss(animated: true, completion: nil)
+                        }
+                        
                        // self.present(ConnectPageConntroler(), animated: true, completion: nil)
                     case .failure(let error) :
                         print(error)
@@ -191,7 +197,12 @@ class LoginViewController: UIViewController,ButtonActionDelegate {
                 UserDefaults.standard.set(user.accessToken, forKey: Constants.Defaults.authToken)
                 UserDefaults.standard.set(true, forKey: Constants.Defaults.isLogin)
                 let dest = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "mainTabVC")
-                self.present(dest, animated: true, completion: nil)
+                if self.loginDismiss != true{
+                    self.present(dest, animated: true, completion: nil)
+                }else{
+                    self.dismiss(animated: true, completion: nil)
+                }
+                
                 
             case .failure(let error) :
                 print(error)

@@ -193,6 +193,10 @@ extension UIViewController {
         self.view.addSubview(viewAddToCart)
         viewAddToCart.anchor(top: self.view.topAnchor , left: self.view.leftAnchor , bottom: self.view.bottomAnchor , right: self.view.rightAnchor , centerX: nil , centerY: nil , paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
     }
-    
+    func presentLoginViewController(loginDismiss:Bool? = false){
+        let dest = LoginViewController()
+        dest.loginDismiss = loginDismiss
+        self.present(dest, animated: true, completion: nil)
+    }
     
 }

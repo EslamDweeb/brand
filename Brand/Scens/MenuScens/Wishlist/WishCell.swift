@@ -32,8 +32,8 @@ class WishCell: UICollectionViewCell {
                 discountLbl.text = "\((con.ReturnPricepersent(sale: Double(con.sale ?? 0))))"
                 discountPrice.text = "\(con.ReturnPriceAfterSale(price: Double(con.price ?? 0) , sale: Double(con.sale ?? 0))) \("sar".localized)"
             }else{
-                 priceLbl.isHidden = true
-                 discountLbl.isHidden = true
+                priceLbl.isHidden = true
+                discountLbl.isHidden = true
                 discountPrice.text = "\(con.price ?? 0)\("sar".localized)"
             }
         }
@@ -85,19 +85,18 @@ class WishCell: UICollectionViewCell {
     }()
     var isFav = false
     @objc func addToWishList(){
-         if UserDefaults.standard.string(forKey: Constants.Defaults.authToken) != "" {
-        
-        if isFav != false {
-            let image = UIImage(named: "emptyHeart")
-            favBtn.setImage(image, for: .normal)
-        }else{
-            let image = UIImage(named: "filledHeart")
-            favBtn.setImage(image, for: .normal)
+        if UserDefaults.standard.string(forKey: Constants.Defaults.authToken) != "" {
+            
+            if isFav != false {
+                let image = UIImage(named: "emptyHeart")
+                favBtn.setImage(image, for: .normal)
+            }else{
+                let image = UIImage(named: "filledHeart")
+                favBtn.setImage(image, for: .normal)
+            }
         }
-            self.handelFavBtnTapped?(config?.id ?? 0)
-            self.isFav = !self.isFav
-         }
-        
+        self.handelFavBtnTapped?(config?.id ?? 0)
+        self.isFav = !self.isFav
     }
     var handelCartBtnTappedClouser:((_ config:DetailedConfig)->Void)?
     lazy var cartBtn: UIButton = {
@@ -116,7 +115,7 @@ class WishCell: UICollectionViewCell {
     }
     override init(frame: CGRect) {
         super.init(frame: frame)
-     
+        
         setup()
     }
     required init?(coder aDecoder: NSCoder) {
@@ -148,7 +147,7 @@ class WishCell: UICollectionViewCell {
         brandName.anchor(top: image.bottomAnchor, left: containerView.leftAnchor, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
         brandName.widthAnchor.constraint(greaterThanOrEqualToConstant: 40).isActive = true
         productName.anchor(top: brandName.bottomAnchor, left: containerView.leftAnchor, bottom: nil, right: containerView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 16, width: 0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
-
+        
         priceLbl.anchor(top: productName.bottomAnchor, left: containerView.leftAnchor, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 65, height: 20, paddingCenterX: 0, paddingCenterY: 0)
         
         discountLbl.anchor(top: containerView.topAnchor, left: containerView.leftAnchor, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 40, height: 20, paddingCenterX: 0, paddingCenterY: 0)

@@ -52,16 +52,21 @@ extension ExploreVC:UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             cell.delegate = self
             cell.handelFavTapped = { [weak self] (id) in
                 guard let self = self else{return}
-                APIClient.toggleFav(id: id) { (result) in
-                    switch result {
-                    case.success(let data):
-                        self.createAlert(title: nil, erroMessage: data.message ?? "", createButton: nil)
-                        self.removeAlertController()
-                        print(data)
-                    case .failure(_):
-                        break
+                if UserDefaults.standard.string(forKey: Constants.Defaults.authToken) != "" {
+                    APIClient.toggleFav(id: id) { (result) in
+                        switch result {
+                        case.success(let data):
+                            self.createAlert(title: nil, erroMessage: data.message ?? "", createButton: nil)
+                            self.removeAlertController()
+                            print(data)
+                        case .failure(_):
+                            break
+                        }
                     }
+                }else{
+                    self.presentLoginViewController(loginDismiss:true)
                 }
+             
             }
             if indexPath == IndexPath(row: 0, section: 0){
                 cell.titleLabel.text = titleArray[indexPath.section]
@@ -140,7 +145,11 @@ extension ExploreVC:ExploreCellDelegate {
         self.present(dest, animated: true, completion: nil)
     }
     func handelCartBtnTapped(config: DetailedConfig) {
+        if UserDefaults.standard.string(forKey: Constants.Defaults.authToken) != "" {
         self.parent?.addViewAddToCart( slug: config.slug ?? "" )
+        }else{
+            self.presentLoginViewController(loginDismiss: true)
+        }
     }
     
 }
