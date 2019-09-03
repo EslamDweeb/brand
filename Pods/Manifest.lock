@@ -131,19 +131,22 @@ DEPENDENCIES:
   - TwitterKit
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
     - AKPickerView
     - Alamofire
     - Cosmos
     - Crashlytics
     - EasyTipView
+    - Fabric
     - FBSDKCoreKit
     - FBSDKLoginKit
     - Firebase
     - FirebaseAnalytics
     - FirebaseAnalyticsInterop
+    - FirebaseCore
     - FirebaseCoreDiagnostics
     - FirebaseCoreDiagnosticsInterop
+    - FirebaseInstanceID
     - FirebaseMessaging
     - FlexibleSteppedProgressBar
     - GoogleAppMeasurement
@@ -151,23 +154,15 @@ SPEC REPOS:
     - GoogleDataTransportCCTSupport
     - GoogleMaps
     - GooglePlacePicker
+    - GooglePlaces
     - GoogleUtilities
     - Kingfisher
     - MOLH
     - nanopb
     - Protobuf
+    - TTGSnackbar
     - TwitterCore
     - TwitterKit
-  trunk:
-    - Fabric
-    - FBSDKCoreKit
-    - FirebaseCore
-    - FirebaseInstanceID
-    - GoogleMaps
-    - GooglePlaces
-    - GoogleUtilities
-    - nanopb
-    - TTGSnackbar
 
 SPEC CHECKSUMS:
   AKPickerView: 125372e36fcc372216127600a541f14dcdbb7993
@@ -204,4 +199,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 430e516c44ac0417ec97e493b291cd6238cc4279
 
-COCOAPODS: 1.8.0.beta.1
+COCOAPODS: 1.7.5
