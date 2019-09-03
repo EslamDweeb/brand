@@ -41,6 +41,10 @@ class OrderViewController: UIViewController,ButtonActionDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         handelReachability(reachability: reachability)
+        ordersPending.removeAll()
+        ordersOthers.removeAll()
+        ordersDelivered.removeAll()
+        currentPage = 1
         getOrders(true)
     }
     func getPendingTapped() {
@@ -83,13 +87,13 @@ class OrderViewController: UIViewController,ButtonActionDelegate {
         APIClient.getOrders(page: currentPage) { (result) in
             switch result {
             case.success(let data):
-                if refresh {
-                    self.orders = data.orders ?? []
-                } else {
-                    for conf in data.orders  ?? []{
-                        self.orders.append(conf)
-                    }
-                }
+//                if refresh {
+//                    self.orders = data.orders ?? []
+//                } else {
+//                    for conf in data.orders  ?? []{
+//                        self.orders.append(conf)
+//                    }
+//                }
                 for i in data.orders ?? [] {
                     if i.status.id == 1 ||  i.status.id == 2 || i.status.id == 3 {
                         self.ordersPending.append(i)

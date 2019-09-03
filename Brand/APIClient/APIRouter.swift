@@ -37,7 +37,7 @@ enum APIRouter : URLRequestConvertible {
     
     case updateCart (cartID : Int , config_id : Int , qty : Int , option_ids : [Int]? , product_option_value_ids : [Int]? )
     case getNotifications ( page : Int )
-    
+    case cancelOrder(referenceNumber : String)
     private var Methods : HTTPMethod {
         switch self {
         case .signUp:
@@ -90,6 +90,8 @@ enum APIRouter : URLRequestConvertible {
             return .post
         case .getNotifications :
             return .get
+        case .cancelOrder:
+            return .post
         }
     }
     private var Paths : String {
@@ -151,6 +153,8 @@ enum APIRouter : URLRequestConvertible {
             return "/api/cart-items/\(cartID.cartID)"
         case .getNotifications(let page) :
             return "/api/notifications?page=\(page)"
+        case .cancelOrder(let referenceNumber):
+             return "/api/orders/\(referenceNumber)"
         }
     }
     private var headers : HTTPHeaders {
@@ -322,6 +326,13 @@ enum APIRouter : URLRequestConvertible {
                 HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue ,
                 HTTPHeaderField.contentType.rawValue  : ContentType.json.rawValue ,
                 HTTPHeaderField.locale.rawValue : MOLHLanguage.currentAppleLanguage()
+            ]
+            
+        case .cancelOrder(let referenceNumber):
+            return [
+                HTTPHeaderField.authentication.rawValue :" \(ContentType.token.rawValue)  \(UserDefaults.standard.string(forKey: Constants.Defaults.authToken) ?? "")",
+                HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue,
+                HTTPHeaderField.contentType.rawValue : ContentType.json.rawValue
             ]
             
         }
@@ -520,6 +531,11 @@ enum APIRouter : URLRequestConvertible {
             ]
         case .getNotifications :
             return [:]
+        case .cancelOrder( _):
+            return [
+                Constants.APIParameterKey.method : RequestMethods.put.rawValue,
+                Constants.APIParameterKey.statesID: "6"
+            ]
         }
         
     }

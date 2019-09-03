@@ -37,8 +37,7 @@ class GradBtn  : DefaultButtom {
             setCornerRadius(radius: 3)
             
         }else{
-            setCornerRadius(radius: 3)
-            
+             setCornerRadius(radius: 3)
             self.backgroundColor = .lightgray
         }
     }

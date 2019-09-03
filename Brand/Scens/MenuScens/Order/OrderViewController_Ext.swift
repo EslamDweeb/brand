@@ -22,30 +22,20 @@ extension OrderViewController: UICollectionViewDelegate,UICollectionViewDataSour
        // return indexPath.row == self.orders.count
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        //        if orders.count == 0 {
-        //
-        //            mainView.heightConstraint?.constant = 0
-        //            mainView.topConstraint?.constant = 0
-        //            UIView.animate(withDuration: 0.2) {
-        //                self.mainView.layoutIfNeeded()
-        //            }
-        //            collectionView.backgroundView = OrderBackgroundView()
-        //        }else{
-        //            mainView.heightConstraint?.constant = 25
-        //            mainView.topConstraint?.constant = 16
-        //            collectionView.backgroundView = nil
-        //        }
         if mainView.line1.isHidden == false {
             if ordersPending.count == 0 {
                 let view = OrderBackgroundView()
                 view.image.image = #imageLiteral(resourceName: "Asset 32")
                 view.lable.text  = "There is no pending orders"
                 collectionView.backgroundView = view
+                if shouldShowLoadingCell {
+                   fetchNextPage()
+                }
             }else {
                 collectionView.backgroundView  = nil
             }
             let count = ordersPending.count
-            return shouldShowLoadingCell ? count   : count
+            return shouldShowLoadingCell ? count    : count
         }else if mainView.line2.isHidden == false {
             let count = ordersDelivered.count
             if ordersDelivered.count == 0 {
@@ -53,6 +43,9 @@ extension OrderViewController: UICollectionViewDelegate,UICollectionViewDataSour
                 view.image.image = #imageLiteral(resourceName: "Asset 35")
                 view.lable.text  = "There is no delivered orders"
                collectionView.backgroundView = view
+                if shouldShowLoadingCell {
+                    fetchNextPage()
+                }
             }else {
                 collectionView.backgroundView  = nil
             }
@@ -63,6 +56,9 @@ extension OrderViewController: UICollectionViewDelegate,UICollectionViewDataSour
                 view.image.image = #imageLiteral(resourceName: "Asset 34")
                 view.lable.text  = "There is no canceled or returned orders"
                 collectionView.backgroundView = view
+                if shouldShowLoadingCell {
+                    fetchNextPage()
+                }
             }else {
                 collectionView.backgroundView  = nil
             }
@@ -89,8 +85,16 @@ extension OrderViewController: UICollectionViewDelegate,UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let dest = DetailorderVC()
-        dest.orderSerial = orders[indexPath.row].referenceNumber
-        self.presentViewController(controller: dest, transitionModal: UIModalTransitionStyle.crossDissolve, presentationStyle: nil)
+        if mainView.line1.isHidden == false {
+          dest.orderSerial = ordersPending[indexPath.row].referenceNumber
+        }else if mainView.line2.isHidden == false {
+            dest.orderSerial = ordersDelivered[indexPath.item].referenceNumber
+        }else{
+             dest.orderSerial = ordersOthers[indexPath.item].referenceNumber
+        }
+       // dest.orderSerial = orders[indexPath.row].referenceNumber
+   //     self.presentViewController(controller: dest, transitionModal: UIModalTransitionStyle.crossDissolve, presentationStyle: nil)
+        self.present(dest, animated: true, completion: nil)
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         

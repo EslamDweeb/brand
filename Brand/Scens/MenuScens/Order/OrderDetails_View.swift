@@ -30,8 +30,7 @@ class DetailorderView : UIView , UITextFieldDelegate ,FlexibleSteppedProgressBar
              self.shippingFee.Pricelabel.text = "\(order.shippingMethod?.fees ?? 0)"
              self.billingMethod.Pricelabel.text = order.billingMethod?.name
             self.billingFee.Pricelabel.text = "\(order.billingMethod?.fees ?? 0)"
-        
-            
+     
         
            
         }
@@ -251,7 +250,7 @@ class DetailorderView : UIView , UITextFieldDelegate ,FlexibleSteppedProgressBar
         confirmBtn.anchor(top: orderitemsview.bottomAnchor, left: scrollView.leftAnchor, bottom: nil, right: scrollView.rightAnchor, centerX: scrollView.centerXAnchor, centerY: nil, paddingTop: 20, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 45, paddingCenterX: 0, paddingCenterY: 0)
         notelabel.anchor(top: confirmBtn.bottomAnchor, left: scrollView.leftAnchor, bottom: scrollView.bottomAnchor, right: scrollView.rightAnchor, centerX: scrollView.centerXAnchor, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 32, paddingRight: 8, width: 0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
                 navView.backBtn.addTarget(self.actionDelegete, action: #selector(ButtonActionDelegate.dissmisController), for: .touchUpInside)
-        
+        confirmBtn.addTarget(self.actionDelegete, action: #selector(ButtonActionDelegate.saveButtonTapped), for: .touchUpInside)
         
        
     }

@@ -267,4 +267,9 @@ class APIClient {
             completion(response.result)
         }
     }
+    static func Canceleorder (refernceNumber : String ,completion : @escaping (Result<UserData,Error>) -> Void) {
+        AF.request(APIRouter.cancelOrder(referenceNumber: refernceNumber)).responseDecodable { (response : DataResponse<UserData> ) in
+            completion(response.result)
+        }
+    }
 }

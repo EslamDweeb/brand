@@ -11,6 +11,7 @@ class DetailorderVC : UIViewController ,ButtonActionDelegate{
     var mainView = DetailorderView()
     let reachability =  Reachability()
     var orderSerial:String?
+    var refernceNumber : String?
     var pro: [Item] = []
     var status :[Int] = []
     var x = 0
@@ -41,7 +42,21 @@ class DetailorderVC : UIViewController ,ButtonActionDelegate{
     }
     
     func saveButtonTapped() {
-        
+              DispatchQueue.main.async {
+            self.mainView.activityStartAnimating(activityColor: #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1), backgroundColor: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.5))
+            APIClient.Canceleorder(refernceNumber: self.refernceNumber ?? "") { (result) in
+                switch result{
+                case.success(let data):
+                    print(data)
+                    self.mainView.activityStopAnimating()
+                    
+                case.failure(let error):
+                    self.mainView.activityStopAnimating()
+                    print(error)
+                }
+            }
+                self.dismiss(animated: true, completion: nil)
+        }
     }
     func dissmisController() {
         self.dismiss(animated: true, completion: nil)
@@ -54,13 +69,22 @@ class DetailorderVC : UIViewController ,ButtonActionDelegate{
                 case.success(let data):
                     print(data)
                     DispatchQueue.main.async {
+                        self.refernceNumber = data.order.referenceNumber
                         self.mainView.order = data.order
                         self.pro = data.order.items ?? []
                         for i in data.order.statuses {
                             self.status.append(i.id)
                         }
-//                        print( self.status)
-//                          print(self.status.max())
+                        if self.status.count != 1 {
+                            self.mainView.confirmBtn.isEnabled = false
+                           self.mainView.confirmBtn.backgroundColor = .lightgray
+                              self.mainView.confirmBtn.setShadow(shadowColor: UIColor.pink.cgColor, shadowOffset: CGSize(width: 0, height: 0), shadowOpacity: 0, shadowRaduis: 4)
+                        }else{
+                            self.mainView.confirmBtn.isEnabled = true
+                             self.mainView.confirmBtn.backgroundColor = .pink
+                             self.mainView.confirmBtn.setShadow(shadowColor: UIColor.pink.cgColor, shadowOffset: CGSize(width: 0, height: 2), shadowOpacity: 1, shadowRaduis: 4)
+                        }
+                        print(self.status.max()!)
                         if self.status.max() ?? 1 <= 4 {
                             self.mainView.Statusbar.isHidden = false
                             self.mainView.statuslabel.isHidden = true
@@ -70,7 +94,6 @@ class DetailorderVC : UIViewController ,ButtonActionDelegate{
                              self.mainView.Statusbar.isHidden = true
                              self.mainView.statuslabel.isHidden = false
                              self.mainView.img.isHidden = false
-                            
                         }
                         self.createItemDetailView()
                         self.CreateOrderDetailView()

@@ -48,6 +48,7 @@ struct Constants {
         static let newPassword = "new_password"
         static let countryID = "country_id"
         static let  stateID = "state_id"
+        static let  statesID =  "status_id"
         static let city = "city"
         static let addressName = "address_name"
         static let detailedAddress = "detailed_address"
