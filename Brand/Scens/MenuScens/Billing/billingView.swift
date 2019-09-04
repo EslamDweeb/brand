@@ -115,19 +115,19 @@ class BillingView : UIView ,  UITextFieldDelegate {
         self.backgroundColor = #colorLiteral(red: 0.9803921569, green: 0.9843137255, blue: 0.9843137255, alpha: 1)
         addSubview(navView)
         addSubview(scrollView)
-        addSubview(copounView)
+       scrollView.addSubview(copounView)
         copounView.addSubview(copounlbl)
         copounView.addSubview(copounTextFeild)
-        addSubview(billingMethodlbl)
-        addSubview(BillingCollectionview)
+        scrollView.addSubview(billingMethodlbl)
+        scrollView.addSubview(BillingCollectionview)
         addSubview(save)
-        addSubview(copoundiscount)
-        addSubview(Amountlbl)
-        addSubview(AmountSArlbl)
-        addSubview(Copounlbltext)
-        addSubview(CopounSArlbl)
-        addSubview(Totallbl)
-        addSubview(Sarlbl)
+        scrollView.addSubview(copoundiscount)
+        scrollView.addSubview(Amountlbl)
+        scrollView.addSubview(AmountSArlbl)
+        scrollView.addSubview(Copounlbltext)
+        scrollView.addSubview(CopounSArlbl)
+        scrollView.addSubview(Totallbl)
+        scrollView.addSubview(Sarlbl)
         copounTextFeild.delegate = self
         navView.anchor(top: self.topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, centerX: centerXAnchor, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         navView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.12).isActive = true
@@ -169,7 +169,7 @@ class BillingView : UIView ,  UITextFieldDelegate {
         
         
         billingMethodlbl.anchor(top: copounView.bottomAnchor, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, centerX: nil, centerY: nil, paddingTop: 16, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
-        BillingCollectionview.anchor(top: billingMethodlbl.bottomAnchor, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, centerX: nil, centerY: nil, paddingTop: 16, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
+        BillingCollectionview.anchor(top: billingMethodlbl.bottomAnchor, left: self.leftAnchor, bottom: scrollView.bottomAnchor, right: self.rightAnchor, centerX: nil, centerY: nil, paddingTop: 16, paddingLeft: 8, paddingBottom: 70, paddingRight: 8, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         hieghtConstrainView = BillingCollectionview.heightAnchor.constraint(equalToConstant: 0)
         hieghtConstrainView?.isActive = true
         save.anchor(top: nil, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, centerX: nil, centerY: nil, paddingTop: 16, paddingLeft: 8, paddingBottom: 24, paddingRight: 8, width: 0, height: 45, paddingCenterX: 0, paddingCenterY: 0)
