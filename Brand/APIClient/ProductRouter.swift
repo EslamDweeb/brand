@@ -31,10 +31,10 @@ enum ProductRouter:URLRequestConvertible {
     case getConfigReview(id:Int,pageNumber:Int)
     case getConfigRating(id:Int)
     case getSeeAllProduct(key:String,pageNumber:Int)
-  //  case getSelctedConfigSlug
+    case getSelctedConfigSlug(productID:Int,clickedID:Int,Values:[Int])
     private var Methods : HTTPMethod {
         switch self {
-        case .brands,.banners,.categories,.lastUpdate,.allReviews,.getOrders,.getOrderDetails,.getCategoryInfo,.getCategoryProduct,.getWishlist,.getCartData,.getExploreData,.getFlashData,.getAllProductConfigs,.getitemDetail,.getConfigReview,.getConfigRating,.getSeeAllProduct,.getFlashHeader:
+        case .brands,.banners,.categories,.lastUpdate,.allReviews,.getOrders,.getOrderDetails,.getCategoryInfo,.getCategoryProduct,.getWishlist,.getCartData,.getExploreData,.getFlashData,.getAllProductConfigs,.getitemDetail,.getConfigReview,.getConfigRating,.getSeeAllProduct,.getFlashHeader,.getSelctedConfigSlug:
             return .get
         case .updateReview,.toggleFav,.addReview:
             return .post
@@ -86,16 +86,25 @@ enum ProductRouter:URLRequestConvertible {
             return "/api/configs?show=\(key)&page=\(pageNumber)"
         case .getFlashHeader:
             return "/api/settings?type=flash_offer_header"
+        case .getSelctedConfigSlug(let productID,let clickedID,let values):
+            var s = ""
+            for (index , item) in values.enumerated() {
+                s = s + "\(item)"
+                if index+1 < values.count {
+                    s = s + ","
+                }
+            }
+            return "/api/config?product=\(productID)&values=\(s)&clicked=\(clickedID)"
         }
     }
     private var headers : HTTPHeaders {
         switch self {
         case.brands,.banners,.categories,.lastUpdate,.getCategoryInfo,.getCategoryProduct,.getFlashData,.getAllProductConfigs,.getFlashHeader:
             return [
-                    HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue,
-                    HTTPHeaderField.contentType.rawValue : ContentType.json.rawValue
-                ]
-         case .allReviews,.updateReview,.getOrders,.getOrderDetails,.getWishlist,.getCartData,.toggleFav,.getExploreData,.getitemDetail,.getConfigReview,.getConfigRating,.addReview,.getSeeAllProduct:
+                HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue,
+                HTTPHeaderField.contentType.rawValue : ContentType.json.rawValue
+            ]
+        case .allReviews,.updateReview,.getOrders,.getOrderDetails,.getWishlist,.getCartData,.toggleFav,.getExploreData,.getitemDetail,.getConfigReview,.getConfigRating,.addReview,.getSeeAllProduct,.getSelctedConfigSlug:
             return [
                 HTTPHeaderField.authentication.rawValue : " \(ContentType.token.rawValue) \(UserDefaults.standard.string(forKey: Constants.Defaults.authToken) ?? "")" ,
                 HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue,
@@ -105,15 +114,15 @@ enum ProductRouter:URLRequestConvertible {
     }
     private var parameters :Parameters?{
         switch self {
-        case .brands,.banners,.categories,.lastUpdate,.allReviews,.getOrders,.getOrderDetails,.getCategoryInfo,.getCategoryProduct,.getWishlist,.getCartData,.getExploreData,.getFlashData,.getAllProductConfigs,.getitemDetail,.getConfigReview,.getConfigRating,.getSeeAllProduct,.getFlashHeader:
+        case .brands,.banners,.categories,.lastUpdate,.allReviews,.getOrders,.getOrderDetails,.getCategoryInfo,.getCategoryProduct,.getWishlist,.getCartData,.getExploreData,.getFlashData,.getAllProductConfigs,.getitemDetail,.getConfigReview,.getConfigRating,.getSeeAllProduct,.getFlashHeader,.getSelctedConfigSlug:
             return [:]
         case .updateReview(let value, let review, let pros, let cons,_,_):
             return [
-                    Constants.APIParameterKey.method : RequestMethods.put.rawValue,
-                    Constants.APIParameterKey.value: value,
-                    Constants.APIParameterKey.review: review,
-                    Constants.APIParameterKey.pros: pros,
-                    Constants.APIParameterKey.cons: cons
+                Constants.APIParameterKey.method : RequestMethods.put.rawValue,
+                Constants.APIParameterKey.value: value,
+                Constants.APIParameterKey.review: review,
+                Constants.APIParameterKey.pros: pros,
+                Constants.APIParameterKey.cons: cons
             ]
         case .addReview(_,let value, let review, let pros, let cons):
             return [
@@ -130,10 +139,11 @@ enum ProductRouter:URLRequestConvertible {
     func asURLRequest() throws -> URLRequest {
         switch self {
         case .banners,.categories,.allReviews,.getCategoryProduct,.getWishlist,.getAllProductConfigs,.getConfigReview
-            ,.getSeeAllProduct,.getCartData,.getFlashHeader,.getOrders:
+        ,.getSeeAllProduct,.getCartData,.getFlashHeader,.getOrders,.getSelctedConfigSlug:
             let url = "\(Constants.ProductionServer.baseURL)\(Paths)"
             let safeUrl = url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-            var urlRequest = URLRequest(url: URL(string: safeUrl!)!)
+            let urlSafe = safeUrl?.replacingOccurrences(of: "%5B%5D=", with: "=")
+            var urlRequest = URLRequest(url: URL(string: urlSafe!)!)
             urlRequest.httpMethod = Methods.rawValue
             urlRequest.headers = headers
             print(urlRequest)

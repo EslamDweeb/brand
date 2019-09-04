@@ -81,3 +81,10 @@ struct ProductConfigs:Codable {
     let links:Links
     let meta:Meta
 }
+struct ConfigSlug:Codable{
+    let configSlug:[String]
+    
+    enum CodingKeys: String, CodingKey{
+        case configSlug = "config_slug"
+    }
+}

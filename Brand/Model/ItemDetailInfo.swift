@@ -38,7 +38,7 @@ struct DetailedConfig:Codable {
     let configOptions: [ConfigOption]?
     let specs: [Spec]?
     let isEligibleForFreeShipping: Bool?
-    let relatedProducts: [Config]?
+    let relatedProducts: [DetailedConfig]?
     let inCart, canRate: Bool?
     
     enum CodingKeys: String, CodingKey {

@@ -19,6 +19,7 @@ class ItemDetailVC: UIViewController,ButtonActionDelegate {
     var currentPage:Int = 1
     var lastPage:Int?
     var slug:String?
+    var sallerNote:String?
     var preferences = EasyTipView.Preferences()
     static func create (slug : String) -> ItemDetailVC {
         let vc = ItemDetailVC()
@@ -47,7 +48,6 @@ class ItemDetailVC: UIViewController,ButtonActionDelegate {
         preferences.drawing.backgroundColor = .gray
         EasyTipView.globalPreferences = preferences
         getItemDetailInfo()
-        print("hi!!!!!!!!!!!!!!!!")
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -65,6 +65,7 @@ class ItemDetailVC: UIViewController,ButtonActionDelegate {
             guard let cell2 = cell.pageCollectionView.cellForItem(at: [0,0]) as? FirstCell else {
                 return
             }
+            
             tipView?.show(forView: cell2.detailView.infoBtn , withinSuperview: self.mainView)
             self.isShowTip = !self.isShowTip
         }else{
@@ -86,6 +87,7 @@ class ItemDetailVC: UIViewController,ButtonActionDelegate {
             switch result{
             case .success(let data):
                 self.itemDetails = data
+                self.sallerNote = data.config.sellerNotes
                 self.getRatingData(id:Int(self.itemDetails?.config.modelRatingID ?? 0))
                 self.getReviewData(id:Int(self.itemDetails?.config.catalogID ?? 0),refresh:true)
                 print(data)
@@ -187,10 +189,13 @@ extension ItemDetailVC:UICollectionViewDelegate,UICollectionViewDataSource,UICol
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as? MainCollCell else{return UICollectionViewCell()}
+        cell.connecteDelegate = self
         cell.itemDetails = self.itemDetails
         let cell2 = cell.pageCollectionView.cellForItem(at: [0,0]) as? FirstCell
         cell2?.detailView.infoBtn.addTarget(self, action: #selector(ButtonActionDelegate.infoTapped(_:)), for: .touchUpInside)
-        
+        if sallerNote == nil || sallerNote == "" {
+            cell2?.detailView.infoBtn.isHidden = true
+        }
         cell.reviews = self.reviews
         cell.rateData = self.rateData
         cell.handelCellSwipe = { [weak self](row) in
@@ -275,4 +280,23 @@ extension ItemDetailVC:UICollectionViewDelegate,UICollectionViewDataSource,UICol
     private func reloadController(slug: String){
         self.presentViewController(controller: ItemDetailVC.create(slug: slug), transitionModal:.crossDissolve, presentationStyle: nil)
     }
+    private func getConfigSlug(productID:Int,values:[Int],clickedId:Int){
+        APIClient.getConfigSlug(productID: productID, Values: values, ClickedID: clickedId) { (result) in
+            switch result{
+            case.success(let data):
+                print(data)
+                self.slug = data.configSlug[0]
+                self.getItemDetailInfo()
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+}
+extension ItemDetailVC:ConnectMainCellWithItemDetailVC{
+    func handelFirstCellSelectedConfigOption(_ selectedArray: [Int], _ SelectedId: Int) {
+        self.getConfigSlug(productID: self.itemDetails?.config.productID ?? 0, values: selectedArray, clickedId: SelectedId)
+    }
+    
+    
 }

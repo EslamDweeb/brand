@@ -14,6 +14,17 @@ class HomeView: UIView{
             guard let set = setting else{return}
             let url = URL(string: set.photo.path)
             flashSaleImage.kf.setImage(with: url)
+            if set.value != nil{
+                flashHeaderHeightConstraint?.constant = 95
+                UIView.animate(withDuration: 0.3) {
+                    self.layoutIfNeeded()
+                }
+            }else{
+                flashHeaderHeightConstraint?.constant = 0   
+                UIView.animate(withDuration: 0.3) {
+                    self.layoutIfNeeded()
+                }
+            }
         }
     }
     let cellID = "CellID"
@@ -25,7 +36,7 @@ class HomeView: UIView{
         navView.searchBtn.addTarget(actionDelegate, action: #selector(ButtonActionDelegate.searchTapped), for: .touchUpInside)
         return navView
     }()
-    
+    var flashHeaderHeightConstraint:NSLayoutConstraint?
     lazy var bannerCollectionView:UICollectionView = {
        let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -93,7 +104,9 @@ class HomeView: UIView{
         bannerCollectionView.anchor(top: scrollView.topAnchor, left: scrollView.leftAnchor, bottom: nil, right: scrollView.rightAnchor, centerX: scrollView.centerXAnchor, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         bannerCollectionView.heightAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5).isActive = true
         
-         flashSaleImage.anchor(top: bannerCollectionView.bottomAnchor, left: scrollView.leftAnchor, bottom: nil, right: scrollView.rightAnchor, centerX: scrollView.centerXAnchor, centerY: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 95, paddingCenterX: 0, paddingCenterY: 0)
+         flashSaleImage.anchor(top: bannerCollectionView.bottomAnchor, left: scrollView.leftAnchor, bottom: nil, right: scrollView.rightAnchor, centerX: scrollView.centerXAnchor, centerY: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
+        flashHeaderHeightConstraint = flashSaleImage.heightAnchor.constraint(equalToConstant: 95)
+        flashHeaderHeightConstraint?.isActive = true
         mainCollection.anchor(top: flashSaleImage.bottomAnchor, left: scrollView.leftAnchor, bottom: scrollView.bottomAnchor, right: scrollView.rightAnchor, centerX: scrollView.centerXAnchor, centerY: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 810, paddingCenterX: 0, paddingCenterY: 0)
     }
 }

@@ -272,4 +272,9 @@ class APIClient {
             completion(response.result)
         }
     }
+    static func getConfigSlug(productID:Int,Values:[Int],ClickedID:Int,completion:@escaping (Result<ConfigSlug,Error>)->Void){
+        AF.request(ProductRouter.getSelctedConfigSlug(productID: productID, clickedID: ClickedID, Values: Values)).responseDecodable { (response:DataResponse<ConfigSlug>) in
+            completion(response.result)
+        }
+    }
 }

@@ -23,6 +23,7 @@ class MainCollCell:UICollectionViewCell,UICollectionViewDelegate,UICollectionVie
     var handelFooterViewClouserAction:((_ slug:String)->())?
     var handelThirdCellPaging:(() -> ())?
     var handelFirstCellSelectedConfigOption:((_ selectedArray:[Int],_ SelectedId:Int) -> ())?
+    weak var connecteDelegate:ConnectMainCellWithItemDetailVC?
     lazy var pageCollectionView:UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -55,19 +56,18 @@ class MainCollCell:UICollectionViewCell,UICollectionViewDelegate,UICollectionVie
         switch indexPath.row {
         case 0:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: firstCell, for: indexPath)as? FirstCell else{return UICollectionViewCell()}
+            cell.connectDelegate = self
             cell.getDetailViewData(brandName:itemDetails?.config.brand?.name ?? "",madeIN: itemDetails?.config.madeIn ?? "",tags:itemDetails?.config.tags ?? [])
             cell.getDescriptionViewData(description:itemDetails?.config.configDescription ?? "")
-            cell.getFooterViewData(configs: nil, simpleConfig: itemDetails?.config.relatedProducts ?? [])
+            cell.getFooterViewData(configs: itemDetails?.config.relatedProducts ?? [], simpleConfig: nil)
             cell.configOptionArray = itemDetails?.config.configOptions
            // cell.configOptionTableView.reloadData()
             cell.footerView.HandelSelectedCellAction = {[weak self] (slug) in
                 guard let self = self else{return}
                 self.handelFooterViewClouserAction?(slug)
-                cell.handelSelectedConfigOption = {[weak self] (array,id) in
-                    guard let self = self else{return}
-                    self.handelFirstCellSelectedConfigOption?(array,id)  
-                }
+              
             }
+            
             return cell
         case 1:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: secondCell, for: indexPath)as? SecondeCell else{return UICollectionViewCell()}
@@ -118,4 +118,12 @@ class MainCollCell:UICollectionViewCell,UICollectionViewDelegate,UICollectionVie
 //    func handelSwipe(_ row:Int){
 //        pageCollectionView.scrollToItem(at: IndexPath(row: row, section: 0), at: .centeredHorizontally, animated: true)
 //    }
+}
+extension MainCollCell:ConnectFirstCellToMainCell{
+    func handelSelectedConfigOption(_ selectedArray: [Int], _ selectedID: Int) {
+        self.connecteDelegate?.handelFirstCellSelectedConfigOption(selectedArray,selectedID)
+    }
+}
+protocol ConnectMainCellWithItemDetailVC:class{
+    func handelFirstCellSelectedConfigOption(_ selectedArray:[Int],_ SelectedId:Int)
 }

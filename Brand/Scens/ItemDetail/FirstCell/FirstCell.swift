@@ -14,6 +14,7 @@ class FirstCell:UICollectionViewCell{
     var selectedID = 0
     var selectedIndex = [Int]()
     var handelSelectedConfigOption:((_ selectedArray:[Int],_ selectedID:Int)->Void)?
+    weak var connectDelegate:ConnectFirstCellToMainCell?
     var configOptionArray:[ConfigOption]? {
         didSet{
             guard let optionsArray = configOptionArray else{return}
@@ -96,7 +97,7 @@ class FirstCell:UICollectionViewCell{
     func getDescriptionViewData(description:String){
         descriptionView.descripLbl.text = description
     }
-    func getFooterViewData(configs:[DetailedConfig]?,simpleConfig:[Config]){
+    func getFooterViewData(configs:[DetailedConfig]?,simpleConfig:[Config]?){
         footerView.configs = configs
         footerView.productCollectionView.reloadData()
         if configs?.count != 0{
@@ -144,17 +145,14 @@ extension FirstCell:UITableViewDataSource,UITableViewDelegate {
 extension FirstCell:ConnectConfigTabelCellToFirstCellDelegate{
     func getSelectedOption(dice:[String:Int]) {
        getSelectedIndexArray(dic:dice)
-//        print(dice)
-//        print(self.selectedDec)
-//        print(self.selectedIndex)
-//        print(selectedID)
-        self.handelSelectedConfigOption?(selectedIndex,selectedID)
+        self.connectDelegate?.handelSelectedConfigOption(selectedIndex,selectedID)
     }
     private func getSelectedIndexArray(dic:[String:Int]){
         for (key,value) in dic{
             self.selectedDec.updateValue(value, forKey: key)
             selectedID = dic[key] ?? 0
         }
+        selectedIndex.removeAll()
         for val in selectedDec.values {
             selectedIndex.append(val)
         }
@@ -167,4 +165,7 @@ extension ConnectConfigTabelCellToFirstCellDelegate{
     func getSelectedOption(dice:[String:Int]) {
         
     }
+}
+protocol ConnectFirstCellToMainCell:class{
+    func handelSelectedConfigOption(_ selectedArray:[Int],_ selectedID:Int)
 }
