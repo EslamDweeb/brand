@@ -63,7 +63,9 @@ class CartController : UIViewController ,ButtonActionDelegate{
     func saveButtonTapped() {
         self.presentViewController(controller: ShippingVC(), transitionModal: nil, presentationStyle: nil)
     }
-   
+    func applyBtnTapped() {
+          self.presentViewControllerFromStoryBoard(identifier: "mainTabVC")
+    }
     func infoTapped(_ sender: UIButton) {
         if isShowTip == false{
             tipView = EasyTipView(text: cartpro[sender.tag].sellerNotes ?? "" , preferences: preferences)

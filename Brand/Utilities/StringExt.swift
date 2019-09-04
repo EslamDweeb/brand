@@ -84,7 +84,7 @@ class YString {
         "addReview" : "اضف تقيم",
         "Amount" : "الكمية" ,
         "total" : "الاجمالي",
-        
+        "shop" : "تسوق الان",
         "Confirm" : "تاكيد الطلب",
         "tax" : "ضريبه",
         "Order_Details" : "تفاصيل الطلب",
@@ -259,7 +259,7 @@ class YString {
     ]
     
     static private let enString : [String : String] = [
-        
+        "shop" : "Shop now",
         "Search" : "Search" ,
         "apply" : "Apply" ,
         "Search filter" :  "Search filter" ,

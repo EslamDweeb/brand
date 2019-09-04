@@ -328,7 +328,7 @@ enum APIRouter : URLRequestConvertible {
                 HTTPHeaderField.locale.rawValue : MOLHLanguage.currentAppleLanguage()
             ]
             
-        case .cancelOrder(let referenceNumber):
+        case .cancelOrder:
             return [
                 HTTPHeaderField.authentication.rawValue :" \(ContentType.token.rawValue)  \(UserDefaults.standard.string(forKey: Constants.Defaults.authToken) ?? "")",
                 HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue,

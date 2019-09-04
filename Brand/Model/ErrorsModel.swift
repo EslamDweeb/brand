@@ -11,4 +11,5 @@ import Foundation
 struct Errors: Codable {
     let phone:[String]?
     let email: [String]?
+    let coupon_serial : [String]?
 }

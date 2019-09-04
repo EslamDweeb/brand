@@ -27,9 +27,9 @@ class CartTableBG : UIView{
     }()
     lazy var startbtn: GradBtn = {
         let button = GradBtn()
-        button.isHidden = true
-        button.setTitle( YString.login, for: .normal)
-        button.addTarget( delegate,action: #selector(delegate?.loginBtnTapped),for:.touchUpInside )
+      //  button.isHidden = true
+        button.setTitle( "shop".localized, for: .normal)
+        button.addTarget(self.delegate, action: #selector(ButtonActionDelegate.applyBtnTapped), for: .touchUpInside)
         return button
     }()
     
@@ -67,6 +67,7 @@ class CartTableBG : UIView{
         
         lable.anchor(top: image.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 40, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
      startbtn.anchor(top: lable.bottomAnchor, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, centerX: nil, centerY: nil, paddingTop: 32, paddingLeft: 16, paddingBottom: 0, paddingRight:16, width: 0, height: 45, paddingCenterX: 0, paddingCenterY: 0)
+     //   startbtn.addTarget(self.delegate, action: #selector(ButtonActionDelegate.applyBtnTapped), for: .touchUpInside)
     }
 }
 

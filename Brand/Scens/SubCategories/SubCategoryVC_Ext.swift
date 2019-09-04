@@ -141,6 +141,10 @@ extension SubCategoryVC:UICollectionViewDelegate,UICollectionViewDataSource,UICo
         if collectionView == mainView.categoriesCollection {
             let cell = collectionView.cellForItem(at: indexPath) as? CatogrieCell
             getVCData(slug: cell?.category?.slug ?? "")
+        }else{
+            let VC = ItemDetailVC()
+            VC.slug = configs[indexPath.row].slug
+            self.present(VC, animated: true, completion: nil)
         }
     }
 }

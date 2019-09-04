@@ -52,6 +52,9 @@ class checkoutVC : UIViewController ,ButtonActionDelegate{
                     DispatchQueue.main.async {
                        self.createAlert(erroMessage: data.message)
                         self.mainView.activityStopAnimating()
+                        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2), execute: {
+                            self.presentViewControllerFromStoryBoard(identifier: "mainTabVC")
+                        })
                     }
                 case.failure(let error):
                     self.mainView.activityStopAnimating()
