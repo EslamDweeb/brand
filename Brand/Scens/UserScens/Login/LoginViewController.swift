@@ -30,53 +30,70 @@ class LoginViewController: UIViewController,ButtonActionDelegate {
         super.viewDidLoad()
         self.loginView.actionDelegate = self
     }
-
+    
     func dissmisController() {
-          self.dismiss(animated: false, completion: nil)
+        self.dismiss(animated: false, completion: nil)
     }
     override func viewWillAppear(_ animated: Bool) {
-              self.dismissPressentededControllers()
+        self.dismissPressentededControllers()
         handelReachability(reachability: reachability)
     }
     override func viewWillDisappear(_ animated: Bool) {
         stopNotifier(reachability: reachability)
     }
     //MARK:- Button Action
+    func checkNormalLoginFields()->Bool{
+        
+        if loginView.email.text != "" && loginView.password.text != ""{
+            if self.loginView.email.isValidEmail(self.loginView.email.text) != true &&  self.loginView.email.isValidPhone(self.loginView.email.text) != true{
+                createAlert(erroMessage: YString.validEmailOrPassword)
+                self.loginView.activityStopAnimating()
+            }else if self.loginView.password.isValidPassword(self.loginView.password.text) != true {
+                createAlert(erroMessage: YString.passwordMustBeGreaterThan5Char)
+                self.loginView.activityStopAnimating()
+            }else{
+                return true
+            }
+        }else{
+            self.loginView.activityStopAnimating()
+            createAlert(erroMessage: YString.allFieldsReq)
+        }
+        return false
+    }
+    func normalLoginRequset(){
+        APIClient.Login(userName: loginView.email.text ?? "", password: loginView.password.text ?? "", FCMToken: FCMToken ) { (result) in
+            switch result {
+            case .success(let data) :
+                if data.errors == nil {
+                    self.loginView.activityStopAnimating()
+                    UserDefaults.standard.set(data.accessToken, forKey: Constants.Defaults.authToken)
+                    UserDefaults.standard.set(true, forKey: Constants.Defaults.isLogin)
+                    if self.loginDismiss !=  true{
+                        self.presentViewControllerFromStoryBoard(identifier: self.indetifier)
+                    }else{
+                        self.dismiss(animated: true, completion: nil)
+                    }
+                }else{
+                    self.loginView.activityStopAnimating()
+                    for (_,val) in data.errors! {
+                        self.createAlert(erroMessage: val[0])
+                    }
+                }
+            case .failure(let error) :
+                print(error)
+                self.loginView.activityStopAnimating()
+                //self.createAlert(erroMessage: "Please enter valid mail or password")
+            }
+        }
+    }
     func normalLogin() {
         handelReachability(reachability: reachability)
         loginView.activityStartAnimating(activityColor: #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1), backgroundColor: .clear)
-        if loginView.email.text != "" && loginView.password.text != ""{
-            if self.loginView.email.isValidEmail(self.loginView.email.text) != true{
-                self.loginView.activityStopAnimating()
-                createAlert(title: nil, erroMessage: NSLocalizedString( "email_validation", comment: ""))
-            } else if self.loginView.password.isValidPassword(self.loginView.password.text) != true {
-                self.loginView.activityStopAnimating()
-                createAlert(title: nil, erroMessage: NSLocalizedString( "password_validation", comment: ""))
-            }else{
-                APIClient.Login(userName: loginView.email.text ?? "", password: loginView.password.text ?? "", FCMToken: FCMToken ) { (result) in
-                    switch result {
-                    case .success(let data) :
-                        self.loginView.activityStopAnimating()
-                        UserDefaults.standard.set(data.accessToken, forKey: Constants.Defaults.authToken)
-                        UserDefaults.standard.set(true, forKey: Constants.Defaults.isLogin)
-                        if self.loginDismiss !=  true{
-                            self.presentViewControllerFromStoryBoard(identifier: self.indetifier)
-                        }else{
-                            self.dismiss(animated: true, completion: nil)
-                        }
-                        
-                       // self.present(ConnectPageConntroler(), animated: true, completion: nil)
-                    case .failure(let error) :
-                        print(error)
-                        self.loginView.activityStopAnimating()
-                        self.createAlert(erroMessage: "Please enter valid mail or password")
-                    }
-                }
-              }
-            }else{
-                self.loginView.activityStopAnimating()
-                createAlert(title: nil, erroMessage: NSLocalizedString( "allFieldsreq", comment: ""))
-            }
+        if checkNormalLoginFields() {
+            normalLoginRequset()
+        }else{
+            return
+        }
     }
     func togglePassword(_ sender: UIButton) {
         if toggled {
@@ -89,7 +106,7 @@ class LoginViewController: UIViewController,ButtonActionDelegate {
         toggled = !toggled
     }
     func forgotPassword() {
-     
+        
         self.presentViewController(controller: PopUpResetPassowrdViewController(), transitionModal: .crossDissolve, presentationStyle: .overCurrentContext)
     }
     func signupBtnTapped() {
@@ -108,7 +125,7 @@ class LoginViewController: UIViewController,ButtonActionDelegate {
                     if let user = user {
                         self.requestEmail(user: user )
                     }
-                   
+                    
                     
                 })
             }else{
@@ -125,7 +142,7 @@ class LoginViewController: UIViewController,ButtonActionDelegate {
         client.requestEmail { email, error in
             if (email != nil) {
                 print("signed in as email :  \(String(describing: email))");
-              
+                
                 let arr = user.name.split() {$0 == " "}
                 var fName = ""
                 var lName = ""
@@ -136,9 +153,9 @@ class LoginViewController: UIViewController,ButtonActionDelegate {
                     fName = String(arr[0])
                 }
                 
-                  self.loginSocial(socailID: user.userID , email: email ?? ""  , firstName: fName , lastName: lName , provider: Constants.providerTwitter )
+                self.loginSocial(socailID: user.userID , email: email ?? ""  , firstName: fName , lastName: lName , provider: Constants.providerTwitter )
                 
-             //    self.loginSocial(socailID: "6764835234" , email: "yusefTWT1@email.com"  , firstName: "yusef" , lastName: "naser" , provider: Constants.providerTwitter )
+                //    self.loginSocial(socailID: "6764835234" , email: "yusefTWT1@email.com"  , firstName: "yusef" , lastName: "naser" , provider: Constants.providerTwitter )
                 
             } else {
                 print("error request email : \(String(describing: error?.localizedDescription))");
@@ -150,38 +167,38 @@ class LoginViewController: UIViewController,ButtonActionDelegate {
         
         let fbLoginManager : LoginManager = LoginManager()
         fbLoginManager.logIn(permissions: ["public_profile", "email"], from: self) { (result, error) -> Void in
-                if (error == nil){
-                    let fbloginresult : LoginManagerLoginResult = result!
-                    // if user cancel the login
-                    if (result?.isCancelled)!{
-                        return
-                    }
-                    if(fbloginresult.grantedPermissions.contains("email")) {
-                        print("permissions: \(String(describing: result?.grantedPermissions))")
-                        print("token: \(String(describing: result?.token?.tokenString))")
-                        self.userid = String(describing: result?.token?.userID)
-                        print("user_id: \(self.userid!)")
-                        
-                      //  modalController.userid = String(describing: result?.token?.userID)
-                        let req2 = GraphRequest(graphPath: "me", parameters: ["fields":"email,first_name,last_name"], tokenString: AccessToken.current?.tokenString, version: nil, httpMethod: HTTPMethod(rawValue: "GET"))
-                        
-                        req2.start(completionHandler: { (connection, result, error : Error!) -> Void in
-                            if(error == nil) {
-                                print("result \(String(describing: result))")
-                                guard let Info = result as? [String: Any] else { return }
-                              //  let Info : [String : Any] = ["first_name" : "yusef" , "last_name" : "naser" ,
-                               // "email" : "yusef2@email.com" , "id" : "264578276565" ]
-//                                modalController.firstname = Info["first_name"] as? String
-//                                modalController.lastname = Info["last_name"] as? String
-//                                modalController.email = Info["email"] as? String
-                                
-                                print(self.userid!)
-                                self.loginSocial(socailID: Info["id"] as? String ?? "" , email: Info["email"] as? String ?? "" , firstName: Info["first_name"] as? String ?? "" , lastName: Info["last_name"] as? String ?? "" , provider: Constants.providerFacebook )
-                            } else {
-                                print("error \(String(describing: error))")
-                            }
-                        })
-                    }else{
+            if (error == nil){
+                let fbloginresult : LoginManagerLoginResult = result!
+                // if user cancel the login
+                if (result?.isCancelled)!{
+                    return
+                }
+                if(fbloginresult.grantedPermissions.contains("email")) {
+                    print("permissions: \(String(describing: result?.grantedPermissions))")
+                    print("token: \(String(describing: result?.token?.tokenString))")
+                    self.userid = String(describing: result?.token?.userID)
+                    print("user_id: \(self.userid!)")
+                    
+                    //  modalController.userid = String(describing: result?.token?.userID)
+                    let req2 = GraphRequest(graphPath: "me", parameters: ["fields":"email,first_name,last_name"], tokenString: AccessToken.current?.tokenString, version: nil, httpMethod: HTTPMethod(rawValue: "GET"))
+                    
+                    req2.start(completionHandler: { (connection, result, error : Error!) -> Void in
+                        if(error == nil) {
+                            print("result \(String(describing: result))")
+                            guard let Info = result as? [String: Any] else { return }
+                            //  let Info : [String : Any] = ["first_name" : "yusef" , "last_name" : "naser" ,
+                            // "email" : "yusef2@email.com" , "id" : "264578276565" ]
+                            //                                modalController.firstname = Info["first_name"] as? String
+                            //                                modalController.lastname = Info["last_name"] as? String
+                            //                                modalController.email = Info["email"] as? String
+                            
+                            print(self.userid!)
+                            self.loginSocial(socailID: Info["id"] as? String ?? "" , email: Info["email"] as? String ?? "" , firstName: Info["first_name"] as? String ?? "" , lastName: Info["last_name"] as? String ?? "" , provider: Constants.providerFacebook )
+                        } else {
+                            print("error \(String(describing: error))")
+                        }
+                    })
+                }else{
                     self.createAlert(erroMessage: "error")
                 }
             }

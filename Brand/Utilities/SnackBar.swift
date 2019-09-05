@@ -18,5 +18,7 @@ class SnackBar {
         snack.duration = TTGSnackbarDuration.middle
         snack.show()
     }
-    
+    func printEslam(){
+        print("eslam")
+    }
 }

@@ -49,7 +49,9 @@ class YString {
     static var notificationEmpty:String{return getText(key: "notificationEmpty")}
     static var pleseLoginFirst:String{return getText(key: "pleaseLoginFirst")}
     static var login:String{return getText(key: "login")}
-    
+    static var phoneValidation:String{return getText(key: "phone_not_correct")}
+    static var allFieldsReq:String{return getText(key: "allFieldsreq")}
+    static var validEmailOrPassword:String{return getText(key: "validEmailOrPassword")}
     
     static func getText (key : String) -> String {
         
@@ -255,7 +257,8 @@ class YString {
         "savedItem":"Saved items",
         "searchPlaceHolder":"What are you looking for?",
         "notificationEmpty":"No notification yet",
-        "pleaseLoginFirst":"Please login first"
+        "pleaseLoginFirst":"Please login first",
+        "validEmailOrPassword":"برجاء ادخال رقم هاتف او بريد الكتروني صحيح"
     ]
     
     static private let enString : [String : String] = [
@@ -453,7 +456,8 @@ class YString {
         "savedItem":"Saved items",
         "searchPlaceHolder":"What are you looking for?",
         "notificationEmpty":"No notification yet",
-        "pleaseLoginFirst":"Please login first"
+        "pleaseLoginFirst":"Please login first",
+        "validEmailOrPassword":"please enter correct email or phone number"
     ]
      
     
