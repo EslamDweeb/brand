@@ -50,7 +50,7 @@ class WishListController: UIViewController,ButtonActionDelegate , isAbleToReceiv
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
-    init(_ navTitle:String? = "wishlist".localized,_ key:String? = nil,_ vcType: VCType? = .wishList){
+    init(_ navTitle:String? = YString.savedItem,_ key:String? = nil,_ vcType: VCType? = .wishList){
         super.init(nibName: nil, bundle: nil)
         self.key = key
         self.mainView.navView.titlelabel.text = navTitle
@@ -80,10 +80,14 @@ class WishListController: UIViewController,ButtonActionDelegate , isAbleToReceiv
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         handelReachability(reachability: reachability)
+       
+        
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         if Beforefilter {
             switchBetweenServices(vcType: self.vcType,refresh: true)
         }
-        
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)

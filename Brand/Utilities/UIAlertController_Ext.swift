@@ -2,12 +2,6 @@ import Foundation
 import UIKit
 
 extension UIAlertController {
-    func printEslamsjhnh(){
-        print("eslamsahjvjhsggh")
-    }
-    func printEslamshnh(){
-        print("eslamsahjvjhsggh")
-    }
     //Set background color of UIAlertController
     func setBackgroundColor(color: UIColor) {
         if let bgView = self.view.subviews.first, let groupView = bgView.subviews.first, let contentView = groupView.subviews.first {

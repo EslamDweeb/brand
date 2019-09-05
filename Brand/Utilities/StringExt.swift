@@ -52,6 +52,9 @@ class YString {
     static var phoneValidation:String{return getText(key: "phone_not_correct")}
     static var allFieldsReq:String{return getText(key: "allFieldsreq")}
     static var validEmailOrPassword:String{return getText(key: "validEmailOrPassword")}
+    static var savedItemEmpty:String{return getText(key: "savedItemEmpty")}
+    static var cantDeleteMainAddress:String{return getText(key: "cantDeleteMainAddress")}
+    static var thisYourMain:String{return getText(key: "thisYourMain")}
     
     static func getText (key : String) -> String {
         
@@ -258,7 +261,10 @@ class YString {
         "searchPlaceHolder":"What are you looking for?",
         "notificationEmpty":"No notification yet",
         "pleaseLoginFirst":"Please login first",
-        "validEmailOrPassword":"برجاء ادخال رقم هاتف او بريد الكتروني صحيح"
+        "validEmailOrPassword":"برجاء ادخال رقم هاتف او بريد الكتروني صحيح",
+        "savedItemEmpty":"oops! you didn't have any saved item yet.",
+        "cantDeleteMainAddress":"you can't delete your main address",
+         "thisYourMain":"This is your main address Already"
     ]
     
     static private let enString : [String : String] = [
@@ -376,6 +382,7 @@ class YString {
         "lat" : "Lat" ,
         "lang" : "Lang" ,
         "save" : "Save" ,
+        "cantDeleteMainAddress":"you can't delete your main address",
         "personal_information" : "Personal Information" ,
         "personal_info" : "Personal info" ,
         "security_info" : "Security info" ,
@@ -394,7 +401,7 @@ class YString {
         "cancel" : "Cancel" ,
         "email_not_valid" : "Email not valid" ,
         "notification" : "Notification" ,
-        
+        "thisYourMain":"This is your main address Already",
         "my_reviews" : "My Reviews" ,
         "get_started" : "Get Started" ,
         "Email/phone" : "Email/phone" ,
@@ -457,7 +464,8 @@ class YString {
         "searchPlaceHolder":"What are you looking for?",
         "notificationEmpty":"No notification yet",
         "pleaseLoginFirst":"Please login first",
-        "validEmailOrPassword":"please enter correct email or phone number"
+        "validEmailOrPassword":"please enter correct email or phone number",
+        "savedItemEmpty":"oops! you didn't have any saved item yet."
     ]
      
     
