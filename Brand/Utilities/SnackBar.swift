@@ -21,7 +21,7 @@ class SnackBar {
     func printEslam(){
         print("eslam")
     }
-    func printEslams(){
-        print("eslamsas")
+    func printEslamds(){
+        print("eslamsavhvgyjs")
     }
 }
