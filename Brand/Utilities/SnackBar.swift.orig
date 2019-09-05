@@ -18,13 +18,15 @@ class SnackBar {
         snack.duration = TTGSnackbarDuration.middle
         snack.show()
     }
+<<<<<<< HEAD
     
     func doNothing () {
         print("smvnkef")
     }
     
+=======
     func printEslam(){
-        print("esrf3grlam")
+        print("eslam")
     }
-    
+>>>>>>> 087e686ff22ff9672b3e405d8d7f31772278edb9
 }

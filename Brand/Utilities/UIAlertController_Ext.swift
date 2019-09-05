@@ -7,6 +7,7 @@ extension UIAlertController {
     func setBackgroundColor(color: UIColor) {
         if let bgView = self.view.subviews.first, let groupView = bgView.subviews.first, let contentView = groupView.subviews.first {
             contentView.backgroundColor = color
+            
         }
     }
     
@@ -46,4 +47,14 @@ extension UIAlertController {
     func setTint(color: UIColor) {
         self.view.tintColor = color
     }
+    
+    
+    func doNothing () {
+        print("smvnkef")
+    }
+    
+    func printEslam(){
+        print("esrf3grlam")
+    }
+    
 }
