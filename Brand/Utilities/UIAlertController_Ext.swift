@@ -2,8 +2,8 @@ import Foundation
 import UIKit
 
 extension UIAlertController {
-    func printEslams(){
-        print("eslamsas")
+    func printEslamsjh(){
+        print("eslamsasggh")
     }
     //Set background color of UIAlertController
     func setBackgroundColor(color: UIColor) {
