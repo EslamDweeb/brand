@@ -19,4 +19,8 @@ class SnackBar {
         snack.show()
     }
     
+    func doNothing () {
+        print("smvnkef")
+    }
+    
 }
