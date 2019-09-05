@@ -2,6 +2,14 @@ import Foundation
 import UIKit
 
 extension UIAlertController {
+    func doNothing () {
+        print("smvnkef")
+    }
+    
+    func printEslam(){
+        print("esrf3grlam")
+    }
+    
     
     //Set background color of UIAlertController
     func setBackgroundColor(color: UIColor) {
@@ -48,13 +56,6 @@ extension UIAlertController {
         self.view.tintColor = color
     }
     
-    
-    func doNothing () {
-        print("smvnkef")
-    }
-    
-    func printEslam(){
-        print("esrf3grlam")
-    }
+  
     
 }

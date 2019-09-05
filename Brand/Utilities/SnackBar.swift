@@ -23,6 +23,15 @@ class SnackBar {
         print("smvnkef")
     }
     
+    
+    func doNoething () {
+        print(" smvqwerqwer ") 
+    
+    
+    func dowqfNothing () {
+        print("srwemvnkef")
+    }
+    
     func printEslam(){
         print("esrf3grlam")
     }
