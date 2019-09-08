@@ -21,12 +21,18 @@ class PickMapVC: UIViewController , CLLocationManagerDelegate , GMSMapViewDelega
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        initializeLoctionManger()
+        setMapViewDelegates()
+    }
+    func setMapViewDelegates(){
         self.mapView.actionDelegate = self
+        mapView.mapview.delegate = self
+        self.mapView.mapview.isMyLocationEnabled = true
+    }
+    func initializeLoctionManger(){
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
-        mapView.mapview.delegate = self
-        
+        locationManager.startUpdatingLocation()
     }
     init(delegate:DisplayViewControllerDelegate) {
         super.init(nibName: nil, bundle: nil)
@@ -71,20 +77,33 @@ class PickMapVC: UIViewController , CLLocationManagerDelegate , GMSMapViewDelega
 //        locationManager.stopUpdatingLocation()
 //
 //
-         mapView.mapview.clear()
-        mapView.mapview.isMyLocationEnabled = true
-        if let location = locations.first {
-            mapView.mapview.camera = GMSCameraPosition(target: location.coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
-             let currentLocation = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-            let marker2 = GMSMarker(position: currentLocation)
-            marker2.title =  NSLocalizedString("Your Tapped Location", comment: "")
-            marker2.map = mapView.mapview
-            self.mapView.lat.text = "\(location.coordinate.latitude)"
-            self.mapView.lang.text = "\(location.coordinate.longitude)"
-            locationManager.stopUpdatingLocation()
+        
+        let location = locationManager.location?.coordinate
+        tappedlat = location?.latitude
+        tappedlen = location?.longitude
+        self.mapView.lat.text = "\(tappedlat!)"
+        self.mapView.lang.text = "\(tappedlen!)"
+        cameraMoveToLocation(toLocation: location)
+        locationManager.stopUpdatingLocation()
+        
+        // mapView.mapview.clear()
+        //mapView.mapview.isMyLocationEnabled = true
+//        if let location = locations.first {
+//            mapView.mapview.camera = GMSCameraPosition(target: location.coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
+//             let currentLocation = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+//            let marker2 = GMSMarker(position: currentLocation)
+//            marker2.title =  NSLocalizedString("Your Tapped Location", comment: "")
+//            marker2.map = mapView.mapview
+//            self.mapView.lat.text = "\(location.coordinate.latitude)"
+//            self.mapView.lang.text = "\(location.coordinate.longitude)"
+//            locationManager.stopUpdatingLocation()
+//        }
+    }
+    func cameraMoveToLocation(toLocation: CLLocationCoordinate2D?) {
+        if toLocation != nil {
+            mapView.mapview.camera = GMSCameraPosition.camera(withTarget: toLocation!, zoom: 15)
         }
     }
-   
     func dissmisController() {
          self.dismiss(animated: true, completion: nil)
     }
@@ -109,7 +128,7 @@ class PickMapVC: UIViewController , CLLocationManagerDelegate , GMSMapViewDelega
         self.dismiss(animated: true, completion: nil)
     }
         else{
-            self.delegate?.doSomethingWith(lat: (locationManager.location?.coordinate.latitude)!, len: (locationManager.location?.coordinate.longitude)!)
+            self.delegate?.doSomethingWith(lat: tappedlat, len:tappedlen)
             self.dismiss(animated: true, completion: nil)
         }
     }

@@ -9,6 +9,34 @@
 import UIKit
 
 extension MyAddressViewController: UITableViewDelegate,UITableViewDataSource {
+    func deleteAddress(tableView:UITableView,indexPath:IndexPath){
+        APIClient.Deleteaddress(Id:String(self.addresses[indexPath.row].id))
+        { (result) in
+            switch result {
+            case .success(let data):
+                print(data.errors ?? [])
+                print(data)
+            case .failure(let error):
+                print(error)
+            }
+        }
+        self.addresses.remove(at: indexPath.row)
+        if indexPath.row != 0 {
+            let  cell  = self.myAddressView.tableView.cellForRow(at: indexPath) as! MyAddressCell
+            if cell.defaultview.isHidden == false {
+                let  cell  = self.myAddressView.tableView.cellForRow(at: [0,0] )as! MyAddressCell
+                cell.defaultview.isHidden = false
+            }
+        }else{
+            let  cell  = self.myAddressView.tableView.cellForRow(at: indexPath) as! MyAddressCell
+            if cell.defaultview.isHidden == false {
+                let  cell  = self.myAddressView.tableView.cellForRow(at: [0,(indexPath.row + 1)] )as! MyAddressCell
+                cell.defaultview.isHidden = false
+            }
+        }
+        
+        tableView.deleteRows(at: [indexPath], with: .automatic)
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if addresses.count == 0 {
             
@@ -44,31 +72,18 @@ extension MyAddressViewController: UITableViewDelegate,UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let deleteBtn = UITableViewRowAction(style: .destructive, title: NSLocalizedString( "delete", comment: "")) { (_, indexPath) in
-            APIClient.Deleteaddress(Id:String(self.addresses[indexPath.row].id))
-            { (result) in
-                switch result {
-                case .success(let data):
-                    print(data.errors ?? [])
-                    print(data)
-                case .failure(let error):
-                    print(error)
-                }
+            if self.addresses.count != 1 {
+                self.deleteAddress(tableView:tableView,indexPath:indexPath)
+            }else{
+                self.createAlert(erroMessage: YString.cantDeleteMainAddress)
             }
-            self.addresses.remove(at: indexPath.row)
-            if self.addresses.count != 0 {
-                let  cell  = self.myAddressView.tableView.cellForRow(at: indexPath) as! MyAddressCell
-                if cell.defaultview.isHidden == false {
-                    let  cell  = self.myAddressView.tableView.cellForRow(at: [0,indexPath.row + 1] )as! MyAddressCell
-                    cell.defaultview.isHidden = false
-                }
-            }
-          
-            tableView.deleteRows(at: [indexPath], with: .automatic)
         }
         deleteBtn.backgroundColor = .pink
         let editeBtn = UITableViewRowAction(style: .normal, title: NSLocalizedString( "edit", comment: ""), handler: editeAction)
         editeBtn.backgroundColor = .lightGray
-        let defaultBtn = UITableViewRowAction(style: .normal, title: NSLocalizedString( "set_default", comment: ""), handler: setDefault)
+        let defaultBtn = UITableViewRowAction(style: .normal, title: NSLocalizedString( "set_default", comment: "")) { (roAction, indexPath) in
+            self.setDefault(action: roAction, indexPath: indexPath, tableView: tableView)
+        }
         defaultBtn.backgroundColor = .lightgray
         return[deleteBtn,editeBtn,defaultBtn]
     }
@@ -82,21 +97,23 @@ extension MyAddressViewController: UITableViewDelegate,UITableViewDataSource {
             
         }
     }
-    func setDefault(action: UITableViewRowAction, indexPath: IndexPath){
-        
-        APIClient.Setdefaultaddress(Id: String(self.addresses[indexPath.row].id))
-        { (result) in
-            switch result {
-            case .success( _) :
-                       self.addresses[indexPath.row].main = true
-                       self.addresses[self.mainIndexPah!].main = false
-                       self.mainIndexPah = indexPath.row
-                       self .myAddressView.tableView.reloadData()
-            case .failure(let error) :
-                print(error)
-                
+    func setDefault(action: UITableViewRowAction, indexPath: IndexPath,tableView:UITableView){
+        guard let cell = tableView.cellForRow(at: indexPath) as? MyAddressCell else{return}
+        if cell.address?.main == false {
+            APIClient.Setdefaultaddress(Id: String(self.addresses[indexPath.row].id))
+            { (result) in
+                switch result {
+                case .success( _) :
+                    self.addresses[indexPath.row].main = true
+                    self.addresses[self.mainIndexPah!].main = false
+                    self.mainIndexPah = indexPath.row
+                    self .myAddressView.tableView.reloadData()
+                case .failure(let error) :
+                    print(error)
+                }
             }
+        }else{
+            self.createAlert(erroMessage: YString.thisYourMain)
         }
-       
     }
 }

@@ -65,13 +65,17 @@ class LoginViewController: UIViewController,ButtonActionDelegate {
             switch result {
             case .success(let data) :
                 if data.errors == nil {
-                    self.loginView.activityStopAnimating()
-                    UserDefaults.standard.set(data.accessToken, forKey: Constants.Defaults.authToken)
-                    UserDefaults.standard.set(true, forKey: Constants.Defaults.isLogin)
-                    if self.loginDismiss !=  true{
-                        self.presentViewControllerFromStoryBoard(identifier: self.indetifier)
+                    if data.message != nil {
+                        self.createAlert(erroMessage: data.message ?? "")
                     }else{
-                        self.dismiss(animated: true, completion: nil)
+                        self.loginView.activityStopAnimating()
+                        UserDefaults.standard.set(data.accessToken, forKey: Constants.Defaults.authToken)
+                        UserDefaults.standard.set(true, forKey: Constants.Defaults.isLogin)
+                        if self.loginDismiss !=  true{
+                            self.presentViewControllerFromStoryBoard(identifier: self.indetifier)
+                        }else{
+                            self.dismiss(animated: true, completion: nil)
+                        }
                     }
                 }else{
                     self.loginView.activityStopAnimating()
@@ -82,7 +86,7 @@ class LoginViewController: UIViewController,ButtonActionDelegate {
             case .failure(let error) :
                 print(error)
                 self.loginView.activityStopAnimating()
-                //self.createAlert(erroMessage: "Please enter valid mail or password")
+                self.createAlert(erroMessage: "the username or password is not correct")
             }
         }
     }

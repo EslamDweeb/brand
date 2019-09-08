@@ -15,7 +15,7 @@ protocol imageActionDelegate  {
     func uploadImage(imageData: Data , Filename: String , Image : UIImage)
 }
 
-class customImagePicker{
+class customImagePicker:NSObject{
     
     var imageAction : imageActionDelegate?
     var imagePicker : UIImagePickerController

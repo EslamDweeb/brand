@@ -18,7 +18,11 @@ extension WishListController: UICollectionViewDelegate,UICollectionViewDataSourc
         if wishes.count == 0 {
             switch vcType{
             case .wishList:
-                collectionView.backgroundView = CellBackgroundView(delegate: self)
+                let view  = CellBackgroundView(delegate: self)
+                view.image.image = #imageLiteral(resourceName: "wishlist-1")
+                view.button.isHidden = true
+                view.lable.text = YString.savedItemEmpty
+                collectionView.backgroundView = view
             case .allProduct:
                 let view = CellBackgroundView(delegate: self)
                 view.lable.text = "New Products"

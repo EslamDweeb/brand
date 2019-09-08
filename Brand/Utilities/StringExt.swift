@@ -52,6 +52,10 @@ class YString {
     static var phoneValidation:String{return getText(key: "phone_not_correct")}
     static var allFieldsReq:String{return getText(key: "allFieldsreq")}
     static var validEmailOrPassword:String{return getText(key: "validEmailOrPassword")}
+    static var savedItemEmpty:String{return getText(key: "savedItemEmpty")}
+    static var cantDeleteMainAddress:String{return getText(key: "cantDeleteMainAddress")}
+    static var thisYourMain:String{return getText(key: "thisYourMain")}
+    static var shipingAddress:String{return getText(key: "shipingAddress")}
     static var outOfStock : String { return getText(key: "outOfStock") }
     static var errorAddingProductToCart : String { return getText(key: "errorAddingProductToCart") }
     static var thisProductIsAlreadyInCart : String { return getText(key: "thisProductIsAlreadyInCart") }
@@ -80,7 +84,7 @@ class YString {
         "QTY" : "الكميه ",
         "Outofstock" : "نفذ من المتجر",
         "exceeded" : "نفذت الكميه",
-        "sar" : "ريال سعودي",
+        "sar" : "ر.س",
         "Items" : "الكميه: ",
         "Pilling_method" : "طريقه الدفع ",
         "Shippingـmethod" : "طريقه الشحن",
@@ -136,7 +140,7 @@ class YString {
         "longitude" : "خطوط الطول يجب ان تكون ارقام",
         "latVal" : "خطوط العرض",
         "langVal" : "خطوط الطول",
-        
+        "shipingAddress":"عنوان الشحن"  ,
         "camera" : "الكاميرة",
         "mustHavePhoto" : "يجب ان يكون لديك صوره اولاً",
         "myAddresses" : "عناويني",
@@ -234,7 +238,7 @@ class YString {
         "get_started" : "فلنبدأ",
         "Email/phone" : "البريد الالكتروني/ الهاتف",
         "Shipping" : "التسوق",
-        "saleInBrand" : "Saled On Brands Sa",
+        "saleInBrand" : "Sell On Brands Sa",
         "buyFromBrand" : "Buy From Brands Sa",
         "recommendedProduct" : "المنتجات المقترحه",
         "latestProduct" : "المنتجات الاحدث",
@@ -263,6 +267,10 @@ class YString {
         "searchPlaceHolder":"What are you looking for?",
         "notificationEmpty":"No notification yet",
         "pleaseLoginFirst":"Please login first",
+        "validEmailOrPassword":"برجاء ادخال رقم هاتف او بريد الكتروني صحيح",
+        "savedItemEmpty":"oops! you didn't have any saved item yet.",
+        "cantDeleteMainAddress":"you can't delete your main address",
+         "thisYourMain" : "This is your main address Already" ,
         "validEmailOrPassword":"برجاء ادخال رقم هاتف او بريد الكتروني صحيح" ,
         "outOfStock" : "Out of stock" ,
         "errorAddingProductToCart" : "خطا في اضافة المنتج الي العربه" ,
@@ -284,6 +292,7 @@ class YString {
         "Confirm" : "Confirm & pay" ,
         "total" : "Total" ,
         "addReview" : "Add review" ,
+        "shipingAddress":"Shiping Address",
         "copoun" : "Copoun" ,
         "Copoun_discount" : "Copoun discount" ,
         "Apply Copoun" : "Apply Copoun" ,
@@ -384,6 +393,7 @@ class YString {
         "lat" : "Lat" ,
         "lang" : "Lang" ,
         "save" : "Save" ,
+        "cantDeleteMainAddress":"you can't delete your main address",
         "personal_information" : "Personal Information" ,
         "personal_info" : "Personal info" ,
         "security_info" : "Security info" ,
@@ -402,7 +412,7 @@ class YString {
         "cancel" : "Cancel" ,
         "email_not_valid" : "Email not valid" ,
         "notification" : "Notification" ,
-        
+        "thisYourMain":"This is your main address Already",
         "my_reviews" : "My Reviews" ,
         "get_started" : "Get Started" ,
         "Email/phone" : "Email/phone" ,
@@ -426,7 +436,7 @@ class YString {
         "terms&privacy" : "Terms and Privacy" ,
         "customerService" : "Customer Service" ,
         "returnPolicy" : "Return Policy" ,
-        "saleInBrand" : "Saled On Brands Sa" ,
+        "saleInBrand" : "Sell On Brands Sa" ,
         "buyFromBrand" : "Buy From Brands Sa" ,
         "logout" : "Logout" ,
         "followus" : "Follow us on" ,
@@ -465,6 +475,8 @@ class YString {
         "searchPlaceHolder":"What are you looking for?",
         "notificationEmpty":"No notification yet",
         "pleaseLoginFirst":"Please login first",
+        "validEmailOrPassword":"please enter correct email or phone number",
+        "savedItemEmpty" : "oops! you didn't have any saved item yet." ,
         "validEmailOrPassword":"please enter correct email or phone number" ,
         "outOfStock" : "Out of stock" ,
         "errorAddingProductToCart" : "Error adding product to cart" ,

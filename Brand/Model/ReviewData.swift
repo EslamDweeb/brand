@@ -48,7 +48,7 @@ struct Ratingable: Codable {
         case object
         case userPhoto = "user_photo"
         case userFullName = "user_fullname"
-        case subObjectMedia = "sub_object_media"
+        case subObjectMedia = "rated_object_photo"
         case ratingStatusID = "rating_status_id"
         case rejectionReason = "rejection_reason"
         case value, review, pros, cons

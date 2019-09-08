@@ -149,20 +149,20 @@ extension MenuViewController{
     func setControllerTitleAndLoad(type:WebControllType,cell:MenuCell?){
         switch type {
         case .about:
-            self.loadWebView(path:.about, cell: cell)
+            self.loadWebView(path: UrlPath.about.rawValue, cell: cell)
         case .terms:
-            self.loadWebView(path:.terms, cell: cell)
+            self.loadWebView(path: UrlPath.terms.rawValue, cell: cell)
         case .customerService:
-            self.loadWebView(path:.customerService, cell: cell)
+            self.loadWebView(path: UrlPath.customerService.rawValue, cell: cell)
         case .returnPolicy:
-            self.loadWebView(path:.returnPolicy, cell: cell)
+            self.loadWebView(path: UrlPath.returnPolicy.rawValue, cell: cell)
         case .saleOnBrand:
-            self.loadWebView(path:.saleOnBrand, cell: cell)
+            self.loadWebView(path: UrlPath.saleOnBrand.rawValue, cell: cell)
         case .buyOnbrand:
-            self.loadWebView(path:.buyFromBrand, cell: cell)
+            self.loadWebView(path: UrlPath.buyFromBrand.rawValue, cell: cell)
         }
     }
-    func loadWebView(path:UrlPath,cell:MenuCell?){
+    func loadWebView(path:String,cell:MenuCell?){
         let url = URL(string: "https://brands.sa/\(path)")!
         let dest = SFSafariViewController(url: url)
         self.present(dest, animated: true) {

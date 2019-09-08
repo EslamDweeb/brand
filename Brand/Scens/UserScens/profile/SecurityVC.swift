@@ -55,31 +55,23 @@ class SecurityinfoController :UIViewController ,ButtonActionDelegate{
     func saveButtonTapped() {
         if(securityinfo.NewPassTextFeild.text == "")
         {
-             self.createAlert(erroMessage: NSLocalizedString( "newPasswordReq", comment: ""))
+             self.createAlert(erroMessage: YString.allFieldsReq)
         }
         else if securityinfo.NewPassTextFeild.isValidPassword(securityinfo.NewPassTextFeild.text)
         {
         APIClient.ChangePassword(oldPassword: securityinfo.CurrentPassTextFeild.text ?? "", newPassword: securityinfo.NewPassTextFeild.text ?? "") { (result) in
             switch result {
             case .success(let data):
-                if(data.message! == "Your password updated successfully")
-                {
-                self.createAlert(title:NSLocalizedString("Success", comment: ""), erroMessage: "\(data.message ?? "")")
-                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)){
-                    self.dismissPressentededControllers()
-                    self.dismiss(animated: true, completion: nil)
+                 self.createAlert(erroMessage: data.message ?? "")
+                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)){
+                        self.dismiss(animated: true, completion: nil)
                   }
-                }
-                else{
-                    self.createAlert(title:NSLocalizedString("error", comment: ""), erroMessage: "\(data.message ?? "")")
-                }
-
             case .failure(let error):
                 print(error)
             }
         }
         }else{
-            self.createAlert(title:NSLocalizedString("error", comment: ""), erroMessage: NSLocalizedString("password_validation", comment: ""))
+            self.createAlert(erroMessage: YString.passwordMustBeGreaterThan5Char)
         }
     }
 }

@@ -52,6 +52,31 @@ extension SubCategoryVC:UICollectionViewDelegate,UICollectionViewDataSource,UICo
         if collectionView == mainView.configCollection{
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID2, for: indexPath) as? WishCell else {return UICollectionViewCell()}
             cell.config = configs[indexPath.row]
+            cell.handelFavBtnTapped =  { [weak self] (id) in
+                guard let self = self else{return}
+                if UserDefaults.standard.string(forKey: Constants.Defaults.authToken) != "" {
+                    APIClient.toggleFav(id: id) { (result) in
+                        switch result {
+                        case.success(let data):
+                            self.createAlert(title: nil, erroMessage: data.message ?? "", createButton: nil)
+                            print(data)
+                        case .failure(_):
+                            break
+                        }
+                    }
+                }else{
+                    self.presentLoginViewController(loginDismiss:true)
+                }
+            }
+            cell.handelCartBtnTappedClouser = { [weak self] (configDeta) in
+                guard let self = self else{return}
+                if UserDefaults.standard.string(forKey: Constants.Defaults.authToken) != "" {
+                    self.addViewAddToCart( slug: configDeta.slug ?? "" )
+                }else{
+                    self.presentLoginViewController(loginDismiss: true)
+                }
+                
+            }
             return cell
         }else if collectionView == mainView.categoriesCollection {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as? CatogrieCell else{return UICollectionViewCell()}
