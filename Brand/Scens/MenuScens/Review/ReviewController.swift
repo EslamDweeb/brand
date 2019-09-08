@@ -43,7 +43,7 @@ class ReviewController: UIViewController,ButtonActionDelegate {
         getReviews(true)
     }
     private func getReviews(_ refresh:Bool = false){
-        DispatchQueue.main.async {
+ //       DispatchQueue.main.async {
             self.mainView.activityStartAnimating(activityColor: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.6952322346), backgroundColor: .clear)
             APIClient.getReviews(page: self.currentPage) { (result) in
                 switch result {
@@ -65,7 +65,7 @@ class ReviewController: UIViewController,ButtonActionDelegate {
                     print(error)                    
                 }
             }
-        }
+ //       }
     }
     //MARK:- Paging Functions
     func fetchNextPage() {
