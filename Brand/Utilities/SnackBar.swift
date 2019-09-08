@@ -18,22 +18,5 @@ class SnackBar {
         snack.duration = TTGSnackbarDuration.middle
         snack.show()
     }
-    
-    func doNothing () {
-        print("smvnkef")
-    }
-    
-    
-    func doNoething () {
-        print(" smvqwerqwer ") 
-    
-    
-    func dowqfNothing () {
-        print("srwemvnkef")
-    }
-    
-    func printEslam(){
-        print("esrf3grlam")
-    }
-    
+
 }

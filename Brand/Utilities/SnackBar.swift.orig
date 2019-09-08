@@ -23,14 +23,22 @@ class SnackBar {
         print("smvnkef")
     }
     
-    func printEslam(){
-        print("esrf3grlam")
+    
+    func doNoething () {
+        print(" smvqwerqwer ") 
+    
+    
+    func dowqfNothing () {
+        print("srwemvnkef")
     }
 <<<<<<< HEAD
     
+    func printEslam(){
+        print("esrf3grlam")
 =======
-    func printEslams(){
-        print("eslamsas")
+    func printEslamds(){
+        print("eslamsavhvgyjs")
+>>>>>>> 5b2bbe1a7fbb424bdd164b5587b0a12e87efd253
     }
->>>>>>> 98d4a493d0d6c4cd33a5912cb42f8c395a5bcc57
+    
 }
