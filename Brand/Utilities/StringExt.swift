@@ -52,6 +52,11 @@ class YString {
     static var phoneValidation:String{return getText(key: "phone_not_correct")}
     static var allFieldsReq:String{return getText(key: "allFieldsreq")}
     static var validEmailOrPassword:String{return getText(key: "validEmailOrPassword")}
+    static var outOfStock : String { return getText(key: "outOfStock") }
+    static var errorAddingProductToCart : String { return getText(key: "errorAddingProductToCart") }
+    static var thisProductIsAlreadyInCart : String { return getText(key: "thisProductIsAlreadyInCart") }
+    
+    
     
     static func getText (key : String) -> String {
         
@@ -258,7 +263,10 @@ class YString {
         "searchPlaceHolder":"What are you looking for?",
         "notificationEmpty":"No notification yet",
         "pleaseLoginFirst":"Please login first",
-        "validEmailOrPassword":"برجاء ادخال رقم هاتف او بريد الكتروني صحيح"
+        "validEmailOrPassword":"برجاء ادخال رقم هاتف او بريد الكتروني صحيح" ,
+        "outOfStock" : "Out of stock" ,
+        "errorAddingProductToCart" : "خطا في اضافة المنتج الي العربه" ,
+        "thisProductIsAlreadyInCart" : "هذا المنتج موجود ف العربة"
     ]
     
     static private let enString : [String : String] = [
@@ -457,7 +465,10 @@ class YString {
         "searchPlaceHolder":"What are you looking for?",
         "notificationEmpty":"No notification yet",
         "pleaseLoginFirst":"Please login first",
-        "validEmailOrPassword":"please enter correct email or phone number"
+        "validEmailOrPassword":"please enter correct email or phone number" ,
+        "outOfStock" : "Out of stock" ,
+        "errorAddingProductToCart" : "Error adding product to cart" ,
+        "thisProductIsAlreadyInCart" : "This product is already in cart"
     ]
      
     
