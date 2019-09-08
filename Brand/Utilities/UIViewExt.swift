@@ -81,7 +81,7 @@ extension UIView {
             centerYAnchor.constraint(equalTo: centerY, constant: paddingCenterY).isActive = true
         }
     }
-    func activityStartAnimating(activityColor: UIColor, backgroundColor: UIColor) {
+    func activityStartAnimating(activityColor: UIColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1) , backgroundColor: UIColor = .clear ) {
         let backgroundView = UIView()
         backgroundView.frame = CGRect.init(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height)
         backgroundView.backgroundColor = backgroundColor

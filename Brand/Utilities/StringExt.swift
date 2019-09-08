@@ -56,6 +56,12 @@ class YString {
     static var cantDeleteMainAddress:String{return getText(key: "cantDeleteMainAddress")}
     static var thisYourMain:String{return getText(key: "thisYourMain")}
     static var shipingAddress:String{return getText(key: "shipingAddress")}
+    static var outOfStock : String { return getText(key: "outOfStock") }
+    static var errorAddingProductToCart : String { return getText(key: "errorAddingProductToCart") }
+    static var thisProductIsAlreadyInCart : String { return getText(key: "thisProductIsAlreadyInCart") }
+    
+    
+    
     static func getText (key : String) -> String {
         
         if MOLHLanguage.currentAppleLanguage().contains("en") {
@@ -265,6 +271,10 @@ class YString {
         "savedItemEmpty":"oops! you didn't have any saved item yet.",
         "cantDeleteMainAddress":"you can't delete your main address",
          "thisYourMain":"This is your main address Already"
+        "validEmailOrPassword":"برجاء ادخال رقم هاتف او بريد الكتروني صحيح" ,
+        "outOfStock" : "Out of stock" ,
+        "errorAddingProductToCart" : "خطا في اضافة المنتج الي العربه" ,
+        "thisProductIsAlreadyInCart" : "هذا المنتج موجود ف العربة"
     ]
     
     static private let enString : [String : String] = [
@@ -467,6 +477,10 @@ class YString {
         "pleaseLoginFirst":"Please login first",
         "validEmailOrPassword":"please enter correct email or phone number",
         "savedItemEmpty":"oops! you didn't have any saved item yet."
+        "validEmailOrPassword":"please enter correct email or phone number" ,
+        "outOfStock" : "Out of stock" ,
+        "errorAddingProductToCart" : "Error adding product to cart" ,
+        "thisProductIsAlreadyInCart" : "This product is already in cart"
     ]
      
     

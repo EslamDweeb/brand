@@ -33,6 +33,7 @@ class ViewAddToCart : UIView {
     
     lazy var viewParentScroll : UIView = {
        let v = UIView()
+        v.isHidden = true
         return v
     }()
     
@@ -46,7 +47,7 @@ class ViewAddToCart : UIView {
     lazy var labelProductOption : UILabel = {
        let l = UILabel ()
         l.font = setFont(name: .fontH , size: 16 )
-        
+        l.isHidden = true
         l.text = YString.productOptions
        return l
     }()
@@ -55,6 +56,7 @@ class ViewAddToCart : UIView {
        let t = UITableView()
         t.delegate = self
         t.dataSource = self
+        t.isScrollEnabled = false 
         t.register(CellAddToCartDropDown.self , forCellReuseIdentifier: CellAddToCartDropDown.getIdentifier())
         t.register(CellAddToCartButtonView.self , forCellReuseIdentifier: CellAddToCartButtonView.getIdentifier())
         t.tableFooterView = UIView()
@@ -112,7 +114,7 @@ class ViewAddToCart : UIView {
         p.dataSource = self
         return p
     }()
-    
+ 
     override init(frame: CGRect) {
         super.init(frame: frame )
         initViews()
@@ -126,6 +128,7 @@ class ViewAddToCart : UIView {
     private func initViews () {
         self.backgroundColor = .blackTransparent
         rotationAngel = 90*(.pi/180)
+        
 //        self.addGestureRecognizer(UITapGestureRecognizer(target: self , action: #selector(dismiss)))
         
         
@@ -137,17 +140,21 @@ class ViewAddToCart : UIView {
         addConstraint()
         configrationViews()
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1 ) {
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2 ) {
             if self.presenter?.slug != nil  {
                 self.presenter?.getConfigDetailsWithSlug()
+                self.activityStartAnimating()
                 return
             }
+            self.activityStopAnimating()
+            self.viewParentScroll.isHidden = false
             if self.presenter?.isEdit == false {
                 self.buttonAddToCart.setTitle(YString.addToCart , for: .normal )
                 self.pickerView.selectItem( 0 , animated: true )
                 self.calculateTotalPrice()
-                if self.presenter?.productOptions.count ?? 0 == 0 {
-                    self.labelProductOption.isHidden = true
+                if self.presenter?.productOptions.count ?? 0 > 0 {
+                    self.labelProductOption.isHidden = false
                 }
             }else {
                 self.presenter?.selectedProductOption = []
@@ -158,8 +165,8 @@ class ViewAddToCart : UIView {
                 self.calculateTotalPriceToEdit()
                 self.buttonAddToCart.setTitle(YString.updateProduct , for: .normal )
                 
-                if self.presenter?.productOptions.count ?? 0 == 0 {
-                    self.labelProductOption.isHidden = true
+                if self.presenter?.productOptions.count ?? 0 > 0 {
+                    self.labelProductOption.isHidden = false
                 }
             }
         }
@@ -274,7 +281,7 @@ class ViewAddToCart : UIView {
         
 
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.topAnchor.constraint(equalTo: self.viewParentScroll.topAnchor , constant: 16 ).isActive = true
+        tableView.topAnchor.constraint(equalTo: self.viewParentScroll.topAnchor , constant: 0 ).isActive = true
         tableView.leftAnchor.constraint(equalTo: self.viewParentScroll.leftAnchor , constant: 16 ).isActive = true
         tableView.rightAnchor.constraint(equalTo: self.viewParentScroll.rightAnchor , constant: -16 ).isActive = true
         heightTableView = tableView.heightAnchor.constraint(equalToConstant: 5 )
@@ -414,12 +421,19 @@ extension ViewAddToCart : UITableViewDataSource, UITableViewDelegate {
         }else {
             let cell = tableView.dequeueReusableCell(withIdentifier: CellAddToCartButtonView.getIdentifier() , for: indexPath ) as! CellAddToCartButtonView
             cell.setTextLabel(name: singleObjc?.name ?? "", price: Int( singleObjc?.addsPrice ?? 0) , selected: false )
-            if singleObjc?.selected ?? false {
+            if presenter?.selectedOptionsToEdit.filter({$0.optionID == singleObjc?.optionID }).first != nil {
                 self.presenter?.selectedProductOption.append( singleObjc! )
                 cell.isCellSelected = true
             }else {
                 cell.isCellSelected = false
             }
+            
+//            if singleObjc?.selected ?? false {
+//                self.presenter?.selectedProductOption.append( singleObjc! )
+//                cell.isCellSelected = true
+//            }else {
+//                cell.isCellSelected = false
+//            }
             return cell
         }
 
@@ -469,7 +483,8 @@ extension ViewAddToCart : AKPickerViewDelegate , AKPickerViewDataSource {
         print("\( count )")
         if count > presenter?.quantityProduct ?? 0 {
             actionMinusCount()
-            print("out of stock")
+         //   print("out of stock")
+            SnackBar.instance.setMessage( YString.outOfStock )
             return
         }
         presenter?.selectedQuantity = count
@@ -483,28 +498,40 @@ extension ViewAddToCart : ProAddToCartView {
     
     func productUpdatedInCart(model: ModelAddedCartData) {
         print("message : \(model.message ?? "" )")
+        SnackBar.instance.setMessage(model.message ?? "")
         self.dismiss()
     }
     
     func productAddedToCart(model: ModelAddedCartData) {
         print("message : \(model.message ?? "" )")
+        SnackBar.instance.setMessage(model.message ?? "")
         self.dismiss()
     }
     
     func errorAddProductToCart(errors: String) {
         print("error message : \( errors )")
+        if errors.lowercased() == "The config id has already been taken".lowercased() {
+            SnackBar.instance.setMessage(YString.thisProductIsAlreadyInCart)
+        }else {
+            SnackBar.instance.setMessage(YString.errorAddingProductToCart)
+        }
+        
         self.dismiss()
     }
     
     func getConfigDetailsWithSlug() {
+        self.activityStopAnimating()
+        self.viewParentScroll.isHidden = false
         self.buttonAddToCart.setTitle(YString.addToCart , for: .normal )
         self.tableView.reloadData()
         self.pickerView.reloadData()
         self.pickerView.selectItem( 0 , animated: true )
         self.setPrice()
         self.calculateTotalPrice()
-        if presenter?.productOptions.count ?? 0 == 0 {
-            self.labelProductOption.isHidden = true
+        if presenter?.productOptions.count ?? 0 > 0 {
+            self.labelProductOption.isHidden = false
+        }else {
+            self.heightTableView?.constant = 0
         }
     }
 }
