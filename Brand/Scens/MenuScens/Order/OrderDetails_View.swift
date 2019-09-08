@@ -14,8 +14,8 @@ class DetailorderView : UIView , UITextFieldDelegate ,FlexibleSteppedProgressBar
     var order:Order? {
         didSet{
             guard let order = order else{return}
-            self.addressName.text = order.address?.addressName
-            self.addressDescription.text = order.address?.getFullAddressName()
+            self.addressName.text = YString.shipingAddress
+            self.addressDescription.text = order.address
             self.totalView.namelabel.text = "totalAmount".localized
              self.ordernum.namelabel.text = "orderNumber".localized
             self.orderdate.namelabel.text = "orderDate".localized

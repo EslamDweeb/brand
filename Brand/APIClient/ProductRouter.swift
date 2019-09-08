@@ -47,7 +47,7 @@ enum ProductRouter:URLRequestConvertible {
         case .banners:
             return "/api/banners?app"
         case .categories:
-            return "/api/categories?markets"
+            return "/api/categories?roots"
         case .lastUpdate:
             return "/api/last_updates"
         case .allReviews(let pageNumber):

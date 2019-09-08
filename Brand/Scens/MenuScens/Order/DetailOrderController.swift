@@ -48,6 +48,7 @@ class DetailorderVC : UIViewController ,ButtonActionDelegate{
                 switch result{
                 case.success(let data):
                     print(data)
+                    self.createAlert(erroMessage: data.message ?? ""    )
                     self.mainView.activityStopAnimating()
                     
                 case.failure(let error):
@@ -55,8 +56,8 @@ class DetailorderVC : UIViewController ,ButtonActionDelegate{
                     print(error)
                 }
             }
-                self.dismiss(animated: true, completion: nil)
         }
+         //self.dismiss(animated: true, completion: nil)
     }
     func dissmisController() {
         self.dismiss(animated: true, completion: nil)

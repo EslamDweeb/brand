@@ -55,7 +55,7 @@ class YString {
     static var savedItemEmpty:String{return getText(key: "savedItemEmpty")}
     static var cantDeleteMainAddress:String{return getText(key: "cantDeleteMainAddress")}
     static var thisYourMain:String{return getText(key: "thisYourMain")}
-    
+    static var shipingAddress:String{return getText(key: "shipingAddress")}
     static func getText (key : String) -> String {
         
         if MOLHLanguage.currentAppleLanguage().contains("en") {
@@ -78,7 +78,7 @@ class YString {
         "QTY" : "الكميه ",
         "Outofstock" : "نفذ من المتجر",
         "exceeded" : "نفذت الكميه",
-        "sar" : "ريال سعودي",
+        "sar" : "ر.س",
         "Items" : "الكميه: ",
         "Pilling_method" : "طريقه الدفع ",
         "Shippingـmethod" : "طريقه الشحن",
@@ -134,7 +134,7 @@ class YString {
         "longitude" : "خطوط الطول يجب ان تكون ارقام",
         "latVal" : "خطوط العرض",
         "langVal" : "خطوط الطول",
-        
+        "shipingAddress":"عنوان الشحن"  ,
         "camera" : "الكاميرة",
         "mustHavePhoto" : "يجب ان يكون لديك صوره اولاً",
         "myAddresses" : "عناويني",
@@ -232,7 +232,7 @@ class YString {
         "get_started" : "فلنبدأ",
         "Email/phone" : "البريد الالكتروني/ الهاتف",
         "Shipping" : "التسوق",
-        "saleInBrand" : "Saled On Brands Sa",
+        "saleInBrand" : "Sell On Brands Sa",
         "buyFromBrand" : "Buy From Brands Sa",
         "recommendedProduct" : "المنتجات المقترحه",
         "latestProduct" : "المنتجات الاحدث",
@@ -282,6 +282,7 @@ class YString {
         "Confirm" : "Confirm & pay" ,
         "total" : "Total" ,
         "addReview" : "Add review" ,
+        "shipingAddress":"Shiping Address",
         "copoun" : "Copoun" ,
         "Copoun_discount" : "Copoun discount" ,
         "Apply Copoun" : "Apply Copoun" ,
@@ -425,7 +426,7 @@ class YString {
         "terms&privacy" : "Terms and Privacy" ,
         "customerService" : "Customer Service" ,
         "returnPolicy" : "Return Policy" ,
-        "saleInBrand" : "Saled On Brands Sa" ,
+        "saleInBrand" : "Sell On Brands Sa" ,
         "buyFromBrand" : "Buy From Brands Sa" ,
         "logout" : "Logout" ,
         "followus" : "Follow us on" ,

@@ -55,7 +55,6 @@ class ExploreVC:UIViewController,ButtonActionDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getDataFromLocalStorage()
         getExploreData()
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -64,7 +63,7 @@ class ExploreVC:UIViewController,ButtonActionDelegate{
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+        getDataFromLocalStorage()
     }
     private func getDataFromLocalStorage(){
         getBannersFromLocalDataStorage()

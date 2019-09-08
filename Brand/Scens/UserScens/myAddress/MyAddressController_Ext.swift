@@ -21,10 +21,16 @@ extension MyAddressViewController: UITableViewDelegate,UITableViewDataSource {
             }
         }
         self.addresses.remove(at: indexPath.row)
-        if self.addresses.count != 0 {
+        if indexPath.row != 0 {
             let  cell  = self.myAddressView.tableView.cellForRow(at: indexPath) as! MyAddressCell
             if cell.defaultview.isHidden == false {
                 let  cell  = self.myAddressView.tableView.cellForRow(at: [0,0] )as! MyAddressCell
+                cell.defaultview.isHidden = false
+            }
+        }else{
+            let  cell  = self.myAddressView.tableView.cellForRow(at: indexPath) as! MyAddressCell
+            if cell.defaultview.isHidden == false {
+                let  cell  = self.myAddressView.tableView.cellForRow(at: [0,(indexPath.row + 1)] )as! MyAddressCell
                 cell.defaultview.isHidden = false
             }
         }

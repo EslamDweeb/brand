@@ -31,6 +31,8 @@ class HomeVC:UIViewController,ButtonActionDelegate {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        categories.removeAll()
+        brands.removeAll()
          mainView.activityStartAnimating(activityColor: #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1), backgroundColor: .clear)
         group.enter()
             APIClient.getBrands { (result) in

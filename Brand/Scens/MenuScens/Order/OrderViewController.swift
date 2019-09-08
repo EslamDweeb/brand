@@ -45,6 +45,10 @@ class OrderViewController: UIViewController,ButtonActionDelegate {
         ordersOthers.removeAll()
         ordersDelivered.removeAll()
         currentPage = 1
+        mainView.orderCollection.backgroundView = nil
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         getOrders(true)
     }
     func getPendingTapped() {

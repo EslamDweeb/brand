@@ -46,8 +46,9 @@ class ReviewCell: UICollectionViewCell {
     }()
     lazy var image: UIImageView = {
         let img = UIImageView()
-        img.image = #imageLiteral(resourceName: "XSMax")
-        img.contentMode = .scaleAspectFit
+        img.image = #imageLiteral(resourceName: "defaultImage")
+        img.contentMode = .scaleAspectFill
+        img.clipsToBounds = true
         return img
     }()
     lazy var brandName: DescriptionLabel = {
@@ -118,7 +119,7 @@ class ReviewCell: UICollectionViewCell {
        
         if MOLHLanguage.currentAppleLanguage() == "en"{
             editeBtn.anchor(top: containerView.topAnchor, left: nil, bottom: nil, right: containerView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 5, paddingLeft: 0, paddingBottom: 0, paddingRight: 2, width: 40, height: 40, paddingCenterX: 0, paddingCenterY: 0)
-            image.anchor(top: containerView.topAnchor, left: containerView.leftAnchor, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 20, paddingLeft: 5, paddingBottom: 0, paddingRight: 0, width: 75, height: 75, paddingCenterX: 0, paddingCenterY: 0)
+            image.anchor(top: containerView.topAnchor, left: containerView.leftAnchor, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 20, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 75, height: 75, paddingCenterX: 0, paddingCenterY: 0)
             productName.anchor(top: containerView.topAnchor, left: image.rightAnchor   , bottom: nil, right: editeBtn.leftAnchor, centerX: nil, centerY: nil, paddingTop: 20, paddingLeft: 8, paddingBottom: 0, paddingRight: 12, width: 0, height: 45, paddingCenterX: 0, paddingCenterY: 0)
              stackView.anchor(top: productName.bottomAnchor, left: image.rightAnchor, bottom: nil, right: containerView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 2, paddingLeft: 8, paddingBottom: 0, paddingRight: 16, width: 0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
           //  brandName.anchor(top: nil, left: nil, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
@@ -127,7 +128,7 @@ class ReviewCell: UICollectionViewCell {
 
         }else{
             editeBtn.anchor(top: containerView.topAnchor, left: containerView.leftAnchor, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 5, paddingLeft: 2, paddingBottom: 0, paddingRight: 0, width: 40, height: 40, paddingCenterX: 0, paddingCenterY: 0)
-            image.anchor(top: containerView.topAnchor, left: nil, bottom: nil, right: containerView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 20, paddingLeft: 0, paddingBottom: 0, paddingRight: 5, width: 75, height: 75, paddingCenterX: 0, paddingCenterY: 0)
+            image.anchor(top: containerView.topAnchor, left: nil, bottom: nil, right: containerView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 20, paddingLeft: 0, paddingBottom: 0, paddingRight: 8, width: 75, height: 75, paddingCenterX: 0, paddingCenterY: 0)
             productName.anchor(top: containerView.topAnchor, left: editeBtn.rightAnchor, bottom: nil, right: image.leftAnchor , centerX: nil, centerY: nil, paddingTop: 20, paddingLeft: 8, paddingBottom: 0, paddingRight: 12, width: 0, height: 45, paddingCenterX: 0, paddingCenterY: 0)
               stackView.anchor(top: productName.bottomAnchor, left: containerView.leftAnchor, bottom: nil, right: image.leftAnchor, centerX: nil, centerY: nil, paddingTop: 2, paddingLeft: 16, paddingBottom: 0, paddingRight: 8, width: 0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
 //            brandName.anchor(top: productName.bottomAnchor, left: nil, bottom: nil, right: image.leftAnchor, centerX: nil, centerY: nil, paddingTop: 2, paddingLeft: 0, paddingBottom: 0, paddingRight: 8, width: 0, height: 20, paddingCenterX: 0, paddingCenterY: 0)

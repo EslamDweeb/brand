@@ -17,7 +17,7 @@ struct Order: Codable {
     let referenceNumber: String
     let userID: Int?
     let shippingMethod, billingMethod: IngMethod?
-    let address: Address?
+    let address: String?
     let coupon: String?
     let totalPrice: Double
     let items: [Item]?
