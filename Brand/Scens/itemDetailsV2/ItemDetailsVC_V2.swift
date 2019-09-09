@@ -8,14 +8,19 @@
 
 import UIKit
 
-class ItemDetailsV2 : UIViewController {
+class ItemDetailsVC_V2 : UIViewController {
     
+    lazy var mainView : ItemDetailsView_V2 = {
+       let v = ItemDetailsView_V2()
+        
+        return v
+    }()
     
-    
+    var slug = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.view = mainView
     }
     
     
