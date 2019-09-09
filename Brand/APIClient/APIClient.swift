@@ -229,8 +229,8 @@ class APIClient {
         }
     }
     
-    static func getsearchitems(name:String,brand : String , origin :String,  price : String ,rate : String,show :String,page : Int,complition : @escaping (Result<searchModel,Error>) -> Void){
-        AF.request(APIRouter.searshItem(name: name, brand: brand, origin: origin, price: price, rate: rate, show: show, page: page)).responseDecodable{(response: DataResponse<searchModel>) in
+    static func getsearchitems(name:String?,brand : String , origin :String,  price : String ,rate : String,show :String,page : Int , tag : Int? ,complition : @escaping (Result<searchModel,Error>) -> Void){
+        AF.request(APIRouter.searshItem(name: name , tag : tag , brand: brand, origin: origin, price: price, rate: rate, show: show, page: page)).responseDecodable{(response: DataResponse<searchModel>) in
             complition(response.result)
         }
     }

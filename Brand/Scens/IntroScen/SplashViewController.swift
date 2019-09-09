@@ -31,6 +31,9 @@ class SplashViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        handelReachability(reachability: reachability)
+        
         getFCMToken()
         if  isFirstRun != true {
             handelThread { [weak self](success) in

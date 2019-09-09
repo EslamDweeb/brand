@@ -29,6 +29,8 @@ class ProfileVC :UIViewController,ButtonActionDelegate {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        handelReachability(reachability: reachability)
+        
         imagepicker =  customImagePicker(deleget: self, imagePicker: imagePickerViewController, viewController: self)
         imagePickerViewController.delegate = self
         print(UserDefaults.standard.string(forKey: Constants.Defaults.authToken) ?? "")
@@ -154,10 +156,24 @@ class ProfileVC :UIViewController,ButtonActionDelegate {
                 }
                 else if (profileView.LastTextFeild.text != "" || profileView.LastTextFeild.text != nil)
                 {
-                    if profileView.LastTextFeild.isValidLastName(profileView.LastTextFeild.text!) == false{
-                        createAlert(erroMessage: NSLocalizedString( "lastName_Validation", comment: ""))
+//                    if profileView.LastTextFeild.isValidLastName(profileView.LastTextFeild.text!) == false{
+//                        createAlert(erroMessage: NSLocalizedString( "lastName_Validation", comment: ""))
+//                        return
+//                    }
+                    
+                    if profileView.FirstTextFeild.text?.count ?? 0 < 3 {
+                        createAlert(erroMessage: YString.firstNameMustBeGreaterThan3Char )
+                        self.profileView.activityStopAnimating()
+                        return
+                    }else if profileView.LastTextFeild.text?.count ?? 0  < 3 {
+                        createAlert(erroMessage: YString.lastNameMustBeGreaterThan3Char )
+                        self.profileView.activityStopAnimating()
+                        return
                     }
-                    let response = Validation.shared.validate(values: (ValidationType.PersonName ,profileView.FirstTextFeild.text!),(ValidationType.PersonName ,profileView.LastTextFeild.text!), (ValidationType.Email ,profileView.EmailTextFeild.text!),
+                    
+                    
+                    
+                    let response = Validation.shared.validate(values: (ValidationType.Email ,profileView.EmailTextFeild.text!),
                                                               (ValidationType.phone ,profileView.phoneTextFeild.text!) )
                     switch response {
                     case .success:

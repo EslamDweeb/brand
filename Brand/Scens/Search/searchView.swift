@@ -45,6 +45,21 @@ class searchView : UIView  , UITextFieldDelegate {
         button.isHidden = true
         return button
     }()
+    
+    
+    lazy var loadingView : UIActivityIndicatorView = {
+        var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
+        activityIndicator = UIActivityIndicatorView(frame: CGRect.init(x: 0, y: 0, width: 50, height: 50))
+        activityIndicator.center = self.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.style = UIActivityIndicatorView.Style.whiteLarge
+        activityIndicator.color = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.6952322346)
+        return activityIndicator
+    }()
+    
+    
+    
+    
     init(delegate: UICollectionViewDelegate,dataSource: UICollectionViewDataSource,actionDelegate:ButtonActionDelegate) {
         super.init(frame: .zero)
         searchCollection.delegate = delegate
@@ -83,6 +98,22 @@ class searchView : UIView  , UITextFieldDelegate {
         searchtextFeild.addTarget(actionDelegate, action: #selector(ButtonActionDelegate.changeBtn), for: .editingChanged)
        FilterBtn.addTarget(actionDelegate, action: #selector(ButtonActionDelegate.applyBtnTapped), for: .touchUpInside)
     }
+    
+    
+    func showLoading () {
+        addSubview(loadingView)
+        loadingView.translatesAutoresizingMaskIntoConstraints = false
+        loadingView.centerXAnchor.constraint(equalTo: self.centerXAnchor , constant: 0).isActive = true
+        loadingView.centerYAnchor.constraint(equalTo: self.centerYAnchor , constant: 0).isActive = true
+        loadingView.startAnimating()
+    }
+    
+    func hideLoading () {
+        loadingView.stopAnimating()
+        loadingView.removeFromSuperview()
+    }
+    
+    
     func textFieldDidBeginEditing(_ textField: UITextField) {
         textField.layer.borderColor = UIColor.pink.cgColor
     }

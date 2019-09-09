@@ -31,6 +31,9 @@ class MyAddressViewController: UIViewController ,ButtonActionDelegate{
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        handelReachability(reachability: reachability)
+        
         rrr.actionDelegate = self
         myAddressView.actionDelegate = self
         myAddressView.tableView.delegate = self

@@ -13,6 +13,10 @@ protocol isAbleToReceiveData {
 }
 
 class searchVC: UIViewController,ButtonActionDelegate , isAbleToReceiveData{
+    
+    typealias TagSearch = Tag
+    
+    
     func pass(data: [DetailedConfig],brand : String ,price : String ,made : String ,Rate : String) {
         print(data)
         searchitems = data
@@ -25,6 +29,9 @@ class searchVC: UIViewController,ButtonActionDelegate , isAbleToReceiveData{
     }()
    let reachability =  Reachability()
     var searchitems: [DetailedConfig] = []
+    
+    var tagSearch : TagSearch?
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -35,20 +42,49 @@ class searchVC: UIViewController,ButtonActionDelegate , isAbleToReceiveData{
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        if tagSearch != nil && tagSearch?.name != nil && tagSearch?.id != nil {
+            self.mainView.searchtextFeild.text = "#" + ( tagSearch?.name ?? "" )
+            searchTextWithTag(tagSearchID: tagSearch?.id )
+        }
+        
     }
     func dissmisController() {
         self.dismiss(animated: true, completion: nil)
     }
     
+    var waitingTextSearch = false
+    
     func changeBtn() {
-        if mainView.searchtextFeild.text!.count >= 1 {
-            getItems( text: mainView.searchtextFeild.text!)
+        if self.mainView.searchtextFeild.text?.first == "#" {
+            tagSearch = nil
+            self.mainView.searchtextFeild.text = String(self.mainView.searchtextFeild.text?.dropFirst() ?? "")
+        }
+       searchTextWithTag()
+    }
+    
+    private func searchTextWithTag (tagSearchID : Int? = nil) {
+        if mainView.searchtextFeild.text!.count >= 1 , !waitingTextSearch {
+            waitingTextSearch = true
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2 ) {
+                self.waitingTextSearch = false
+                // print("search text : \(self.mainView.searchtextFeild.text!)")
+                if tagSearchID == nil {
+                    self.getItems(text: self.mainView.searchtextFeild.text! )
+                }else {
+                    self.getItems( searchTag: tagSearchID )
+                }
+                
+            }
+            
         }else{
             searchitems = []
             self.mainView.FilterBtn.isHidden = true
             self.mainView.searchCollection.reloadData()
         }
     }
+    
+    
+    
     func applyBtnTapped() {
          let CV = FilterViewController()
         CV.name = mainView.searchtextFeild.text!
@@ -57,15 +93,16 @@ class searchVC: UIViewController,ButtonActionDelegate , isAbleToReceiveData{
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-       
         handelReachability(reachability: reachability)
-        }
-    func getItems(text : String )  {
+        
+    }
+    func getItems(text : String? = nil  , searchTag : Int? = nil )  {
         searchitems.removeAll()
         DispatchQueue.main.async {
-            self.mainView.activityStartAnimating(activityColor: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.6952322346), backgroundColor: .clear)
-            APIClient.getsearchitems(name: text, brand: "", origin: "", price: "", rate: "", show: "", page: 1, complition: { (result) in
-                switch result{
+           // self.mainView.activityStartAnimating(activityColor: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.6952322346), backgroundColor: .clear)
+            self.mainView.showLoading()
+            APIClient.getsearchitems(name: text , brand: "", origin: "", price: "", rate: "", show: "", page: 1, tag: searchTag , complition: { (result) in
+                switch result {
                 case .success(let data):
                     self.searchitems = data.configs!
                     DispatchQueue.main.async {
@@ -75,10 +112,12 @@ class searchVC: UIViewController,ButtonActionDelegate , isAbleToReceiveData{
                              self.mainView.FilterBtn.isHidden = true
                         }
                         self.mainView.searchCollection.reloadData()
-                        self.mainView.activityStopAnimating()
+                      //  self.mainView.activityStopAnimating()
+                        self.mainView.hideLoading()
                     }
                 case .failure(let error):
-                    self.mainView.activityStopAnimating()
+                   // self.mainView.activityStopAnimating()
+                    self.mainView.hideLoading()
                     print(error)
                 }
             })
