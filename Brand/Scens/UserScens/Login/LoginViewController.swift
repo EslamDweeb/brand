@@ -43,20 +43,30 @@ class LoginViewController: UIViewController,ButtonActionDelegate {
     }
     //MARK:- Button Action
     func checkNormalLoginFields()->Bool{
-        
         if loginView.email.text != "" && loginView.password.text != ""{
             if self.loginView.email.isValidEmail(self.loginView.email.text) != true &&  self.loginView.email.isValidPhone(self.loginView.email.text) != true{
                 createAlert(erroMessage: YString.validEmailOrPassword)
                 self.loginView.activityStopAnimating()
+                return false
             }else if self.loginView.password.isValidPassword(self.loginView.password.text) != true {
                 createAlert(erroMessage: YString.passwordMustBeGreaterThan5Char)
                 self.loginView.activityStopAnimating()
-            }else{
-                return true
+                return false
             }
-        }else{
+        }else  if loginView.email.text == "" && loginView.password.text == "" {
             self.loginView.activityStopAnimating()
             createAlert(erroMessage: YString.allFieldsReq)
+             return false
+        }else if self.loginView.password.text == "" {
+            self.loginView.activityStopAnimating()
+            createAlert(erroMessage: YString.passwordFieldRequird)
+            return false
+        }else if self.loginView.email.text == ""{
+            self.loginView.activityStopAnimating()
+            createAlert(erroMessage: YString.emailFieldRequird)
+            return false
+        }else {
+            return true
         }
         return false
     }

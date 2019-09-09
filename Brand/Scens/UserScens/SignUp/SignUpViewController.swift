@@ -89,19 +89,20 @@ class SignUpViewController: UIViewController , ButtonActionDelegate{
         if signupView.FirstTextFeild.text != "" || signupView.EmailTextFeild.text != "" || signupView.phoneTextFeild.text != "" || signupView.PasswordTextFeild.text != "" {
             if signupView.FirstTextFeild.text != "" && signupView.FirstTextFeild.isValidLastName(signupView.FirstTextFeild.text) == false {
                 self.signupView.activityStopAnimating()
-                createAlert(title: nil, erroMessage: "firstName_Validation".localized)
-            }else if  signupView.LastTextFeild.text != "" && signupView.LastTextFeild.isValidLastName(signupView.FirstTextFeild.text) == false {
+                createAlert(erroMessage: YString.invalidPersonName)
+            }else if  signupView.LastTextFeild.text != "" && signupView.LastTextFeild.isValidLastName(signupView.LastTextFeild.text) == false {
                 self.signupView.activityStopAnimating()
-                createAlert(title: nil, erroMessage:  "lastName_Validation".localized)
+                createAlert(erroMessage:YString.invalidPersonName)
             }else if  signupView.EmailTextFeild.text != "" && signupView.EmailTextFeild.isValidEmail(signupView.EmailTextFeild.text) == false {
                 self.signupView.activityStopAnimating()
-                createAlert(title: nil, erroMessage: NSLocalizedString( "email_validation", comment: ""))
+                createAlert(erroMessage: YString.invalidEmail)
             }else if  signupView.phoneTextFeild.text != "" && signupView.phoneTextFeild.isValidPhone(signupView.phoneTextFeild.text) == false {
                 self.signupView.activityStopAnimating()
-                createAlert(title: nil, erroMessage: NSLocalizedString( "Invalid Phone", comment: ""))
+                createAlert(erroMessage: YString.phoneValidation)
+                return
             }else if  signupView.PasswordTextFeild.text != "" && signupView.PasswordTextFeild.isValidPassword(signupView.PasswordTextFeild.text) == false {
                 self.signupView.activityStopAnimating()
-                createAlert(title: nil, erroMessage: NSLocalizedString( "password_validation", comment: ""))
+                createAlert( erroMessage:YString.passwordMustBeGreaterThan5Char)
             }else{
                 APIClient.SignUp(firstName: signupView.FirstTextFeild.text ?? "", lastName: signupView.LastTextFeild.text ?? "", email: signupView.EmailTextFeild.text ?? "", phone: signupView.phoneTextFeild.text ?? "", password: signupView.PasswordTextFeild.text ?? "", FCMToken: FCMToken ) { ( result) in
                     switch result {
@@ -119,7 +120,7 @@ class SignUpViewController: UIViewController , ButtonActionDelegate{
                         }
                     case .failure(let error) :
                         self.signupView.activityStopAnimating()
-                        self.createAlert(title: nil, erroMessage: NSLocalizedString("server_error", comment: ""))
+                        self.createAlert( erroMessage:YString.serverError)
                         print(error)
                     }
                 }
@@ -127,13 +128,7 @@ class SignUpViewController: UIViewController , ButtonActionDelegate{
         }else{
             self.signupView.activityStopAnimating()
             createAlert(erroMessage:YString.allFieldsReq)
-        }
-        if signupView.EmailTextFeild.text == "" {
-            self.signupView.activityStopAnimating()
-            self.createAlert(title: nil, erroMessage: NSLocalizedString("server_error", comment: ""))
-        }else if signupView.PasswordTextFeild.text == ""{
-            self.signupView.activityStopAnimating()
-            self.createAlert(title: nil, erroMessage: NSLocalizedString("server_error", comment: ""))
+            return
         }
     }
 }

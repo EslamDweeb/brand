@@ -59,8 +59,11 @@ class YString {
     static var outOfStock : String { return getText(key: "outOfStock") }
     static var errorAddingProductToCart : String { return getText(key: "errorAddingProductToCart") }
     static var thisProductIsAlreadyInCart : String { return getText(key: "thisProductIsAlreadyInCart") }
-    
-    
+    static var emailFieldRequird:String{return getText(key: "Empty Email")}
+    static var passwordFieldRequird:String{return getText(key: "emptyPassword")}
+    static var invalidPersonName:String{return getText(key: "Invalid Person Name")}
+    static var invalidEmail:String{return getText(key: "Invalid Email")}
+    static var serverError:String{return getText(key: "serverError")}
     
     static func getText (key : String) -> String {
         
@@ -184,7 +187,7 @@ class YString {
         "password" : "كلمة السر",
         "required" : "مطلوب",
         "Add new address" : "اضافة عنوان جديد",
-        "phone_not_correct" : "رقم الجوال غير صحيح",
+        "phone_not_correct":"رجاء ادخل رقم جوال صحيح",
         "email_not_correct" : "البريد الإلكتروني غير صحيح",
         "addresses_book" : "دفتر العناوين",
         "don_t_have_an_acount" : "ليس لديك حساب؟ ",
@@ -267,14 +270,14 @@ class YString {
         "searchPlaceHolder":"What are you looking for?",
         "notificationEmpty":"No notification yet",
         "pleaseLoginFirst":"Please login first",
-        "validEmailOrPassword":"برجاء ادخال رقم هاتف او بريد الكتروني صحيح",
         "savedItemEmpty":"oops! you didn't have any saved item yet.",
         "cantDeleteMainAddress":"you can't delete your main address",
          "thisYourMain":"This is your main address Already",
         "validEmailOrPassword":"برجاء ادخال رقم هاتف او بريد الكتروني صحيح" ,
-        "outOfStock" : "Out of stock" ,
         "errorAddingProductToCart" : "خطا في اضافة المنتج الي العربه" ,
-        "thisProductIsAlreadyInCart" : "هذا المنتج موجود ف العربة"
+        "thisProductIsAlreadyInCart" : "هذا المنتج موجود ف العربة",
+        "emptyPassword":"كلمة المرور مطلوبه",
+        "serverError":"خطاء في التصال بمزود الخدمه"
     ]
     
     static private let enString : [String : String] = [
@@ -355,12 +358,12 @@ class YString {
         "signup" : "Signup" ,
         "already_a_member_login" : "Already a member?" ,
         "by_signing_up_you_accept_terms_and_privacy_policy" : "By signing up you accept terms and privacy policy" ,
-        
+        "serverError":"Error to connect to server",
         "forgotPassword" : "Forgot password?" ,
         "email_phone" : "Email / Phone" ,
         "password" : "Password" ,
         "required" : "Required" ,
-        "phone_not_correct" : "Phone is not correct" ,
+        "phone_not_correct" : "Please enter valid phone number",
         "email_not_correct" : "Email is not correct" ,
         "addresses_book" : "Addresses book" ,
         "don_t_have_an_acount" : "Don\'t have an acount ?" ,
@@ -477,9 +480,9 @@ class YString {
         "pleaseLoginFirst":"Please login first",
         "savedItemEmpty":"oops! you didn't have any saved item yet.",
         "validEmailOrPassword":"please enter correct email or phone number" ,
-        "outOfStock" : "Out of stock" ,
         "errorAddingProductToCart" : "Error adding product to cart" ,
-        "thisProductIsAlreadyInCart" : "This product is already in cart"
+        "thisProductIsAlreadyInCart" : "This product is already in cart",
+        "emptyPassword":"Password Field is Requird"
     ]
      
     
