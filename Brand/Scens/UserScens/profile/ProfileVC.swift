@@ -108,7 +108,7 @@ class ProfileVC :UIViewController,ButtonActionDelegate {
             self.profileView.activityStartAnimating(activityColor: #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1), backgroundColor: .clear)
             if self.profileView.EmailTextFeild.isValidEmail(self.profileView.EmailTextFeild.text){
                 if (profileView.LastTextFeild.text == "" || profileView.LastTextFeild.text == nil ){
-                    let response = Validation.shared.validate(values: 
+                    let response = Validation.shared.validate(values:
                                                               (ValidationType.Email ,profileView.EmailTextFeild.text!),(ValidationType.phone ,profileView.phoneTextFeild.text!) )
                     switch response {
                     case .success:

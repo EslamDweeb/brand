@@ -270,7 +270,7 @@ class YString {
         "validEmailOrPassword":"برجاء ادخال رقم هاتف او بريد الكتروني صحيح",
         "savedItemEmpty":"oops! you didn't have any saved item yet.",
         "cantDeleteMainAddress":"you can't delete your main address",
-         "thisYourMain":"This is your main address Already"
+         "thisYourMain":"This is your main address Already",
         "validEmailOrPassword":"برجاء ادخال رقم هاتف او بريد الكتروني صحيح" ,
         "outOfStock" : "Out of stock" ,
         "errorAddingProductToCart" : "خطا في اضافة المنتج الي العربه" ,
@@ -475,8 +475,7 @@ class YString {
         "searchPlaceHolder":"What are you looking for?",
         "notificationEmpty":"No notification yet",
         "pleaseLoginFirst":"Please login first",
-        "validEmailOrPassword":"please enter correct email or phone number",
-        "savedItemEmpty":"oops! you didn't have any saved item yet."
+        "savedItemEmpty":"oops! you didn't have any saved item yet.",
         "validEmailOrPassword":"please enter correct email or phone number" ,
         "outOfStock" : "Out of stock" ,
         "errorAddingProductToCart" : "Error adding product to cart" ,

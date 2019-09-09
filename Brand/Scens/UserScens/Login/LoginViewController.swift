@@ -129,8 +129,6 @@ class LoginViewController: UIViewController,ButtonActionDelegate {
                     if let user = user {
                         self.requestEmail(user: user )
                     }
-                    
-                    
                 })
             }else{
                 print("error")

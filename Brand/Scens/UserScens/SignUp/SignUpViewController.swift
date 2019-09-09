@@ -106,11 +106,17 @@ class SignUpViewController: UIViewController , ButtonActionDelegate{
                 APIClient.SignUp(firstName: signupView.FirstTextFeild.text ?? "", lastName: signupView.LastTextFeild.text ?? "", email: signupView.EmailTextFeild.text ?? "", phone: signupView.phoneTextFeild.text ?? "", password: signupView.PasswordTextFeild.text ?? "", FCMToken: FCMToken ) { ( result) in
                     switch result {
                     case .success(let user) :
-                        self.signupView.activityStopAnimating()
-                        UserDefaults.standard.set(user.accessToken, forKey: Constants.Defaults.authToken)
-                        print(UserDefaults.standard.string(forKey: Constants.Defaults.authToken) ?? "")
-                        UserDefaults.standard.set(true, forKey: Constants.Defaults.isLogin)
-                        self.presentViewControllerFromStoryBoard(identifier: self.indetifier)
+                        if user.errors != nil {
+                            self.createAlert(erroMessage: getError(error: user.errors!))
+                            self.signupView.activityStopAnimating()
+                            //print(user.errors!)
+                        }else{
+                            self.signupView.activityStopAnimating()
+                            UserDefaults.standard.set(user.accessToken, forKey: Constants.Defaults.authToken)
+                            print(UserDefaults.standard.string(forKey: Constants.Defaults.authToken) ?? "")
+                            UserDefaults.standard.set(true, forKey: Constants.Defaults.isLogin)
+                            self.presentViewControllerFromStoryBoard(identifier: self.indetifier)
+                        }
                     case .failure(let error) :
                         self.signupView.activityStopAnimating()
                         self.createAlert(title: nil, erroMessage: NSLocalizedString("server_error", comment: ""))
@@ -119,17 +125,15 @@ class SignUpViewController: UIViewController , ButtonActionDelegate{
                 }
             }
         }else{
-            if signupView.EmailTextFeild.text == "" {
-                self.signupView.activityStopAnimating()
-                self.createAlert(title: nil, erroMessage: NSLocalizedString("server_error", comment: ""))
-            }else if signupView.PasswordTextFeild.text == ""{
-                self.signupView.activityStopAnimating()
-                self.createAlert(title: nil, erroMessage: NSLocalizedString("server_error", comment: ""))
-            }else{
-                
-                self.signupView.activityStopAnimating()
-                createAlert(title: nil, erroMessage: NSLocalizedString( "allFieldsreq", comment: ""))
-            }
+            self.signupView.activityStopAnimating()
+            createAlert(erroMessage:YString.allFieldsReq)
+        }
+        if signupView.EmailTextFeild.text == "" {
+            self.signupView.activityStopAnimating()
+            self.createAlert(title: nil, erroMessage: NSLocalizedString("server_error", comment: ""))
+        }else if signupView.PasswordTextFeild.text == ""{
+            self.signupView.activityStopAnimating()
+            self.createAlert(title: nil, erroMessage: NSLocalizedString("server_error", comment: ""))
         }
     }
 }
