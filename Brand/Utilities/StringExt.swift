@@ -287,7 +287,7 @@ class YString {
          "thisYourMain":"This is your main address Already",
         "validEmailOrPassword":"برجاء ادخال رقم هاتف او بريد الكتروني صحيح" ,
         "emptyPassword":"كلمة المرور مطلوبه",
-        "serverError":"خطاء في التصال بمزود الخدمه"
+        "serverError":"خطاء في التصال بمزود الخدمه",
         "outOfStock" : "Out of stock" ,
         "errorAddingProductToCart" : "خطا في اضافة المنتج الي العربه" ,
         "thisProductIsAlreadyInCart" : "هذا المنتج موجود ف العربة",
@@ -502,8 +502,7 @@ class YString {
         "validEmailOrPassword":"please enter correct email or phone number" ,
         "errorAddingProductToCart" : "Error adding product to cart" ,
         "thisProductIsAlreadyInCart" : "This product is already in cart",
-        "emptyPassword":"Password Field is Requird"
-        "validEmailOrPassword":"please enter correct email or phone number",
+        "emptyPassword":"Password Field is Requird",
         "firstNameMustBeGreaterThan3Char" : "First name must be greater than 3 char" ,
         "lastNameMustBeGreaterThan3Char" : "Last name must be greater than 3 char"
         

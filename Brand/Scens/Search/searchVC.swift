@@ -30,7 +30,7 @@ class searchVC: UIViewController,ButtonActionDelegate , isAbleToReceiveData{
    let reachability =  Reachability()
     var searchitems: [DetailedConfig] = []
     
-    var tagSearch : TagSearch?
+    var tagSearch : TagSearch? 
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
