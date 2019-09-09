@@ -269,7 +269,7 @@
 		2D309E6222CA02FC003709CF /* SocialSignUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialSignUpVC.swift; sourceTree = "<group>"; };
 		2D309E6822CA2DD9003709CF /* ReviewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewData.swift; sourceTree = "<group>"; };
 		2D319C9D22DF526700EDC509 /* ItemDetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailHeaderView.swift; sourceTree = "<group>"; };
-		2D319C9F22DF653700EDC509 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
+		2D319C9F22DF653700EDC509 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomTabBar.swift; path = ../ItemDetail/CustomTabBar.swift; sourceTree = "<group>"; };
 		2D32B82922C0EE8100513DD4 /* Brand.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Brand.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D32B82C22C0EE8100513DD4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2D32B83122C0EE8100513DD4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -595,7 +595,6 @@
 				2D3547ED22E5BF1300A570B2 /* SecondCell */,
 				2D377E5422E0C1C4003551BD /* FirstCell */,
 				2D319C9D22DF526700EDC509 /* ItemDetailHeaderView.swift */,
-				2D319C9F22DF653700EDC509 /* CustomTabBar.swift */,
 				2D35862322E06F0700F70FBE /* ItemDetailVC.swift */,
 				2D3BD33022E484E4009E6245 /* ItemDetailVCView.swift */,
 				2D3547EB22E5BDB300A570B2 /* MainCollCell.swift */,
@@ -1133,6 +1132,7 @@
 			children = (
 				81315B7D2326883C00EB0CE5 /* ItemDetailsV2.swift */,
 				2D1AAFF5232692950025F5F0 /* HeaderView.swift */,
+				2D319C9F22DF653700EDC509 /* CustomTabBar.swift */,
 			);
 			path = itemDetailsV2;
 			sourceTree = "<group>";
