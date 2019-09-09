@@ -1,15 +1,14 @@
 //
-//  ItemDetailHeaderView.swift
+//  HeaderView.swift
 //  Brand
 //
-//  Created by Eslam Dweeb on 7/17/19.
+//  Created by Eslam Dweeb on 9/9/19.
 //  Copyright © 2019 Eslam Dweeb. All rights reserved.
 //
 
 import UIKit
 import Cosmos
-class ItemDetailHeaderView: UIView {
-    
+class HeaderView: UIView {
     let cellID = "cellID"
     weak var actionDelegate:ButtonActionDelegate?
     
@@ -84,30 +83,13 @@ class ItemDetailHeaderView: UIView {
         lable.text = "200"
         return lable
     }()
-    lazy var customtabBar = CustomTabBar(actionDelegate: actionDelegate!)
-    init(_ collectionDelegate:UICollectionViewDelegate,_ collectionDataSource:UICollectionViewDataSource,_ buttonAction:ButtonActionDelegate){
+    init(_ buttonAction:ButtonActionDelegate){
         super.init(frame: .zero)
         self.actionDelegate = buttonAction
-        imageCollectionView.delegate = collectionDelegate
-        imageCollectionView.dataSource = collectionDataSource
+        imageCollectionView.delegate = self
+        imageCollectionView.dataSource = self
         setupView()
     }
-    
-    
-    lazy var favBtn:UIButton = {
-        let btn = UIButton()
-        btn.setImage(#imageLiteral(resourceName: "fav"), for: .normal)
-        btn.addTarget(actionDelegate, action: #selector(ButtonActionDelegate.flowButtonTapped(_:)), for: .touchUpInside)
-        return btn
-    }()
-    lazy var cartBtn:UIButton = {
-        let btn = UIButton()
-        let image = UIImage(named: "cart22")
-        btn.setImage(image, for: .normal)
-        btn.addTarget(actionDelegate, action: #selector(ButtonActionDelegate.flowButtonTapped(_:)), for: .touchUpInside)
-        return btn
-    }()
-    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -120,9 +102,6 @@ class ItemDetailHeaderView: UIView {
         addSubview(pageControl)
         addSubview(backBtn)
         addSubview(titlelable)
-        addSubview(customtabBar)
-        addSubview(favBtn)
-        addSubview(cartBtn)
         addSubview(finalPriceLable)
         addSubview(priceLable)
         addSubview(discountLbl)
@@ -138,64 +117,21 @@ class ItemDetailHeaderView: UIView {
         //priceLable.leftAnchor.constraint(equalTo: leftAnchor, constant: 64).isActive = true
         discountLbl.anchor(top: nil, left: priceLable.rightAnchor, bottom: nil, right: nil, centerX: nil, centerY: priceLable.centerYAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 42, height: 20, paddingCenterX: 0, paddingCenterY: 0)
         rateView.anchor(top: nil, left: discountLbl.rightAnchor, bottom: nil, right: nil, centerX: nil, centerY: discountLbl.centerYAnchor, paddingTop: 0, paddingLeft:8, paddingBottom: 0, paddingRight: 0, width: 65, height: 20, paddingCenterX: 0, paddingCenterY: 5)
-         numberOFReviewerLable.anchor(top: nil, left: rateView.rightAnchor, bottom: nil, right: nil, centerX: nil, centerY: priceLable.centerYAnchor, paddingTop: 0, paddingLeft: 2, paddingBottom: 0, paddingRight: 0, width: 50, height: 20, paddingCenterX: 0, paddingCenterY: 0)
+        numberOFReviewerLable.anchor(top: nil, left: rateView.rightAnchor, bottom: nil, right: nil, centerX: nil, centerY: priceLable.centerYAnchor, paddingTop: 0, paddingLeft: 2, paddingBottom: 0, paddingRight: 0, width: 50, height: 20, paddingCenterX: 0, paddingCenterY: 0)
         finalPriceLable.anchor(top: priceLable.bottomAnchor, left: nil, bottom: nil, right: nil, centerX: centerXAnchor, centerY: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 100, height: 30, paddingCenterX: 0, paddingCenterY: 0)
-        customtabBar.anchor(top: finalPriceLable.bottomAnchor, left: leftAnchor, bottom: nil , right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 50, paddingCenterX: 0, paddingCenterY: 0)
-        
-        cartBtn.anchor(top: nil , left: leftAnchor , bottom: bottomAnchor , right: nil , centerX: nil , centerY: nil , paddingTop: 0, paddingLeft: 0 , paddingBottom: 0 , paddingRight: 16 , width: 45, height: 45, paddingCenterX: 0, paddingCenterY: 0)
-      
-        favBtn.anchor(top: nil , left: nil , bottom: bottomAnchor , right: rightAnchor , centerX: nil , centerY: nil , paddingTop: 0, paddingLeft: 0 , paddingBottom: 0 , paddingRight: 16 , width: 45, height: 45, paddingCenterX: 0, paddingCenterY: 0)
-       
     }
 }
 
-class ItemDetailCollHeader:UICollectionReusableView,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,ButtonActionDelegate{
-    var photos = [Media]()
-    let cellID = "cellID"
-    var dismissVC: (()->())?
-    var handelTabBarTapped: ((_ tag:UITapGestureRecognizer)->())?
-    var handelFlowBtnTapped: ((_ sender:UIButton)->())?
-    //weak var actionDelegate:ButtonActionDelegate?
-    lazy var header:ItemDetailHeaderView = {
-        let header = ItemDetailHeaderView(self, self, self)
-        header.backgroundColor = .white
-        return header
-    }()
-    var senderTag:String?
-    override init(frame:CGRect) {
-        super.init(frame: frame)
-        addSubview(header)
-        header.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height:0, paddingCenterX: 0, paddingCenterY: 0)
-    }
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    func setData(rating:Double,numberOfuserRating:Double,price:Float,sale:Float,name:String,numberOfPages:Int){
-        header.rateView.rating = rating
-        header.titlelable.text = name
-        header.priceLable.setAttributeStringWithStrike("\(price)")
-        header.discountLbl.text = ReturnPricepersent(sale: Double(sale))
-        header.numberOFReviewerLable.text = "(\(numberOfuserRating) user)"
-        header.finalPriceLable.text = "\(getFinalPrice(price:Double(price), sale: Double(sale)))"
-        header.pageControl.numberOfPages = numberOfPages
-    }
-    private func getFinalPrice(price:Double,sale:Double) -> Double{
-//        "\(con.ReturnPriceAfterSale(price: con.price , sale: Double(con.sale).roundToDecimal(3))) \("sar".localized)"
-        
-       return (price - (price * sale).roundToDecimal(1))
-       // return price - (price * (sale ?? 1))
-    }
-     func ReturnPricepersent(sale:Double) -> String{
-        return "\( Int(Double(round(sale * 100) / 100).roundToDecimal(1) * 100)) %"
-    }
+// Don't forget PageController number of pages
+extension HeaderView:UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout{
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return photos.count
+        return 5
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as? BannerCell else{return UICollectionViewCell()}
         cell.bannerImage.contentMode = .scaleAspectFit
-        cell.photo = photos[indexPath.row]
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -206,18 +142,5 @@ class ItemDetailCollHeader:UICollectionReusableView,UICollectionViewDelegate,UIC
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0
-    }
-    func dissmisController() {
-        self.dismissVC?()
-    }
-    func customTabBarTapped(_ sender: UITapGestureRecognizer) {
-        self.handelTabBarTapped?(sender)
-    }
-    func flowButtonTapped(_ sender: UIButton) {
-        self.handelFlowBtnTapped?(sender)
-    }
-    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        let x = targetContentOffset.pointee.x
-        header.pageControl.currentPage = Int(x/self.frame.width)
     }
 }
