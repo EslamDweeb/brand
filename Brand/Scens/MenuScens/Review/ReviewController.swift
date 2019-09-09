@@ -31,7 +31,7 @@ class ReviewController: UIViewController,ButtonActionDelegate {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        handelReachability(reachability: reachability)
     }
     func dissmisController() {
         self.dismiss(animated: true, completion: nil)
@@ -39,7 +39,7 @@ class ReviewController: UIViewController,ButtonActionDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        handelReachability(reachability: reachability)
+        
         getReviews(true)
     }
     private func getReviews(_ refresh:Bool = false){

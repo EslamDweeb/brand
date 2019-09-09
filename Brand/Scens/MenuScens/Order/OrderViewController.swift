@@ -34,13 +34,14 @@ class OrderViewController: UIViewController,ButtonActionDelegate {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        handelReachability(reachability: reachability)
     }
     func dissmisController() {
         self.dismiss(animated: true, completion: nil)
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        handelReachability(reachability: reachability)
+        
         ordersPending.removeAll()
         ordersOthers.removeAll()
         ordersDelivered.removeAll()

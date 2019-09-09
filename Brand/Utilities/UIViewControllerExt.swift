@@ -11,17 +11,20 @@ import UIKit
 
 extension UIViewController {
     func handelReachability(reachability: Reachability?) {
-        reachability!.whenUnreachable = { _ in
-            DispatchQueue.main.async {
-                self.createAlert(erroMessage: "CheckConnection")
+        DispatchQueue.global(qos: .background).async {
+            reachability!.whenUnreachable = { _ in
+                DispatchQueue.main.async {
+                    self.createAlert(erroMessage: "CheckConnection")
+                }
+            }
+            NotificationCenter.default.addObserver(self, selector: #selector(self.internetChanged), name: Notification.Name.reachabilityChanged, object: reachability)
+            do{
+                try reachability!.startNotifier()
+            }catch{
+                print("Bildirici başlatılamadı")
             }
         }
-        NotificationCenter.default.addObserver(self, selector: #selector(internetChanged), name: Notification.Name.reachabilityChanged, object: reachability)
-        do{
-            try reachability!.startNotifier()
-        }catch{
-            print("Bildirici başlatılamadı")
-        }
+        
     }
     @objc func internetChanged (note: Notification){
         let reachability = note.object as! Reachability

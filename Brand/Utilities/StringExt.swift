@@ -18,6 +18,18 @@ extension String {
 }
 
 class YString {
+    static var personal_information : String { return getText(key: "personal_information") }
+    static var myAddresses : String { return getText(key: "myAddresses") }
+    static var cart : String { return getText(key: "cart") }
+    static var myOrders : String { return getText(key: "myOrders") }
+    static var myReview : String { return getText(key: "myReview") }
+    static var language : String { return getText(key: "language") }
+    static var about : String { return getText(key: "about") }
+    static var terms_privacy : String { return getText(key : "terms&privacy") }
+    static var returnPolicy : String { return getText(key: "returnPolicy") }
+    static var saleInBrand : String { return getText(key: "saleInBrand") }
+    static var buyFromBrand : String { return getText(key: "buyFromBrand") }
+    static var logout : String { return getText(key: "logout") }
     
     static var productOptions : String { return getText(key: "productOptions") }
     static var itemPrice : String { return getText(key: "itemPrice") }
@@ -37,12 +49,9 @@ class YString {
     static var menu : String { return getText(key: "menu") }
     static var startShopping : String { return getText(key: "startShopping") }
     static var yourCartIsEmpty : String { return getText(key: "yourCartIsEmpty") }
-    static var about:String{return getText(key: "about")}
     static var termsAndPrivacy:String{return getText(key: "terms&privacy")}
     static var customerService:String{return getText(key: "customerService")}
-    static var returnPolicy:String{return getText(key: "returnPolicy")}
     static var saleOnBrand:String{return getText(key: "saleInBrand")}
-    static var buyFromBrand:String{return getText(key: "buyFromBrand")}
     static var savedItem:String{return getText(key: "savedItem")}
     static var searchPlaceHolder:String{return getText(key: "searchPlaceHolder")}
     static var checkoutNow:String{return getText(key: "checkoutNow")}
@@ -64,6 +73,9 @@ class YString {
     static var invalidPersonName:String{return getText(key: "Invalid Person Name")}
     static var invalidEmail:String{return getText(key: "Invalid Email")}
     static var serverError:String{return getText(key: "serverError")}
+    static var firstNameMustBeGreaterThan3Char : String { return getText(key: "firstNameMustBeGreaterThan3Char" ) }
+    static var lastNameMustBeGreaterThan3Char : String { return getText(key: "lastNameMustBeGreaterThan3Char") }
+    
     
     static func getText (key : String) -> String {
         
@@ -274,10 +286,17 @@ class YString {
         "cantDeleteMainAddress":"you can't delete your main address",
          "thisYourMain":"This is your main address Already",
         "validEmailOrPassword":"برجاء ادخال رقم هاتف او بريد الكتروني صحيح" ,
-        "errorAddingProductToCart" : "خطا في اضافة المنتج الي العربه" ,
-        "thisProductIsAlreadyInCart" : "هذا المنتج موجود ف العربة",
         "emptyPassword":"كلمة المرور مطلوبه",
         "serverError":"خطاء في التصال بمزود الخدمه"
+        "outOfStock" : "Out of stock" ,
+        "errorAddingProductToCart" : "خطا في اضافة المنتج الي العربه" ,
+        "thisProductIsAlreadyInCart" : "هذا المنتج موجود ف العربة",
+        "firstNameMustBeGreaterThan3Char" : "الاسم الاول لابد ان يكون اكبر من ٣ احرف" ,
+        "lastNameMustBeGreaterThan3Char" : "الاسم الاخير لابد ان يكون اكبر من ٣ احرف"
+        
+        
+        
+
     ]
     
     static private let enString : [String : String] = [
@@ -478,11 +497,16 @@ class YString {
         "searchPlaceHolder":"What are you looking for?",
         "notificationEmpty":"No notification yet",
         "pleaseLoginFirst":"Please login first",
+
         "savedItemEmpty":"oops! you didn't have any saved item yet.",
         "validEmailOrPassword":"please enter correct email or phone number" ,
         "errorAddingProductToCart" : "Error adding product to cart" ,
         "thisProductIsAlreadyInCart" : "This product is already in cart",
         "emptyPassword":"Password Field is Requird"
+        "validEmailOrPassword":"please enter correct email or phone number",
+        "firstNameMustBeGreaterThan3Char" : "First name must be greater than 3 char" ,
+        "lastNameMustBeGreaterThan3Char" : "Last name must be greater than 3 char"
+        
     ]
      
     

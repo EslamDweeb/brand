@@ -74,7 +74,7 @@ class FilterViewController:UIViewController,ButtonActionDelegate {
              PriceBetween = "\(self.mainView.fromTextFeild.text!),\(self.mainView.toTextFeild.text!)"
             }
             self.mainView.activityStartAnimating(activityColor: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.6952322346), backgroundColor: .clear)
-            APIClient.getsearchitems(name: self.name ,brand: self.BrandName , origin: self.mainView.madeInDropDown.titleLabel?.text ?? "" , price: PriceBetween, rate: "\(self.mainView.rateView.rating)", show: self.showfilter, page: 1, complition: { (result) in
+            APIClient.getsearchitems(name: self.name ,brand: self.BrandName , origin: self.mainView.madeInDropDown.titleLabel?.text ?? "" , price: PriceBetween, rate: "\(self.mainView.rateView.rating)", show: self.showfilter, page: 1, tag: nil , complition: { (result) in
                 switch result{
                 case .success(let data):
                     self.searchitems = data.configs!

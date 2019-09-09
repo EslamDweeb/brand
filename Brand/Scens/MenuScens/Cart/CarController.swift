@@ -37,6 +37,10 @@ class CartController : UIViewController ,ButtonActionDelegate{
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        handelReachability(reachability: reachability)
+        
+        
         preferences.drawing.font = UIFont(name: .fontM, size: 13)!
         preferences.drawing.foregroundColor = UIColor.white
         preferences.drawing.backgroundColor = .gray
@@ -51,7 +55,7 @@ class CartController : UIViewController ,ButtonActionDelegate{
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        handelReachability(reachability: reachability)
+        
         getCartData(true)
     }
     override func viewWillDisappear(_ animated: Bool) {

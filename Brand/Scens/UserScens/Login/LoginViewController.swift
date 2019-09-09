@@ -28,6 +28,7 @@ class LoginViewController: UIViewController,ButtonActionDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        handelReachability(reachability: reachability)
         self.loginView.actionDelegate = self
     }
     
@@ -36,7 +37,7 @@ class LoginViewController: UIViewController,ButtonActionDelegate {
     }
     override func viewWillAppear(_ animated: Bool) {
         self.dismissPressentededControllers()
-        handelReachability(reachability: reachability)
+        
     }
     override func viewWillDisappear(_ animated: Bool) {
         stopNotifier(reachability: reachability)
