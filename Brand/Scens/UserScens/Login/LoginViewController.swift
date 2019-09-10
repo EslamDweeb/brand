@@ -53,6 +53,8 @@ class LoginViewController: UIViewController,ButtonActionDelegate {
                 createAlert(erroMessage: YString.passwordMustBeGreaterThan5Char)
                 self.loginView.activityStopAnimating()
                 return false
+            }else {
+                return true
             }
         }else  if loginView.email.text == "" && loginView.password.text == "" {
             self.loginView.activityStopAnimating()
@@ -66,8 +68,6 @@ class LoginViewController: UIViewController,ButtonActionDelegate {
             self.loginView.activityStopAnimating()
             createAlert(erroMessage: YString.emailFieldRequird)
             return false
-        }else {
-            return true
         }
         return false
     }

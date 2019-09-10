@@ -117,12 +117,10 @@ class CheckoutView : UIView {
     
     lazy var addressName: HeaderLabelAlign = {
         let lable = HeaderLabelAlign()
-        lable.text = "My Home".localized
         return lable
     }()
     lazy var addressDescription: DescriptionLabel = {
         let lable = DescriptionLabel()
-        lable.text = " Ksa - Qussaim - unizaa- 24 freedom st. - 16 block"
         return lable
     }()
     lazy var defaultview2: UIView = {

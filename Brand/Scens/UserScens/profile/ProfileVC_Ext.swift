@@ -10,16 +10,20 @@ import UIKit
 
 extension ProfileVC: UIImagePickerControllerDelegate,UINavigationControllerDelegate ,imageActionDelegate{
     func deleteImage() {
+        if self.photoId != nil {
         APIClient.deleteImage(id: self.photoId ?? 0, complition: { (result) in
             switch result {
             case.success(let msg):
                 self.createAlert(title: nil, erroMessage: msg.message)
                 self.profileView.myprofileImage.image = #imageLiteral(resourceName: "defaultImage")
+                self.photoId = nil
                 print(msg)
             case.failure(let error):
                 print(error)
             }
-        })
+        })}else{
+            self.createAlert(title: nil, erroMessage: "no_image".localized)
+        }
     }
     
     func uploadImage(imageData: Data, Filename: String, Image: UIImage) {

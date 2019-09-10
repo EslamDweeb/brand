@@ -57,8 +57,7 @@ class NotificationView:UIView {
     }
     private func addSubViews() {
         addSubview(navView)
-       
- //       addSubview(newLable)
+ //   addSubview(newLable)
         addSubview(tableView)
  
     }

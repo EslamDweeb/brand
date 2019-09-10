@@ -13,8 +13,12 @@ class ProfileView : UIView , UITextFieldDelegate{
     lazy var dateBtn: BtnImage = {
         let button = BtnImage()
         button.setImage(#imageLiteral(resourceName: "dateRangeMaterial"), for: .normal)
+        button.addTarget(self, action: #selector(handelDateBtnTapped), for: .touchUpInside)
         return button
     }()
+    @objc func handelDateBtnTapped(){
+        self.dateTextFeild.becomeFirstResponder()
+    }
     lazy var doneBtn: UIBarButtonItem = {
         let button = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneAction))
         return button
@@ -137,7 +141,7 @@ class ProfileView : UIView , UITextFieldDelegate{
         btn.dropView.cellBGC = #colorLiteral(red: 0.9843137255, green: 0.9803921569, blue: 0.9803921569, alpha: 1)
         btn.setTitle("select_gender".localized, for: .normal)
         btn.setTitleColor(.lightgray3, for: .normal)
-        btn.dropView.dropDownOptions = [["name":"Male".localized],["name":"Female".localized]]
+        btn.dropView.dropDownOptions = [["name":YString.male],["name":YString.female]]
         btn.isEnabled = false
         return btn
     }()

@@ -110,7 +110,7 @@ class SignUpViewController: UIViewController , ButtonActionDelegate{
                         if user.errors != nil {
                             self.createAlert(erroMessage: getError(error: user.errors!))
                             self.signupView.activityStopAnimating()
-                            //print(user.errors!)
+                          
                         }else{
                             self.signupView.activityStopAnimating()
                             UserDefaults.standard.set(user.accessToken, forKey: Constants.Defaults.authToken)
