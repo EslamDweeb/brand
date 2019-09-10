@@ -88,7 +88,7 @@ struct ConfigOption: Codable {
     let id: Int
     let name: String
     let input: Input
-    let values: [ConfigOptionValue]
+    var values: [ConfigOptionValue]
 }
 
 // MARK: - Input
@@ -100,7 +100,7 @@ struct ConfigOptionValue: Codable {
     let id: Int
     let value: String
     let available: Bool
-    let selected: Bool?
+    var selected: Bool?
 }
 
 // MARK: - Discount

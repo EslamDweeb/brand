@@ -75,6 +75,7 @@ class YString {
     static var serverError:String{return getText(key: "serverError")}
     static var firstNameMustBeGreaterThan3Char : String { return getText(key: "firstNameMustBeGreaterThan3Char" ) }
     static var lastNameMustBeGreaterThan3Char : String { return getText(key: "lastNameMustBeGreaterThan3Char") }
+    static var description : String { return getText(key: "description") }
     
     
     static func getText (key : String) -> String {
