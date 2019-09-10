@@ -13,8 +13,12 @@ class ProfileView : UIView , UITextFieldDelegate{
     lazy var dateBtn: BtnImage = {
         let button = BtnImage()
         button.setImage(#imageLiteral(resourceName: "dateRangeMaterial"), for: .normal)
+        button.addTarget(self, action: #selector(handelDateBtnTapped), for: .touchUpInside)
         return button
     }()
+    @objc func handelDateBtnTapped(){
+        self.dateTextFeild.becomeFirstResponder()
+    }
     lazy var doneBtn: UIBarButtonItem = {
         let button = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneAction))
         return button
