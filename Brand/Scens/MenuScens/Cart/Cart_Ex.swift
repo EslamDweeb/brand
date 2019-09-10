@@ -43,7 +43,7 @@ extension CartController: UITableViewDelegate , UITableViewDataSource {
             mainView.ItemsNum.isHidden = false
             mainView.save.isHidden = false
             tableView.backgroundView = nil
-            tableView.backgroundView = nil
+           
         }
         let count = cartpro.count
         return shouldShowLoadingCell ? count + 1 : count

@@ -36,6 +36,7 @@ class BillingVC: UIViewController , ButtonActionDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         billingMethodarr.removeAll()
+        self.MianbillingID = nil
         APIClient.getBillingMethod(complition: { (result)in
             switch result {
             case .success(let data):
@@ -67,11 +68,11 @@ class BillingVC: UIViewController , ButtonActionDelegate {
            
             self.present(VC, animated: true, completion: nil)
         }else {
-            self.createAlert(erroMessage: "You Must select Your Billing Methoud")
+            self.createAlert(erroMessage: "select_billing_Methoud".localized)
         }
     }
     func changeBtn() {
-        if mainView.copounTextFeild.text!.count > 6 {
+        if mainView.copounTextFeild.text!.count > 6  {
             DispatchQueue.main.async {
                // self.mainView.activityStartAnimating(activityColor: #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1), backgroundColor: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.5))
                 APIClient.getCheckoutData(flag : true ,shippingID: self.shippingId!, billingID: 1, addressID: self.addressID!, coupon: self.mainView.copounTextFeild.text!, complition:  { (result) in
@@ -114,6 +115,17 @@ class BillingVC: UIViewController , ButtonActionDelegate {
                 }
                 )}
 
+        }else if mainView.copounTextFeild.text!.count == 0 {
+            
+            self.mainView.hieghtConstrainViewcopoun?.constant = 120
+            self.mainView.rightBtn.isHidden = true
+            self.mainView.AmountSArlbl.isHidden = true
+            self.mainView.CopounSArlbl.isHidden = true
+            self.mainView.Sarlbl.isHidden = true
+            self.mainView.Amountlbl.isHidden = true
+            self.mainView.Copounlbltext.isHidden = true
+            self.mainView.Totallbl.isHidden = true
+            self.mainView.copoundiscount.isHidden = true
         }
 
         UIView.animate(withDuration: 0.4, delay: 0, options: .curveEaseOut, animations: {

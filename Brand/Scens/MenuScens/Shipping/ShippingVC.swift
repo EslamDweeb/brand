@@ -56,7 +56,9 @@ class ShippingVC: UIViewController , ButtonActionDelegate {
     }
     override func viewWillDisappear(_ animated: Bool) {
         stopNotifier(reachability: reachability)
+        
     }
+    
     func saveButtonTapped() {
         let  VC = BillingVC()
         if MianShippingID != nil && self.defaultaddress != nil{
@@ -64,8 +66,10 @@ class ShippingVC: UIViewController , ButtonActionDelegate {
             VC.shippingId = MianShippingID!
             
             self.present(VC, animated: true, completion: nil)
-        }else {
-            self.createAlert(erroMessage: "You Must select Your Address and Your Shipping Methoud")
+        }else if self.defaultaddress == nil {
+            self.createAlert(erroMessage: "selectـAddress".localized)
+        }else if MianShippingID == nil {
+            self.createAlert(erroMessage: "selectـShippingـMethoud".localized)
         }
     }
     func changeBtn() {
@@ -83,6 +87,7 @@ class ShippingVC: UIViewController , ButtonActionDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         handelReachability(reachability: reachability)
+        self.MianShippingID = nil
         addresses.removeAll()
         shippingMethodarr.removeAll()
         mainView.activityStartAnimating(activityColor: #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1), backgroundColor: .clear)

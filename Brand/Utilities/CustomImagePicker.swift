@@ -29,9 +29,9 @@ class customImagePicker:NSObject{
     
     
     public func openActionSheet() {
-        let actionSheet = UIAlertController(title: NSLocalizedString( "photo_source", comment: ""), message: NSLocalizedString( "choose_your_photo", comment: ""), preferredStyle: .actionSheet)
+        let actionSheet = UIAlertController(title:  "photo_source".localized, message:  "choose_your_photo".localized, preferredStyle: .actionSheet)
         
-        actionSheet.addAction(UIAlertAction(title: NSLocalizedString( "camera", comment: ""), style: .default, handler: { (action) in
+        actionSheet.addAction(UIAlertAction(title:"camera".localized, style: .default, handler: { (action) in
             if UIImagePickerController.isSourceTypeAvailable(.camera){
                 
                 if(self.checkPermissioncamera() == 1) {
@@ -52,7 +52,7 @@ class customImagePicker:NSObject{
                 print("Camera not avaliable")
             }
         }))
-        actionSheet.addAction(UIAlertAction(title: NSLocalizedString( "photo_library", comment: ""), style: .default, handler: { (action) in
+        actionSheet.addAction(UIAlertAction(title:  "photo_library".localized, style: .default, handler: { (action) in
             
             if (self.checkPhotoLibraryPermission() == 1) {
                 self.imagePicker.sourceType = .photoLibrary
@@ -69,8 +69,8 @@ class customImagePicker:NSObject{
                 self.openSettingDialog()
             }
         }))
-        actionSheet.addAction(UIAlertAction(title: NSLocalizedString( "cancel", comment: ""), style: .cancel, handler: nil))
-        actionSheet.addAction(UIAlertAction(title: NSLocalizedString( "delete", comment: ""), style: .destructive, handler: { (action) in
+        actionSheet.addAction(UIAlertAction(title:  "cancel".localized, style: .cancel, handler: nil))
+        actionSheet.addAction(UIAlertAction(title: "delete".localized, style: .destructive, handler: { (action) in
             self.imageAction?.deleteImage()
         }))
         
