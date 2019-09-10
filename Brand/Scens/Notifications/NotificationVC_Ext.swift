@@ -26,6 +26,7 @@ extension NotificationsViewController: UITableViewDataSource,UITableViewDelegate
         }else if UserDefaults.standard.string(forKey: Constants.Defaults.authToken) != "" && presenter?.listNotifications.count == 0{
             let view = NotificationBG(delegate: self)
             view.lable.text = YString.notificationEmpty
+            view.startbtn.removeFromSuperview()
             tableView.backgroundView = view
         }else{
             tableView.backgroundView = nil

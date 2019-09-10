@@ -18,6 +18,7 @@ import UserNotifications
 
 
 @UIApplicationMain
+
 class AppDelegate: UIResponder, UIApplicationDelegate,MOLHResetable {
     func reset() {
         let appDlg = UIApplication.shared.delegate as? AppDelegate

@@ -113,9 +113,9 @@ class NotificationBG:UIView{
         addSubview(startbtn)
     }
     private func addConstarinsToUI() {
-        image.anchor(top: nil, left: nil, bottom: nil, right: nil, centerX: self.centerXAnchor, centerY: self.centerYAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 230, height: 200, paddingCenterX: 0, paddingCenterY: -70)
+        image.anchor(top: nil, left: nil, bottom: nil, right: rightAnchor, centerX: self.centerXAnchor, centerY: self.centerYAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 230, height: 200, paddingCenterX: 0, paddingCenterY: -70)
         
         lable.anchor(top: image.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 40, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
-        startbtn.anchor(top: lable.bottomAnchor, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, centerX: nil, centerY: nil, paddingTop: 32, paddingLeft: 16, paddingBottom: 0, paddingRight:16, width: 0, height: 45, paddingCenterX: 0, paddingCenterY: 0)
+        startbtn.anchor(top: lable.bottomAnchor, left:leftAnchor, bottom: nil, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 32, paddingLeft: 16, paddingBottom: 0, paddingRight:16 ,width: 0, height: 45, paddingCenterX: 0, paddingCenterY: 0)
     }
 }

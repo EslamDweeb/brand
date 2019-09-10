@@ -61,19 +61,29 @@ extension WishListController: UICollectionViewDelegate,UICollectionViewDataSourc
             case .seeAll:
                 break
             }
-            cell.handelFavBtnTapped = { [weak self] (id) in
+            cell.handelFavBtnTapped = {  [weak self]  (id) in
                 guard let self = self else{return}
-                APIClient.toggleFav(id: id) { (result) in
-                    switch result {
-                    case.success(let data):
-                        self.createAlert(title: nil, erroMessage: data.message ?? "", createButton: nil)
-                        self.wishes.remove(at: indexPath.row)
-                        collectionView.reloadData()
-                        self.removeAlertController()
-                        print(data)
-                    case .failure(_):
-                        break
+                if UserDefaults.standard.string(forKey: Constants.Defaults.authToken) != "" {
+                    APIClient.toggleFav(id: id) { (result) in
+                        switch result {
+                        case.success(let data):
+                            self.createAlert(title: nil, erroMessage: data.message ?? "", createButton: nil)
+                            self.removeAlertController()
+                            print(data)
+                        case .failure(_):
+                            break
+                        }
                     }
+                }else{
+                    self.presentLoginViewController(loginDismiss:true)
+                }
+            }
+            cell.handelCartBtnTappedClouser = { [weak self] (configDetails) in
+                guard let self = self else{return}
+                if UserDefaults.standard.string(forKey: Constants.Defaults.authToken) != "" {
+                    self.addViewAddToCart( slug: configDetails.slug ?? "" )
+                }else{
+                    self.presentLoginViewController(loginDismiss: true)
                 }
             }
             return cell
