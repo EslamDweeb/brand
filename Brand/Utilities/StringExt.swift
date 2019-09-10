@@ -18,6 +18,8 @@ extension String {
 }
 
 class YString {
+     static var male : String { return getText(key: "male") }
+     static var female : String { return getText(key: "female") }
     static var personal_information : String { return getText(key: "personal_information") }
     static var myAddresses : String { return getText(key: "myAddresses") }
     static var cart : String { return getText(key: "cart") }
@@ -87,6 +89,9 @@ class YString {
         
     }
     static private let arString : [String : String] = [
+        "select_gender" : "اختر النوع",
+        "male" : "ذكر" ,
+        "female" : "انثي",
          "select_billing_Methoud" : "يجب ان تختار طريقه الدفع",
         "selectـShippingـMethoud" : "يجب ان تختار طريقه الشحن",
         "select_Address" : "يجب ان تختار عنوان الشحن",
@@ -305,6 +310,9 @@ class YString {
     ]
     
     static private let enString : [String : String] = [
+        "select_gender" : "Select gender" ,
+        "male" : "Male" ,
+        "female" : "Female",
         "select_billing_Methoud" : "You Must select Your Billing Methoud",
         "selectـShippingـMethoud" : "You Must select Your Shipping Methoud",
          "select_Address" : "You Must select Your shipping Address",

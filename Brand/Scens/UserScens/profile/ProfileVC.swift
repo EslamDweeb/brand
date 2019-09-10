@@ -105,18 +105,17 @@ class ProfileVC :UIViewController,ButtonActionDelegate {
                             self.user?.email == profileView.EmailTextFeild.text &&
                             self.user?.phone == profileView.phoneTextFeild.text &&
                             date[0] == profileView.dateTextFeild.text &&
-                            (self.user?.gender == 1 && profileView.Genderview.titleLabel?.text == NSLocalizedString( "Male", comment: "")) || (self.user?.gender == 0 && profileView.Genderview.titleLabel?.text == "" ) ||
-                            ( self.user?.gender == 2 && profileView.Genderview.titleLabel?.text == NSLocalizedString( "Female", comment: "")){
+                            (self.user?.gender == 1 && profileView.Genderview.titleLabel?.text == YString.male) || (self.user?.gender == 0 && profileView.Genderview.titleLabel?.text == "" ) ||
+                            ( self.user?.gender == 2 && profileView.Genderview.titleLabel?.text == YString.female){
                             self.profileView.activityStopAnimating()
                             self.change()
                    
                         }else {
-                           // self.change()
                             editeInfoRequest()
                         }
                     case .failure(_, let message):
-                        let alert = UIAlertController(title: NSLocalizedString( "Validation Message", comment: ""), message: message.localized(), preferredStyle: .alert)
-                        alert.addAction(UIAlertAction(title: NSLocalizedString( "ok", comment: ""), style: .cancel, handler: nil))
+                        let alert = UIAlertController(title: "Validation Message".localized, message: message.localized(), preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "ok".localized, style: .cancel, handler: nil))
                         self.present(alert, animated: true)
                         self.profileView.activityStopAnimating()
                         print(message.localized())
@@ -148,10 +147,9 @@ class ProfileVC :UIViewController,ButtonActionDelegate {
                             self.user?.email == profileView.EmailTextFeild.text &&
                             self.user?.phone == profileView.phoneTextFeild.text &&
                             date[0] == profileView.dateTextFeild.text &&
-                            (self.user?.gender == 1 && profileView.Genderview.titleLabel?.text == NSLocalizedString( "Male", comment: "")) || (self.user?.gender == 0 && profileView.Genderview.titleLabel?.text == "" ) ||
-                            ( self.user?.gender == 2 && profileView.Genderview.titleLabel?.text == NSLocalizedString( "Female", comment: "")){
+                            (self.user?.gender == 1 && profileView.Genderview.titleLabel?.text == YString.male) || (self.user?.gender == 0 && profileView.Genderview.titleLabel?.text == "select_gender".localized ) ||
+                            ( self.user?.gender == 2 && profileView.Genderview.titleLabel?.text == YString.female ){
                             self.profileView.activityStopAnimating()
-
                             self.change()
                         }else {
                         
@@ -159,8 +157,8 @@ class ProfileVC :UIViewController,ButtonActionDelegate {
                         }
                     case .failure(_, let message):
                         
-                        let alert = UIAlertController(title: NSLocalizedString( "Validation Message", comment: ""), message: NSLocalizedString( message.rawValue, comment: ""), preferredStyle: .alert)
-                        alert.addAction(UIAlertAction(title: NSLocalizedString( "ok", comment: ""), style: .cancel, handler: nil))
+                        let alert = UIAlertController(title: "Validation Message".localized, message: message.rawValue.localized, preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "ok".localized, style: .cancel, handler: nil))
                         self.present(alert, animated: true)
                         self.profileView.activityStopAnimating()
                         print(message.localized())
@@ -241,10 +239,10 @@ class ProfileVC :UIViewController,ButtonActionDelegate {
                             let date: [String] = data.user?.birthdate?.date.components(separatedBy: " ") ?? [""]
                             self.profileView.dateTextFeild.text = date[0]
                             if data.user!.gender == 2 {
-                                self.profileView.Genderview.setTitle(NSLocalizedString( "Female", comment: ""), for: .normal)
+                                self.profileView.Genderview.setTitle(YString.female, for: .normal)
                                 self.gen = 2
                             }else if data.user!.gender == 1  {
-                                self.profileView.Genderview.setTitle(NSLocalizedString( "Male", comment: ""), for: .normal)
+                                self.profileView.Genderview.setTitle(YString.male, for: .normal)
                                 self.gen = 1
                             }
                         }else{
