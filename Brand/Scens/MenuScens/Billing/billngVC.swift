@@ -81,7 +81,6 @@ class BillingVC: UIViewController , ButtonActionDelegate {
                         print("nada \(data)")
                         DispatchQueue.main.async {
                             if (data.errors?.coupon_serial == nil) {
-                               
                                 self.mainView.CopounSArlbl.text = "\(data.orderSummary!.coupon!.amount) \("sar".localized)"
                                 self.mainView.AmountSArlbl.text = "\(data.orderSummary!.totalCartItemsPrice) \("sar".localized)"
                                 self.mainView.Sarlbl.text = "\( data.orderSummary!.totalCartItemsPrice - Double( data.orderSummary!.coupon!.amount)) \("sar".localized)"
@@ -95,7 +94,6 @@ class BillingVC: UIViewController , ButtonActionDelegate {
                                 self.mainView.Totallbl.isHidden = false
                                 self.mainView.copoundiscount.isHidden = false
                             }else{
-                                
                                 self.mainView.hieghtConstrainViewcopoun?.constant = 120
                                 self.mainView.rightBtn.isHidden = true
                                 self.mainView.AmountSArlbl.isHidden = true
@@ -105,6 +103,7 @@ class BillingVC: UIViewController , ButtonActionDelegate {
                                 self.mainView.Copounlbltext.isHidden = true
                                 self.mainView.Totallbl.isHidden = true
                                 self.mainView.copoundiscount.isHidden = true
+                                self.createAlert(erroMessage: (data.errors?.coupon_serial![0])!)
                             }
                            // self.mainView.activityStopAnimating()
                         }

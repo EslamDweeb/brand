@@ -12,7 +12,7 @@ struct Constants {
     
     static let providerFacebook = 1
     static let providerTwitter = 2
-    
+ 
     struct ProductionServer {
         //Test URl
         static let baseURL = "https://brands.solutionplus.net"

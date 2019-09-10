@@ -111,7 +111,7 @@ class ProfileVC :UIViewController,ButtonActionDelegate {
                             self.change()
                    
                         }else {
-                      
+                           // self.change()
                             editeInfoRequest()
                         }
                     case .failure(_, let message):
@@ -191,7 +191,7 @@ class ProfileVC :UIViewController,ButtonActionDelegate {
                     self.change()
                     self.createAlert(title: nil, erroMessage: data.message ?? "")
                 }else  {
-                    self.createAlert(title: nil, erroMessage: self.getError(error: data.errors!) )
+                    self.createAlert(title: nil, erroMessage: getError(error: data.errors!) )
                 }
             case .failure(let error):
                 self.profileView.activityStopAnimating()
@@ -296,15 +296,15 @@ class ProfileVC :UIViewController,ButtonActionDelegate {
         }
         
     }
-    func getError (error : [String : [String]]) -> String {
-        var   text = ""
-        for (_,v) in error {
-            for i in v {
-                text += " \(i) "
-            }
-        }
-        return text
-    }
+//    func getError (error : [String : [String]]) -> String {
+//        var   text = ""
+//        for (_,v) in error {
+//            for i in v {
+//                text += " \(i) "
+//            }
+//        }
+//        return text
+//    }
 }
 
 
