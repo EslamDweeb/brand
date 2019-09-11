@@ -7,7 +7,7 @@
 
 import Foundation
 import Alamofire
-
+import MOLH
 enum ProductRouter:URLRequestConvertible {
     case brands
     case banners
@@ -63,9 +63,9 @@ enum ProductRouter:URLRequestConvertible {
         case .getCategoryInfo(let slug):
             return "/api/categories/\(slug)"
         case .getCategoryProduct(let slug):
-            return "/api/configs?category=\(slug)"
+            return "/api/configs?category=\(slug)&criteria=app"
         case .getWishlist(let pageNumber):
-            return "/api/favorite?type=config&page=\(pageNumber)"
+            return "/api/favorite?type=config&page=\(pageNumber)&criteria=app"
         case .getCartData(let pageNumber):
             return "/api/cart-items?page=\(pageNumber)"
         case .getExploreData:
@@ -73,17 +73,17 @@ enum ProductRouter:URLRequestConvertible {
         case .getFlashData:
             return "/api/flash"
         case .getAllProductConfigs(let slug,let pageNumber):
-            return "/api/configs?brands=\(slug)&page=\(pageNumber)"
+            return "/api/configs?brands=\(slug)&page=\(pageNumber)&criteria=app"
         case .toggleFav(let id):
             return "/api/favorite/configs/\(id)"
         case .getitemDetail(let slug):
-            return "/api/configs/\(slug)"
+            return "/api/configs/\(slug)&criteria=app"
         case .getConfigReview(let id,let pageNumber):
             return "/api/ratingables?type=catalog&id=\(id)&page=\(pageNumber)"
         case .getConfigRating(let id):
             return "/api/model-ratings/\(id)"
         case .getSeeAllProduct(let key,let pageNumber):
-            return "/api/configs?show=\(key)&page=\(pageNumber)"
+            return "/api/configs?show=\(key)&page=\(pageNumber)&criteria=app"
         case .getFlashHeader:
             return "/api/settings?type=flash_offer_header"
         case .getSelctedConfigSlug(let productID,let clickedID,let values):
@@ -102,13 +102,15 @@ enum ProductRouter:URLRequestConvertible {
         case.brands,.banners,.categories,.lastUpdate,.getCategoryInfo,.getCategoryProduct,.getFlashData,.getAllProductConfigs,.getFlashHeader:
             return [
                 HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue,
-                HTTPHeaderField.contentType.rawValue : ContentType.json.rawValue
+                HTTPHeaderField.contentType.rawValue : ContentType.json.rawValue,
+                  HTTPHeaderField.locale.rawValue : MOLHLanguage.currentAppleLanguage()
             ]
         case .allReviews,.updateReview,.getOrders,.getOrderDetails,.getWishlist,.getCartData,.toggleFav,.getExploreData,.getitemDetail,.getConfigReview,.getConfigRating,.addReview,.getSeeAllProduct,.getSelctedConfigSlug:
             return [
                 HTTPHeaderField.authentication.rawValue : " \(ContentType.token.rawValue) \(UserDefaults.standard.string(forKey: Constants.Defaults.authToken) ?? "")" ,
                 HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue,
-                HTTPHeaderField.contentType.rawValue : ContentType.json.rawValue
+                HTTPHeaderField.contentType.rawValue : ContentType.json.rawValue,
+                  HTTPHeaderField.locale.rawValue : MOLHLanguage.currentAppleLanguage()
             ]
         }
     }

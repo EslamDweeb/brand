@@ -144,16 +144,16 @@ enum APIRouter : URLRequestConvertible {
             return "/api/cart-items/\(id)"
         case .searshItem(let name?, let tag? , let brand ,let origin , let price , let rate ,let show, let page ):
             
-             return "/api/configs?show=\(show)&brands=\(brand)&origin=\(origin)&price_between=\(price)&rate=\(rate)&name=\(name)&page=\(page)&with-tags=\(tag)"
+             return "/api/configs?show=\(show)&brands=\(brand)&origin=\(origin)&price_between=\(price)&rate=\(rate)&name=\(name)&page=\(page)&with-tags=\(tag)&criteria=app"
         case .searshItem(let name? , .none , let brand ,let origin , let price , let rate ,let show, let page ):
             
-            return "/api/configs?show=\(show)&brands=\(brand)&origin=\(origin)&price_between=\(price)&rate=\(rate)&name=\(name)&page=\(page)"
+            return "/api/configs?show=\(show)&brands=\(brand)&origin=\(origin)&price_between=\(price)&rate=\(rate)&name=\(name)&page=\(page)&criteria=app"
         case .searshItem( .none , let tag? , let brand ,let origin , let price , let rate ,let show, let page ):
             
-            return "/api/configs?show=\(show)&brands=\(brand)&origin=\(origin)&price_between=\(price)&rate=\(rate)&page=\(page)&with-tags=\(tag)"
+            return "/api/configs?show=\(show)&brands=\(brand)&origin=\(origin)&price_between=\(price)&rate=\(rate)&page=\(page)&with-tags=\(tag)&criteria=app"
         case .searshItem( .none , .none , let brand ,let origin , let price , let rate ,let show, let page ):
             
-            return "/api/configs?show=\(show)&brands=\(brand)&origin=\(origin)&price_between=\(price)&rate=\(rate)&page=\(page)"
+            return "/api/configs?show=\(show)&brands=\(brand)&origin=\(origin)&price_between=\(price)&rate=\(rate)&page=\(page)&criteria=app"
         case .getProductFilter:
             return "/api/product-filters"
         case .addToCart :
@@ -171,18 +171,21 @@ enum APIRouter : URLRequestConvertible {
         case .signUp:
             return [
                 HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue,
-                HTTPHeaderField.contentType.rawValue : ContentType.json.rawValue
+                HTTPHeaderField.contentType.rawValue : ContentType.json.rawValue,
+                HTTPHeaderField.locale.rawValue : MOLHLanguage.currentAppleLanguage()
             ]
         case .login:
             return [
                 
-                HTTPHeaderField.contentType.rawValue : ContentType.json.rawValue
+                HTTPHeaderField.contentType.rawValue : ContentType.json.rawValue,
+                HTTPHeaderField.locale.rawValue : MOLHLanguage.currentAppleLanguage()
             ]
         case .forgetPassword:
             return [
                  HTTPHeaderField.authentication.rawValue : " \(ContentType.token.rawValue) \(UserDefaults.standard.string(forKey: Constants.Defaults.authToken)!)",
                 HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue,
                 HTTPHeaderField.contentType.rawValue : ContentType.json.rawValue
+                
             ]
         case .userInfo:
             return [
@@ -195,68 +198,77 @@ enum APIRouter : URLRequestConvertible {
             return [
                 HTTPHeaderField.authentication.rawValue :" \(ContentType.token.rawValue)  \(UserDefaults.standard.string(forKey: Constants.Defaults.authToken) ?? "")" ,
                 HTTPHeaderField.contentType.rawValue : ContentType.json.rawValue,
-                HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue
+                HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue,
+                HTTPHeaderField.locale.rawValue : MOLHLanguage.currentAppleLanguage()
             ]
         case .userAddress:
             return [
                 HTTPHeaderField.authentication.rawValue : " \(ContentType.token.rawValue) \(UserDefaults.standard.string(forKey: Constants.Defaults.authToken)!)" ,
                 HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue,
-                HTTPHeaderField.contentType.rawValue : ContentType.json.rawValue
+                HTTPHeaderField.contentType.rawValue : ContentType.json.rawValue,
+                HTTPHeaderField.locale.rawValue : MOLHLanguage.currentAppleLanguage()
             ]
         case .allCountries:
             return [
                 HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue,
-                HTTPHeaderField.contentType.rawValue : ContentType.json.rawValue
+                HTTPHeaderField.contentType.rawValue : ContentType.json.rawValue,
+                HTTPHeaderField.locale.rawValue : MOLHLanguage.currentAppleLanguage()
             ]
         case .addUserAddress:
             return [
                 HTTPHeaderField.authentication.rawValue : " \(ContentType.token.rawValue) \(UserDefaults.standard.string(forKey: Constants.Defaults.authToken)!)" ,
                 HTTPHeaderField.contentType.rawValue : ContentType.json.rawValue ,
-                
                 HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue,
-                HTTPHeaderField.contentType.rawValue : ContentType.json.rawValue
-            ]
+                HTTPHeaderField.locale.rawValue : MOLHLanguage.currentAppleLanguage()            ]
         case .socialLogin:
             return [
                 HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue,
                 HTTPHeaderField.contentType.rawValue : ContentType.json.rawValue,
+                HTTPHeaderField.locale.rawValue : MOLHLanguage.currentAppleLanguage(),
                 HTTPHeaderField.locale.rawValue : MOLHLanguage.currentAppleLanguage()
             ]
         case .editUserAddress:
             return [
                 HTTPHeaderField.authentication.rawValue : " \(ContentType.token.rawValue) \(UserDefaults.standard.string(forKey: Constants.Defaults.authToken)!)" ,
                 HTTPHeaderField.contentType.rawValue : ContentType.json.rawValue ,
-                
                 HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue,
-                HTTPHeaderField.contentType.rawValue : ContentType.json.rawValue]
+                HTTPHeaderField.locale.rawValue : MOLHLanguage.currentAppleLanguage()
+            ]
         case .deleteAddress:
             return [
                 HTTPHeaderField.authentication.rawValue : " \(ContentType.token.rawValue) \(UserDefaults.standard.string(forKey: Constants.Defaults.authToken)!)" ,
                 
                 HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue,
-                HTTPHeaderField.contentType.rawValue : ContentType.json.rawValue]
+                HTTPHeaderField.contentType.rawValue : ContentType.json.rawValue,
+                HTTPHeaderField.locale.rawValue : MOLHLanguage.currentAppleLanguage()
+            ]
         case .setdefaultAddress:
             return [
                 HTTPHeaderField.authentication.rawValue : " \(ContentType.token.rawValue) \(UserDefaults.standard.string(forKey: Constants.Defaults.authToken)!)" ,
                 HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue,
-                HTTPHeaderField.contentType.rawValue : ContentType.json.rawValue]
+                HTTPHeaderField.contentType.rawValue : ContentType.json.rawValue,
+                HTTPHeaderField.locale.rawValue : MOLHLanguage.currentAppleLanguage()
+            ]
         case .uploadImage:
             return [
                 HTTPHeaderField.authentication.rawValue : " \(ContentType.token.rawValue) \(UserDefaults.standard.string(forKey: Constants.Defaults.authToken)!)" ,
                 HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue,
-                HTTPHeaderField.contentType.rawValue : ContentType.form.rawValue
+                HTTPHeaderField.contentType.rawValue : ContentType.form.rawValue,
+                HTTPHeaderField.locale.rawValue : MOLHLanguage.currentAppleLanguage()
             ]
         case .deleteImage:
             return [
                 HTTPHeaderField.authentication.rawValue :"\(ContentType.token.rawValue) \(UserDefaults.standard.string(forKey: Constants.Defaults.authToken)!)" ,
                 HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue,
-                HTTPHeaderField.contentType.rawValue : ContentType.json.rawValue
+                HTTPHeaderField.contentType.rawValue : ContentType.json.rawValue,
+                HTTPHeaderField.locale.rawValue : MOLHLanguage.currentAppleLanguage()
             ]
         case .editeInfo:
             return [
                 HTTPHeaderField.authentication.rawValue :"\(ContentType.token.rawValue) \(UserDefaults.standard.string(forKey: Constants.Defaults.authToken)!)" ,
                 HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue,
-                HTTPHeaderField.contentType.rawValue : ContentType.json.rawValue
+                HTTPHeaderField.contentType.rawValue : ContentType.json.rawValue,
+                HTTPHeaderField.locale.rawValue : MOLHLanguage.currentAppleLanguage()
             ]
         case .socialSignUp:
             return [
@@ -269,25 +281,28 @@ enum APIRouter : URLRequestConvertible {
             return [
                 HTTPHeaderField.authentication.rawValue :" \(ContentType.token.rawValue)  \(UserDefaults.standard.string(forKey: Constants.Defaults.authToken) ?? "")",
                 HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue,
-        
+                HTTPHeaderField.locale.rawValue : MOLHLanguage.currentAppleLanguage()
             ]
         case .getbillingMethod:
             return [
                 HTTPHeaderField.authentication.rawValue :" \(ContentType.token.rawValue)  \(UserDefaults.standard.string(forKey: Constants.Defaults.authToken) ?? "")",
                 HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue,
-                
+                HTTPHeaderField.locale.rawValue : MOLHLanguage.currentAppleLanguage()
             ]
         case .checkout:
             return [
                 HTTPHeaderField.authentication.rawValue :" \(ContentType.token.rawValue)  \(UserDefaults.standard.string(forKey: Constants.Defaults.authToken) ?? "")",
                 HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue ,
                 HTTPHeaderField.contentType.rawValue  : ContentType.json.rawValue ,
-                HTTPHeaderField.locale.rawValue : MOLHLanguage.currentAppleLanguage()]
+                HTTPHeaderField.locale.rawValue : MOLHLanguage.currentAppleLanguage(),
+            HTTPHeaderField.locale.rawValue : MOLHLanguage.currentAppleLanguage()
+            ]
         case .deleteCartItem:
             return [
                 HTTPHeaderField.authentication.rawValue :" \(ContentType.token.rawValue)  \(UserDefaults.standard.string(forKey: Constants.Defaults.authToken) ?? "")",
                 HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue,
-                HTTPHeaderField.contentType.rawValue : ContentType.json.rawValue
+                HTTPHeaderField.contentType.rawValue : ContentType.json.rawValue,
+                  HTTPHeaderField.locale.rawValue : MOLHLanguage.currentAppleLanguage()
               
             ]
         case .searshItem:
@@ -295,7 +310,8 @@ enum APIRouter : URLRequestConvertible {
                 return [
                     HTTPHeaderField.authentication.rawValue :" \(ContentType.token.rawValue)  \(UserDefaults.standard.string(forKey: Constants.Defaults.authToken) ?? "")",
                     HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue,
-                    HTTPHeaderField.contentType.rawValue : ContentType.json.rawValue
+                    HTTPHeaderField.contentType.rawValue : ContentType.json.rawValue,
+                      HTTPHeaderField.locale.rawValue : MOLHLanguage.currentAppleLanguage()
                 ]
            
           
@@ -304,13 +320,15 @@ enum APIRouter : URLRequestConvertible {
                     return [
                         HTTPHeaderField.authentication.rawValue : " \(ContentType.token.rawValue) \(UserDefaults.standard.string(forKey: Constants.Defaults.authToken)!)",
                         HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue,
-                        HTTPHeaderField.contentType.rawValue : ContentType.json.rawValue
+                        HTTPHeaderField.contentType.rawValue : ContentType.json.rawValue,
+                          HTTPHeaderField.locale.rawValue : MOLHLanguage.currentAppleLanguage()
                     ]
                 }else {
                     return [
                         
                         HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue,
-                        HTTPHeaderField.contentType.rawValue : ContentType.json.rawValue
+                        HTTPHeaderField.contentType.rawValue : ContentType.json.rawValue,
+                          HTTPHeaderField.locale.rawValue : MOLHLanguage.currentAppleLanguage()
                     ]
                 }
             
@@ -341,7 +359,8 @@ enum APIRouter : URLRequestConvertible {
             return [
                 HTTPHeaderField.authentication.rawValue :" \(ContentType.token.rawValue)  \(UserDefaults.standard.string(forKey: Constants.Defaults.authToken) ?? "")",
                 HTTPHeaderField.acceptType.rawValue : ContentType.json.rawValue,
-                HTTPHeaderField.contentType.rawValue : ContentType.json.rawValue
+                HTTPHeaderField.contentType.rawValue : ContentType.json.rawValue,
+                  HTTPHeaderField.locale.rawValue : MOLHLanguage.currentAppleLanguage()
             ]
             
         }
