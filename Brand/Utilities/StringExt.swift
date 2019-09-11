@@ -18,6 +18,8 @@ extension String {
 }
 
 class YString {
+     static var male : String { return getText(key: "male") }
+     static var female : String { return getText(key: "female") }
     static var personal_information : String { return getText(key: "personal_information") }
     static var myAddresses : String { return getText(key: "myAddresses") }
     static var cart : String { return getText(key: "cart") }
@@ -75,6 +77,7 @@ class YString {
     static var serverError:String{return getText(key: "serverError")}
     static var firstNameMustBeGreaterThan3Char : String { return getText(key: "firstNameMustBeGreaterThan3Char" ) }
     static var lastNameMustBeGreaterThan3Char : String { return getText(key: "lastNameMustBeGreaterThan3Char") }
+    static var description : String { return getText(key: "description") }
     
     
     static func getText (key : String) -> String {
@@ -87,6 +90,15 @@ class YString {
         
     }
     static private let arString : [String : String] = [
+        "select_gender" : "اختر النوع",
+        "male" : "ذكر" ,
+        "female" : "انثي",
+         "select_billing_Methoud" : "يجب ان تختار طريقه الدفع",
+        "selectـShippingـMethoud" : "يجب ان تختار طريقه الشحن",
+        "select_Address" : "يجب ان تختار عنوان الشحن",
+        "photo_source" : "مصدر الصوره",
+        "choose_your_photo" : "اختر صورتك الشخصيه",
+        "no_image" : "لا يوجد صور",
         "apply" : "تنفيذ" ,
         "Search" :  "بحث",
         "Search filter" : "بحث متقدم",
@@ -248,7 +260,6 @@ class YString {
         "cancel" : "إلغاء",
         "email_not_valid" : "بريد الكترونى غير صالح",
         "notification" : "الإشعارات",
-        
         "my_reviews" : "تقيماتي",
         "get_started" : "فلنبدأ",
         "Email/phone" : "البريد الالكتروني/ الهاتف",
@@ -259,7 +270,7 @@ class YString {
         "latestProduct" : "المنتجات الاحدث",
         "popularProduct" : "المنتجات المشهوره",
         "flashSale" : "Flash sale",
-        "subCategorie" : "subCategorie",
+        "subCategorie" : "عناصر فرعيه",
         "browesBy" : "Browse by sub category",
         "stars" : "****************",
         "checkoutNow" : "Checkout Now",
@@ -276,15 +287,15 @@ class YString {
         "pleaseEnterValidEmail" : "من فضلك اضف ايميل صحيح",
         "passwordMustBeGreaterThan5Char" : "كلمة المرور لابد ان تكون اتكبر من ٥ حروف",
         "menu" : "القائمة",
-        "startShopping" : "Start shopping",
-        "yourCartIsEmpty" : "opps! Your cart is empty",
-        "savedItem":"Saved items",
-        "searchPlaceHolder":"What are you looking for?",
-        "notificationEmpty":"No notification yet",
-        "pleaseLoginFirst":"Please login first",
-        "savedItemEmpty":"oops! you didn't have any saved item yet.",
-        "cantDeleteMainAddress":"you can't delete your main address",
-         "thisYourMain":"This is your main address Already",
+        "startShopping" : "ابدا التسوق",
+        "yourCartIsEmpty" : "للاسف سله المشتريات فارغه",
+        "savedItem":"العناصر المحفوظه",
+        "searchPlaceHolder":"ما الذي تبحث عنه؟",
+        "notificationEmpty":"لا يوجد اشعارات بعد",
+        "pleaseLoginFirst":"من فضلك سجل دخول اولا",
+        "savedItemEmpty":"للآسف ليس لديك عناصر محفوظه ",
+        "cantDeleteMainAddress":"للآسف لاتستطيع حذف العنوان الاساسي",
+         "thisYourMain":"هذا بالفعل هو العنوان الاساسي",
         "validEmailOrPassword":"برجاء ادخال رقم هاتف او بريد الكتروني صحيح" ,
         "emptyPassword":"كلمة المرور مطلوبه",
         "serverError":"خطاء في التصال بمزود الخدمه",
@@ -300,6 +311,15 @@ class YString {
     ]
     
     static private let enString : [String : String] = [
+        "select_gender" : "Select gender" ,
+        "male" : "Male" ,
+        "female" : "Female",
+        "select_billing_Methoud" : "You Must select Your Billing Methoud",
+        "selectـShippingـMethoud" : "You Must select Your Shipping Methoud",
+         "select_Address" : "You Must select Your shipping Address",
+        "choose_your_photo" : "Choose your photo",
+        "photo_source" : "Photo source" ,
+        "no_image" : "There is no image" ,
         "shop" : "Shop now",
         "Search" : "Search" ,
         "apply" : "Apply" ,

@@ -69,7 +69,7 @@ class CartView : UIView  {
         heightConstrain?.isActive = true
         ItemsNum.anchor(top: nil, left: nil, bottom: nil, right: self.rightAnchor, centerX: nil, centerY: Totalsar.centerYAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight:16, width: 0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
         save.anchor(top: nil, left: self.leftAnchor, bottom: self.safeAreaLayoutGuide.bottomAnchor, right: self.rightAnchor, centerX: self.centerXAnchor, centerY: nil, paddingTop: 0, paddingLeft: 16, paddingBottom: 16, paddingRight: 16, width: 0, height: 45, paddingCenterX: 0, paddingCenterY: 0)
-        save.addTarget(actionDelegate, action: #selector(ButtonActionDelegate.saveButtonTapped), for: .touchDragInside)
+        save.addTarget(actionDelegate, action: #selector(ButtonActionDelegate.saveButtonTapped), for: .touchUpInside)
     }
     override init(frame: CGRect) {
         super.init(frame: frame)

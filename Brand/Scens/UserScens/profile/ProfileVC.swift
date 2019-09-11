@@ -89,23 +89,7 @@ class ProfileVC :UIViewController,ButtonActionDelegate {
     }
     private func accessUserInfoFields(){
         if toggle{
-            profileView.FirstTextFeild.isUserInteractionEnabled = true
-            profileView.FirstTextFeild.becomeFirstResponder()
-            profileView.LastTextFeild.isUserInteractionEnabled = true
-            profileView.EmailTextFeild.isUserInteractionEnabled = true
-            profileView.phoneTextFeild.isUserInteractionEnabled = true
-            profileView.dateTextFeild.isUserInteractionEnabled = true
-            
-            profileView.FirstTextFeild.textColor = .black
-            profileView.LastTextFeild.textColor = .black
-            profileView.EmailTextFeild.textColor = .black
-            profileView.phoneTextFeild.textColor = .black
-            profileView.dateTextFeild.textColor = .black
-            
-            profileView.Genderview.isEnabled = true
-            profileView.Genderview.setTitleColor(.black, for: .normal)
-            profileView.EditBtn.setImage(#imageLiteral(resourceName: "save - material"), for: .normal)
-            toggle = !toggle
+            self.change()
         }else{
             self.profileView.activityStartAnimating(activityColor: #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1), backgroundColor: .clear)
             if self.profileView.EmailTextFeild.isValidEmail(self.profileView.EmailTextFeild.text){
@@ -114,40 +98,24 @@ class ProfileVC :UIViewController,ButtonActionDelegate {
                                                               (ValidationType.Email ,profileView.EmailTextFeild.text!),(ValidationType.phone ,profileView.phoneTextFeild.text!) )
                     switch response {
                     case .success:
-                        
-                        profileView.FirstTextFeild.isUserInteractionEnabled = false
-                        profileView.LastTextFeild.isUserInteractionEnabled = false
-                        profileView.EmailTextFeild.isUserInteractionEnabled = false
-                        profileView.phoneTextFeild.isUserInteractionEnabled = false
-                        profileView.dateTextFeild.isUserInteractionEnabled = false
-                        profileView.Genderview.setTitleColor(.lightgray3, for: .normal)
-                        profileView.Genderview.isEnabled = false
-                        
-                        profileView.FirstTextFeild.textColor = .lightgray3
-                        profileView.LastTextFeild.textColor = .lightgray3
-                        profileView.EmailTextFeild.textColor = .lightgray3
-                        profileView.phoneTextFeild.textColor = .lightgray3
-                        profileView.dateTextFeild.textColor = .lightgray3
-                        
+
                         let date: [String] = user?.birthdate?.date.components(separatedBy: " ") ?? [""]
                         if self.user?.firstname == profileView.FirstTextFeild.text &&
                             self.user?.lastname == profileView.LastTextFeild.text &&
                             self.user?.email == profileView.EmailTextFeild.text &&
                             self.user?.phone == profileView.phoneTextFeild.text &&
                             date[0] == profileView.dateTextFeild.text &&
-                            (self.user?.gender == 1 && profileView.Genderview.titleLabel?.text == NSLocalizedString( "Male", comment: "")) || (self.user?.gender == 0 && profileView.Genderview.titleLabel?.text == "" ) ||
-                            ( self.user?.gender == 2 && profileView.Genderview.titleLabel?.text == NSLocalizedString( "Female", comment: "")){
+                            (self.user?.gender == 1 && profileView.Genderview.titleLabel?.text == YString.male) || (self.user?.gender == 0 && profileView.Genderview.titleLabel?.text == "" ) ||
+                            ( self.user?.gender == 2 && profileView.Genderview.titleLabel?.text == YString.female){
                             self.profileView.activityStopAnimating()
-                            toggle = !toggle
-                            profileView.EditBtn.setImage(#imageLiteral(resourceName: "edit"), for: .normal)
+                            self.change()
+                   
                         }else {
-                            toggle = !toggle
-                            profileView.EditBtn.setImage(#imageLiteral(resourceName: "edit"), for: .normal)
                             editeInfoRequest()
                         }
                     case .failure(_, let message):
-                        let alert = UIAlertController(title: NSLocalizedString( "Validation Message", comment: ""), message: message.localized(), preferredStyle: .alert)
-                        alert.addAction(UIAlertAction(title: NSLocalizedString( "ok", comment: ""), style: .cancel, handler: nil))
+                        let alert = UIAlertController(title: "Validation Message".localized, message: message.localized(), preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "ok".localized, style: .cancel, handler: nil))
                         self.present(alert, animated: true)
                         self.profileView.activityStopAnimating()
                         print(message.localized())
@@ -156,11 +124,7 @@ class ProfileVC :UIViewController,ButtonActionDelegate {
                 }
                 else if (profileView.LastTextFeild.text != "" || profileView.LastTextFeild.text != nil)
                 {
-//                    if profileView.LastTextFeild.isValidLastName(profileView.LastTextFeild.text!) == false{
-//                        createAlert(erroMessage: NSLocalizedString( "lastName_Validation", comment: ""))
-//                        return
-//                    }
-                    
+
                     if profileView.FirstTextFeild.text?.count ?? 0 < 3 {
                         createAlert(erroMessage: YString.firstNameMustBeGreaterThan3Char )
                         self.profileView.activityStopAnimating()
@@ -177,41 +141,24 @@ class ProfileVC :UIViewController,ButtonActionDelegate {
                                                               (ValidationType.phone ,profileView.phoneTextFeild.text!) )
                     switch response {
                     case .success:
-                        
-                        profileView.FirstTextFeild.isUserInteractionEnabled = false
-                        profileView.LastTextFeild.isUserInteractionEnabled = false
-                        profileView.EmailTextFeild.isUserInteractionEnabled = false
-                        profileView.phoneTextFeild.isUserInteractionEnabled = false
-                        profileView.dateTextFeild.isUserInteractionEnabled = false
-                        profileView.Genderview.setTitleColor(.lightgray3, for: .normal)
-                        profileView.Genderview.isEnabled = false
-                        
-                        profileView.FirstTextFeild.textColor = .lightgray3
-                        profileView.LastTextFeild.textColor = .lightgray3
-                        profileView.EmailTextFeild.textColor = .lightgray3
-                        profileView.phoneTextFeild.textColor = .lightgray3
-                        profileView.dateTextFeild.textColor = .lightgray3
-                        
                         let date: [String] = user?.birthdate?.date.components(separatedBy: " ") ?? [""]
                         if self.user?.firstname == profileView.FirstTextFeild.text &&
                             self.user?.lastname == profileView.LastTextFeild.text &&
                             self.user?.email == profileView.EmailTextFeild.text &&
                             self.user?.phone == profileView.phoneTextFeild.text &&
                             date[0] == profileView.dateTextFeild.text &&
-                            (self.user?.gender == 1 && profileView.Genderview.titleLabel?.text == NSLocalizedString( "Male", comment: "")) || (self.user?.gender == 0 && profileView.Genderview.titleLabel?.text == "" ) ||
-                            ( self.user?.gender == 2 && profileView.Genderview.titleLabel?.text == NSLocalizedString( "Female", comment: "")){
+                            (self.user?.gender == 1 && profileView.Genderview.titleLabel?.text == YString.male) || (self.user?.gender == 0 && profileView.Genderview.titleLabel?.text == "select_gender".localized ) ||
+                            ( self.user?.gender == 2 && profileView.Genderview.titleLabel?.text == YString.female ){
                             self.profileView.activityStopAnimating()
-                            toggle = !toggle
-                            profileView.EditBtn.setImage(#imageLiteral(resourceName: "edit"), for: .normal)
+                            self.change()
                         }else {
-                            toggle = !toggle
-                            profileView.EditBtn.setImage(#imageLiteral(resourceName: "edit"), for: .normal)
+                        
                             editeInfoRequest()
                         }
                     case .failure(_, let message):
                         
-                        let alert = UIAlertController(title: NSLocalizedString( "Validation Message", comment: ""), message: NSLocalizedString( message.rawValue, comment: ""), preferredStyle: .alert)
-                        alert.addAction(UIAlertAction(title: NSLocalizedString( "ok", comment: ""), style: .cancel, handler: nil))
+                        let alert = UIAlertController(title: "Validation Message".localized, message: message.rawValue.localized, preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "ok".localized, style: .cancel, handler: nil))
                         self.present(alert, animated: true)
                         self.profileView.activityStopAnimating()
                         print(message.localized())
@@ -221,7 +168,7 @@ class ProfileVC :UIViewController,ButtonActionDelegate {
                 
             }else{
                 self.profileView.activityStopAnimating()
-                self.createAlert(erroMessage: NSLocalizedString( "enter_valid_email", comment: ""))
+                self.createAlert(erroMessage: "enter_valid_email".localized)
             }
         }
     }
@@ -238,7 +185,12 @@ class ProfileVC :UIViewController,ButtonActionDelegate {
                 self.user = data.user
                 self.profileView.activityStopAnimating()
                 self.profileView.Namelabel.text =  "\(self.profileView.FirstTextFeild.text ?? "") \(self.profileView.LastTextFeild.text ?? "")"
-                self.createAlert(title: nil, erroMessage: data.message ?? "")
+                if data.errors == nil {
+                    self.change()
+                    self.createAlert(title: nil, erroMessage: data.message ?? "")
+                }else  {
+                    self.createAlert(title: nil, erroMessage: getError(error: data.errors!) )
+                }
             case .failure(let error):
                 self.profileView.activityStopAnimating()
                 print(error)
@@ -282,14 +234,15 @@ class ProfileVC :UIViewController,ButtonActionDelegate {
                                 self.profileView.lineView1.isHidden = false
                                 self.profileView.accountView.isHidden = false
                                 self.profileView.securityView.isHidden = false
+                                self.photoId = data.user?.photo?.id
                             }
                             let date: [String] = data.user?.birthdate?.date.components(separatedBy: " ") ?? [""]
                             self.profileView.dateTextFeild.text = date[0]
                             if data.user!.gender == 2 {
-                                self.profileView.Genderview.setTitle(NSLocalizedString( "Female", comment: ""), for: .normal)
+                                self.profileView.Genderview.setTitle(YString.female, for: .normal)
                                 self.gen = 2
                             }else if data.user!.gender == 1  {
-                                self.profileView.Genderview.setTitle(NSLocalizedString( "Male", comment: ""), for: .normal)
+                                self.profileView.Genderview.setTitle(YString.male, for: .normal)
                                 self.gen = 1
                             }
                         }else{
@@ -303,6 +256,53 @@ class ProfileVC :UIViewController,ButtonActionDelegate {
             }
         })
     }
+    func change(){
+        if self.toggle == false {
+            self.profileView.FirstTextFeild.isUserInteractionEnabled = false
+            self.profileView.LastTextFeild.isUserInteractionEnabled = false
+            self.profileView.EmailTextFeild.isUserInteractionEnabled = false
+            self.profileView.phoneTextFeild.isUserInteractionEnabled = false
+            self.profileView.dateTextFeild.isUserInteractionEnabled = false
+            self.profileView.Genderview.setTitleColor(.lightgray3, for: .normal)
+            self.profileView.Genderview.isEnabled = false
+            
+            self.profileView.FirstTextFeild.textColor = .lightgray3
+            self.profileView.LastTextFeild.textColor = .lightgray3
+            self.profileView.EmailTextFeild.textColor = .lightgray3
+            self.profileView.phoneTextFeild.textColor = .lightgray3
+            self.profileView.dateTextFeild.textColor = .lightgray3
+            self.toggle = !self.toggle
+            self.profileView.EditBtn.setImage(#imageLiteral(resourceName: "edit"), for: .normal)
+        }else{
+            self.profileView.FirstTextFeild.isUserInteractionEnabled = true
+            self.profileView.FirstTextFeild.becomeFirstResponder()
+            self.profileView.LastTextFeild.isUserInteractionEnabled = true
+            self.profileView.EmailTextFeild.isUserInteractionEnabled = true
+            self.profileView.phoneTextFeild.isUserInteractionEnabled = true
+            self.profileView.dateTextFeild.isUserInteractionEnabled = true
+            
+            self.profileView.FirstTextFeild.textColor = .black
+            self.profileView.LastTextFeild.textColor = .black
+            self.profileView.EmailTextFeild.textColor = .black
+            self.profileView.phoneTextFeild.textColor = .black
+            self.profileView.dateTextFeild.textColor = .black
+            
+            self.profileView.Genderview.isEnabled = true
+            self.profileView.Genderview.setTitleColor(.black, for: .normal)
+            self.profileView.EditBtn.setImage(#imageLiteral(resourceName: "save - material"), for: .normal)
+            self.toggle = !self.toggle
+        }
+        
+    }
+//    func getError (error : [String : [String]]) -> String {
+//        var   text = ""
+//        for (_,v) in error {
+//            for i in v {
+//                text += " \(i) "
+//            }
+//        }
+//        return text
+//    }
 }
 
 

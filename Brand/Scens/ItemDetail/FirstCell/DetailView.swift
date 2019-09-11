@@ -85,7 +85,7 @@ class DetailView: UIView {
         
     }
     func setLableTitles(){
-        let BrandattributedString = NSMutableAttributedString(string: "Brand : \(branTitle ?? "Apple")", attributes: [
+        let BrandattributedString = NSMutableAttributedString(string: "Brand : \(branTitle ?? "")", attributes: [
             .font: UIFont(name: "Avenir-Heavy", size: 14.0)!,
             .foregroundColor: UIColor.black
             ])
@@ -96,7 +96,7 @@ class DetailView: UIView {
         brandLable.attributedText = BrandattributedString
         
         
-        let attributedString = NSMutableAttributedString(string: "Made in : \(contryTitle ?? "France")", attributes: [
+        let attributedString = NSMutableAttributedString(string: "Made in : \(contryTitle ?? "")", attributes: [
             .font: UIFont(name: "Avenir-Heavy", size: 14.0)!,
             .foregroundColor: UIColor(white: 0.0, alpha: 1.0)
             ])
