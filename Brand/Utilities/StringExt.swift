@@ -90,6 +90,7 @@ class YString {
         
     }
     static private let arString : [String : String] = [
+        "Order review" : "مراجعه الطلب",
         "select_gender" : "اختر النوع",
         "male" : "ذكر" ,
         "female" : "انثي",
@@ -311,6 +312,7 @@ class YString {
     ]
     
     static private let enString : [String : String] = [
+         "Order review" : "Order review",
         "select_gender" : "Select gender" ,
         "male" : "Male" ,
         "female" : "Female",

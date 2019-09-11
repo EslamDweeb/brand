@@ -24,7 +24,7 @@ class CheckoutView : UIView {
             self.billingFee.Pricelabel.text = "\(order.billingMethod.fees)(+\(order.billingMethod.additionalTax) \("tax".localized))"
             self.totalView.namelabel.text = "total".localized
             self.totalView.Pricelabel.text = "\(order.totalPrice)"
-            self.subtotal.namelabel.text = "Subtotal".localized
+            self.subtotal.namelabel.text = "totalPrice".localized
             self.subtotal.Pricelabel.text = "\(order.totalCartItemsPrice)"
         }
     }
