@@ -76,13 +76,13 @@ class ShippingView :UIView {
     }()
     lazy var addnewaddBtn: GradBtn = {
         let button = GradBtn()
-        button.setTitle("Add New Address".localized, for: .normal)
+        button.setTitle("Add new address".localized, for: .normal)
         return button
     }()
     
     lazy var addresstext: DefaultLabel = {
         let lable = DefaultLabel()
-        lable.text = "You did Not have address yet".localized
+        lable.text = "didn’t_have_Address".localized
         return lable
     }()
     lazy var AddressImage: UIImageView = {
@@ -149,7 +149,6 @@ class ShippingView :UIView {
         viewwithAddress.addSubview(addressDescription)
         viewwithAddress.addSubview(defaultview)
         viewwithAddress.addSubview(changeBtn)
-       
        scrollView.addSubview(shippingMethodlbl)
         scrollView.addSubview(shippingCollectionview)
         scrollView.addSubview(save)
@@ -190,7 +189,7 @@ class ShippingView :UIView {
         shippingMethodlbl.anchor(top: nil, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
         topConstrainshippinglabel = shippingMethodlbl.topAnchor.constraint(equalTo: viewnoaddress.bottomAnchor, constant:100)
         topConstrainshippinglabel?.isActive = true
-       shippingCollectionview.anchor(top: shippingMethodlbl.bottomAnchor, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, centerX: nil, centerY: nil, paddingTop: 16, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
+       shippingCollectionview.anchor(top: shippingMethodlbl.bottomAnchor, left: self.leftAnchor, bottom: scrollView.bottomAnchor, right: self.rightAnchor, centerX: nil, centerY: nil, paddingTop: 16, paddingLeft: 8, paddingBottom: 70, paddingRight: 8, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         HeightConstrain = shippingCollectionview.heightAnchor.constraint(equalToConstant: 0)
         HeightConstrain?.isActive = true
         save.anchor(top: nil, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, centerX: nil, centerY: nil, paddingTop: 16, paddingLeft: 8, paddingBottom: 24, paddingRight: 8, width: 0, height: 45, paddingCenterX: 0, paddingCenterY: 0)
