@@ -90,12 +90,13 @@ class YString {
         
     }
     static private let arString : [String : String] = [
+        "Order review" : "مراجعه الطلب",
         "select_gender" : "اختر النوع",
         "male" : "ذكر" ,
         "female" : "انثي",
          "select_billing_Methoud" : "يجب ان تختار طريقه الدفع",
         "selectـShippingـMethoud" : "يجب ان تختار طريقه الشحن",
-        "select_Address" : "يجب ان تختار عنوان الشحن",
+        "selectـAddress" : "يجب ان تختار عنوان الشحن",
         "photo_source" : "مصدر الصوره",
         "choose_your_photo" : "اختر صورتك الشخصيه",
         "no_image" : "لا يوجد صور",
@@ -273,7 +274,7 @@ class YString {
         "subCategorie" : "عناصر فرعيه",
         "browesBy" : "Browse by sub category",
         "stars" : "****************",
-        "checkoutNow" : "Checkout Now",
+        "checkoutNow" : "الدفع الآن",
         "productOptions" : "خيارات المنتج",
         "itemPrice" : "سعر المنتج",
         "quantity" : "الكمية",
@@ -285,7 +286,7 @@ class YString {
         "socialSignUp" : "تسجيل الدخول",
         "sign_up" : "تسجيل الدخول",
         "pleaseEnterValidEmail" : "من فضلك اضف ايميل صحيح",
-        "passwordMustBeGreaterThan5Char" : "كلمة المرور لابد ان تكون اتكبر من ٥ حروف",
+        "passwordMustBeGreaterThan5Char" : "كلمة المرور لابد ان تكون اكبر من ٥ حروف",
         "menu" : "القائمة",
         "startShopping" : "ابدا التسوق",
         "yourCartIsEmpty" : "للاسف سله المشتريات فارغه",
@@ -311,12 +312,13 @@ class YString {
     ]
     
     static private let enString : [String : String] = [
+         "Order review" : "Order review",
         "select_gender" : "Select gender" ,
         "male" : "Male" ,
         "female" : "Female",
         "select_billing_Methoud" : "You Must select Your Billing Methoud",
         "selectـShippingـMethoud" : "You Must select Your Shipping Methoud",
-         "select_Address" : "You Must select Your shipping Address",
+         "selectـAddress" : "You Must select Your shipping Address",
         "choose_your_photo" : "Choose your photo",
         "photo_source" : "Photo source" ,
         "no_image" : "There is no image" ,

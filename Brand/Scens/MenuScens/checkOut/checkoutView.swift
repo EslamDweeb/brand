@@ -24,14 +24,14 @@ class CheckoutView : UIView {
             self.billingFee.Pricelabel.text = "\(order.billingMethod.fees)(+\(order.billingMethod.additionalTax) \("tax".localized))"
             self.totalView.namelabel.text = "total".localized
             self.totalView.Pricelabel.text = "\(order.totalPrice)"
-            self.subtotal.namelabel.text = "Subtotal".localized
+            self.subtotal.namelabel.text = "totalPrice".localized
             self.subtotal.Pricelabel.text = "\(order.totalCartItemsPrice)"
         }
     }
     
     lazy var  navView:GradNavView = {
         let navView = GradNavView()
-        navView.titlelabel.text = "Checkout".localized
+        navView.titlelabel.text = "Shipping".localized
         navView.backBtn.addTarget(self.actionDelegete, action: #selector(ButtonActionDelegate.dissmisController), for: .touchUpInside)
         return navView
     }()

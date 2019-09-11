@@ -98,7 +98,7 @@ class checkoutVC : UIViewController ,ButtonActionDelegate{
                     let view = productCheckout()
                     view.namelabel.text = i.name
                     view.Qlabel.text  = "\(i.qty!)"
-                    view.Pricelabel.text  = "\(i.totalQtyPrice!)"
+                    view.Pricelabel.text  = "\(i.itemOverallPrice!)"
                     return view
                 }()
                 self.mainView.orderitemsview.addSubview(addview)

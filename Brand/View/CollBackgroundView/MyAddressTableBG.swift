@@ -24,7 +24,7 @@ class MyAddressTableBG : UIView{
     }()
     lazy var addbtn: GradBtn = {
         let button = GradBtn()
-        button.setTitle("New Address".localized, for: .normal)
+        button.setTitle("Add new address".localized, for: .normal)
         return button
     }()
     override init(frame: CGRect) {

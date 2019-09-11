@@ -16,6 +16,8 @@ class ViewAddToCart : UIView {
     var bottomHeightContainerView : NSLayoutConstraint?
     var centerYContainerView : NSLayoutConstraint?
     
+    var completion : ( ()->Void )?
+    
     lazy var scrollView : UIScrollView = {
        let s = UIScrollView()
         s.layer.cornerRadius = 25
@@ -342,6 +344,7 @@ class ViewAddToCart : UIView {
     }
     
     @objc private func dismiss () {
+        completion?()
         self.removeFromSuperview()
     }
     
