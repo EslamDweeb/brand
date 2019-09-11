@@ -144,16 +144,16 @@ enum APIRouter : URLRequestConvertible {
             return "/api/cart-items/\(id)"
         case .searshItem(let name?, let tag? , let brand ,let origin , let price , let rate ,let show, let page ):
             
-             return "/api/configs?show=\(show)&brands=\(brand)&origin=\(origin)&price_between=\(price)&rate=\(rate)&name=\(name)&page=\(page)&with-tags=\(tag)&criteria=app"
+             return "/api/configs?show=\(show)&brands=\(brand)&origin=\(origin)&price_between=\(price)&rate=\(rate)&name=\(name)&page=\(page)&with-tags=\(tag)"
         case .searshItem(let name? , .none , let brand ,let origin , let price , let rate ,let show, let page ):
             
-            return "/api/configs?show=\(show)&brands=\(brand)&origin=\(origin)&price_between=\(price)&rate=\(rate)&name=\(name)&page=\(page)&criteria=app"
+            return "/api/configs?show=\(show)&brands=\(brand)&origin=\(origin)&price_between=\(price)&rate=\(rate)&name=\(name)&page=\(page)"
         case .searshItem( .none , let tag? , let brand ,let origin , let price , let rate ,let show, let page ):
             
-            return "/api/configs?show=\(show)&brands=\(brand)&origin=\(origin)&price_between=\(price)&rate=\(rate)&page=\(page)&with-tags=\(tag)&criteria=app"
+            return "/api/configs?show=\(show)&brands=\(brand)&origin=\(origin)&price_between=\(price)&rate=\(rate)&page=\(page)&with-tags=\(tag)"
         case .searshItem( .none , .none , let brand ,let origin , let price , let rate ,let show, let page ):
             
-            return "/api/configs?show=\(show)&brands=\(brand)&origin=\(origin)&price_between=\(price)&rate=\(rate)&page=\(page)&criteria=app"
+            return "/api/configs?show=\(show)&brands=\(brand)&origin=\(origin)&price_between=\(price)&rate=\(rate)&page=\(page)"
         case .getProductFilter:
             return "/api/product-filters"
         case .addToCart :

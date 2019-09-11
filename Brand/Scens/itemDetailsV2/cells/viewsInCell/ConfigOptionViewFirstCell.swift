@@ -10,28 +10,20 @@ import UIKit
 
 
 protocol DelegateConfigOptionViewFirstCell : class {
-    func selectedConfigOptions (selectedDec : [String:Int])
+    func selectedConfigOptions (selectedDec : [String:Int] , selectedOptionID : Int )
 }
 
 class ConfigOptionViewFirstCell : UITableView {
     
     var selectedDec = [String:Int]()
-    var configOptionArray:[ConfigOption] = [
-        ConfigOption(id: 1, name: "first", input: Input(name: "", type: ""),
-                     values: [ConfigOptionValue(id: 11, value: "value1 jkrebgve rkjerbg eruger k", available: true , selected: false) , ConfigOptionValue(id: 12, value: "value2", available: true , selected: true)] ) ,
-        ConfigOption(id: 2, name: "second", input: Input(name: "", type: ""),
-                     values: [ConfigOptionValue(id: 21, value: "value4", available: true , selected: true ) , ConfigOptionValue(id: 22, value: "value5", available: true , selected: false)] ) ,
-        ConfigOption(id: 3, name: "third", input: Input(name: "", type: ""),
-                     values: [ConfigOptionValue(id: 31, value: "value8", available: true , selected: true ) , ConfigOptionValue(id: 32, value: "value9", available: true , selected: false)] )
-        
-    
-        ] {
+    var configOptionArray:[ConfigOption] = [] {
         didSet{
             configOptionArray.forEach { (item) in
                 if let s = item.values.filter({$0.selected == true }).first {
                     selectedDec.updateValue(s.id , forKey: item.name )
                 }
             }
+            self.reloadData()
         }
     }
     var heightTableConfigs : NSLayoutConstraint?
@@ -57,11 +49,11 @@ class ConfigOptionViewFirstCell : UITableView {
 
 extension ConfigOptionViewFirstCell : UITableViewDelegate , UITableViewDataSource , DelegateCellTableConfigOptionsFirstCell {
     
-    func selectedConfigOptions(configOptions: ConfigOption) {
+    func selectedConfigOptions(configOptions: ConfigOption , selectedOptionID : Int ) {
         if let s = configOptions.values.filter({$0.selected == true }).first {
              selectedDec.updateValue( s.id , forKey: configOptions.name)
             // print("selected dec : \(selectedDec)")
-            delegateConfigOption?.selectedConfigOptions(selectedDec: selectedDec )
+            delegateConfigOption?.selectedConfigOptions(selectedDec: selectedDec , selectedOptionID: selectedOptionID )
         }
         
     }

@@ -9,7 +9,7 @@
 import UIKit
 
 protocol DelegateCellTableConfigOptionsFirstCell : class  {
-    func selectedConfigOptions (configOptions : ConfigOption )
+    func selectedConfigOptions (configOptions : ConfigOption , selectedOptionID : Int )
 }
 
 class CellTableConfigOptionsFirstCell : UITableViewCell {
@@ -112,7 +112,7 @@ extension CellTableConfigOptionsFirstCell : UICollectionViewDelegate , UICollect
                 configOption?.values.remove(at: indexPath.row )
                 configOption?.values.insert(value!, at: indexPath.row )
                 collectionView.reloadData()
-                delegate?.selectedConfigOptions(configOptions: configOption! )
+                delegate?.selectedConfigOptions(configOptions: configOption! , selectedOptionID : value?.id ?? 0  )
             }
             
         }

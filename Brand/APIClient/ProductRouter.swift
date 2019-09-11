@@ -63,9 +63,9 @@ enum ProductRouter:URLRequestConvertible {
         case .getCategoryInfo(let slug):
             return "/api/categories/\(slug)"
         case .getCategoryProduct(let slug):
-            return "/api/configs?category=\(slug)&criteria=app"
+            return "/api/configs?category=\(slug)"
         case .getWishlist(let pageNumber):
-            return "/api/favorite?type=config&page=\(pageNumber)&criteria=app"
+            return "/api/favorite?type=config&page=\(pageNumber)"
         case .getCartData(let pageNumber):
             return "/api/cart-items?page=\(pageNumber)"
         case .getExploreData:
@@ -73,17 +73,17 @@ enum ProductRouter:URLRequestConvertible {
         case .getFlashData:
             return "/api/flash"
         case .getAllProductConfigs(let slug,let pageNumber):
-            return "/api/configs?brands=\(slug)&page=\(pageNumber)&criteria=app"
+            return "/api/configs?brands=\(slug)&page=\(pageNumber)"
         case .toggleFav(let id):
             return "/api/favorite/configs/\(id)"
         case .getitemDetail(let slug):
-            return "/api/configs/\(slug)&criteria=app"
+            return "/api/configs/\(slug)"
         case .getConfigReview(let id,let pageNumber):
             return "/api/ratingables?type=catalog&id=\(id)&page=\(pageNumber)"
         case .getConfigRating(let id):
             return "/api/model-ratings/\(id)"
         case .getSeeAllProduct(let key,let pageNumber):
-            return "/api/configs?show=\(key)&page=\(pageNumber)&criteria=app"
+            return "/api/configs?show=\(key)&page=\(pageNumber)"
         case .getFlashHeader:
             return "/api/settings?type=flash_offer_header"
         case .getSelctedConfigSlug(let productID,let clickedID,let values):

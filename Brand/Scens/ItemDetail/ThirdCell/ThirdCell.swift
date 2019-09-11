@@ -10,8 +10,25 @@ import UIKit
 
 class ThirdCell:UICollectionViewCell,ButtonActionDelegate{
     let cellID = "cellID"
+    private var heightCollectionReviews : NSLayoutConstraint?
     var handelAddReviewButtonTapped:(() -> ())?
     var handelPaging:(()->())?
+    
+    lazy var scrollView : UIScrollView = {
+       let s = UIScrollView()
+        s.addSubview(self.parentInScrollView)
+        self.parentInScrollView.anchor(top: s.topAnchor , leading: s.leadingAnchor , bottom: s.bottomAnchor , trailing: s.trailingAnchor )
+        self.parentInScrollView.widthAnchor.constraint(equalTo: s.widthAnchor , multiplier: 1).isActive = true
+        
+        return s
+    }()
+    
+    lazy var parentInScrollView : UIView = {
+       let v = UIView()
+        return v
+    }()
+    
+    
     lazy var header = ThirdCellHeadView(buttonActionDelegate: self)
     lazy var reviews = [Ratingable]()
 //    var shouldShowLoadingCell = false
@@ -30,11 +47,16 @@ class ThirdCell:UICollectionViewCell,ButtonActionDelegate{
     }()
     override init(frame: CGRect) {
         super.init(frame: frame)
-        addSubview(header)
-        addSubview(reviewCollectionView)
-        header.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 32, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 200, paddingCenterX: 0, paddingCenterY: 0)
-        reviewCollectionView.anchor(top: header.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
-        reviewCollectionView.heightAnchor.constraint(equalToConstant: 800).isActive = true
+        addSubview(scrollView)
+        parentInScrollView.addSubview(header)
+        parentInScrollView.addSubview(reviewCollectionView)
+        
+        scrollView.anchor(top: self.topAnchor , leading: self.leadingAnchor , bottom: self.bottomAnchor , trailing: self.trailingAnchor )
+        
+        header.anchor(top: parentInScrollView.topAnchor, left: parentInScrollView.leftAnchor, bottom: nil, right: parentInScrollView.rightAnchor , centerX: nil, centerY: nil, paddingTop: 32, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 200, paddingCenterX: 0, paddingCenterY: 0)
+        reviewCollectionView.anchor(top: header.bottomAnchor, left: parentInScrollView.leftAnchor, bottom: parentInScrollView.bottomAnchor , right: parentInScrollView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 8 , paddingRight: 8, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
+        heightCollectionReviews = reviewCollectionView.heightAnchor.constraint(equalToConstant: 50 )
+        heightCollectionReviews?.isActive = true
         self.backgroundColor = .white
     }
     
@@ -43,6 +65,8 @@ class ThirdCell:UICollectionViewCell,ButtonActionDelegate{
     }
 }
 extension ThirdCell:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
+    
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return reviews.count
     }
@@ -69,6 +93,7 @@ extension ThirdCell:UICollectionViewDelegate,UICollectionViewDataSource,UICollec
     }
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         self.handelPaging?()
+        heightCollectionReviews?.constant = collectionView.contentSize.height + 10 
     }
     func addBtn() {
         self.handelAddReviewButtonTapped?()
