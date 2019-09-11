@@ -544,10 +544,10 @@
 		2D1625A622D6016100F2B50E /* Cart */ = {
 			isa = PBXGroup;
 			children = (
-				2D32B87622C0F1E800513DD4 /* Cart_Ex.swift */,
 				2D7A62D922C0FA8B00AF4E78 /* CartCell.swift */,
 				2D7A62E722C0FA8B00AF4E78 /* CartView.swift */,
 				2D32B90622C0F20D00513DD4 /* CarController.swift */,
+				2D32B87622C0F1E800513DD4 /* Cart_Ex.swift */,
 			);
 			path = Cart;
 			sourceTree = "<group>";
