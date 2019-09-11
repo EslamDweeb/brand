@@ -35,7 +35,8 @@ class HeaderViewItemDetails : UIView {
         lable.font = UIFont(name: "Avenir-Heavy", size: 16)
         lable.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.6999411387)
         lable.textAlignment = .center
-        lable.text = "fdslhinflkdsnlk"
+        lable.numberOfLines = 0
+        lable.text = "fdslhinflkdsnlk,ueshdhfdsuifhdsc,ndsukfhednsfdsfkleifdhs,dfdnsfiesdhf,sdfsdhfoehdsfesidhdsfhusdh,sdf,hdsfh"
         return lable
     }()
     lazy var finalPriceLable:UILabel = {
@@ -55,7 +56,7 @@ class HeaderViewItemDetails : UIView {
     }()
     lazy var discountLbl: DiscountLable = {
         let lbl = DiscountLable()
-        lbl.text = "30"
+        lbl.text = "30%"
         lbl.backgroundColor = .pink
         return lbl
     }()
@@ -74,7 +75,7 @@ class HeaderViewItemDetails : UIView {
         let lable = UILabel()
         lable.font = UIFont(name: "Avenir-Medium", size: 11)
         lable.textColor = UIColor.lightDarkGray
-        lable.text = "200"
+        lable.text = "(200 users)"
         return lable
     }()
     lazy var customtabBar = CustomTabBar(actionDelegate: actionDelegate!)
@@ -90,6 +91,18 @@ class HeaderViewItemDetails : UIView {
         btn.setImage(image, for: .normal)
         btn.addTarget(actionDelegate, action: #selector(ButtonActionDelegate.flowButtonTapped(_:)), for: .touchUpInside)
         return btn
+    }()
+    lazy var horizontalStackView:UIStackView = {
+        let stack = UIStackView()
+        stack.addArrangedSubview(priceLable)
+        stack.addArrangedSubview(discountLbl)
+        stack.addArrangedSubview(rateView)
+        stack.addArrangedSubview(numberOFReviewerLable)
+        //stack.distribution = .fillEqually
+        stack.axis = .horizontal
+        stack.alignment = .center
+        stack.spacing = 5
+        return stack
     }()
     
     init(_ buttonAction:ButtonActionDelegate) {
@@ -115,26 +128,21 @@ class HeaderViewItemDetails : UIView {
         addSubview(customtabBar)
         addSubview(favBtn)
         addSubview(cartBtn)
-        addSubview(priceLable)
-        addSubview(discountLbl)
-        addSubview(rateView)
-        addSubview(numberOFReviewerLable)
+        addSubview(horizontalStackView)
+//        addSubview(priceLable)
+//        addSubview(discountLbl)
+//        addSubview(rateView)
+//        addSubview(numberOFReviewerLable)
     }
     private func addConstraintsToSubViews(){
-        imageCollectionView.anchor(top: safeAreaLayoutGuide.topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 230, paddingCenterX: 0, paddingCenterY: 0)
-        pageControl.anchor(top: nil, left: nil, bottom: imageCollectionView.bottomAnchor, right:nil, centerX: centerXAnchor, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 6, paddingRight: 0, width: 0 , height: 0, paddingCenterX: 0, paddingCenterY: 0)
-        titlelable.anchor(top: imageCollectionView.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
-        priceLable.anchor(top: titlelable.bottomAnchor, left: nil, bottom: nil, right: nil, centerX: centerXAnchor, centerY: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 50, height: 20, paddingCenterX: -70, paddingCenterY: 0)
-        //priceLable.leftAnchor.constraint(equalTo: leftAnchor, constant: 64).isActive = true
-        discountLbl.anchor(top: nil, left: priceLable.rightAnchor, bottom: nil, right: nil, centerX: nil, centerY: priceLable.centerYAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 42, height: 20, paddingCenterX: 0, paddingCenterY: 0)
-        rateView.anchor(top: nil, left: discountLbl.rightAnchor, bottom: nil, right: nil, centerX: nil, centerY: discountLbl.centerYAnchor, paddingTop: 0, paddingLeft:8, paddingBottom: 0, paddingRight: 0, width: 65, height: 20, paddingCenterX: 0, paddingCenterY: 5)
-        numberOFReviewerLable.anchor(top: nil, left: rateView.rightAnchor, bottom: nil, right: nil, centerX: nil, centerY: priceLable.centerYAnchor, paddingTop: 0, paddingLeft: 2, paddingBottom: 0, paddingRight: 0, width: 50, height: 20, paddingCenterX: 0, paddingCenterY: 0)
-        finalPriceLable.anchor(top: priceLable.bottomAnchor, left: nil, bottom: nil, right: nil, centerX: centerXAnchor, centerY: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 100, height: 30, paddingCenterX: 0, paddingCenterY: 0)
-        customtabBar.anchor(top: finalPriceLable.bottomAnchor, left: leftAnchor, bottom: bottomAnchor , right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 50, paddingCenterX: 0, paddingCenterY: 0)
-        
-        cartBtn.anchor(top: nil , left: leftAnchor , bottom: bottomAnchor , right: nil , centerX: nil , centerY: nil , paddingTop: 0, paddingLeft: 0 , paddingBottom: 25 , paddingRight: 16 , width: 45, height: 45, paddingCenterX: 0, paddingCenterY: 0)
-        
-        favBtn.anchor(top: nil , left: nil , bottom: bottomAnchor , right: rightAnchor , centerX: nil , centerY: nil , paddingTop: 0, paddingLeft: 0 , paddingBottom: 25 , paddingRight: 16 , width: 45, height: 45, paddingCenterX: 0, paddingCenterY: 0)
+        imageCollectionView.anchor(top: safeAreaLayoutGuide.topAnchor, leading: leadingAnchor, trailing: trailingAnchor,  height: 230)
+        pageControl.anchor( bottom: imageCollectionView.bottomAnchor,centerX: centerXAnchor, paddingBottom: 6)
+        titlelable.anchor(top: imageCollectionView.bottomAnchor, leading: leadingAnchor, bottom:horizontalStackView.topAnchor ,trailing: trailingAnchor, paddingTop: 8, paddingLeft: 8,paddingBottom:8,paddingRight: 8)
+        horizontalStackView.anchor(top: titlelable.bottomAnchor,  centerX: centerXAnchor, paddingTop: 8)
+        finalPriceLable.anchor(top: horizontalStackView.bottomAnchor,leading: leadingAnchor, bottom: customtabBar.topAnchor, trailing: trailingAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 8, paddingRight: 8)
+       customtabBar.anchor(leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor, height: 50)
+        cartBtn.anchor(leading: leadingAnchor,bottom: bottomAnchor,paddingBottom:25 ,paddingRight: 16, width: 45, height: 45)
+        favBtn.anchor(bottom: bottomAnchor, trailing: trailingAnchor,paddingBottom:25 ,paddingRight: 16, width: 45, height: 45)
     }
 }
 

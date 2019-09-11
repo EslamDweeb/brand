@@ -29,20 +29,22 @@ class  CartCell: UITableViewCell {
             brandName.text = cart.config.brand?.name ??  ""
             productName.text = cart.config.name
             if Double(cart.config.sale) != 0 {
-                var price = cart.itemOverallPrice
-                cart.selectedOptions?.forEach({ (item) in
-                    price = price + Double(item.addsPrice)
-                })
+               // var price = cart.itemOverallPrice
+//                cart.selectedOptions?.forEach({ (item) in
+//                    price = price + Double(item.addsPrice)
+//                })
                 discountLbl.text = cart.config.ReturnPricepersent(sale: Double(cart.config.sale))
-                discountPrice.text = "\(cart.config.ReturnTotalPriceAfterSale(price: price , QTY: Double(cart.qty))) \("sar".localized)"
+//                discountPrice.text = "\(cart.config.ReturnTotalPriceAfterSale(price: price , QTY: Double(cart.qty))) \("sar".localized)"
+                discountPrice.text = "\(cart.totalCartItemsPrice) \("sar".localized)"
                 priceLbl.setAttributeStringWithStrike("\(cart.config.price) \("sar".localized)")
             }else{
-                var price = cart.config.price
-                cart.selectedOptions?.forEach({ (item) in
-                    price = price + Double(item.addsPrice)
-                })
+//                var price = cart.config.price
+//                cart.selectedOptions?.forEach({ (item) in
+//                    price = price + Double(item.addsPrice)
+//                })
                 discountLbl.isHidden = true
-                discountPrice.text = "\(cart.config.ReturnTotalPriceAfterSale(price: price , QTY: Double(cart.qty))) \("sar".localized)"
+//                discountPrice.text = "\(cart.config.ReturnTotalPriceAfterSale(price: price , QTY: Double(cart.qty))) \("sar".localized)"
+                  discountPrice.text = "\(cart.totalCartItemsPrice)\("sar".localized)"
                 priceLbl.isHidden = true
             }
             QTY.text = "\("QTY".localized) \(cart.qty)"

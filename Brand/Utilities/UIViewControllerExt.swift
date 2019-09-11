@@ -177,6 +177,16 @@ extension UIViewController {
     func addViewAddToCart (config : DetailedConfig? = nil  , cartItem : CartItem? = nil , slug : String? = nil  ) {
         
         let viewAddToCart = ViewAddToCart()
+        viewAddToCart.completion = { [weak self] () in
+            guard let self = self else{return}
+            
+            //if self is CartController {
+                self.viewWillAppear(true)
+          //  }else {
+           //     print("viewWillAppear")
+          //  }
+            
+        }
         var viewPresenter : ProAddToCartPresenter?
         
         if config == nil && cartItem != nil {

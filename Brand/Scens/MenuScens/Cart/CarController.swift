@@ -55,7 +55,6 @@ class CartController : UIViewController ,ButtonActionDelegate{
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         getCartData(true)
     }
     override func viewWillDisappear(_ animated: Bool) {
