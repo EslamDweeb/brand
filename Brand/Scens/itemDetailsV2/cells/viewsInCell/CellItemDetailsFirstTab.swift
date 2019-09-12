@@ -11,7 +11,7 @@ import UIKit
 class CellItemDetailsFirstTab : UICollectionViewCell {
     
     
-    lazy private var scrollView : UIScrollView = {
+    lazy var scrollView : UIScrollView = {
         let s = UIScrollView()
         s.addSubview(self.parentInScrollView)
         self.parentInScrollView.anchor(top: s.topAnchor , leading: s.leadingAnchor , bottom: s.bottomAnchor , trailing: s.trailingAnchor )

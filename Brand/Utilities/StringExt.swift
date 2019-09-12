@@ -80,6 +80,7 @@ class YString {
     static var firstNameMustBeGreaterThan3Char : String { return getText(key: "firstNameMustBeGreaterThan3Char" ) }
     static var lastNameMustBeGreaterThan3Char : String { return getText(key: "lastNameMustBeGreaterThan3Char") }
     static var description : String { return getText(key: "description") }
+    static var errorHappen : String { return getText(key: "errorHappen") }
     
     
     static func getText (key : String) -> String {
@@ -310,7 +311,8 @@ class YString {
         "errorAddingProductToCart" : "خطا في اضافة المنتج الي العربه" ,
         "thisProductIsAlreadyInCart" : "هذا المنتج موجود ف العربة",
         "firstNameMustBeGreaterThan3Char" : "الاسم الاول لابد ان يكون اكبر من ٣ احرف" ,
-        "lastNameMustBeGreaterThan3Char" : "الاسم الاخير لابد ان يكون اكبر من ٣ احرف"
+        "lastNameMustBeGreaterThan3Char" : "الاسم الاخير لابد ان يكون اكبر من ٣ احرف" ,
+        "errorHappen" : "حدث خطا ما، حاول مره اخري"
         
         
         
@@ -536,7 +538,8 @@ class YString {
         "thisProductIsAlreadyInCart" : "This product is already in cart",
         "emptyPassword":"Password Field is Requird",
         "firstNameMustBeGreaterThan3Char" : "First name must be greater than 3 char" ,
-        "lastNameMustBeGreaterThan3Char" : "Last name must be greater than 3 char"
+        "lastNameMustBeGreaterThan3Char" : "Last name must be greater than 3 char" ,
+        "errorHappen" : "Error happen, please try again"
         
     ]
      

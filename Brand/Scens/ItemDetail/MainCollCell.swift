@@ -57,7 +57,7 @@ class MainCollCell:UICollectionViewCell,UICollectionViewDelegate,UICollectionVie
         case 0:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: firstCell, for: indexPath)as? FirstCell else{return UICollectionViewCell()}
             cell.connectDelegate = self
-            cell.getDetailViewData(brandName:itemDetails?.config.brand?.name ?? "",madeIN: itemDetails?.config.madeIn ?? "",tags:itemDetails?.config.tags ?? [])
+            cell.getDetailViewData(brandName:itemDetails?.config.brand?.name ?? "" , madeIN: itemDetails?.config.madeIn ?? "",tags:itemDetails?.config.tags ?? [])
             cell.getDescriptionViewData(description:itemDetails?.config.configDescription ?? "")
             cell.getFooterViewData(configs: itemDetails?.config.relatedProducts ?? [], simpleConfig: nil)
             cell.configOptionArray = itemDetails?.config.configOptions

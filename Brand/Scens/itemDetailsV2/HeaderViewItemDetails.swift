@@ -13,6 +13,8 @@ class HeaderViewItemDetails : UIView {
     let cellID = "cellID"
     weak var actionDelegate:ButtonActionDelegate?
     
+    var imagesSlide : [Media] = []
+    
     lazy var imageCollectionView:UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -144,17 +146,40 @@ class HeaderViewItemDetails : UIView {
         cartBtn.anchor(leading: leadingAnchor,bottom: bottomAnchor,paddingBottom:25 ,paddingRight: 16, width: 45, height: 45)
         favBtn.anchor(bottom: bottomAnchor, trailing: trailingAnchor,paddingBottom:25 ,paddingRight: 16, width: 45, height: 45)
     }
+    
+    
+    func setData(rating:Double,numberOfuserRating:Double,price:Float,sale:Float,name:String,numberOfPages:Int){
+        self.rateView.rating = rating
+        self.titlelable.text = name
+        self.priceLable.setAttributeStringWithStrike("\(price)")
+        self.discountLbl.text = ReturnPricepersent(sale: Double(sale))
+        self.numberOFReviewerLable.text = "(\(numberOfuserRating) user)"
+        self.finalPriceLable.text = "\(getFinalPrice(price:Double(price), sale: Double(sale)))"
+        self.pageControl.numberOfPages = numberOfPages
+    }
+    private func getFinalPrice(price:Double,sale:Double) -> Double{
+        //        "\(con.ReturnPriceAfterSale(price: con.price , sale: Double(con.sale).roundToDecimal(3))) \("sar".localized)"
+        
+        return (price - (price * sale).roundToDecimal(1))
+        // return price - (price * (sale ?? 1))
+    }
+    func ReturnPricepersent(sale:Double) -> String{
+        return "\( Int(Double(round(sale * 100) / 100).roundToDecimal(1) * 100)) %"
+    }
+    
 }
 
 // Don't forget PageController number of pages
 extension HeaderViewItemDetails :UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return imagesSlide.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as? BannerCell else{return UICollectionViewCell()}
+        let path = imagesSlide[indexPath.row].path
+        cell.bannerImage.kf.setImage(with: URL(string: path)! )
         cell.bannerImage.contentMode = .scaleAspectFit
         return cell
     }
