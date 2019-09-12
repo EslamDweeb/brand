@@ -32,7 +32,7 @@ class ItemDetailHeaderView: UIView {
     lazy var backBtn: UIButton = {
         let button = UIButton()
         button.setImage(#imageLiteral(resourceName: "arrowLeftAnticon"), for: .normal)
-        //button.imageEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        button.imageEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         button.addTarget(actionDelegate, action: #selector(ButtonActionDelegate.dissmisController), for: .touchUpInside)
         return button
     }()
@@ -137,8 +137,8 @@ class ItemDetailHeaderView: UIView {
     }
     private func addConstraintsToSubViews(){
         imageCollectionView.anchor(top: safeAreaLayoutGuide.topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 230, paddingCenterX: 0, paddingCenterY: 0)
-        backBouttonRoundView.anchor(top: safeAreaLayoutGuide.topAnchor, left: leftAnchor, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 16, paddingBottom: 0, paddingRight: 0, width: 30, height: 30, paddingCenterX: 0, paddingCenterY: 0)
-        backBtn.anchor(centerX: backBouttonRoundView.centerXAnchor, centerY: backBouttonRoundView.centerYAnchor)
+        backBouttonRoundView.anchor(top: safeAreaLayoutGuide.topAnchor, left: leftAnchor, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 16, paddingBottom: 0, paddingRight: 0, width: 35, height: 35, paddingCenterX: 0, paddingCenterY: 0)
+        backBtn.anchor(top: backBouttonRoundView.topAnchor, leading:  backBouttonRoundView.leadingAnchor, bottom:  backBouttonRoundView.bottomAnchor, trailing:  backBouttonRoundView.trailingAnchor)
         pageControl.anchor(top: nil, left: nil, bottom: imageCollectionView.bottomAnchor, right:nil, centerX: centerXAnchor, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 6, paddingRight: 0, width: 0 , height: 0, paddingCenterX: 0, paddingCenterY: 0)
         titlelable.anchor(top: imageCollectionView.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
         priceLable.anchor(top: titlelable.bottomAnchor, left: nil, bottom: nil, right: nil, centerX: centerXAnchor, centerY: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 50, height: 20, paddingCenterX: -70, paddingCenterY: 0)

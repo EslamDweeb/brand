@@ -74,9 +74,9 @@ class ItemDetailVC: UIViewController,ButtonActionDelegate {
         }
     }
     private func getItemDetailInfo(){
-        DispatchQueue.main.async {
-            self.mainView.activityStartAnimating(activityColor: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.6952322346), backgroundColor: .clear)
-        }
+//        DispatchQueue.main.async {
+//            self.mainView.mainCollectionView.activityStartAnimating(activityColor: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.6952322346), backgroundColor: .clear)
+//        }
         getRatingAndReviewInfo()
     }
     fileprivate func getRatingAndReviewInfo(){
@@ -92,7 +92,7 @@ class ItemDetailVC: UIViewController,ButtonActionDelegate {
                 self.getReviewData(id:Int(self.itemDetails?.config.catalogID ?? 0),refresh:true)
                 print(data)
             case .failure(let error):
-                self.mainView.activityStopAnimating()
+                self.mainView.mainCollectionView.activityStopAnimating()
                 print(error)
             }
         }
@@ -109,7 +109,7 @@ class ItemDetailVC: UIViewController,ButtonActionDelegate {
                 print(data)
                 self.rateData = data.overallRating
             case.failure(let error):
-                self.mainView.activityStopAnimating()
+                self.mainView.mainCollectionView.activityStopAnimating()
                 print(error)
             }
         }
@@ -127,11 +127,11 @@ class ItemDetailVC: UIViewController,ButtonActionDelegate {
                 }
                 self.shouldShowLoadingCell = (data.meta.currentPage ?? 0) < (data.meta.lastPage ?? 0)
                 self.mainView.mainCollectionView.reloadData()
-                self.mainView.activityStopAnimating()
+                self.mainView.mainCollectionView.activityStopAnimating()
                 print(data)
             case.failure(let error):
                 print(error)
-                self.mainView.activityStopAnimating()
+                self.mainView.mainCollectionView.activityStopAnimating()
             }
         }
     }
