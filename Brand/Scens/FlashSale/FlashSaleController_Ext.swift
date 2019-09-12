@@ -36,7 +36,7 @@ extension FlashSaleController: UICollectionViewDelegate,UICollectionViewDataSour
         let cell = collectionView.cellForItem(at: indexPath) as? FlashCell
         if cell?.flash?.soldOut == false{
             let dest = WishListController()
-            dest.mainView.navView.titlelabel.text = "All Product"
+            dest.mainView.navView.titlelabel.text = "All Product".localized
             dest.mainView.navView.searchBtn.isHidden = false
             dest.vcType = .allProduct
             self.present(dest, animated: true, completion: nil)

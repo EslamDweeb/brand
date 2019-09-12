@@ -18,6 +18,8 @@ extension String {
 }
 
 class YString {
+     static var Noresult : String { return getText(key: "Noresult") }
+     static var NoProuct : String { return getText(key: "No Products") }
      static var male : String { return getText(key: "male") }
      static var female : String { return getText(key: "female") }
     static var personal_information : String { return getText(key: "personal_information") }
@@ -91,6 +93,10 @@ class YString {
         
     }
     static private let arString : [String : String] = [
+        "Noresult" : "لا يوجد نتائج",
+        "No Products" : "لا يوجد منتجات" ,
+        "All Product" : "كل المنتجات",
+        "Available offers" :"العروض المتاحه" ,
         "Order review" : "مراجعه الطلب",
         "select_gender" : "اختر النوع",
         "male" : "ذكر" ,
@@ -314,6 +320,10 @@ class YString {
     ]
     
     static private let enString : [String : String] = [
+        "Noresult" : "No Result" ,
+        "No Products" : "No Products",
+        "All Product" :"All Product" ,
+        "Available offers" : "Available offers" ,
          "Order review" : "Order review",
         "select_gender" : "Select gender" ,
         "male" : "Male" ,

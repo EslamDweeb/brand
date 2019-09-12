@@ -31,12 +31,12 @@ class FlashSaleView: UIView {
         img.contentMode = .scaleAspectFill
         return img
     }()
-    lazy var offersLbl:UILabel = {
-        let label = UILabel()
-        label.text = "Available offers"
-        label.textColor = .black
-        label.textAlignment = .center
-        label.font = UIFont(name: "Avenir-Heavy", size: 16)
+    lazy var offersLbl:HeaderLabelAlign = {
+        let label = HeaderLabelAlign()
+        label.text = "Available offers".localized
+//        label.textColor = .black
+//        label.textAlignment = .center
+//        label.font = UIFont(name: "Avenir-Heavy", size: 16)
         return label
     }()
     lazy var flashCollection: UICollectionView = {
@@ -71,7 +71,7 @@ class FlashSaleView: UIView {
         navView.anchor(top: self.topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, centerX: centerXAnchor, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         navView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.12).isActive = true
         advImage.anchor(top: navView.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 90, paddingCenterX: 0, paddingCenterY: 0)
-        offersLbl.anchor(top: advImage.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, centerX: nil, centerY: nil, paddingTop: 10, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 120, height: 30, paddingCenterX: 0, paddingCenterY: 0)
+        offersLbl.anchor(top: advImage.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 10, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 30, paddingCenterX: 0, paddingCenterY: 0)
         flashCollection.anchor(top: offersLbl.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
     }
 }
