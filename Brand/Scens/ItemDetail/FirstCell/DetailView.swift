@@ -10,6 +10,7 @@ import UIKit
 
 class DetailView: UIView {
     let cellID = "cellID"
+    var handelSelectedTag:((_ tag:Tag)->Void)?
     var branTitle: String?
     var contryTitle:String?
     var tags:[Tag]?
@@ -129,5 +130,8 @@ extension DetailView:UICollectionViewDelegate,UICollectionViewDataSource,UIColle
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
             return 8
     }
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let cell = collectionView.cellForItem(at: indexPath) as? TagsCell else{return}
+        self.handelSelectedTag?(cell.tags!)
+    }
 }
