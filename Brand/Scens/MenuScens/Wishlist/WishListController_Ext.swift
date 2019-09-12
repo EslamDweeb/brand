@@ -25,14 +25,15 @@ extension WishListController: UICollectionViewDelegate,UICollectionViewDataSourc
                 collectionView.backgroundView = view
             case .allProduct:
                 let view = CellBackgroundView(delegate: self)
-                view.lable.text = "New Products"
+                view.image.image = #imageLiteral(resourceName: "No product")
+                view.lable.text = YString.NoProuct
                 view.button.isHidden = true
                 collectionView.backgroundView = view
             case .seeAll:
                //  collectionView.backgroundView = nil
                     let view = ReviewBGView()
                     view.image.image = #imageLiteral(resourceName: "No product")
-                    view.lable.text = "NO Result"
+                    view.lable.text = YString.Noresult
                     view.backgroundColor = .clear
                     collectionView.backgroundView = view
             }
