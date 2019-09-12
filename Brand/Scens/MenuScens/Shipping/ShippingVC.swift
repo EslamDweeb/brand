@@ -90,7 +90,8 @@ class ShippingVC: UIViewController , ButtonActionDelegate {
         self.MianShippingID = nil
         addresses.removeAll()
         shippingMethodarr.removeAll()
-        mainView.activityStartAnimating(activityColor: #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1), backgroundColor: .clear)
+          self.mainView.activityStartAnimating(activityColor: #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1), backgroundColor: .clear)
+        DispatchQueue.main.async {
         APIClient.UserAddress
             { (result) in
                 switch result {
@@ -124,6 +125,27 @@ class ShippingVC: UIViewController , ButtonActionDelegate {
                             self.mainView.activityStopAnimating()
                         }
                         
+                        APIClient.getShippimgMethod(complition: { (result)in
+                            switch result {
+                            case .success(let data):
+                                
+                                for method in data.shippingMethods {
+                                    self.shippingMethodarr.append(method)
+                                }
+                                
+                                self.activeShippingMethod = self.checkShippingMethod()
+                                self.mainView.shippingCollectionview.reloadData()
+                                self.mainView.activityStopAnimating()
+                                
+                            case .failure(let error) :
+                                print(error)
+                                self.mainView.activityStopAnimating()
+                            }
+                        })
+                        
+                        
+                        
+                        
                     }else{
 //                        self.mainView.shippingMethodlbl.topAnchor.constraint(equalTo: self.mainView.viewnoaddress.bottomAnchor, constant: 16)
 //
@@ -137,27 +159,28 @@ class ShippingVC: UIViewController , ButtonActionDelegate {
                     print(error)
                     self.mainView.activityStopAnimating()
                 }
+            }
         }
         
-        APIClient.getShippimgMethod(complition: { (result)in
-            switch result {
-            case .success(let data):
-                
-                for method in data.shippingMethods {
-                    self.shippingMethodarr.append(method)
-                }
-                
-                self.activeShippingMethod = self.checkShippingMethod()
-                self.mainView.shippingCollectionview.reloadData()
-                self.mainView.activityStopAnimating()
-                
-            case .failure(let error) :
-                print(error)
-                self.mainView.activityStopAnimating()
-            }
-        })
-        
-        
+//        APIClient.getShippimgMethod(complition: { (result)in
+//            switch result {
+//            case .success(let data):
+//
+//                for method in data.shippingMethods {
+//                    self.shippingMethodarr.append(method)
+//                }
+//
+//                self.activeShippingMethod = self.checkShippingMethod()
+//                self.mainView.shippingCollectionview.reloadData()
+//                self.mainView.activityStopAnimating()
+//
+//            case .failure(let error) :
+//                print(error)
+//                self.mainView.activityStopAnimating()
+//            }
+//        })
+//
+//
         
     }
     func checkShippingMethod() -> [Bool] {
