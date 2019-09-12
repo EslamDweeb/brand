@@ -32,6 +32,7 @@ class FlashCell:UICollectionViewCell {
     lazy var image: UIImageView = {
         let img = UIImageView()
         img.image = #imageLiteral(resourceName: "XSMax")
+        img.contentMode = .scaleAspectFit
         return img
     }()
     lazy var productName: UILabel = {

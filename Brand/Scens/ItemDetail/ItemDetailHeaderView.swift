@@ -192,8 +192,12 @@ class ItemDetailCollHeader:UICollectionReusableView,UICollectionViewDelegate,UIC
     }
     private func getFinalPrice(price:Double,sale:Double) -> Double{
 //        "\(con.ReturnPriceAfterSale(price: con.price , sale: Double(con.sale).roundToDecimal(3))) \("sar".localized)"
-        
-       return (price - (price * sale).roundToDecimal(1))
+        if sale != 0 {
+            return (price - (price * sale).roundToDecimal(1))
+        }else{
+            return price
+        }
+       
        // return price - (price * (sale ?? 1))
     }
      func ReturnPricepersent(sale:Double) -> String{

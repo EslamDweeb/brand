@@ -149,13 +149,25 @@ class HeaderViewItemDetails : UIView {
     
     
     func setData(rating:Double,numberOfuserRating:Double,price:Float,sale:Float,name:String,numberOfPages:Int){
-        self.rateView.rating = rating
-        self.titlelable.text = name
-        self.priceLable.setAttributeStringWithStrike("\(price)")
-        self.discountLbl.text = ReturnPricepersent(sale: Double(sale))
-        self.numberOFReviewerLable.text = "(\(numberOfuserRating) user)"
-        self.finalPriceLable.text = "\(getFinalPrice(price:Double(price), sale: Double(sale)))"
-        self.pageControl.numberOfPages = numberOfPages
+        if sale != 0 {
+            self.rateView.rating = rating
+            self.titlelable.text = name
+            self.priceLable.setAttributeStringWithStrike("\(price)")
+            self.discountLbl.text = ReturnPricepersent(sale: Double(sale))
+            self.numberOFReviewerLable.text = "(\(numberOfuserRating) user)"
+            self.finalPriceLable.text = "\(getFinalPrice(price:Double(price), sale: Double(sale)))"
+            self.pageControl.numberOfPages = numberOfPages
+        }else{
+            self.rateView.rating = rating
+            self.titlelable.text = name
+            //self.priceLable.setAttributeStringWithStrike("\(price)")
+            priceLable.isHidden = true
+            discountLbl.isHidden = true
+            self.numberOFReviewerLable.text = "(\(numberOfuserRating) user)"
+            self.finalPriceLable.text = "\(getFinalPrice(price:Double(price), sale: Double(sale)))"
+            self.pageControl.numberOfPages = numberOfPages
+        }
+       
     }
     private func getFinalPrice(price:Double,sale:Double) -> Double{
         //        "\(con.ReturnPriceAfterSale(price: con.price , sale: Double(con.sale).roundToDecimal(3))) \("sar".localized)"

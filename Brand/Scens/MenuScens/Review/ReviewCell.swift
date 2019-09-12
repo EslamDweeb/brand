@@ -47,7 +47,7 @@ class ReviewCell: UICollectionViewCell {
     lazy var image: UIImageView = {
         let img = UIImageView()
         img.image = #imageLiteral(resourceName: "defaultImage")
-        img.contentMode = .scaleAspectFill
+        img.contentMode = .scaleAspectFit
         img.clipsToBounds = true
         return img
     }()

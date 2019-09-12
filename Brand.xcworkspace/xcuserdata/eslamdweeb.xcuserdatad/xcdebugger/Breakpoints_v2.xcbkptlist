@@ -167,7 +167,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Brand/Scens/MenuScens/Wishlist/WishCell.swift"
-            timestampString = "589989893.6893671"
+            timestampString = "589992608.1896501"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "87"
@@ -183,7 +183,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Brand/Scens/MenuScens/Wishlist/WishCell.swift"
-            timestampString = "589989893.689445"
+            timestampString = "589992608.189703"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "90"
@@ -199,7 +199,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Brand/Scens/MenuScens/Wishlist/WishCell.swift"
-            timestampString = "589989893.689495"
+            timestampString = "589992608.189741"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "91"
@@ -215,7 +215,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Brand/Scens/MenuScens/Wishlist/WishCell.swift"
-            timestampString = "589989893.689533"
+            timestampString = "589992608.1897759"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "93"
@@ -231,7 +231,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Brand/Scens/MenuScens/Wishlist/WishCell.swift"
-            timestampString = "589989893.689566"
+            timestampString = "589992608.189809"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "94"
@@ -247,7 +247,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Brand/Scens/MenuScens/Wishlist/WishCell.swift"
-            timestampString = "589989893.689604"
+            timestampString = "589992608.189844"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "95"
@@ -263,7 +263,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Brand/Scens/MenuScens/Wishlist/WishCell.swift"
-            timestampString = "589989893.6896501"
+            timestampString = "589992608.189877"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "99"
@@ -279,7 +279,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Brand/Scens/MenuScens/Wishlist/WishCell.swift"
-            timestampString = "589989893.6896859"
+            timestampString = "589992608.189911"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "96"
@@ -295,7 +295,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Brand/Scens/MenuScens/Wishlist/WishCell.swift"
-            timestampString = "589989893.689719"
+            timestampString = "589992608.189945"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "99"
@@ -375,7 +375,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Brand/Scens/ItemDetail/ItemDetailVC.swift"
-            timestampString = "589981128.146763"
+            timestampString = "589992608.190016"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "303"
@@ -391,7 +391,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Brand/Scens/ItemDetail/ItemDetailVC.swift"
-            timestampString = "589981128.1468329"
+            timestampString = "589992608.190056"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "304"
@@ -467,11 +467,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Brand/Scens/ItemDetail/MainCollCell.swift"
-            timestampString = "589981128.14697"
+            timestampString = "589992608.190155"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "55"
@@ -483,11 +483,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Brand/Scens/ItemDetail/MainCollCell.swift"
-            timestampString = "589981128.147015"
+            timestampString = "589992608.190495"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "56"
@@ -496,14 +496,14 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "Brand.MainCollCell.collectionView(_: __C.UICollectionView, cellForItemAt: Foundation.IndexPath) -&gt; __C.UICollectionViewCell"
                   moduleName = "Brand"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/eslamdweeb/Desktop/brands_ios_updated/Brand/Scens/ItemDetail/MainCollCell.swift"
-                  timestampString = "589988516.896632"
+                  timestampString = "589992226.1842"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "56"
@@ -511,14 +511,14 @@
                   offsetFromSymbolStart = "198">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "Brand.MainCollCell.collectionView(_: __C.UICollectionView, cellForItemAt: Foundation.IndexPath) -&gt; __C.UICollectionViewCell"
                   moduleName = "Brand"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/eslamdweeb/Desktop/brands_ios_updated/Brand/Scens/ItemDetail/MainCollCell.swift"
-                  timestampString = "589988516.8981169"
+                  timestampString = "589992226.185733"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "56"
@@ -526,14 +526,14 @@
                   offsetFromSymbolStart = "329">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "Brand.MainCollCell.collectionView(_: __C.UICollectionView, cellForItemAt: Foundation.IndexPath) -&gt; __C.UICollectionViewCell"
                   moduleName = "Brand"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/eslamdweeb/Desktop/brands_ios_updated/Brand/Scens/ItemDetail/MainCollCell.swift"
-                  timestampString = "589988516.899539"
+                  timestampString = "589992226.1873749"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "56"
@@ -541,14 +541,14 @@
                   offsetFromSymbolStart = "28227">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "Brand.MainCollCell.collectionView(_: __C.UICollectionView, cellForItemAt: Foundation.IndexPath) -&gt; __C.UICollectionViewCell"
                   moduleName = "Brand"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/eslamdweeb/Desktop/brands_ios_updated/Brand/Scens/ItemDetail/MainCollCell.swift"
-                  timestampString = "589988516.900964"
+                  timestampString = "589992226.1890171"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "56"
@@ -561,11 +561,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Brand/Scens/ItemDetail/MainCollCell.swift"
-            timestampString = "589981128.1470619"
+            timestampString = "589992608.19075"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "57"
@@ -577,11 +577,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Brand/Scens/ItemDetail/MainCollCell.swift"
-            timestampString = "589981128.147097"
+            timestampString = "589992608.190967"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "59"
@@ -593,11 +593,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Brand/Scens/ItemDetail/MainCollCell.swift"
-            timestampString = "589981128.147132"
+            timestampString = "589992608.191179"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "58"
@@ -609,11 +609,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Brand/Scens/ItemDetail/MainCollCell.swift"
-            timestampString = "589981128.147167"
+            timestampString = "589992608.1913871"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "60"
@@ -625,11 +625,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Brand/Scens/ItemDetail/MainCollCell.swift"
-            timestampString = "589981128.147211"
+            timestampString = "589992608.191601"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "61"
@@ -641,11 +641,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Brand/Scens/ItemDetail/MainCollCell.swift"
-            timestampString = "589981128.1472681"
+            timestampString = "589992608.191812"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "62"
@@ -657,11 +657,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Brand/Scens/ItemDetail/MainCollCell.swift"
-            timestampString = "589981128.147326"
+            timestampString = "589992608.192019"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "63"
@@ -673,11 +673,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Brand/Scens/ItemDetail/MainCollCell.swift"
-            timestampString = "589981128.147362"
+            timestampString = "589992608.192235"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "64"
@@ -686,14 +686,14 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "Brand.MainCollCell.collectionView(_: __C.UICollectionView, cellForItemAt: Foundation.IndexPath) -&gt; __C.UICollectionViewCell"
                   moduleName = "Brand"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/eslamdweeb/Desktop/brands_ios_updated/Brand/Scens/ItemDetail/MainCollCell.swift"
-                  timestampString = "589988516.943156"
+                  timestampString = "589992226.215731"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "65"
@@ -701,14 +701,14 @@
                   offsetFromSymbolStart = "27427">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "closure #1 (Swift.String) -&gt; () in Brand.MainCollCell.collectionView(_: __C.UICollectionView, cellForItemAt: Foundation.IndexPath) -&gt; __C.UICollectionViewCell"
                   moduleName = "Brand"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/eslamdweeb/Desktop/brands_ios_updated/Brand/Scens/ItemDetail/MainCollCell.swift"
-                  timestampString = "589988516.944653"
+                  timestampString = "589992226.217114"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "65"
@@ -721,11 +721,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Brand/Scens/ItemDetail/MainCollCell.swift"
-            timestampString = "589981128.147396"
+            timestampString = "589992608.192443"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "65"
@@ -734,14 +734,14 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "Brand.MainCollCell.collectionView(_: __C.UICollectionView, cellForItemAt: Foundation.IndexPath) -&gt; __C.UICollectionViewCell"
                   moduleName = "Brand"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/eslamdweeb/Desktop/brands_ios_updated/Brand/Scens/ItemDetail/MainCollCell.swift"
-                  timestampString = "589988516.948318"
+                  timestampString = "589992226.220566"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "65"
@@ -749,14 +749,14 @@
                   offsetFromSymbolStart = "27427">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "closure #1 (Swift.String) -&gt; () in Brand.MainCollCell.collectionView(_: __C.UICollectionView, cellForItemAt: Foundation.IndexPath) -&gt; __C.UICollectionViewCell"
                   moduleName = "Brand"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/eslamdweeb/Desktop/brands_ios_updated/Brand/Scens/ItemDetail/MainCollCell.swift"
-                  timestampString = "589988516.950296"
+                  timestampString = "589992226.221949"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "65"
@@ -769,11 +769,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Brand/Scens/ItemDetail/MainCollCell.swift"
-            timestampString = "589981128.147429"
+            timestampString = "589992608.192652"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "66"
@@ -785,11 +785,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Brand/Scens/ItemDetail/MainCollCell.swift"
-            timestampString = "589981128.147476"
+            timestampString = "589992608.19286"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "67"
@@ -801,11 +801,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Brand/Scens/ItemDetail/MainCollCell.swift"
-            timestampString = "589981128.1475101"
+            timestampString = "589992608.193067"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "68"
@@ -817,11 +817,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Brand/Scens/ItemDetail/MainCollCell.swift"
-            timestampString = "589981128.147544"
+            timestampString = "589992608.1932729"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "69"
@@ -830,14 +830,14 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "Brand.MainCollCell.collectionView(_: __C.UICollectionView, cellForItemAt: Foundation.IndexPath) -&gt; __C.UICollectionViewCell"
                   moduleName = "Brand"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/eslamdweeb/Desktop/brands_ios_updated/Brand/Scens/ItemDetail/MainCollCell.swift"
-                  timestampString = "589988516.978346"
+                  timestampString = "589992226.234441"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "69"
@@ -845,14 +845,14 @@
                   offsetFromSymbolStart = "27689">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "closure #2 (Brand.Tag) -&gt; () in Brand.MainCollCell.collectionView(_: __C.UICollectionView, cellForItemAt: Foundation.IndexPath) -&gt; __C.UICollectionViewCell"
                   moduleName = "Brand"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/eslamdweeb/Desktop/brands_ios_updated/Brand/Scens/ItemDetail/MainCollCell.swift"
-                  timestampString = "589988516.979841"
+                  timestampString = "589992226.235961"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "69"
@@ -1252,7 +1252,7 @@
                   moduleName = "Brand"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/eslamdweeb/Desktop/brands_ios_updated/Brand/Scens/SubCategories/SubCategoryVC_Ext.swift"
-                  timestampString = "589988516.986832"
+                  timestampString = "589992608.3116781"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "71"
@@ -1267,7 +1267,7 @@
                   moduleName = "Brand"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/eslamdweeb/Desktop/brands_ios_updated/Brand/Scens/SubCategories/SubCategoryVC_Ext.swift"
-                  timestampString = "589988516.988322"
+                  timestampString = "589992608.313207"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "71"
@@ -1348,7 +1348,7 @@
                   moduleName = "Brand"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/eslamdweeb/Desktop/brands_ios_updated/Brand/Utilities/UIViewControllerExt.swift"
-                  timestampString = "589988516.998201"
+                  timestampString = "589992608.323032"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "177"
@@ -1363,7 +1363,7 @@
                   moduleName = "Brand"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/eslamdweeb/Desktop/brands_ios_updated/Brand/Utilities/UIViewControllerExt.swift"
-                  timestampString = "589988516.999667"
+                  timestampString = "589992608.324527"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "177"
@@ -1378,7 +1378,7 @@
                   moduleName = "Brand"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/eslamdweeb/Desktop/brands_ios_updated/Brand/Utilities/UIViewControllerExt.swift"
-                  timestampString = "589988517.0013011"
+                  timestampString = "589992608.326055"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "177"
@@ -1393,7 +1393,7 @@
                   moduleName = "Brand"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/eslamdweeb/Desktop/brands_ios_updated/Brand/Utilities/UIViewControllerExt.swift"
-                  timestampString = "589988517.003089"
+                  timestampString = "589992608.3275599"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "179"
@@ -1970,7 +1970,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Brand/Scens/UserScens/myAddress/MyAddressController_Ext.swift"
-            timestampString = "589989893.690791"
+            timestampString = "589992608.194334"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "61"
@@ -1986,7 +1986,7 @@
                   moduleName = "Brand"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/eslamdweeb/Desktop/brands_ios_updated/Brand/Scens/UserScens/myAddress/MyAddressController_Ext.swift"
-                  timestampString = "589988516.821171"
+                  timestampString = "589992608.436709"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "61"
@@ -2001,7 +2001,7 @@
                   moduleName = "Brand"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/eslamdweeb/Desktop/brands_ios_updated/Brand/Scens/UserScens/myAddress/MyAddressController_Ext.swift"
-                  timestampString = "589988516.8399661"
+                  timestampString = "589992608.4382989"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "62"
@@ -2018,7 +2018,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Brand/Scens/UserScens/myAddress/MyAddressController_Ext.swift"
-            timestampString = "589989893.690854"
+            timestampString = "589992608.19438"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "62"
@@ -2034,7 +2034,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Brand/Scens/UserScens/myAddress/MyAddressController_Ext.swift"
-            timestampString = "589989893.690891"
+            timestampString = "589992608.194417"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "67"
@@ -2050,7 +2050,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Brand/Scens/UserScens/myAddress/MyAddressController_Ext.swift"
-            timestampString = "589989893.6909389"
+            timestampString = "589992608.194453"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "66"
@@ -2066,7 +2066,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Brand/Scens/UserScens/myAddress/MyAddressController_Ext.swift"
-            timestampString = "589989893.690975"
+            timestampString = "589992608.194487"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "65"
@@ -2082,7 +2082,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Brand/Scens/UserScens/myAddress/MyAddressController_Ext.swift"
-            timestampString = "589989893.69101"
+            timestampString = "589992608.194537"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "64"
@@ -2098,7 +2098,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Brand/Scens/UserScens/myAddress/MyAddressController_Ext.swift"
-            timestampString = "589989893.691059"
+            timestampString = "589992608.194648"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "63"
@@ -2114,7 +2114,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Brand/Scens/UserScens/myAddress/MyAddressController_Ext.swift"
-            timestampString = "589989893.691094"
+            timestampString = "589992608.194684"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "59"
@@ -2130,7 +2130,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Brand/Scens/UserScens/myAddress/MyAddressController_Ext.swift"
-            timestampString = "589989893.6911401"
+            timestampString = "589992608.194719"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "58"
@@ -2146,7 +2146,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Brand/Scens/UserScens/myAddress/MyAddressController_Ext.swift"
-            timestampString = "589989893.691175"
+            timestampString = "589992608.194787"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "60"
@@ -2162,7 +2162,7 @@
                   moduleName = "Brand"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/eslamdweeb/Desktop/brands_ios_updated/Brand/Scens/UserScens/myAddress/MyAddressController_Ext.swift"
-                  timestampString = "589988518.378482"
+                  timestampString = "589992608.464662"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "61"
@@ -2177,7 +2177,7 @@
                   moduleName = "Brand"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/eslamdweeb/Desktop/brands_ios_updated/Brand/Scens/UserScens/myAddress/MyAddressController_Ext.swift"
-                  timestampString = "589988518.380555"
+                  timestampString = "589992608.4662009"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "62"
@@ -2185,6 +2185,230 @@
                   offsetFromSymbolStart = "248">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Brand/Scens/itemDetailsV2/HeaderViewItemDetails.swift"
+            timestampString = "589992608.194823"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "151"
+            endingLineNumber = "151"
+            landmarkName = "setData(rating:numberOfuserRating:price:sale:name:numberOfPages:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Brand/Scens/itemDetailsV2/HeaderViewItemDetails.swift"
+            timestampString = "589992608.194869"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "152"
+            endingLineNumber = "152"
+            landmarkName = "setData(rating:numberOfuserRating:price:sale:name:numberOfPages:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Brand/Scens/ItemDetail/ItemDetailVC.swift"
+            timestampString = "589992608.194903"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "147"
+            endingLineNumber = "147"
+            landmarkName = "collectionView(_:viewForSupplementaryElementOfKind:at:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Brand/Scens/ItemDetail/ItemDetailVC.swift"
+            timestampString = "589992608.1949379"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "148"
+            endingLineNumber = "148"
+            landmarkName = "collectionView(_:viewForSupplementaryElementOfKind:at:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Brand/Scens/ItemDetail/ItemDetailVC.swift"
+            timestampString = "589992608.194971"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "149"
+            endingLineNumber = "149"
+            landmarkName = "collectionView(_:viewForSupplementaryElementOfKind:at:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Brand/Scens/ItemDetail/ItemDetailVC.swift"
+            timestampString = "589992608.195004"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "150"
+            endingLineNumber = "150"
+            landmarkName = "collectionView(_:viewForSupplementaryElementOfKind:at:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Brand.ItemDetailVC.collectionView(_: __C.UICollectionView, viewForSupplementaryElementOfKind: Swift.String, at: Foundation.IndexPath) -&gt; __C.UICollectionReusableView"
+                  moduleName = "Brand"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/eslamdweeb/Desktop/brands_ios_updated/Brand/Scens/ItemDetail/ItemDetailVC.swift"
+                  timestampString = "589992608.485273"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "150"
+                  endingLineNumber = "150"
+                  offsetFromSymbolStart = "900">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in Brand.ItemDetailVC.collectionView(_: __C.UICollectionView, viewForSupplementaryElementOfKind: Swift.String, at: Foundation.IndexPath) -&gt; __C.UICollectionReusableView"
+                  moduleName = "Brand"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/eslamdweeb/Desktop/brands_ios_updated/Brand/Scens/ItemDetail/ItemDetailVC.swift"
+                  timestampString = "589992608.486766"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "150"
+                  endingLineNumber = "150"
+                  offsetFromSymbolStart = "84">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Brand/Scens/ItemDetail/ItemDetailVC.swift"
+            timestampString = "589992608.1950361"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "151"
+            endingLineNumber = "151"
+            landmarkName = "collectionView(_:viewForSupplementaryElementOfKind:at:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Brand/Scens/ItemDetail/ItemDetailVC.swift"
+            timestampString = "589992608.195069"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "154"
+            endingLineNumber = "154"
+            landmarkName = "collectionView(_:viewForSupplementaryElementOfKind:at:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Brand/Scens/ItemDetail/ItemDetailVC.swift"
+            timestampString = "589992608.195115"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "155"
+            endingLineNumber = "155"
+            landmarkName = "collectionView(_:viewForSupplementaryElementOfKind:at:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Brand/Scens/ItemDetail/ItemDetailVC.swift"
+            timestampString = "589992608.1951489"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "152"
+            endingLineNumber = "152"
+            landmarkName = "collectionView(_:viewForSupplementaryElementOfKind:at:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Brand/Scens/ItemDetail/ItemDetailVC.swift"
+            timestampString = "589992608.195183"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "153"
+            endingLineNumber = "153"
+            landmarkName = "collectionView(_:viewForSupplementaryElementOfKind:at:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Brand/Scens/ItemDetail/MainCollCell.swift"
+            timestampString = "589992608.195215"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
+            landmarkName = "MainCollCell"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
