@@ -103,7 +103,7 @@ class DetailorderView : UIView , UITextFieldDelegate ,FlexibleSteppedProgressBar
     }()
     lazy var img : UIImageView = {
         let img = UIImageView()
-        img.image = #imageLiteral(resourceName: "add-to-the-cart")
+        img.image = #imageLiteral(resourceName: "Asset 35")
         img.isHidden = true
         return img
     }()

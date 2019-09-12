@@ -14,7 +14,7 @@ class ReviewHeaderView: UIView {
     var brandNameHeight:NSLayoutConstraint?
     lazy var image: UIImageView = {
         let img = UIImageView()
-        img.contentMode = .scaleAspectFill
+        img.contentMode = .scaleAspectFit
         img.clipsToBounds = true
         return img
     }()

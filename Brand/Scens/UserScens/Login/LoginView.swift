@@ -52,6 +52,7 @@ class LoginView: UIView, UITextFieldDelegate {
         let title = "forgotPassword".localized
         button.setTitle(title, for: .normal)
         button.setTitleColor( .forgotColor, for: .normal)
+        button.isHidden = true
         button.titleLabel?.font = setFont(name: .fontH, size: 14)
         return button
     }()

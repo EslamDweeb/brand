@@ -83,17 +83,18 @@ extension ExploreVC:UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             cell.handelSeeAll = {[weak self] in
                 guard let self = self else{return}
                 if indexPath == IndexPath(row: 0, section: 0){
-                    let dest = WishListController("Recommended Product", "recommended", .seeAll)
+                    let dest = WishListController("recommendedProduct".localized, "recommended", .seeAll)
                     dest.mainView.navView.searchBtn.isHidden = false
                     self.presentViewController(controller: dest)
                 }
                 if indexPath == IndexPath(row: 0, section: 1){
-                    let dest = WishListController("Latest Product", "latest", .seeAll)
+                    let dest = WishListController("latestProduct".localized,
+                                                   "latest", .seeAll)
                     dest.mainView.navView.searchBtn.isHidden = false
                     self.presentViewController(controller: dest)
                 }
                 if indexPath == IndexPath(row: 0, section: 2){
-                    let dest = WishListController("Popular Product", "popular", .seeAll)
+                    let dest = WishListController("popularProduct".localized ,"popular", .seeAll)
                     dest.mainView.navView.searchBtn.isHidden = false
                     self.presentViewController(controller: dest)
                 }

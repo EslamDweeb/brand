@@ -14,28 +14,13 @@ extension MyAddressViewController: UITableViewDelegate,UITableViewDataSource {
         { (result) in
             switch result {
             case .success(let data):
-                print(data.errors ?? [])
-                print(data)
+                    self.createAlert(erroMessage: data.message!)
+                    self.addresses.remove(at: indexPath.row)
+                    tableView.deleteRows(at: [indexPath], with: .automatic)
             case .failure(let error):
                 print(error)
             }
         }
-        self.addresses.remove(at: indexPath.row)
-        if indexPath.row != 0 {
-            let  cell  = self.myAddressView.tableView.cellForRow(at: indexPath) as! MyAddressCell
-            if cell.defaultview.isHidden == false {
-                let  cell  = self.myAddressView.tableView.cellForRow(at: [0,0] )as! MyAddressCell
-                cell.defaultview.isHidden = false
-            }
-        }else{
-            let  cell  = self.myAddressView.tableView.cellForRow(at: indexPath) as! MyAddressCell
-            if cell.defaultview.isHidden == false {
-                let  cell  = self.myAddressView.tableView.cellForRow(at: [0,(indexPath.row + 1)] )as! MyAddressCell
-                cell.defaultview.isHidden = false
-            }
-        }
-        
-        tableView.deleteRows(at: [indexPath], with: .automatic)
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if addresses.count == 0 {
@@ -71,8 +56,10 @@ extension MyAddressViewController: UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+         let cell = tableView.cellForRow(at: indexPath) as! MyAddressCell
+        
         let deleteBtn = UITableViewRowAction(style: .destructive, title: NSLocalizedString( "delete", comment: "")) { (_, indexPath) in
-            if self.addresses.count != 1 {
+            if  cell.address?.main ?? false == false {
                 self.deleteAddress(tableView:tableView,indexPath:indexPath)
             }else{
                 self.createAlert(erroMessage: YString.cantDeleteMainAddress)

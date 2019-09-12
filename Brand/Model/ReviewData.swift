@@ -44,7 +44,7 @@ struct Ratingable: Codable {
     enum CodingKeys: String, CodingKey {
         case id, model
         case objectID = "object_id"
-        case objectName = "object_name"
+        case objectName = "rated_object_name"
         case object
         case userPhoto = "user_photo"
         case userFullName = "user_fullname"
