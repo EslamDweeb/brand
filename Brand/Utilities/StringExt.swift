@@ -302,7 +302,7 @@ class YString {
         "emptyPassword":"كلمة المرور مطلوبه",
         "serverError":"خطاء في التصال بمزود الخدمه",
         "outOfStock" : "Out of stock" ,
-        "errorAddingProductToCart" : "خطا في اضافة المنتج الي العربه" ,
+        "errorAddingProductToCart" : "هذا المنتج موجود في العربة" ,
         "thisProductIsAlreadyInCart" : "هذا المنتج موجود ف العربة",
         "firstNameMustBeGreaterThan3Char" : "الاسم الاول لابد ان يكون اكبر من ٣ احرف" ,
         "lastNameMustBeGreaterThan3Char" : "الاسم الاخير لابد ان يكون اكبر من ٣ احرف" ,
@@ -524,7 +524,7 @@ class YString {
 
         "savedItemEmpty":"oops! you didn't have any saved item yet.",
         "validEmailOrPassword":"please enter correct email or phone number" ,
-        "errorAddingProductToCart" : "Error adding product to cart" ,
+        "errorAddingProductToCart" : "This product already in the cart" ,
         "thisProductIsAlreadyInCart" : "This product is already in cart",
         "emptyPassword":"Password Field is Requird",
         "firstNameMustBeGreaterThan3Char" : "First name must be greater than 3 char" ,
