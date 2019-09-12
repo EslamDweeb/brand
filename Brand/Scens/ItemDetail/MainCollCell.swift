@@ -65,9 +65,11 @@ class MainCollCell:UICollectionViewCell,UICollectionViewDelegate,UICollectionVie
             cell.footerView.HandelSelectedCellAction = {[weak self] (slug) in
                 guard let self = self else{return}
                 self.handelFooterViewClouserAction?(slug)
-              
             }
-            
+            cell.detailView.handelSelectedTag = {[weak self] (tag) in
+                guard let self = self else{return}
+                self.connecteDelegate?.handelTagTapped(tag: tag)
+            }
             return cell
         case 1:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: secondCell, for: indexPath)as? SecondeCell else{return UICollectionViewCell()}
@@ -126,4 +128,5 @@ extension MainCollCell:ConnectFirstCellToMainCell{
 }
 protocol ConnectMainCellWithItemDetailVC:class{
     func handelFirstCellSelectedConfigOption(_ selectedArray:[Int],_ SelectedId:Int)
+    func handelTagTapped(tag:Tag)
 }

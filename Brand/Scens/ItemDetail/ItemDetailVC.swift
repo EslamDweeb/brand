@@ -294,6 +294,12 @@ extension ItemDetailVC:UICollectionViewDelegate,UICollectionViewDataSource,UICol
     }
 }
 extension ItemDetailVC:ConnectMainCellWithItemDetailVC{
+    func handelTagTapped(tag: Tag) {
+        let dest = searchVC()
+        dest.tagSearch = tag
+        self.presentViewController(controller: dest)
+    }
+    
     func handelFirstCellSelectedConfigOption(_ selectedArray: [Int], _ SelectedId: Int) {
         self.getConfigSlug(productID: self.itemDetails?.config.productID ?? 0, values: selectedArray, clickedId: SelectedId)
     }
