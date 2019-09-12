@@ -140,8 +140,9 @@ extension ExploreVC:UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 extension ExploreVC:ExploreCellDelegate {
     
     func presentController(slug: String) {
-       // let dest = ItemDetailVC()
-        let dest = ItemDetailsVC_V2(slug: slug)
+        let dest = ItemDetailVC()
+       // let dest = ItemDetailsVC_V2(slug: slug)
+        dest.slug == slug
         self.present(dest, animated: true, completion: nil)
     }
     func handelCartBtnTapped(config: DetailedConfig) {

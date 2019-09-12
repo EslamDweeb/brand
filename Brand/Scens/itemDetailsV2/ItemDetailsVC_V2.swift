@@ -39,6 +39,22 @@ class ItemDetailsVC_V2 : UIViewController {
         
         presenter = ItemDetailsPresenter(itemView: self  )
         presenter?.getItemDetails(slug: slug)
+    
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        mainView.headerViewHeightConstraint = mainView.headerView.heightAnchor.constraint(equalToConstant: mainView.headerView.frame.height )
+        mainView.headerViewHeightConstraint?.isActive = true
+        mainView.headerViewMaxHeight = mainView.headerViewHeightConstraint?.constant ?? 0
+    }
+    
+    private func addDataToHeader () {
+        let config = presenter?.itemDetails?.config
+        self.mainView.headerView.imagesSlide = config?.photos ?? []
+        self.mainView.headerView.setData(rating: Double(config?.overallRating ?? 0), numberOfuserRating: Double(config?.overallRatingCount ?? 0), price: Float(config?.price ?? 0), sale: Float(config?.sale ?? 0), name: config?.name ?? "", numberOfPages: config?.photos?.count ?? 0)
+        self.mainView.headerView.imageCollectionView.reloadData()
         
     }
     
@@ -97,6 +113,7 @@ extension ItemDetailsVC_V2 : UICollectionViewDelegate , UICollectionViewDataSour
         let config = presenter?.itemDetails?.config
         if indexPath.row == 0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellItemDetailsFirstTab.getIdentifier() , for: indexPath) as! CellItemDetailsFirstTab
+            cell.scrollView.delegate = self
             if presenter?.sallerNote == nil || presenter?.sallerNote == "" {
                 cell.detailView.buttonInfo.isHidden = true
             }else {
@@ -118,11 +135,13 @@ extension ItemDetailsVC_V2 : UICollectionViewDelegate , UICollectionViewDataSour
             
         }else if indexPath.row == 1 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SecondeCell.getIdentifier() , for: indexPath) as! SecondeCell
+            cell.tableView.delegate = self
             cell.specs = config?.specs ?? []
             cell.tableView.reloadData()
             return cell
         }else if indexPath.row == 2 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ThirdCell.getIdentifier() , for: indexPath) as! ThirdCell
+            cell.scrollView.delegate = self
             cell.header.ratingData = presenter?.rateData
             cell.reviews = presenter?.reviews ?? []
             cell.reviewCollectionView.reloadData()
@@ -149,6 +168,7 @@ extension ItemDetailsVC_V2 : UICollectionViewDelegate , UICollectionViewDataSour
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
         return CGSize(width: collectionView.frame.width , height: collectionView.frame.height )
     }
     
@@ -157,12 +177,64 @@ extension ItemDetailsVC_V2 : UICollectionViewDelegate , UICollectionViewDataSour
 extension ItemDetailsVC_V2 : ButtonActionDelegate {
     
     func flowButtonTapped(_ sender: UIButton) {
-        
+        if UserDefaults.standard.string(forKey: Constants.Defaults.authToken) != "" {
+            if sender == mainView.headerView.favBtn {
+                APIClient.toggleFav(id: presenter?.itemDetails?.config.id ?? 0) { (result) in
+                    switch result {
+                    case.success(let data):
+                        self.createAlert(title: nil, erroMessage: data.message ?? "", createButton: nil)
+                        print(data)
+                    case .failure(_):
+                        break
+                    }
+                }
+            }else if sender == mainView.headerView.cartBtn {
+                self.addViewAddToCart(config: presenter?.itemDetails?.config )
+                
+            }
+        }else{
+            self.presentLoginViewController(loginDismiss: true)
+        }
     }
     
-    func customTabBarTapped(_ sender: UITapGestureRecognizer) {
-        
+    func customTabBarTapped(_ tap: UITapGestureRecognizer) {
+        if tap.name == "details"{
+            changeCustomTabBarBtnColor(name: tap.name ?? "" )
+            mainView.collectionViewMain.scrollToItem(at: IndexPath(row: 0, section: 0), at: .centeredHorizontally, animated: true)
+        }else if tap.name == "specs"{
+            changeCustomTabBarBtnColor(name: tap.name ?? "" )
+            mainView.collectionViewMain.scrollToItem(at: IndexPath(row: 1, section: 0), at: .centeredHorizontally, animated: true)
+        }else if tap.name == "review"{
+            changeCustomTabBarBtnColor(name: tap.name ?? "" )
+            mainView.collectionViewMain.scrollToItem(at: IndexPath(row: 2, section: 0), at: .centeredHorizontally, animated: true)
+        }
     }
+    
+    func changeCustomTabBarBtnColor(name:String){
+        if name == "details"{
+            mainView.headerView.customtabBar.detailnBtn.iconImageView.image = #imageLiteral(resourceName: "infofill")
+            mainView.headerView.customtabBar.detailnBtn.titleLable.textColor = .pink
+            mainView.headerView.customtabBar.specsBtn.iconImageView.image = #imageLiteral(resourceName: "specsEmpty")
+            mainView.headerView.customtabBar.specsBtn.titleLable.textColor = .lightgray3
+            mainView.headerView.customtabBar.reviewBtn.iconImageView.image = #imageLiteral(resourceName: "areaChartAnticon")
+            mainView.headerView.customtabBar.reviewBtn.titleLable.textColor = .lightgray3
+        }else if name == "specs"{
+            mainView.headerView.customtabBar.detailnBtn.iconImageView.image = #imageLiteral(resourceName: "info")
+            mainView.headerView.customtabBar.detailnBtn.titleLable.textColor = .lightgray3
+            mainView.headerView.customtabBar.specsBtn.iconImageView.image = #imageLiteral(resourceName: "specsfill")
+            mainView.headerView.customtabBar.specsBtn.titleLable.textColor = .pink
+            mainView.headerView.customtabBar.reviewBtn.iconImageView.image = #imageLiteral(resourceName: "areaChartAnticon")
+            mainView.headerView.customtabBar.reviewBtn.titleLable.textColor = .lightgray3
+        }else if name == "review"{
+            mainView.headerView.customtabBar.detailnBtn.iconImageView.image = #imageLiteral(resourceName: "info")
+            mainView.headerView.customtabBar.detailnBtn.titleLable.textColor = .lightgray3
+            mainView.headerView.customtabBar.specsBtn.iconImageView.image = #imageLiteral(resourceName: "specsEmpty")
+            mainView.headerView.customtabBar.specsBtn.titleLable.textColor = .lightgray3
+            mainView.headerView.customtabBar.reviewBtn.iconImageView.image = #imageLiteral(resourceName: "reviewfill")
+            mainView.headerView.customtabBar.reviewBtn.titleLable.textColor = .pink
+        }
+    }
+    
     
 }
 
@@ -191,6 +263,7 @@ extension ItemDetailsVC_V2 : ProItemDetailsView {
     }
     
     func getItemDetails() {
+        addDataToHeader()
         self.mainView.collectionViewMain.reloadItems(at: [IndexPath(item: 0, section: 0) , IndexPath(item: 1, section: 0)])
     }
     
@@ -201,4 +274,42 @@ extension ItemDetailsVC_V2 : ProItemDetailsView {
         self.mainView.collectionViewMain.reloadItems(at: [IndexPath(item: 2, section: 0) ] )
     }
 
+}
+
+extension ItemDetailsVC_V2 : UIScrollViewDelegate , UITableViewDelegate {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let y: CGFloat = scrollView.contentOffset.y
+        guard let headerViewHeightConstraint = mainView.headerViewHeightConstraint else { return }
+        let newHeaderViewHeight: CGFloat = ( mainView.headerViewHeightConstraint?.constant ?? 0 ) - y
+        
+//        print("headerViewMaxHeight : \(mainView.headerViewMaxHeight)")
+//        print("headerViewMinHeight : \(mainView.headerViewMinHeight)")
+//        print("newHeaderViewHeight : \(newHeaderViewHeight)")
+        
+        
+        
+        if newHeaderViewHeight > mainView.headerViewMaxHeight {
+            headerViewHeightConstraint.constant = mainView.headerViewMaxHeight
+        } else if newHeaderViewHeight < mainView.headerViewMinHeight {
+            headerViewHeightConstraint.constant = mainView.headerViewMinHeight
+            
+            UIView.animate(withDuration: 0.3) {
+              //  self.navView.backgroundColor = Colors.colorNavHotels
+             //   self.navView.titlelabel.isHidden = false
+            }
+        }else {
+            headerViewHeightConstraint.constant = newHeaderViewHeight
+            scrollView.contentOffset.y = 0 // block scroll view
+            
+        }
+        
+        if newHeaderViewHeight > mainView.headerViewMinHeight + 20 {
+            UIView.animate(withDuration: 0.3) {
+               // self.navView.backgroundColor = .clear
+               // self.navView.titlelabel.isHidden = true
+            }
+        }
+
+    }
 }

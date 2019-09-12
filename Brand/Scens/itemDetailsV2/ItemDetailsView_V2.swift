@@ -11,6 +11,11 @@ import UIKit
 class ItemDetailsView_V2 : UIView {
     
     
+    var headerViewHeightConstraint: NSLayoutConstraint?
+    var headerViewMaxHeight: CGFloat = 0.0
+    let headerViewMinHeight: CGFloat = 58 + UIApplication.shared.statusBarFrame.height + 50
+    
+    
     lazy var collectionViewMain : UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 0
@@ -62,7 +67,7 @@ class ItemDetailsView_V2 : UIView {
         
         headerView.anchor(top: self.topAnchor , leading: self.leadingAnchor  , trailing: self.trailingAnchor  )
         
-        collectionViewMain.anchor(top: headerView.bottomAnchor , leading: self.leadingAnchor , bottom: self.bottomAnchor , trailing: self.trailingAnchor )
+        collectionViewMain.anchor(top: headerView.bottomAnchor , leading: self.leadingAnchor , bottom: self.safeAreaLayoutGuide.bottomAnchor , trailing: self.trailingAnchor )
     }
     
     

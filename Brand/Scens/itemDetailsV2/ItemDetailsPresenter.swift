@@ -41,9 +41,14 @@ extension ProItemDetailsPresenter {
     func getReviewData(id:Int , refresh:Bool = false ) {
         getReviewData(id: id , refresh: refresh )
     }
+    
+   
 }
 
+
+
 class ItemDetailsPresenter : ProItemDetailsPresenter {
+    
     
     var itemView : ProItemDetailsView
     var sallerNote : String? = nil
