@@ -28,35 +28,28 @@ protocol ProItemDetailsPresenter {
     var reviews : [Ratingable] { get }
     func getItemDetails ( slug : String )
     func getRatingData(id:Int)
-    func getReviewData(id:Int , refresh:Bool)
+    func getReviewData()
     func toggleFav (_ idConfig : Int)
     func getConfigSlug(productID:Int,values:[Int],clickedId:Int)
     
-    
-    var paginationReview : Int {get set }
-    
 }
-
-extension ProItemDetailsPresenter {
-    func getReviewData(id:Int , refresh:Bool = false ) {
-        getReviewData(id: id , refresh: refresh )
-    }
-    
-   
-}
-
-
 
 class ItemDetailsPresenter : ProItemDetailsPresenter {
     
-    
+
     var itemView : ProItemDetailsView
     var sallerNote : String? = nil
     var itemDetails : ItemDetailInfo? = nil
     var rateData:OverallRating? = nil
     var reviews = [Ratingable]()
     
-    var paginationReview : Int = 0
+    
+    var idGetReviews : Int = 0
+    // pageination reviews
+    var currentPage: Int = 0
+    var lastPage: Int = 1
+    var paginate: Bool = false
+    
     
     init(itemView : ProItemDetailsView) {
         self.itemView = itemView
@@ -71,7 +64,8 @@ class ItemDetailsPresenter : ProItemDetailsPresenter {
                 self.itemDetails = data
                 self.sallerNote = data.config.sellerNotes
                 self.getRatingData(id:Int(data.config.modelRatingID ?? 0))
-                self.getReviewData(id:Int(data.config.catalogID ?? 0),refresh:true)
+                self.idGetReviews = Int(data.config.catalogID ?? 0)
+                self.getReviewData()
                 self.itemView.getItemDetails()
                 print(data)
             case .failure(let error):
@@ -98,26 +92,29 @@ class ItemDetailsPresenter : ProItemDetailsPresenter {
         }
     }
     
-    func getReviewData(id:Int , refresh:Bool ){
-        APIClient.getConfigReviews(id: id,page: paginationReview ) { (result) in
+    func getReviewData(){
+        
+        if currentPage >= lastPage {
+            return
+        }
+        if paginate {
+            return
+        }
+        self.paginate = true
+        currentPage += 1
+        
+        APIClient.getConfigReviews(id: idGetReviews , page: currentPage ) { (result) in
             switch result{
             case.success(let data):
-                if refresh {
-                    self.reviews = data.ratingables
-                } else {
-                    for conf in data.ratingables {
-                        self.reviews.append(conf)
-                    }
-                }
+                self.reviews += data.ratingables
+                self.currentPage = data.meta.currentPage ?? 1
+                self.lastPage = data.meta.lastPage ?? 1
+                self.paginate = false
                 self.itemView.getReviewData()
-              //  self.shouldShowLoadingCell = (data.meta.currentPage ?? 0) < (data.meta.lastPage ?? 0)
-              //  self.mainView.mainCollectionView.reloadData()
-              //  self.mainView.activityStopAnimating()
                 print(data)
             case.failure(let error):
                 print(error)
                 self.itemView.onError(YString.errorHappen)
-               // self.mainView.activityStopAnimating()
             }
         }
     }

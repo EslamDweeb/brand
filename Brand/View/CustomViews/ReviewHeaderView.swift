@@ -38,7 +38,7 @@ class ReviewHeaderView: UIView {
         rate.settings.filledImage = #imageLiteral(resourceName: "emptyStar")
         rate.settings.emptyImage = #imageLiteral(resourceName: "fill")
         rate.settings.starMargin = 2
-        rate.settings.fillMode = .full
+        rate.settings.fillMode = StarFillMode.half
         return rate
     }()
     override func layoutSubviews() {
@@ -57,6 +57,7 @@ class ReviewHeaderView: UIView {
     private func setupView() {
         addSubViews()
         addConstrainsToUI()
+        
     }
     private func addSubViews() {
         addSubview(image)

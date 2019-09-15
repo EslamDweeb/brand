@@ -167,9 +167,10 @@ extension SubCategoryVC:UICollectionViewDelegate,UICollectionViewDataSource,UICo
             let cell = collectionView.cellForItem(at: indexPath) as? CatogrieCell
             getVCData(slug: cell?.category?.slug ?? "")
         }else{
-            let VC = ItemDetailVC()
-            VC.slug = configs[indexPath.row].slug
-            self.present(VC, animated: true, completion: nil)
+//            let VC = ItemDetailVC()
+//            VC.slug = configs[indexPath.row].slug
+             let dest = ItemDetailsVC_V2(slug: configs[indexPath.row].slug ?? ""  )
+            self.present(dest, animated: true, completion: nil)
         }
     }
 }

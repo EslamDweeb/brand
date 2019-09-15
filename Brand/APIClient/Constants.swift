@@ -15,13 +15,14 @@ struct Constants {
  
     struct ProductionServer {
         //Test URl
-        static let baseURL = "https://brands.solutionplus.net"
-       //static let baseURL = "https://api.brands.solutionplus.net"
+      //  static let baseURL = "https://brands.solutionplus.net"
+       static let baseURL = "https://api.brands.solutionplus.net"
     }
     
     struct Defaults {
         static let authToken = "authToken"
-        static let googleApiKey = "AIzaSyBCJRovFaMek4CftqjV9EZpcxN1oV8Q_i4"
+       // static let googleApiKey = "AIzaSyBCJRovFaMek4CftqjV9EZpcxN1oV8Q_i4"
+        static let googleApiKey = "AIzaSyBf5_1A4YWvgEFwxFVJPcqUjPuBYAU-UI4"
         static let countries = "counties"
         static let banners = "banners"
         static let flashSale = "flashSale"

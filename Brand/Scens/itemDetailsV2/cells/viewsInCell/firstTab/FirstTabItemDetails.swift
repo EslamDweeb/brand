@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CellItemDetailsFirstTab : UICollectionViewCell {
+class FirstTabItemDetails : UIView {
     
     
     lazy var scrollView : UIScrollView = {

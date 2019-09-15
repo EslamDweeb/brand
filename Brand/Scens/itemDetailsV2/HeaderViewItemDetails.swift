@@ -38,7 +38,7 @@ class HeaderViewItemDetails : UIView {
         lable.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.6999411387)
         lable.textAlignment = .center
         lable.numberOfLines = 0
-        lable.text = "fdslhinflkdsnlk,ueshdhfdsuifhdsc,ndsukfhednsfdsfkleifdhs,dfdnsfiesdhf,sdfsdhfoehdsfesidhdsfhusdh,sdf,hdsfh"
+        lable.text = "                    "
         return lable
     }()
     lazy var finalPriceLable:UILabel = {
@@ -46,19 +46,19 @@ class HeaderViewItemDetails : UIView {
         lable.font = UIFont(name: "Avenir-Heavy", size: 20)
         lable.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.6999411387)
         lable.textAlignment = .center
-        lable.text = "fdslhinflkdsnlk"
+        lable.text = "            "
         return lable
     }()
     lazy var priceLable:UILabel = {
         let lable = UILabel()
         lable.font = UIFont(name: "Avenir-Medium", size: 14)
         lable.textColor = UIColor.lightDarkGray
-        lable.text = "fdslhinflkdsnlk"
+        lable.text = "              "
         return lable
     }()
     lazy var discountLbl: DiscountLable = {
         let lbl = DiscountLable()
-        lbl.text = "30%"
+        lbl.text = "   "
         lbl.backgroundColor = .pink
         return lbl
     }()

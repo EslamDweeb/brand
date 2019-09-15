@@ -9,10 +9,11 @@
 import UIKit
 import EasyTipView
 
-class ItemDetailsVC_V2 : UIViewController {
+class ItemDetailsVC_V2 : UIViewController , DelegateCustomTabBarButton {
     
     lazy var mainView : ItemDetailsView_V2 = {
-        let v = ItemDetailsView_V2(delegate: self , dataSource: self , buttonActionDelegate : self )
+        let v = ItemDetailsView_V2(buttonActionDelegate: self , scrollDelegate: self )
+        v.delegateCustomTabBarButton = self
         return v
     }()
     
@@ -23,7 +24,7 @@ class ItemDetailsVC_V2 : UIViewController {
         self.slug = slug
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder:  NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -39,7 +40,11 @@ class ItemDetailsVC_V2 : UIViewController {
         
         presenter = ItemDetailsPresenter(itemView: self  )
         presenter?.getItemDetails(slug: slug)
-    
+        
+        mainView.paginateReviews = { ()-> Void in
+            self.presenter?.getReviewData()
+        }
+        
         
     }
     
@@ -55,7 +60,53 @@ class ItemDetailsVC_V2 : UIViewController {
         self.mainView.headerView.imagesSlide = config?.photos ?? []
         self.mainView.headerView.setData(rating: Double(config?.overallRating ?? 0), numberOfuserRating: Double(config?.overallRatingCount ?? 0), price: Float(config?.price ?? 0), sale: Float(config?.sale ?? 0), name: config?.name ?? "", numberOfPages: config?.photos?.count ?? 0)
         self.mainView.headerView.imageCollectionView.reloadData()
+        self.mainView.navView.lableTitle.text = config?.name ?? ""
+    }
+    
+    private func addDataToFirstTab () {
+        let config = presenter?.itemDetails?.config
+        if presenter?.sallerNote == nil || presenter?.sallerNote == "" {
+            mainView.firstTab.detailView.buttonInfo.isHidden = true
+        }else {
+            mainView.firstTab.detailView.buttonInfo.isHidden = false
+        }
+        mainView.firstTab.detailView.setData(brandTitle: config?.brand?.name ?? "" , countryTitle: config?.madeIn ?? "" , tags: config?.tags ?? [] )
+        mainView.firstTab.detailView.delegate = self // implement DelegateDetailsViewFirstCell
+        mainView.firstTab.descriptionView.labelDescriptionData.text = config?.configDescription ?? ""
+        mainView.firstTab.configOptionsView.delegateConfigOption = self // implement DelegateConfigOptionViewFirstCell
+        mainView.firstTab.configOptionsView.configOptionArray = config?.configOptions ?? []
+        mainView.firstTab.getFooterViewData(configs: config?.relatedProducts , simpleConfig: nil )
+        mainView.firstTab.footerView.HandelSelectedCellAction = {[weak self] (slug) in
+            guard let self = self else{return}
+            self.presentViewController(controller: ItemDetailsVC_V2(slug: slug) , transitionModal:.crossDissolve, presentationStyle: nil)
+            
+        }
+    }
+    
+    private func addDataToSecondTab () {
+        let config = presenter?.itemDetails?.config
+        mainView.secondTab.specs = config?.specs ?? []
+        mainView.secondTab.reloadData()
+    }
+    
+    private func addDataToThirdTab () {
         
+        mainView.thirdTab.header.ratingData = presenter?.rateData
+        mainView.thirdTab.reviews = presenter?.reviews ?? []
+        mainView.thirdTab.reviewTableView.reloadData()
+        mainView.thirdTab.handelAddReviewButtonTapped = { [weak self] in
+            guard let self = self else{return}
+            if UserDefaults.standard.string(forKey: Constants.Defaults.authToken) != "" {
+                let dest = AddReviewController()
+                dest.catlogId = self.presenter?.itemDetails?.config.catalogID
+                dest.editeFlag = false
+                dest.mainView.setHeaderViewData(self.presenter?.itemDetails?.config.brand?.name ?? "", self.presenter?.itemDetails?.config.name ?? "",5, self.presenter?.itemDetails?.config.mainPhoto?.path)
+                self.present(dest, animated: true, completion: nil)
+            }else{
+                self.presentLoginViewController(loginDismiss: true)
+            }
+        }
+
     }
     
     private func openShowTips () {
@@ -69,11 +120,8 @@ class ItemDetailsVC_V2 : UIViewController {
                 return
             }
             tipView = EasyTipView(text: text , preferences: preferences)
-            guard let  cell = mainView.collectionViewMain.cellForItem(at: [0,0]) as? CellItemDetailsFirstTab else {
-                return
-            }
             
-            tipView?.show(forView: cell.detailView.buttonInfo , withinSuperview: self.mainView)
+            tipView?.show(forView: mainView.firstTab.detailView.buttonInfo , withinSuperview: self.mainView)
             self.isShowTip = !self.isShowTip
         }else{
             tipView?.dismiss()
@@ -111,58 +159,58 @@ extension ItemDetailsVC_V2 : UICollectionViewDelegate , UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let config = presenter?.itemDetails?.config
-        if indexPath.row == 0 {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellItemDetailsFirstTab.getIdentifier() , for: indexPath) as! CellItemDetailsFirstTab
-            cell.scrollView.delegate = self
-            if presenter?.sallerNote == nil || presenter?.sallerNote == "" {
-                cell.detailView.buttonInfo.isHidden = true
-            }else {
-                cell.detailView.buttonInfo.isHidden = false
-            }
-            cell.detailView.setData(brandTitle: config?.brand?.name ?? "" , countryTitle: config?.madeIn ?? "" , tags: config?.tags ?? [] )
-            cell.detailView.delegate = self // implement DelegateDetailsViewFirstCell
-            cell.descriptionView.labelDescriptionData.text = config?.configDescription ?? ""
-            cell.configOptionsView.delegateConfigOption = self // implement DelegateConfigOptionViewFirstCell
-            cell.configOptionsView.configOptionArray = config?.configOptions ?? []
-            cell.getFooterViewData(configs: config?.relatedProducts , simpleConfig: nil )
-            cell.footerView.HandelSelectedCellAction = {[weak self] (slug) in
-                guard let self = self else{return}
-                self.presentViewController(controller: ItemDetailsVC_V2(slug: slug) , transitionModal:.crossDissolve, presentationStyle: nil)
-                
-            }
-            
-            return cell
-            
-        }else if indexPath.row == 1 {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SecondeCell.getIdentifier() , for: indexPath) as! SecondeCell
-            cell.tableView.delegate = self
-            cell.specs = config?.specs ?? []
-            cell.tableView.reloadData()
-            return cell
-        }else if indexPath.row == 2 {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ThirdCell.getIdentifier() , for: indexPath) as! ThirdCell
-            cell.scrollView.delegate = self
-            cell.header.ratingData = presenter?.rateData
-            cell.reviews = presenter?.reviews ?? []
-            cell.reviewCollectionView.reloadData()
-            cell.handelAddReviewButtonTapped = { [weak self] in
-                guard let self = self else{return}
-                if UserDefaults.standard.string(forKey: Constants.Defaults.authToken) != "" {
-                    let dest = AddReviewController()
-                    dest.catlogId = self.presenter?.itemDetails?.config.catalogID
-                    dest.editeFlag = false
-                    dest.mainView.setHeaderViewData(self.presenter?.itemDetails?.config.brand?.name ?? "", self.presenter?.itemDetails?.config.name ?? "",5, self.presenter?.itemDetails?.config.mainPhoto?.path)
-                    self.present(dest, animated: true, completion: nil)
-                }else{
-                    self.presentLoginViewController(loginDismiss: true)
-                }
-            }
-            cell.handelPaging = { [weak self] in
-                guard let self = self else{return}
-              //  self.handelThirdCellPaging?()
-            }
-            return cell
-        }
+//        if indexPath.row == 0 {
+//            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellItemDetailsFirstTab.getIdentifier() , for: indexPath) as! CellItemDetailsFirstTab
+//            cell.scrollView.delegate = self
+//            if presenter?.sallerNote == nil || presenter?.sallerNote == "" {
+//                cell.detailView.buttonInfo.isHidden = true
+//            }else {
+//                cell.detailView.buttonInfo.isHidden = false
+//            }
+//            cell.detailView.setData(brandTitle: config?.brand?.name ?? "" , countryTitle: config?.madeIn ?? "" , tags: config?.tags ?? [] )
+//            cell.detailView.delegate = self // implement DelegateDetailsViewFirstCell
+//            cell.descriptionView.labelDescriptionData.text = config?.configDescription ?? ""
+//            cell.configOptionsView.delegateConfigOption = self // implement DelegateConfigOptionViewFirstCell
+//            cell.configOptionsView.configOptionArray = config?.configOptions ?? []
+//            cell.getFooterViewData(configs: config?.relatedProducts , simpleConfig: nil )
+//            cell.footerView.HandelSelectedCellAction = {[weak self] (slug) in
+//                guard let self = self else{return}
+//                self.presentViewController(controller: ItemDetailsVC_V2(slug: slug) , transitionModal:.crossDissolve, presentationStyle: nil)
+//
+//            }
+//
+//            return cell
+//
+//        }else if indexPath.row == 1 {
+//            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SecondeCell.getIdentifier() , for: indexPath) as! SecondeCell
+//            cell.tableView.delegate = self
+//            cell.specs = config?.specs ?? []
+//            cell.tableView.reloadData()
+//            return cell
+//        }else if indexPath.row == 2 {
+//            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ThirdCell.getIdentifier() , for: indexPath) as! ThirdCell
+//            cell.scrollView.delegate = self
+//            cell.header.ratingData = presenter?.rateData
+//            cell.reviews = presenter?.reviews ?? []
+//            cell.reviewCollectionView.reloadData()
+//            cell.handelAddReviewButtonTapped = { [weak self] in
+//                guard let self = self else{return}
+//                if UserDefaults.standard.string(forKey: Constants.Defaults.authToken) != "" {
+//                    let dest = AddReviewController()
+//                    dest.catlogId = self.presenter?.itemDetails?.config.catalogID
+//                    dest.editeFlag = false
+//                    dest.mainView.setHeaderViewData(self.presenter?.itemDetails?.config.brand?.name ?? "", self.presenter?.itemDetails?.config.name ?? "",5, self.presenter?.itemDetails?.config.mainPhoto?.path)
+//                    self.present(dest, animated: true, completion: nil)
+//                }else{
+//                    self.presentLoginViewController(loginDismiss: true)
+//                }
+//            }
+//            cell.handelPaging = { [weak self] in
+//                guard let self = self else{return}
+//              //  self.handelThirdCellPaging?()
+//            }
+//            return cell
+//        }
         return UICollectionViewCell()
     }
     
@@ -200,14 +248,21 @@ extension ItemDetailsVC_V2 : ButtonActionDelegate {
     func customTabBarTapped(_ tap: UITapGestureRecognizer) {
         if tap.name == "details"{
             changeCustomTabBarBtnColor(name: tap.name ?? "" )
-            mainView.collectionViewMain.scrollToItem(at: IndexPath(row: 0, section: 0), at: .centeredHorizontally, animated: true)
+            let point = CGPoint(x: 0 , y: mainView.scrollViewMain.contentOffset.y )
+            mainView.scrollViewMain.setContentOffset(point, animated: true )
         }else if tap.name == "specs"{
             changeCustomTabBarBtnColor(name: tap.name ?? "" )
-            mainView.collectionViewMain.scrollToItem(at: IndexPath(row: 1, section: 0), at: .centeredHorizontally, animated: true)
+            let point = CGPoint(x: mainView.scrollViewMain.frame.width , y: mainView.scrollViewMain.contentOffset.y )
+            mainView.scrollViewMain.setContentOffset(point, animated: true )
         }else if tap.name == "review"{
             changeCustomTabBarBtnColor(name: tap.name ?? "" )
-            mainView.collectionViewMain.scrollToItem(at: IndexPath(row: 2, section: 0), at: .centeredHorizontally, animated: true)
+            let point = CGPoint(x: mainView.scrollViewMain.frame.width * 2 , y: mainView.scrollViewMain.contentOffset.y )
+            mainView.scrollViewMain.setContentOffset(point, animated: true )
         }
+    }
+    
+    func dissmisController() {
+        self.dismiss(animated: true )
     }
     
     func changeCustomTabBarBtnColor(name:String){
@@ -264,52 +319,18 @@ extension ItemDetailsVC_V2 : ProItemDetailsView {
     
     func getItemDetails() {
         addDataToHeader()
-        self.mainView.collectionViewMain.reloadItems(at: [IndexPath(item: 0, section: 0) , IndexPath(item: 1, section: 0)])
+        addDataToFirstTab()
+        addDataToSecondTab()
+        addDataToThirdTab()
     }
     
     func getRatingData () {
-        self.mainView.collectionViewMain.reloadItems(at: [IndexPath(item: 2, section: 0)] )
+       addDataToThirdTab()
     }
     func getReviewData () {
-        self.mainView.collectionViewMain.reloadItems(at: [IndexPath(item: 2, section: 0) ] )
+       addDataToThirdTab()
     }
 
 }
 
-extension ItemDetailsVC_V2 : UIScrollViewDelegate , UITableViewDelegate {
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let y: CGFloat = scrollView.contentOffset.y
-        guard let headerViewHeightConstraint = mainView.headerViewHeightConstraint else { return }
-        let newHeaderViewHeight: CGFloat = ( mainView.headerViewHeightConstraint?.constant ?? 0 ) - y
-        
-//        print("headerViewMaxHeight : \(mainView.headerViewMaxHeight)")
-//        print("headerViewMinHeight : \(mainView.headerViewMinHeight)")
-//        print("newHeaderViewHeight : \(newHeaderViewHeight)")
-        
-        
-        
-        if newHeaderViewHeight > mainView.headerViewMaxHeight {
-            headerViewHeightConstraint.constant = mainView.headerViewMaxHeight
-        } else if newHeaderViewHeight < mainView.headerViewMinHeight {
-            headerViewHeightConstraint.constant = mainView.headerViewMinHeight
-            
-            UIView.animate(withDuration: 0.3) {
-              //  self.navView.backgroundColor = Colors.colorNavHotels
-             //   self.navView.titlelabel.isHidden = false
-            }
-        }else {
-            headerViewHeightConstraint.constant = newHeaderViewHeight
-            scrollView.contentOffset.y = 0 // block scroll view
-            
-        }
-        
-        if newHeaderViewHeight > mainView.headerViewMinHeight + 20 {
-            UIView.animate(withDuration: 0.3) {
-               // self.navView.backgroundColor = .clear
-               // self.navView.titlelabel.isHidden = true
-            }
-        }
 
-    }
-}
