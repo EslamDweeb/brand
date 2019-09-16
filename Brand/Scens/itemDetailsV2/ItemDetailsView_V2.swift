@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import MOLH
 protocol DelegateCustomTabBarButton {
     func changeCustomTabBarBtnColor(name:String)
 }
@@ -109,18 +109,37 @@ class ItemDetailsView_V2 : UIView {
         parentInScrollView.addSubview(firstTab)
         parentInScrollView.addSubview(secondTab)
         parentInScrollView.addSubview(thirdTab)
+        if MOLHLanguage.currentAppleLanguage() == "ar"{
+            scrollViewMain.transform = CGAffineTransform(scaleX: -1, y: 1)
+            firstTab.transform = CGAffineTransform(scaleX: -1, y: 1)
+              secondTab.transform = CGAffineTransform(scaleX: -1, y: 1)
+              thirdTab.transform = CGAffineTransform(scaleX: -1, y: 1)
+        }
+//        firstTab.anchor(top: parentInScrollView.topAnchor, leading: parentInScrollView.leadingAnchor , bottom: parentInScrollView.bottomAnchor)
+//        firstTab.heightAnchor.constraint(equalTo: scrollViewMain.heightAnchor, multiplier: 1).isActive = true
+//        firstTab.widthAnchor.constraint(equalTo: scrollViewMain.widthAnchor , multiplier: 1 ).isActive = true
         
-        firstTab.anchor(top: parentInScrollView.topAnchor, leading: parentInScrollView.leadingAnchor , bottom: parentInScrollView.bottomAnchor)
+//        secondTab.anchor(top: parentInScrollView.topAnchor, leading: firstTab.trailingAnchor , bottom: parentInScrollView.bottomAnchor)
+//        secondTab.heightAnchor.constraint(equalTo: scrollViewMain.heightAnchor, multiplier: 1).isActive = true
+//        secondTab.widthAnchor.constraint(equalTo: scrollViewMain.widthAnchor , multiplier: 1 ).isActive = true
+        
+//        thirdTab.anchor(top: parentInScrollView.topAnchor, leading: secondTab.trailingAnchor , bottom: parentInScrollView.bottomAnchor , trailing: parentInScrollView.trailingAnchor )
+//        thirdTab.heightAnchor.constraint(equalTo: scrollViewMain.heightAnchor, multiplier: 1).isActive = true
+//        thirdTab.widthAnchor.constraint(equalTo: scrollViewMain.widthAnchor , multiplier: 1 ).isActive = true
+        
+   
+        firstTab.anchor(top: parentInScrollView.topAnchor, left: parentInScrollView.leftAnchor, bottom: parentInScrollView.bottomAnchor, right: nil, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         firstTab.heightAnchor.constraint(equalTo: scrollViewMain.heightAnchor, multiplier: 1).isActive = true
         firstTab.widthAnchor.constraint(equalTo: scrollViewMain.widthAnchor , multiplier: 1 ).isActive = true
         
-        secondTab.anchor(top: parentInScrollView.topAnchor, leading: firstTab.trailingAnchor , bottom: parentInScrollView.bottomAnchor)
+        secondTab.anchor(top: parentInScrollView.topAnchor, left: firstTab.rightAnchor, bottom: parentInScrollView.bottomAnchor, right: nil, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         secondTab.heightAnchor.constraint(equalTo: scrollViewMain.heightAnchor, multiplier: 1).isActive = true
         secondTab.widthAnchor.constraint(equalTo: scrollViewMain.widthAnchor , multiplier: 1 ).isActive = true
         
-        thirdTab.anchor(top: parentInScrollView.topAnchor, leading: secondTab.trailingAnchor , bottom: parentInScrollView.bottomAnchor , trailing: parentInScrollView.trailingAnchor )
+        thirdTab.anchor(top: parentInScrollView.topAnchor, left: secondTab.rightAnchor, bottom: parentInScrollView.bottomAnchor, right: parentInScrollView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         thirdTab.heightAnchor.constraint(equalTo: scrollViewMain.heightAnchor, multiplier: 1).isActive = true
         thirdTab.widthAnchor.constraint(equalTo: scrollViewMain.widthAnchor , multiplier: 1 ).isActive = true
+        
         
         //parentInScrollView.contentInset.top = -UIApplication.shared.statusBarFrame.height
 
