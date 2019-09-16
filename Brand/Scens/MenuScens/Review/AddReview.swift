@@ -14,7 +14,7 @@ class AddReviewView: UIView {
         didSet{
             let url = URL(string: review?.subObjectMedia?.path ?? "")
             headerView.image.kf.setImage(with: url)
-            headerView.brandName.text = review?.object?.brand.name
+            headerView.brandName.text = review?.model
             headerView.productName.text = review?.objectName
             headerView.rateView.rating = Double(review?.value ?? 0)
             reviewView.textView.text = review?.review

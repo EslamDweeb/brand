@@ -39,6 +39,7 @@ extension FlashSaleController: UICollectionViewDelegate,UICollectionViewDataSour
             dest.mainView.navView.titlelabel.text = "All Product".localized
             dest.mainView.navView.searchBtn.isHidden = false
             dest.vcType = .allProduct
+            dest.slug = cell?.flash?.product.slug
             self.present(dest, animated: true, completion: nil)
         }
     }

@@ -29,6 +29,7 @@ extension WishListController: UICollectionViewDelegate,UICollectionViewDataSourc
                 view.lable.text = YString.NoProuct
                 view.button.isHidden = true
                 collectionView.backgroundView = view
+                self.mainView.FilterBtn.isHidden = true
             case .seeAll:
                //  collectionView.backgroundView = nil
                     let view = ReviewBGView()
@@ -39,6 +40,7 @@ extension WishListController: UICollectionViewDelegate,UICollectionViewDataSourc
             }
         }else{
             collectionView.backgroundView = nil
+             self.mainView.FilterBtn.isHidden = false
         }
         let count = wishes.count
         return shouldShowLoadingCell ? count + 1 : count

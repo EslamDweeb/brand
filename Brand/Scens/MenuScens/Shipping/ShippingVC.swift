@@ -101,10 +101,7 @@ class ShippingVC: UIViewController , ButtonActionDelegate {
                         self.mainView.viewnoaddress.isHidden = true
                         self.mainView.viewwithAddress.isHidden = false
                        self.mainView.topConstrainshippinglabel?.constant = -90
-//                                                     self.mainView.shippingMethodlbl.topAnchor.constraint(equalTo: self.mainView.viewwithAddress.bottomAnchor, constant: 16)
-                        
                         var mainIndex = 0
-                        
                         for address in data.data {
                             self.addresses.append(Address(id: address.id, country: address.country, state: address.state, city: address.city, addressName: address.addressName, detailedAddress: address.detailedAddress, personName: address.personName, phone: address.phone, postalCode:  address.postalCode, lat: address.lat, lng: address.lng, main: address.main))
                             if address.main == true {

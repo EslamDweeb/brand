@@ -93,6 +93,8 @@ class YString {
         
     }
     static private let arString : [String : String] = [
+        "soon" : "قريبا",
+        "now" : "الآن",
         "Noresult" : "لا يوجد نتائج",
         "No Products" : "لا يوجد منتجات" ,
         "All Product" : "كل المنتجات",
@@ -320,6 +322,8 @@ class YString {
     ]
     
     static private let enString : [String : String] = [
+        "soon" : "Soon",
+        "now" :"Now",
         "Noresult" : "No Result" ,
         "No Products" : "No Products",
         "All Product" :"All Product" ,

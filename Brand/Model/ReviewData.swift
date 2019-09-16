@@ -42,7 +42,8 @@ struct Ratingable: Codable {
     let pros, cons: String?
     
     enum CodingKeys: String, CodingKey {
-        case id, model
+        case id
+        case model = "model_name"
         case objectID = "object_id"
         case objectName = "rated_object_name"
         case object

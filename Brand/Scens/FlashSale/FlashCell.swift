@@ -16,7 +16,9 @@ class FlashCell:UICollectionViewCell {
             let url = URL(string: flash.offerImage.path)
             image.kf.indicatorType = .activity
             image.kf.setImage(with: url)
-            timeLbl.text = flash.startDate.convertDateFormatter(formate:"h a")
+         
+       //     timeLbl.text = flash.startDate.convertDateFormatter(formate:"h a")
+            timeLbl.text =  flash.compare()
             discountLbl.text = "\(flash.salePct.roundToDecimal(3))"
             productName.text = flash.offerName
             if flash.soldOut == true {
