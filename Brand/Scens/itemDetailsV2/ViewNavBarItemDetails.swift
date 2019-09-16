@@ -24,6 +24,7 @@ class ViewNavBarItemDetails : UIView {
         let v = UIView()
         v.backgroundColor = #colorLiteral(red: 0.2605174184, green: 0.2605243921, blue: 0.260520637, alpha: 0.1962489298)
         v.addSubview(backBtn)
+      
         backBtn.anchor(top: v.topAnchor, leading:  v.leadingAnchor, bottom:  v.bottomAnchor, trailing:  v.trailingAnchor)
         
         return v
@@ -44,7 +45,7 @@ class ViewNavBarItemDetails : UIView {
     }
     
     override func layoutSubviews() {
-        backBouttonRoundView.layer.cornerRadius = backBouttonRoundView.frame.width / 2
+        
     }
     
     override init(frame: CGRect) {

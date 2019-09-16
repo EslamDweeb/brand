@@ -32,6 +32,7 @@ class ItemDetailHeaderView: UIView {
     lazy var backBtn: UIButton = {
         let button = UIButton()
         button.setImage(#imageLiteral(resourceName: "arrowLeftAnticon"), for: .normal)
+        button.layer.cornerRadius = button.bounds.width / 2
         button.imageEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         button.addTarget(actionDelegate, action: #selector(ButtonActionDelegate.dissmisController), for: .touchUpInside)
         return button
@@ -152,12 +153,13 @@ class ItemDetailHeaderView: UIView {
         cartBtn.anchor(top: nil , left: leftAnchor , bottom: bottomAnchor , right: nil , centerX: nil , centerY: nil , paddingTop: 0, paddingLeft: 0 , paddingBottom: 0 , paddingRight: 16 , width: 45, height: 45, paddingCenterX: 0, paddingCenterY: 0)
       
         favBtn.anchor(top: nil , left: nil , bottom: bottomAnchor , right: rightAnchor , centerX: nil , centerY: nil , paddingTop: 0, paddingLeft: 0 , paddingBottom: 0 , paddingRight: 16 , width: 45, height: 45, paddingCenterX: 0, paddingCenterY: 0)
+       // backBouttonRoundView.layer.cornerRadius = backBouttonRoundView.frame.width / 2
        
     }
-    override func layoutSubviews() {
-        super.layoutSubviews()
-          backBouttonRoundView.layer.cornerRadius = backBouttonRoundView.frame.width / 2
-    }
+//    override func layoutSubviews() {
+//        super.layoutSubviews()
+//
+//    }
 }
 
 class ItemDetailCollHeader:UICollectionReusableView,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,ButtonActionDelegate{

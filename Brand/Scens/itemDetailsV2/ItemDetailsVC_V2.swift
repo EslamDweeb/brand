@@ -53,6 +53,8 @@ class ItemDetailsVC_V2 : UIViewController , DelegateCustomTabBarButton {
         mainView.headerViewHeightConstraint = mainView.headerView.heightAnchor.constraint(equalToConstant: mainView.headerView.frame.height )
         mainView.headerViewHeightConstraint?.isActive = true
         mainView.headerViewMaxHeight = mainView.headerViewHeightConstraint?.constant ?? 0
+        mainView.navView.backBouttonRoundView.layer.cornerRadius =  mainView.navView.backBouttonRoundView.bounds.width / 2
+
     }
     
     private func addDataToHeader () {
