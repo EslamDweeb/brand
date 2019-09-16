@@ -121,7 +121,8 @@ class ItemDetailsView_V2 : UIView {
         thirdTab.heightAnchor.constraint(equalTo: scrollViewMain.heightAnchor, multiplier: 1).isActive = true
         thirdTab.widthAnchor.constraint(equalTo: scrollViewMain.widthAnchor , multiplier: 1 ).isActive = true
         
-        
+        //parentInScrollView.contentInset.top = -UIApplication.shared.statusBarFrame.height
+
     }
     
     

@@ -1305,7 +1305,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "174"
             endingLineNumber = "174"
-            landmarkName = "addViewAddToCart(config:cartItem:slug:)"
+            landmarkName = "convertDateFormatter(date:formate:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1321,8 +1321,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "175"
             endingLineNumber = "175"
-            landmarkName = "addViewAddToCart(config:cartItem:slug:)"
-            landmarkType = "7">
+            landmarkName = "UIViewController"
+            landmarkType = "21">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1337,8 +1337,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "176"
             endingLineNumber = "176"
-            landmarkName = "addViewAddToCart(config:cartItem:slug:)"
-            landmarkType = "7">
+            landmarkName = "UIViewController"
+            landmarkType = "21">
             <Locations>
                <Location
                   shouldBeEnabled = "Yes"
@@ -2194,7 +2194,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Brand/Scens/itemDetailsV2/HeaderViewItemDetails.swift"
-            timestampString = "589992608.194823"
+            timestampString = "590330792.375438"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "151"
@@ -2210,7 +2210,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Brand/Scens/itemDetailsV2/HeaderViewItemDetails.swift"
-            timestampString = "589992608.194869"
+            timestampString = "590330792.375492"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "152"
