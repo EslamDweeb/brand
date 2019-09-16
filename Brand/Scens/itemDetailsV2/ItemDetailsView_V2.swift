@@ -21,7 +21,7 @@ class ItemDetailsView_V2 : UIView {
     
     var firstTab = FirstTabItemDetails()
     var secondTab = SecondTabItemDetials()
-    var thirdTab = ThirdTabItemDetails()
+    var thirdTab =  ThirdTabItemDetails()
     
     var delegateCustomTabBarButton : DelegateCustomTabBarButton?
     
@@ -35,6 +35,7 @@ class ItemDetailsView_V2 : UIView {
        
         let s = UIScrollView()
         s.isPagingEnabled = true
+    
 //        c.register(CellItemDetailsFirstTab.self , forCellWithReuseIdentifier: CellItemDetailsFirstTab.getIdentifier())
 //        c.register(SecondeCell.self , forCellWithReuseIdentifier: SecondeCell.getIdentifier() )
 //        c.register(ThirdCell.self , forCellWithReuseIdentifier: ThirdCell.getIdentifier())
@@ -45,6 +46,7 @@ class ItemDetailsView_V2 : UIView {
         self.parentInScrollView.bottomAnchor.constraint(equalTo: s.bottomAnchor , constant: 0).isActive = true
         self.parentInScrollView.leadingAnchor.constraint(equalTo: s.leadingAnchor , constant: 0).isActive = true
         self.parentInScrollView.trailingAnchor.constraint(equalTo: s.trailingAnchor , constant: 0).isActive = true
+      
         self.parentInScrollView.heightAnchor.constraint(equalTo: s.heightAnchor , multiplier: 1).isActive = true
         
         return s
@@ -83,7 +85,6 @@ class ItemDetailsView_V2 : UIView {
     private func initViews () {
         self.backgroundColor = .white
         addViews()
-        
         self.scrollViewMain.delegate = self
     }
     
