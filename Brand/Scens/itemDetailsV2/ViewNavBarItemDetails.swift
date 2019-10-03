@@ -7,14 +7,18 @@
 //
 
 import UIKit
-
+import MOLH
 class ViewNavBarItemDetails : UIView {
     
     weak var actionDelegate:ButtonActionDelegate?
 
     lazy var backBtn: UIButton = {
         let b = UIButton()
-        b.setImage(#imageLiteral(resourceName: "arrowLeftAnticon"), for: .normal)
+       if  MOLHLanguage.currentAppleLanguage().contains( "ar") {
+             b.setImage(#imageLiteral(resourceName: "arrow-back-rtl"), for: .normal)
+        }else{
+            b.setImage(#imageLiteral(resourceName: "arrowLeftAnticon"), for: .normal)
+        }
         b.imageEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         b.addTarget(actionDelegate, action: #selector(ButtonActionDelegate.dissmisController), for: .touchUpInside)
         return b
@@ -24,9 +28,7 @@ class ViewNavBarItemDetails : UIView {
         let v = UIView()
         v.backgroundColor = #colorLiteral(red: 0.2605174184, green: 0.2605243921, blue: 0.260520637, alpha: 0.1962489298)
         v.addSubview(backBtn)
-      
         backBtn.anchor(top: v.topAnchor, leading:  v.leadingAnchor, bottom:  v.bottomAnchor, trailing:  v.trailingAnchor)
-        
         return v
     }()
     
