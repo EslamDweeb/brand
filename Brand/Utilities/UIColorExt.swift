@@ -25,7 +25,7 @@ extension UIColor {
     static let lightBlue = UIColor(red: 218/255, green: 235/255, blue: 243/255, alpha: 1)
     static let backgroundColl = UIColor(red: 250/255, green: 251/255, blue: 251/255, alpha: 1)
     static let backgroundCell = UIColor(red: 237/255, green: 237/255, blue: 237/255, alpha: 0.7)
-    static let discountColor  = UIColor(red: 142/255, green: 68/255, blue: 173/255, alpha: 0.8)
+    static let discountColor  = UIColor(red: 149/255, green: 91/255, blue: 162/255, alpha: 1)
     static let backgroundCell2 = UIColor(red: 237/255, green: 237/255, blue: 237/255, alpha: 1)
     static let lightgray2 = UIColor(red: 137/255, green: 137/255, blue: 137/255, alpha: 1)
     static let lightgray3 = UIColor(red: 216/255, green: 216/255, blue: 216/255, alpha: 1)
@@ -35,6 +35,5 @@ extension UIColor {
     static let blackTransparent = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.5016395499)
     static let grayBackgroundCell = #colorLiteral(red: 0.8941176471, green: 0.8941176471, blue: 0.8941176471, alpha: 1)
     static let grayTextCell = #colorLiteral(red: 0.537254902, green: 0.537254902, blue: 0.537254902, alpha: 1)
-    
-
+   
 }

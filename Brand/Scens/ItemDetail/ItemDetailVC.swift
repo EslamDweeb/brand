@@ -276,7 +276,7 @@ extension ItemDetailVC:UICollectionViewDelegate,UICollectionViewDataSource,UICol
                 let dest = AddReviewController()
                 dest.catlogId = self.itemDetails?.config.catalogID
                 dest.editeFlag = false
-                dest.mainView.setHeaderViewData(self.itemDetails?.config.brand?.name ?? "", self.itemDetails?.config.name ?? "",5, self.itemDetails?.config.mainPhoto?.path)
+                dest.mainView.setHeaderViewData(self.itemDetails?.config.brand?.name ?? "", self.itemDetails?.config.name ?? "",1, self.itemDetails?.config.mainPhoto?.path)
                 self.present(dest, animated: true, completion: nil)
             }else{
                 self?.presentLoginViewController(loginDismiss: true)

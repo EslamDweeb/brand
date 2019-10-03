@@ -41,7 +41,13 @@ extension ShippingVC  :  UICollectionViewDelegateFlowLayout  , UICollectionViewD
         self.mainIndexPah = indexPath.row
         self.mainView.tableView.reloadData()
         self.mainView.addressName.text = defaultaddress?.addressName
-        self.mainView.addressDescription.text =  defaultaddress?.detailedAddress
+        if defaultaddress?.detailedAddress != nil {
+            self.mainView.addressDescription.text = "\(defaultaddress?.country.name ?? "hhh")-  \(defaultaddress?.state.name ?? "")-\(defaultaddress?.city)-\(defaultaddress?.detailedAddress!)"
+        }else{
+            self.mainView.addressDescription.text = "\(defaultaddress!.country.name ?? "hhhh")- \(defaultaddress!.state.name ?? "")-\(defaultaddress!.city)"
+            
+        }
+      //  self.mainView.addressDescription.text =  defaultaddress?.detailedAddress
         self.activeShippingMethod = self.checkShippingMethod()
         self.mainView.shippingCollectionview.reloadData()
         animateTransitionIfNeeded(state: nextState)

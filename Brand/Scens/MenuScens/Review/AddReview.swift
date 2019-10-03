@@ -81,6 +81,7 @@ class AddReviewView: UIView {
         addSubview(navView)
         addSubview(scrollView)
         self.addGestureRecognizer(tapGesture)
+      //  tapGesture.cancelsTouchesInView = false 
         scrollView.addSubview(headerView)
         scrollView.addSubview(reviewView)
         scrollView.addSubview(prosView)

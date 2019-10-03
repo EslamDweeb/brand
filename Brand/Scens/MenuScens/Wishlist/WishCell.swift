@@ -99,6 +99,7 @@ class WishCell: UICollectionViewCell {
         self.isFav = !self.isFav
     }
     var handelCartBtnTappedClouser:((_ config:DetailedConfig)->Void)?
+    
     lazy var cartBtn: UIButton = {
         let btn = UIButton()
         btn.setImage(#imageLiteral(resourceName: "add-to-the-cart"), for: .normal)

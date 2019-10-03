@@ -55,6 +55,7 @@ extension SubCategoryVC:UICollectionViewDelegate,UICollectionViewDataSource,UICo
             cell.handelFavBtnTapped =  { [weak self] (id) in
                 guard let self = self else{return}
                 if UserDefaults.standard.string(forKey: Constants.Defaults.authToken) != "" {
+                      print(id)
                     APIClient.toggleFav(id: id) { (result) in
                         switch result {
                         case.success(let data):

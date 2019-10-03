@@ -83,6 +83,34 @@ class ItemDetailsVC_V2 : UIViewController , DelegateCustomTabBarButton {
             self.presentViewController(controller: ItemDetailsVC_V2(slug: slug) , transitionModal:.crossDissolve, presentationStyle: nil)
             
         }
+            mainView.firstTab.footerView.HandelAddToCart = 
+            { [weak self] (configDetails) in
+                guard let self = self else{return}
+                if UserDefaults.standard.string(forKey: Constants.Defaults.authToken) != "" {
+                    self.addViewAddToCart( slug: configDetails.slug ?? "" )
+                }else{
+                    self.presentLoginViewController(loginDismiss: true)
+                }
+        }
+        
+        mainView.firstTab.footerView.HandelAddFav = { [weak self]  (id) in
+            guard let self = self else{return}
+            if UserDefaults.standard.string(forKey: Constants.Defaults.authToken) != "" {
+                APIClient.toggleFav(id: id) { (result) in
+                    switch result {
+                    case.success(let data):
+                        self.createAlert(title: nil, erroMessage: data.message ?? "", createButton: nil)
+                        //self.removeAlertController()
+                        print(data)
+                    case .failure(_):
+                        break
+                    }
+                }
+            }else{
+                self.presentLoginViewController(loginDismiss:true)
+            }
+        }
+      //  mainView.firstTab.
     }
     
     private func addDataToSecondTab () {
@@ -234,10 +262,10 @@ extension ItemDetailsVC_V2 : ButtonActionDelegate {
                     case.success(let data):
                         self.createAlert(title: nil, erroMessage: data.message ?? "", createButton: nil)
                         if self.mainView.headerView.isfav {
-                           self.mainView.headerView.favBtn.setImage(#imageLiteral(resourceName: "fav"), for: .normal)
+                           self.mainView.headerView.favBtn.setImage(#imageLiteral(resourceName: "fav-outline"), for: .normal)
                             self.mainView.headerView.isfav = false
                         }else{
-                            self.mainView.headerView.favBtn.setImage(#imageLiteral(resourceName: "fav-outline"), for: .normal)
+                            self.mainView.headerView.favBtn.setImage(#imageLiteral(resourceName: "fav"), for: .normal)
                              self.mainView.headerView.isfav = true
                         }
                         

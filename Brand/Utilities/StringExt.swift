@@ -270,6 +270,7 @@ class YString {
         "edit" : "تعديل",
         "delete" : "حذف",
         "cancel" : "إلغاء",
+        "canceled" : "تم الالغاء",
         "email_not_valid" : "بريد الكترونى غير صالح",
         "notification" : "الإشعارات",
         "my_reviews" : "تقيماتي",
@@ -325,6 +326,7 @@ class YString {
     
     static private let enString : [String : String] = [
         "max" : "The max quantity" ,
+        "canceled" : "Canceled" ,
         "min" : "The min quantity" ,
         "soon" : "Soon",
         "now" :"Now",

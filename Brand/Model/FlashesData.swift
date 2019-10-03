@@ -52,7 +52,6 @@ struct Flash:Codable {
         }else {
             return ""
         }
-        
     }
 }
 struct FlashOfferHeader:Codable{

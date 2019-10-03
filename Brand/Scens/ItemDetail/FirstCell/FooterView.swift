@@ -12,6 +12,8 @@ class FooterView:UIView{
     let cellID = "cellID"
     var configs:[DetailedConfig]?
     var HandelSelectedCellAction:((_ slug:String)->())?
+     var HandelAddToCart:((_ config:DetailedConfig)->Void)?
+     var HandelAddFav:((_ id :Int)->Void)?
     lazy var titleLbl:UILabel = {
         let lbl = UILabel()
         lbl.font = UIFont(name: .fontH, size: 16)
@@ -66,6 +68,15 @@ extension FooterView:UICollectionViewDelegateFlowLayout,UICollectionViewDelegate
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath)as?WishCell else{return UICollectionViewCell()}
         cell.config = configs?[indexPath.row]
+        cell.handelCartBtnTappedClouser = { [weak self] (configDeta) in
+            guard let self = self else{return}
+                self.HandelAddToCart!(configDeta)
+        }
+        cell.handelFavBtnTapped = {
+            [ weak self] (id) in
+            print(id)
+            self?.HandelAddFav!(id)
+        }
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

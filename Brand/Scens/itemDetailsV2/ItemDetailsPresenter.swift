@@ -78,6 +78,7 @@ class ItemDetailsPresenter : ProItemDetailsPresenter {
     
     
     func getRatingData(id:Int){
+      //  print( id )
         APIClient.getConfigRating(id: id) { (result) in
             switch result{
             case.success(let data):

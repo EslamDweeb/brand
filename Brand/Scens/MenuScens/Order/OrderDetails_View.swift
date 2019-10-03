@@ -109,7 +109,7 @@ class DetailorderView : UIView , UITextFieldDelegate ,FlexibleSteppedProgressBar
     }()
     lazy var statuslabel : HeaderLabel = {
         let label = HeaderLabel()
-        label.text = "Canceld"
+        label.text = "canceled".localized
         label.isHidden = true
         return label
     }()
@@ -233,9 +233,9 @@ class DetailorderView : UIView , UITextFieldDelegate ,FlexibleSteppedProgressBar
         orderstatusview.anchor(top: detailsorderView.bottomAnchor, left: scrollView.leftAnchor, bottom: nil, right: scrollView.rightAnchor, centerX: scrollView.centerXAnchor, centerY: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height:120, paddingCenterX: 0, paddingCenterY: 0)
         orderstatusview.setShadow(shadowColor: UIColor(red: 0, green: 0, blue: 0, alpha: 0.24).cgColor , shadowOffset: CGSize(width: 0, height: 2), shadowOpacity: 0.4, shadowRaduis: 1)
          Orderstatuslabel.anchor(top: orderstatusview.topAnchor, left: orderstatusview.leftAnchor, bottom: nil, right: orderstatusview.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
-        img.anchor(top: Orderstatuslabel.bottomAnchor, left: nil, bottom: nil, right: nil, centerX: orderstatusview.centerXAnchor, centerY: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 30, height: 25
+        img.anchor(top: Orderstatuslabel.bottomAnchor, left: nil, bottom: nil, right: nil, centerX: orderstatusview.centerXAnchor, centerY: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 45, height: 45
             , paddingCenterX: 0, paddingCenterY: 0)
-        statuslabel.anchor(top: img.bottomAnchor, left: nil, bottom: orderstatusview.bottomAnchor, right: nil, centerX: orderstatusview.centerXAnchor, centerY: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 16, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
+        statuslabel.anchor(top: img.bottomAnchor, left: nil, bottom: orderstatusview.bottomAnchor, right: nil, centerX: orderstatusview.centerXAnchor, centerY: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 8, paddingRight: 0, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         Statusbar.anchor(top: Orderstatuslabel.bottomAnchor, left: orderstatusview.leftAnchor, bottom: orderstatusview.bottomAnchor, right: orderstatusview.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 22, paddingBottom: 16, paddingRight: 24, width: 0, height: 0, paddingCenterX: 0, paddingCenterY: 0)
         addressview.anchor(top: orderstatusview.bottomAnchor, left: scrollView.leftAnchor, bottom: nil, right: scrollView.rightAnchor, centerX: nil, centerY: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 75, paddingCenterX: 0, paddingCenterY: 0)
         addressName.anchor(top: addressview.topAnchor, left: addressview.leftAnchor, bottom: nil, right: addressview.rightAnchor, centerX: nil, centerY: nil, paddingTop: 16, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 20, paddingCenterX: 0, paddingCenterY: 0)
