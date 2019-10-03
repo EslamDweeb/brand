@@ -17,7 +17,7 @@ struct Address: Codable {
     let detailedAddress: String?
     let personName: String
     let phone : String
-    let postalCode: Int?
+    let postalCode: String?
     let lat :Double?
     let lng : Double?
     var main : Bool

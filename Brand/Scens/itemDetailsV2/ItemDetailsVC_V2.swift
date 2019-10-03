@@ -60,7 +60,7 @@ class ItemDetailsVC_V2 : UIViewController , DelegateCustomTabBarButton {
     private func addDataToHeader () {
         let config = presenter?.itemDetails?.config
         self.mainView.headerView.imagesSlide = config?.photos ?? []
-        self.mainView.headerView.setData(rating: Double(config?.overallRating ?? 0), numberOfuserRating: Double(config?.overallRatingCount ?? 0), price: Float(config?.price ?? 0), sale: Float(config?.sale ?? 0), name: config?.name ?? "", numberOfPages: config?.photos?.count ?? 0)
+        self.mainView.headerView.setData(rating: Double(config?.overallRating ?? 0), numberOfuserRating: Double(config?.overallRatingCount ?? 0), price: Float(config?.price ?? 0), sale: Float(config?.sale ?? 0), name: config?.name ?? "", numberOfPages: config?.photos?.count ?? 0, fav: config?.isFavorite ?? false)
         self.mainView.headerView.imageCollectionView.reloadData()
         self.mainView.navView.lableTitle.text = config?.name ?? ""
     }
@@ -233,6 +233,14 @@ extension ItemDetailsVC_V2 : ButtonActionDelegate {
                     switch result {
                     case.success(let data):
                         self.createAlert(title: nil, erroMessage: data.message ?? "", createButton: nil)
+                        if self.mainView.headerView.isfav {
+                           self.mainView.headerView.favBtn.setImage(#imageLiteral(resourceName: "fav"), for: .normal)
+                            self.mainView.headerView.isfav = false
+                        }else{
+                            self.mainView.headerView.favBtn.setImage(#imageLiteral(resourceName: "fav-outline"), for: .normal)
+                             self.mainView.headerView.isfav = true
+                        }
+                        
                         print(data)
                     case .failure(_):
                         break

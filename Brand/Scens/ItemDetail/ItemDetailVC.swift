@@ -19,6 +19,7 @@ class ItemDetailVC: UIViewController,ButtonActionDelegate {
     var currentPage:Int = 1
     var lastPage:Int?
     var slug:String?
+    var isfav = false
     var sallerNote:String?
     var preferences = EasyTipView.Preferences()
     static func create (slug : String) -> ItemDetailVC {
@@ -152,7 +153,7 @@ extension ItemDetailVC:UICollectionViewDelegate,UICollectionViewDataSource,UICol
             self.dismiss(animated: true, completion: nil)
         }
         header.photos = itemDetails?.config.photos ?? []
-        header.setData(rating: Double(itemDetails?.config.overallRating ?? 0), numberOfuserRating: Double(itemDetails?.config.overallRatingCount ?? 0), price: Float(itemDetails?.config.price ?? 0), sale: Float(itemDetails?.config.sale ?? 0), name: itemDetails?.config.name ?? "", numberOfPages: itemDetails?.config.photos?.count ?? 0)
+        header.setData(rating: Double(itemDetails?.config.overallRating ?? 0), numberOfuserRating: Double(itemDetails?.config.overallRatingCount ?? 0), price: Float(itemDetails?.config.price ?? 0), sale: Float(itemDetails?.config.sale ?? 0), name: itemDetails?.config.name ?? "", numberOfPages: itemDetails?.config.photos?.count ?? 0, fav: itemDetails?.config.isFavorite ?? false)
         header.header.imageCollectionView.reloadData()
         header.handelTabBarTapped = {(sender) in
             self.handelCustomTabBarTappedWork(collectionView, indexPath, header,sender)
@@ -165,6 +166,11 @@ extension ItemDetailVC:UICollectionViewDelegate,UICollectionViewDataSource,UICol
                         switch result {
                         case.success(let data):
                             self.createAlert(title: nil, erroMessage: data.message ?? "", createButton: nil)
+                            if self.isfav {
+                                
+                            }else{
+                                
+                            }
                             self.removeAlertController()
                             print(data)
                         case .failure(_):

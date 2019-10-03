@@ -183,7 +183,7 @@ class ItemDetailCollHeader:UICollectionReusableView,UICollectionViewDelegate,UIC
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    func setData(rating:Double,numberOfuserRating:Double,price:Float,sale:Float,name:String,numberOfPages:Int){
+    func setData(rating:Double,numberOfuserRating:Double,price:Float,sale:Float,name:String,numberOfPages:Int,fav : Bool){
         header.rateView.rating = rating
         header.titlelable.text = name
         header.priceLable.setAttributeStringWithStrike("\(price)")
@@ -191,6 +191,13 @@ class ItemDetailCollHeader:UICollectionReusableView,UICollectionViewDelegate,UIC
         header.numberOFReviewerLable.text = "(\(numberOfuserRating) user)"
         header.finalPriceLable.text = "\(getFinalPrice(price:Double(price), sale: Double(sale)))"
         header.pageControl.numberOfPages = numberOfPages
+        if fav {
+          header.favBtn.setImage(#imageLiteral(resourceName: "fav"), for: .normal)
+      
+        }else{
+           
+        header.favBtn.setImage(#imageLiteral(resourceName: "emptyHeart"), for: .normal)
+        }
     }
     private func getFinalPrice(price:Double,sale:Double) -> Double{
 //        "\(con.ReturnPriceAfterSale(price: con.price , sale: Double(con.sale).roundToDecimal(3))) \("sar".localized)"

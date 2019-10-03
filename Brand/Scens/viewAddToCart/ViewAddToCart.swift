@@ -316,13 +316,15 @@ class ViewAddToCart : UIView {
     
     @objc private func actionAddCount () {
         if pickerView.selectedItem == (presenter?.maxQuantity ?? 0 ) - (presenter?.minQuantity ?? 0 ) - 1  {
-            return
+              SnackBar.instance.setMessage("max".localized)
+        return
         }
         pickerView.selectItem( pickerView.selectedItem + 1 , animated: true )
     }
     
     @objc private func actionMinusCount () {
         if pickerView.selectedItem == 0 {
+             SnackBar.instance.setMessage("min".localized)
             return
         }
         pickerView.selectItem(pickerView.selectedItem - 1 , animated: true )

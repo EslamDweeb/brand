@@ -97,10 +97,7 @@ class AddToCartPresenter : ProAddToCartPresenter {
         self.selectedOptionsToEdit = selectedOptionsToEdit
         self.selectedQuantityToEdit = selectedQuantityToEdit
         self.isEdit = isEdit
-        
-        
-        
-        
+    
     }
     
     
@@ -172,7 +169,7 @@ class AddToCartPresenter : ProAddToCartPresenter {
             case .success(let data):
 
                 let config = data.config
-                self.setDataConfig(configID: config.id ?? 0 , saleProduct: Double( config.sale ?? 0.0 ) , priceProduct: Double(config.price ?? 0.0) , quantityProduct : config.qty ?? 0 , maxQuantity: config.maxQty ?? 0 , minQuantity: config.minQty ?? 0 , productOptions: config.productOptions ?? [] )
+                self.setDataConfig(configID: config.id ?? 0 , saleProduct: Double( config.sale ?? 0.0 ) , priceProduct: Double(config.ReturnPriceAfterSale(price: Double(config.price ?? 0), sale: Double(config.sale ?? 0))) , quantityProduct : config.qty ?? 0 , maxQuantity: config.maxQty ?? 0 , minQuantity: config.minQty ?? 0 , productOptions: config.productOptions ?? [] )
                 self.addToCartView.getConfigDetailsWithSlug()
                 return
             case .failure(let error):

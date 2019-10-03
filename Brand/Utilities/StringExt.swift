@@ -93,6 +93,8 @@ class YString {
         
     }
     static private let arString : [String : String] = [
+        "max" : "اقصي كميه",
+        "min" : "اقل كميه" ,
         "soon" : "قريبا",
         "now" : "الآن",
         "Noresult" : "لا يوجد نتائج",
@@ -322,6 +324,8 @@ class YString {
     ]
     
     static private let enString : [String : String] = [
+        "max" : "The max quantity" ,
+        "min" : "The min quantity" ,
         "soon" : "Soon",
         "now" :"Now",
         "Noresult" : "No Result" ,

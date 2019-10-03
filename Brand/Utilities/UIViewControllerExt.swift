@@ -38,6 +38,8 @@ extension UIViewController {
     // func to create AlertController
 
     func createAlert(title: String? = nil,erroMessage: String,createButton:Bool? = false) {
+        SnackBar.instance.setMessage(erroMessage)
+        
 //        let alert = UIAlertController(title: title ?? "", message: erroMessage, preferredStyle: UIAlertController.Style.alert)
 //        alert.setBackgroundColor(color: .pink)
 //        alert.setMessage(font: nil, color: .white)
@@ -47,8 +49,7 @@ extension UIViewController {
 //        }
 //        self.present(alert, animated: true, completion: nil)
         
-        SnackBar.instance.setMessage(erroMessage )
-        
+      
     }
     
     
@@ -191,9 +192,9 @@ extension UIViewController {
         
         if config == nil && cartItem != nil {
             let configInCart = cartItem?.config
-            viewPresenter = AddToCartPresenter(addToCartView: viewAddToCart, configID: configInCart?.id ?? 0 , saleProduct: Double(configInCart?.sale ?? 0.0) , priceProduct:Double(configInCart?.price ?? 0.0), quantityProduct : configInCart?.qty ?? 0 , maxQuantity: configInCart?.max_qty ?? 0 , minQuantity: configInCart?.min_qty ?? 0 , productOptions: cartItem?.productOptions ?? [], cartID: cartItem?.id ?? 0 , selectedOptionsToEdit : cartItem?.selectedOptions ?? [] , selectedQuantityToEdit : cartItem?.qty ?? 0 , isEdit: true )
+            viewPresenter = AddToCartPresenter(addToCartView: viewAddToCart, configID: configInCart?.id ?? 0 , saleProduct: Double(configInCart?.sale ?? 0.0) , priceProduct:Double((configInCart?.ReturnPriceAfterSale(price: configInCart?.price ?? 0, sale: configInCart?.sale ?? 0 ))!), quantityProduct : configInCart?.qty ?? 0 , maxQuantity: configInCart?.max_qty ?? 0 , minQuantity: configInCart?.min_qty ?? 0 , productOptions: cartItem?.productOptions ?? [], cartID: cartItem?.id ?? 0 , selectedOptionsToEdit : cartItem?.selectedOptions ?? [] , selectedQuantityToEdit : cartItem?.qty ?? 0 , isEdit: true )
         }else if cartItem == nil , config != nil {
-        viewPresenter = AddToCartPresenter(addToCartView: viewAddToCart, configID: config?.id ?? 0 , saleProduct: Double( config?.sale ?? 0.0 ) , priceProduct: Double(config?.price ?? 0.0) , quantityProduct : config?.qty ?? 0 , maxQuantity: config?.maxQty ?? 0 , minQuantity: config?.minQty ?? 0 , productOptions: config?.productOptions ?? [] )
+            viewPresenter = AddToCartPresenter(addToCartView: viewAddToCart, configID: config?.id ?? 0 , saleProduct: Double( config?.sale ?? 0.0 ) , priceProduct: Double((config?.ReturnPriceAfterSale(price: Double(config?.price ?? 0) , sale:Double( config?.sale ?? 0 )))!) , quantityProduct : config?.qty ?? 0 , maxQuantity: config?.maxQty ?? 0 , minQuantity: config?.minQty ?? 0 , productOptions: config?.productOptions ?? [] )
         }else if slug != nil {
             viewPresenter = AddToCartPresenter(addToCartView: viewAddToCart , slug: slug ?? "" )
         }else {

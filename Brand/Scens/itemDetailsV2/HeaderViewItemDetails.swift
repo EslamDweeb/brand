@@ -12,7 +12,7 @@ import Cosmos
 class HeaderViewItemDetails : UIView {
     let cellID = "cellID"
     weak var actionDelegate:ButtonActionDelegate?
-    
+    var isfav = false
     var imagesSlide : [Media] = []
     
     lazy var imageCollectionView:UICollectionView = {
@@ -148,7 +148,7 @@ class HeaderViewItemDetails : UIView {
     }
     
     
-    func setData(rating:Double,numberOfuserRating:Double,price:Float,sale:Float,name:String,numberOfPages:Int){
+    func setData(rating:Double,numberOfuserRating:Double,price:Float,sale:Float,name:String,numberOfPages:Int,fav : Bool){
         if sale != 0 {
             self.rateView.rating = rating
             self.titlelable.text = name
@@ -166,6 +166,14 @@ class HeaderViewItemDetails : UIView {
             self.numberOFReviewerLable.text = "(\(numberOfuserRating) user)"
             self.finalPriceLable.text = "\(getFinalPrice(price:Double(price), sale: Double(sale)))"
             self.pageControl.numberOfPages = numberOfPages
+        }
+         isfav = fav
+        if fav {
+            favBtn.setImage(#imageLiteral(resourceName: "fav"), for: .normal)
+           
+        }else{
+
+            favBtn.setImage(#imageLiteral(resourceName: "fav-outline"), for: .normal)
         }
        
     }

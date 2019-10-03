@@ -147,12 +147,11 @@ class ProfileVC :UIViewController,ButtonActionDelegate {
                             self.user?.email == profileView.EmailTextFeild.text &&
                             self.user?.phone == profileView.phoneTextFeild.text &&
                             date[0] == profileView.dateTextFeild.text &&
-                            (self.user?.gender == 1 && profileView.Genderview.titleLabel?.text == YString.male) || (self.user?.gender == 0 && profileView.Genderview.titleLabel?.text == "select_gender".localized ) ||
-                            ( self.user?.gender == 2 && profileView.Genderview.titleLabel?.text == YString.female ){
+                           ((self.user?.gender == 1 && profileView.Genderview.titleLabel?.text == YString.male) || (self.user?.gender == 0 && profileView.Genderview.titleLabel?.text == "select_gender".localized ) ||
+                            ( self.user?.gender == 2 && profileView.Genderview.titleLabel?.text == YString.female )){
                             self.profileView.activityStopAnimating()
                             self.change()
                         }else {
-                        
                             editeInfoRequest()
                         }
                     case .failure(_, let message):
